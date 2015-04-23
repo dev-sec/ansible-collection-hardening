@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+  vagrantfile_erb: Vagrantfile.erb
+
+provisioner:
+  name: ansible_playbook
+  test_repo_uri: https://github.com/TelekomLabs/tests-ssh-hardening.git
+  hosts: all
+  require_ansible_omnibus: true
+  ansible_omnibus_url: https://raw.githubusercontent.com/rndmh3ro/ansible_debian_install/master/ansible-install.sh 
+
+- name: debian-6
+  driver_config:
+    box: debian-6
+    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-6.0.10-amd64_virtualbox.box
+- name: debian-7
+  driver_config:
+    box: debian-7
+    box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-7.7.0-amd64_virtualbox.box
+
+suites:
+- name: default
+  roles_path: roles
+  playbook: default.yml
+  hosts: all
+  require_ansible_repo: true
+  ansible_verbose: true
+  ansible_version:   1.9.2

@@ -1,0 +1,43 @@
+network_ipv6_enable: false              # sshd + ssh
+ssh_client_cbc_required: false          # ssh
+ssh_server_cbc_required: false          # sshd
+ssh_client_weak_hmac: false             # ssh
+ssh_server_weak_hmac: false             # sshd
+ssh_client_weak_kex: false              # ssh
+ssh_server_weak_kex: false              # sshd
+ssh_ports: ['22']      # sshd + ssh
+ssh_listen_to: ['0.0.0.0']    # sshd
+ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key']        # sshd
+ssh_client_alive_interval: 600          # sshd
+ssh_client_alive_count: 3               # sshd
+ssh_remote_hosts: []           # ssh
+ssh_allow_root_with_key: false          # sshd
+ssh_allow_tcp_forwarding: false         # sshd
+ssh_allow_agent_forwarding: false       # sshd
+ssh_use_pam: false      # sshd
+ssh_deny_users: ''      # sshd
+ssh_allow_users: ''      # sshd
+ssh_deny_groups: ''      # sshd
+ssh_allow_groups: ''      # sshd
+ssh_print_motd: false      # sshd
+ssh_print_last_log: false    # sshd
+ssh_ps53: 'yes'
+ssh_ps59: 'sandbox'
+
+macs_53_default: 'hmac-ripemd160,hmac-sha1'
+macs_59_default: 'hmac-sha2-512,hmac-sha2-256,hmac-ripemd160'
+macs_59_weak: '{{macs_59_default | join(",hmac-sha1")}}'
+macs_66_default: 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160'
+macs_66_weak: '{{macs_66_default | join(",hmac-sha1")}}'
+
+ciphers_53_default: 'aes256-ctr,aes192-ctr,aes128-ctr'
+ciphers_53_weak: '{{ciphers_53_default | join (",aes256-cbc,aes192-cbc,aes128-cbc")}}'
+
+ciphers_66_default: 'chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr'
+ciphers_66_weak: '{{ciphers_66_default | join (",aes256-cbc,aes192-cbc,aes128-cbc")}}'
+
+kex_59_default: 'diffie-hellman-group-exchange-sha256'
+kex_59_weak: '{{kex_59_default | join (",diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1")}}'
+kex_66_default: 'curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256'
+kex_66_weak: '{{kex_66_default | join (",diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1")}}'
+
