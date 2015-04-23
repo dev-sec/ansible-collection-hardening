@@ -8,6 +8,7 @@ group :test do
   gem 'foodcritic', '~> 4.0'
 #  gem 'thor-foodcritic'
 #  gem 'rubocop',    '~> 0.28.0'
+  gem 'thor-foodcritic'
   gem 'coveralls',  require: false
 end
 
