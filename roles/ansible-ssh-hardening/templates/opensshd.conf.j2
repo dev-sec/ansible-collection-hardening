@@ -76,7 +76,7 @@ Ciphers {{ciphers_53_default}}
 {% if ssh_server_weak_hmac -%}
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
 MACs {{macs_66_weak}}
-{% elif ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6' -%}
+{% elif (ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6') or ansible_os_family == 'Oracle Linux' -%}
 MACs {{macs_53_default}}
 {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
 MACs {{macs_53_default}}
@@ -86,7 +86,7 @@ MACs {{macs_59_weak}}
 {% else %}
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
 MACs {{macs_66_default}}
-{% elif ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6' -%}
+{% elif (ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6') or ansible_os_family == 'Oracle Linux' -%}
 MACs {{macs_53_default}}
 {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
 MACs {{macs_53_default}}
@@ -109,7 +109,7 @@ MACs {{macs_59_default}}
                 KexAlgorithms {{kex_66_default}}
         {% endif %}
 {% else -%}
-        {% if ansible_os_family == 'RedHat' or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
+        {% if ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux' or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
                 #KexAlgorithms
         {% else -%}
                 KexAlgorithms {{kex_59_default}}
@@ -121,7 +121,7 @@ MACs {{macs_59_default}}
 
 # Secure Login directives.
 UseLogin no
-UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family == 'RedHat' -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux' -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 
 PermitUserEnvironment no
 LoginGraceTime 30s
