@@ -3,10 +3,8 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: create sshd_config and set permissions to root/600
-  template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner=root group=root
+  template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner=root group=root validate="/usr/sbin/sshd -T -f %s"
+  notify: restart sshd
 
 - name: create ssh_config and set permissions to root/644
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
-
-- name: restart sshd
-  service: name={{ sshd_service_name }} state=restarted
