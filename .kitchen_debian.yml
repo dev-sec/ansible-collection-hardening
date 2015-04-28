@@ -22,7 +22,7 @@ platforms:
 suites:
 - name: default
   roles_path: roles
-  playbook: default.yml
+  playbook: playbooks/default.yml
   hosts: all
   require_ansible_repo: true
   ansible_verbose: true
