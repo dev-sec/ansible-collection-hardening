@@ -11,8 +11,3 @@ install:
 script:
   - ansible-playbook --syntax-check spec/travis.yml
   - ansible-playbook --sudo -v --diff spec/travis.yml
-  - >
-    ansible-playbook --sudo spec/travis.yml
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
