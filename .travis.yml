@@ -1,0 +1,18 @@
+---
+language: python
+python: "2.7"
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq python-apt python-pycurl
+install:
+  - pip install ansible
+  - echo -e 'localhost  ansible_connection=local' > spec/inventory
+  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
+script:
+  - ansible-playbook --syntax-check spec/travis.yml
+  - ansible-playbook --sudo -v --diff spec/travis.yml
+  - >
+    ansible-playbook --sudo spec/travis.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
