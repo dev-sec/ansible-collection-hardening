@@ -1,5 +1,8 @@
 # ssh-hardening (Ansible Role)
 
+[![Build Status](http://img.shields.io/travis/hardening-io/chef-ssh-hardening.svg)][1]
+[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
+
 ## Description
 
 This role provides secure ssh-client and ssh-server configurations.
@@ -117,3 +120,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[1]: http://travis-ci.org/hardening-io/ansible-ssh-hardening
+[2]: https://gitter.im/hardening-io/general
