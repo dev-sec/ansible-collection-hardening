@@ -1,8 +1,10 @@
 # Changelog
 
- * implement hardening tests https://github.com/hardening-io/tests-ssh-hardening
- * setup test infrastructure with kitchen-ansible
- * travis tests
- * Add handlers to restart sshd only when necessary
- * Add support for Oracle Linux
+## 1.0.0
+
+ * Implement server hardening to meet our [tests](https://github.com/hardening-io/tests-ssh-hardening)
+ * Setup test infrastructure with kitchen-ansible
+ * Implement travis [#7](https://github.com/hardening-io/ansible-ssh-hardening/issues/7)
+ * Add handlers to restart sshd only when necessary [#6](https://github.com/hardening-io/ansible-ssh-hardening/issues/6)
+ * Add support for Oracle Linux [#2](https://github.com/hardening-io/ansible-ssh-hardening/issues/2)
  * Update variable documentation
