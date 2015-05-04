@@ -1,0 +1,90 @@
+- name: create sane limits.conf
+  template: src='limits.conf.j2' dest='/etc/security/limits.d/10.hardcore.conf' owner=root group=root mode=0440
+  when: os_security_kernel_enable_core_dump
+
+- name: create login.defs
+  template: src='login.defs.j2' dest='/etc/login.defs' owner=root group=root mode=0444
+
+- name: minimize access
+  file: path='{{item}}' mode='go-w' recurse=yes
+  with_items:
+    - '/usr/local/sbin'
+    - '/usr/local/bin'
+    - '/usr/sbin'
+    - '/usr/bin' 
+    - '/sbin'
+    - '/bin'
+    - '{{os_env_extra_user_paths}}'
+
+#- name: remove suid/sgid bit from binaries in blacklist
+#  file: path='{{item}}' mode='a-s'
+#  ignore_errors: true
+#  with_items:
+#    - '{{ os_security_suid_sgid_system_blacklist }}'
+#
+#- name: find binaries with suid/sgid set
+#  shell: 'find / \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | grep -v "No such file or directory"'
+#  register: sbit_binaries
+#
+#- debug: var=sbit_binaries.stdout_lines
+#- debug: var={{os_security_suid_sgid_system_blacklist}}
+#
+#- name: remove suid/sgid bit from all binaries except in whitelist
+#  file: path='{{item}}' mode='a-s'
+#  with_items:
+#    - sbit_binaries.stdout_lines
+
+- name: Get user accounts | DTAG SEC Req 3.21-4
+  command: "awk -F: '{print $1}' /etc/passwd"
+  register: users
+
+- name: delete rhosts-files from system | DTAG SEC Req 3.21-4
+  file: dest='~{{ item }}/.rhosts' state=absent
+  with_items: users.stdout_lines
+
+- name: delete hosts.equiv from system | DTAG SEC Req 3.21-4
+  file: dest='/etc/hosts.equiv' state=absent
+
+- name: change shadow ownership to root and mode to 0600 | DTAG SEC Req 3.21-7
+  file: dest='/etc/shadow' owner=root group=root mode=0600
+
+- name: change su-binary to only be accessible to user and group root
+  file: dest='/bin/su' owner=root group=root mode
+  when: security_users_allow|default(None) != None 
+
+- name: update pam
+  command: 'pam-auth-update --package'
+
+- name: remove pam ccreds
+  apt: name=
+
+- name: Define restriction levels for announcing the local source IP
+  sysctl: name='net.ipv4.conf.all.arp_announce' value=1 sysctl_set=yes state=present reload=yes
+
+- name: RFC 1337 fix F1
+  sysctl: name='net.ipv4.tcp_rfc1337' value=1 sysctl_set=yes state=present reload=yes
+
+- name: Accepting source route can lead to malicious networking behavior, so disable it if not needed.
+  sysctl: name='net.ipv4.conf.default.accept_source_route' value=0 sysctl_set=yes state=present reload=yes
+
+- sysctl: name=net.ipv4.icmp_ratelimit value=100 sysctl_set=yes state=present reload=yes
+- sysctl: name=net.ipv4.icmp_ratemask value=88089 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.tcp_timestamps value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.all.arp_ignore value=1 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.default.accept_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.all.accept_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.all.secure_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.default.secure_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.all.send_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv4.conf.all.send_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.all.disable_ipv6 value=1 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.accept_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.all.accept_redirects value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.router_solicitations value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.accept_ra_rtr_pref value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.accept_ra_pinfo value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.accept_ra_defrtr value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.autoconf value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.max_addresses value=1 sysctl_set=yes state=present reload=yes
+#- sysctl: name=kernel.sysrq value=0 sysctl_set=yes state=present reload=yes
+#- sysctl: name=net.ipv6.conf.default.dad_transmits value=0 sysctl_set=yes state=present reload=yes

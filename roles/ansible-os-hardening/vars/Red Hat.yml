@@ -1,0 +1,4 @@
+os_packages_pam_ccreds:  'pam_ccreds'
+os_packages_pam_passwdqc:  'pam_passwdqc'
+os_packages_pam_cracklib:  'pam_cracklib'
+

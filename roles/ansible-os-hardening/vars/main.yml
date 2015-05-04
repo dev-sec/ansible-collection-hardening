@@ -1,0 +1,132 @@
+# rhel, centos autoconf configuration
+#os_authconfig_shadow_enable:  true
+#os_authconfig_md5_enable:  true
+
+os_desktop_enable:  false
+os_network_forwarding: false
+os_network_ipv6_enable: false
+os_network_arp_restricted:  true
+os_env_extra_user_paths:  []
+os_env_umask:  '027'
+os_env_root_path:  '/'
+os_auth_pw_max_age:  60
+os_auth_pw_min_age:  7 # discourage password cycling
+os_auth_retries:  5
+os_auth_lockout_time:  600 # 10min
+os_auth_timeout:  60
+os_auth_allow_homeless:  false
+os_auth_pam_passwdqc_enable:  true
+os_auth_pam_passwdqc_options: 'disabled,disabled,16,12,8'
+os_auth_root_ttys:  '%w(console tty1 tty2 tty3 tty4 tty5 tty6)'
+os_auth_uid_min:  1000
+os_auth_gid_min:  1000
+# may contain: change_user
+os_security_users_allow:  []
+os_security_kernel_enable_module_loading:  true
+os_security_kernel_enable_sysrq:  false
+os_security_kernel_enable_core_dump:  false
+os_security_suid_sgid_enforce:  true
+# user-defined blacklist and whitelist
+os_security_suid_sgid_blacklist:  []
+os_security_suid_sgid_whitelist:  []
+# if this is true, remove any suid/sgid bits from files that were not in the
+# whitelist
+os_security_suid_sgid_remove_from_unknown:  false
+os_security_suid_sgid_dry_run_on_unknown:  false
+
+# remove packages with known issues
+os_security_packages_clean:  true
+
+# SYSTEM CONFIGURATION
+# ====================
+# These are not meant to be modified by the user
+
+# misc
+os_security_kernel_secure_sysrq:  4 + 16 + 32 + 64 + 128
+
+# suid and sgid blacklists and whitelists
+# ---------------------------------------
+# don't change values in the system_blacklist/whitelist
+# adjust values for blacklist/whitelist instead, they can override system_blacklist/whitelist
+
+# list of suid/sgid entries that must be removed
+os_security_suid_sgid_system_blacklist: [
+  # blacklist as provided by NSA
+  '/usr/bin/rcp', '/usr/bin/rlogin', '/usr/bin/rsh',
+  # sshd must not use host-based authentication (see ssh cookbook)
+  '/usr/libexec/openssh/ssh-keysign',
+  '/usr/lib/openssh/ssh-keysign',
+  # misc others
+  '/sbin/netreport',                                            # not normally required for user
+  '/usr/sbin/usernetctl',                                       # modify interfaces via functional accounts
+  # connecting to ...
+  '/usr/sbin/userisdnctl',                                      # no isdn...
+  '/usr/sbin/pppd',                                             # no ppp / dsl ...
+  # lockfile
+  '/usr/bin/lockfile',
+  '/usr/bin/mail-lock',
+  '/usr/bin/mail-unlock',
+  '/usr/bin/mail-touchlock',
+  '/usr/bin/dotlockfile',
+  # need more investigation, blacklist for now
+  '/usr/bin/arping',
+  '/usr/sbin/uuidd',
+  '/usr/bin/mtr',                                               # investigate current state...
+  '/usr/lib/evolution/camel-lock-helper-1.2',                   # investigate current state...
+  '/usr/lib/pt_chown',                                          # pseudo-tty, needed?
+  '/usr/lib/eject/dmcrypt-get-device',
+  '/usr/lib/mc/cons.saver'                                      # midnight commander screensaver
+]
+
+# list of suid/sgid entries that can remain untouched
+os_security_suid_sgid_system_whitelist:  [
+  # whitelist as provided by NSA
+  '/bin/mount', '/bin/ping', '/bin/su', '/bin/umount', '/sbin/pam_timestamp_check',
+  '/sbin/unix_chkpwd', '/usr/bin/at', '/usr/bin/gpasswd', '/usr/bin/locate',
+  '/usr/bin/newgrp', '/usr/bin/passwd', '/usr/bin/ssh-agent', '/usr/libexec/utempter/utempter', '/usr/sbin/lockdev',
+  '/usr/sbin/sendmail.sendmail', '/usr/bin/expiry',
+  # whitelist ipv6
+  '/bin/ping6', '/usr/bin/traceroute6.iputils',
+  # whitelist nfs
+  '/sbin/mount.nfs', '/sbin/umount.nfs',
+  # whitelist nfs4
+  '/sbin/mount.nfs4', '/sbin/umount.nfs4',
+  # whitelist cron
+  '/usr/bin/crontab',
+  # whitelist consolemssaging
+  '/usr/bin/wall', '/usr/bin/write',
+  # whitelist: only SGID with utmp group for multi-session access
+  #            impact is limited; installation/usage has some remaining risk
+  '/usr/bin/screen',
+  # whitelist locate
+  '/usr/bin/mlocate',
+  # whitelist usermanagement
+  '/usr/bin/chage', '/usr/bin/chfn', '/usr/bin/chsh',
+  # whitelist fuse
+  '/bin/fusermount',
+  # whitelist pkexec
+  '/usr/bin/pkexec',
+  # whitelist sudo
+  '/usr/bin/sudo', '/usr/bin/sudoedit',
+  # whitelist postfix
+  '/usr/sbin/postdrop', '/usr/sbin/postqueue',
+  # whitelist apache
+  '/usr/sbin/suexec',
+  # whitelist squid
+  '/usr/lib/squid/ncsa_auth', '/usr/lib/squid/pam_auth',
+  # whitelist kerberos
+  '/usr/kerberos/bin/ksu',
+  # whitelist pam_caching
+  '/usr/sbin/ccreds_validate',
+  # whitelist Xorg
+  '/usr/bin/Xorg',                                              # xorg
+  '/usr/bin/X',                                                 # xorg
+  '/usr/lib/dbus-1.0/dbus-daemon-launch-helper',                # freedesktop ipc
+  '/usr/lib/vte/gnome-pty-helper',                              # gnome
+  '/usr/lib/libvte9/gnome-pty-helper',                          # gnome
+  '/usr/lib/libvte-2.90-9/gnome-pty-helper'                     # gnome
+]
+
+# set default cpu vendor
+os_security_cpu_vendor:  'intel'
+

@@ -1,0 +1,44 @@
+---
+driver:
+  name: vagrant
+provisioner:
+  name: ansible_playbook
+  test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
+  hosts: all
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+- name: ubuntu-14.04
+  driver_config:
+    box: opscode-ubuntu-14.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+- name: centos-6.4
+  driver_config:
+    box: opscode-centos-6.4
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+- name: centos-6.5
+  driver_config:
+    box: opscode-centos-6.5
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+- name: oracle-6.4
+  driver_config:
+    box: oracle-6.4
+    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
+- name: oracle-6.5
+  driver_config:
+    box: oracle-6.5
+    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+
+suites:
+- name: default
+  roles_path: roles
+  playbook: default.yml
+  hosts: all
+  require_ansible_repo: true
+  ansible_verbose: true
+  ansible_version:   1.9.2
+  extra_vars:
+    a: b
