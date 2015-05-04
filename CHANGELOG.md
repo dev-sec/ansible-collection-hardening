@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+ * Changed location of Ansible install-script for Debian based systems 
+
 ## 1.0.0
 
  * Implement server hardening to meet our [tests](https://github.com/hardening-io/tests-ssh-hardening)
