@@ -5,7 +5,7 @@
 os_desktop_enable:  false
 os_network_forwarding: false
 os_network_ipv6_enable: false
-os_network_arp_restricted:  true
+os_network_arp_restricted: true 
 os_env_extra_user_paths:  []
 os_env_umask:  '027'
 os_env_root_path:  '/'
@@ -20,6 +20,7 @@ os_auth_pam_passwdqc_options: 'disabled,disabled,16,12,8'
 os_auth_root_ttys:  '%w(console tty1 tty2 tty3 tty4 tty5 tty6)'
 os_auth_uid_min:  1000
 os_auth_gid_min:  1000
+os_chfn_restrict: ''
 # may contain: change_user
 os_security_users_allow:  []
 os_security_kernel_enable_module_loading:  true

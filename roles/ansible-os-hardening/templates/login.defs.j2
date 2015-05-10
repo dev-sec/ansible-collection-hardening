@@ -125,11 +125,11 @@ LOGIN_TIMEOUT		{{os_auth_timeout}}
 
 # Which fields may be changed by regular users using chfn - use any combination of letters "frwh" (full name, room number, work phone, home phone).  If not defined, no changes are allowed.
 # For backward compatibility, "yes" = "rwh" and "no" = "frwh".
-{{ if chfn_restrict }}
-CHFN_RESTRICT		{{ chfn_restrict }}
-{{ endif }}
+{% if os_chfn_restrict %}
+CHFN_RESTRICT		{{ os_chfn_restrict }}
+{% endif %}
 # Should login be allowed if we can't cd to the home directory?
-DEFAULT_HOME	{{ if os_auth_allow_homeless -}}yes{{ else -}}no{{ endif }}
+DEFAULT_HOME	{% if os_auth_allow_homeless -%}yes{% else -%}no{% endif %}
 
 # If defined, this command is run when removing a user.
 # It should remove any at/cron/print jobs etc. owned by

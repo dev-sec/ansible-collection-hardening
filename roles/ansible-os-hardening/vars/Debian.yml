@@ -1,3 +1,5 @@
-os_packages_pam_ccreds:  'libpam-ccreds'
-os_packages_pam_passwdqc:  'libpam-passwdqc'
-os_packages_pam_cracklib:  'libpam-cracklib'
+os_packages_pam_ccreds: 'libpam-ccreds'
+os_packages_pam_passwdqc: 'libpam-passwdqc'
+os_packages_pam_cracklib: 'libpam-cracklib'
+passwdqc_path: '/usr/share/pam-configs/passwdqc'
+tally2_path: '/usr/share/pam-configs/tally2'
