@@ -12,6 +12,10 @@
 - name: create securetty
   template: src='securetty.j2' dest='/etc/securetty' owner=root group=root mode=0400
 
+- name: create profile.conf
+  template: src='profile.conf.j2' dest='/etc/profile.d/pinerolo_profile.sh' owner=root group=root mode=0750
+  when: not os_security_kernel_enable_core_dump
+
 - name: minimize access
   file: path='{{item}}' mode='go-w' recurse=yes
   with_items:
