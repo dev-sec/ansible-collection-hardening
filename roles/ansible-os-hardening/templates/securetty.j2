@@ -3,4 +3,4 @@
 
 # A list of TTYs, from which root can log in
 # see `man securetty` for reference
-{{ os_auth_root_ttys }}
+{{ "\n".join(os_auth_root_ttys) }}
