@@ -20,6 +20,21 @@
     - '/bin'
     - '{{os_env_extra_user_paths}}'
 
+- name: activate gpg-check for yum-repos in yum.conf
+  lineinfile: dest='/etc/yum.conf' regexp='^gpgcheck=0' line='gpgcheck=1' backrefs=yes
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- name: get yum-repository-files
+  shell: 'find /etc/yum.repos.d/ -type f -name *.repo'
+  register: yum_repos
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- name: activate gpg-check for yum-repos in yum-repositories
+  lineinfile: dest='{{ item }}' regexp='^gpgcheck=0' line='gpgcheck=1' backrefs=yes
+  with_items:
+    - '{{ yum_repos.stdout_lines }}'
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
 #- name: remove suid/sgid bit from binaries in blacklist
 #  file: path='{{item}}' mode='a-s'
 #  ignore_errors: true
