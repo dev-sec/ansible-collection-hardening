@@ -1,0 +1,8 @@
+---
+- name: activate gpg-check for yum-repos in yum.conf
+  shell: "sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum.conf"
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- name: activate gpg-check for yum-repos in yum-repositories
+  shell: "sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum.repos.d/*.repo"
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'

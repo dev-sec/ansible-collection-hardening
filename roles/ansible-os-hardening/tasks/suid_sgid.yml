@@ -1,0 +1,19 @@
+---
+#- name: remove suid/sgid bit from binaries in blacklist
+#  file: path='{{item}}' mode='a-s'
+#  ignore_errors: true
+#  with_items:
+#    - '{{ os_security_suid_sgid_system_blacklist }}'
+#
+#- name: find binaries with suid/sgid set
+#  shell: 'find / \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | grep -v "No such file or directory"'
+#  register: sbit_binaries
+#
+#- debug: var=sbit_binaries.stdout_lines
+#- debug: var={{os_security_suid_sgid_system_blacklist}}
+#
+#- name: remove suid/sgid bit from all binaries except in whitelist
+#  file: path='{{item}}' mode='a-s'
+#  with_items:
+#    - sbit_binaries.stdout_lines
+

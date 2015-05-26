@@ -1,0 +1,4 @@
+---
+- name: create sane limits.conf
+  template: src='limits.conf.j2' dest='/etc/security/limits.d/10.hardcore.conf' owner=root group=root mode=0440
+  when: os_security_kernel_enable_core_dump
