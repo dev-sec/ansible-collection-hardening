@@ -5,7 +5,6 @@
 - include: limits.yml
 - include: login_defs.yml
 - include: minimize_access.yml
-#- include: packages.yml
 - include: pam.yml
 - include: profile.yml
 - include: securetty.yml
