@@ -1,8 +1,24 @@
 ---
 - name: activate gpg-check for yum-repos in yum.conf
   shell: "sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum.conf"
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
 - name: activate gpg-check for yum-repos in yum-repositories
   shell: "sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum.repos.d/*.repo"
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- name: remove unused repositories
+  file: name='/etc/yum.repos.d/{{item}}.repo' state=absent
+  with_items:
+    - 'CentOS-Debuginfo'
+    - 'CentOS-Media'
+    - 'CentOS-Vault'
+  when: os_security_packages_clean
+
+- name: remove packages
+  yum: name='{{item}}' state=removed
+  with_items:
+    - xinetd
+    - inetd
+    - ypserv
+    - telnet-server
+    - rsh-server
+  when: os_security_packages_clean

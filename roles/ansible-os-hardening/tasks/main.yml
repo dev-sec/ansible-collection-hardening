@@ -10,4 +10,6 @@
 - include: securetty.yml
 - include: suid_sgid.yml
 - include: sysctl.yml
+
 - include: yum.yml
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
