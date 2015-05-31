@@ -7,14 +7,23 @@
     - 'CentOS-Vault'
   when: os_security_packages_clean
 
+- name: get yum-repository-files
+  shell: 'find /etc/yum.repos.d/ -type f -name *.repo'
+  register: yum_repos
+
+- name: check if rhnplugin.conf exists
+  stat: path='/etc/yum/pluginconf.d/rhnplugin.conf'
+  register: rhnplugin_file
+
 - name: activate gpg-check for yum-repos
-  shell: "sed -i 's/gpgcheck=0/gpgcheck=1/g' {{item}}"
+  replace: dest='{{item}}' regexp='^\s*gpgcheck=0' replace='gpgcheck=1'
   with_items:
+    - '{{ yum_repos.stdout_lines }}'
     - '/etc/yum.conf'
-    - '/etc/yum.repos.d/*.repo'
 
 - name: activate gpg-check for yum rhn if it exists
-  shell: sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum/pluginconf.d/rhnplugin.conf removes='/etc/yum/pluginconf.d/rhnplugin.conf'
+  replace: dest='/etc/yum/pluginconf.d/rhnplugin.conf' regexp='^\s*gpgcheck=0' replace='gpgcheck=1'
+  when: rhnplugin_file.stat.exists
 
 - name: remove packages
   yum: name='{{item}}' state=removed
