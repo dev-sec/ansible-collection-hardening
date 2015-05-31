@@ -1,19 +1,28 @@
 ---
-#- name: remove suid/sgid bit from binaries in blacklist
-#  file: path='{{item}}' mode='a-s'
-#  ignore_errors: true
-#  with_items:
-#    - '{{ os_security_suid_sgid_system_blacklist }}'
-#
-#- name: find binaries with suid/sgid set
-#  shell: 'find / \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | grep -v "No such file or directory"'
-#  register: sbit_binaries
-#
-#- debug: var=sbit_binaries.stdout_lines
-#- debug: var={{os_security_suid_sgid_system_blacklist}}
-#
-#- name: remove suid/sgid bit from all binaries except in whitelist
-#  file: path='{{item}}' mode='a-s'
-#  with_items:
-#    - sbit_binaries.stdout_lines
+- name: remove suid/sgid bit from binaries in blacklist
+  file: path='{{item}}' mode='a-s'
+  ignore_errors: true
+  with_items:
+    - '{{ os_security_suid_sgid_system_blacklist }}'
+    - '{{ os_security_suid_sgid_blacklist }}'
 
+- name: find binaries with suid/sgid set
+  shell: find / -xdev \( -perm -4000 -o -perm -2000 \) -type f ! -path '/proc/*' -print 2>/dev/null
+  register: sbit_binaries
+  when: os_security_suid_sgid_remove_from_unknown
+
+- name: gather files from which to remove suids/sgids and remove system white-listed files
+  set_fact:
+    suid: '{{ sbit_binaries.stdout_lines | difference(os_security_suid_sgid_system_whitelist) }}'
+  when: os_security_suid_sgid_remove_from_unknown
+
+- name: exclude user white-listed files
+  set_fact:
+    suid_clean: '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
+  when: os_security_suid_sgid_remove_from_unknown
+
+- name: remove suid/sgid bit from all binaries except in whitelist
+  file: path='{{item}}' mode='a-s'
+  with_items:
+    - '{{ suid_clean | difference(os_security_suid_sgid_system_whitelist) }}'
+  when: os_security_suid_sgid_remove_from_unknown
