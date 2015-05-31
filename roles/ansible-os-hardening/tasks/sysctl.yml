@@ -1,15 +1,15 @@
 ---
-- name: Only enable IP traffic forwarding, if required.
+- name: Disable IPv4 traffic forwarding.
   sysctl: name='net.ipv4.ip_forward' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
 
-- name: Only enable IP traffic forwarding, if required.
+- name: Enable IPv4 traffic forwarding again, but only if required.
   sysctl: name='net.ipv4.ip_forward' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
   when: os_network_forwarding
 
-- name: Only enable IP traffic forwarding, if required.
+- name: Disable IPv6 traffic forwarding.
   sysctl: name='net.ipv6.conf.all.forwarding' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
 
-- name: Only enable IP traffic forwarding, if required.
+- name: Enable IPv6 traffic forwarding again, but only if required.
   sysctl: name='net.ipv6.conf.all.forwarding' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
   when: os_network_forwarding and os_network_ipv6_enable
 
