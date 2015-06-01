@@ -20,3 +20,4 @@
   file: path='{{item}}' mode='a-s' state=file
   with_items:
     - '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
+  when: os_security_suid_sgid_remove_from_unknown
