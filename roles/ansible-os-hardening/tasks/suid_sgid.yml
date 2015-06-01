@@ -16,13 +16,7 @@
     suid: '{{ sbit_binaries.stdout_lines | difference(os_security_suid_sgid_system_whitelist) }}'
   when: os_security_suid_sgid_remove_from_unknown
 
-- name: exclude user white-listed files
-  set_fact:
-    suid_clean: '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
-  when: os_security_suid_sgid_remove_from_unknown
-
-- name: remove suid/sgid bit from all binaries except in whitelist
-  file: path='{{item}}' mode='a-s'
+- name: remove suid/sgid bit from all binaries except in system and user whitelist
+  file: path='{{item}}' mode='a-s' state=file
   with_items:
-    - '{{ suid_clean | difference(os_security_suid_sgid_system_whitelist) }}'
-  when: os_security_suid_sgid_remove_from_unknown
+    - '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
