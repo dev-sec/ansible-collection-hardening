@@ -1,6 +1,7 @@
 ---
 - name: Disable IPv4 traffic forwarding.
   sysctl: name='net.ipv4.ip_forward' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not os_network_forwarding
 
 - name: Enable IPv4 traffic forwarding again, but only if required.
   sysctl: name='net.ipv4.ip_forward' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
@@ -8,6 +9,7 @@
 
 - name: Disable IPv6 traffic forwarding.
   sysctl: name='net.ipv6.conf.all.forwarding' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not (os_network_forwarding and os_network_ipv6_enable)
 
 - name: Enable IPv6 traffic forwarding again, but only if required.
   sysctl: name='net.ipv6.conf.all.forwarding' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
@@ -37,10 +39,11 @@
 - name: Adjust the ICMP ratelimit to include ping, dst unreachable, source quench, ime exceed, param problem, timestamp reply, information reply
   sysctl: name='net.ipv4.icmp_ratemask' value=88089 sysctl_set=yes state=present reload=yes ignoreerrors=yes
 
-- name: Disable or Enable IPv6 as it is needed.
+- name: Disable IPv6 
   sysctl: name='net.ipv6.conf.all.disable_ipv6' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not os_network_ipv6_enable
 
-- name: Disable or Enable IPv6 as it is needed.
+- name: Enable IPv6 as it is needed.
   sysctl: name='net.ipv6.conf.all.disable_ipv6' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
   when: os_network_ipv6_enable
 
@@ -49,6 +52,7 @@
 
 - name:  Define restriction level for announcing the local source IP
   sysctl: name='net.ipv4.conf.all.arp_ignore' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not os_network_arp_restricted
 
 - name:  Define restriction level for announcing the local source IP
   sysctl: name='net.ipv4.conf.all.arp_ignore' value=1 sysctl_set=yes state=present reload=yes ignoreerrors=yes
@@ -56,6 +60,7 @@
 
 - name: Define mode for sending replies in response to received ARP requests that resolve local target IP addresses 
   sysctl: name='net.ipv4.conf.all.arp_announce' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not os_network_arp_restricted
 
 - name: Define mode for sending replies in response to received ARP requests that resolve local target IP addresses 
   sysctl: name='net.ipv4.conf.all.arp_announce' value=2 sysctl_set=yes state=present reload=yes ignoreerrors=yes
@@ -127,6 +132,7 @@
 # * **128** - reboot/poweroff
 # * **256** - nicing of all RT tasks
 - sysctl: name='kernel.sysrq' value=0 sysctl_set=yes state=present reload=yes ignoreerrors=yes
+  when: not os_security_kernel_enable_sysrq
 
 - sysctl: name='kernel.sysrq' value='{{ os_security_kernel_secure_sysrq }}' sysctl_set=yes state=present reload=yes ignoreerrors=yes
   when: os_security_kernel_enable_sysrq
