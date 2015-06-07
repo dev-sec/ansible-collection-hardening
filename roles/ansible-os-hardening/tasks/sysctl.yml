@@ -3,6 +3,22 @@
 - name: include sysctl variables
   include_vars: sysctl.yml
 
+- name: protect sysctl.conf
+  file: path='/etc/sysctl.conf' owner=root group=root mode=0440
+
+- name: NSA 2.2.4.1 Set Daemon umask, do config for rhel-family
+  template: src='rhel_sysconfig_init.j2' dest='/etc/sysconfig/init' owner=root group=root mode=0544
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+
+- name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
+  template: src='modules.j2' dest='/etc/initramfs-tools/modules' owner=root group=root mode=0440
+  when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
+  register: initramfs
+
+- name: update-initramfs
+  command: 'update-initramfs -u'
+  when: initramfs.changed
+
 - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
   sysctl:
     name: '{{ item.key }}'
