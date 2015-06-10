@@ -10,4 +10,4 @@ install:
   - echo -e '[defaults]\nroles_path = ./roles\nhostfile = ./spec/inventory' > ansible.cfg
 script:
   - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml -e os_network_ipv6_enable=true
+  - ansible-playbook --sudo -v --diff spec/travis.yml
