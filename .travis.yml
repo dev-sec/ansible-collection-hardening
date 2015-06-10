@@ -8,6 +8,8 @@ install:
   - pip install ansible
   - echo -e 'localhost ansible_connection=local' > spec/inventory
   - echo -e '[defaults]\nroles_path = ./roles\nhostfile = ./spec/inventory' > ansible.cfg
+  - echo -e 'hash_behaviour=merge' >> ansible.cfg
+
 script:
   - ansible-playbook --syntax-check spec/travis.yml
   - ansible-playbook --sudo -v --diff spec/travis.yml
