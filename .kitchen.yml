@@ -36,8 +36,9 @@ platforms:
 suites:
 - name: default
   roles_path: roles
-  playbook: playbooks/default.yml
   hosts: all
   require_ansible_repo: true
   ansible_verbose: true
   ansible_version:   1.9.2
+  provisioner:
+    playbook: test/integration/playbooks/default.yml
