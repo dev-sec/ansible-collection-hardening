@@ -12,5 +12,4 @@ install:
 
 script:
   - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "spec/travis_exceptions.yml"
-  #- ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "@spec/travis_exceptions.json"
+  - ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "@spec/travis_exceptions.json"

@@ -1,7 +1,10 @@
 {
-"sysctl_config.net.ipv6.conf.all.disable_ipv6": "0",
-"sysctl_config.fs.suid_dumpable": "1",
-"sysctl_config.kernel.modules_disabled": "0",
-"sysctl_config.net.ipv4.tcp_timestamps": "1",
-"sysctl_config.net.ipv6.conf.default.accept_ra_rtr_pref": "1"
+  "sysctl_config":
+    {
+      "net.ipv6.conf.all.disable_ipv6": 0,
+      "fs.suid_dumpable": 1,
+      "kernel.modules_disabled": 0,
+      "net.ipv4.tcp_timestamps": 1,
+      "net.ipv6.conf.default.accept_ra_rtr_pref": 1
+    }
 }
