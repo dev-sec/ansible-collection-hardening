@@ -1,15 +1,16 @@
 ---
 - name: add the OS specific variables
   include_vars: "{{ ansible_os_family }}.yml"
+  tags: always
 
-- include: limits.yml
-- include: login_defs.yml
-- include: minimize_access.yml
-- include: pam.yml
-- include: profile.yml
-- include: securetty.yml
-- include: suid_sgid.yml
-- include: sysctl.yml
+- include: limits.yml tags=limits
+- include: login_defs.yml tags=login_defs
+- include: minimize_access.yml tags=minimize_acces
+- include: pam.yml tags=pam
+- include: profile.yml tags=profile
+- include: securetty.yml tags=securetty
+- include: suid_sgid.yml tags=suid_sgid
+- include: sysctl.yml tags=sysctl
 
-- include: yum.yml
+- include: yum.yml tags=yum
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
