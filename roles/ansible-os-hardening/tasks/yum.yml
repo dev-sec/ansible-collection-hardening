@@ -9,6 +9,7 @@
 
 - name: get yum-repository-files
   shell: 'find /etc/yum.repos.d/ -type f -name *.repo'
+  changed_when: False
   register: yum_repos
 
 - name: check if rhnplugin.conf exists
