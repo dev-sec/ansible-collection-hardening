@@ -12,6 +12,7 @@
 - include: suid_sgid.yml tags=suid_sgid
 - include: sysctl.yml tags=sysctl
 - include: user_accounts.yml tags=user_accounts
+- include: rhosts.yml tags=rhosts
 
 - include: yum.yml tags=yum
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
