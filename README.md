@@ -124,4 +124,4 @@ limitations under the License.
 
 [1]: http://travis-ci.org/hardening-io/ansible-ssh-hardening
 [2]: https://gitter.im/hardening-io/general
-[3]: https://galaxy.ansible.com/list#/roles/3576
+[3]: https://galaxy.ansible.com/list#/roles/4204 
