@@ -23,6 +23,8 @@ os_auth_gid_min: 1000
 os_chfn_restrict: ''
 # may contain: change_user
 os_security_users_allow: []
+# specify system accounts those login should not be disabled and password not changed
+os_ignore_users: ['vagrant']
 os_security_kernel_enable_module_loading: true
 os_security_kernel_enable_sysrq: false
 os_security_kernel_enable_core_dump: false
@@ -126,5 +128,6 @@ os_security_suid_sgid_system_whitelist:  [
   '/usr/lib/libvte-2.90-9/gnome-pty-helper'                     # gnome
 ]
 
-# set default cpu vendor
-os_security_cpu_vendor: 'intel'
+# system accounts that do not get their login disabled and pasword changed
+os_always_ignore_users: ['root','sync','shutdown','halt']
+
