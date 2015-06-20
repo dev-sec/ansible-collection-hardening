@@ -3,10 +3,6 @@
   command: 'pam-auth-update --package'
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: update pam on Redhat systems
-  command: 'authconfig --update'
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
-
 - name: remove pam ccreds on Debian systems
   apt: name='{{os_packages_pam_ccreds}}' state=absent
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
