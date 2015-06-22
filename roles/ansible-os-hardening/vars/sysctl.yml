@@ -53,6 +53,7 @@ sysctl_config:
   # Accepting source route can lead to malicious networking behavior,
   # so disable it if not needed.
   net.ipv4.conf.all.accept_source_route: 0
+  net.ipv4.conf.default.accept_source_route: 0
 
   # Accepting redirects can lead to malicious networking behavior, so disable
   # it if not needed.
