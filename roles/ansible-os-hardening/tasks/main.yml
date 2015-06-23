@@ -10,6 +10,8 @@
 - include: profile.yml tags=profile
 - include: securetty.yml tags=securetty
 - include: suid_sgid.yml tags=suid_sgid
+  when: os_security_suid_sgid_enforce
+
 - include: sysctl.yml tags=sysctl
 - include: user_accounts.yml tags=user_accounts
 - include: rhosts.yml tags=rhosts
