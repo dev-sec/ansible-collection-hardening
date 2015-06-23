@@ -1,8 +1,7 @@
 # os-hardening (Ansible Role)
 
-[![Build Status](http://img.shields.io/travis/hardening-io/ansible-os-hardening.svg)][2]
-[![Code Coverage](http://img.shields.io/coveralls/hardening-io/ansible-os-hardening.svg)][3]
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][5]
+[![Build Status](http://img.shields.io/travis/hardening-io/ansible-os-hardening.svg)][1]
+[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
 
 ## Description
 
@@ -31,13 +30,11 @@ It will not:
 
 ## Variables
 
+### in main.yml
+
 * `os_desktop_enable: false` -  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `os_network_forwarding: false` - true if this system requires packet forwarding (eg Router), false otherwise
-* `os_network_ipv6_enable: false`
-* `os_network_arp_restricted: true` - true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
 * `os_env_extra_user_paths: []` - add additional paths to the user's `PATH` variable (default is empty).
 * `os_env_umask: "027"`
-* `os_env_root_path: "/"` - where root is mounted
 * `os_auth_pw_max_age: 60` - maximum password age
 * `os_auth_pw_min_age: 7` - minimum password age (before allowing any other password change)
 * `os_auth_retries: 5` - the maximum number of authentication attempts, before the account is locked for some time
@@ -53,10 +50,14 @@ It will not:
 * `os_security_suid_sgid_enforce: true` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
 * `os_security_suid_sgid_blacklist: []` - a list of paths which should have their SUID/SGID bits removed
 * `os_security_suid_sgid_whitelist: []` - a list of paths which should not have their SUID/SGID bits altered
-* `os_security_suid_sgid_remove_from_unknown: false` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Chef run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
-* `os_security_suid_sgid_dry_run_on_unknown: false` - like `remove_from_unknown` above, only that SUID/SGID bits aren't removed.
-  It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
-* `os_security_packages_clean']  = true` - removes packages with known issues. See section packages.
+* `os_security_suid_sgid_remove_from_unknown: false` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
+* `os_security_packages_clean': true` - removes packages with known issues. See section packages.
+
+### in sysctl.yml
+
+* `os_network_forwarding: false` - true if this system requires packet forwarding (eg Router), false otherwise
+* `os_network_ipv6_enable: false`
+* `os_network_arp_restricted: true` - true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
 
 ## Packages
 
@@ -117,7 +118,7 @@ This role is mostly based on guides by:
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
 * [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
 
-Thanks to all of you!!
+Thanks to all of you!
 ## Contributing
 
 See [contributor guideline](CONTRIBUTING.md).
@@ -139,6 +140,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[2]: http://travis-ci.org/hardening-io/ansible-os-hardening
-[3]: https://coveralls.io/r/hardening-io/ansible-os-hardening
-[5]: https://gitter.im/hardening-io
+[1]: http://travis-ci.org/hardening-io/ansible-os-hardening
+[2]: https://gitter.im/hardening-io
