@@ -38,7 +38,7 @@ sysctl_config:
 
   # Define mode for sending replies in response to
   # received ARP requests that resolve local target IP addresses
-  net.ipv4.conf.all.arp_announce: 1
+  net.ipv4.conf.all.arp_announce: 2
 
   # RFC 1337 fix F1
   net.ipv4.tcp_rfc1337: 1
@@ -53,6 +53,7 @@ sysctl_config:
   # Accepting source route can lead to malicious networking behavior,
   # so disable it if not needed.
   net.ipv4.conf.all.accept_source_route: 0
+  net.ipv4.conf.default.accept_source_route: 0
 
   # Accepting redirects can lead to malicious networking behavior, so disable
   # it if not needed.
@@ -83,7 +84,7 @@ sysctl_config:
   # This settings controls how the kernel behaves towards module changes at
   # runtime. Setting to 1 will disable module loading at runtime.
   # Setting it to 0 is actually never supported.
-  kernel.modules_disabled: 1
+  # kernel.modules_disabled: 1
 
   # Magic Sysrq should be disabled, but can also be set to a safe value if so
   # desired for physical machines. It can allow a safe reboot if the system hangs
