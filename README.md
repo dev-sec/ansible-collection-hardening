@@ -141,4 +141,4 @@ limitations under the License.
 
 
 [1]: http://travis-ci.org/hardening-io/ansible-os-hardening
-[2]: https://gitter.im/hardening-io
+[2]: https://gitter.im/hardening-io/general
