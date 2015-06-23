@@ -1,6 +1,6 @@
 ---
 - name: remove suid/sgid bit from binaries in blacklist
-  file: path='{{item}}' mode='a-s'
+  file: path='{{item}}' mode='a-s' state=file follow=yes
   ignore_errors: true
   with_items:
     - '{{ os_security_suid_sgid_system_blacklist }}'
@@ -18,7 +18,7 @@
   when: os_security_suid_sgid_remove_from_unknown
 
 - name: remove suid/sgid bit from all binaries except in system and user whitelist
-  file: path='{{item}}' mode='a-s' state=file
+  file: path='{{item}}' mode='a-s' state=file follow=yes
   with_items:
     - '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
   when: os_security_suid_sgid_remove_from_unknown
