@@ -1,14 +1,6 @@
-# rhel, centos autoconf configuration
-#os_authconfig_shadow_enable:  true
-#os_authconfig_md5_enable:  true
-
 os_desktop_enable: false
-os_network_forwarding: false
-os_network_ipv6_enable: false
-os_network_arp_restricted: true 
 os_env_extra_user_paths: []
 os_env_umask: '027'
-os_env_root_path: '/'
 os_auth_pw_max_age: 60
 os_auth_pw_min_age: 7 # discourage password cycling
 os_auth_retries: 5
@@ -26,7 +18,6 @@ os_security_users_allow: []
 # specify system accounts those login should not be disabled and password not changed
 os_ignore_users: ['vagrant']
 os_security_kernel_enable_module_loading: true
-os_security_kernel_enable_sysrq: false
 os_security_kernel_enable_core_dump: false
 os_security_suid_sgid_enforce: true
 # user-defined blacklist and whitelist
@@ -41,9 +32,6 @@ os_security_packages_clean: true
 # SYSTEM CONFIGURATION
 # ====================
 # These are not meant to be modified by the user
-
-# misc
-os_security_kernel_secure_sysrq: 4 + 16 + 32 + 64 + 128
 
 # suid and sgid blacklists and whitelists
 # ---------------------------------------
