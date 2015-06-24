@@ -27,7 +27,7 @@ os_security_suid_sgid_whitelist: []
 os_security_suid_sgid_remove_from_unknown: false
 
 # remove packages with known issues
-os_security_packages_clean: false
+os_security_packages_clean: true
 
 # SYSTEM CONFIGURATION
 # ====================
