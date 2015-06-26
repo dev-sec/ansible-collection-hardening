@@ -2,6 +2,7 @@
 
 [![Build Status](http://img.shields.io/travis/hardening-io/ansible-os-hardening.svg)][1]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-os--hardening-660198.svg)][3]
 
 ## Description
 
@@ -142,3 +143,4 @@ limitations under the License.
 
 [1]: http://travis-ci.org/hardening-io/ansible-os-hardening
 [2]: https://gitter.im/hardening-io/general
+[3]: https://galaxy.ansible.com/list#/roles/4248
