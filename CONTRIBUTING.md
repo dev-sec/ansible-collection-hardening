@@ -1,6 +1,6 @@
 # Contributor Guideline
 
-This document provides an overview of how you can participat in improving this project or extending it. We are grateful for all your help: bug reports and fixes, code contributions, documentation or ideas. Feel free to join, we appreciate your support!!
+This document provides an overview of how you can participate in improving this project or extending it. We are grateful for all your help: bug reports and fixes, code contributions, documentation or ideas. Feel free to join, we appreciate your support!!
 
 ## Communication
 
@@ -44,8 +44,8 @@ In some cases, we in fact create the full rollout stack, but this is generally t
 
 ### Be explicit
 
-* Please avoid using nonsensical property and variable names
-* Use self-describing attribute names for user configuration
+* Please avoid using nonsensical property and variable names.
+* Use self-describing attribute names for user configuration.
 * In case of failures, communicate what happened and why a failure occurs to the user. Make it easy to track the code or action that produced the error. Try to catch and handle errors if possible to provide improved failure messages.
 
 
@@ -76,6 +76,7 @@ We generally include test for coding guidelines:
 
 * Chef follows [Foodcritic](http://acrmp.github.io/foodcritic/)
 * Puppet is checked with [puppet-lint](http://puppet-lint.com/checks/)
+* Ansible is checked by running the playbook with the syntax-check option, e.g. `ansible-playbook foo.yml --syntax-check`
 
 Remember: Code is generally read much more often than written.
 
