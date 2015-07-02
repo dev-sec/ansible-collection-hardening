@@ -1,0 +1,39 @@
+# general configuration
+mysql_hardening_user: 'mysql'
+mysql_datadir: '/var/lib/mysql'
+mysql_hardening_hardening_conf: '/etc/mysql/conf.d/hardening.cnf'
+
+# ensure the following parameters are set properly
+mysql_allow_remote_root: false
+mysql_remove_anonymous_users: true
+mysql_remove_test_database: true
+
+# @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database
+mysql_hardening_skip_show_database: true
+mysql_hardening_skip_grant_tables: true
+
+# @see http://www.symantec.com/connect/articles/securing-mysql-step-step
+# @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot
+mysql_hardening_chroot: ""
+  
+mysql_hardening_options:
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create
+  safe-user-create: 1
+  
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-auth
+  secure-auth: 1
+  
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-symbolic-links
+  skip-symbolic-links: 1
+  
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar-local-infile
+  local-infile: 0
+  
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-allow-suspicious-udfs
+  allow-suspicious-udfs: 0
+  
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar-automatic-sp-privileges
+  automatic-sp-privileges: 0
+  
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-file-priv
+  secure-file-priv: '/tmp'
