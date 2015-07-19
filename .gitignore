@@ -12,3 +12,4 @@ Berksfile.lock
 ansible.cfg
 hosts
 default.yml
+roles/bennojoy.mysql/

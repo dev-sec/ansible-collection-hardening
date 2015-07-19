@@ -10,7 +10,9 @@ mysql_remove_test_database: true
 
 # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database
 mysql_hardening_skip_show_database: true
-mysql_hardening_skip_grant_tables: true
+
+# @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables
+mysql_hardening_skip_grant_tables: false
 
 # @see http://www.symantec.com/connect/articles/securing-mysql-step-step
 # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot
