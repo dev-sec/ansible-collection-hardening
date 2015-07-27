@@ -1,0 +1,30 @@
+os_desktop_enable: false
+os_env_extra_user_paths: []
+os_env_umask: '027'
+os_auth_pw_max_age: 60
+os_auth_pw_min_age: 7 # discourage password cycling
+os_auth_retries: 5
+os_auth_lockout_time: 600 # 10min
+os_auth_timeout: 60
+os_auth_allow_homeless: false
+os_auth_pam_passwdqc_enable: true
+os_auth_pam_passwdqc_options: 'disabled,disabled,16,12,8'
+os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
+os_auth_uid_min: 1000
+os_auth_gid_min: 1000
+os_chfn_restrict: ''
+# may contain: change_user
+os_security_users_allow: []
+# specify system accounts those login should not be disabled and password not changed
+os_ignore_users: ['vagrant']
+os_security_kernel_enable_module_loading: true
+os_security_kernel_enable_core_dump: false
+os_security_suid_sgid_enforce: true
+# user-defined blacklist and whitelist
+os_security_suid_sgid_blacklist: []
+os_security_suid_sgid_whitelist: []
+# if this is true, remove any suid/sgid bits from files that were not in the whitelist
+os_security_suid_sgid_remove_from_unknown: false
+
+# remove packages with known issues
+os_security_packages_clean: true
