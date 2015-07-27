@@ -1,26 +1,3 @@
-network_ipv6_enable: false              # sshd + ssh
-ssh_client_cbc_required: false          # ssh
-ssh_server_cbc_required: false          # sshd
-ssh_client_weak_hmac: false             # ssh
-ssh_server_weak_hmac: false             # sshd
-ssh_client_weak_kex: false              # ssh
-ssh_server_weak_kex: false              # sshd
-ssh_ports: ['22']      # sshd + ssh
-ssh_listen_to: ['0.0.0.0']    # sshd
-ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key']        # sshd
-ssh_client_alive_interval: 600          # sshd
-ssh_client_alive_count: 3               # sshd
-ssh_remote_hosts: []           # ssh
-ssh_allow_root_with_key: false          # sshd
-ssh_allow_tcp_forwarding: false         # sshd
-ssh_allow_agent_forwarding: false       # sshd
-ssh_use_pam: false      # sshd
-ssh_deny_users: ''      # sshd
-ssh_allow_users: ''      # sshd
-ssh_deny_groups: ''      # sshd
-ssh_allow_groups: ''      # sshd
-ssh_print_motd: false      # sshd
-ssh_print_last_log: false    # sshd
 ssh_ps53: 'yes'
 ssh_ps59: 'sandbox'
 
