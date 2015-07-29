@@ -55,17 +55,17 @@ LogLevel VERBOSE
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
 #
 {% if ssh_server_cbc_required -%}
-{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-Ciphers {{ciphers_66_weak}}
-{% else %}
-Ciphers {{ciphers_53_weak}}
-{% endif %}
-{% else %}
-{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-Ciphers {{ciphers_66_default}}
-{% else %}
-Ciphers {{ciphers_53_default}}
-{% endif %}
+    {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
+        Ciphers {{ciphers_66_weak}}
+    {% else %}
+        Ciphers {{ciphers_53_weak}}
+    {% endif %}
+{% else -%}
+    {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
+        Ciphers {{ciphers_66_default}}
+    {% else -%}
+        Ciphers {{ciphers_53_default}}
+    {% endif %}
 {% endif %}
 
 # **Hash algorithms** -- Make sure not to use SHA1 for hashing, unless it is really necessary.
@@ -74,25 +74,25 @@ Ciphers {{ciphers_53_default}}
 #
 
 {% if ssh_server_weak_hmac -%}
-{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-MACs {{macs_66_weak}}
-{% elif (ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6') or ansible_os_family == 'Oracle Linux' -%}
-MACs {{macs_53_default}}
-{% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
-MACs {{macs_53_default}}
-{% else %}
-MACs {{macs_59_weak}}
-{% endif %}
-{% else %}
-{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-MACs {{macs_66_default}}
-{% elif (ansible_os_family == 'RedHat' and ansible_distribution_major_version <= '6') or ansible_os_family == 'Oracle Linux' -%}
-MACs {{macs_53_default}}
-{% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
-MACs {{macs_53_default}}
-{% else %}
-MACs {{macs_59_default}}
-{% endif %}
+    {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
+        MACs {{macs_66_weak}}
+    {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
+        MACs {{macs_53_default}}
+    {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
+        MACs {{macs_53_default}}
+    {% else -%}
+        MACs {{macs_59_weak}}
+    {% endif %}
+{% else -%}
+    {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
+        MACs {{macs_66_default}}
+    {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
+        MACs {{macs_53_default}}
+    {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
+        MACs {{macs_53_default}}
+    {% else -%}
+        MACs {{macs_59_default}}
+    {% endif %}
 {% endif %}
 
 # Alternative setting, if OpenSSH version is below v5.9
@@ -103,17 +103,17 @@ MACs {{macs_59_default}}
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-        {% if ssh_client_weak_kex -%}
-                KexAlgorithms {{kex_66_weak}}
-	{% else -%}
-                KexAlgorithms {{kex_66_default}}
-        {% endif %}
+    {% if ssh_client_weak_kex -%}
+        KexAlgorithms {{kex_66_weak}}
+    {% else -%}
+        KexAlgorithms {{kex_66_default}}
+    {% endif %}
 {% else -%}
-        {% if ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux' or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
-                #KexAlgorithms
-        {% else -%}
-                KexAlgorithms {{kex_59_default}}
-	{% endif %}
+    {% if ansible_os_family in ['Oracle Linux', 'RedHat'] or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
+        #KexAlgorithms
+    {% else -%}
+        KexAlgorithms {{kex_59_default}}
+    {% endif %}
 {% endif %}
 
 # Authentication
@@ -121,7 +121,7 @@ MACs {{macs_59_default}}
 
 # Secure Login directives.
 UseLogin no
-UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux' -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family in ['Oracle Linux', 'RedHat'] -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 
 PermitUserEnvironment no
 LoginGraceTime 30s
