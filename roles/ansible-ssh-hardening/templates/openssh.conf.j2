@@ -1,8 +1,8 @@
 # {{ansible_managed}}
 
-# This is the ssh client system-wide configuration file. 
+# This is the ssh client system-wide configuration file.
 # See ssh_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
-# 
+#
 # Created for OpenSSH v5.9
 
 # Basic configuration
@@ -46,7 +46,7 @@ StrictHostKeyChecking ask
 # CBC: is true if you want to connect with OpenSSL-base libraries
 # eg ruby Net::SSH::Transport::CipherFactory requires cbc-versions of the given openssh ciphers to work
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
-# 
+#
 {% if ssh_client_cbc_required %}
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
 Ciphers {{ciphers_66_weak}}
@@ -62,9 +62,9 @@ Ciphers {{ciphers_53_default}}
 {% endif %}
 
 # **Hash algorithms** -- Make sure not to use SHA1 for hashing, unless it is really necessary.
-# Weak HMAC is sometimes required if older package versions are used 
+# Weak HMAC is sometimes required if older package versions are used
 # eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
-# 
+#
 {% if ssh_server_weak_hmac %}
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
 MACs {{macs_66_weak}}
@@ -93,7 +93,7 @@ MACs {{macs_59_default}}
 # **Key Exchange Algorithms** -- Make sure not to use SHA1 for kex, unless it is really necessary
 # Weak kex is sometimes required if older package versions are used
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
-# 
+#
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
         {% if ssh_client_weak_kex -%}
                 KexAlgorithms {{kex_66_weak}}
@@ -101,15 +101,17 @@ MACs {{macs_59_default}}
                 KexAlgorithms {{kex_66_default}}
         {% endif %}
 {% else -%}
-        {% if ansible_os_family == 'RedHat' or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family == 'Oracle Linux' -%}
+        {% if ansible_os_family in ['Oracle Linux', 'RedHat'] or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
                 #KexAlgorithms
+        {% elif ssh_client_weak_kex -%}
+                KexAlgorithms {{kex_59_weak}}
         {% else -%}
                 KexAlgorithms {{kex_59_default}}
         {% endif %}
 {% endif %}
 
 
-# Disable agent formwarding, since local agent could be accessed through forwarded connection.
+# Disable agent forwarding, since local agent could be accessed through forwarded connection.
 ForwardAgent no
 
 # Disable X11 forwarding, since local X11 display could be accessed through forwarded connection.
