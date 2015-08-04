@@ -125,7 +125,7 @@ RhostsRSAAuthentication no
 RSAAuthentication yes
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
-PasswordAuthentication no
+PasswordAuthentication {{ 'yes' if ssh_client_password_login else 'no' }}
 
 # Only use GSSAPIAuthentication if implemented on the network.
 GSSAPIAuthentication no
