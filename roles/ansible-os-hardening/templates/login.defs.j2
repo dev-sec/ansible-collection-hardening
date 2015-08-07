@@ -129,7 +129,7 @@ LOGIN_TIMEOUT		{{os_auth_timeout}}
 CHFN_RESTRICT		{{ os_chfn_restrict }}
 {% endif %}
 # Should login be allowed if we can't cd to the home directory?
-DEFAULT_HOME	{% if os_auth_allow_homeless -%}yes{% else -%}no{% endif %}
+DEFAULT_HOME	{{ 'yes' if os_auth_allow_homeless else 'no' }}
 
 # If defined, this command is run when removing a user.
 # It should remove any at/cron/print jobs etc. owned by
