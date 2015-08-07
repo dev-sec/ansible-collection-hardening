@@ -1,12 +1,10 @@
 ---
 driver:
   name: vagrant
-
 provisioner:
   name: ansible_playbook
   test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
   hosts: all
-
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -32,13 +30,12 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-
 suites:
 - name: default
   roles_path: roles
   hosts: all
   require_ansible_repo: true
   ansible_verbose: true
-  ansible_version:   1.9.2
+  ansible_version: 1.9.2
   provisioner:
     playbook: test/integration/playbooks/default.yml
