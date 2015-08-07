@@ -121,7 +121,7 @@ UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distr
 
 PermitUserEnvironment no
 LoginGraceTime 30s
-MaxAuthTries 2
+MaxAuthTries {{ssh_max_auth_retries}}
 MaxSessions 10
 MaxStartups 10:30:100
 
