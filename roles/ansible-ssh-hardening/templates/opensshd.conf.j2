@@ -9,11 +9,7 @@
 # ===================
 
 # Either disable or only allow root login via certificates.
-{% if ssh_allow_root_with_key -%}
-PermitRootLogin without-password
-{% else %}
-PermitRootLogin no
-{% endif %}
+PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' }}
 
 # Define which port sshd should listen to. Default to `22`.
 {% for port in ssh_ports -%}
@@ -21,7 +17,7 @@ Port {{port}}
 {% endfor %}
 
 # Address family should always be limited to the active network configuration.
-AddressFamily {% if network_ipv6_enable -%}any{% else %}inet{% endif %}
+AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
 
 # Define which addresses sshd should listen to. Default to `0.0.0.0`, ie make sure you put your desired address in here, since otherwise sshd will listen to everyone.
 {% for address in ssh_listen_to -%}
@@ -125,7 +121,7 @@ UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distr
 
 PermitUserEnvironment no
 LoginGraceTime 30s
-MaxAuthTries 2
+MaxAuthTries {{ssh_max_auth_retries}}
 MaxSessions 10
 MaxStartups 10:30:100
 
@@ -138,7 +134,7 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
-UsePAM {% if ssh_use_pam -%}yes{% else %}no{% endif %}
+UsePAM {{ 'yes' if ssh_use_pam else 'no' }} 
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication no
@@ -187,11 +183,11 @@ PermitTunnel no
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
-AllowTcpForwarding {% if ssh_allow_tcp_forwarding -%}yes{% else %}no{% endif %}
+AllowTcpForwarding {{ 'yes' if ssh_allow_tcp_forwarding else 'no' }}
 
 # Disable agent formwarding, since local agent could be accessed through forwarded connection.
 # no real advantage without denied shell access
-AllowAgentForwarding {% if ssh_allow_agent_forwarding -%}yes{% else %}no{% endif %}
+AllowAgentForwarding {{ 'yes' if ssh_allow_agent_forwarding else 'no' }}
 
 # Do not allow remote port forwardings to bind to non-loopback addresses.
 GatewayPorts no
@@ -204,9 +200,9 @@ X11UseLocalhost yes
 # Misc. configuration
 # ===================
 
-PrintMotd {% if ssh_print_motd -%}yes{% else %}no{% endif %}
+PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 
-PrintLastLog {% if ssh_print_last_log -%}yes{% else %}no{% endif %}
+PrintLastLog {{ yes if ssh_print_last_log else 'no' }}
 
 #Banner /etc/ssh/banner.txt
 #UseDNS yes
