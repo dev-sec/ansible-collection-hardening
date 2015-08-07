@@ -9,8 +9,7 @@
 # ===================
 
 # Address family should always be limited to the active network configuration.
-AddressFamily {% if network_ipv6_enable -%}any{% else -%}inet{% endif %}
-
+AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }} 
 # Restrict the following configuration to be limited to this Host.
 {% for host in ssh_remote_hosts -%}
 Host {{host}}
