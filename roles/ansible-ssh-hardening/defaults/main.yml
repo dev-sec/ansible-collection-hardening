@@ -20,8 +20,11 @@ ssh_server_weak_kex: false              # sshd
 # If true, password login is allowed. For sshd, it is always set to no password login.
 ssh_client_password_login: false          # ssh
 
-# ports to which ssh-server should listen to and ssh-client should connect to
-ssh_ports: ['22']      # sshd + ssh
+# ports to which ssh-server should listen to
+ssh_server_ports: ['22']      # sshd
+
+# ports to which ssh-client should connect to
+ssh_client_ports: ['22']      # ssh
 
 # one or more ip addresses, to which ssh-server should listen to. Default is empty, but should be configured for security reasons!
 ssh_listen_to: ['0.0.0.0']    # sshd

@@ -16,7 +16,7 @@ Host {{host}}
 {% endfor %}
 
 # The port at the destination should be defined
-{% for port in ssh_ports -%}
+{% for port in ssh_client_ports -%}
 Port {{port}}
 {% endfor %}
 

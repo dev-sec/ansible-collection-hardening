@@ -12,7 +12,7 @@
 PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' }}
 
 # Define which port sshd should listen to. Default to `22`.
-{% for port in ssh_ports -%}
+{% for port in ssh_server_ports -%}
 Port {{port}}
 {% endfor %}
 
