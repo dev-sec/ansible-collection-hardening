@@ -20,6 +20,8 @@ platforms:
   driver_config:
     box: debian-8
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
+verifier:
+  ruby_bindir: '/usr/bin'
 suites:
 - name: default
   roles_path: roles

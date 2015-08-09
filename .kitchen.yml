@@ -30,6 +30,8 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+verifier:
+  ruby_bindir: '/usr/bin'
 suites:
 - name: default
   roles_path: roles
