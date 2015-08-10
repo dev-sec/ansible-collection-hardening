@@ -18,3 +18,5 @@ kex_59_weak: '{{kex_59_default + ",diffie-hellman-group14-sha1,diffie-hellman-gr
 kex_66_default: 'curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256'
 kex_66_weak: '{{kex_66_default + ",diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1"}}'
 
+# directory where to store ssh_password policy
+custom_selinux_dir: '/etc/selinux/local-policies'
