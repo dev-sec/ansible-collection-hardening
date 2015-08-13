@@ -14,5 +14,5 @@
   file: dest='/etc/shadow' owner=root group=root mode=0600
 
 - name: change su-binary to only be accessible to user and group root
-  file: dest='/bin/su' owner=root group=root mode
+  file: dest='/bin/su' owner=root group=root mode=0750
   when: security_users_allow|default(None) != None
