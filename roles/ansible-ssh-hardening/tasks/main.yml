@@ -31,7 +31,7 @@
 
 - name: Create selinux custom policy drop folder
   file: path={{ custom_selinux_dir }} state=directory owner=root group=root mode=0750
-  when: not ssh_use_pam and sestatus.stdout != 'Disabled'
+  when: not ssh_use_pam and sestatus.stdout != 'Disabled' and selinux_installed.rc == 0
 
 # The following tasks only get executed when selinux is in state enforcing and UsePam is "no".
 # See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
