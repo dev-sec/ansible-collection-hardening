@@ -3,7 +3,7 @@ language: python
 python: "2.7"
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+ - sudo apt-get install -qq python-apt python-pycurl mysql-python
 install:
   - pip install ansible
   - echo -e 'localhost ansible_connection=local' > spec/inventory
