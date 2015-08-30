@@ -5,6 +5,8 @@ provisioner:
   name: ansible_playbook
   test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
   hosts: all
+  require_ansible_repo: false
+  require_ansible_omnibus: true
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -30,13 +32,24 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+- name: debian-6
+  driver_config:
+    box: debian-6
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-6.0.10_chef-provisionerless.box
+- name: debian-7
+  driver_config:
+    box: debian-7
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.8_chef-provisionerless.box
+- name: debian-8
+  driver_config:
+    box: debian-8
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
 verifier:
   ruby_bindir: '/usr/bin'
 suites:
 - name: default
   roles_path: roles
   hosts: all
-  require_ansible_repo: true
   ansible_verbose: true
   ansible_version: 1.9.2
   provisioner:
