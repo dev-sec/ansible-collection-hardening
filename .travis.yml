@@ -11,4 +11,4 @@ install:
 
 script:
   - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --skip-tags "sysctl"
+  - ansible-playbook --sudo -v --diff spec/travis.yml
