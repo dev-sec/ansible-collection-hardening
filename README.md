@@ -61,11 +61,8 @@ bundle exec thor kitchen:fetch-remote-tests
 # fast test on one machine
 bundle exec kitchen test default-ubuntu-1204
 
-# test on all machines except Debian-based machines
+# test on all machines
 bundle exec kitchen test
-
-# test on Debian-based machines
-KITCHEN_YAML=".kitchen_debian.yml" bundle exec kitchen test
 
 # for development
 bundle exec kitchen create default-ubuntu-1204

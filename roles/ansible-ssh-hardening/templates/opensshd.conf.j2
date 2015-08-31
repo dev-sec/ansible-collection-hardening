@@ -134,7 +134,7 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
-UsePAM {{ 'yes' if ssh_use_pam else 'no' }} 
+UsePAM {{ 'yes' if ssh_use_pam else 'no' }}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication no
