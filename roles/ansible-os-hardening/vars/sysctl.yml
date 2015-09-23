@@ -110,8 +110,48 @@ sysctl_config:
   # Virtual memory regions protection
   kernel.randomize_va_space: 2
 
+  # Customs
+
+  # Reboot the server in 10sec if kernel panic
+  vm.panic_on_oom: 1
+  kernel.panic: 10
+
+  # if firewall is enabled you can see the messages in syslog.conf like 
+  # nf_conntrack: table full, dropping packet
+  # show current sysctl net.netfilter.nf_conntrack_coun
+  # (need activate ufw before)
+  # to fix:
+  #net.netfilter.nf_conntrack_max: 1048576
+
+  # net.core.somaxconn
+  # source http://linux.die.net/man/2/listen
+  # SOMAXCONN can be used as a statement which specifies the max number of connection requests 
+  # that can be queued for any given listening socket.
+  # If the backlog argument is greater than the value in /proc/sys/net/core/somaxconn, then it is silently truncated to that value; 
+  # the default value in this file is 128. In kernels before 2.4.25, this limit was a hard coded value, SOMAXCONN, with the value 128.
+  # source https://computing.llnl.gov/linux/slurm/high_throughput.html
+  # /proc/sys/net/core/somaxconn: Limit of socket listen() backlog, known in userspace as SOMAXCONN. Defaults to 128. 
+  # The value should be raised substantially to support bursts of request. 
+  # For example, to support a burst of 1024 requests, set somaxconn to 1024.
+  net.core.somaxconn: 1024
+
+  # TCP FIN_WAIT1(2) timeouts reduce from default 60 to 30
+  net.ipv4.tcp_fin_timeout: 30
+
+  # net.ipv4.tcp_max_syn_backlog
+  # source: man tcp
+  # tcp_max_syn_backlog (integer; default: see below; since Linux 2.2)
+  # The maximum number of queued connection requests which have still not received an acknowledgement from the connecting client. 
+  # If this number is exceeded, the kernel will begin dropping requests.
+  # The default value of 256 is increased to 1024 when the memory present in the system is adequate or greater (>= 128Mb), 
+  # and reduced to 128 for those systems with very low memory (<= 32Mb).
+  # It is recommended that if this needs to be increased above 1024, 
+  # TCP_SYNQ_HSIZEin include/net/tcp.h be modified to keep TCP_SYNQ_HSIZE*16<=tcp_max_syn_backlog,and the kernel be recompiled.
+  net.ipv4.tcp_max_syn_backlog: 1024
+
+  net.ipv4.tcp_synack_retries: 3
+
 sysctl_rhel_config:
   # ExecShield protection against buffer overflows
   kernel.exec-shield: 1
-
 
