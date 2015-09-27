@@ -202,7 +202,7 @@ X11UseLocalhost yes
 
 PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 
-PrintLastLog {{ yes if ssh_print_last_log else 'no' }}
+PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 
 #Banner /etc/ssh/banner.txt
 #UseDNS yes
