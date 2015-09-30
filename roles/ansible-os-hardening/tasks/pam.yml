@@ -2,6 +2,9 @@
 - name: update pam on Debian systems
   command: 'pam-auth-update --package'
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  changed_when: False
+  environment:
+    DEBIAN_FRONTEND: noninteractive
 
 - name: remove pam ccreds on Debian systems
   apt: name='{{os_packages_pam_ccreds}}' state=absent
