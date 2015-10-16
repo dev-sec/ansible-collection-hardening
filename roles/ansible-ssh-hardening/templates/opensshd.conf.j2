@@ -164,7 +164,7 @@ AllowUsers {{ssh_allow_users}}
 DenyGroups {{ssh_deny_groups}}
 {% endif %}
 
-{% if ssh_deny_groups -%}
+{% if ssh_allow_groups -%}
 AllowGroups {{ssh_allow_groups}}
 {% endif %}
 
