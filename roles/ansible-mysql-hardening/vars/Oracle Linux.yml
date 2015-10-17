@@ -1,1 +1,2 @@
+mysql_daemon: mysqld
 mysql_hardening_mysql_conf: '/etc/my.cnf'
