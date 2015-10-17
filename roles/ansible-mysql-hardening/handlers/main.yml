@@ -1,4 +1,4 @@
 ---
 
 - name: restart mysql
-  service: name='{{}}' state=restarted
+  service: name='{{ mysql_daemon }}' state=restarted
