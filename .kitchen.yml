@@ -1,6 +1,8 @@
 ---
 driver:
   name: vagrant
+transport:
+  name: rsync
 provisioner:
   name: ansible_playbook
   test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
@@ -48,7 +50,6 @@ verifier:
   ruby_bindir: '/usr/bin'
 suites:
 - name: default
-  roles_path: roles
   hosts: all
   ansible_verbose: true
   ansible_version: 1.9.2
