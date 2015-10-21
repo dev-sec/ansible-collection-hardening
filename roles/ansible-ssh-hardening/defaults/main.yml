@@ -68,3 +68,9 @@ ssh_print_motd: false      # sshd
 
 # false to disable display of last login information
 ssh_print_last_log: false    # sshd
+
+# true to enable sftp configuration
+sftp_enabled: false
+
+# change default sftp chroot location
+sftp_chroot_dir: /home/%u
