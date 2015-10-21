@@ -208,20 +208,20 @@ PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 #UseDNS yes
 #PidFile /var/run/sshd.pid
 #MaxStartups 10
-#ChrootDirectory none
-#ChrootDirectory /home/%u
 
+{% if sftp_enabled %}
 # Configuration, in case SFTP is used
 ## override default of no subsystems
 ## Subsystem sftp /opt/app/openssh5/libexec/sftp-server
-#Subsystem sftp internal-sftp -l VERBOSE
+Subsystem sftp internal-sftp -l INFO -f LOCAL6
 #
 ## These lines must appear at the *end* of sshd_config
-#Match Group sftponly
-#ForceCommand internal-sftp -l VERBOSE
-#ChrootDirectory /sftpchroot/home/%u
-#AllowTcpForwarding no
-#AllowAgentForwarding no
-#PasswordAuthentication no
-#PermitRootLogin no
-#X11Forwarding no
+Match Group sftponly
+ForceCommand internal-sftp -l INFO -f LOCAL6
+ChrootDirectory {{ sftp_chroot_dir }}
+AllowTcpForwarding no
+AllowAgentForwarding no
+PasswordAuthentication no
+PermitRootLogin no
+X11Forwarding no
+{% endif %}
