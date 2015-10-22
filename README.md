@@ -75,7 +75,7 @@ We remove the following packages:
 
     - hosts: localhost
       roles:
-        - ansible-os-hardening
+        - hardening.os-hardening
 
 ## Local Testing
 
