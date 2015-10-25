@@ -1,6 +1,6 @@
 sysctl_config:
   # Disable IPv4 traffic forwarding.
-  net.ipv4.ip_forward: 0
+  #net.ipv4.ip_forward: 0
 
   # Disable IPv6 traffic forwarding.
   net.ipv6.conf.all.forwarding: 0
