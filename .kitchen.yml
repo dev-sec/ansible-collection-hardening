@@ -53,5 +53,7 @@ suites:
   hosts: all
   ansible_verbose: true
   ansible_version: 1.9.2
+  ansible_diff: true
+  roles_path: ../ansible-os-hardening/
   provisioner:
     playbook: test/integration/playbooks/default.yml
