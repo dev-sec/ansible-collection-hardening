@@ -31,8 +31,6 @@ It will not:
 
 ## Variables
 
-### in main.yml
-
 * `os_desktop_enable: false` -  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `os_env_extra_user_paths: []` - add additional paths to the user's `PATH` variable (default is empty).
 * `os_env_umask: "027"`
@@ -54,12 +52,6 @@ It will not:
 * `os_security_suid_sgid_remove_from_unknown: false` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
 * `os_security_packages_clean': true` - removes packages with known issues. See section packages.
 
-### in sysctl.yml
-
-* `os_network_forwarding: false` - true if this system requires packet forwarding (eg Router), false otherwise
-* `os_network_ipv6_enable: false`
-* `os_network_arp_restricted: true` - true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
-
 ## Packages
 
 We remove the following packages:
@@ -76,6 +68,65 @@ We remove the following packages:
     - hosts: localhost
       roles:
         - hardening.os-hardening
+
+
+## Changing sysctl variables
+
+If you want to overwrite sysctl-variables, you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
+So for example if you want to change the IPv4 traffic forwarding variable to `1`, you must pass the whole dict like this:
+
+```
+    - hosts: localhost
+      roles:
+        - hardening.os-hardening
+      vars:
+        sysctl_config:
+          # Disable IPv4 traffic forwarding.
+          net.ipv4.ip_forward: 1
+
+          # Disable IPv6 traffic forwarding.
+          net.ipv6.conf.all.forwarding: 0
+
+          # ignore RAs on Ipv6.
+          net.ipv6.conf.all.accept_ra: 0
+          net.ipv6.conf.default.accept_ra: 0
+
+          # Enable RFC-recommended source validation feature.
+          net.ipv4.conf.all.rp_filter: 1
+          net.ipv4.conf.default.rp_filter: 1
+
+          # Reduce the surface on SMURF attacks.
+          # Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
+          net.ipv4.icmp_echo_ignore_broadcasts: 1
+
+          # There is no reason to accept bogus error responses from ICMP, so ignore them instead.
+          net.ipv4.icmp_ignore_bogus_error_responses: 1
+
+          # Limit the amount of traffic the system uses for ICMP.
+          net.ipv4.icmp_ratelimit: 100
+
+          # Adjust the ICMP ratelimit to include ping, dst unreachable,
+          # source quench, ime exceed, param problem, timestamp reply, information reply
+          net.ipv4.icmp_ratemask: 88089
+
+          # Disable IPv6
+          net.ipv6.conf.all.disable_ipv6: 1
+
+          # Protect against wrapping sequence numbers at gigabit speeds
+          net.ipv4.tcp_timestamps: 0
+
+          # Define restriction level for announcing the local source IP
+          net.ipv4.conf.all.arp_ignore: 1
+
+          # Define mode for sending replies in response to
+          # received ARP requests that resolve local target IP addresses
+          net.ipv4.conf.all.arp_announce: 2
+
+          # RFC 1337 fix F1
+          net.ipv4.tcp_rfc1337: 1
+```
+
+Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
 
 ## Local Testing
 
