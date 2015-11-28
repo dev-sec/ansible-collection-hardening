@@ -42,7 +42,7 @@ This role provides secure ssh-client and ssh-server configurations.
 
     - hosts: localhost
       roles:
-        - ansible-ssh-hardening
+        - hardening.ssh-hardening
 
 ## Local Testing
 

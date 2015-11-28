@@ -20,6 +20,8 @@ group :integration do
   gem 'kitchen-ansible'
   gem 'kitchen-vagrant'
   gem 'kitchen-sharedtests', '~> 0.2.0'
+  gem 'kitchen-sync'
+  gem 'kitchen-transport-rsync'
 end
 
 group :openstack do
