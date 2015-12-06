@@ -29,3 +29,7 @@ end
 group :openstack do
   gem 'kitchen-openstack'
 end
+
+group :tools do
+  gem 'github_changelog_generator', '~> 1'
+end
