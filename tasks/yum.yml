@@ -29,9 +29,5 @@
 - name: remove packages
   yum: name='{{item}}' state=removed
   with_items:
-    - xinetd
-    - inetd
-    - ypserv
-    - telnet-server
-    - rsh-server
+    - "{{os_security_packages_list}}"
   when: os_security_packages_clean
