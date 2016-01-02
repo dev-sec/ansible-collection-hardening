@@ -1,14 +1,14 @@
 ---
 driver:
   name: vagrant
-transport:
-  name: rsync
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
+  test_repo_uri: https://github.com/hardening-io/tests-os-hardening.git
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -47,7 +47,7 @@ platforms:
     box: debian-8
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
 verifier:
-  ruby_bindir: '/usr/bin'
+  name: inspec
 suites:
 - name: default
   hosts: all
