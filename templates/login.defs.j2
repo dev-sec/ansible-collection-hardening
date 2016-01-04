@@ -107,15 +107,15 @@ PASS_WARN_AGE	7
 UID_MIN			 {{os_auth_uid_min}}
 UID_MAX			60000
 # System accounts
-#SYS_UID_MIN		  100
-#SYS_UID_MAX		  999
+SYS_UID_MIN		  {{os_auth_sys_uid_min}}
+SYS_UID_MAX		  {{os_auth_sys_uid_max}}
 
 # Min/max values for automatic gid selection in groupadd
 GID_MIN			 {{os_auth_gid_min}}
 GID_MAX			60000
 # System accounts
-#SYS_GID_MIN		  100
-#SYS_GID_MAX		  999
+SYS_GID_MIN		  {{os_auth_sys_gid_min}}
+SYS_GID_MAX		  {{os_auth_sys_gid_max}}
 
 # Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
 LOGIN_RETRIES		{{os_auth_retries}}
