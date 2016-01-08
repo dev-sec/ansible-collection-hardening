@@ -10,7 +10,7 @@ This role focuses on security configuration of MySQL. Therefore you can add this
 
 ## Requirements
 
-* Ansible 
+* Ansible
 
 ## Usage
 
@@ -20,7 +20,7 @@ Before you use this role make sure to have a valid login-configuration in `~/.my
 
     - hosts: localhost
       roles:
-        - ansible-os-hardening
+        - hardening.mysql-hardening
 
 This hardening role installs the hardening but expects an existing installation of MySQL, MariaDB or Percona. Please ensure that the following variables are set accordingly:
 
@@ -30,7 +30,7 @@ This hardening role installs the hardening but expects an existing installation 
 
 ## Security Options
 
-Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step) 
+Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)
 
 * `mysql_hardening_chroot` - [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
 * `mysql_hardening_options.safe-user-create` - [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)
@@ -46,22 +46,22 @@ Further information is already available at [Deutsche Telekom (German)](http://w
 
 This setup sets the following parameters by default
 
-    # via `mysql_hardening_options.local-infile` 
+    # via `mysql_hardening_options.local-infile`
     local-infile = 0
 
-    # via `mysql_hardening_options.safe-user-create` 
+    # via `mysql_hardening_options.safe-user-create`
     safe-user-create = 1
 
-    # via `mysql_hardening_options.safe-user-create` 
+    # via `mysql_hardening_options.safe-user-create`
     secure-auth = 1
 
-    # via `mysql_hardening_skip_show_database` 
+    # via `mysql_hardening_skip_show_database`
     skip-show-database
 
-    # via `mysql_hardening_options.skip-symbolic-links` 
+    # via `mysql_hardening_options.skip-symbolic-links`
     skip-symbolic-links
 
-    # via `mysql_hardening_chroot.automatic-sp-privileges` 
+    # via `mysql_hardening_chroot.automatic-sp-privileges`
     automatic_sp_privileges = 0
 
     # via `mysql_hardening_options.secure-file-priv`
@@ -88,12 +88,6 @@ bundle install
 
 # Fetch tests
 bundle exec thor kitchen:fetch-remote-tests
-
-# download a MySQL-installation role
-ansible-galaxy install -p roles/ bennojoy.mysql
-
-# change password in MySQL-installation role to match the one from testing
-sed -i 's/foobar/iloverandompasswordsbutthiswilldo/g' roles/bennojoy.mysql/defaults/main.yml
 
 # fast test on one machine
 bundle exec kitchen test default-ubuntu-1204

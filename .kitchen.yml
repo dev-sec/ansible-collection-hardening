@@ -3,7 +3,7 @@ driver:
   name: vagrant
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/TelekomLabs/tests-mysql-hardening.git
+  test_repo_uri: https://github.com/hardening-io/tests-mysql-hardening.git
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
@@ -46,9 +46,10 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
 suites:
 - name: default
-  roles_path: roles
   hosts: all
   ansible_verbose: true
   ansible_version: 1.9.2
+  ansible_diff: true
+  roles_path: ../ansible-mysql-hardening/
   provisioner:
     playbook: test/integration/playbooks/default.yml
