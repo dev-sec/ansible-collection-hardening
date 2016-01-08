@@ -7,6 +7,7 @@ provisioner:
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
+  requirements_path: requirements.txt
 platforms:
 - name: ubuntu-12.04
   driver_config:
