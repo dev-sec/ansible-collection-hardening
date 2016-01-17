@@ -28,3 +28,9 @@ os_security_suid_sgid_remove_from_unknown: false
 
 # remove packages with known issues
 os_security_packages_clean: true
+os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server','rsync']
+
+# Allow interactive startup (rhel, centos)
+os_security_init_prompt: true
+# Require root password for single user mode. (rhel, centos)
+os_security_init_single: false
