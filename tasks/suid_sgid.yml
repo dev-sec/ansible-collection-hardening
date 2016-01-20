@@ -12,6 +12,11 @@
   when: os_security_suid_sgid_remove_from_unknown
   changed_when: False
 
+#- name: initialize suid-variable so last task does not crash when second last does not run
+#  set_fact:
+#    suid: ''
+#  when: os_security_suid_sgid_remove_from_unknown
+
 - name: gather files from which to remove suids/sgids and remove system white-listed files
   set_fact:
     suid: '{{ sbit_binaries.stdout_lines | difference(os_security_suid_sgid_system_whitelist) }}'
@@ -20,5 +25,5 @@
 - name: remove suid/sgid bit from all binaries except in system and user whitelist
   file: path='{{item}}' mode='a-s' state=file follow=yes
   with_items:
-    - '{{ suid | difference(os_security_suid_sgid_whitelist) }}'
+    - '{{ suid | default(omit) | difference(os_security_suid_sgid_whitelist) }}'
   when: os_security_suid_sgid_remove_from_unknown
