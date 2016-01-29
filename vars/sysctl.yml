@@ -17,7 +17,7 @@ sysctl_config:
   # Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
   net.ipv4.icmp_echo_ignore_broadcasts: 1
 
-  # There is no reason to accept bogus error responses from ICMP, so ignore them instead. 
+  # There is no reason to accept bogus error responses from ICMP, so ignore them instead.
   net.ipv4.icmp_ignore_bogus_error_responses: 1
 
   # Limit the amount of traffic the system uses for ICMP.
