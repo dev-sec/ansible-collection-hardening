@@ -12,6 +12,11 @@ os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'
 os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 os_auth_uid_min: 1000
 os_auth_gid_min: 1000
+os_auth_sys_uid_min: 100
+os_auth_sys_uid_max: 999
+os_auth_sys_gid_min: 100
+os_auth_sys_gid_max: 999
+
 os_chfn_restrict: ''
 # may contain: change_user
 os_security_users_allow: []
