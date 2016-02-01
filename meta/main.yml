@@ -20,6 +20,7 @@ galaxy_info:
       versions:
         - squeeze
         - wheezy
+        - jessie
   galaxy_tags:
     - system
     - security
