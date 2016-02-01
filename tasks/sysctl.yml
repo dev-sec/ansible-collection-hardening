@@ -1,8 +1,4 @@
 ---
-
-- name: include sysctl variables
-  include_vars: sysctl.yml
-
 - name: protect sysctl.conf
   file: path='/etc/sysctl.conf' owner=root group=root mode=0440
 
