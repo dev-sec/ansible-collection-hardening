@@ -40,13 +40,16 @@ os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
 os_security_init_single: false
 
+# Forbid IPv4 forwarding via sysctl. You may override only this variable to change the value
+# of `net.ipv4.ip_forward` without overriding the entire `sysctl_config` dict.
+os_network_forwarding: false
+
 # CAUTION
 # If you want to overwrite sysctl-variables,
 # you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
-
 sysctl_config:
   # Disable IPv4 traffic forwarding.
-  net.ipv4.ip_forward: 0
+  net.ipv4.ip_forward: "{{ '1' if os_network_forwarding else '0' }}"
 
   # Disable IPv6 traffic forwarding.
   net.ipv6.conf.all.forwarding: 0
