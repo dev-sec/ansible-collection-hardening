@@ -3,21 +3,42 @@
   include_vars: "{{ ansible_os_family }}.yml"
   tags: always
 
-- include: limits.yml tags=limits
-- include: login_defs.yml tags=login_defs
-- include: minimize_access.yml tags=minimize_acces
-- include: pam.yml tags=pam
-- include: profile.yml tags=profile
-- include: securetty.yml tags=securetty
-- include: suid_sgid.yml tags=suid_sgid
+- include: limits.yml
+  tags: limits
+
+- include: login_defs.yml
+  tags: login_defs
+
+- include: minimize_access.yml
+  tags: minimize_acces
+
+- include: pam.yml
+  tags: pam
+
+- include: profile.yml
+  tags: profile
+
+- include: securetty.yml
+  tags: securetty
+
+- include: suid_sgid.yml
   when: os_security_suid_sgid_enforce
+  tags: suid_sgid
 
-- include: sysctl.yml tags=sysctl
-- include: user_accounts.yml tags=user_accounts
-- include: rhosts.yml tags=rhosts
+- include: sysctl.yml
+  tags: sysctl
 
-- include: yum.yml tags=yum
+- include: user_accounts.yml
+  tags: user_accounts
+
+- include: rhosts.yml
+  tags: rhosts
+
+- include: yum.yml
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+  tags: yum
 
-- include: apt.yml tags=apt
+- include: apt.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: apt
+
