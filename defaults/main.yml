@@ -74,3 +74,6 @@ sftp_enabled: false
 
 # change default sftp chroot location
 sftp_chroot_dir: /home/%u
+
+# enable experimental client roaming
+ssh_client_roaming: false
