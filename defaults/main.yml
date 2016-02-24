@@ -39,3 +39,62 @@ os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-serve
 os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
 os_security_init_single: false
+
+# CAUTION
+# If you want to overwrite sysctl-variables,
+# you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
+
+sysctl_config:
+  # Disable IPv4 traffic forwarding.
+  net.ipv4.ip_forward: 0
+
+  # Disable IPv6 traffic forwarding.
+  net.ipv6.conf.all.forwarding: 0
+
+  # ignore RAs on Ipv6.
+  net.ipv6.conf.all.accept_ra: 0
+  net.ipv6.conf.default.accept_ra: 0
+
+  # Enable RFC-recommended source validation feature.
+  net.ipv4.conf.all.rp_filter: 1
+  net.ipv4.conf.default.rp_filter: 1
+
+  # Reduce the surface on SMURF attacks.
+  # Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
+  net.ipv4.icmp_echo_ignore_broadcasts: 1
+
+  # There is no reason to accept bogus error responses from ICMP, so ignore them instead.
+  net.ipv4.icmp_ignore_bogus_error_responses: 1
+
+  # Limit the amount of traffic the system uses for ICMP.
+  net.ipv4.icmp_ratelimit: 100
+
+  # Adjust the ICMP ratelimit to include ping, dst unreachable,
+  # source quench, ime exceed, param problem, timestamp reply, information reply
+  net.ipv4.icmp_ratemask: 88089
+
+  # Disable IPv6
+  net.ipv6.conf.all.disable_ipv6: 1
+
+  # Protect against wrapping sequence numbers at gigabit speeds
+  net.ipv4.tcp_timestamps: 0
+
+  # Define restriction level for announcing the local source IP
+  net.ipv4.conf.all.arp_ignore: 1
+
+  # Define mode for sending replies in response to
+  # received ARP requests that resolve local target IP addresses
+  net.ipv4.conf.all.arp_announce: 2
+
+  # RFC 1337 fix F1
+  net.ipv4.tcp_rfc1337: 1
+
+# CAUTION
+# If you want to overwrite sysctl-variables,
+# you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
+
+sysctl_rhel_config:
+  # ExecShield protection against buffer overflows
+  kernel.exec-shield: 1
+  # Syncookies is used to prevent SYN-flooding attacks.
+  net.ipv4.tcp_syncookies: 1
