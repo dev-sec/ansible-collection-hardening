@@ -8,20 +8,19 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 6.4
-        - 6.5
+        - 6
     - name: Oracle Linux
       versions:
-        - 6.4
-        - 6.5
+        - 6
     - name: Ubuntu
       versions:
-        - 12.04
-        - 14.04
+        - precise
+        - trusty
     - name: Debian
       versions:
-        - 6
-        - 7
+        - squeeze
+        - wheezy
+        - jessie
   galaxy_tags:
     - system
     - security
