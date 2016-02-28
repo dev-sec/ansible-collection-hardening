@@ -1,4 +1,6 @@
 ---
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
 language: python
 python: "2.7"
 before_install:
