@@ -95,7 +95,6 @@ ansible-galaxy install -p roles/ bennojoy.mysql
 # change password in MySQL-installation role to match the one from testing
 sed -i 's/foobar/iloverandompasswordsbutthiswilldo/g' roles/bennojoy.mysql/defaults/main.yml
 
-
 # fast test on one machine
 bundle exec kitchen test default-ubuntu-1204
 
