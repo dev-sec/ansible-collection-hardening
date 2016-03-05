@@ -1,6 +1,7 @@
 ---
 driver:
   name: vagrant
+  vagrantfile_erb: Vagrantfile.erb
 provisioner:
   name: ansible_playbook
   test_repo_uri: https://github.com/hardening-io/tests-os-hardening.git
@@ -49,10 +50,17 @@ platforms:
 verifier:
   name: inspec
 suites:
-- name: default
+- name: ansible_1.9
   hosts: all
   ansible_verbose: true
-  ansible_version: 2
+  ansible_diff: true
+  roles_path: ../ansible-os-hardening/
+  provisioner:
+    playbook: test/integration/playbooks/default.yml
+    ansible_version: 1.9.4
+- name: ansible_latest
+  hosts: all
+  ansible_verbose: true
   ansible_diff: true
   roles_path: ../ansible-os-hardening/
   provisioner:
