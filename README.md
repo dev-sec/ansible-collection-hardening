@@ -36,7 +36,9 @@ This role provides secure ssh-client and ssh-server configurations.
 * ``ssh_allow_groups: ''`` - if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
 * ``ssh_print_motd`` - false to disable printing of the MOTD
 * ``ssh_print_last_log`` - false to disable display of last login information
-
+* ``sftp_enabled`` - true to enable sftp configuration
+* ``sftp_chroot_dir`` - change default sftp chroot location
+* ``ssh_client_roaming`` - enable experimental client roaming
 
 ## Example Playbook
 
