@@ -1,5 +1,26 @@
 # Change Log
 
+## [3.0.0](https://github.com/hardening-io/ansible-ssh-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/hardening-io/ansible-ssh-hardening/compare/2.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- Added sftp\_enabled, sftp\_chroot\_dir, and ssh\_client\_roaming from the … [\#57](https://github.com/hardening-io/ansible-ssh-hardening/pull/57) ([shirokatze](https://github.com/shirokatze))
+- add test support for ansible 1.9 and 2.0 [\#56](https://github.com/hardening-io/ansible-ssh-hardening/pull/56) ([rndmh3ro](https://github.com/rndmh3ro))
+- update platforms in meta-file [\#52](https://github.com/hardening-io/ansible-ssh-hardening/pull/52) ([rndmh3ro](https://github.com/rndmh3ro))
+- add webhook for ansible galaxy [\#51](https://github.com/hardening-io/ansible-ssh-hardening/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
+- Disable experimental client roaming. [\#49](https://github.com/hardening-io/ansible-ssh-hardening/pull/49) ([rndmh3ro](https://github.com/rndmh3ro))
+- use inspec as test framework [\#48](https://github.com/hardening-io/ansible-ssh-hardening/pull/48) ([chris-rock](https://github.com/chris-rock))
+- Change categories to tags for upcoming ansible 2.0 [\#47](https://github.com/hardening-io/ansible-ssh-hardening/pull/47) ([rndmh3ro](https://github.com/rndmh3ro))
+- add changelog generator [\#46](https://github.com/hardening-io/ansible-ssh-hardening/pull/46) ([chris-rock](https://github.com/chris-rock))
+
+**Closed issues:**
+
+- Fail at TASK \[remove selinux-policy when Pam is used...\] when ssh\_use\_pam: true [\#54](https://github.com/hardening-io/ansible-ssh-hardening/issues/54)
+- Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/hardening-io/ansible-ssh-hardening/issues/50)
+- should generate new ssh host key files [\#45](https://github.com/hardening-io/ansible-ssh-hardening/issues/45)
+
 ## [2.0.0](https://github.com/hardening-io/ansible-ssh-hardening/tree/2.0.0) (2015-11-28)
 [Full Changelog](https://github.com/hardening-io/ansible-ssh-hardening/compare/1.2.1...2.0.0)
 
