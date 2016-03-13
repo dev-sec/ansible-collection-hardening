@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased](https://github.com/hardening-io/ansible-ssh-hardening/tree/HEAD)
+## [3.0.0](https://github.com/hardening-io/ansible-ssh-hardening/tree/HEAD)
 
 [Full Changelog](https://github.com/hardening-io/ansible-ssh-hardening/compare/2.0.0...HEAD)
 
