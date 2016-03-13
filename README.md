@@ -100,6 +100,10 @@ We have seen some issues in applications (based on python and ruby) that are due
 
 If you find this isn't enough, feel free to activate the attributes `cbc_requires` for ciphers, `weak_hmac` for MACs and `weak_kex`for KEX in the variables `ssh_client` or `ssh_server` based on where you want to support them.
 
+**After using the role Ansibles template/copy/file module does not work anymore!**
+
+This role deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files.
+
 ## Contributing
 
 See [contributor guideline](CONTRIBUTING.md).
