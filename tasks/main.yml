@@ -24,27 +24,27 @@
   when: ssh_client_hardening
 
 - name: Create selinux custom policy drop folder
-  file: path={{ custom_selinux_dir }} state=directory owner=root group=root mode=0750
+  file: path={{ ssh_custom_selinux_dir }} state=directory owner=root group=root mode=0750
   when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled'
 
 # The following tasks only get executed when selinux is in state enforcing and UsePam is "no".
 # See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
 
 - name: Distributing custom selinux policies
-  copy: src='ssh_password' dest='{{ custom_selinux_dir }}'
+  copy: src='ssh_password' dest='{{ ssh_custom_selinux_dir }}'
   register: custom_policies_output
   when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled'
 
 - name: check and compile policy
-  shell: checkmodule -M -m -o {{ custom_selinux_dir }}/ssh_password.mod {{ custom_selinux_dir }}/ssh_password
+  shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
   when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled'
 
 - name: create selinux policy module package
-  shell: semodule_package -o {{ custom_selinux_dir }}/ssh_password.pp  -m {{ custom_selinux_dir }}/ssh_password.mod
+  shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
   when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled'
 
 - name: install selinux policy
-  shell: semodule -i {{ custom_selinux_dir }}/ssh_password.pp
+  shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
   when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled'
 
 - name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
