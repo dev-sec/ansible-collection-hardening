@@ -112,7 +112,7 @@ ssh_ciphers_53_default:
 ssh_ciphers_53_weak: "{{ ssh_ciphers_53_default + ['aes256-cbc', 'aes192-cbc', 'aes128-cbc'] }}"
 
 ssh_ciphers_66_default:
-  - chacha20-poly1305@openssh.comi
+  - chacha20-poly1305@openssh.com
   - aes256-gcm@openssh.com
   - aes128-gcm@openssh.com
   - aes256-ctr
