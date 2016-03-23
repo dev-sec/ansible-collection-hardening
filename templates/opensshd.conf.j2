@@ -52,15 +52,15 @@ LogLevel VERBOSE
 #
 {% if ssh_server_cbc_required -%}
     {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-        Ciphers {{ciphers_66_weak}}
+        Ciphers {{ ssh_ciphers_66_weak | join(',') }}
     {% else %}
-        Ciphers {{ciphers_53_weak}}
+        Ciphers {{ ssh_ciphers_53_weak | join(',') }}
     {% endif %}
 {% else -%}
     {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-        Ciphers {{ciphers_66_default}}
+        Ciphers {{ ssh_ciphers_66_default | join(',') }}
     {% else -%}
-        Ciphers {{ciphers_53_default}}
+        Ciphers {{ ssh_ciphers_53_default | join(',') }}
     {% endif %}
 {% endif %}
 
@@ -71,23 +71,23 @@ LogLevel VERBOSE
 
 {% if ssh_server_weak_hmac -%}
     {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-        MACs {{macs_66_weak}}
+        MACs {{ ssh_macs_66_weak | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
-        MACs {{macs_53_default}}
+        MACs {{ ssh_macs_53_default | join(',') }}
     {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
-        MACs {{macs_53_default}}
+        MACs {{ ssh_macs_53_default | join(',') }}
     {% else -%}
-        MACs {{macs_59_weak}}
+        MACs {{ ssh_macs_59_weak | join(',') }}
     {% endif %}
 {% else -%}
     {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-        MACs {{macs_66_default}}
+        MACs {{ ssh_macs_66_default | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
-        MACs {{macs_53_default}}
+        MACs {{ ssh_macs_53_default | join(',') }}
     {% elif ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6' -%}
-        MACs {{macs_53_default}}
+        MACs {{ ssh_macs_53_default | join(',') }}
     {% else -%}
-        MACs {{macs_59_default}}
+        MACs {{ ssh_macs_59_default | join(',') }}
     {% endif %}
 {% endif %}
 
@@ -100,15 +100,15 @@ LogLevel VERBOSE
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
     {% if ssh_client_weak_kex -%}
-        KexAlgorithms {{kex_66_weak}}
+        KexAlgorithms {{ ssh_kex_66_weak | join(',') }}
     {% else -%}
-        KexAlgorithms {{kex_66_default}}
+        KexAlgorithms {{ ssh_kex_66_default | join(',') }}
     {% endif %}
 {% else -%}
     {% if ansible_os_family in ['Oracle Linux', 'RedHat'] or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
         #KexAlgorithms
     {% else -%}
-        KexAlgorithms {{kex_59_default}}
+        KexAlgorithms {{ ssh_kex_59_default | join(',') }}
     {% endif %}
 {% endif %}
 
