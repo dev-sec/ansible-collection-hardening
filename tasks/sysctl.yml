@@ -37,5 +37,6 @@
     state: present
     reload: yes
     ignoreerrors: yes
+  ignore_errors: yes
   with_dict: sysctl_rhel_config
   when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
