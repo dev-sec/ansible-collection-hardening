@@ -5,10 +5,15 @@
     - '/usr/local/sbin'
     - '/usr/local/bin'
     - '/usr/sbin'
-    - '/usr/bin' 
+    - '/usr/bin'
+    - '{{os_env_extra_user_paths}}'
+
+- name: minimize access for non CentOS7 Systems
+  file: path='{{item}}' mode='go-w' recurse=yes
+  with_items:
     - '/sbin'
     - '/bin'
-    - '{{os_env_extra_user_paths}}'
+  when: not "(ansible_distribution is 'CentOS' and ansible_distribution_major_version is '7')"
 
 - name: change shadow ownership to root and mode to 0600 | DTAG SEC Req 3.21-7
   file: dest='/etc/shadow' owner=root group=root mode=0600
