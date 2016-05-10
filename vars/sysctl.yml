@@ -10,8 +10,8 @@ sysctl_config:
   net.ipv6.conf.default.accept_ra: 0
 
   # Enable RFC-recommended source validation feature.
-  net.ipv4.conf.all.rp_filter: 1
-  net.ipv4.conf.default.rp_filter: 1
+  #net.ipv4.conf.all.rp_filter: 1
+  #net.ipv4.conf.default.rp_filter: 1
 
   # Reduce the surface on SMURF attacks.
   # Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
