@@ -1,5 +1,34 @@
 # Change Log
 
+## [3.0.0](https://github.com/hardening-io/ansible-os-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/hardening-io/ansible-os-hardening/compare/2.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- update platforms in meta-file [\#69](https://github.com/hardening-io/ansible-os-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
+- add webhook for ansible galaxy [\#68](https://github.com/hardening-io/ansible-os-hardening/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
+- Move sysctl vars to defaults [\#67](https://github.com/hardening-io/ansible-os-hardening/pull/67) ([rndmh3ro](https://github.com/rndmh3ro))
+- make sys\_uid and sys\_gid configurable [\#62](https://github.com/hardening-io/ansible-os-hardening/pull/62) ([rndmh3ro](https://github.com/rndmh3ro))
+- Ansible 2.0 support [\#59](https://github.com/hardening-io/ansible-os-hardening/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
+- use inspec as test framework [\#58](https://github.com/hardening-io/ansible-os-hardening/pull/58) ([chris-rock](https://github.com/chris-rock))
+- Packages as attributes [\#57](https://github.com/hardening-io/ansible-os-hardening/pull/57) ([rndmh3ro](https://github.com/rndmh3ro))
+- Change categories to tags for upcoming ansible 2.0 [\#56](https://github.com/hardening-io/ansible-os-hardening/pull/56) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add SINGLE and PROMPT parameters. [\#55](https://github.com/hardening-io/ansible-os-hardening/pull/55) ([rndmh3ro](https://github.com/rndmh3ro))
+- add changelog generator [\#54](https://github.com/hardening-io/ansible-os-hardening/pull/54) ([chris-rock](https://github.com/chris-rock))
+
+**Fixed bugs:**
+
+- Updates "tags" parameters on includes in main.yml [\#66](https://github.com/hardening-io/ansible-os-hardening/pull/66) ([conorsch](https://github.com/conorsch))
+- Suid set def var, fix \#64 [\#63](https://github.com/hardening-io/ansible-os-hardening/pull/63) ([rndmh3ro](https://github.com/rndmh3ro))
+- ERROR! Include tasks should not specify tags in more than one way [\#60](https://github.com/hardening-io/ansible-os-hardening/pull/60) ([fitz123](https://github.com/fitz123))
+
+**Closed issues:**
+
+- Hardening fails on Centos 7.1 at task 'remove suid/sgid bit from all binaries except in system and user whitelist' [\#72](https://github.com/hardening-io/ansible-os-hardening/issues/72)
+- ansible 2.0 | "remove suid/sgid" task fails [\#64](https://github.com/hardening-io/ansible-os-hardening/issues/64)
+- Custom sysctl [\#50](https://github.com/hardening-io/ansible-os-hardening/issues/50)
+
 ## [2.0.0](https://github.com/hardening-io/ansible-os-hardening/tree/2.0.0) (2015-11-28)
 [Full Changelog](https://github.com/hardening-io/ansible-os-hardening/compare/1.0.0...2.0.0)
 
