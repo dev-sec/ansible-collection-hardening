@@ -40,6 +40,17 @@ os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
 os_security_init_single: false
 
+# Apply ufw defaults
+ufw_manage_defaults: true
+
+# Disable IPT_SYSCTL in /etc/default/ufw
+ufw_ipt_sysctl: ''
+
+# Default ufw policies
+ufw_default_input_policy: 'DROP'
+ufw_default_output_policy: 'ACCEPT'
+ufw_default_forward_policy: 'DROP'
+
 # CAUTION
 # If you want to overwrite sysctl-variables,
 # you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
