@@ -1,7 +1,7 @@
 ---
 - name: remove suid/sgid bit from binaries in blacklist
   file: path='{{item}}' mode='a-s' state=file follow=yes
-  ignore_errors: true
+  failed_when: false
   with_items:
     - '{{ os_security_suid_sgid_system_blacklist }}'
     - '{{ os_security_suid_sgid_blacklist }}'
