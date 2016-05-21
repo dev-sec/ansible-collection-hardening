@@ -1,4 +1,4 @@
-mysql_hardening_enabled: yes
+mysql_hardening_enabled: no
 # general configuration
 mysql_hardening_user: 'mysql'
 mysql_hardening_group: 'mysql'
