@@ -39,4 +39,4 @@
 - name: Apply ufw defaults
   template: src="ufw.j2" dest=/etc/default/ufw
   when: ufw_manage_defaults and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
-  tags: dev
+  tags: ufw
