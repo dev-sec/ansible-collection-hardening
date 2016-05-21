@@ -21,12 +21,12 @@ DEFAULT_FORWARD_POLICY="{{ ufw_default_forward_policy }}"
 # Set the default application policy to ACCEPT, DROP, REJECT or SKIP. Please
 # note that setting this to ACCEPT may be a security risk. See 'man ufw' for
 # details
-DEFAULT_APPLICATION_POLICY="{{ ufw_default_application_policy | default('SKIP') }}"
+DEFAULT_APPLICATION_POLICY="{{ ufw_default_application_policy }}"
 
 # By default, ufw only touches its own chains. Set this to 'yes' to have ufw
 # manage the built-in chains too. Warning: setting this to 'yes' will break
 # non-ufw managed firewall rules
-MANAGE_BUILTINS="{{ ufw_manage_builtins | default('no') }}"
+MANAGE_BUILTINS="{{ ufw_manage_builtins }}"
 
 #
 # IPT backend
@@ -41,4 +41,4 @@ MANAGE_BUILTINS="{{ ufw_manage_builtins | default('no') }}"
 # nf_conntrack_pptp, nf_nat_pptp: PPTP over stateful firewall/NAT
 # nf_conntrack_ftp, nf_nat_ftp: active FTP support
 # nf_conntrack_tftp, nf_nat_tftp: TFTP support (server side)
-IPT_MODULES="{{ ufw_ipt_modules | default('nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns') }}"
+IPT_MODULES="{{ ufw_ipt_modules }}"
