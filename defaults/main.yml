@@ -7,7 +7,7 @@ mysql_hardening_hardening_conf: '/etc/mysql/conf.d/hardening.cnf'
 mysql_root_password: "{{ lookup('env','mysql_root_password') }}"
 
 # ensure the following parameters are set properly
-mysql_allow_remote_root: false
+mysql_remove_remote_root: true
 mysql_remove_anonymous_users: true
 mysql_remove_test_database: true
 
