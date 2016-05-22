@@ -1,0 +1,17 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
+  hosts: localhost
+  roles:
+    - ansible-ssh-hardening
+  vars:
+    network_ipv6_enable: true
+    ssh_allow_root_with_key: true
+    ssh_client_password_login: true
+    ssh_client_cbc_required: true
+    ssh_server_weak_hmac: true
+    ssh_client_weak_kex: true
+
+- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+  hosts: localhost
+  roles:
+    - ansible-ssh-hardening

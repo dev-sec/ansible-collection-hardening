@@ -9,6 +9,11 @@ provisioner:
   require_ansible_omnibus: true
   require_chef_for_busser: false
   require_ruby_for_busser: false
+  ansible_verbose: true
+  ansible_diff: true
+  roles_path: ../ansible-ssh-hardening/
+  playbook: default.yml
+
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -50,18 +55,7 @@ verifier:
   name: inspec
 suites:
 - name: ansible_1.9
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-ssh-hardening/
   provisioner:
-    playbook: test/integration/playbooks/default.yml
     ansible_version: 1.9.4
 - name: ansible_latest
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-ssh-hardening/
-  provisioner:
-    playbook: test/integration/playbooks/default.yml
 

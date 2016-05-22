@@ -5,7 +5,7 @@
 - name: test to see if selinux is running
   command: getenforce
   register: sestatus
-  changed_when: false
+  failed_when: false
   ignore_errors: true
 
 - name: check the ssh_password policy state
