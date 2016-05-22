@@ -39,10 +39,6 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-6
-  driver_config:
-    box: debian-6
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-6.0.10_chef-provisionerless.box
 - name: debian-7
   driver_config:
     box: debian-7
@@ -58,4 +54,3 @@ suites:
   provisioner:
     ansible_version: 1.9.4
 - name: ansible_latest
-
