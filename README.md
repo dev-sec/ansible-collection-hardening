@@ -1,6 +1,6 @@
 # ssh-hardening (Ansible Role)
 
-[![Build Status](http://img.shields.io/travis/hardening-io/ansible-ssh-hardening.svg)][1]
+[![Build Status](http://img.shields.io/travis/dev-sec/ansible-ssh-hardening.svg)][1]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-ssh--hardening-660198.svg)][3]
 
@@ -13,39 +13,41 @@ This role provides secure ssh-client and ssh-server configurations.
 * Ansible
 
 ## Role Variables
-* ``network_ipv6_enable`` - true if IPv6 is needed
-* ``ssh_client_cbc_required`` - true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.
-* ``ssh_server_cbc_required`` - true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.       
-* ``ssh_client_weak_hmac`` - true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.
-* ``ssh_server_weak_hmac`` - true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.
-* ``ssh_client_weak_kex`` - true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.
-* ``ssh_server_weak_kex`` - true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.
-* ``ssh_server_ports: ['22']`` - ports to which ssh-server should listen to
-* ``ssh_client_ports: ['22']`` - ports to which ssh-client should connect to
-* ``ssh_listen_to: ['0.0.0.0']`` - one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!
-* ``ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key']`` - Host keys to look for when starting sshd.
-* ``ssh_client_alive_interval: 600``
-* ``ssh_client_alive_count: 3``
-* ``ssh_remote_hosts: []`` - one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!
-* ``ssh_allow_root_with_key`` - false to disable root login altogether. Set to true to allow root to login via key-based mechanism.
-* ``ssh_allow_tcp_forwarding`` false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
-* ``ssh_allow_agent_forwarding`` false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
-* ``ssh_use_pam: false`` - false to disable pam authentication.
-* ``ssh_deny_users: ''`` - if specified, login is disallowed for user names that match one of the patterns.
-* ``ssh_allow_users: ''`` - if specified, login is allowed only for user names that match one of the patterns.
-* ``ssh_deny_groups: ''`` - if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
-* ``ssh_allow_groups: ''`` - if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
-* ``ssh_print_motd`` - false to disable printing of the MOTD
-* ``ssh_print_last_log`` - false to disable display of last login information
-* ``sftp_enabled`` - true to enable sftp configuration
-* ``sftp_chroot_dir`` - change default sftp chroot location
-* ``ssh_client_roaming`` - enable experimental client roaming
+| Name           | Default Value | Description                        |
+| -------------- | ------------- | -----------------------------------|
+|`network_ipv6_enable` | false |true if IPv6 is needed|
+|`ssh_client_cbc_required` | false |true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.|
+|`ssh_server_cbc_required` | false |true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.|
+|`ssh_client_weak_hmac` | false |true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.|
+|`ssh_server_weak_hmac` | false |true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.|
+|`ssh_client_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
+|`ssh_server_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
+|`ssh_server_ports` | 22 |ports to which ssh-server should listen to|
+|`ssh_client_ports` | 22 |ports to which ssh-client should connect to|
+|`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!|
+|`ssh_host_key_files` | ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key'] |Host keys to look for when starting sshd.|
+|`ssh_client_alive_interval` | 600 | specifies an interval for sending keepalive messages |
+|`ssh_client_alive_count` | 3 | defines how often keep-alive messages are sent |
+|`ssh_remote_hosts` | [] | one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!|
+|`ssh_allow_root_with_key` | false | false to disable root login altogether. Set to true to allow root to login via key-based mechanism.|
+|`ssh_allow_tcp_forwarding` | false | false to disable TCP Forwarding. Set to true to allow TCP Forwarding.|
+|`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
+|`ssh_use_pam` | false | false to disable pam authentication.|
+|`ssh_deny_users` | '' | if specified, login is disallowed for user names that match one of the patterns.|
+|`ssh_allow_users` | '' | if specified, login is allowed only for user names that match one of the patterns.|
+|`ssh_deny_groups` | '' | if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.|
+|`ssh_allow_groups` | '' | if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.|
+|`ssh_print_motd` | false | false to disable printing of the MOTD|
+|`ssh_print_last_log` | false | false to disable display of last login information|
+|`sftp_enabled` | false | true to enable sftp configuration|
+|`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
+|`ssh_client_roaming` | false | enable experimental client roaming|
 
 ## Example Playbook
 
     - hosts: localhost
       roles:
-        - hardening.ssh-hardening
+        - dev-sec.ssh-hardening
 
 ## Local Testing
 
@@ -126,6 +128,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[1]: http://travis-ci.org/hardening-io/ansible-ssh-hardening
-[2]: https://gitter.im/hardening-io/general
-[3]: https://galaxy.ansible.com/list#/roles/4204 
+[1]: http://travis-ci.org/dev-sec/ansible-ssh-hardening
+[2]: https://gitter.im/dev-sec/general
+[3]: https://galaxy.ansible.com/list#/roles/4204
