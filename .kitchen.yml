@@ -5,9 +5,14 @@ provisioner:
   name: ansible_playbook
   test_repo_uri: https://github.com/hardening-io/tests-mysql-hardening.git
   hosts: all
+  playbook: default.yml
   require_ansible_repo: false
   require_ansible_omnibus: true
-  requirements_path: requirements.txt
+  requirements_path: requirements.yml
+  ansible_verbose: true
+  ansible_diff: true
+  roles_path: ../ansible-mysql-hardening/
+
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -47,17 +52,6 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
 suites:
 - name: ansible_1.9
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-mysql-hardening/
   provisioner:
-    playbook: test/integration/playbooks/default.yml
     ansible_version: 1.9.4
 - name: ansible_latest
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-mysql-hardening/
-  provisioner:
-    playbook: test/integration/playbooks/default.yml
