@@ -10,7 +10,7 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install python-mysqldb for Ansible
-  yum: name=python-mysqldb state=present
+  yum: name=MySQL-python state=present
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
 - name: root password is present
