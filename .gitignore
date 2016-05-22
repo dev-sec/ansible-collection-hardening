@@ -11,4 +11,3 @@ Berksfile.lock
 
 ansible.cfg
 hosts
-default.yml
