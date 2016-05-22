@@ -1,6 +1,6 @@
 # os-hardening (Ansible Role)
 
-[![Build Status](http://img.shields.io/travis/hardening-io/ansible-os-hardening.svg)][1]
+[![Build Status](http://img.shields.io/travis/dev-sec/ansible-os-hardening.svg)][1]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-os--hardening-660198.svg)][3]
 
@@ -31,31 +31,33 @@ It will not:
 
 ## Variables
 
-* `os_desktop_enable: false` -  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `os_env_extra_user_paths: []` - add additional paths to the user's `PATH` variable (default is empty).
-* `os_env_umask: "027"`
-* `os_auth_pw_max_age: 60` - maximum password age
-* `os_auth_pw_min_age: 7` - minimum password age (before allowing any other password change)
-* `os_auth_retries: 5` - the maximum number of authentication attempts, before the account is locked for some time
-* `os_auth_lockout_time: 600` - time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
-* `os_auth_timeout: 60` - authentication timeout in seconds, so login will exit if this time passes
-* `os_auth_allow_homeless: false` - true if to allow users without home to login
-* `os_auth_pam_passwdqc_enable: true` - true if you want to use strong password checking in PAM using passwdqc
-* `os_auth_pam_passwdqc_options: "min=disabled,disabled,16,12,8"` - set to any option line (as a string) that you want to pass to passwdqc
-* `os_security_users_allow: []` - list of things, that a user is allowed to do. May contain: `change_user`
-* `os_security_kernel_enable_module_loading: true` - true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
-* `os_security_kernel_enable_sysrq: false`
-* `os_security_kernel_enable_core_dump: false`
-* `os_security_suid_sgid_enforce: true` - true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
-* `os_security_suid_sgid_blacklist: []` - a list of paths which should have their SUID/SGID bits removed
-* `os_security_suid_sgid_whitelist: []` - a list of paths which should not have their SUID/SGID bits altered
-* `os_security_suid_sgid_remove_from_unknown: false` - true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
-* `os_security_packages_clean': true` - removes packages with known issues. See section packages.
-* `ufw_manage_defaults` - true means apply all settings with ufw_ prefix
-* `ufw_ipt_sysctl` - by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example: /etc/ufw/sysctl.conf. 
-* `ufw_default_input_policy` - DROP
-* `ufw_default_output_policy` - ACCEPT
-* `ufw_default_forward_policy` - DROP
+| Name           | Default Value | Description                        |
+| -------------- | ------------- | -----------------------------------|
+| `os_desktop_enable`| false |  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc|
+| `os_env_extra_user_paths`| [] | add additional paths to the user's `PATH` variable (default is empty).|
+| `os_env_umask`| 027| set default permissions for new files to `750` |
+| `os_auth_pw_max_age`| 60 | maximum password age|
+| `os_auth_pw_min_age`| 7 | minimum password age (before allowing any other password change)|
+| `os_auth_retries`| 5 | the maximum number of authentication attempts, before the account is locked for some time|
+| `os_auth_lockout_time`| 600 | time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts|
+| `os_auth_timeout`| 60 | authentication timeout in seconds, so login will exit if this time passes|
+| `os_auth_allow_homeless`| false | true if to allow users without home to login|
+| `os_auth_pam_passwdqc_enable`| true | true if you want to use strong password checking in PAM using passwdqc|
+| `os_auth_pam_passwdqc_options`| "min=disabled,disabled,16,12,8" | set to any option line (as a string) that you want to pass to passwdqc|
+| `os_security_users_allow`| [] | list of things, that a user is allowed to do. May contain` `change_user`
+| `os_security_kernel_enable_module_loading`| true | true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)|
+| `os_security_kernel_enable_sysrq`| false | sysrq is a 'magical' key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. |
+| `os_security_kernel_enable_core_dump`| false | kernel is crashing or otherwise misbehaving and a kernel core dump is created |
+| `os_security_suid_sgid_enforce`| true | true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own|
+| `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
+| `os_security_suid_sgid_whitelist`| [] | a list of paths which should not have their SUID/SGID bits altered|
+| `os_security_suid_sgid_remove_from_unknown`| false | true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.|
+| `os_security_packages_clean'`| true | removes packages with known issues. See section packages.|
+| `ufw_manage_defaults` | true | true means apply all settings with `ufw_` prefix|
+| `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
+| `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
+| `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
+| `ufw_default_forward_policy` | DROP| set default forward policy of ufw to `DROP` |
 
 ## Packages
 
@@ -72,7 +74,7 @@ We remove the following packages:
 
     - hosts: localhost
       roles:
-        - hardening.os-hardening
+        - dev-sec.os-hardening
 
 
 ## Changing sysctl variables
@@ -83,7 +85,7 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
 ```
     - hosts: localhost
       roles:
-        - hardening.os-hardening
+        - dev-sec.os-hardening
       vars:
         sysctl_config:
           # Disable IPv4 traffic forwarding.
@@ -194,6 +196,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[1]: http://travis-ci.org/hardening-io/ansible-os-hardening
-[2]: https://gitter.im/hardening-io/general
+[1]: http://travis-ci.org/dev-sec/ansible-os-hardening
+[2]: https://gitter.im/dev-sec/general
 [3]: https://galaxy.ansible.com/list#/roles/4248
