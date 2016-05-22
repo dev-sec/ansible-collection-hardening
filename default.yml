@@ -1,0 +1,10 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
+  hosts: localhost
+  vars:
+    overwrite_global_mycnf: no
+    mysql_hardening_enabled: yes
+    mysql_root_password: "root"
+  roles:
+    - geerlingguy.mysql
+    - ansible-mysql-hardening
