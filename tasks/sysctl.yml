@@ -35,3 +35,8 @@
     ignoreerrors: yes
   with_dict: '{{ sysctl_rhel_config }}'
   when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+
+- name: Apply ufw defaults
+  template: src="ufw.j2" dest=/etc/default/ufw
+  when: ufw_manage_defaults and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+  tags: ufw

@@ -40,6 +40,23 @@ os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
 os_security_init_single: false
 
+# Apply ufw defaults
+ufw_manage_defaults: true
+
+# Empty variable disables IPT_SYSCTL in /etc/default/ufw
+# by default in Ubuntu it set to: /etc/ufw/sysctl.conf
+# CAUTION
+# if you enable it - it'll overwrite /etc/sysctl.conf file, managed by hardening framework
+ufw_ipt_sysctl: ''
+
+# Default ufw variables
+ufw_default_input_policy: 'DROP'
+ufw_default_output_policy: 'ACCEPT'
+ufw_default_forward_policy: 'DROP'
+ufw_default_application_policy: 'SKIP'
+ufw_manage_builtins: 'no'
+ufw_ipt_modules: 'nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns'
+
 # CAUTION
 # If you want to overwrite sysctl-variables,
 # you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
