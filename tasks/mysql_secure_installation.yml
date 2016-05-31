@@ -17,7 +17,7 @@
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
 - name: root password is present
-  mysql_user: name=root host={{ item }} password={{ mysql_root_password | mandatory }} state=present
+  mysql_user: name=root host={{item}} password={{mysql_root_password | mandatory}} state=present
   with_items:
     - '::1'
     - '127.0.0.1'
@@ -38,28 +38,28 @@
 #  when: mysql_remove_anonymous_users
 
 - name: copy mysql_remove_anonymous_users
-  copy: src='{{ item }}.sql' dest='/tmp/{{ item }}.sql'
+  copy: src='{{item}}.sql' dest='/tmp/{{item}}.sql'
   with_items:
     - mysql_remove_anonymous_users
   when: mysql_remove_anonymous_users
   changed_when: false
 
 - name: apply mysql_remove_anonymous_users
-  mysql_db: name='mysql' state=import target='/tmp/{{ item }}.sql' 
+  mysql_db: name='mysql' state=import target='/tmp/{{item}}.sql' 
   with_items:
     - mysql_remove_anonymous_users
   when: mysql_remove_anonymous_users
   changed_when: false
 
 - name: copy mysql_remove_remote_root
-  copy: src='{{ item }}.sql' dest='/tmp/{{ item }}.sql'
+  copy: src='{{item}}.sql' dest='/tmp/{{item}}.sql'
   with_items:
     - mysql_remove_remote_root
   when: mysql_remove_remote_root
   changed_when: false
 
 - name: apply mysql_remove_remote_root
-  mysql_db: name='mysql' state=import target='/tmp/{{ item }}.sql' 
+  mysql_db: name='mysql' state=import target='/tmp/{{item}}.sql' 
   with_items:
     - mysql_remove_remote_root
   when: mysql_remove_remote_root
