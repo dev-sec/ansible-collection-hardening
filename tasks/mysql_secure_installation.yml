@@ -5,7 +5,7 @@
 #  package: pkg=python-mysqldb state=present
 
 
-- name: Install python-mysqldb for Ansible
+- name: Install MySQL-python for Ansible
   apt: name=python-mysqldb state=present
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
