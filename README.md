@@ -11,11 +11,7 @@ This role focuses on security configuration of MySQL. Therefore you can add this
 ## Requirements
 
 * Ansible
-* Python MySQL-DB Package
-
-## Usage
-
-Before you use this role make sure to have a valid login-configuration in `~/.my.cnf` so Ansible is able to login into your database.
+* Set up `mysql_root_password` variable
 
 ### Example Playbook
 
