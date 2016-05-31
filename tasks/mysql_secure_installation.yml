@@ -13,6 +13,9 @@
   yum: name=MySQL-python state=present
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
+- debug: msg="WARNING - you have to change default mysql_root_password"
+  when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+
 - name: root password is present
   mysql_user: name=root host={{ item }} password={{ mysql_root_password | mandatory }} state=present
   with_items:
