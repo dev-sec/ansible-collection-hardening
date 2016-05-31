@@ -14,7 +14,7 @@
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
 - name: root password is present
-  mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
+  mysql_user: name=root host={{ item }} password={{ mysql_root_password | mandatory }} state=present
   with_items:
     - '::1'
     - '127.0.0.1'
@@ -22,7 +22,7 @@
 
 - name: install .my.cnf with credentials
   template: src=my.cnf.j2 dest={{mysql_user_home}}/.my.cnf 
-            owner=root group=root mode=0600
+            mode=0400
   tags: my_cnf
 
 - name: test database is absent
