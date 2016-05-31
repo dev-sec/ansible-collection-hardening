@@ -20,8 +20,8 @@
     - '127.0.0.1'
     - 'localhost'
 
-- name: root has .my.cnf
-  template: src=my.cnf.j2 dest=/root/.my.cnf 
+- name: install .my.cnf with credentials
+  template: src=my.cnf.j2 dest={{mysql_user_home}}/.my.cnf 
             owner=root group=root mode=0600
   tags: my_cnf
 
