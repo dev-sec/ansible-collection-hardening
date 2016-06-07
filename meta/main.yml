@@ -9,9 +9,6 @@ galaxy_info:
     - name: EL
       versions:
         - 6
-    - name: Oracle Linux
-      versions:
-        - 6
     - name: Ubuntu
       versions:
         - precise

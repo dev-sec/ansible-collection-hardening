@@ -13,6 +13,7 @@ This role provides secure ssh-client and ssh-server configurations.
 * Ansible
 
 ## Role Variables
+<<<<<<< 7d5e6960c817dfd191f1cb095bc237064424e8c4
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
 |`network_ipv6_enable` | false |true if IPv6 is needed|
@@ -42,6 +43,35 @@ This role provides secure ssh-client and ssh-server configurations.
 |`sftp_enabled` | false | true to enable sftp configuration|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
+=======
+* ``network_ipv6_enable`` - true if IPv6 is needed
+* ``ssh_client_cbc_required`` - true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.
+* ``ssh_server_cbc_required`` - true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.
+* ``ssh_client_weak_hmac`` - true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.
+* ``ssh_server_weak_hmac`` - true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.
+* ``ssh_client_weak_kex`` - true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.
+* ``ssh_server_weak_kex`` - true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.
+* ``ssh_server_ports: ['22']`` - ports to which ssh-server should listen to
+* ``ssh_client_ports: ['22']`` - ports to which ssh-client should connect to
+* ``ssh_listen_to: ['0.0.0.0']`` - one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!
+* ``ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key']`` - Host keys to look for when starting sshd.
+* ``ssh_client_alive_interval: 600``
+* ``ssh_client_alive_count: 3``
+* ``ssh_remote_hosts: []`` - one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!
+* ``ssh_allow_root_with_key`` - false to disable root login altogether. Set to true to allow root to login via key-based mechanism.
+* ``ssh_allow_tcp_forwarding`` false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
+* ``ssh_allow_agent_forwarding`` false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
+* ``ssh_use_pam: false`` - false to disable pam authentication.
+* ``ssh_deny_users: ''`` - if specified, login is disallowed for user names that match one of the patterns.
+* ``ssh_allow_users: ''`` - if specified, login is allowed only for user names that match one of the patterns.
+* ``ssh_deny_groups: ''`` - if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
+* ``ssh_allow_groups: ''`` - if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
+* ``ssh_print_motd`` - false to disable printing of the MOTD
+* ``ssh_print_last_log`` - false to disable display of last login information
+* ``sftp_enabled`` - true to enable sftp configuration
+* ``sftp_chroot_dir`` - change default sftp chroot location
+* ``ssh_client_roaming`` - enable experimental client roaming
+>>>>>>> debian 8 support, verifier changes, metadata change
 
 ## Example Playbook
 
@@ -59,9 +89,6 @@ Next install test-kitchen:
 # Install dependencies
 gem install bundler
 bundle install
-
-# Fetch tests
-bundle exec thor kitchen:fetch-remote-tests
 
 # fast test on one machine
 bundle exec kitchen test default-ubuntu-1204
