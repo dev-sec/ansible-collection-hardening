@@ -8,7 +8,7 @@
 # Basic configuration
 # ===================
 
-# Either disable or only allow root login via certificates.
+# Either disable or only allowssh root login via certificates.
 PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' }}
 
 # Define which port sshd should listen to. Default to `22`.
@@ -99,7 +99,7 @@ LogLevel VERBOSE
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 {% if ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04' -%}
-    {% if ssh_client_weak_kex -%}
+    {% if ssh_server_weak_kex -%}
         KexAlgorithms {{ ssh_kex_66_weak | join(',') }}
     {% else -%}
         KexAlgorithms {{ ssh_kex_66_default | join(',') }}
@@ -107,6 +107,8 @@ LogLevel VERBOSE
 {% else -%}
     {% if ansible_os_family in ['Oracle Linux', 'RedHat'] or (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') -%}
         #KexAlgorithms
+    {% elif ssh_server_weak_kex -%}
+        KexAlgorithms {{ sshd_kex_59_weak | join(',') }}
     {% else -%}
         KexAlgorithms {{ ssh_kex_59_default | join(',') }}
     {% endif %}
