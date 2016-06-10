@@ -4,25 +4,13 @@
   include_vars: "{{ ansible_os_family }}.yml"
   tags: always
 
-- name: protect my.cnf
-  file: path='{{mysql_hardening_mysql_conf}}' mode=0600 owner=root group=root
+- include: configure.yml
+  when: mysql_hardening_enabled
+  tags: 
+    - mysql_hardening
 
-- name: ensure permissions on mysql-datadir are correct
-  file: path='{{mysql_datadir}}' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_user}}'
-
-- name: create mysql configuration-directory
-  file: path='/etc/mysql/conf.d' state=directory owner='{{mysql_hardening_user}}' mode=0600
-
-- name: add include-dir directive to my.cnf
-  lineinfile: dest='{{mysql_hardening_mysql_conf}}' line='!includedir /etc/mysql/conf.d/' insertafter='^\[mysql\]' state=present backup=yes
-
-- name: apply hardening configuration
-  template: src='hardening.cnf.j2' dest='{{mysql_hardening_hardening_conf}}' owner='{{mysql_hardening_user}}' mode=0750
-  notify: restart mysql
-
-# Copy database dump file to remote host and restore it to database 'my_db'
-- name: copy the sql-script to the remote host
-  copy: src='mysql_grants.sql' dest='/tmp/'
-
-- name: run the mysql_grants.sql script
-  mysql_db: name='mysql' state=import target='/tmp/mysql_grants.sql'
+- include: mysql_secure_installation.yml
+  when: mysql_hardening_enabled
+  tags: 
+    - mysql_hardening
+    - mysql_secure_installation
