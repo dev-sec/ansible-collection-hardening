@@ -1,10 +1,18 @@
+# switcher to enable/disable role
+mysql_hardening_enabled: yes
+
 # general configuration
 mysql_hardening_user: 'mysql'
+mysql_hardening_group: 'root'
 mysql_datadir: '/var/lib/mysql'
 mysql_hardening_hardening_conf: '/etc/mysql/conf.d/hardening.cnf'
+# You have to change this to your own strong enough mysql root password
+mysql_root_password: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+# There .my.cnf with mysql root credentials will be installed 
+mysql_user_home: "{{ ansible_env.HOME}}"
 
 # ensure the following parameters are set properly
-mysql_allow_remote_root: false
+mysql_remove_remote_root: true
 mysql_remove_anonymous_users: true
 mysql_remove_test_database: true
 
