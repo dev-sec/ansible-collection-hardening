@@ -11,7 +11,7 @@
     - '{{os_env_extra_user_paths}}'
 
 - name: change shadow ownership to root and mode to 0600 | DTAG SEC Req 3.21-7
-  file: dest='/etc/shadow' owner=root group=root mode=0600
+  file: dest='/etc/shadow' owner={{ os_shadow_perms.owner }} group={{ os_shadow_perms.group }} mode={{ os_shadow_perms.mode }}
 
 - name: change su-binary to only be accessible to user and group root
   file: dest='/bin/su' owner=root group=root mode=0750
