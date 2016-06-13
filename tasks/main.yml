@@ -6,12 +6,14 @@
   command: getenforce
   register: sestatus
   failed_when: false
-  ignore_errors: true
+  changed_when: false
+  always_run: true
 
 - name: check the ssh_password policy state
-  shell: semodule -l | grep "ssh_password" | awk '{print $3}' 
+  shell: semodule -l | grep "ssh_password" | awk '{print $3}'
   register: selinux_policy_state
   when: sestatus.rc == 0 and sestatus.stdout != 'Disabled'
+  failed_when: false
   changed_when: false
 
 - name: create sshd_config and set permissions to root/600
