@@ -147,10 +147,6 @@ Next install test-kitchen:
 # Install dependencies
 gem install bundler
 bundle install
-
-# Fetch tests
-bundle exec thor kitchen:fetch-remote-tests
-
 ```
 
 ### Testing with Docker

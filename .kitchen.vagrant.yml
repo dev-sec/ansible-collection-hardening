@@ -1,14 +1,19 @@
 ---
 driver:
   name: vagrant
+
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/hardening-io/tests-ssh-hardening.git
+  test_repo_uri: https://github.com/hardening-io/tests-os-hardening.git
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
   require_chef_for_busser: false
   require_ruby_for_busser: false
+  ansible_verbose: true
+  roles_path: ../ansible-os-hardening/
+  playbook: default.yml
+
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -34,10 +39,6 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-6
-  driver_config:
-    box: debian-6
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-6.0.10_chef-provisionerless.box
 - name: debian-7
   driver_config:
     box: debian-7
@@ -46,22 +47,15 @@ platforms:
   driver_config:
     box: debian-8
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
+
 verifier:
   name: inspec
-suites:
-- name: ansible_1.9
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-ssh-hardening/
-  provisioner:
-    playbook: test/integration/playbooks/default.yml
-    ansible_version: 1.9.4
-- name: ansible_latest
-  hosts: all
-  ansible_verbose: true
-  ansible_diff: true
-  roles_path: ../ansible-ssh-hardening/
-  provisioner:
-    playbook: test/integration/playbooks/default.yml
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/tests-os-hardening
 
+suites:
+- name: os-ansible_1.9
+  provisioner:
+    ansible_version: 1.9.4
+- name: os-ansible_latest

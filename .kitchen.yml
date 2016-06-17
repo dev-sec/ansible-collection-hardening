@@ -31,9 +31,6 @@ platforms:
 - name: ubuntu-14.04
   driver:
     image: ubuntu:14.04
-- name: ubuntu-15.10
-  driver:
-    image: ubuntu:15.10
 - name: ubuntu-16.04
   driver:
     image: ubuntu:16.04
@@ -56,6 +53,12 @@ platforms:
 - name: debian-8
   driver:
     image: debian:8
+
+verifier:
+  name: inspec
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/tests-os-hardening
 
 suites:
 - name: os_ansible_1.9
