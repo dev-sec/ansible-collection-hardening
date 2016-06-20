@@ -60,9 +60,6 @@ Next install test-kitchen:
 gem install bundler
 bundle install
 
-# Fetch tests
-bundle exec thor kitchen:fetch-remote-tests
-
 # fast test on one machine
 bundle exec kitchen test default-ubuntu-1204
 
