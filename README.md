@@ -99,6 +99,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[1]: http://travis-ci.org/dev-sec/ansible-ssh-hardening
+[1]: http://travis-ci.org/dev-sec/ansible-mysql-hardening
 [2]: https://gitter.im/dev-sec/general
 [3]: https://galaxy.ansible.com/dev-sec/mysql-hardening/
