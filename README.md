@@ -198,4 +198,4 @@ limitations under the License.
 
 [1]: http://travis-ci.org/dev-sec/ansible-os-hardening
 [2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/list#/roles/4248
+[3]: https://galaxy.ansible.com/dev-sec/os-hardening
