@@ -9,16 +9,14 @@ galaxy_info:
     - name: EL
       versions:
         - 6
-    - name: Oracle Linux
-      versions:
-        - 6
+        - 7
     - name: Ubuntu
       versions:
         - precise
         - trusty
+        - xenial
     - name: Debian
       versions:
-        - squeeze
         - wheezy
         - jessie
   galaxy_tags:
