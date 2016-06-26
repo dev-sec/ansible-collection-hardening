@@ -1,14 +1,22 @@
 ---
-- name: minimize access
-  file: path='{{item}}' mode='go-w' recurse=yes
+# Using a two-pass approach for checking directories in order to support symlinks.
+- name: find directories for minimizing access
+  stat:
+    path: "{{ item }}"
+  register: minimize_access_directories
   with_items:
     - '/usr/local/sbin'
     - '/usr/local/bin'
     - '/usr/sbin'
-    - '/usr/bin' 
+    - '/usr/bin'
     - '/sbin'
     - '/bin'
     - '{{os_env_extra_user_paths}}'
+
+- name: minimize access
+  file: path='{{item.stat.path}}' mode='go-w' recurse=yes
+  when: item.stat.isdir
+  with_items: "{{ minimize_access_directories.results }}"
 
 - name: change shadow ownership to root and mode to 0600 | DTAG SEC Req 3.21-7
   file: dest='/etc/shadow' owner={{ os_shadow_perms.owner }} group={{ os_shadow_perms.group }} mode={{ os_shadow_perms.mode }}
