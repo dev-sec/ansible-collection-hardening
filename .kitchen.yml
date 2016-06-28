@@ -12,6 +12,7 @@ provisioner:
   ansible_verbose: true
   ansible_diff: true
   roles_path: ../ansible-mysql-hardening/
+  sudo_command: 'sudo -E -H'
 
 platforms:
 - name: ubuntu-12.04
