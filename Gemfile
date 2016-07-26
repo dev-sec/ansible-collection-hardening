@@ -23,6 +23,7 @@ group :integration do
   gem 'kitchen-sharedtests', '~> 0.2.0'
   gem 'kitchen-sync'
   gem 'kitchen-transport-rsync'
+  gem 'kitchen-docker'
 end
 
 group :openstack do
