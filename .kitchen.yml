@@ -1,6 +1,7 @@
 ---
 driver:
   name: docker
+  use_sudo: false
   provision_command:
       - "mkdir /var/run/sshd"
 
@@ -19,12 +20,6 @@ provisioner:
   hosts: all
   roles_path: ../ansible-ssh-hardening/
   playbook: default.yml
-
-verifier:
-  name: inspec
-  sudo: true
-  inspec_tests:
-    - https://github.com/dev-sec/tests-ssh-hardening
 
 platforms:
 - name: ubuntu-12.04
