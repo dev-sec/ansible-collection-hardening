@@ -21,17 +21,16 @@ This role provides secure nginx configuration.
 | [nginx_client_max_body_size][] | `1k` | Sets the maximum allowed size of the client request body, specified in the “Content-Length” request header field. If the size in a request exceeds the configured value, the 413 (Request Entity Too Large) error is returned to the client. |
 | [nginx_keepalive_timeout][] | `5 5` | The first parameter sets a timeout during which a keep-alive client connection will stay open on the server side. The zero value disables keep-alive client connections. The optional second parameter sets a value in the “Keep-Alive: timeout=time” response header field. |
 | [nginx_server_tokens][] | `off` | Disables emitting nginx version in error messages and in the "Server" response header field. Set to on to enable the nginx version in error messages and "Server" response header. |
-| [nginx_more_clear_headers][] | `[ "Server", "X-Powered-By" ]` | |
-| [nginx_client_header_buffer_size][] | `1k` | |
-| [nginx_large_client_header_buffers][] | `2 1k` | |
-| [nginx_client_body_timeout][] | `10` | |
-| [nginx_client_header_timeout][] | `10` | |
-| [nginx_send_timeout][] | `10` | |
-| [nginx_limit_conn_zone][] | `$binary_remote_addr zone=default:10m` | |
-| [nginx_limit_conn][] | `default 5` | |
-| [nginx_add_header][] | `[ "X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"" ]` | |
+| [nginx_client_header_buffer_size][] | `1k` |  Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough. |
+| [nginx_large_client_header_buffers][] | `2 1k` | Sets the maximum number and size of buffers used for reading large client request header. |
+| [nginx_client_body_timeout][] | `10` | Defines a timeout for reading client request body. |
+| [nginx_client_header_timeout][] | `10` | Defines a timeout for reading client request header. |
+| [nginx_send_timeout][] | `10` | Sets a timeout for transmitting a response to the client.  |
+| [nginx_limit_conn_zone][] | `$binary_remote_addr zone=default:10m` | Sets parameters for a shared memory zone that will keep states for various keys.  |
+| [nginx_limit_conn][] | `default 5` | Sets the shared memory zone and the maximum allowed number of connections for a given key value. |
+| [nginx_add_header][] | `[ "X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"" ]` |Adds the specified field to a response header provided that the response code equals 200, 201, 204, 206, 301, 302, 303, 304, or 307. |
 | [nginx_ssl_protocols][] | `TLSv1 TLSv1.1 TLSv1.2` | Specifies the SSL protocol which should be used. |
-| [nginx_ssl_ciphers][] | ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA | Specifies the TLS ciphers which should be used. |
+| [nginx_ssl_ciphers][] | *see defaults.yml* | Specifies the TLS ciphers which should be used. |
 | [nginx_ssl_prefer_server_ciphers][] | `on` | Specifies that server ciphers should be preferred over client ciphers when using the TLS protocols. Set to false to disable it. |
 | [nginx_dh-size][] | `2048` | Specifies the length of DH parameters for EDH ciphers. |
 
