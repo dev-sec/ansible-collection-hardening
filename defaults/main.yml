@@ -4,7 +4,6 @@ nginx_remove_default_site: true
 nginx_client_max_body_size: '1k'
 nginx_keepalive_timeout: '5 5'
 nginx_server_tokens: 'off'
-nginx_more_clear_headers: [ "Server", "X-Powered-By" ]
 nginx_client_header_buffer_size: "1k"
 nginx_large_client_header_buffers: "2 1k"
 nginx_client_body_timeout: "10"
