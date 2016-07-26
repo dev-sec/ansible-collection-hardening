@@ -10,19 +10,19 @@
   notify: reload nginx
 
 - name: change configuration in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s+server_tokens" line="server_tokens {{nginx_server_tokens}};" insertafter="http {"
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*server_tokens" line="server_tokens {{nginx_server_tokens}};" insertafter="http {"
   notify: reload nginx
 
 - name: change client_max_body_size in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s+client_max_body_size" line="client_max_body_size {{nginx_client_max_body_size}};" insertafter="http {"
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*client_max_body_size" line="client_max_body_size {{nginx_client_max_body_size}};" insertafter="http {"
   notify: reload nginx
 
 - name: change client_body_buffer_size in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s+client_body_buffer_size" line="client_body_buffer_size {{nginx_client_body_buffer_size}};" insertafter="http {"
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*client_body_buffer_size" line="client_body_buffer_size {{nginx_client_body_buffer_size}};" insertafter="http {"
   notify: reload nginx
 
 - name: change keepalive_timeout in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s+keepalive_timeout" line="keepalive_timeout {{nginx_keepalive_timeout}};" insertafter="http {"
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*keepalive_timeout" line="keepalive_timeout {{nginx_keepalive_timeout}};" insertafter="http {"
   notify: reload nginx
 
 - name: remove default.conf

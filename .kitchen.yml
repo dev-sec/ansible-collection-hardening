@@ -1,6 +1,7 @@
 ---
 driver:
   name: docker
+  use_sudo: false
 
 transport:
   max_ssh_sessions: 5
@@ -12,17 +13,11 @@ provisioner:
   require_ansible_omnibus: true
   require_chef_for_busser: false
   require_ruby_for_busser: false
-  requirements_path: requirements.yml
   ansible_verbose: true
   ansible_diff: true
+  requirements_path: requirements.yml
   roles_path: ../ansible-nginx-hardening/
   playbook: default.yml
-
-verifier:
-  name: inspec
-  sudo: true
-  inspec_tests:
-    - https://github.com/dev-sec/tests-nginx-hardening
 
 platforms:
 - name: ubuntu-12.04
