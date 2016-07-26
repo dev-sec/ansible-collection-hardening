@@ -10,7 +10,7 @@ env:
 
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+ - sudo apt-get install -qq python-apt python-pycurl nginx
 install:
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
   - echo -e 'localhost ansible_connection=local' > spec/inventory
@@ -19,4 +19,4 @@ install:
 script:
   - ansible-playbook --syntax-check spec/travis.yml
   - ansible-playbook --sudo -v --diff spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "network_ipv6_enable=true ssh_allow_root_with_key=true ssh_client_password_login=true ssh_client_cbc_required=true ssh_server_weak_hmac=true ssh_client_weak_kex=true sftp_enabled=true"
+  - ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "nginx_remove_default_site=false"
