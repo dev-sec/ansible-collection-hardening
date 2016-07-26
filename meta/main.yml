@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  author: "Sebastian Gumprich"
+  description: 'This Ansible role provides secure nginx configurations. http://dev-sec.io/'
+  company: Hardening Framework Team
+  license: Apache License 2.0
+  min_ansible_version: '1.9'
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+  galaxy_tags:
+    - system
+    - security
+    - hardening
+    - nginx
+dependencies: []
