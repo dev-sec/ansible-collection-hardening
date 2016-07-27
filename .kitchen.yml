@@ -1,6 +1,11 @@
 ---
 driver:
-  name: vagrant
+  name: docker
+  use_sudo: false
+  privileged: true
+
+transport:
+  max_ssh_sessions: 5
 
 provisioner:
   name: ansible_playbook
@@ -14,6 +19,38 @@ provisioner:
   hosts: all
   roles_path: ../ansible-os-hardening/
   playbook: default.yml
+  ansible_extra_flags:
+    - "--skip-tags=sysctl"
+
+platforms:
+- name: ubuntu-12.04
+  driver:
+    image: ubuntu:12.04
+- name: ubuntu-14.04
+  driver:
+    image: ubuntu:14.04
+- name: ubuntu-16.04
+  driver:
+    image: ubuntu:16.04
+    provision_command:
+      - "apt-get install initramfs-tools -y"
+- name: centos-6.6
+  driver:
+    image: centos:6.6
+- name: centos-6.7
+  driver:
+    image: centos:6.7
+- name: centos-7
+  driver:
+    image: centos:7
+    privileged: true
+    run_command: /usr/sbin/init
+- name: debian-7
+  driver:
+    image: debian:7
+- name: debian-8
+  driver:
+    image: debian:8
 
 verifier:
   name: inspec
@@ -21,46 +58,8 @@ verifier:
   inspec_tests:
     - https://github.com/dev-sec/tests-os-hardening
 
-platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
-- name: ubuntu-14.04
-  driver_config:
-    box: opscode-ubuntu-14.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-6.5
-  driver_config:
-    box: opscode-centos-6.5
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
-- name: centos-7.2
-  driver_config:
-    box: opscode-centos-7.2
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
-- name: oracle-6.4
-  driver_config:
-    box: oracle-6.4
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
-- name: oracle-6.5
-  driver_config:
-    box: oracle-6.5
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-7
-  driver_config:
-    box: debian-7
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.8_chef-provisionerless.box
-- name: debian-8
-  driver_config:
-    box: debian-8
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
-
 suites:
-- name: os-ansible_1.9
+- name: os_ansible_1.9
   provisioner:
     ansible_version: 1.9.4
-- name: os-ansible_latest
+- name: os_ansible_latest
