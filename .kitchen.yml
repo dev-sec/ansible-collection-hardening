@@ -19,6 +19,8 @@ provisioner:
   hosts: all
   roles_path: ../ansible-os-hardening/
   playbook: default.yml
+  ansible_extra_flags:
+    - "--skip-tags=sysctl"
 
 platforms:
 - name: ubuntu-12.04
@@ -55,8 +57,6 @@ verifier:
   sudo: true
   inspec_tests:
     - https://github.com/dev-sec/tests-os-hardening
-  ansible_extra_flags:
-    - "--skip-tags=sysctl"
 
 suites:
 - name: os_ansible_1.9
