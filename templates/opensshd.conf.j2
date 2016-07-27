@@ -70,20 +70,16 @@ LogLevel VERBOSE
 #
 
 {% if ssh_server_weak_hmac -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         MACs {{ ssh_macs_66_weak | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
         MACs {{ ssh_macs_53_default | join(',') }}
-    {% else -%}
-        MACs {{ ssh_macs_59_weak | join(',') }}
     {% endif %}
 {% else -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         MACs {{ ssh_macs_66_default | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
         MACs {{ ssh_macs_53_default | join(',') }}
-    {% else -%}
-        MACs {{ ssh_macs_59_default | join(',') }}
     {% endif %}
 {% endif %}
 
