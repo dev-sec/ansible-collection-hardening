@@ -51,13 +51,13 @@ LogLevel VERBOSE
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
 #
 {% if ssh_server_cbc_required -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         Ciphers {{ ssh_ciphers_66_weak | join(',') }}
     {% else %}
         Ciphers {{ ssh_ciphers_53_weak | join(',') }}
     {% endif %}
 {% else -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         Ciphers {{ ssh_ciphers_66_default | join(',') }}
     {% else -%}
         Ciphers {{ ssh_ciphers_53_default | join(',') }}
@@ -70,15 +70,13 @@ LogLevel VERBOSE
 #
 
 {% if ssh_server_weak_hmac -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         MACs {{ ssh_macs_66_weak | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
         MACs {{ ssh_macs_53_default | join(',') }}
-    {% else -%}
-        MACs {{ ssh_macs_59_weak | join(',') }}
     {% endif %}
 {% else -%}
-    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+    {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
         MACs {{ ssh_macs_66_default | join(',') }}
     {% elif ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
         MACs {{ ssh_macs_53_default | join(',') }}
@@ -94,14 +92,14 @@ LogLevel VERBOSE
 # Weak kex is sometimes required if older package versions are used
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
-{% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') -%}
+{% if (ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '14.04') or (ansible_distribution == 'Debian' and ansible_distribution_version >= '8') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version >= '7') -%}
     {% if ssh_server_weak_kex -%}
         KexAlgorithms {{ ssh_kex_66_weak | join(',') }}
     {% else -%}
         KexAlgorithms {{ ssh_kex_66_default | join(',') }}
     {% endif %}
 {% else -%}
-    {% if ansible_os_family in ['Oracle Linux', 'RedHat'] -%}
+    {% if ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6' -%}
         #KexAlgorithms
     {% elif ssh_server_weak_kex -%}
         KexAlgorithms {{ sshd_kex_59_weak | join(',') }}
@@ -115,7 +113,7 @@ LogLevel VERBOSE
 
 # Secure Login directives.
 UseLogin no
-UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or ansible_os_family in ['Oracle Linux', 'RedHat'] -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 
 PermitUserEnvironment no
 LoginGraceTime 30s
