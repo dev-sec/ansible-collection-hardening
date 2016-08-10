@@ -31,7 +31,7 @@
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and not os_auth_pam_passwdqc_enable
 
 - name: install tally2
-  apt: name='libpam-modules' state=installed
+  apt: name='libpam-modules' state='installed'
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and not os_auth_pam_passwdqc_enable and os_auth_retries > 0
 
 - name: configure tally2
@@ -43,12 +43,16 @@
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and not os_auth_pam_passwdqc_enable and os_auth_retries == 0
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
-  yum: name='{{os_packages_pam_cracklib}}' state=absent
-  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux') and os_auth_pam_passwdqc_enable
+  yum: name='{{os_packages_pam_cracklib}}' state='absent'
+  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version <= '7')) and os_auth_pam_passwdqc_enable
 
 - name: install the package for strong password checking
   yum: name='{{os_packages_pam_passwdqc}}' state='installed'
-  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux') and os_auth_pam_passwdqc_enable
+  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version <= '7')) and os_auth_pam_passwdqc_enable
+
+- name: install pam_pwquality on rhel7, replacement for pam_passwdqc and pam_cracklib
+  yum: name='{{os_packages_pam_pwquality}}' state='installed'
+  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version >= '7')) and os_auth_pam_passwdqc_enable
 
 - name: remove passwdqc
   yum: name='{{os_packages_pam_passwdqc}}' state='absent'
