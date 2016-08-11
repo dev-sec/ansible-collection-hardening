@@ -25,4 +25,4 @@ galaxy_info:
     - hardening
     - nginx
 dependencies:
-  - { role: geerlinggux.nginx }
+  - { role: geerlingguy.nginx }
