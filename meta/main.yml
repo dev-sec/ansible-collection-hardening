@@ -24,5 +24,4 @@ galaxy_info:
     - security
     - hardening
     - nginx
-dependencies:
-  - { role: geerlingguy.nginx }
+dependencies: []
