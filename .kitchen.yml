@@ -29,12 +29,12 @@ platforms:
 - name: ubuntu-16.04
   driver:
     image: ubuntu:16.04
-- name: centos-6.6
-  driver:
-    image: centos:6.6
 - name: centos-6.7
   driver:
     image: centos:6.7
+- name: centos-6.8
+  driver:
+    image: centos:6.8
 - name: centos-7
   driver:
     image: centos:7
