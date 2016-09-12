@@ -78,14 +78,14 @@ bundle exec kitchen converge default-ubuntu-1204
 
 ```
 # fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1204
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test nginx-ansible-19-ubuntu-1404
 
 # test on all machines
 KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
 
 # for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1204
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1204
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create nginx-ansible-19-ubuntu-1404
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge nginx-ansible-19-ubuntu-1404
 ```
 
 For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)

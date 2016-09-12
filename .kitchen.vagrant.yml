@@ -59,7 +59,7 @@ verifier:
     - https://github.com/dev-sec/tests-ssh-hardening
 
 suites:
-- name: ssh-ansible_1.9
+- name: nginx-ansible_1.9
   provisioner:
     ansible_version: 1.9.4
-- name: ssh-ansible_latest
+- name: nginx-ansible_latest
