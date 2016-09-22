@@ -29,3 +29,7 @@
   file: path="{{nginx_default_conf}}" state=absent
   when: nginx_remove_default_site
   notify: reload nginx
+
+- name: generate dh group
+  command: openssl dhparam -out {{nginx_dh_param}} {{nginx_dh_size}} creates={{nginx_dh_param}}
+  notify: reload nginx
