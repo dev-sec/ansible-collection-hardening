@@ -16,11 +16,14 @@
   stat: path='/etc/yum/pluginconf.d/rhnplugin.conf'
   register: rhnplugin_file
 
+  # for the "default([])" see here:
+  # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
+  # https://stackoverflow.com/questions/37067827/ansible-deprecation-warning-for-undefined-variable-despite-when-clause
 - name: activate gpg-check for yum-repos
   replace: dest='{{item}}' regexp='^\s*gpgcheck=0' replace='gpgcheck=1'
   with_items:
-    - '{{ yum_repos.stdout_lines }}'
     - '/etc/yum.conf'
+    - '{{ yum_repos.stdout_lines| default([]) }}'
 
 - name: activate gpg-check for yum rhn if it exists
   replace: dest='/etc/yum/pluginconf.d/rhnplugin.conf' regexp='^\s*gpgcheck=0' replace='gpgcheck=1'
