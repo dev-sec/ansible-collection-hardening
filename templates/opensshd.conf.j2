@@ -198,10 +198,11 @@ PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 
 PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 
-#Banner /etc/ssh/banner.txt
-#UseDNS yes
-#PidFile /var/run/sshd.pid
-#MaxStartups 10
+Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
+
+{% if ansible_os_family == 'Debian' %}
+DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
+{% endif %}
 
 {% if sftp_enabled %}
 # Configuration, in case SFTP is used
