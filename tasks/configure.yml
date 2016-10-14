@@ -1,16 +1,16 @@
 ---
 
 - name: protect my.cnf
-  file: path='{{mysql_hardening_mysql_conf}}' mode=0600 owner=root group=root follow=yes
+  file: path='{{mysql_hardening_mysql_conf_file}}' mode=0600 owner=root group=root follow=yes
 
 - name: ensure permissions on mysql-datadir are correct
   file: path='{{mysql_datadir}}' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_user}}'
 
 - name: check mysql configuration-directory exists and has right permissions
-  file: path='/etc/mysql/conf.d' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_group}}' mode=0470
+  file: path='{{mysql_hardening_mysql_conf_dir}}' state=directory owner='{{mysql_hardening_user}}' group='{{mysql_hardening_group}}' mode=0470
 
 - name: check include-dir directive is present in my.cnf
-  lineinfile: dest='{{mysql_hardening_mysql_conf}}' line='!includedir /etc/mysql/conf.d/' insertafter='EOF' state=present backup=yes
+  lineinfile: dest='{{mysql_hardening_mysql_conf_file}}' line='!includedir {{mysql_hardening_mysql_conf_dir}}' insertafter='EOF' state=present backup=yes
   notify: restart mysql
 
 - name: apply hardening configuration
