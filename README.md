@@ -26,7 +26,7 @@ This hardening role installs the hardening but expects an existing installation 
 - `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
 - `mysql_hardening_user: 'mysql'` The user that mysql runs as.
 - `mysql_datadir: '/var/lib/mysql'` The MySQL data directory
-- `mysql_hardening_hardening_conf: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
+- `mysql_hardening_mysql_hardening_conf_file: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
 
 ## Security Options
 
