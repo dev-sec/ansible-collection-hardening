@@ -1,10 +1,32 @@
 # Change Log
 
-## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+## [3.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/3.2.0) (2016-10-24)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1.0...3.2.0)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1...HEAD)
+**Implemented enhancements:**
+
+- CentOS 7 selinux dependencies [\#76](https://github.com/dev-sec/ansible-ssh-hardening/issues/76)
+- Parameterise Banner and DebianBanner as defaults [\#77](https://github.com/dev-sec/ansible-ssh-hardening/pull/77) ([tsenart](https://github.com/tsenart))
+
+**Fixed bugs:**
+
+- Some tasks are always run even if they are not needed [\#78](https://github.com/dev-sec/ansible-ssh-hardening/issues/78)
+- Selinux issue [\#75](https://github.com/dev-sec/ansible-ssh-hardening/issues/75)
+- Running the tests locally [\#61](https://github.com/dev-sec/ansible-ssh-hardening/issues/61)
+- SELinux-specific task still runs on SELinux-disabled systems [\#74](https://github.com/dev-sec/ansible-ssh-hardening/issues/74)
 
 **Closed issues:**
+
+- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
+
+**Merged pull requests:**
+
+- install selinux dependencies, check for already installed semodule [\#79](https://github.com/dev-sec/ansible-ssh-hardening/pull/79) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [3.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/3.1.0) (2016-08-03)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1...3.1.0)
+
+**Implemented enhancements:**
 
 - use new ciphers, kex, macs and privilege separation for redhat family 7 or later [\#72](https://github.com/dev-sec/ansible-ssh-hardening/issues/72)
 
@@ -13,6 +35,7 @@
 
 **Implemented enhancements:**
 
+- Add Xenial / Ubuntu 16.04 LTS to meta/main.yml [\#63](https://github.com/dev-sec/ansible-ssh-hardening/issues/63)
 - Use new ciphers, kex, macs and priv separation sandbox for redhat family 7 [\#73](https://github.com/dev-sec/ansible-ssh-hardening/pull/73) ([atomic111](https://github.com/atomic111))
 - add docker support [\#71](https://github.com/dev-sec/ansible-ssh-hardening/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
 - add always\_run: true to task. fix \#64 [\#69](https://github.com/dev-sec/ansible-ssh-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -20,10 +43,12 @@
 - Fixed KexAlgorithms Conditional Statement [\#66](https://github.com/dev-sec/ansible-ssh-hardening/pull/66) ([cjsheets](https://github.com/cjsheets))
 - Moves vars to defaults [\#60](https://github.com/dev-sec/ansible-ssh-hardening/pull/60) ([conorsch](https://github.com/conorsch))
 
-**Closed issues:**
+**Fixed bugs:**
 
 - semodule ssh\_password error on AWS Centos 7 [\#64](https://github.com/dev-sec/ansible-ssh-hardening/issues/64)
-- Add Xenial / Ubuntu 16.04 LTS to meta/main.yml [\#63](https://github.com/dev-sec/ansible-ssh-hardening/issues/63)
+
+**Closed issues:**
+
 - `ssh\_server\_ports` a bit misleading in the vars section? [\#62](https://github.com/dev-sec/ansible-ssh-hardening/issues/62)
 - sftp\_enabled: false will break Ansible's template module [\#55](https://github.com/dev-sec/ansible-ssh-hardening/issues/55)
 - Move cipher/kex/mac vars to defaults [\#53](https://github.com/dev-sec/ansible-ssh-hardening/issues/53)
@@ -48,7 +73,6 @@
 
 **Closed issues:**
 
-- Fail at TASK \[remove selinux-policy when Pam is used...\] when ssh\_use\_pam: true [\#54](https://github.com/dev-sec/ansible-ssh-hardening/issues/54)
 - Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/dev-sec/ansible-ssh-hardening/issues/50)
 - should generate new ssh host key files [\#45](https://github.com/dev-sec/ansible-ssh-hardening/issues/45)
 
