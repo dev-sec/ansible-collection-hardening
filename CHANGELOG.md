@@ -1,5 +1,16 @@
 # Change Log
 
+## [1.0.2](https://github.com/dev-sec/ansible-nginx-hardening/tree/1.0.2) (2016-10-24)
+[Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/1.0.1...1.0.2)
+
+**Fixed bugs:**
+
+- Syntax Error while loading YAML in defaults/main.yml [\#6](https://github.com/dev-sec/ansible-nginx-hardening/issues/6)
+
+**Merged pull requests:**
+
+- remove tabs. fix \#6 [\#7](https://github.com/dev-sec/ansible-nginx-hardening/pull/7) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [1.0.1](https://github.com/dev-sec/ansible-nginx-hardening/tree/1.0.1) (2016-09-23)
 [Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/1.0.0...1.0.1)
 
