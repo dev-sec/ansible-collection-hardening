@@ -10,10 +10,6 @@ galaxy_info:
       versions:
         - 6
         - 7
-    - name: Oracle Linux
-      versions:
-        - 6
-        - 7
     - name: Ubuntu
       versions:
         - precise
