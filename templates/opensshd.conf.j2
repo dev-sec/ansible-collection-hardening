@@ -2,8 +2,6 @@
 
 # This is the ssh client system-wide configuration file.
 # See sshd_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
-#
-# Created for OpenSSH v5.9
 
 # Basic configuration
 # ===================
@@ -200,10 +198,11 @@ PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 
 PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
 
-#Banner /etc/ssh/banner.txt
-#UseDNS yes
-#PidFile /var/run/sshd.pid
-#MaxStartups 10
+Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
+
+{% if ansible_os_family == 'Debian' %}
+DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
+{% endif %}
 
 {% if sftp_enabled %}
 # Configuration, in case SFTP is used
