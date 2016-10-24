@@ -1,8 +1,27 @@
 # Change Log
 
-## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
+## [3.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.2.0) (2016-10-24)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1.0...3.2.0)
 
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.0.0...HEAD)
+**Fixed bugs:**
+
+- CentOS 7 selinux dependencies [\#102](https://github.com/dev-sec/ansible-os-hardening/issues/102)
+- ubuntu xenial warning during activate gpg-check for yum-repos [\#99](https://github.com/dev-sec/ansible-os-hardening/issues/99)
+- rhel\_system\_auth.j2 is still using pam\_passwdqc.so for CentOS 7 [\#98](https://github.com/dev-sec/ansible-os-hardening/issues/98)
+- Enable pam\_pwquality in rhel-family \> 7 [\#73](https://github.com/dev-sec/ansible-os-hardening/issues/73)
+- "irc" user always changed after reboot [\#53](https://github.com/dev-sec/ansible-os-hardening/issues/53)
+
+**Merged pull requests:**
+
+- update template [\#101](https://github.com/dev-sec/ansible-os-hardening/pull/101) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix deprecation warning for undefined error. \#99 [\#100](https://github.com/dev-sec/ansible-os-hardening/pull/100) ([rndmh3ro](https://github.com/rndmh3ro))
+- add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [3.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.1.0) (2016-08-03)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1...3.1.0)
+
+## [3.1](https://github.com/dev-sec/ansible-os-hardening/tree/3.1) (2016-07-27)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.0.0...3.1)
 
 **Implemented enhancements:**
 
