@@ -9,14 +9,14 @@
   changed_when: false
   always_run: true
 
-- name: install selinux dependencies when selinux is installed
+- name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
   yum: name="{{item}}" state=installed
   with_items:
     - policycoreutils-python
     - checkpolicy
   when: sestatus.rc == 0 and (ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux')
 
-- name: install selinux dependencies when selinux is installed
+- name: install selinux dependencies when selinux is installed on Debian or Ubuntu
   apt: name="{{item}}" state=installed
   with_items:
     - policycoreutils
