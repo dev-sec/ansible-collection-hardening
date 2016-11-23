@@ -121,6 +121,20 @@ If you find this isn't enough, feel free to activate the attributes `cbc_require
 
 This role deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files.
 
+**Cannot restart sshd-service due to lack of privileges**
+
+If you get the following error when running handler "restart sshd"
+```
+Unable to restart service ssh: Failed to restart ssh.service: Access denied
+```
+or
+```
+failure 1 running systemctl show for 'ssh': Failed to connect to bus: No such file or directory
+```
+either run the playbook as `root` (without `become: yes` at the playbook level), or add `become: yes` to the handler.
+
+This is a bug with Ansible: see [here](https://github.com/dev-sec/ansible-ssh-hardening/pull/81) and [here](https://github.com/ansible/ansible/issues/17490) for more information.
+
 ## Contributing
 
 See [contributor guideline](CONTRIBUTING.md).
