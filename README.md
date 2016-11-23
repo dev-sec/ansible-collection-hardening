@@ -22,8 +22,8 @@ This role provides secure ssh-client and ssh-server configurations.
 |`ssh_server_weak_hmac` | false |true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.|
 |`ssh_client_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
 |`ssh_server_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
-|`ssh_server_ports` | 22 |ports to which ssh-server should listen to|
-|`ssh_client_ports` | 22 |ports to which ssh-client should connect to|
+|`ssh_server_ports` | ['22'] |ports to which ssh-server should listen to|
+|`ssh_client_ports` | ['22'] |ports to which ssh-client should connect to|
 |`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!|
 |`ssh_host_key_files` | ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key'] |Host keys to look for when starting sshd.|
 |`ssh_client_alive_interval` | 600 | specifies an interval for sending keepalive messages |
