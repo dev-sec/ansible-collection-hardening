@@ -13,7 +13,6 @@ provisioner:
   name: ansible_playbook
   hosts: all
   require_ansible_repo: false
-  require_ansible_omnibus: true
   require_chef_for_busser: false
   require_ruby_for_busser: false
   ansible_verbose: true
@@ -27,44 +26,46 @@ provisioner:
     - "--skip-tags=sysctl"
 
 platforms:
-- name: ubuntu-12.04
+- name: centos6-ansible-latest
   driver:
-    image: ubuntu:12.04
-- name: ubuntu-14.04
+    image: rndmh3ro/docker-centos6-ansible:latest
+    platform: centos
+- name: centos7-ansible-latest
   driver:
-    image: ubuntu:14.04
-- name: ubuntu-16.04
+    image: rndmh3ro/docker-centos7-ansible:latest
+    platform: centos
+- name: oracle6-ansible-latest
   driver:
-    image: ubuntu:16.04
-    provision_command:
-      - "apt-get install initramfs-tools -y"
-- name: centos-6.6
+    image: rndmh3ro/docker-oracle6-ansible:latest
+    platform: centos
+- name: oracle7-ansible-latest
   driver:
-    image: centos:6.6
-- name: centos-6.7
+    image: rndmh3ro/docker-oracle7-ansible:latest
+    platform: centos
+- name: ubuntu1204-ansible-latest
   driver:
-    image: centos:6.7
-- name: centos-7
+    image: rndmh3ro/docker-ubuntu1204-ansible:latest
+    platform: ubuntu
+- name: ubuntu1404-ansible-latest
   driver:
-    image: centos:7
-    privileged: true
-    run_command: /usr/sbin/init
-- name: oracle-6
+    image: rndmh3ro/docker-ubuntu1404-ansible:latest
+    platform: ubuntu
+- name: ubuntu1604-ansible-latest
   driver:
-    image: oraclelinux:6
-    platform: rhel
-- name: oracle-7
+    image: rndmh3ro/docker-ubuntu1604-ansible:latest
+    platform: ubuntu
+- name: debian7-ansible-latest
   driver:
-    image: oraclelinux:7
-    platform: rhel
-    privileged: true
-    run_command: /usr/sbin/init
-- name: debian-7
+    image: rndmh3ro/docker-debian7-ansible:latest
+    platform: debian
+- name: debian8-ansible-latest
   driver:
-    image: debian:7
-- name: debian-8
+    image: rndmh3ro/docker-debian8-ansible:latest
+    platform: debian
+- name: debian9-ansible-latest
   driver:
-    image: debian:8
+    image: rndmh3ro/docker-debian9-ansible:latest
+    platform: debian
 
 verifier:
   name: inspec
@@ -73,7 +74,4 @@ verifier:
     - https://github.com/dev-sec/tests-os-hardening
 
 suites:
-- name: os_ansible_1.9
-  provisioner:
-    ansible_version: 1.9.4
-- name: os_ansible_latest
+- name: os

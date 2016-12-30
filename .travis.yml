@@ -1,23 +1,65 @@
 ---
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
-language: python
-python: "2.7"
+services: docker
 
 env:
-  - ANSIBLE_VERSION=latest
-  - ANSIBLE_VERSION=1.9.4
+  - distro: centos6
+    version: latest
+    init: /sbin/init
+
+  - distro: centos7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
+
+  - distro: oracle6
+    version: latest
+    init: /sbin/init
+
+  - distro: oracle7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
+
+  - distro: ubuntu1604
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: ubuntu1404
+    version: latest
+    init: /sbin/init
+
+  - distro: ubuntu1204
+    version: latest
+    init: /sbin/init
+
+  - distro: debian7
+    version: latest
+    init: /sbin/init
+
+  - distro: debian8
+    version: latest
+    init: /sbin/init
+
+  - distro: debian9
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
-install:
-  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
-  - echo -e 'localhost ansible_connection=local' > spec/inventory
-  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
+  # Pull container
+  - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
 
 script:
-  - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --skip-tags "sysctl" --extra-vars "os_security_users_allow=change_user os_security_kernel_enable_core_dump=true os_security_suid_sgid_remove_from_unknown=true"
-  - ansible-playbook --sudo -v --diff spec/travis.yml --tags "pam" --extra-vars "os_auth_pam_passwdqc_enable=false"
-  - ansible-playbook --sudo -v --diff spec/travis.yml --skip-tags "sysctl" --extra-vars "os_security_users_allow=change_user"
+  - container_id=$(mktemp)
+  # Run container in detached state.
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-os-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
+
+  # Test role.
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/default.yml --skip-tags "sysctl"'
+
+  # Verify role
+  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-06 os-07 package-01 package-02 package-03 package-04 package-05 package-06'
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
