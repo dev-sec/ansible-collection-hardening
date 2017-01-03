@@ -133,7 +133,7 @@ UsePAM {{ 'yes' if ssh_use_pam else 'no' }}
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication no
 PermitEmptyPasswords no
-ChallengeResponseAuthentication no
+ChallengeResponseAuthentication {{ 'yes' if ssh_challengeresponseauthentication else 'no' }}
 
 # Only enable Kerberos authentication if it is configured.
 KerberosAuthentication no

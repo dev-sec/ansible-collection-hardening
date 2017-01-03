@@ -142,3 +142,6 @@ ssh_kex_66_weak: "{{ ssh_kex_66_default + ['diffie-hellman-group14-sha1', 'diffi
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
 
 sshd_moduli_minimum: 2048
+
+# disable ChallengeResponseAuthentication
+ssh_challengeresponseauthentication: false
