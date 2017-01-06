@@ -1,4 +1,21 @@
 ---
+
+# run in "skipping" mode
+- name: wrapper playbook for kitchen testing "ansible-os-hardening"
+  hosts: localhost
+  vars:
+    deploy_security_rules: false
+  roles:
+    - ansible-os-hardening
+    - { role: ansible-os-hardening, when: deploy_security_rules }
+
+# run in check mode
+- name: wrapper playbook for kitchen testing "ansible-os-hardening"
+  hosts: localhost
+  check_mode: true
+  roles:
+    - ansible-os-hardening
+
 - name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
   hosts: localhost
   roles:
@@ -19,3 +36,4 @@
   hosts: localhost
   roles:
     - ansible-os-hardening
+
