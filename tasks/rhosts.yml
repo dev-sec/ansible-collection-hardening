@@ -2,12 +2,12 @@
 - name: Get user accounts | DTAG SEC Req 3.21-4
   command: "awk -F: '{print $1}' /etc/passwd"
   changed_when: False
-  always_run: True
+  check_mode: no
   register: users
 
 - name: delete rhosts-files from system | DTAG SEC Req 3.21-4
   file: dest='~{{ item }}/.rhosts' state=absent
-  with_items: '{{ users.stdout_lines }}'
+  with_items: '{{ users.stdout_lines | default(omit) }}'
 
 - name: delete hosts.equiv from system | DTAG SEC Req 3.21-4
   file: dest='/etc/hosts.equiv' state=absent
