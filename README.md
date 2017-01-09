@@ -8,6 +8,8 @@
 
 This role provides secure ssh-client and ssh-server configurations.
 
+Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
+
 ## Requirements
 
 * Ansible
