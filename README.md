@@ -36,7 +36,7 @@ It will not:
 | `os_desktop_enable`| false |  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc|
 | `os_env_extra_user_paths`| [] | add additional paths to the user's `PATH` variable (default is empty).|
 | `os_env_umask`| 027| set default permissions for new files to `750` |
-| `os_auth_pw_max_age`| 60 | maximum password age|
+| `os_auth_pw_max_age`| 60 | maximum password age (set to `99999` to effectively disable it) |
 | `os_auth_pw_min_age`| 7 | minimum password age (before allowing any other password change)|
 | `os_auth_retries`| 5 | the maximum number of authentication attempts, before the account is locked for some time|
 | `os_auth_lockout_time`| 600 | time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts|
