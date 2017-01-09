@@ -6,7 +6,6 @@
   vars:
     deploy_security_rules: false
   roles:
-    - ansible-os-hardening
     - { role: ansible-os-hardening, when: deploy_security_rules }
 
 # run in check mode
