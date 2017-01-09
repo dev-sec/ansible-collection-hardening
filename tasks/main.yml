@@ -2,34 +2,6 @@
 - name: add the OS specific variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: test to see if selinux is running
-  command: getenforce
-  register: sestatus
-  failed_when: false
-  changed_when: false
-  always_run: true
-
-- name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
-  yum: name="{{item}}" state=installed
-  with_items:
-    - policycoreutils-python
-    - checkpolicy
-  when: sestatus.rc == 0 and (ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux')
-
-- name: install selinux dependencies when selinux is installed on Debian or Ubuntu
-  apt: name="{{item}}" state=installed
-  with_items:
-    - policycoreutils
-    - checkpolicy
-  when: sestatus.rc == 0 and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
-
-- name: check the ssh_password policy state
-  shell: semodule -l | grep "ssh_password" | awk '{print $3}'
-  register: selinux_policy_state
-  when: sestatus.rc == 0 and sestatus.stdout != 'Disabled'
-  failed_when: false
-  changed_when: false
-
 - name: create sshd_config and set permissions to root/600
   template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner=root group=root validate="/usr/sbin/sshd -T -f %s"
   notify: restart sshd
@@ -39,37 +11,62 @@
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
   when: ssh_client_hardening
 
-- name: check if ssh_password module is already installed
-  shell: "semodule -l| grep ssh_password"
-  register: ssh_password_module
+- name: create ssh_config and set permissions to root/644
+  template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
+  when: ssh_client_hardening
+
+- name: test to see if selinux is running
+  command: getenforce
+  register: sestatus
   failed_when: false
   changed_when: false
-  always_run: true
+  check_mode: no
 
-# The following tasks only get executed when selinux is in state enforcing, UsePam is "no" and the ssh_password module is installed.
-# See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
+- block: # only runs when selinux is running
+  - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
+    yum: name="{{item}}" state=installed
+    with_items:
+      - policycoreutils-python
+      - checkpolicy
+    when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
-- name: Create selinux custom policy drop folder
-  file: path={{ ssh_custom_selinux_dir }} state=directory owner=root group=root mode=0750
-  when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+  - name: install selinux dependencies when selinux is installed on Debian or Ubuntu
+    apt: name="{{item}}" state=installed
+    with_items:
+      - policycoreutils
+      - checkpolicy
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Distributing custom selinux policies
-  copy: src='ssh_password' dest='{{ ssh_custom_selinux_dir }}'
-  when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+  - name: check if ssh_password module is already installed
+    shell: "semodule -l| grep ssh_password"
+    register: ssh_password_module
+    failed_when: false
+    changed_when: false
+    check_mode: no
 
-- name: check and compile policy
-  shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
-  when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+  # The following tasks only get executed when selinux is in state enforcing, UsePam is "no" and the ssh_password module is installed.
+  # See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
+  - block:
+    - name: Create selinux custom policy drop folder
+      file: path='{{ ssh_custom_selinux_dir }}' state=directory owner=root group=root mode=0750
 
-- name: create selinux policy module package
-  shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
-  when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+    - name: Distributing custom selinux policies
+      copy: src='ssh_password' dest='{{ ssh_custom_selinux_dir }}'
 
-- name: install selinux policy
-  shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
-  when: not ssh_use_pam and sestatus.rc == 0 and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+    - name: check and compile policy
+      shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
 
-# The following tasks only get executed when selinux is in state enforcing, UsePam is "yes" and the ssh_password module is installed.
-- name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
-  shell: semodule -r ssh_password
-  when: sestatus.rc == 0 and ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
+    - name: create selinux policy module package
+      shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
+
+    - name: install selinux policy
+      shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
+
+    when: not ssh_use_pam and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+
+  # The following tasks only get executed when selinux is in state enforcing, UsePam is "yes" and the ssh_password module is installed.
+  - name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
+    shell: semodule -r ssh_password
+    when: ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
+
+  when: sestatus.rc == 0
