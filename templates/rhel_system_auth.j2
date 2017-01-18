@@ -19,14 +19,15 @@ account     sufficient    pam_succeed_if.so uid < 500 quiet
 account     required      pam_permit.so
 
 {% if os_auth_pam_passwdqc_enable %}
-  {% if ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version >= '7' %}
+  {%- if ansible_os_family == 'RedHat' and ansible_distribution_version >= '7' %}
 password    required      pam_pwquality.so {{os_auth_pam_pwquality_options}}
-  {% else %}
+  {%- else %}
 password    requisite     pam_passwdqc.so {{os_auth_pam_passwdqc_options}}
-  {% endif %}
+  {%- endif %}
 {% else %}
 password    requisite     pam_cracklib.so try_first_pass retry=3 type=
 {% endif %}
+
 
 # NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
 # NSA 2.3.3.6 Limit Password Reuse

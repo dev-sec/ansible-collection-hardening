@@ -3,6 +3,8 @@ driver:
   name: docker
   use_sudo: false
   privileged: true
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
 
 transport:
   max_ssh_sessions: 5
@@ -18,6 +20,8 @@ provisioner:
   ansible_diff: true
   hosts: all
   roles_path: ../ansible-os-hardening/
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
   playbook: default.yml
   ansible_extra_flags:
     - "--skip-tags=sysctl"
@@ -43,6 +47,16 @@ platforms:
 - name: centos-7
   driver:
     image: centos:7
+    privileged: true
+    run_command: /usr/sbin/init
+- name: oracle-6
+  driver:
+    image: oraclelinux:6
+    platform: rhel
+- name: oracle-7
+  driver:
+    image: oraclelinux:7
+    platform: rhel
     privileged: true
     run_command: /usr/sbin/init
 - name: debian-7

@@ -1,6 +1,11 @@
 ---
 driver:
   name: vagrant
+  driver_config:
+    http_proxy: <%= ENV['http_proxy'] || nil %>
+    https_proxy: <%= ENV['https_proxy'] || nil %>
+  vagrantfiles:
+    - kitchen_vagrant_block.rb
 
 provisioner:
   name: ansible_playbook
@@ -13,6 +18,8 @@ provisioner:
   ansible_verbose: true
   roles_path: ../ansible-os-hardening/
   playbook: default.yml
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
 
 platforms:
 - name: ubuntu-12.04
@@ -31,6 +38,12 @@ platforms:
   driver_config:
     box: opscode-centos-6.5
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+- name: centos-6.8
+  driver_config:
+    box: bento/centos-6.8
+- name: centos-7
+  driver_config:
+    box: bento/centos-7.2
 - name: oracle-6.4
   driver_config:
     box: oracle-6.4
@@ -39,6 +52,9 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+- name: oracle-7
+  driver_config:
+    box: boxcutter/ol72
 - name: debian-7
   driver_config:
     box: debian-7
