@@ -6,7 +6,6 @@ python: "2.7"
 
 env:
   - ANSIBLE_VERSION=latest
-  - ANSIBLE_VERSION=1.9.4
 
 before_install:
  - sudo apt-get update -qq
@@ -17,7 +16,5 @@ install:
   - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
 
 script:
-  - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --skip-tags "sysctl" --extra-vars "os_security_users_allow=change_user os_security_kernel_enable_core_dump=true os_security_suid_sgid_remove_from_unknown=true"
-  - ansible-playbook --sudo -v --diff spec/travis.yml --tags "pam" --extra-vars "os_auth_pam_passwdqc_enable=false"
-  - ansible-playbook --sudo -v --diff spec/travis.yml --skip-tags "sysctl" --extra-vars "os_security_users_allow=change_user"
+  - ansible-playbook --syntax-check default.yml
+  - ansible-playbook --sudo -v --diff default.yml --skip-tags "sysctl"

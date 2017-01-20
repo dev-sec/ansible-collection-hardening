@@ -73,7 +73,4 @@ verifier:
     - https://github.com/dev-sec/tests-os-hardening
 
 suites:
-- name: os_ansible_1.9
-  provisioner:
-    ansible_version: 1.9.4
 - name: os_ansible_latest

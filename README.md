@@ -27,7 +27,7 @@ It will not:
 
 ## Requirements
 
-* Ansible
+* Ansible 2.2
 
 ## Variables
 
