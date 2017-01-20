@@ -12,7 +12,7 @@
 
 - name: remove pam ccreds on Redhat systems
   yum: name='{{os_packages_pam_ccreds}}' state=absent
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+  when: ansible_os_family == 'RedHat'
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
   apt: name='{{os_packages_pam_cracklib}}' state=absent
@@ -44,19 +44,15 @@
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
   yum: name='{{os_packages_pam_cracklib}}' state='absent'
-  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version <= '7')) and os_auth_pam_passwdqc_enable
+  when: (ansible_os_family == 'RedHat' and ansible_distribution_version < '7') and os_auth_pam_passwdqc_enable
 
 - name: install the package for strong password checking
   yum: name='{{os_packages_pam_passwdqc}}' state='installed'
-  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version <= '7')) and os_auth_pam_passwdqc_enable
-
-- name: install pam_pwquality on rhel7, replacement for pam_passwdqc and pam_cracklib
-  yum: name='{{os_packages_pam_pwquality}}' state='installed'
-  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' and ansible_distribution_version >= '7')) and os_auth_pam_passwdqc_enable
+  when: (ansible_os_family == 'RedHat' and ansible_distribution_version < '7') and os_auth_pam_passwdqc_enable
 
 - name: remove passwdqc
   yum: name='{{os_packages_pam_passwdqc}}' state='absent'
-  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux') and not os_auth_pam_passwdqc_enable
+  when: ansible_os_family == 'RedHat' and not os_auth_pam_passwdqc_enable
 
 - name: configure passwdqc and tally via central system-auth confic
   template: src='rhel_system_auth.j2' dest='/etc/pam.d/system-auth-ac' mode=0640 owner=root group=root

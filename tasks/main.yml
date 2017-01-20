@@ -35,10 +35,9 @@
   tags: rhosts
 
 - include: yum.yml
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+  when: ansible_os_family == 'RedHat'
   tags: yum
 
 - include: apt.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: apt
-
