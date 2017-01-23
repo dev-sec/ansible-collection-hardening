@@ -6,6 +6,10 @@
   template: src='rhel_sysconfig_init.j2' dest='/etc/sysconfig/init' owner=root group=root mode=0544
   when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
 
+- name: install initramfs-tools
+  apt: name='initramfs-tools' state=installed update_cache=true
+  when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
+
 - name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
   template: src='modules.j2' dest='/etc/initramfs-tools/modules' owner=root group=root mode=0440
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
