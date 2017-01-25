@@ -30,7 +30,7 @@ ssh_client_ports: ['22']      # ssh
 ssh_listen_to: ['0.0.0.0']    # sshd
 
 # Host keys to look for when starting sshd.
-ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key']        # sshd
+ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key']        # sshd
 
 # Specifies  the  maximum  number  of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged.
 ssh_max_auth_retries: 2
