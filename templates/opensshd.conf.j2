@@ -113,7 +113,6 @@ LogLevel VERBOSE
 UseLogin no
 UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 
-PermitUserEnvironment no
 LoginGraceTime 30s
 MaxAuthTries {{ssh_max_auth_retries}}
 MaxSessions 10
@@ -190,11 +189,26 @@ GatewayPorts no
 X11Forwarding no
 X11UseLocalhost yes
 
-# Look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
-UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
+# User environment configuration
+# ==============================
+
+{% if ssh_server_permit_environment_vars %}
+PermitUserEnvironment yes
+{% for item in ssh_server_permit_environment_vars %}
+AcceptEnv {{ item }}
+{% endfor %}
+{% else %}
+PermitUserEnvironment no
+{% endif %}
 
 # Misc. configuration
 # ===================
+
+{% if ssh_compression %}
+Compression {{ ssh_compression }}
+{% endif %}
+
+UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
 
 PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
 
@@ -208,13 +222,35 @@ Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
 DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
 {% endif %}
 
+# Group matching configuration
+# ============================
+
+{% if ssh_server_match_group %}
+{% for item in ssh_server_match_group %}
+Match Group {{ item.group }}
+    {{ item.rules | indent(4) }}
+{% endfor %}
+{% endif %}
+
+# User matching configuration
+# ===========================
+
+{% if ssh_server_match_user %}
+{% for item in ssh_server_match_user %}
+Match User {{ item.user }}
+    {{ item.rules | indent(4) }}
+{% endfor %}
+{% endif %}
+
+# SFTP matching configuration
+# ===========================
 {% if sftp_enabled %}
 # Configuration, in case SFTP is used
-## override default of no subsystems
-## Subsystem sftp /opt/app/openssh5/libexec/sftp-server
+# override default of no subsystems
+# Subsystem sftp /opt/app/openssh5/libexec/sftp-server
 Subsystem sftp internal-sftp -l INFO -f LOCAL6
-#
-## These lines must appear at the *end* of sshd_config
+
+# These lines must appear at the *end* of sshd_config
 Match Group sftponly
 ForceCommand internal-sftp -l INFO -f LOCAL6
 ChrootDirectory {{ sftp_chroot_dir }}
