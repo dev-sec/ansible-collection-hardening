@@ -10,7 +10,7 @@ This role provides secure ssh-client and ssh-server configurations.
 
 ## Requirements
 
-* Ansible
+* Ansible > 2.2.1
 
 ## Role Variables
 | Name           | Default Value | Description                        |
