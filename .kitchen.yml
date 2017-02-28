@@ -6,6 +6,10 @@ driver:
   provision_command:
       - "mkdir /var/run/sshd"
 
+transport:
+  max_ssh_sessions: 5
+
+
 provisioner:
   name: ansible_playbook
   hosts: all
