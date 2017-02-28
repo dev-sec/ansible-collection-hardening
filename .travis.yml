@@ -1,21 +1,66 @@
 ---
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
-language: python
-python: "2.7"
+services: docker
 
 env:
-  - ANSIBLE_VERSION=latest
+  - distro: centos6
+    version: latest
+    init: /sbin/init
+
+  - distro: centos7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
+
+  - distro: oracle6
+    version: latest
+    init: /sbin/init
+
+  - distro: oracle7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
+
+  - distro: ubuntu1604
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: ubuntu1404
+    version: latest
+    init: /sbin/init
+
+  - distro: ubuntu1204
+    version: latest
+    init: /sbin/init
+
+  - distro: debian7
+    version: latest
+    init: /sbin/init
+
+  - distro: debian8
+    version: latest
+    init: /sbin/init
+
+  - distro: debian9
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
 
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
-install:
-  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
-  - echo -e 'localhost ansible_connection=local' > spec/inventory
-  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
+  # Pull container
+  - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
 
 script:
-  - ansible-playbook --syntax-check spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml
-  - ansible-playbook --sudo -v --diff spec/travis.yml --extra-vars "network_ipv6_enable=true ssh_allow_root_with_key=true ssh_client_password_login=true ssh_client_cbc_required=true ssh_server_weak_hmac=true ssh_client_weak_kex=true sftp_enabled=true"
+  - container_id=$(mktemp)
+  # Run container in detached state.
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-ssh-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
+
+  # Test role.
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/default.yml'
+
+  # Verify role
+  - 'inspec exec https://github.com/dev-sec/ssh-baseline/ -t docker://$(cat ${container_id})'
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
