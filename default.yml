@@ -1,4 +1,5 @@
 ---
+
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
   hosts: localhost
   roles:
