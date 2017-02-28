@@ -9,6 +9,10 @@ driver:
 transport:
   max_ssh_sessions: 5
 
+transport:
+  max_ssh_sessions: 5
+
+
 provisioner:
   name: ansible_playbook
   hosts: all
