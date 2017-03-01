@@ -9,7 +9,6 @@ driver:
 
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/hardening-io/tests-os-hardening.git
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
@@ -21,6 +20,9 @@ provisioner:
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
 
+transport:
+  max_ssh_sessions: 5
+
 platforms:
 - name: ubuntu-12.04
   driver_config:
@@ -30,6 +32,10 @@ platforms:
   driver_config:
     box: opscode-ubuntu-14.04
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+- name: ubuntu-16.04
+  driver_config:
+    box: opscode-ubuntu-16.04
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-16.04_chef-provisionerless.box
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
@@ -68,10 +74,7 @@ verifier:
   name: inspec
   sudo: true
   inspec_tests:
-    - https://github.com/dev-sec/tests-os-hardening
+    - https://github.com/dev-sec/linux-baseline/
 
 suites:
-- name: os-ansible_1.9
-  provisioner:
-    ansible_version: 1.9.4
-- name: os-ansible_latest
+- name: os

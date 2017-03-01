@@ -19,7 +19,7 @@
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and os_auth_pam_passwdqc_enable
 
 - name: install the package for strong password checking
-  apt: name='{{os_packages_pam_passwdqc}}' state='installed'
+  apt: name='{{os_packages_pam_passwdqc}}' state='installed' update_cache='yes'
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and os_auth_pam_passwdqc_enable
 
 - name: configure passwdqc
