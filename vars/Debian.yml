@@ -4,3 +4,11 @@ os_packages_pam_cracklib: 'libpam-cracklib'
 passwdqc_path: '/usr/share/pam-configs/passwdqc'
 tally2_path: '/usr/share/pam-configs/tally2'
 os_nologin_shell_path: '/usr/sbin/nologin'
+
+# Different distros use different standards for /etc/shadow perms, e.g.
+# RHEL derivatives use root:root 0600, whereas Debian-based use root:shadow 0640.
+# You must provide key/value pairs for owner, group, and mode if overriding.
+os_shadow_perms:
+  owner: root
+  group: shadow
+  mode: "0640"
