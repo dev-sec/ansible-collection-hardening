@@ -140,3 +140,5 @@ ssh_kex_66_weak: "{{ ssh_kex_66_default + ['diffie-hellman-group14-sha1', 'diffi
 
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
+
+sshd_moduli_minimum: 2048

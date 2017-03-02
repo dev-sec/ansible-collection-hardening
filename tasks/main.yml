@@ -15,6 +15,18 @@
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
   when: ssh_client_hardening
 
+- name: Check if /etc/ssh/moduli contains weak DH parameters
+  shell: awk '$5 < {{ sshd_moduli_minimum }}' /etc/ssh/moduli
+  register: sshd_register_moduli
+  changed_when: false
+  always_run: True
+
+- name: remove all small primes
+  shell: awk '$5 >= {{ sshd_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new ;
+         [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
+  notify: restart sshd
+  when: sshd_register_moduli.stdout
+
 - name: test to see if selinux is running
   command: getenforce
   register: sestatus
