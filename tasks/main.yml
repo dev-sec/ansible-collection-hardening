@@ -8,7 +8,7 @@
    - "{{ ansible_os_family }}.yml"
 
 - name: get openssh-version
-  shell: ssh -V 2>&1 | perl -ne '/[\d\.]+/ && print $&'
+  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
   changed_when: false
   register: sshd_version
 
