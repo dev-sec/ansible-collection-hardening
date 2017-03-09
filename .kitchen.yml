@@ -66,10 +66,10 @@ platforms:
   driver:
     image: rndmh3ro/docker-debian8-ansible:latest
     platform: debian
-- name: debian9-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian9-ansible:latest
-    platform: debian
+#- name: debian9-ansible-latest
+#  driver:
+#    image: rndmh3ro/docker-debian9-ansible:latest
+#    platform: debian
 
 verifier:
   name: inspec
