@@ -1,6 +1,31 @@
 ---
-- name: add the OS specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: Set OS dependent variables
+  include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_distribution }}.yml"
+   - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_os_family }}.yml"
+
+- name: get openssh-version
+  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  changed_when: false
+  register: sshd_version
+
+- name: set hostkeys according to openssh-version
+  set_fact:
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key']
+  when: sshd_version.stdout >= '5.3'
+
+- name: set hostkeys according to openssh-version
+  set_fact:
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key']
+  when: sshd_version.stdout >= '6.0'
+
+- name: set hostkeys according to openssh-version
+  set_fact:
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
+  when: sshd_version.stdout >= '6.3'
 
 - name: create sshd_config and set permissions to root/600
   template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner=root group=root validate="/usr/sbin/sshd -T -f %s"
