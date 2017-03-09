@@ -39,6 +39,7 @@ env:
 
   - distro: debian8
     version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     init: /sbin/init
 
   - distro: debian9
