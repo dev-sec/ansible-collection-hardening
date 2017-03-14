@@ -22,9 +22,7 @@ Host {{ host.names | join(' ') }}
 Host *
 
 # The port at the destination should be defined
-{% for port in ssh_client_ports -%}
-Port {{port}}
-{% endfor %}
+Port {{ ssh_client_port }}
 
 # Identity file configuration. You may restrict available identity files. Otherwise ssh will search for a pattern and use any that matches.
 #IdentityFile ~/.ssh/identity
