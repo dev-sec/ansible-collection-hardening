@@ -37,8 +37,16 @@ ssh_max_auth_retries: 2
 
 ssh_client_alive_interval: 600          # sshd
 ssh_client_alive_count: 3               # sshd
-# one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!
-ssh_remote_hosts: []           # ssh
+
+# Hosts with custom options.            # ssh
+# Example:
+# ssh_remote_hosts:
+#   - names: ['example.com', 'example2.com']
+#     options: ['Port 2222', 'ForwardAgent yes']
+#   - names: ['example3.com']
+#     options: ['StrictHostKeyChecking no']
+ssh_remote_hosts: []
+
 # false to disable root login altogether. Set to true to allow root to login via key-based mechanism.
 ssh_allow_root_with_key: false          # sshd
 
