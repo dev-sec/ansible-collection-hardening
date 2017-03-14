@@ -12,7 +12,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 
 ## Requirements
 
-* Ansible
+* Ansible > 2.2.1
 
 ## Role Variables
 | Name           | Default Value | Description                        |
@@ -24,13 +24,13 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_server_weak_hmac` | false |true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.|
 |`ssh_client_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
 |`ssh_server_weak_kex` | false |true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.|
-|`ssh_server_ports` | ['22'] |ports to which ssh-server should listen to|
-|`ssh_client_ports` | ['22'] |ports to which ssh-client should connect to|
+|`ssh_server_ports` | ['22'] |ports on which ssh-server should listen|
+|`ssh_client_port` | '22' |port to which ssh-client should connect|
 |`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!|
 |`ssh_host_key_files` | ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key'] |Host keys to look for when starting sshd.|
 |`ssh_client_alive_interval` | 600 | specifies an interval for sending keepalive messages |
 |`ssh_client_alive_count` | 3 | defines how often keep-alive messages are sent |
-|`ssh_remote_hosts` | [] | one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!|
+|`ssh_remote_hosts` | [] | one or more hosts and their custom options for the ssh-client. Default is empty. See examples in `defaults/main.yml`.|
 |`ssh_allow_root_with_key` | false | false to disable root login altogether. Set to true to allow root to login via key-based mechanism.|
 |`ssh_allow_tcp_forwarding` | false | false to disable TCP Forwarding. Set to true to allow TCP Forwarding.|
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
@@ -44,6 +44,8 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`sftp_enabled` | false | true to enable sftp configuration|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
+|`sshd_moduli_minimum` | 2048 | remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam|
+|`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
 
 ## Example Playbook
 

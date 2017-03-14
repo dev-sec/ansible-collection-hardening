@@ -1,10 +1,14 @@
 ---
 driver:
   name: vagrant
+  driver_config:
+    http_proxy: <%= ENV['http_proxy'] || nil %>
+    https_proxy: <%= ENV['https_proxy'] || nil %>
+  vagrantfiles:
+    - kitchen_vagrant_block.rb
 
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/hardening-io/tests-ssh-hardening.git
   hosts: all
   require_ansible_repo: false
   require_ansible_omnibus: true
@@ -13,6 +17,11 @@ provisioner:
   ansible_verbose: true
   roles_path: ../ansible-ssh-hardening/
   playbook: default.yml
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
+
+transport:
+  max_ssh_sessions: 5
 
 platforms:
 - name: ubuntu-12.04
@@ -23,14 +32,25 @@ platforms:
   driver_config:
     box: opscode-ubuntu-14.04
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-- name: centos-6.4
+- name: ubuntu-16.04
   driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+    box: opscode-ubuntu-16.04
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-16.04_chef-provisionerless.box
+- name: centos-6.4
+- name: centos-7.2
+  driver_config:
+    box: opscode-centos-7.2
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
 - name: centos-6.5
   driver_config:
     box: opscode-centos-6.5
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+- name: centos-6.8
+  driver_config:
+    box: bento/centos-6.8
+- name: centos-7
+  driver_config:
+    box: bento/centos-7.2
 - name: oracle-6.4
   driver_config:
     box: oracle-6.4
@@ -39,10 +59,9 @@ platforms:
   driver_config:
     box: oracle-6.5
     box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-6
+- name: oracle-7
   driver_config:
-    box: debian-6
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-6.0.10_chef-provisionerless.box
+    box: boxcutter/ol72
 - name: debian-7
   driver_config:
     box: debian-7
@@ -56,10 +75,7 @@ verifier:
   name: inspec
   sudo: true
   inspec_tests:
-    - https://github.com/dev-sec/tests-ssh-hardening
+    - https://github.com/dev-sec/ssh-baseline/
 
 suites:
-- name: ssh-ansible_1.9
-  provisioner:
-    ansible_version: 1.9.4
-- name: ssh-ansible_latest
+- name: ssh

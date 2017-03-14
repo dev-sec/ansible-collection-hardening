@@ -20,25 +20,33 @@ ssh_server_weak_kex: false              # sshd
 # If true, password login is allowed. For sshd, it is always set to no password login.
 ssh_client_password_login: false          # ssh
 
-# ports to which ssh-server should listen to
+# ports on which ssh-server should listen
 ssh_server_ports: ['22']      # sshd
 
-# ports to which ssh-client should connect to
-ssh_client_ports: ['22']      # ssh
+# port to which ssh-client should connect
+ssh_client_port: '22'         # ssh
 
 # one or more ip addresses, to which ssh-server should listen to. Default is empty, but should be configured for security reasons!
 ssh_listen_to: ['0.0.0.0']    # sshd
 
 # Host keys to look for when starting sshd.
-ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key']        # sshd
+ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']  # sshd
 
 # Specifies  the  maximum  number  of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged.
 ssh_max_auth_retries: 2
 
 ssh_client_alive_interval: 600          # sshd
 ssh_client_alive_count: 3               # sshd
-# one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!
-ssh_remote_hosts: []           # ssh
+
+# Hosts with custom options.            # ssh
+# Example:
+# ssh_remote_hosts:
+#   - names: ['example.com', 'example2.com']
+#     options: ['Port 2222', 'ForwardAgent yes']
+#   - names: ['example3.com']
+#     options: ['StrictHostKeyChecking no']
+ssh_remote_hosts: []
+
 # false to disable root login altogether. Set to true to allow root to login via key-based mechanism.
 ssh_allow_root_with_key: false          # sshd
 
@@ -140,3 +148,8 @@ ssh_kex_66_weak: "{{ ssh_kex_66_default + ['diffie-hellman-group14-sha1', 'diffi
 
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
+
+sshd_moduli_minimum: 2048
+
+# disable ChallengeResponseAuthentication
+ssh_challengeresponseauthentication: false
