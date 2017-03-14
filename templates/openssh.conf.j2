@@ -8,10 +8,18 @@
 
 # Address family should always be limited to the active network configuration.
 AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
-# Restrict the following configuration to be limited to this Host.
+
 {% for host in ssh_remote_hosts -%}
-Host {{host}}
-{% endfor %}
+{% if loop.first %}
+# Host-specific configuration
+{% endif %}
+Host {{ host.names | join(' ') }}
+  {{ host.options | join("\n") | indent(2) }}
+
+{% endfor -%}
+
+# Global defaults for all Hosts
+Host *
 
 # The port at the destination should be defined
 {% for port in ssh_client_ports -%}
