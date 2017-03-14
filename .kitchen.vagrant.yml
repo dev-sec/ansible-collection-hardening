@@ -23,10 +23,6 @@ provisioner:
 transport:
   max_ssh_sessions: 5
 
-transport:
-  max_ssh_sessions: 5
-
-
 platforms:
 - name: ubuntu-12.04
   driver_config:
