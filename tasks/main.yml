@@ -44,7 +44,7 @@
   shell: awk '$5 < {{ sshd_moduli_minimum }}' /etc/ssh/moduli
   register: sshd_register_moduli
   changed_when: false
-  always_run: True
+  check_mode: no
 
 - name: remove all small primes
   shell: awk '$5 >= {{ sshd_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new ;
