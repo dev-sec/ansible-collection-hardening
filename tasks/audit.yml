@@ -34,9 +34,10 @@
     creates: C:\accountLogonAudit.lock
 
 - name: Create accountLogonAudit.lock if account audit log was activated
-  win_file:
-    path: C:\accountLogonAudit.lock
-    state: touch
+  win_copy:
+    dest: C:\accountLogonAudit.lock
+    content: ""
+    force: no
   when: accountLogonAudit
 
 - name: Audit Application Group Management | windows-audit-204
@@ -46,9 +47,10 @@
     creates: C:\appGroupMngmtAudit.lock
 
 - name: Create appGroupMngmtAudit.lock if group manangement audit log was activated
-  win_file:
-    path: C:\appGroupMngmtAudit.lock
-    state: touch
+  win_copy:
+    dest: C:\appGroupMngmtAudit.lock
+    content: ""
+    force: no
   when: appGroupMngmtAudit
 
 - name: Audit Computer Account Management | windows-audit-205
@@ -58,9 +60,10 @@
     creates: C:\appAccountMngmtAudit.lock
 
 - name: Create appAccountMngmtAudit.lock if computer account manangement audit log was activated
-  win_file:
-    path: C:\appAccountMngmtAudit.lock
-    state: touch
+  win_copy:
+    dest: C:\appAccountMngmtAudit.lock
+    content: ""
+    force: no
   when: appAccountMngmtAudit
 
 
@@ -71,7 +74,8 @@
     creates: C:\distGroupMngmtAudit.lock
 
 - name: Create distGroupMngmtAudit.lock if dist group manangement audit log was activated
-  win_file:
-    path: C:\distGroupMngmtAudit.lock
-    state: touch
+  win_copy:
+    dest: C:\distGroupMngmtAudit.lock
+    content: ""
+    force: no
   when: distGroupMngmtAudit
