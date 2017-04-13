@@ -29,7 +29,7 @@ This roles provides a role for ensuring that a Windows 2012 R2 system is complia
 
 For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
 
-We create multiplke hosts - one linux host where Ansible runs on and the Windows hosts.
+We create multiple hosts - one linux host where Ansible runs on and the Windows hosts.
 
 Next install test-kitchen:
 
@@ -44,8 +44,11 @@ Then you can run the playbook and tests:
 # create the ansible and windows hosts
 bundle exec kitchen create
 
-# test on all machines
-bundle exec kitchen verify
+# run ansible playbook on windows host
+bundle exec kitchen converge default-ansibleserver
+
+# verify windows machines
+bundle exec kitchen verify windows
 
 ```
 
