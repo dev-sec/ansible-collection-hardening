@@ -11,6 +11,9 @@
 - include: ie.yml
   tags: ie
 
+- include: misc.yml
+  tags: misc
+
 - include: password_policy.yml
   tags: password_policy
 
