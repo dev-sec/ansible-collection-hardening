@@ -1,0 +1,16 @@
+[Unicode]
+Unicode=yes
+
+[Version]
+signature="$CHICAGO$"
+Revision=1
+
+[System Access]
+{% for key, value in win_security_policy_access.iteritems() %}
+{{ key }} = {{ value }}
+{% endfor %}
+
+[Privilege Rights]
+{% for key, value in win_security_policy_rights.iteritems() %}
+{{ key }} = {{ value }}
+{% endfor %}
