@@ -1,14 +1,15 @@
 ---
 driver:
   name: vagrant
-  gui: true
+  gui: false
   linked_clone: true
 
 platforms:
   - name: ansibleserver
-    driver_plugin: vagrant
+    driver_plugin: docker
     driver_config:
-      box: alvaro/wouter7
+      image: rndmh3ro/docker-centos7-ansible:latest
+      platform: centos
       network:
       - [ 'private_network', { ip: '172.28.128.10' } ]
     transport:
