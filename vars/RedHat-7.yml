@@ -1,3 +1,4 @@
+---
 os_packages_pam_ccreds: 'pam_ccreds'
 os_packages_pam_passwdqc: 'pam_passwdqc'
 os_packages_pam_cracklib: 'pam_cracklib'
@@ -9,10 +10,9 @@ os_nologin_shell_path: '/sbin/nologin'
 os_shadow_perms:
   owner: root
   group: root
-  mode: '0600'
+  mode: "0600"
 
 sysctl_rhel_config:
-  # ExecShield protection against buffer overflows
-  kernel.exec-shield: 1
   # Syncookies is used to prevent SYN-flooding attacks.
   net.ipv4.tcp_syncookies: 1
+

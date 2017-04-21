@@ -183,12 +183,6 @@ sysctl_config:
 # at task 'create a combined sysctl-dict if overwrites are defined'
 sysctl_overwrite:
 
-sysctl_rhel_config:
-  # ExecShield protection against buffer overflows | sysctl-33
-  kernel.exec-shield: 1
-  # Syncookies is used to prevent SYN-flooding attacks. | sysctl-11
-  net.ipv4.tcp_syncookies: 1
-
 # disable unused filesystems
 os_unused_filesystems:
   - "cramfs"
@@ -199,3 +193,4 @@ os_unused_filesystems:
   - "squashfs"
   - "udf"
   - "vfat"
+
