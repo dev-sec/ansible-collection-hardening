@@ -131,7 +131,7 @@ HostbasedAuthentication no
 UsePAM {{ 'yes' if ssh_use_pam else 'no' }}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
-PasswordAuthentication no
+PasswordAuthentication {{ 'yes' if ssh_server_password_login else 'no' }}
 PermitEmptyPasswords no
 ChallengeResponseAuthentication {{ 'yes' if ssh_challengeresponseauthentication else 'no' }}
 
