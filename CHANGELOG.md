@@ -5,14 +5,18 @@
 
 ### Breaking Changes:
 
-- renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
+- [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
+  - renamed `mysql_hardening_mysql_conf` var to `mysql_hardening_mysql_conf_file`
+  - introduced `mysql_hardening_mysql_conf_dir` variable
+  - set default value of `mysql_hardening_mysql_conf_dir` variable for RedHat, OracleLinux, Debian
+  - changed default hardcoded full path in `mysql_hardening_hardening_conf` var to be based on `mysql_hardening_mysql_conf_dir` var
+
 
 ---
 
 **Implemented enhancements:**
 
 - Add CentOS7 with MariaDB support [\#27](https://github.com/dev-sec/ansible-mysql-hardening/pull/27) ([chrispoupart](https://github.com/chrispoupart))
-- - renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
 - add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
