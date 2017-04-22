@@ -36,10 +36,6 @@
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
   when: ssh_client_hardening
 
-- name: create ssh_config and set permissions to root/644
-  template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner=root group=root
-  when: ssh_client_hardening
-
 - name: Check if /etc/ssh/moduli contains weak DH parameters
   shell: awk '$5 < {{ sshd_moduli_minimum }}' /etc/ssh/moduli
   register: sshd_register_moduli
