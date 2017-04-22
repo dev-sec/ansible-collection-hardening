@@ -1,14 +1,49 @@
 # Change Log
 
-## [Unreleased](https://github.com/hardening-io/ansible-mysql-hardening/tree/HEAD)
+## [2.0.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.0.0) (2017-04-21)
+[Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/1.0.0...2.0.0)
+
+### Breaking Changes:
+
+- renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
+
+---
+
+**Implemented enhancements:**
+
+- Add CentOS7 with MariaDB support [\#27](https://github.com/dev-sec/ansible-mysql-hardening/pull/27) ([chrispoupart](https://github.com/chrispoupart))
+- - renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
+- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- error on task protect my.cnf [\#20](https://github.com/dev-sec/ansible-mysql-hardening/issues/20)
+
+## [1.0.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/1.0.0) (2016-06-28)
+**Implemented enhancements:**
+
+- add changelog generator [\#7](https://github.com/dev-sec/ansible-mysql-hardening/pull/7) ([chris-rock](https://github.com/chris-rock))
+
+**Closed issues:**
+
+- tasks - main [\#14](https://github.com/dev-sec/ansible-mysql-hardening/issues/14)
+- Fix directory structure. [\#6](https://github.com/dev-sec/ansible-mysql-hardening/issues/6)
 
 **Merged pull requests:**
 
-- fix mysql restart not happening because of missing os specific variable [\#5](https://github.com/hardening-io/ansible-mysql-hardening/pull/5) ([fheinle](https://github.com/fheinle))
-- Update kitchen-ansible, remove separate debian install [\#4](https://github.com/hardening-io/ansible-mysql-hardening/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
-- update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#3](https://github.com/hardening-io/ansible-mysql-hardening/pull/3) ([chris-rock](https://github.com/chris-rock))
-- Separate system-vars from editable vars. [\#2](https://github.com/hardening-io/ansible-mysql-hardening/pull/2) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add documentation for testing, change value in vars [\#1](https://github.com/hardening-io/ansible-mysql-hardening/pull/1) ([rndmh3ro](https://github.com/rndmh3ro))
+- Local testing [\#17](https://github.com/dev-sec/ansible-mysql-hardening/pull/17) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix rhel daemon [\#16](https://github.com/dev-sec/ansible-mysql-hardening/pull/16) ([rndmh3ro](https://github.com/rndmh3ro))
+- alt version initial commit [\#15](https://github.com/dev-sec/ansible-mysql-hardening/pull/15) ([fitz123](https://github.com/fitz123))
+- add test support for ansible 2.0 and 1.9 [\#13](https://github.com/dev-sec/ansible-mysql-hardening/pull/13) ([rndmh3ro](https://github.com/rndmh3ro))
+- add webhook for ansible galaxy [\#11](https://github.com/dev-sec/ansible-mysql-hardening/pull/11) ([rndmh3ro](https://github.com/rndmh3ro))
+- update platforms in meta-file [\#10](https://github.com/dev-sec/ansible-mysql-hardening/pull/10) ([rndmh3ro](https://github.com/rndmh3ro))
+- Simplify local testing with custom role [\#9](https://github.com/dev-sec/ansible-mysql-hardening/pull/9) ([rndmh3ro](https://github.com/rndmh3ro))
+- New role layout [\#8](https://github.com/dev-sec/ansible-mysql-hardening/pull/8) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix mysql restart not happening because of missing os specific variable [\#5](https://github.com/dev-sec/ansible-mysql-hardening/pull/5) ([fheinle](https://github.com/fheinle))
+- Update kitchen-ansible, remove separate debian install [\#4](https://github.com/dev-sec/ansible-mysql-hardening/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
+- update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#3](https://github.com/dev-sec/ansible-mysql-hardening/pull/3) ([chris-rock](https://github.com/chris-rock))
+- Separate system-vars from editable vars. [\#2](https://github.com/dev-sec/ansible-mysql-hardening/pull/2) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add documentation for testing, change value in vars [\#1](https://github.com/dev-sec/ansible-mysql-hardening/pull/1) ([rndmh3ro](https://github.com/rndmh3ro))
 
 
 
