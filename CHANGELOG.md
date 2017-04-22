@@ -1,5 +1,34 @@
 # Change Log
 
+## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.2.0...4.0.0)
+
+**Implemented enhancements:**
+
+- Description of the Ansible roles of dev-sec says "This Ansible playbook" [\#97](https://github.com/dev-sec/ansible-os-hardening/issues/97)
+- install initramfs-tools [\#114](https://github.com/dev-sec/ansible-os-hardening/pull/114) ([rndmh3ro](https://github.com/rndmh3ro))
+- omit empty variables [\#106](https://github.com/dev-sec/ansible-os-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- The role fails when conditionally included [\#105](https://github.com/dev-sec/ansible-os-hardening/issues/105)
+- omit empty variables [\#106](https://github.com/dev-sec/ansible-os-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
+- Could not find gem 'ruby \(\>= 2.1.0\)' [\#116](https://github.com/dev-sec/ansible-os-hardening/issues/116)
+- The task sysctl fails when /etc/initramfs-tools is not present [\#111](https://github.com/dev-sec/ansible-os-hardening/issues/111)
+- Deprecation warning always\_run [\#103](https://github.com/dev-sec/ansible-os-hardening/issues/103)
+
+**Closed issues:**
+
+- Error running on RHEL 7 due to syntax issues [\#112](https://github.com/dev-sec/ansible-os-hardening/issues/112)
+- disable password age [\#109](https://github.com/dev-sec/ansible-os-hardening/issues/109)
+
+**Merged pull requests:**
+
+- change shadow owner in debian systems [\#117](https://github.com/dev-sec/ansible-os-hardening/pull/117) ([rndmh3ro](https://github.com/rndmh3ro))
+- Rhel7 [\#113](https://github.com/dev-sec/ansible-os-hardening/pull/113) ([tyrken](https://github.com/tyrken))
+- use new Docker images [\#110](https://github.com/dev-sec/ansible-os-hardening/pull/110) ([rndmh3ro](https://github.com/rndmh3ro))
+- Don’t refer to this role as "playbook" in the role description [\#104](https://github.com/dev-sec/ansible-os-hardening/pull/104) ([ypid](https://github.com/ypid))
+
 ## [3.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.2.0) (2016-10-24)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1.0...3.2.0)
 
