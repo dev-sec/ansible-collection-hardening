@@ -78,59 +78,17 @@ We remove the following packages:
 
 
 ## Changing sysctl variables
-
-If you want to overwrite sysctl-variables, you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
-So for example if you want to change the IPv4 traffic forwarding variable to `1`, you must pass the whole dict like this:
++If you want to overwrite sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to overwrite the whole `sysctl_dict`).
++So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
 ```
     - hosts: localhost
       roles:
         - dev-sec.os-hardening
       vars:
-        sysctl_config:
+        sysctl_overwrite:
           # Disable IPv4 traffic forwarding.
           net.ipv4.ip_forward: 1
-
-          # Disable IPv6 traffic forwarding.
-          net.ipv6.conf.all.forwarding: 0
-
-          # ignore RAs on Ipv6.
-          net.ipv6.conf.all.accept_ra: 0
-          net.ipv6.conf.default.accept_ra: 0
-
-          # Enable RFC-recommended source validation feature.
-          net.ipv4.conf.all.rp_filter: 1
-          net.ipv4.conf.default.rp_filter: 1
-
-          # Reduce the surface on SMURF attacks.
-          # Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
-          net.ipv4.icmp_echo_ignore_broadcasts: 1
-
-          # There is no reason to accept bogus error responses from ICMP, so ignore them instead.
-          net.ipv4.icmp_ignore_bogus_error_responses: 1
-
-          # Limit the amount of traffic the system uses for ICMP.
-          net.ipv4.icmp_ratelimit: 100
-
-          # Adjust the ICMP ratelimit to include ping, dst unreachable,
-          # source quench, ime exceed, param problem, timestamp reply, information reply
-          net.ipv4.icmp_ratemask: 88089
-
-          # Disable IPv6
-          net.ipv6.conf.all.disable_ipv6: 1
-
-          # Protect against wrapping sequence numbers at gigabit speeds
-          net.ipv4.tcp_timestamps: 0
-
-          # Define restriction level for announcing the local source IP
-          net.ipv4.conf.all.arp_ignore: 1
-
-          # Define mode for sending replies in response to
-          # received ARP requests that resolve local target IP addresses
-          net.ipv4.conf.all.arp_announce: 2
-
-          # RFC 1337 fix F1
-          net.ipv4.tcp_rfc1337: 1
 ```
 
 Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
