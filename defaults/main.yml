@@ -17,8 +17,9 @@ ssh_server_weak_hmac: false             # sshd
 ssh_client_weak_kex: false              # ssh
 ssh_server_weak_kex: false              # sshd
 
-# If true, password login is allowed. For sshd, it is always set to no password login.
+# If true, password login is allowed
 ssh_client_password_login: false          # ssh
+ssh_server_password_login: false          # sshd
 
 # ports on which ssh-server should listen
 ssh_server_ports: ['22']      # sshd

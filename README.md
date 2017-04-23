@@ -46,6 +46,8 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_client_roaming` | false | enable experimental client roaming|
 |`sshd_moduli_minimum` | 2048 | remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam|
 |`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
+|`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
+|`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
 
 ## Example Playbook
 
