@@ -1,62 +1,82 @@
 ---
 driver:
-  name: vagrant
+  name: docker
+  privileged: true
+  use_sudo: false
+
+transport:
+  max_ssh_sessions: 5
+
 provisioner:
   name: ansible_playbook
-  test_repo_uri: https://github.com/hardening-io/tests-mysql-hardening.git
   hosts: all
-  playbook: default.yml
   require_ansible_repo: false
   require_ansible_omnibus: true
-  requirements_path: requirements.yml
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
   ansible_verbose: true
   ansible_diff: true
+  hosts: all
   roles_path: ../ansible-mysql-hardening/
+  playbook: default.yml
+  requirements_path: requirements.yml
   sudo_command: 'sudo -E -H'
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
-- name: ubuntu-14.04
-  driver_config:
-    box: opscode-ubuntu-14.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-6.5
-  driver_config:
-    box: opscode-centos-6.5
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
-- name: centos-7.2
-  driver_config:
-    box: opscode-centos-7.2
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
-- name: oracle-6.4
-  driver_config:
-    box: oracle-6.4
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
-- name: oracle-6.5
-  driver_config:
-    box: oracle-6.5
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-6
-  driver_config:
-    box: debian-6
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-6.0.10_chef-provisionerless.box
-- name: debian-7
-  driver_config:
-    box: debian-7
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.8_chef-provisionerless.box
-- name: debian-8
-  driver_config:
-    box: debian-8
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
+- name: centos6-ansible-latest
+  driver:
+    image: rndmh3ro/docker-centos6-ansible:latest
+    platform: centos
+- name: centos7-ansible-latest
+  driver:
+    image: rndmh3ro/docker-centos7-ansible:latest
+    platform: centos
+- name: oracle6-ansible-latest
+  driver:
+    image: rndmh3ro/docker-oracle6-ansible:latest
+    platform: centos
+- name: oracle7-ansible-latest
+  driver:
+    image: rndmh3ro/docker-oracle7-ansible:latest
+    platform: centos
+- name: ubuntu1204-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1204-ansible:latest
+    platform: ubuntu
+    run_command: /sbin/init
+- name: ubuntu1404-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1404-ansible:latest
+    platform: ubuntu
+- name: ubuntu1604-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1604-ansible:latest
+    platform: ubuntu
+- name: debian7-ansible-latest
+  driver:
+    image: rndmh3ro/docker-debian7-ansible:latest
+    platform: debian
+    intermediate_instructions:
+    - RUN /usr/bin/apt-get update
+    - RUN /usr/bin/apt-get install -y procps
+- name: debian8-ansible-latest
+  driver:
+    image: rndmh3ro/docker-debian8-ansible:latest
+    platform: debian
+    intermediate_instructions:
+    - RUN /usr/bin/apt-get update
+    - RUN /usr/bin/apt-get install -y procps
+    pid_one_command: /bin/systemd
+- name: debian9-ansible-latest
+  driver:
+    image: rndmh3ro/docker-debian9-ansible:latest
+    platform: debian
+
+verifier:
+  name: inspec
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/mysql-baseline
+
 suites:
-- name: ansible_1.9
-  provisioner:
-    ansible_version: 1.9.4
-- name: ansible_latest
+- name: mysql
