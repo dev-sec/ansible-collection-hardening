@@ -39,11 +39,6 @@ platforms:
   driver:
     image: rndmh3ro/docker-oracle7-ansible:latest
     platform: centos
-- name: ubuntu1204-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1204-ansible:latest
-    platform: ubuntu
-    run_command: /sbin/init
 - name: ubuntu1404-ansible-latest
   driver:
     image: rndmh3ro/docker-ubuntu1404-ansible:latest
