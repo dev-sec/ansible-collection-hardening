@@ -11,11 +11,11 @@
 
 - include: configure.yml
   when: mysql_hardening_enabled
-  tags: 
+  tags:
     - mysql_hardening
 
 - include: mysql_secure_installation.yml
   when: mysql_hardening_enabled
-  tags: 
+  tags:
     - mysql_hardening
     - mysql_secure_installation
