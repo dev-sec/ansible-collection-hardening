@@ -1,0 +1,38 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_playbook
+  hosts: all
+  require_ansible_repo: false
+  require_ansible_omnibus: true
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbose: true
+  roles_path: ../ansible-mysql-hardening/
+  playbook: default.yml
+  requirements_path: requirements.yml
+  sudo_command: 'sudo -E -H'
+
+transport:
+  max_ssh_sessions: 5
+
+platforms:
+- name: ubuntu-14.04
+- name: ubuntu-16.04
+- name: centos-6.8
+- name: centos-7.3
+- name: oracle-6.8
+- name: oracle-7.3
+- name: debian-7.11
+- name: debian-8.7
+
+verifier:
+  name: inspec
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/mysql-baseline/
+
+suites:
+- name: mysql

@@ -2,13 +2,14 @@
 mysql_hardening_enabled: yes
 
 # general configuration
-mysql_hardening_user: 'mysql'
+mysql_cnf_owner: 'root' # owner of /etc/mysql/*.cnf files
+mysql_hardening_user: 'mysql' # owner of data
 mysql_hardening_group: 'root'
 mysql_datadir: '/var/lib/mysql'
 mysql_hardening_mysql_hardening_conf_file: '{{mysql_hardening_mysql_confd_dir}}/hardening.cnf'
 # You have to change this to your own strong enough mysql root password
 mysql_root_password: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
-# There .my.cnf with mysql root credentials will be installed 
+# There .my.cnf with mysql root credentials will be installed
 mysql_user_home: "{{ ansible_env.HOME}}"
 
 # ensure the following parameters are set properly
@@ -47,3 +48,5 @@ mysql_hardening_options:
 
   # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-file-priv
   secure-file-priv: '/tmp'
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_user
+  user: '{{mysql_hardening_user}}'
