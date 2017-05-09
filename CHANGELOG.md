@@ -1,52 +1,43 @@
 # Change Log
 
-## [4.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.0.0) (2017-04-22)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.2.0...4.0.0)
-
-### Breaking Changes:
-
-- remove support for ansible 1.9 [\#87](https://github.com/dev-sec/ansible-ssh-hardening/pull/87) ([rndmh3ro](https://github.com/rndmh3ro))
-  - **Ansible 1.9 is not supported anymore**
-
-- Change the ssh_client_ports list variable into a simple non-list variable named ssh_client_port.  [\#84](https://github.com/dev-sec/ansible-ssh-hardening/pull/84) ([fullyint](https://github.com/fullyint))
-  - Before: 
-  ```
-    {% for port in ssh_client_ports -%}
-    Port {{port}}
-    {% endfor %}
-  ```
-  - After:
-  ```
-     Port {{ ssh_client_port }}
-  ```
-
-- Fix ssh config to handle custom options per Host [\#83](https://github.com/dev-sec/ansible-ssh-hardening/pull/83) ([fullyint](https://github.com/fullyint))
-  - Before:
-  ```
-    # one or more hosts, to which ssh-client can connect to. Default is empty, but should be configured for security reasons!
-    ssh_remote_hosts: []           # ssh
-  ```
-  - After:
-  ```
-    # Hosts with custom options.            # ssh
-    # Example:
-    # ssh_remote_hosts:
-    #   - names: ['example.com', 'example2.com']
-    #     options: ['Port 2222', 'ForwardAgent yes']
-    #   - names: ['example3.com']
-    #     options: ['StrictHostKeyChecking no']
-    ssh_remote_hosts: []
-  ```
----
+## [4.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.0) (2017-05-09)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.0.0...4.1.0)
 
 **Implemented enhancements:**
 
+- Provide option to allow password server login [\#106](https://github.com/dev-sec/ansible-ssh-hardening/issues/106)
+- Deprecation warning always\_run [\#82](https://github.com/dev-sec/ansible-ssh-hardening/issues/82)
+- Added support for UseDNS config switch [\#109](https://github.com/dev-sec/ansible-ssh-hardening/pull/109) ([ftaeger](https://github.com/ftaeger))
+- Added support for UseDNS config switch [\#108](https://github.com/dev-sec/ansible-ssh-hardening/pull/108) ([ftaeger](https://github.com/ftaeger))
+
+**Fixed bugs:**
+
+- `create ssh\_config and set permissions to root/644` step repeated [\#104](https://github.com/dev-sec/ansible-ssh-hardening/issues/104)
+
+**Merged pull requests:**
+
+- Added support for PermitTunnel config switch [\#112](https://github.com/dev-sec/ansible-ssh-hardening/pull/112) ([fti7](https://github.com/fti7))
+- Adds option to enable password based authentication on the server [\#107](https://github.com/dev-sec/ansible-ssh-hardening/pull/107) ([colin-nolan](https://github.com/colin-nolan))
+
+## [4.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.0.0) (2017-04-22)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.2.0...4.0.0)
+
+**Implemented enhancements:**
+
+- Avoid small primes for DH and allow rebuild of DH primes [\#89](https://github.com/dev-sec/ansible-ssh-hardening/issues/89)
+- Accommodate missing plugins in kitchen\_vagrant\_block.rb [\#100](https://github.com/dev-sec/ansible-ssh-hardening/pull/100) ([fullyint](https://github.com/fullyint))
 - Use different Hostkeys according to installed ssh version [\#99](https://github.com/dev-sec/ansible-ssh-hardening/pull/99) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove small dh primes [\#97](https://github.com/dev-sec/ansible-ssh-hardening/pull/97) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add Ed25519 SSH host key to match ssh-baseline [\#96](https://github.com/dev-sec/ansible-ssh-hardening/pull/96) ([techraf](https://github.com/techraf))
+- Add Ed25519 SSH host key to match commit 28b4df3 in ssh-baseline [\#96](https://github.com/dev-sec/ansible-ssh-hardening/pull/96) ([techraf](https://github.com/techraf))
 - Add support for FreeBSD OpenSSH server and client [\#95](https://github.com/dev-sec/ansible-ssh-hardening/pull/95) ([jbenden](https://github.com/jbenden))
+- Replace deprecated always\_run with check\_mode [\#93](https://github.com/dev-sec/ansible-ssh-hardening/pull/93) ([jbenden](https://github.com/jbenden))
 - Defaults: Remove DSA from SSH host keys to match ssh-baseline profile [\#92](https://github.com/dev-sec/ansible-ssh-hardening/pull/92) ([techraf](https://github.com/techraf))
+- use new docker images [\#91](https://github.com/dev-sec/ansible-ssh-hardening/pull/91) ([rndmh3ro](https://github.com/rndmh3ro))
+- use centos 7 in vagrant, limit ssh conns [\#88](https://github.com/dev-sec/ansible-ssh-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
+- remove support for ansible 1.9 [\#87](https://github.com/dev-sec/ansible-ssh-hardening/pull/87) ([rndmh3ro](https://github.com/rndmh3ro))
 - make ChallengeResponseAuthentication configurable [\#85](https://github.com/dev-sec/ansible-ssh-hardening/pull/85) ([rndmh3ro](https://github.com/rndmh3ro))
+- List only one Port in ssh config [\#84](https://github.com/dev-sec/ansible-ssh-hardening/pull/84) ([fullyint](https://github.com/fullyint))
+- Fix ssh config to handle custom options per Host [\#83](https://github.com/dev-sec/ansible-ssh-hardening/pull/83) ([fullyint](https://github.com/fullyint))
 
 **Fixed bugs:**
 
@@ -63,12 +54,6 @@
 
 - remove duplicate section [\#105](https://github.com/dev-sec/ansible-ssh-hardening/pull/105) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix ssh\_server\_ports and ssh\_client\_ports documentation bug [\#80](https://github.com/dev-sec/ansible-ssh-hardening/pull/80) ([kivilahtio](https://github.com/kivilahtio))
-
-**Other improvements:**
-- Accommodate missing plugins in kitchen\_vagrant\_block.rb [\#100](https://github.com/dev-sec/ansible-ssh-hardening/pull/100) ([fullyint](https://github.com/fullyint))
-- Replace deprecated always\_run with check\_mode [\#93](https://github.com/dev-sec/ansible-ssh-hardening/pull/93) ([jbenden](https://github.com/jbenden))
-- use new docker images [\#91](https://github.com/dev-sec/ansible-ssh-hardening/pull/91) ([rndmh3ro](https://github.com/rndmh3ro))
-- use centos 7 in vagrant, limit ssh conns [\#88](https://github.com/dev-sec/ansible-ssh-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [3.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/3.2.0) (2016-10-24)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1.0...3.2.0)
