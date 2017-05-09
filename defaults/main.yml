@@ -39,6 +39,9 @@ ssh_max_auth_retries: 2
 ssh_client_alive_interval: 600          # sshd
 ssh_client_alive_count: 3               # sshd
 
+# Allow SSH Tunnels
+ssh_permit_tunnel: false
+
 # Hosts with custom options.            # ssh
 # Example:
 # ssh_remote_hosts:

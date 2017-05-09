@@ -173,7 +173,7 @@ ClientAliveInterval {{ssh_client_alive_interval}}
 ClientAliveCountMax {{ssh_client_alive_count}}
 
 # Disable tunneling
-PermitTunnel no
+PermitTunnel {{ 'yes' if ssh_permit_tunnel else 'no' }}
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
