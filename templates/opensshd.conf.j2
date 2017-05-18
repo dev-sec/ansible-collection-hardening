@@ -190,6 +190,8 @@ GatewayPorts no
 X11Forwarding no
 X11UseLocalhost yes
 
+# Look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
+UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
 
 # Misc. configuration
 # ===================
@@ -222,6 +224,3 @@ PasswordAuthentication no
 PermitRootLogin no
 X11Forwarding no
 {% endif %}
-
-#  look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
-UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
