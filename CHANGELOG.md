@@ -1,5 +1,17 @@
 # Change Log
 
+## [4.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.1) (2017-05-18)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.0...4.1.1)
+
+**Implemented enhancements:**
+
+- fix validation error [\#113](https://github.com/dev-sec/ansible-ssh-hardening/pull/113) ([pwyliu](https://github.com/pwyliu))
+
+**Fixed bugs:**
+
+- fix validation error [\#113](https://github.com/dev-sec/ansible-ssh-hardening/pull/113) ([pwyliu](https://github.com/pwyliu))
+
+
 ## [4.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.0) (2017-05-09)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.0.0...4.1.0)
 
