@@ -6,7 +6,7 @@
 
 ## Description
 
-Provides security configurations for MySQL. It is intended to set up production-ready mysql instances that are configured with minimal surface for attackers.
+Provides security configurations for MySQL. It is intended to set up production-ready mysql instances that are configured with minimal surface for attackers. Furthermore it is intended to be compliant with the [DevSec MySQL Baseline](https://github.com/dev-sec/mysql-baseline).
 
 This role focuses on security configuration of MySQL. Therefore you can add this hardening role alongside your existing MySQL configuration in Ansible.
 
