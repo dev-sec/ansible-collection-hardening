@@ -6,7 +6,7 @@
 
 ## Description
 
-This role provides secure nginx configuration.
+This role provides secure nginx configuration. It is intended to be compliant with the [DevSec Nginx Baseline](https://github.com/dev-sec/nginx-baseline).
 
 It works with the following nginx-roles, including, but not limited to:
 * [geerlinggux.nginx](https://galaxy.ansible.com/geerlingguy/nginx/)
