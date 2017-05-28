@@ -32,6 +32,13 @@
     data: "0"
     type: dword
 
+- name: Disable SMB1 to Windows Shares | windows-base-105
+  win_regedit:
+    path: HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters
+    name: "SMB1"
+    data: "0"
+    type: dword
+
 - name: Strong Windows NTLMv2 Authentication Enabled; Weak LM Disabled | windows-base-201
   win_regedit:
     path: HKLM:\System\CurrentControlSet\Control\Lsa
