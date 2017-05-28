@@ -204,9 +204,7 @@ PermitUserEnvironment no
 # Misc. configuration
 # ===================
 
-{% if ssh_compression %}
-Compression {{ ssh_compression }}
-{% endif %}
+Compression {{ 'yes' if ssh_compression else 'no' }}
 
 UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
 
@@ -220,6 +218,25 @@ Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
 
 {% if ansible_os_family == 'Debian' %}
 DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
+{% endif %}
+
+# SFTP matching configuration
+# ===========================
+{% if sftp_enabled %}
+# Configuration, in case SFTP is used
+# override default of no subsystems
+# Subsystem sftp /opt/app/openssh5/libexec/sftp-server
+Subsystem sftp internal-sftp -l INFO -f LOCAL6
+
+# These lines must appear at the *end* of sshd_config
+Match Group sftponly
+ForceCommand internal-sftp -l INFO -f LOCAL6
+ChrootDirectory {{ sftp_chroot_dir }}
+AllowTcpForwarding no
+AllowAgentForwarding no
+PasswordAuthentication no
+PermitRootLogin no
+X11Forwarding no
 {% endif %}
 
 # Group matching configuration
@@ -242,21 +259,3 @@ Match User {{ item.user }}
 {% endfor %}
 {% endif %}
 
-# SFTP matching configuration
-# ===========================
-{% if sftp_enabled %}
-# Configuration, in case SFTP is used
-# override default of no subsystems
-# Subsystem sftp /opt/app/openssh5/libexec/sftp-server
-Subsystem sftp internal-sftp -l INFO -f LOCAL6
-
-# These lines must appear at the *end* of sshd_config
-Match Group sftponly
-ForceCommand internal-sftp -l INFO -f LOCAL6
-ChrootDirectory {{ sftp_chroot_dir }}
-AllowTcpForwarding no
-AllowAgentForwarding no
-PasswordAuthentication no
-PermitRootLogin no
-X11Forwarding no
-{% endif %}
