@@ -6,7 +6,7 @@
 
 ## Description
 
-This role provides secure ssh-client and ssh-server configurations.
+This role provides secure ssh-client and ssh-server configurations.  It is intended to be compliant with the [DevSec SSH  Baseline](https://github.com/dev-sec/ssh-baseline).
 
 Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
 
