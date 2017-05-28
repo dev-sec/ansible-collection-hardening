@@ -29,10 +29,6 @@ env:
     version: latest
     init: /sbin/init
 
-  - distro: ubuntu1204
-    version: latest
-    init: /sbin/init
-
   - distro: debian7
     version: latest
     init: /sbin/init
