@@ -27,7 +27,7 @@
     ssh_client_cbc_required: true
     ssh_client_weak_kex: true
     ssh_challengeresponseauthentication: true
-    ssh_compression: 'yes'
+    ssh_compression: true
     ssh_allow_users: 'root kitchen vagrant'
     ssh_allow_groups: 'root kitchen vagrant'
     ssh_deny_users: 'foo bar'
@@ -55,7 +55,7 @@
     ssh_use_dns: true
     ssh_use_pam: true
 
-- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
-  hosts: localhost
-  roles:
-    - ansible-ssh-hardening
+#- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+#  hosts: localhost
+#  roles:
+#    - ansible-ssh-hardening

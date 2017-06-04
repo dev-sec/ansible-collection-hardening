@@ -7,7 +7,8 @@
 # ===================
 
 # Either disable or only allowssh root login via certificates.
-PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' }}
+PermitRootLogin {% if ssh_allow_root_with_key|bool %} without-password {% else %} no {% endif %}
+#PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' | bool }}
 
 # Define which port sshd should listen to. Default to `22`.
 {% for port in ssh_server_ports -%}
@@ -220,12 +221,13 @@ Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
 DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
 {% endif %}
 
+{% if sftp_enabled %}
 # SFTP matching configuration
 # ===========================
-{% if sftp_enabled %}
 # Configuration, in case SFTP is used
 # override default of no subsystems
 # Subsystem sftp /opt/app/openssh5/libexec/sftp-server
+
 Subsystem sftp internal-sftp -l INFO -f LOCAL6
 
 # These lines must appear at the *end* of sshd_config
@@ -239,23 +241,23 @@ PermitRootLogin no
 X11Forwarding no
 {% endif %}
 
+{% if ssh_server_match_group %}
 # Group matching configuration
 # ============================
 
-{% if ssh_server_match_group %}
 {% for item in ssh_server_match_group %}
 Match Group {{ item.group }}
     {{ item.rules | indent(4) }}
 {% endfor %}
 {% endif %}
 
+
+{% if ssh_server_match_user %}
 # User matching configuration
 # ===========================
 
-{% if ssh_server_match_user %}
 {% for item in ssh_server_match_user %}
 Match User {{ item.user }}
     {{ item.rules | indent(4) }}
 {% endfor %}
 {% endif %}
-
