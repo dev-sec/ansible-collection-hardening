@@ -32,4 +32,4 @@
 - name: change system accounts not on the user provided ignore-list
   user: name='{{item}}' shell='{{os_nologin_shell_path}}' password='*'
   with_items:
-    - '{{sys_accs_cond | default(omit) | difference(os_ignore_users) | list }}'
+    - '{{sys_accs_cond | default() | difference(os_ignore_users) | list }}'
