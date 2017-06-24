@@ -58,7 +58,7 @@
 
 - block: # only runs when selinux is running
   - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
-    yum: name="{{item}}" state=installed
+    package: name="{{item}}" state=installed
     with_items:
       - policycoreutils-python
       - checkpolicy
