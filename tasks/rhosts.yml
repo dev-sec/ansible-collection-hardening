@@ -7,7 +7,7 @@
 
 - name: delete rhosts-files from system | DTAG SEC Req 3.21-4
   file: dest='~{{ item }}/.rhosts' state=absent
-  with_items: '{{ users.stdout_lines | default(omit) }}'
+  with_flattened: '{{ users.stdout_lines | default([]) }}'
 
 - name: delete hosts.equiv from system | DTAG SEC Req 3.21-4
   file: dest='/etc/hosts.equiv' state=absent

@@ -19,6 +19,10 @@
   command: 'update-initramfs -u'
   when: initramfs.changed
 
+- name: create a combined sysctl-dict if overwrites are defined
+  set_fact: sysctl_config="{{ sysctl_config | combine(sysctl_overwrite) }}"
+  when: sysctl_overwrite | default()
+
 - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
   sysctl:
     name: '{{ item.key }}'

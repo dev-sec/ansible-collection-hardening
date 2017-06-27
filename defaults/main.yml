@@ -58,10 +58,6 @@ ufw_default_application_policy: 'SKIP'
 ufw_manage_builtins: 'no'
 ufw_ipt_modules: 'nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns'
 
-# CAUTION
-# If you want to overwrite sysctl-variables,
-# you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
-
 sysctl_config:
   # Disable IPv4 traffic forwarding.
   net.ipv4.ip_forward: 0
@@ -107,9 +103,73 @@ sysctl_config:
   # RFC 1337 fix F1
   net.ipv4.tcp_rfc1337: 1
 
-# CAUTION
-# If you want to overwrite sysctl-variables,
-# you have to overwrite the *whole* dict, or else only the single overwritten will be actually used.
+  # Send(router) or accept(host) RFC1620 shared media redirects
+  net.ipv4.conf.all.shared_media: 1
+  net.ipv4.conf.default.shared_media: 1
+
+  # Accepting source route can lead to malicious networking behavior,
+  # so disable it if not needed.
+  net.ipv4.conf.all.accept_source_route: 0
+  net.ipv4.conf.default.accept_source_route: 0
+
+  # Accepting redirects can lead to malicious networking behavior, so disable
+  # it if not needed.
+  net.ipv4.conf.default.accept_redirects: 0
+  net.ipv4.conf.all.accept_redirects: 0
+  net.ipv4.conf.all.secure_redirects: 0
+  net.ipv4.conf.default.secure_redirects: 0
+  net.ipv6.conf.default.accept_redirects: 0
+  net.ipv6.conf.all.accept_redirects: 0
+
+  # For non-routers: don't send redirects, these settings are 0
+  net.ipv4.conf.all.send_redirects: 0
+  net.ipv4.conf.default.send_redirects: 0
+
+  # log martian packets
+  net.ipv4.conf.all.log_martians: 1
+
+  # ipv6 config
+  # NSA 2.5.3.2.5 Limit Network-Transmitted Configuration
+  net.ipv6.conf.default.router_solicitations: 0
+  net.ipv6.conf.default.accept_ra_rtr_pref: 0
+  net.ipv6.conf.default.accept_ra_pinfo: 0
+  net.ipv6.conf.default.accept_ra_defrtr: 0
+  net.ipv6.conf.default.autoconf: 0
+  net.ipv6.conf.default.dad_transmits: 0
+  net.ipv6.conf.default.max_addresses: 1
+
+  # This settings controls how the kernel behaves towards module changes at
+  # runtime. Setting to 1 will disable module loading at runtime.
+  # Setting it to 0 is actually never supported.
+  # kernel.modules_disabled: 1
+
+  # Magic Sysrq should be disabled, but can also be set to a safe value if so
+  # desired for physical machines. It can allow a safe reboot if the system hangs
+  # and is a 'cleaner' alternative to hitting the reset button.
+  # The following values are permitted:
+  # * **0**   - disable sysrq
+  # * **1**   - enable sysrq completely
+  # * **>1**  - bitmask of enabled sysrq functions:
+  # * **2**   - control of console logging level
+  # * **4**   - control of keyboard (SAK, unraw)
+  # * **8**   - debugging dumps of processes etc.
+  # * **16**  - sync command
+  # * **32**  - remount read-only
+  # * **64**  - signalling of processes (term, kill, oom-kill)
+  # * **128** - reboot/poweroff
+  # * **256** - nicing of all RT tasks
+  kernel.sysrq: 0
+
+  # Prevent core dumps with SUID. These are usually only
+  # needed by developers and may contain sensitive information.
+  fs.suid_dumpable: 0
+
+  # Virtual memory regions protection
+  kernel.randomize_va_space: 2
+
+# Do not delete the following line or otherwise the playbook will fail
+# at task "create a combined sysctl-dict if overwrites are defined"
+sysctl_overwrite:
 
 sysctl_rhel_config:
   # ExecShield protection against buffer overflows

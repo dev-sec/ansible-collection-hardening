@@ -22,8 +22,6 @@ provisioner:
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
   playbook: default.yml
-  ansible_extra_flags:
-    - "--skip-tags=sysctl"
 
 platforms:
 - name: centos6-ansible-latest
@@ -42,10 +40,6 @@ platforms:
   driver:
     image: rndmh3ro/docker-oracle7-ansible:latest
     platform: centos
-- name: ubuntu1204-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1204-ansible:latest
-    platform: ubuntu
 - name: ubuntu1404-ansible-latest
   driver:
     image: rndmh3ro/docker-ubuntu1404-ansible:latest

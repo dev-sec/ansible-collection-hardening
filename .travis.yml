@@ -29,10 +29,6 @@ env:
     version: latest
     init: /sbin/init
 
-  - distro: ubuntu1204
-    version: latest
-    init: /sbin/init
-
   - distro: debian7
     version: latest
     init: /sbin/init
@@ -55,10 +51,10 @@ script:
   # Run container in detached state.
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-os-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
-  # Test role.
+   # Test role.
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/default.yml --skip-tags "sysctl"'
 
-  # Verify role
+   # Verify role
   - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-06 os-07 package-01 package-02 package-03 package-04 package-05 package-06'
 
 notifications:

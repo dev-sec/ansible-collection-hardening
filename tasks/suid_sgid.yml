@@ -2,7 +2,7 @@
 - name: remove suid/sgid bit from binaries in blacklist
   file: path='{{item}}' mode='a-s' state=file follow=yes
   failed_when: false
-  with_items:
+  with_flattened:
     - '{{ os_security_suid_sgid_system_blacklist }}'
     - '{{ os_security_suid_sgid_blacklist }}'
 
@@ -19,6 +19,6 @@
 
 - name: remove suid/sgid bit from all binaries except in system and user whitelist
   file: path='{{item}}' mode='a-s' state=file follow=yes
-  with_items:
-    - '{{ suid | default(omit) | difference(os_security_suid_sgid_whitelist) }}'
+  with_flattened:
+    - '{{ suid | default([]) | difference(os_security_suid_sgid_whitelist) }}'
   when: os_security_suid_sgid_remove_from_unknown
