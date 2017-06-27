@@ -77,6 +77,40 @@
     failed_when: false
     changed_when: false
     check_mode: no
+            
+
+  # Install the 2FA packages and setup the config in PAM and SSH
+
+  - block:
+    - name: Install google authenticator PAM module
+      apt: name=libpam-google-authenticator state=installed
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Install google authenticator PAM module
+      yum: name=google-authenticator state=installed
+      when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+    - name: Add google auth module to PAM
+      lineinfile: "dest=/etc/pam.d/sshd state=present insertbefore=BOF regexp='pam_google_authenticator.so$' line='auth required pam_google_authenticator.so'"
+      notify: restart sshd
+
+    - name: Remove password auth from PAM
+      replace:
+        dest: /etc/pam.d/sshd
+        regexp: '^@include common-auth'
+        replace: '#@include common-auth'
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Remove password auth from PAM
+      replace:
+        dest: /etc/pam.d/sshd
+        regexp: ''
+        replace: ''
+      when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+    when: ssh_use_pam and ssh_challengeresponseauthentication and ssh_google_auth
+
+
 
   # The following tasks only get executed when selinux is in state enforcing, UsePam is "no" and the ssh_password module is installed.
   # See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23

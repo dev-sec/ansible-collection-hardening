@@ -49,6 +49,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
 |`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
+|`ssh_google_auth` | false | `true` to enable google authenticator based TOTP 2FA |
 
 ## Example Playbook
 
