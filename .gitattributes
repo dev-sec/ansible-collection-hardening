@@ -1,0 +1,35 @@
+# These files are text and should be normalized (Convert crlf => lf)
+*.php text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.txt text eol=lf
+*.ini text eol=lf
+*.inc text eol=lf
+.htaccess text eol=lf
+*.pp text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.rpm binary
+

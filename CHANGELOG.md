@@ -1,5 +1,22 @@
 # Change Log
 
+## [4.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.1.0) (2017-06-27)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.0.0...4.1.0)
+
+**Fixed bugs:**
+
+- Change system accounts not on the user provided ignore-list items are not JSON serializable [\#125](https://github.com/dev-sec/ansible-os-hardening/issues/125)
+
+**Closed issues:**
+
+- Enhancement: Pin python dependencies for development and testing [\#127](https://github.com/dev-sec/ansible-os-hardening/issues/127)
+- Update readme to include baselines [\#122](https://github.com/dev-sec/ansible-os-hardening/issues/122)
+
+**Merged pull requests:**
+
+- Converts set to JSON-serializable list [\#126](https://github.com/dev-sec/ansible-os-hardening/pull/126) ([pestaa](https://github.com/pestaa))
+- add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.2.0...4.0.0)
 
