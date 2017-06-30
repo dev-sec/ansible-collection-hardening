@@ -208,6 +208,9 @@ Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
 DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
 {% endif %}
 
+# Reject keys that are explicitly blacklisted
+RevokedKeys /etc/ssh/revoked_keys
+
 {% if sftp_enabled %}
 # Configuration, in case SFTP is used
 ## override default of no subsystems
