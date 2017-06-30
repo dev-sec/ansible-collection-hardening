@@ -1,0 +1,4 @@
+# {{ansible_managed}}
+{% for key in ssh_server_revoked_keys %}
+{{key}}
+{% endfor %}
