@@ -1,12 +1,11 @@
 # windows-hardening (Ansible Role)
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-windows-hardening.svg)][1]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
 [![Ansible Galaxy]()][3]
 
 ## Description
 
-This roles provides a role for ensuring that a Windows 2012 R2 system is compliant with the [DevSec Windows Baseline](https://github.com/dev-sec/windows-baseline).
+These roles ensure that a Windows 2012 R2 or Windows 2016 system is compliant with the [DevSec Windows Baseline](https://github.com/dev-sec/windows-baseline).
 
 ## Requirements
 
@@ -14,18 +13,27 @@ This roles provides a role for ensuring that a Windows 2012 R2 system is complia
 
 ## Variables
 
-| Name           | Default Value | Description                        |
-| -------------- | ------------- | -----------------------------------|
-| TBD            |               |                                    |
+| Name                                           | Default Value   | Description                         |
+| ---------------------------------------------- | --------------- | ----------------------------------- |
+| `win_security_PasswordComplexity`              | `1`             |                                     |
+| `win_security_LockoutBadCount`                 | `4`             |                                     |
+| `win_security_ResetLockoutCount`               | `15`            |                                     |
+| `win_security_LockoutDuratio`                  | `15`            |                                     |
+| `win_security_SeRemoteInteractiveLogonRight`   | `*S-1-5-32-544` |                                     |
+| `win_security_SeTcbPrivilege`                  | `*S-1-0-0`      |                                     |
+| `win_security_SeMachineAccountPrivilege`       | `*S-1-5-32-544` |                                     |
+| `win_security_SeTrustedCredManAccessPrivilege` | `*S-1-0-0`      |                                     |
+| `win_security_SeNetworkLogonRight`             | `*S-1-0-0`      |                                     |
 
 ## Example Playbook
 
+```
     - hosts: localhost
       roles:
         - dev-sec.windows-hardening
+```
 
 ## Local Testing
-
 
 For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
 
