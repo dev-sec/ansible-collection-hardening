@@ -22,6 +22,7 @@ platforms:
       require_windows_support: true
       require_chef_for_busser: false
       ansible_host_key_checking: false
+      ansible_diff: true
       ansible_verbose: false
       ansible_verbosity: 3
       playbook: default.yml
