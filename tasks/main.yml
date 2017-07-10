@@ -104,9 +104,9 @@
     - name: Remove password auth from PAM
       replace:
         dest: /etc/pam.d/sshd
-        regexp: ''
-        replace: ''
-      when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+        regexp: '^auth       substack     password-auth'
+        replace: '#auth       substack     password-auth'
+      when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux'
 
     when: ssh_use_pam and ssh_challengeresponseauthentication and ssh_google_auth
 
