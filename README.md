@@ -50,6 +50,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
 |`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
 |`ssh_google_auth` | false | `true` to enable google authenticator based TOTP 2FA |
+|`ssh_server_revoked_keys` | [] | a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.|
 
 ## Example Playbook
 
