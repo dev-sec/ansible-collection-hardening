@@ -1,4 +1,21 @@
 # Change Log
+
+## [4.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.2.0) (2017-06-30)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.2...4.2.0)
+
+**Implemented enhancements:**
+
+- Add support to specify a list of revoked public keys [\#120](https://github.com/dev-sec/ansible-ssh-hardening/pull/120) ([bachp](https://github.com/bachp))
+- use package instead of yum so the operation works on Fedora [\#119](https://github.com/dev-sec/ansible-ssh-hardening/pull/119) ([stenwt](https://github.com/stenwt))
+
+**Fixed bugs:**
+
+- fails in --check mode [\#111](https://github.com/dev-sec/ansible-ssh-hardening/issues/111)
+
+**Merged pull requests:**
+
+- Do not use shell when not needed + Lint whitespaces [\#118](https://github.com/dev-sec/ansible-ssh-hardening/pull/118) ([krhubert](https://github.com/krhubert))
+
 ## [4.1.2](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.2) (2017-05-31)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.1...4.1.2)
 
@@ -9,7 +26,6 @@
 **Fixed bugs:**
 
 - User login failed after running this module [\#114](https://github.com/dev-sec/ansible-ssh-hardening/issues/114)
-- fails in --check mode [\#111](https://github.com/dev-sec/ansible-ssh-hardening/issues/111)
 
 **Closed issues:**
 

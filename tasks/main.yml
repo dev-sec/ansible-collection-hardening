@@ -28,6 +28,11 @@
     ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
   when: sshd_version.stdout >= '6.3'
 
+- name: create revoked_keys and set permissions to root/600
+  template: src='revoked_keys.j2' dest='/etc/ssh/revoked_keys' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
+  notify: restart sshd
+  when: ssh_server_hardening
+
 - name: create sshd_config and set permissions to root/600
   template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}" validate="/usr/sbin/sshd -T -f %s"
   notify: restart sshd
@@ -58,7 +63,7 @@
 
 - block: # only runs when selinux is running
   - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
-    yum: name="{{item}}" state=installed
+    package: name="{{item}}" state=installed
     with_items:
       - policycoreutils-python
       - checkpolicy
