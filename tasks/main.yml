@@ -15,18 +15,18 @@
 
 - name: set hostkeys according to openssh-version
   set_fact:
-    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key']
-  when: sshd_version.stdout >= '5.3'
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
+  when: sshd_version.stdout >= '6.3' and not ssh_host_key_files
 
 - name: set hostkeys according to openssh-version
   set_fact:
     ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key']
-  when: sshd_version.stdout >= '6.0'
+  when: sshd_version.stdout >= '6.0' and not ssh_host_key_files
 
 - name: set hostkeys according to openssh-version
   set_fact:
-    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
-  when: sshd_version.stdout >= '6.3'
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key']
+  when: sshd_version.stdout >= '5.3' and not ssh_host_key_files
 
 - name: create revoked_keys and set permissions to root/600
   template: src='revoked_keys.j2' dest='/etc/ssh/revoked_keys' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
