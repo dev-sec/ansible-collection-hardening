@@ -7,7 +7,7 @@
 # ===================
 
 # Either disable or only allowssh root login via certificates.
-PermitRootLogin {% if ssh_allow_root_with_key|bool %} without-password {% else %} no {% endif %}
+PermitRootLogin {% if (ssh_allow_root_with_key|bool) %} without-password {% else %} no {% endif %}
 #PermitRootLogin {{ 'without-password' if ssh_allow_root_with_key else 'no' | bool }}
 
 # Define which port sshd should listen to. Default to `22`.
@@ -16,7 +16,7 @@ Port {{port}}
 {% endfor %}
 
 # Address family should always be limited to the active network configuration.
-AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
+AddressFamily {{ 'any' if (network_ipv6_enable|bool) else 'inet' }}
 
 # Define which addresses sshd should listen to. Default to `0.0.0.0`, ie make sure you put your desired address in here, since otherwise sshd will listen to everyone.
 {% for address in ssh_listen_to -%}
@@ -128,12 +128,12 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
-UsePAM {{ 'yes' if ssh_use_pam else 'no' }}
+UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
-PasswordAuthentication {{ 'yes' if ssh_server_password_login else 'no' }}
+PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
 PermitEmptyPasswords no
-ChallengeResponseAuthentication {{ 'yes' if ssh_challengeresponseauthentication else 'no' }}
+ChallengeResponseAuthentication {{ 'yes' if (ssh_challengeresponseauthentication|bool) else 'no' }}
 
 # Only enable Kerberos authentication if it is configured.
 KerberosAuthentication no
@@ -173,15 +173,15 @@ ClientAliveInterval {{ssh_client_alive_interval}}
 ClientAliveCountMax {{ssh_client_alive_count}}
 
 # Disable tunneling
-PermitTunnel {{ 'yes' if ssh_permit_tunnel else 'no' }}
+PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
-AllowTcpForwarding {{ 'yes' if ssh_allow_tcp_forwarding else 'no' }}
+AllowTcpForwarding {{ 'yes' if (ssh_allow_tcp_forwarding|bool) else 'no' }}
 
 # Disable agent formwarding, since local agent could be accessed through forwarded connection.
 # no real advantage without denied shell access
-AllowAgentForwarding {{ 'yes' if ssh_allow_agent_forwarding else 'no' }}
+AllowAgentForwarding {{ 'yes' if (ssh_allow_agent_forwarding|bool) else 'no' }}
 
 # Do not allow remote port forwardings to bind to non-loopback addresses.
 GatewayPorts no
@@ -205,20 +205,20 @@ PermitUserEnvironment no
 # Misc. configuration
 # ===================
 
-Compression {{ 'yes' if ssh_compression else 'no' }}
+Compression {{ 'yes' if (ssh_compression|bool) else 'no' }}
 
-UseDNS {{ 'yes' if ssh_use_dns else 'no' }}
+UseDNS {{ 'yes' if (ssh_use_dns|bool) else 'no' }}
 
-PrintMotd {{ 'yes' if ssh_print_motd else 'no' }}
+PrintMotd {{ 'yes' if (ssh_print_motd|bool) else 'no' }}
 
 {% if ansible_os_family != 'FreeBSD' %}
-PrintLastLog {{ 'yes' if ssh_print_last_log else 'no' }}
+PrintLastLog {{ 'yes' if (ssh_print_last_log|bool) else 'no' }}
 {% endif %}
 
-Banner {{ '/etc/ssh/banner.txt' if ssh_banner else 'none' }}
+Banner {{ '/etc/ssh/banner.txt' if (ssh_banner|bool) else 'none' }}
 
 {% if ansible_os_family == 'Debian' %}
-DebianBanner {{ 'yes' if ssh_print_debian_banner else 'no' }}
+DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 {% endif %}
 
 # Reject keys that are explicitly blacklisted
