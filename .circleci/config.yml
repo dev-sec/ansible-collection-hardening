@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test-centos-7:
-    working_directory: ~/
+    working_directory: ~/ansible-os-hardening
     docker:
       - image: circleci/ruby:2.4
     steps:
@@ -16,7 +16,7 @@ jobs:
           name: Run test-kitchen
           command: bundle exec kitchen test os-centos7-ansible-latest
   test-ubuntu-trusty:
-    working_directory: ~/
+    working_directory: ~/ansible-os-hardening
     docker:
       - image: circleci/ruby:2.4
     steps:
