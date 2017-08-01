@@ -21,6 +21,7 @@ jobs:
       - image: circleci/ruby:2.4
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Install bundler
           command: gem install bundler
