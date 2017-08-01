@@ -9,7 +9,6 @@ jobs:
         - docker
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Install bundler
           command: gem install bundler
@@ -28,7 +27,6 @@ jobs:
         - docker
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Install bundler
           command: gem install bundler
