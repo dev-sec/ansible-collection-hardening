@@ -36,4 +36,3 @@ workflows:
     jobs:
       - test-centos-7
       - test-ubuntu-trusty
-      #- test-ubuntu-xenial
