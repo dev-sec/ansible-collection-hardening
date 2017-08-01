@@ -24,21 +24,9 @@ provisioner:
   playbook: default.yml
 
 platforms:
-- name: centos6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos6-ansible:latest
-    platform: centos
 - name: centos7-ansible-latest
   driver:
     image: rndmh3ro/docker-centos7-ansible:latest
-    platform: centos
-- name: oracle6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle6-ansible:latest
-    platform: centos
-- name: oracle7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle7-ansible:latest
     platform: centos
 - name: ubuntu1404-ansible-latest
   driver:
@@ -48,10 +36,6 @@ platforms:
   driver:
     image: rndmh3ro/docker-ubuntu1604-ansible:latest
     platform: ubuntu
-- name: debian7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian7-ansible:latest
-    platform: debian
 - name: debian8-ansible-latest
   driver:
     image: rndmh3ro/docker-debian8-ansible:latest
