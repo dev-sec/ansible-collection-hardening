@@ -1,15 +1,13 @@
 version: 2
 jobs:
   test-centos-7:
+    resource_class: medium
     working_directory: ~/ansible-os-hardening
     docker:
       - image: circleci/ruby:2.4
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Install and run ssh service on target
-          command: apt-get install openssh && service openssh restart    
       - run:
           name: Install bundler
           command: gem install bundler
@@ -20,15 +18,13 @@ jobs:
           name: Run test-kitchen
           command: bundle exec kitchen test os-centos7-ansible-latest
   test-ubuntu-trusty:
+    resource_class: medium
     working_directory: ~/ansible-os-hardening
     docker:
       - image: circleci/ruby:2.4
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Install and run ssh service on target
-          command: sudo apt-get install openssh && service openssh restart 
       - run:
           name: Install bundler
           command: gem install bundler
