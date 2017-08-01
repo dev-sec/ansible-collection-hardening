@@ -1,10 +1,12 @@
 version: 2
 jobs:
   test-centos-7:
-    resource_class: medium
     working_directory: ~/ansible-os-hardening
-    docker:
-      - image: circleci/ruby:2.4
+    machine:
+      ruby:
+        version: 2.4
+      services:
+        - docker
     steps:
       - checkout
       - setup_remote_docker
@@ -18,10 +20,12 @@ jobs:
           name: Run test-kitchen
           command: bundle exec kitchen test os-centos7-ansible-latest
   test-ubuntu-trusty:
-    resource_class: medium
     working_directory: ~/ansible-os-hardening
-    docker:
-      - image: circleci/ruby:2.4
+    machine:
+      ruby:
+        version: 2.4
+      services:
+        - docker
     steps:
       - checkout
       - setup_remote_docker
