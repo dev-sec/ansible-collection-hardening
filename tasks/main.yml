@@ -13,6 +13,14 @@
   lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*server_tokens" line="server_tokens {{nginx_server_tokens}};" insertafter="http {"
   notify: reload nginx
 
+- name: change ssl_protocols in main nginx.conf
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*ssl_protocols" line="ssl_protocols {{nginx_ssl_protocols}};" insertafter="http {"
+  notify: reload nginx
+
+- name: change ssl_prefer_server_ciphers in main nginx.conf
+  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*ssl_prefer_server_ciphers" line="ssl_prefer_server_ciphers {{nginx_ssl_prefer_server_ciphers}};" insertafter="http {"
+  notify: reload nginx
+
 - name: change client_max_body_size in main nginx.conf
   lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*client_max_body_size" line="client_max_body_size {{nginx_client_max_body_size}};" insertafter="http {"
   notify: reload nginx
