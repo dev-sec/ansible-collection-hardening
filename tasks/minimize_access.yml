@@ -28,6 +28,13 @@
     group: '{{ os_shadow_perms.group }}'
     mode: '{{ os_shadow_perms.mode }}'
 
+- name: change passwd ownership to root and mode to 0600 | os-03
+  file:
+    dest: '/etc/shadow'
+    owner: '{{ os_shadow_perms.owner }}'
+    group: '{{ os_shadow_perms.group }}'
+    mode: '{{ os_shadow_perms.mode }}'
+
 - name: change su-binary to only be accessible to user and group root
   file:
     dest: '/bin/su'
