@@ -12,6 +12,9 @@
 - include: minimize_access.yml
   tags: minimize_acces
 
+- include: modprobe.yml
+  tags: modprobe
+
 - include: pam.yml
   tags: pam
 

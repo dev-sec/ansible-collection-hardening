@@ -188,3 +188,14 @@ sysctl_rhel_config:
   kernel.exec-shield: 1
   # Syncookies is used to prevent SYN-flooding attacks. | sysctl-11
   net.ipv4.tcp_syncookies: 1
+
+# disable unused filesystems
+os_unused_filesystems:
+  - "cramfs"
+  - "freevxfs"
+  - "jffs2"
+  - "hfs"
+  - "hfsplus"
+  - "squashfs"
+  - "udf"
+  - "vfat"

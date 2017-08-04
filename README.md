@@ -71,6 +71,19 @@ We remove the following packages:
  * rsh-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.3)
  * prelink ([open-scap](https://static.open-scap.org/ssg-guides/ssg-sl7-guide-ospp-rhel7-server.html#xccdf_org.ssgproject.content_rule_disable_prelink))
 
+## Disabled filesystems
+
+We disable the following filesystems, because they're most likely not used:
+
+ * "cramfs"
+ * "freevxfs"
+ * "jffs2"
+ * "hfs"
+ * "hfsplus"
+ * "squashfs"
+ * "udf"
+ * "vfat"
+
 ## Example Playbook
 
     - hosts: localhost

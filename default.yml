@@ -3,6 +3,10 @@
   hosts: localhost
   roles:
     - ansible-os-hardening
+  pre_tasks:
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
@@ -54,6 +58,10 @@
 
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
   hosts: localhost
+  pre_tasks:
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes
   roles:
     - ansible-os-hardening
 
