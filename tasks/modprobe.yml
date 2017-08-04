@@ -1,8 +1,8 @@
 ---
 - name: install modprobe to disable filesystems | os-10
   package:
-    name: 'kmod'
-    state: 'present'
+    name: '{{modpprobe_package}}'
+    state: 'installed'
 
 - name: disable unused filesystems | os-10
   template:
