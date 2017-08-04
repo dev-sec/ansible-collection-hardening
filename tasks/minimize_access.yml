@@ -2,7 +2,7 @@
 # Using a two-pass approach for checking directories in order to support symlinks.
 - name: find directories for minimizing access
   stat:
-    path: "{{ item }}"
+    path: '{{ item }}'
   register: minimize_access_directories
   with_items:
     - '/usr/local/sbin'
@@ -14,13 +14,24 @@
     - '{{os_env_extra_user_paths}}'
 
 - name: minimize access
-  file: path='{{item.stat.path}}' mode='go-w' recurse=yes
+  file:
+    path: '{{item.stat.path}}'
+    mode: 'go-w'
+    recurse: 'yes'
   when: item.stat.isdir
-  with_items: "{{ minimize_access_directories.results }}"
+  with_items: '{{ minimize_access_directories.results }}'
 
-- name: change shadow ownership to root and mode to 0600 | DTAG SEC Req 3.21-7
-  file: dest='/etc/shadow' owner={{ os_shadow_perms.owner }} group={{ os_shadow_perms.group }} mode={{ os_shadow_perms.mode }}
+- name: change shadow ownership to root and mode to 0600 | os-02
+  file:
+    dest: '/etc/shadow'
+    owner: '{{ os_shadow_perms.owner }}'
+    group: '{{ os_shadow_perms.group }}'
+    mode: '{{ os_shadow_perms.mode }}'
 
 - name: change su-binary to only be accessible to user and group root
-  file: dest='/bin/su' owner=root group=root mode=0750
+  file:
+    dest: '/bin/su'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
   when: os_security_users_allow != None

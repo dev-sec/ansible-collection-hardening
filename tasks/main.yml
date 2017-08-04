@@ -1,6 +1,6 @@
 ---
 - name: add the OS specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
   tags: always
 
 - include: limits.yml
