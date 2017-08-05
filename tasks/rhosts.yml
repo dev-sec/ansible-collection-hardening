@@ -15,3 +15,9 @@
   file:
     dest: '/etc/hosts.equiv'
     state: 'absent'
+
+- name: delete .netrc-files from system | os-09
+  file:
+    dest: '~{{ item }}/.netrc'
+    state: 'absent'
+  with_flattened: '{{ users.stdout_lines | default([]) }}'
