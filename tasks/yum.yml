@@ -1,7 +1,7 @@
 ---
 - name: remove unused repositories
   file:
-    name: '/etc/yum.repos.d/{{item}}.repo'
+    name: '/etc/yum.repos.d/{{ item }}.repo'
     state: 'absent'
   with_items:
     - 'CentOS-Debuginfo'
@@ -24,7 +24,7 @@
   # https://stackoverflow.com/questions/37067827/ansible-deprecation-warning-for-undefined-variable-despite-when-clause
 - name: activate gpg-check for yum-repos
   replace:
-    dest: '{{item}}'
+    dest: '{{ item }}'
     regexp: '^\s*gpgcheck: 0'
     replace: 'gpgcheck: 1'
   with_flattened:
@@ -40,8 +40,8 @@
 
 - name: remove deprecated or insecure packages | package-01 - package-09
   yum:
-    name: '{{item}}'
+    name: '{{ item }}'
     state: 'absent'
   with_items:
-    - '{{os_security_packages_list}}'
+    - '{{ os_security_packages_list }}'
   when: os_security_packages_clean

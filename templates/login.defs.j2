@@ -85,7 +85,7 @@ KILLCHAR  025
 # Prefix these values with `0` to get octal, `0x` to get hexadecimal.
 # `022` is the "historical" value in Debian for UMASK
 # `027`, or even `077`, could be considered better for privacy.
-UMASK {{os_env_umask}}
+UMASK {{ os_env_umask }}
 
 # Enable setting of the umask group bits to be the same as owner bits (examples: `022` -> `002`, `077` -> `007`) for non-root users, if the uid is the same as gid, and username is the same as the primary group name.
 # If set to yes, userdel will remove the user´s group if it contains no more members, and useradd will create by default a group with the name of the user.
@@ -96,33 +96,33 @@ USERGROUPS_ENAB yes
 # -----------------------
 
 # Maximum number of days a password may be used.
-PASS_MAX_DAYS {{os_auth_pw_max_age}}
+PASS_MAX_DAYS {{ os_auth_pw_max_age }}
 
 # Minimum number of days allowed between password changes.
-PASS_MIN_DAYS {{os_auth_pw_min_age}}
+PASS_MIN_DAYS {{ os_auth_pw_min_age }}
 
 # Number of days warning given before a password expires.
 PASS_WARN_AGE	7
 
 # Min/max values for automatic uid selection in useradd
-UID_MIN			 {{os_auth_uid_min}}
+UID_MIN			 {{ os_auth_uid_min }}
 UID_MAX			60000
 # System accounts
-SYS_UID_MIN		  {{os_auth_sys_uid_min}}
-SYS_UID_MAX		  {{os_auth_sys_uid_max}}
+SYS_UID_MIN		  {{ os_auth_sys_uid_min }}
+SYS_UID_MAX		  {{ os_auth_sys_uid_max }}
 
 # Min/max values for automatic gid selection in groupadd
-GID_MIN			 {{os_auth_gid_min}}
+GID_MIN			 {{ os_auth_gid_min }}
 GID_MAX			60000
 # System accounts
-SYS_GID_MIN		  {{os_auth_sys_gid_min}}
-SYS_GID_MAX		  {{os_auth_sys_gid_max}}
+SYS_GID_MIN		  {{ os_auth_sys_gid_min }}
+SYS_GID_MAX		  {{ os_auth_sys_gid_max }}
 
 # Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
-LOGIN_RETRIES		{{os_auth_retries}}
+LOGIN_RETRIES		{{ os_auth_retries }}
 
 # Max time in seconds for login
-LOGIN_TIMEOUT		{{os_auth_timeout}}
+LOGIN_TIMEOUT		{{ os_auth_timeout }}
 
 # Which fields may be changed by regular users using chfn - use any combination of letters "frwh" (full name, room number, work phone, home phone).  If not defined, no changes are allowed.
 # For backward compatibility, "yes" = "rwh" and "no" = "frwh".

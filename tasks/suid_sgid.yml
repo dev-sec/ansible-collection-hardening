@@ -1,7 +1,7 @@
 ---
 - name: remove suid/sgid bit from binaries in blacklist | os-06
   file:
-    path: '{{item}}'
+    path: '{{ item }}'
     mode: 'a-s'
     state: 'file'
     follow: 'yes'
@@ -23,7 +23,7 @@
 
 - name: remove suid/sgid bit from all binaries except in system and user whitelist | os-06
   file:
-    path: '{{item}}'
+    path: '{{ item }}'
     mode: 'a-s'
     state: 'file'
     follow: 'yes'

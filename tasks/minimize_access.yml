@@ -11,11 +11,11 @@
     - '/usr/bin'
     - '/sbin'
     - '/bin'
-    - '{{os_env_extra_user_paths}}'
+    - '{{ os_env_extra_user_paths }}'
 
 - name: minimize access
   file:
-    path: '{{item.stat.path}}'
+    path: '{{ item.stat.path }}'
     mode: 'go-w'
     recurse: 'yes'
   when: item.stat.isdir
