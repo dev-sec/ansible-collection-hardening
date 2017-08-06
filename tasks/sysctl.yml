@@ -1,17 +1,34 @@
 ---
 - name: protect sysctl.conf
-  file: path='/etc/sysctl.conf' owner=root group=root mode=0440
+  file:
+    path: '/etc/sysctl.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
 
-- name: NSA 2.2.4.1 Set Daemon umask, do config for rhel-family
-  template: src='rhel_sysconfig_init.j2' dest='/etc/sysconfig/init' owner=root group=root mode=0544
+- name: set Daemon umask, do config for rhel-family | NSA 2.2.4.1
+  template:
+    src: 'rhel_sysconfig_init.j2'
+    dest: '/etc/sysconfig/init'
+    owner: 'root'
+    group: 'root'
+    mode: '0544'
   when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
 
 - name: install initramfs-tools
-  apt: name='initramfs-tools' state=installed update_cache=true
+  apt:
+    name: 'initramfs-tools'
+    state: 'installed'
+    update_cache: true
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
 
 - name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
-  template: src='modules.j2' dest='/etc/initramfs-tools/modules' owner=root group=root mode=0440
+  template:
+    src: 'modules.j2'
+    dest: '/etc/initramfs-tools/modules'
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
   register: initramfs
 
@@ -20,7 +37,8 @@
   when: initramfs.changed
 
 - name: create a combined sysctl-dict if overwrites are defined
-  set_fact: sysctl_config="{{ sysctl_config | combine(sysctl_overwrite) }}"
+  set_fact:
+    sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
   when: sysctl_overwrite | default()
 
 - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
@@ -44,6 +62,8 @@
   when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
 
 - name: Apply ufw defaults
-  template: src="ufw.j2" dest=/etc/default/ufw
+  template:
+    src: 'ufw.j2'
+    dest: '/etc/default/ufw'
   when: ufw_manage_defaults and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
   tags: ufw

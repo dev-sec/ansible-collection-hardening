@@ -11,4 +11,4 @@ os_nologin_shell_path: '/usr/sbin/nologin'
 os_shadow_perms:
   owner: root
   group: shadow
-  mode: "0640"
+  mode: '0640'

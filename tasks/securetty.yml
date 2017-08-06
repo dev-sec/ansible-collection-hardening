@@ -1,3 +1,8 @@
 ---
 - name: create securetty
-  template: src='securetty.j2' dest='/etc/securetty' owner=root group=root mode=0400
+  template:
+    src: 'securetty.j2'
+    dest: '/etc/securetty'
+    owner: 'root'
+    group: 'root'
+    mode: '0400'
