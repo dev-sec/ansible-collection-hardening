@@ -12,3 +12,8 @@ os_shadow_perms:
   owner: root
   group: shadow
   mode: '0640'
+
+os_passwd_perms:
+  owner: root
+  group: root
+  mode: '0644'
