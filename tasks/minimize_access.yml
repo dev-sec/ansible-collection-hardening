@@ -28,7 +28,7 @@
     group: '{{ os_shadow_perms.group }}'
     mode: '{{ os_shadow_perms.mode }}'
 
-- name: change passwd ownership to root and mode to 0600 | os-03
+- name: change passwd ownership to root and mode to 0644 | os-03
   file:
     dest: '/etc/passwd'
     owner: '{{ os_passwd_perms.owner }}'
