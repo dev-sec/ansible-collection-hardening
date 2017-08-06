@@ -4,7 +4,7 @@ Priority: 1024
 Conflicts: cracklib
 Auth-Type: Primary
 Auth-Initial:
-  required      pam_tally2.so deny={{os_auth_retries}} onerr=fail unlock_time={{os_auth_lockout_time}}
+  required      pam_tally2.so deny={{ os_auth_retries }} onerr=fail unlock_time={{ os_auth_lockout_time }}
 Account-Type: Primary
 Account-Initial:
   required      pam_tally2.so
