@@ -51,7 +51,7 @@
     ignoreerrors: yes
   with_dict: '{{ sysctl_config }}'
 
-- name: Change various sysctl-settings on rhel-hosts, look at the sysctl-vars file for documentation
+- name: Change various sysctl-settings on rhel6-hosts or older, look at the sysctl-vars file for documentation
   sysctl:
     name: '{{ item.key }}'
     value: '{{ item.value }}'
@@ -59,7 +59,7 @@
     reload: yes
     ignoreerrors: yes
   with_dict: '{{ sysctl_rhel_config }}'
-  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and ansible_distribution_major_version < '7'
 
 - name: Apply ufw defaults
   template:
