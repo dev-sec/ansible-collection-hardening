@@ -1,16 +1,8 @@
 ---
-
-- name: check if modprobe is already installed | os-10
-  command: 'modprobe -V'
-  register: modprobe_installed
-  ignore_errors: True
-  changed_when: False
-
 - name: install modprobe to disable filesystems | os-10
   package:
     name: 'kmod'
-    state: 'installed'
-  when: modprobe_installed and modprobe_installed.rc != 0
+    state: 'present'
 
 - name: disable unused filesystems | os-10
   template:
