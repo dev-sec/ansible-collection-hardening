@@ -1,7 +1,5 @@
 ---
 
-modprobe_package: 'module-init-tools'
-
 sysctl_rhel_config:
   # ExecShield protection against buffer overflows
   kernel.exec-shield: 1
