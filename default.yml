@@ -7,6 +7,7 @@
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
+      when: ansible_os_family == 'Debian'
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
@@ -62,6 +63,7 @@
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
+      when: ansible_os_family == 'Debian'
   roles:
     - ansible-os-hardening
 
