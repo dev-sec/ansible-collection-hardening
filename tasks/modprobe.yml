@@ -1,7 +1,7 @@
 ---
 - name: install modprobe to disable filesystems | os-10
   package:
-    name: '{{modpprobe_package}}'
+    name: '{{modprobe_package}}'
     state: 'installed'
 
 - name: disable unused filesystems | os-10
