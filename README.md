@@ -52,7 +52,6 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 | `os_auth_pam_passwdqc_options`| "min=disabled,disabled,16,12,8" | set to any option line (as a string) that you want to pass to passwdqc|
 | `os_security_users_allow`| [] | list of things, that a user is allowed to do. May contain `change_user`.
 | `os_security_kernel_enable_module_loading`| true | true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)|
-| `os_security_kernel_enable_sysrq`| false | sysrq is a 'magical' key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. |
 | `os_security_kernel_enable_core_dump`| false | kernel is crashing or otherwise misbehaving and a kernel core dump is created |
 | `os_security_suid_sgid_enforce`| true | true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own|
 | `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
