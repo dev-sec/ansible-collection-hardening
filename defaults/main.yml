@@ -120,6 +120,7 @@ sysctl_config:
 
   # log martian packets | sysctl-17
   net.ipv4.conf.all.log_martians: 1
+  net.ipv4.conf.default.log_martians: 1
 
   # ipv6 config
   # Disable acceptance of IPv6 router solicitations messages | sysctl-21
