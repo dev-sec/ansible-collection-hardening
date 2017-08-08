@@ -13,6 +13,9 @@
       skip: true
   tags: always
 
+- include: auditd.yml
+  tags: auditd
+
 - include: limits.yml
   tags: limits
 
