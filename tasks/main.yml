@@ -73,8 +73,20 @@
     when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
   - name: Add google auth module to PAM
-    lineinfile: "dest=/etc/pam.d/sshd state=present insertbefore=BOF regexp='pam_google_authenticator.so$' line='auth required pam_google_authenticator.so'"
-    notify: restart sshd
+    pamd:
+      name: sshd
+      type: auth
+      control: required
+      module_path: pam_google_authenticator.so
+
+  - name: Remove password auth from PAM
+    pamd:
+      name: sshd
+      type: auth
+      control: substack
+      module_path: password-auth
+      state: absent
+    when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux'
 
   - name: Remove password auth from PAM
     replace:
@@ -82,13 +94,6 @@
       regexp: '^@include common-auth'
       replace: '#@include common-auth'
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-  - name: Remove password auth from PAM
-    replace:
-      dest: /etc/pam.d/sshd
-      regexp: '^auth       substack     password-auth'
-      replace: '#auth       substack     password-auth'
-    when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux'
 
   when: 
     - ssh_use_pam 
