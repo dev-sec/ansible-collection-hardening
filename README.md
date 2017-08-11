@@ -27,7 +27,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_server_ports` | ['22'] |ports on which ssh-server should listen|
 |`ssh_client_port` | '22' |port to which ssh-client should connect|
 |`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!|
-|`ssh_host_key_files` | ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_dsa_key', '/etc/ssh/ssh_host_ecdsa_key'] |Host keys to look for when starting sshd.|
+|`ssh_host_key_files` | [] |Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version|
 |`ssh_client_alive_interval` | 600 | specifies an interval for sending keepalive messages |
 |`ssh_client_alive_count` | 3 | defines how often keep-alive messages are sent |
 |`ssh_permit_tunnel` | false | true if SSH Port Tunneling is required |
@@ -50,6 +50,18 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
 |`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
 |`ssh_google_auth` | false | `true` to enable google authenticator based TOTP 2FA |
+|`ssh_banner` | `false` | `true` to print a banner on login |
+|`ssh_client_hardening` | `true` | `false` to stop harden the client |
+|`ssh_client_port` | `'22'` | Specifies the port number to connect on the remote host. |
+|`ssh_compression` | `false` | Specifies whether compression is enabled after the user has authenticated successfully. |
+|`ssh_max_auth_retries` | `2` | Specifies the maximum number of authentication attempts permitted per connection. |
+|`ssh_print_debian_banner` | `false` | `true` to print debian specific banner |
+|`ssh_server_enabled` | `true` | `false` to disable the opensshd server |
+|`ssh_server_hardening` | `true` | `false` to stop harden the server |
+|`ssh_server_match_group` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
+|`ssh_server_match_user` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
+|`ssh_server_permit_environment_vars` | `false` | `true` to specify that ~/.ssh/environment and environment= options in ~/.ssh/authorized_keys are processed by sshd |
+|`ssh_use_dns` | `false` | Specifies whether sshd should look up the remote host name, and to check that the resolved host name for the remote IP address maps back to the very same IP address. |
 |`ssh_server_revoked_keys` | [] | a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.|
 
 ## Example Playbook
