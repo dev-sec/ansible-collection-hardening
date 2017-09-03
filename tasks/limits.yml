@@ -11,7 +11,7 @@
 
 - name: create sane limits.conf | sysctl-31a, sysctl-31b
   template:
-    src: 'limits.conf.j2'
+    src: 'etc/security/limits.d/limits.conf.j2'
     dest: '/etc/security/limits.d/10.hardcore.conf'
     owner: 'root'
     group: 'root'
