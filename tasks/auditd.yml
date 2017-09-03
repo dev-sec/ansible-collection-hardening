@@ -7,7 +7,7 @@
 
 - name: configure auditd | package-08
   template:
-    src: 'auditd.conf.j2'
+    src: 'etc/audit/auditd.conf.j2'
     dest: '/etc/audit/auditd.conf'
     owner: 'root'
     group: 'root'
