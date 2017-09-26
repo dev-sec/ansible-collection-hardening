@@ -1,7 +1,22 @@
 # Change Log
 
+## [4.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.1) (2017-08-14)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.3.0...4.3.1)
+
+**Implemented enhancements:**
+
+- Remove duplicate ssh\_use\_dns [\#130](https://github.com/dev-sec/ansible-ssh-hardening/pull/130) ([MagnusEnger](https://github.com/MagnusEnger))
+
+**Fixed bugs:**
+
+- ssh\_use\_dns used twice in defaults/main.yml [\#129](https://github.com/dev-sec/ansible-ssh-hardening/issues/129)
+
+**Closed issues:**
+
+- role creates duplicate parameter/values after run [\#124](https://github.com/dev-sec/ansible-ssh-hardening/issues/124)
+
 ## [4.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.0) (2017-08-03)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.2.0...4.3.0)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.3...4.3.0)
 
 **Implemented enhancements:**
 
@@ -12,6 +27,9 @@
 
 - Don't overwrite ssh\_host\_key\_files if set manually [\#125](https://github.com/dev-sec/ansible-ssh-hardening/pull/125) ([oakey-b1](https://github.com/oakey-b1))
 - Add comment filter to {{ansible\_managed}} string [\#121](https://github.com/dev-sec/ansible-ssh-hardening/pull/121) ([fazlearefin](https://github.com/fazlearefin))
+
+## [4.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.3) (2017-06-30)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.2.0...4.1.3)
 
 ## [4.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.2.0) (2017-06-30)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.2...4.2.0)
@@ -200,17 +218,17 @@
 - sftp\_enable option [\#41](https://github.com/dev-sec/ansible-ssh-hardening/pull/41) ([fitz123](https://github.com/fitz123))
 
 ## [1.2.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2.1) (2015-10-16)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.2.0...1.2.1)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.2...1.2.1)
 
 **Merged pull requests:**
 
 - Allow whitelisted groups on ssh [\#40](https://github.com/dev-sec/ansible-ssh-hardening/pull/40) ([fheinle](https://github.com/fheinle))
 
-## [1.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2.0) (2015-09-28)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.2...1.2.0)
-
 ## [1.2](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2) (2015-09-28)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.1.0...1.2)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.2.0...1.2)
+
+## [1.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2.0) (2015-09-28)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.1...1.2.0)
 
 **Merged pull requests:**
 
@@ -218,11 +236,11 @@
 - Add more travis-tests [\#38](https://github.com/dev-sec/ansible-ssh-hardening/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 - Support for selinux and pam. fix \#23 [\#35](https://github.com/dev-sec/ansible-ssh-hardening/pull/35) ([rndmh3ro](https://github.com/rndmh3ro))
 
-## [1.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.1.0) (2015-09-01)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.1...1.1.0)
-
 ## [1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.1) (2015-09-01)
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.0.0...1.1)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.1.0...1.1)
+
+## [1.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.1.0) (2015-09-01)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/1.0.0...1.1.0)
 
 **Closed issues:**
 
