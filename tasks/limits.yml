@@ -12,7 +12,7 @@
   - name: create aditional limits config file -> 10.hardcore.conf | sysctl-31a, sysctl-31b
     pam_limits:
       dest: '/etc/security/limits.d/10.hardcore.conf'
-      domain: *
+      domain: '*'
       limit_type: hard
       limit_item: core
       value: 0
