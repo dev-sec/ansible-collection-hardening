@@ -9,14 +9,14 @@
 This role provides secure nginx configuration. It is intended to be compliant with the [DevSec Nginx Baseline](https://github.com/dev-sec/nginx-baseline).
 
 It works with the following nginx-roles, including, but not limited to:
-* [geerlinggux.nginx](https://galaxy.ansible.com/geerlingguy/nginx/)
+* [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx/)
 * [jdauphant.nginx](https://galaxy.ansible.com/jdauphant/nginx/)
 * [franklinkim.nginx](https://galaxy.ansible.com/franklinkim/nginx/)
 
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 ## Requirements
 
-* Ansible
+* Ansible >= 1.9
 
 ## Role Variables
 
