@@ -13,6 +13,8 @@
         - "openssh-server"
       ignore_errors: true
     - file: path="/var/run/sshd" state=directory
+    - name: create ssh host keys
+      command: "ssh-keygen -A"
   roles:
     - ansible-ssh-hardening
   vars:
@@ -20,7 +22,7 @@
     ssh_allow_root_with_key: true
     ssh_allow_tcp_forwarding: true
     ssh_allow_agent_forwarding: true
-    ssh_server_permit_environment_vars: 'PWD'
+    ssh_server_permit_environment_vars: ['PWD','HTTP_PROXY']
     ssh_client_alive_interval: 100
     ssh_client_alive_count: 10
     ssh_client_password_login: true
@@ -38,7 +40,6 @@
     ssh_print_last_log: true
     ssh_banner: true
     ssh_server_password_login: true
-    ssh_server_enabled: false
     ssh_server_weak_hmac: true
     sftp_enabled: true
     ssh_server_match_group:
