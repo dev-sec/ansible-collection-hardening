@@ -15,6 +15,8 @@
     - file: path="/var/run/sshd" state=directory
     - name: create ssh host keys
       command: "ssh-keygen -A"
+      when: not ((ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and ansible_distribution_major_version < '7')
+
   roles:
     - ansible-ssh-hardening
   vars:
