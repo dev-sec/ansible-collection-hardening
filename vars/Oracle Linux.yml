@@ -9,4 +9,9 @@ os_nologin_shell_path: '/sbin/nologin'
 os_shadow_perms:
   owner: root
   group: root
-  mode: "0600"
+  mode: '0600'
+
+os_passwd_perms:
+  owner: root
+  group: root
+  mode: '0644'

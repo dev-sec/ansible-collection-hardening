@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# {{ ansible_managed | comment }}
 
 # color => new RH6.0 bootup
 # verbose => old-style bootup
@@ -18,7 +18,7 @@ SETCOLOR_WARNING="echo -en \\033[0;33m"
 # terminal sequence to reset to the default color.
 SETCOLOR_NORMAL="echo -en \\033[0;39m"
 # Set to anything other than 'no' to allow hotkey interactive startup...
-PROMPT={{ 'yes' if os_security_init_prompt else 'no' }}
+PROMPT={{ 'yes' if (os_security_init_prompt|bool) else 'no' }}
 # Set to 'yes' to allow probing for devices with swap signatures
 AUTOSWAP=no
 # What ttys should gettys be started on?

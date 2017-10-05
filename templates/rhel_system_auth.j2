@@ -1,9 +1,8 @@
-# {{ ansible_managed }}
-#---
+# {{ ansible_managed | comment }}
 
 #%PAM-1.0
 {% if os_auth_retries > 0 %}
-auth        required      pam_tally2.so deny={{os_auth_retries}} onerr=fail unlock_time={{os_auth_lockout_time}}
+auth        required      pam_tally2.so deny={{ os_auth_retries }} onerr=fail unlock_time={{ os_auth_lockout_time }}
 {% endif %}
 auth        required      pam_env.so
 auth        sufficient    pam_unix.so nullok try_first_pass
@@ -18,11 +17,11 @@ account     sufficient    pam_localuser.so
 account     sufficient    pam_succeed_if.so uid < 500 quiet
 account     required      pam_permit.so
 
-{% if os_auth_pam_passwdqc_enable %}
+{% if (os_auth_pam_passwdqc_enable|bool) %}
   {%- if ansible_os_family == 'RedHat' and ansible_distribution_version >= '7' %}
-password    required      pam_pwquality.so {{os_auth_pam_pwquality_options}}
+password    required      pam_pwquality.so {{ os_auth_pam_pwquality_options }}
   {%- else %}
-password    requisite     pam_passwdqc.so {{os_auth_pam_passwdqc_options}}
+password    requisite     pam_passwdqc.so {{ os_auth_pam_passwdqc_options }}
   {%- endif %}
 {% else %}
 password    requisite     pam_cracklib.so try_first_pass retry=3 type=
