@@ -84,6 +84,9 @@ ssh_deny_groups: ''      # sshd
 # if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
 ssh_allow_groups: ''      # sshd
 
+# change default file that contains the public keys that can be used for user authentication.
+ssh_authorized_keys_file: ''      # sshd
+
 # false to disable printing of the MOTD
 ssh_print_motd: false      # sshd
 

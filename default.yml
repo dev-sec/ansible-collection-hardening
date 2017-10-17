@@ -36,6 +36,7 @@
     ssh_allow_groups: 'root kitchen vagrant'
     ssh_deny_users: 'foo bar'
     ssh_deny_groups: 'foo bar'
+    ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
     ssh_max_auth_retries: 10
     ssh_permit_tunnel: true
     ssh_print_motd: true

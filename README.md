@@ -40,6 +40,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_allow_users` | '' | if specified, login is allowed only for user names that match one of the patterns.|
 |`ssh_deny_groups` | '' | if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.|
 |`ssh_allow_groups` | '' | if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.|
+|`ssh_authorized_keys_file` | '' | change default file that contains the public keys that can be used for user authentication.|
 |`ssh_print_motd` | false | false to disable printing of the MOTD|
 |`ssh_print_last_log` | false | false to disable display of last login information|
 |`sftp_enabled` | false | true to enable sftp configuration|

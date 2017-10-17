@@ -161,6 +161,10 @@ DenyGroups {{ssh_deny_groups}}
 AllowGroups {{ssh_allow_groups}}
 {% endif %}
 
+{% if ssh_authorized_keys_file %}
+AuthorizedKeysFile {{ ssh_authorized_keys_file }}
+{% endif %}
+
 # Network
 # -------
 
