@@ -20,7 +20,7 @@
   tags: login_defs
 
 - include: minimize_access.yml
-  tags: minimize_acces
+  tags: minimize_access
 
 - include: modprobe.yml
   tags: modprobe
