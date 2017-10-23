@@ -19,8 +19,8 @@
 - import_tasks: login_defs.yml
   tags: login_defs
 
-- import_tasks: minimize_access.yml
-  tags: minimize_acces
+- include: minimize_access.yml
+  tags: minimize_access
 
 - import_tasks: pam.yml
   tags: pam
