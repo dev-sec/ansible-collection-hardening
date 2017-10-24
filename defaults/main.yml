@@ -179,6 +179,59 @@ sysctl_config:
   # Virtual memory regions protection | sysctl-32
   kernel.randomize_va_space: 2
 
+  kernel.core_uses_pid: 1
+
+  # When an attacker is trying to exploit the local kernel, it is often
+  # helpful to be able to examine where in memory the kernel, modules,
+  # and data structures live. As such, kernel addresses should be treated
+  # as sensitive information.
+  #
+  # Many files and interfaces contain these addresses (e.g. /proc/kallsyms,
+  # /proc/modules, etc), and this setting can censor the addresses. A value
+  # of "0" allows all users to see the kernel addresses. A value of "1"
+  # limits visibility to the root user, and "2" blocks even the root user.
+  kernel.kptr_restrict: 1
+
+  # The PTRACE system is used for debugging.  With it, a single user process
+  # can attach to any other dumpable process owned by the same user.  In the
+  # case of malicious software, it is possible to use PTRACE to access
+  # credentials that exist in memory (re-using existing SSH connections,
+  # extracting GPG agent information, etc).
+  #
+  # A PTRACE scope of "0" is the more permissive mode.  A scope of "1" limits
+  # PTRACE only to direct child processes (e.g. "gdb name-of-program" and
+  # "strace -f name-of-program" work, but gdb's "attach" and "strace -fp $PID"
+  # do not).  The PTRACE scope is ignored when a user has CAP_SYS_PTRACE, so
+  # "sudo strace -fp $PID" will work as before.  For more details see:
+  # https://wiki.ubuntu.com/SecurityTeam/Roadmap/KernelHardening#ptrace
+  #
+  # For applications launching crash handlers that need PTRACE, exceptions can
+  # be registered by the debugee by declaring in the segfault handler
+  # specifically which process will be using PTRACE on the debugee:
+  #   prctl(PR_SET_PTRACER, debugger_pid, 0, 0, 0);
+  #
+  # In general, PTRACE is not needed for the average running Ubuntu system.
+  # To that end, the default is to set the PTRACE scope to "1".  This value
+  # may not be appropriate for developers or servers with only admin accounts.
+  # kernel.yama.ptrace_scope = 1
+  kernel.yama.ptrace_scope: 1
+
+  # Protect the zero page of memory from userspace mmap to prevent kernel
+  # NULL-dereference attacks against potential future kernel security
+  # vulnerabilities.  (Added in kernel 2.6.23.)
+  #
+  # While this default is built into the Ubuntu kernel, there is no way to
+  # restore the kernel default if the value is changed during runtime; for
+  # example via package removal (e.g. wine, dosemu).  Therefore, this value
+  # is reset to the secure default each time the sysctl values are loaded.
+  vm.mmap_min_addr: 65536
+          
+  # These settings eliminate an entire class of security vulnerability:
+  # time-of-check-time-of-use cross-privilege attacks using guessable
+  # filenames (generally seen as "/tmp file race" vulnerabilities).
+  fs.protected_hardlinks: 1
+  fs.protected_symlinks: 1
+
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
 sysctl_overwrite:
