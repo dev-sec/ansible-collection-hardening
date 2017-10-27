@@ -238,13 +238,13 @@ Subsystem sftp internal-sftp -l INFO -f LOCAL6
 
 # These lines must appear at the *end* of sshd_config
 Match Group sftponly
-ForceCommand internal-sftp -l INFO -f LOCAL6
-ChrootDirectory {{ sftp_chroot_dir }}
-AllowTcpForwarding no
-AllowAgentForwarding no
-PasswordAuthentication no
-PermitRootLogin no
-X11Forwarding no
+    ForceCommand internal-sftp -l INFO -f LOCAL6
+    ChrootDirectory {{ sftp_chroot_dir }}
+    AllowTcpForwarding no
+    AllowAgentForwarding no
+    PasswordAuthentication no
+    PermitRootLogin no
+    X11Forwarding no
 {% endif %}
 
 {% if ssh_server_match_group %}
