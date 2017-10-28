@@ -186,8 +186,16 @@ AllowTcpForwarding {{ 'yes' if (ssh_allow_tcp_forwarding|bool) else 'no' }}
 # no real advantage without denied shell access
 AllowAgentForwarding {{ 'yes' if (ssh_allow_agent_forwarding|bool) else 'no' }}
 
+{% if ssh_gateway_ports|bool %}
+# Port forwardings are forced to bind to the wildcard address
+GatewayPorts yes
+{% elif ssh_gateway_ports == 'clientspecified' %}
+# Clients allowed to specify which address to bind port forwardings to
+GatewayPorts clientspecified
+{% else %}
 # Do not allow remote port forwardings to bind to non-loopback addresses.
 GatewayPorts no
+{% endif %}
 
 # Disable X11 forwarding, since local X11 display could be accessed through forwarded connection.
 X11Forwarding no

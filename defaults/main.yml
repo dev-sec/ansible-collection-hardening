@@ -66,6 +66,10 @@ ssh_allow_root_with_key: false          # sshd
 # false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
 ssh_allow_tcp_forwarding: false         # sshd
 
+# false to disable binding forwarded ports to non-loopback addresses. Set to true to force binding on wildcard address.
+# Set to 'clientspecified' to allow the client to specify which address to bind to.
+ssh_gateway_ports: false                # sshd
+
 # false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
 ssh_allow_agent_forwarding: false       # sshd
 
