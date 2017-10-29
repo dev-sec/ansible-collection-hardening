@@ -124,6 +124,10 @@ ssh_server_permit_environment_vars: false
 ssh_ps53: 'yes'
 ssh_ps59: 'sandbox'
 
+ssh_macs: []
+ssh_ciphers: []
+ssh_kex: []
+
 ssh_macs_53_default:
   - hmac-ripemd160
   - hmac-sha1
