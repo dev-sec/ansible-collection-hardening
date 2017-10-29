@@ -49,6 +49,7 @@ LogLevel VERBOSE
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
 #
 
+{# This outputs "Ciphers <list-of-ciphers>" if ssh_ciphers is defined or "#Ciphers" if ssh_ciphers is undefined #}
 {{ "Ciphers "+ssh_ciphers| join(',') if ssh_ciphers else "Ciphers"|comment }}
 
 # **Hash algorithms** -- Make sure not to use SHA1 for hashing, unless it is really necessary.
@@ -56,6 +57,7 @@ LogLevel VERBOSE
 # eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
 #
 
+{# This outputs "MACs <list-of-macs>" if ssh_macs is defined or "#MACs" if ssh_macs is undefined #}
 {{ "MACs "+ssh_macs| join(',') if ssh_macs else "MACs"|comment }}
 
 # Alternative setting, if OpenSSH version is below v5.9
@@ -66,6 +68,7 @@ LogLevel VERBOSE
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 
+{# This outputs "KexAlgorithms <list-of-algos>" if ssh_kex is defined or "#KexAlgorithms" if ssh_kex is undefined #}
 {{ "KexAlgorithms "+ssh_kex| join(',') if ssh_kex else "KexAlgorithms"|comment }}
 
 # Authentication
