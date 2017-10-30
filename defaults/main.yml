@@ -194,3 +194,5 @@ os_unused_filesystems:
   - "udf"
   - "vfat"
 
+# whitelist for used filesystems
+os_filesystem_whitelist: []
