@@ -110,7 +110,6 @@ LogLevel VERBOSE
 # --------------
 
 # Secure Login directives.
-UseLogin no
 UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 
 LoginGraceTime 30s
