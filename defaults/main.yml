@@ -1,6 +1,15 @@
 # true if IPv6 is needed
 network_ipv6_enable: false              # sshd + ssh
 
+# true if sshd should be started and enabled
+ssh_server_enabled: true               # sshd
+
+# true if DNS resolutions are needed, look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
+ssh_use_dns: false                      # sshd
+
+# true or value if compression is needed
+ssh_compression: false                  # sshd
+
 # For which components (client and server) to generate the configuration for. Can be useful when running against a client without an SSH server.
 ssh_client_hardening: true          # ssh
 ssh_server_hardening: true          # sshd
@@ -31,7 +40,7 @@ ssh_client_port: '22'         # ssh
 ssh_listen_to: ['0.0.0.0']    # sshd
 
 # Host keys to look for when starting sshd.
-ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']  # sshd
+ssh_host_key_files: []  # sshd
 
 # Specifies  the  maximum  number  of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged.
 ssh_max_auth_retries: 2
@@ -57,6 +66,10 @@ ssh_allow_root_with_key: false          # sshd
 # false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
 ssh_allow_tcp_forwarding: false         # sshd
 
+# false to disable binding forwarded ports to non-loopback addresses. Set to true to force binding on wildcard address.
+# Set to 'clientspecified' to allow the client to specify which address to bind to.
+ssh_gateway_ports: false                # sshd
+
 # false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
 ssh_allow_agent_forwarding: false       # sshd
 
@@ -78,6 +91,9 @@ ssh_deny_groups: ''      # sshd
 # if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
 ssh_allow_groups: ''      # sshd
 
+# change default file that contains the public keys that can be used for user authentication.
+ssh_authorized_keys_file: ''      # sshd
+
 # false to disable printing of the MOTD
 ssh_print_motd: false      # sshd
 
@@ -98,6 +114,14 @@ sftp_chroot_dir: /home/%u
 
 # enable experimental client roaming
 ssh_client_roaming: false
+
+# list of hashes (containing user and rules) to generate Match User blocks for.
+ssh_server_match_user: false            # sshd
+
+# list of hashes (containing group and rules) to generate Match Group blocks for.
+ssh_server_match_group: false           # sshd
+
+ssh_server_permit_environment_vars: false
 
 
 ssh_ps53: 'yes'
@@ -160,9 +184,6 @@ sshd_moduli_minimum: 2048
 
 # disable ChallengeResponseAuthentication
 ssh_challengeresponseauthentication: false
-
-#  look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
-ssh_use_dns: false
 
 # a list of public keys that are never accepted by the ssh server
 ssh_server_revoked_keys: []

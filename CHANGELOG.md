@@ -1,5 +1,36 @@
 # Change Log
 
+## [4.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.1) (2017-08-14)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.3.0...4.3.1)
+
+**Implemented enhancements:**
+
+- Remove duplicate ssh\_use\_dns [\#130](https://github.com/dev-sec/ansible-ssh-hardening/pull/130) ([MagnusEnger](https://github.com/MagnusEnger))
+
+**Fixed bugs:**
+
+- ssh\_use\_dns used twice in defaults/main.yml [\#129](https://github.com/dev-sec/ansible-ssh-hardening/issues/129)
+
+**Closed issues:**
+
+- role creates duplicate parameter/values after run [\#124](https://github.com/dev-sec/ansible-ssh-hardening/issues/124)
+
+## [4.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.0) (2017-08-03)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.3...4.3.0)
+
+**Implemented enhancements:**
+
+- Fix ansible.cfg settings [\#122](https://github.com/dev-sec/ansible-ssh-hardening/pull/122) ([fazlearefin](https://github.com/fazlearefin))
+- Finish 94 [\#116](https://github.com/dev-sec/ansible-ssh-hardening/pull/116) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Merged pull requests:**
+
+- Don't overwrite ssh\_host\_key\_files if set manually [\#125](https://github.com/dev-sec/ansible-ssh-hardening/pull/125) ([oakey-b1](https://github.com/oakey-b1))
+- Add comment filter to {{ansible\_managed}} string [\#121](https://github.com/dev-sec/ansible-ssh-hardening/pull/121) ([fazlearefin](https://github.com/fazlearefin))
+
+## [4.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.3) (2017-06-30)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.2.0...4.1.3)
+
 ## [4.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.2.0) (2017-06-30)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.2...4.2.0)
 

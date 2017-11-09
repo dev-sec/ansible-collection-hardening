@@ -9,24 +9,26 @@
 
 - name: get openssh-version
   shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  args:
+    executable: /bin/sh
   changed_when: false
   register: sshd_version
   check_mode: no
 
 - name: set hostkeys according to openssh-version
   set_fact:
-    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key']
-  when: sshd_version.stdout >= '5.3'
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
+  when: sshd_version.stdout >= '6.3' and not ssh_host_key_files
 
 - name: set hostkeys according to openssh-version
   set_fact:
     ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key']
-  when: sshd_version.stdout >= '6.0'
+  when: sshd_version.stdout >= '6.0' and not ssh_host_key_files
 
 - name: set hostkeys according to openssh-version
   set_fact:
-    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']
-  when: sshd_version.stdout >= '6.3'
+    ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key']
+  when: sshd_version.stdout >= '5.3' and not ssh_host_key_files
 
 - name: create revoked_keys and set permissions to root/600
   template: src='revoked_keys.j2' dest='/etc/ssh/revoked_keys' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
@@ -54,13 +56,14 @@
   notify: restart sshd
   when: sshd_register_moduli.stdout
 
-- name: test to see if selinux is running
+- name: test to see if selinux is installed and running
   command: getenforce
   register: sestatus
   failed_when: false
   changed_when: false
   check_mode: no
 
+<<<<<<< HEAD
 # Install the 2FA packages and setup the config in PAM and SSH
 
 - block:
@@ -101,7 +104,7 @@
     - ssh_google_auth
 
 
-- block: # only runs when selinux is running
+- block: # only runs when selinux is installed
   - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
     package: name="{{item}}" state=installed
     with_items:
@@ -143,7 +146,7 @@
 
     when: not ssh_use_pam and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
 
-  # The following tasks only get executed when selinux is in state enforcing, UsePam is "yes" and the ssh_password module is installed.
+  # The following tasks only get executed when selinux is installed, UsePam is "yes" and the ssh_password module is installed.
   - name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
     command: semodule -r ssh_password
     when: ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
