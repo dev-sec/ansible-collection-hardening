@@ -84,6 +84,8 @@ We disable the following filesystems, because they're most likely not used:
  * "udf"
  * "vfat"
 
+To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
+
 ## Example Playbook
 
     - hosts: localhost
