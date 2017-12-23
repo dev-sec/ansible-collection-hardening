@@ -29,6 +29,12 @@ It will not:
 
 * Ansible 2.2.1
 
+
+## Warning
+
+If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
+Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
 ## Variables
 
 | Name           | Default Value | Description                        |
