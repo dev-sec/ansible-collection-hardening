@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  test-centos-7:
+    working_directory: ~/ansible-os-hardening
+    machine:
+      ruby:
+        version: 2.4
+      services:
+        - docker
+    steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: gem install bundler
+      - run:
+          name: Install test-kitchen
+          command: bundle install
+      - run:
+          name: Run test-kitchen
+          command: bundle exec kitchen test os-centos7-ansible-latest
+  test-ubuntu-trusty:
+    working_directory: ~/ansible-os-hardening
+    machine:
+      ruby:
+        version: 2.4
+      services:
+        - docker
+    steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: gem install bundler
+      - run:
+          name: Install test-kitchen
+          command: bundle install
+      - run:
+          name: Run test-kitchen
+          command: bundle exec kitchen test os-ubuntu1404-ansible-latest
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test-centos-7
+      - test-ubuntu-trusty
