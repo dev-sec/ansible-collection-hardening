@@ -127,6 +127,10 @@ HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
+{% if ssh_google_auth %}
+# Force public key auth then ask for google auth code
+AuthenticationMethods publickey,keyboard-interactive
+{% endif %}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}

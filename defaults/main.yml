@@ -76,6 +76,9 @@ ssh_allow_agent_forwarding: false       # sshd
 # false to disable pam authentication.
 ssh_use_pam: false      # sshd
 
+# false to disable google 2fa authentication
+ssh_google_auth: false # sshd
+
 # if specified, login is disallowed for user names that match one of the patterns.
 ssh_deny_users: ''      # sshd
 
