@@ -127,6 +127,10 @@ ssh_server_permit_environment_vars: false
 ssh_ps53: 'yes'
 ssh_ps59: 'sandbox'
 
+ssh_macs: []
+ssh_ciphers: []
+ssh_kex: []
+
 ssh_macs_53_default:
   - hmac-ripemd160
   - hmac-sha1
@@ -141,11 +145,16 @@ ssh_macs_59_weak: "{{ ssh_macs_59_default + ['hmac-sha1'] }}"
 ssh_macs_66_default:
   - hmac-sha2-512-etm@openssh.com
   - hmac-sha2-256-etm@openssh.com
-  - hmac-ripemd160-etm@openssh.com
   - umac-128-etm@openssh.com
   - hmac-sha2-512
   - hmac-sha2-256
-  - hmac-ripemd160
+
+ssh_macs_76_default:
+  - hmac-sha2-512-etm@openssh.com
+  - hmac-sha2-256-etm@openssh.com
+  - umac-128-etm@openssh.com
+  - hmac-sha2-512
+  - hmac-sha2-256
 
 ssh_macs_66_weak: "{{ ssh_macs_66_default + ['hmac-sha1'] }}"
 

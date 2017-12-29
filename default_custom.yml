@@ -1,0 +1,62 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
+  hosts: localhost
+  pre_tasks:
+    - package: name="{{item}}" state=installed
+      with_items:
+        - "openssh-clients"
+        - "openssh-server"
+      ignore_errors: true
+    - apt: name="{{item}}" state=installed update_cache=true
+      with_items:
+        - "openssh-client"
+        - "openssh-server"
+      ignore_errors: true
+    - file: path="/var/run/sshd" state=directory
+    - name: create ssh host keys
+      command: "ssh-keygen -A"
+      when: not ((ansible_os_family in ['Oracle Linux', 'RedHat']) and ansible_distribution_major_version < '7')
+
+  roles:
+    - ansible-ssh-hardening
+  vars:
+    network_ipv6_enable: true
+    ssh_allow_root_with_key: true
+    ssh_allow_tcp_forwarding: true
+    ssh_gateway_ports: true
+    ssh_allow_agent_forwarding: true
+    ssh_server_permit_environment_vars: ['PWD','HTTP_PROXY']
+    ssh_client_alive_interval: 100
+    ssh_client_alive_count: 10
+    ssh_client_password_login: true
+    ssh_client_cbc_required: true
+    ssh_client_weak_kex: true
+    ssh_challengeresponseauthentication: true
+    ssh_compression: true
+    ssh_allow_users: 'root kitchen vagrant'
+    ssh_allow_groups: 'root kitchen vagrant'
+    ssh_deny_users: 'foo bar'
+    ssh_deny_groups: 'foo bar'
+    ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
+    ssh_max_auth_retries: 10
+    ssh_permit_tunnel: true
+    ssh_print_motd: true
+    ssh_print_last_log: true
+    ssh_banner: true
+    ssh_server_password_login: true
+    ssh_server_weak_hmac: true
+    sftp_enabled: true
+    ssh_server_enabled: false
+    ssh_server_match_group:
+      - group: 'root'
+        rules: 'AllowTcpForwarding yes'
+    ssh_server_match_user:
+      - user: 'root'
+        rules: 'AllowTcpForwarding yes'
+    ssh_remote_hosts:
+      - names: ['example.com', 'example2.com']
+        options: ['Port 2222', 'ForwardAgent yes']
+      - names: ['example3.com']
+        options: ['StrictHostKeyChecking no']
+    ssh_use_dns: true
+    ssh_use_pam: true
