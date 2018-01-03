@@ -71,13 +71,13 @@
   yum:
     name: '{{ os_packages_pam_cracklib }}'
     state: 'absent'
-  when: (ansible_os_family == 'RedHat' and ansible_distribution_version < '7') and os_auth_pam_passwdqc_enable
+  when: ((ansible_os_family == 'RedHat' and ansible_distribution_version < '7') or ansible_distribution == 'Amazon') and os_auth_pam_passwdqc_enable
 
 - name: install the package for strong password checking
   yum:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'installed'
-  when: (ansible_os_family == 'RedHat' and ansible_distribution_version < '7') and os_auth_pam_passwdqc_enable
+  when: ((ansible_os_family == 'RedHat' and ansible_distribution_version < '7') or ansible_distribution == 'Amazon') and os_auth_pam_passwdqc_enable
 
 - name: remove passwdqc
   yum:
