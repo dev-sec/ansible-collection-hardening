@@ -1,5 +1,35 @@
 # Change Log
 
+## [4.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.4.0) (2017-12-29)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.3.1...4.4.0)
+
+**Implemented enhancements:**
+
+- Changes in selinux section to avoid confusion and some inconsistencies [\#127](https://github.com/dev-sec/ansible-ssh-hardening/issues/127)
+- Issue \#137: Fix sshd\_config's "Match Group sftponly" [\#138](https://github.com/dev-sec/ansible-ssh-hardening/pull/138) ([kekumu](https://github.com/kekumu))
+- allow configuration of GatewayPorts [\#136](https://github.com/dev-sec/ansible-ssh-hardening/pull/136) ([pwyliu](https://github.com/pwyliu))
+- Added support for AuthorizedKeysFile config setting [\#132](https://github.com/dev-sec/ansible-ssh-hardening/pull/132) ([hyrsky](https://github.com/hyrsky))
+- corrected comments explaining the task's behaviour [\#131](https://github.com/dev-sec/ansible-ssh-hardening/pull/131) ([martinbydefault](https://github.com/martinbydefault))
+- Add Two-Factor Authentication [\#123](https://github.com/dev-sec/ansible-ssh-hardening/pull/123) ([lazzurs](https://github.com/lazzurs))
+
+**Fixed bugs:**
+
+- ssh\_use\_dns used twice in defaults/main.yml [\#129](https://github.com/dev-sec/ansible-ssh-hardening/issues/129)
+- line 56: Bad SSH2 mac spec [\#135](https://github.com/dev-sec/ansible-ssh-hardening/issues/135)
+
+**Closed issues:**
+
+- coreos support? [\#142](https://github.com/dev-sec/ansible-ssh-hardening/issues/142)
+- UseLogin is deprecated on CentOS 7 [\#140](https://github.com/dev-sec/ansible-ssh-hardening/issues/140)
+- sftp Match Group settings overriding global sshd\_config settings [\#137](https://github.com/dev-sec/ansible-ssh-hardening/issues/137)
+- get openssh-version fails on FreeBSD \(with ansible 2.4.0.0\) [\#133](https://github.com/dev-sec/ansible-ssh-hardening/issues/133)
+
+**Merged pull requests:**
+
+- Remove deprecated UseLogin option [\#141](https://github.com/dev-sec/ansible-ssh-hardening/pull/141) ([syhe](https://github.com/syhe))
+- Macs kex ciphers [\#139](https://github.com/dev-sec/ansible-ssh-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
+- force /bin/sh when getting openssh-version [\#134](https://github.com/dev-sec/ansible-ssh-hardening/pull/134) ([gtz42](https://github.com/gtz42))
+
 ## [4.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.1) (2017-08-14)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.3.0...4.3.1)
 
@@ -9,7 +39,7 @@
 
 **Fixed bugs:**
 
-- ssh\_use\_dns used twice in defaults/main.yml [\#129](https://github.com/dev-sec/ansible-ssh-hardening/issues/129)
+- System completely unresponsive after role execution [\#126](https://github.com/dev-sec/ansible-ssh-hardening/issues/126)
 
 **Closed issues:**
 
