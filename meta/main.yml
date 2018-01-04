@@ -19,6 +19,7 @@ galaxy_info:
       versions:
         - wheezy
         - jessie
+    - name: Amazon
   galaxy_tags:
     - system
     - security
