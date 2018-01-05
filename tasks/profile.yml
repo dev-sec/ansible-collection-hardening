@@ -7,7 +7,7 @@
     group: 'root'
     mode: '0750'
   when: not os_security_kernel_enable_core_dump
-  
+
 - name: remove pinerolo_profile.sh from profile.d
   file:
     path: /etc/profile.d/pinerolo_profile.sh
