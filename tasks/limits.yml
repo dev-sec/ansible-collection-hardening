@@ -9,7 +9,7 @@
       mode: '0755'
       state: 'directory'
 
-  - name: create aditional limits config file -> 10.hardcore.conf | sysctl-31a, sysctl-31b
+  - name: create additional limits config file -> 10.hardcore.conf | sysctl-31a, sysctl-31b
     pam_limits:
       dest: '/etc/security/limits.d/10.hardcore.conf'
       domain: '*'
