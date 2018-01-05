@@ -27,9 +27,10 @@
     dest: '{{ item }}'
     regexp: '^\s*gpgcheck: 0'
     replace: 'gpgcheck: 1'
-  with_flattened:
+  with_flattened: "{{
     - '/etc/yum.conf'
-    - '{{ yum_repos.stdout_lines| default([]) }}'
+    - '{{ yum_repos.stdout_lines | default([]) }}'
+    }}"
 
 - name: activate gpg-check for yum rhn if it exists
   replace:
