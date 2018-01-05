@@ -29,12 +29,10 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
+  notify:
+    - update-initramfs
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
   register: initramfs
-
-- name: update-initramfs
-  command: 'update-initramfs -u'
-  when: initramfs.changed
 
 - name: create a combined sysctl-dict if overwrites are defined
   set_fact:
