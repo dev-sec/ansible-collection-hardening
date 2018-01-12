@@ -44,7 +44,7 @@ env:
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: amazon
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    init: /sbin/init
     version: latest
 
 before_install:
