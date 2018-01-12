@@ -75,7 +75,7 @@
       control: substack
       module_path: password-auth
       state: absent
-    when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux'
+    when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' or ansible_distribution == 'Amazon'
 
   - name: Remove password auth from PAM
     replace:
