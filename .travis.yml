@@ -45,6 +45,10 @@ env:
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
+  - distro: amazon
+    init: /sbin/init
+    version: latest
+
 before_install:
   # Pull container
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
