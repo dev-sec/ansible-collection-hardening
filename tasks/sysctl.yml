@@ -13,7 +13,7 @@
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS' or ansible_distribution == 'Amazon'
 
 - name: install initramfs-tools
   apt:
@@ -59,7 +59,7 @@
     reload: yes
     ignoreerrors: yes
   with_dict: '{{ sysctl_rhel_config }}'
-  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and ansible_distribution_major_version < '7'
+  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and ansible_distribution_major_version < '7') or ansible_distribution == 'Amazon'
 
 - name: Apply ufw defaults
   template:

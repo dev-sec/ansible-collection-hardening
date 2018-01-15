@@ -8,7 +8,7 @@
 # adjust values for blacklist/whitelist instead, they can override system_blacklist/whitelist
 
 # list of suid/sgid entries that must be removed
-os_security_suid_sgid_system_blacklist: 
+os_security_suid_sgid_system_blacklist:
   # blacklist as provided by NSA
   - '/usr/bin/rcp'
   - '/usr/bin/rlogin'
@@ -108,4 +108,3 @@ os_security_suid_sgid_system_whitelist:
 
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root','sync','shutdown','halt']
-
