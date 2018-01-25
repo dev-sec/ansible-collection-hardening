@@ -15,7 +15,7 @@
   register: sshd_version
   check_mode: no
 
-- include: crypto.yml
+- include_tasks: crypto.yml
 
 - name: create revoked_keys and set permissions to root/600
   template: src='revoked_keys.j2' dest='/etc/ssh/revoked_keys' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
