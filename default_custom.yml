@@ -60,3 +60,4 @@
         options: ['StrictHostKeyChecking no']
     ssh_use_dns: true
     ssh_use_pam: true
+    ssh_max_startups: '10:30:60'
