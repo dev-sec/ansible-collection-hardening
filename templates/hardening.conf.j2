@@ -8,10 +8,8 @@ client_header_timeout {{nginx_client_header_timeout}};
 send_timeout {{nginx_send_timeout}};
 limit_conn_zone {{nginx_limit_conn_zone}};
 limit_conn {{nginx_limit_conn}};
-ssl_protocols {{nginx_ssl_protocols}};
 ssl_ciphers {{nginx_ssl_ciphers}};
 ssl_dhparam {{nginx_dh_param}};
-ssl_prefer_server_ciphers {{nginx_ssl_prefer_server_ciphers}};
 {% for header in nginx_add_header %}
 add_header {{header}};
 {% endfor %}
