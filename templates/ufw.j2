@@ -9,25 +9,25 @@ IPV6={{ 'no' if sysctl_config['net.ipv6.conf.all.disable_ipv6'] is defined and s
 
 # Set the default input policy to ACCEPT, DROP, or REJECT. Please note that if
 # you change this you will most likely want to adjust your rules.
-DEFAULT_INPUT_POLICY='{{ ufw_default_input_policy }}'
+DEFAULT_INPUT_POLICY="{{ ufw_default_input_policy }}"
 
 # Set the default output policy to ACCEPT, DROP, or REJECT. Please note that if
 # you change this you will most likely want to adjust your rules.
-DEFAULT_OUTPUT_POLICY='{{ ufw_default_output_policy }}'
+DEFAULT_OUTPUT_POLICY="{{ ufw_default_output_policy }}"
 
 # Set the default forward policy to ACCEPT, DROP or REJECT.  Please note that
 # if you change this you will most likely want to adjust your rules
-DEFAULT_FORWARD_POLICY='{{ ufw_default_forward_policy }}'
+DEFAULT_FORWARD_POLICY="{{ ufw_default_forward_policy }}"
 
 # Set the default application policy to ACCEPT, DROP, REJECT or SKIP. Please
 # note that setting this to ACCEPT may be a security risk. See 'man ufw' for
 # details
-DEFAULT_APPLICATION_POLICY='{{ ufw_default_application_policy }}'
+DEFAULT_APPLICATION_POLICY="{{ ufw_default_application_policy }}"
 
 # By default, ufw only touches its own chains. Set this to 'yes' to have ufw
 # manage the built-in chains too. Warning: setting this to 'yes' will break
 # non-ufw managed firewall rules
-MANAGE_BUILTINS='{{ ufw_manage_builtins }}'
+MANAGE_BUILTINS="{{ ufw_manage_builtins }}"
 
 #
 # IPT backend
@@ -42,4 +42,4 @@ MANAGE_BUILTINS='{{ ufw_manage_builtins }}'
 # nf_conntrack_pptp, nf_nat_pptp: PPTP over stateful firewall/NAT
 # nf_conntrack_ftp, nf_nat_ftp: active FTP support
 # nf_conntrack_tftp, nf_nat_tftp: TFTP support (server side)
-IPT_MODULES='{{ ufw_ipt_modules }}'
+IPT_MODULES="{{ ufw_ipt_modules }}"

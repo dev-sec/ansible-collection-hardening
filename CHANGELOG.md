@@ -1,5 +1,35 @@
 # Change Log
 
+## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.0)
+
+**Implemented enhancements:**
+
+- Update some RH settings in this role [\#155](https://github.com/dev-sec/ansible-os-hardening/issues/155)
+- Removal of core dump hardening configuration if core dumps are allowed [\#129](https://github.com/dev-sec/ansible-os-hardening/issues/129)
+- Don't create home for system accounts [\#156](https://github.com/dev-sec/ansible-os-hardening/pull/156) ([oakey-b1](https://github.com/oakey-b1))
+- Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([pinguinkiste](https://github.com/pinguinkiste))
+- Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
+- Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
+- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
+- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- bug in ufw.j2 template [\#151](https://github.com/dev-sec/ansible-os-hardening/issues/151)
+- os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
+- replace single ticks with double ticks. fix \#151 [\#152](https://github.com/dev-sec/ansible-os-hardening/pull/152) ([rndmh3ro](https://github.com/rndmh3ro))
+- fixed tag [\#149](https://github.com/dev-sec/ansible-os-hardening/pull/149) ([martinbydefault](https://github.com/martinbydefault))
+
+**Closed issues:**
+
+- ansible hardening fails on ubuntu 16.04 with msg": "ERROR! 'sysctl\_rhel\_config' is undefined [\#147](https://github.com/dev-sec/ansible-os-hardening/issues/147)
+- Enhancement: Test with TestInfra and Molecule [\#128](https://github.com/dev-sec/ansible-os-hardening/issues/128)
+
+**Merged pull requests:**
+
+- move defaults to os-specific vars [\#157](https://github.com/dev-sec/ansible-os-hardening/pull/157) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.1.0...4.2.0)
 

@@ -15,10 +15,13 @@ env:
     version: latest
     init: /sbin/init
 
-  - distro: oracle7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
+# oracle 7 does not support ansible 2.4 yet
+# check oracle-epel if it is supported
+# http://yum.oracle.com/repo/OracleLinux/OL7/developer_EPEL/x86_64/index.html
+#  - distro: oracle7
+#    init: /usr/lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    version: latest
 
   - distro: ubuntu1604
     version: latest

@@ -27,7 +27,13 @@ It will not:
 
 ## Requirements
 
-* Ansible 2.2.1
+* Ansible 2.4.2
+
+
+## Warning
+
+If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
+Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
 
 ## Variables
 
@@ -46,7 +52,6 @@ It will not:
 | `os_auth_pam_passwdqc_options`| "min=disabled,disabled,16,12,8" | set to any option line (as a string) that you want to pass to passwdqc|
 | `os_security_users_allow`| [] | list of things, that a user is allowed to do. May contain `change_user`.
 | `os_security_kernel_enable_module_loading`| true | true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)|
-| `os_security_kernel_enable_sysrq`| false | sysrq is a 'magical' key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. |
 | `os_security_kernel_enable_core_dump`| false | kernel is crashing or otherwise misbehaving and a kernel core dump is created |
 | `os_security_suid_sgid_enforce`| true | true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own|
 | `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
@@ -83,6 +88,8 @@ We disable the following filesystems, because they're most likely not used:
  * "squashfs"
  * "udf"
  * "vfat"
+
+To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
 ## Example Playbook
 
