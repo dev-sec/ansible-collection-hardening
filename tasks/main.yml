@@ -13,44 +13,44 @@
       skip: true
   tags: always
 
-- include_tasks: limits.yml
+- import_tasks: limits.yml
   tags: limits
 
-- include_tasks: login_defs.yml
+- import_tasks: login_defs.yml
   tags: login_defs
 
 - include_tasks: minimize_access.yml
   tags: minimize_access
 
-- include_tasks: modprobe.yml
-  tags: modprobe
-
-- include_tasks: pam.yml
+- import_tasks: pam.yml
   tags: pam
 
-- include_tasks: profile.yml
+- import_tasks: modprobe.yml
+  tags: modprobe
+
+- import_tasks: profile.yml
   tags: profile
 
-- include_tasks: securetty.yml
+- import_tasks: securetty.yml
   tags: securetty
 
-- include_tasks: suid_sgid.yml
+- import_tasks: suid_sgid.yml
   when: os_security_suid_sgid_enforce
   tags: suid_sgid
 
-- include_tasks: sysctl.yml
+- import_tasks: sysctl.yml
   tags: sysctl
 
-- include_tasks: user_accounts.yml
+- import_tasks: user_accounts.yml
   tags: user_accounts
 
-- include_tasks: rhosts.yml
+- import_tasks: rhosts.yml
   tags: rhosts
 
-- include_tasks: yum.yml
+- import_tasks: yum.yml
   when: ansible_os_family == 'RedHat'
   tags: yum
 
-- include_tasks: apt.yml
+- import_tasks: apt.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: apt
