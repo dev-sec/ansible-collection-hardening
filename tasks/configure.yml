@@ -18,4 +18,4 @@
   notify: restart mysql
 
 - name: enable mysql
-  service: name='{{ mysql_daemon }}' enabled=yes
+  service: name='{{ mysql_daemon }}' enabled='{{ mysql_daemon_enabled }}'
