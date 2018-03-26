@@ -54,11 +54,11 @@
 
 - block:
   - name: Install google authenticator PAM module
-    apt: name=libpam-google-authenticator state=installed
+    apt: name=libpam-google-authenticator state=present
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
   - name: Install google authenticator PAM module
-    yum: name=google-authenticator state=installed
+    yum: name=google-authenticator state=present
     when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
   - name: Add google auth module to PAM
@@ -92,14 +92,14 @@
 
 - block: # only runs when selinux is installed
   - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
-    package: name="{{item}}" state=installed
+    package: name="{{item}}" state=present
     with_items:
       - policycoreutils-python
       - checkpolicy
     when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
   - name: install selinux dependencies when selinux is installed on Debian or Ubuntu
-    apt: name="{{item}}" state=installed
+    apt: name="{{item}}" state=present
     with_items:
       - policycoreutils
       - checkpolicy
