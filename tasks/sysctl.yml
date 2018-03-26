@@ -18,7 +18,7 @@
 - name: install initramfs-tools
   apt:
     name: 'initramfs-tools'
-    state: 'installed'
+    state: 'present'
     update_cache: true
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
 
