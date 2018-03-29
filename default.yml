@@ -2,12 +2,12 @@
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: localhost
   pre_tasks:
-    - package: name="{{item}}" state=installed
+    - package: name="{{item}}" state=present
       with_items:
         - "openssh-clients"
         - "openssh-server"
       ignore_errors: true
-    - apt: name="{{item}}" state=installed update_cache=true
+    - apt: name="{{item}}" state=present update_cache=true
       with_items:
         - "openssh-client"
         - "openssh-server"
