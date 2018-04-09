@@ -99,7 +99,7 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
 
 
 ## Changing sysctl variables
-+If you want to overwrite sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to overwrite the whole `sysctl_dict`).
+If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
 +So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
 ```
