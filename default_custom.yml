@@ -61,3 +61,9 @@
     ssh_use_dns: true
     ssh_use_pam: true
     ssh_max_startups: '10:30:60'
+    ssh_trusted_user_ca_keys_file: '/etc/ssh/ca.pub'
+    ssh_trusted_user_ca_keys:
+      - '# ssh-rsa ...'
+    ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
+    ssh_authorized_principals :
+      - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }

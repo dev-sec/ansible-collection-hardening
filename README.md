@@ -42,6 +42,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_deny_groups` | '' | if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.|
 |`ssh_allow_groups` | '' | if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.|
 |`ssh_authorized_keys_file` | '' | change default file that contains the public keys that can be used for user authentication.|
+|`ssh_trusted_user_ca_keys_file` | '' | specifies the file containing trusted certificate authorities public keys used to sign user certificates. |
+|`ssh_trusted_user_ca_keys` | [] | set the trusted certificate authorities public keys used to sign user certificates. Only used if ssh_trusted_user_ca_keys_file is set. |
+|`ssh_authorized_principals_file` | '' | specifies the file containing principals that are allowed. Only used if ssh_trusted_user_ca_keys_file is set. |
+|`ssh_authorized_principals` | [] | list of hashes containing file paths and authorized principals, see default_custom.yml for all options. Only used if ssh_authorized_principals_file is set. |
 |`ssh_print_motd` | false | false to disable printing of the MOTD|
 |`ssh_print_last_log` | false | false to disable display of last login information|
 |`sftp_enabled` | false | true to enable sftp configuration|
