@@ -63,6 +63,10 @@ platforms:
 #  driver:
 #    image: rndmh3ro/docker-debian9-ansible:latest
 #    platform: debian
+- name: amazon-ansible-latest
+  driver:
+    image: rndmh3ro/docker-amazon-ansible:latest
+    platform: centos
 
 verifier:
   name: inspec
