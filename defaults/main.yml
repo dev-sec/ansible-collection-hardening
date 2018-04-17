@@ -98,12 +98,27 @@ ssh_authorized_keys_file: ''      # sshd
 ssh_trusted_user_ca_keys_file: ''      # sshd
 
 # set the trusted certificate authorities public keys used to sign user certificates.
+# Example:
+# ssh_trusted_user_ca_keys:
+#   - 'ssh-rsa ... comment1'
+#   - 'ssh-rsa ... comment2'
 ssh_trusted_user_ca_keys: []      # sshd
 
 # specifies the file containing principals that are allowed. Only used if ssh_trusted_user_ca_keys_file is set.
+# Example:
+# ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
+#
+# %h is replaced by the home directory of the user being authenticated, and %u is
+# replaced by the username of that user. After expansion, the path is taken to be
+# an absolute path or one relative to the user's home directory.
+#
 ssh_authorized_principals_file: ''      # sshd
 
 # list of hashes containing file paths and authorized principals. Only used if ssh_authorized_principals_file is set.
+# Example:
+# ssh_authorized_principals:
+#   - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
+#   - { path: '/etc/ssh/auth_principals/myuser', principals: [ 'masteradmin', 'webserver' ] }
 ssh_authorized_principals: []      # sshd
 
 # false to disable printing of the MOTD
