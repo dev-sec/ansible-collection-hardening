@@ -43,6 +43,9 @@
   notify: restart sshd
   when: sshd_register_moduli.stdout
 
+- include_tasks: ca_keys_and_principals.yml
+  when: ssh_trusted_user_ca_keys_file != ''
+
 - name: test to see if selinux is installed and running
   command: getenforce
   register: sestatus
