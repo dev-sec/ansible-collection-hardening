@@ -21,7 +21,7 @@ provisioner:
   roles_path: ../ansible-ssh-hardening/
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
-  playbook: default.yml
+  playbook: tests/default.yml
   ansible_diff: true
   ansible_extra_flags:
     - "--skip-tags=sysctl"

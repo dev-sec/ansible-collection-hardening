@@ -57,8 +57,8 @@ script:
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-ssh-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
   # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/default_custom.yml'
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/default.yml'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/tests/default_custom.yml'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/tests/default.yml'
 
   # Verify role
   # remove the UseLogin-check, see here for reasons: https://github.com/dev-sec/ansible-ssh-hardening/pull/141

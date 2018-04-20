@@ -1,0 +1,57 @@
+---
+- name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - 'policycoreutils-python'
+    - 'checkpolicy'
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- name: install selinux dependencies when selinux is installed on Debian or Ubuntu
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - 'policycoreutils'
+    - 'checkpolicy'
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: check if ssh_password module is already installed
+  shell: 'semodule -l | grep ssh_password'
+  register: ssh_password_module
+  failed_when: false
+  changed_when: false
+  check_mode: no
+
+# The following tasks only get executed when selinux is in state enforcing, UsePam is 'no' and the ssh_password module is installed.
+# See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
+- block:
+  - name: Create selinux custom policy drop folder
+    file:
+      path: '{{ ssh_custom_selinux_dir }}'
+      state: 'directory'
+      owner: 'root'
+      group: 'root'
+      mode: '0750'
+
+  - name: Distributing custom selinux policies
+    copy:
+      src: 'ssh_password'
+      dest: '{{ ssh_custom_selinux_dir }}'
+
+  - name: check and compile policy
+    shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
+
+  - name: create selinux policy module package
+    shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
+
+  - name: install selinux policy
+    shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
+
+  when: not ssh_use_pam and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+
+# The following tasks only get executed when selinux is installed, UsePam is 'yes' and the ssh_password module is installed.
+- name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
+  command: semodule -r ssh_password
+  when: ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
