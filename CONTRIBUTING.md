@@ -62,7 +62,7 @@ All tests will be reviewed internally for their validity and overall project dir
 
 ### Document your code
 
-As code is more often read than written, please provide documentation in all projects. 
+As code is more often read than written, please provide documentation in all projects.
 
 Adhere to the respective guidelines for documentation:
 
