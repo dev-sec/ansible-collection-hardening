@@ -48,7 +48,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_authorized_principals` | [] | list of hashes containing file paths and authorized principals, see default_custom.yml for all options. Only used if ssh_authorized_principals_file is set. |
 |`ssh_print_motd` | false | false to disable printing of the MOTD|
 |`ssh_print_last_log` | false | false to disable display of last login information|
-|`sftp_enabled` | false | true to enable sftp configuration|
+|`sftp_enabled` | false | true to enable configuration|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
 |`sshd_moduli_minimum` | 2048 | remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam|
@@ -148,7 +148,7 @@ If you find this isn't enough, feel free to activate the attributes `cbc_require
 
 **After using the role Ansibles template/copy/file module does not work anymore!**
 
-This role deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files.
+This role by default deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. Alternatively you can enable SFTP again by setting `sftp_enabled` to `true`.
 
 **Cannot restart sshd-service due to lack of privileges**
 
