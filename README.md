@@ -173,7 +173,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <github at gumpri.ch>
+* Author:: Sebastian Gumprich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
