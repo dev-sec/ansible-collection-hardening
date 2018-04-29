@@ -170,7 +170,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <github@gumpri.ch>
+* Author:: Sebastian Gumprich
 * Author:: Christoph Hartmann <chris@lollyrock.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
