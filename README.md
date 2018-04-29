@@ -66,7 +66,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <sebastian.gumprich@38.de>
+* Author:: Sebastian Gumprich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -84,3 +84,4 @@ limitations under the License.
 [1]: http://travis-ci.org/dev-sec/ansible-os-hardening
 [2]: https://gitter.im/dev-sec/general
 [3]: https://galaxy.ansible.com/dev-sec/os-hardening
+
