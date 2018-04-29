@@ -91,7 +91,7 @@ For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <sebastian.gumprich@38.de>
+* Author:: Sebastian Gumprich
 * Author:: Anton Lugovoi <anton.lugovoi@outlook.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
