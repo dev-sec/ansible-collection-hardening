@@ -33,7 +33,7 @@
 
 - name: configure passwdqc
   template:
-    src: 'pam_passwdqd.j2'
+    src: 'pam_passwdqc.j2'
     dest: '{{ passwdqc_path }}'
     mode: '0640'
     owner: 'root'
