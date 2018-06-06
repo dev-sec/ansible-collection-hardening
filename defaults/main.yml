@@ -73,6 +73,9 @@ ssh_gateway_ports: false                # sshd
 # false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
 ssh_allow_agent_forwarding: false       # sshd
 
+# true if SSH has PAM support
+ssh_pam: true
+
 # false to disable pam authentication.
 ssh_use_pam: false      # sshd
 
@@ -81,6 +84,12 @@ ssh_google_auth: false # sshd
 
 # false to disable pam device 2FA input
 ssh_pam_device: false # sshd
+
+# true if SSH support GSSAPI
+ssh_gssapi: true
+
+# true if SSH support Kerberos
+ssh_kerberos: true
 
 # if specified, login is disallowed for user names that match one of the patterns.
 ssh_deny_users: ''      # sshd
@@ -224,6 +233,7 @@ ssh_kex_66_weak: "{{ ssh_kex_66_default + ['diffie-hellman-group14-sha1', 'diffi
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
 
+sshd_moduli: true
 sshd_moduli_minimum: 2048
 
 # disable ChallengeResponseAuthentication

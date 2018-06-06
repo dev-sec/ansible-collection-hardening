@@ -36,12 +36,13 @@
   register: sshd_register_moduli
   changed_when: false
   check_mode: no
+  when: sshd_moduli
 
 - name: remove all small primes
   shell: awk '$5 >= {{ sshd_moduli_minimum }}' /etc/ssh/moduli > /etc/ssh/moduli.new ;
          [ -r /etc/ssh/moduli.new -a -s /etc/ssh/moduli.new ] && mv /etc/ssh/moduli.new /etc/ssh/moduli || true
   notify: restart sshd
-  when: sshd_register_moduli.stdout
+  when: sshd_moduli and sshd_register_moduli.stdout
 
 - include_tasks: ca_keys_and_principals.yml
   when: ssh_trusted_user_ca_keys_file != ''
