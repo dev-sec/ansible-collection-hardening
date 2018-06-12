@@ -85,6 +85,10 @@ ssh_google_auth: false # sshd
 # false to disable pam device 2FA input
 ssh_pam_device: false # sshd
 
+# user and group that owns SSH configuration files
+ssh_owner: root
+ssh_group: root
+
 # true if SSH support GSSAPI
 ssh_gssapi: true
 
