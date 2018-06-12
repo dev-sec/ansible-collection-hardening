@@ -5,4 +5,4 @@ ssh_group: wheel
 ssh_gssapi: false
 ssh_kerberos: false
 ssh_pam: false
-sshd_moduli: false
+sshd_moduli: '/etc/moduli'
