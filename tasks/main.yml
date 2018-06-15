@@ -31,15 +31,15 @@
   template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
   when: ssh_client_hardening
 
-- name: Check if {{ sshd_moduli }} contains weak DH parameters
-  shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli }}
+- name: Check if {{ sshd_moduli_file }} contains weak DH parameters
+  shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
   register: sshd_register_moduli
   changed_when: false
   check_mode: no
 
 - name: remove all small primes
-  shell: awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli }} > {{ sshd_moduli }}.new ;
-         [ -r {{ sshd_moduli }}.new -a -s {{ sshd_moduli }}.new ] && mv {{ sshd_moduli }}.new {{ sshd_moduli }} || true
+  shell: awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }} > {{ sshd_moduli_file }}.new ;
+         [ -r {{ sshd_moduli_file }}.new -a -s {{ sshd_moduli_file }}.new ] && mv {{ sshd_moduli_file }}.new {{ sshd_moduli_file }} || true
   notify: restart sshd
   when: sshd_register_moduli.stdout
 

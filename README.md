@@ -55,7 +55,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`sftp_chroot` | true | false to disable chroot for sftp|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
-|`sshd_moduli` | '/etc/ssh/moduli' | path to the SSH moduli file |
+|`sshd_moduli_file` | '/etc/ssh/moduli' | path to the SSH moduli file |
 |`sshd_moduli_minimum` | 2048 | remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam|
 |`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
