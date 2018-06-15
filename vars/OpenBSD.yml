@@ -2,7 +2,7 @@ sshd_service_name: sshd
 ssh_owner: root
 ssh_group: wheel
 
-ssh_gssapi: false
-ssh_kerberos: false
-ssh_pam: false
+ssh_gssapi_support: false
+ssh_kerberos_support: false
+ssh_pam_support: false
 sshd_moduli: '/etc/moduli'

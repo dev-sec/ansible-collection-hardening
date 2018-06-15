@@ -93,7 +93,7 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
-{% if ssh_pam -%}
+{% if ssh_pam_support -%}
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
 {% if ssh_google_auth %}
@@ -111,7 +111,7 @@ PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
 PermitEmptyPasswords no
 ChallengeResponseAuthentication {{ 'yes' if (ssh_challengeresponseauthentication|bool) else 'no' }}
 
-{% if ssh_kerberos -%}
+{% if ssh_kerberos_support -%}
 # Only enable Kerberos authentication if it is configured.
 KerberosAuthentication no
 KerberosOrLocalPasswd no
@@ -119,7 +119,7 @@ KerberosTicketCleanup yes
 #KerberosGetAFSToken no
 {% endif %}
 
-{% if ssh_gssapi -%}
+{% if ssh_gssapi_support -%}
 # Only enable GSSAPI authentication if it is configured.
 GSSAPIAuthentication no
 GSSAPICleanupCredentials yes
