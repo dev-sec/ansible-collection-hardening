@@ -108,7 +108,7 @@ If you want to override sysctl-variables, you can use the `sysctl_overwrite` var
         - dev-sec.os-hardening
       vars:
         sysctl_overwrite:
-          # Disable IPv4 traffic forwarding.
+          # Enable IPv4 traffic forwarding.
           net.ipv4.ip_forward: 1
 ```
 
