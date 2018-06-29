@@ -93,7 +93,9 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
+{% if ssh_pam_support -%}
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
+{% endif %}
 {% if ssh_google_auth %}
 # Force public key auth then ask for google auth code
 AuthenticationMethods publickey,keyboard-interactive
@@ -109,15 +111,19 @@ PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
 PermitEmptyPasswords no
 ChallengeResponseAuthentication {{ 'yes' if (ssh_challengeresponseauthentication|bool) else 'no' }}
 
+{% if ssh_kerberos_support -%}
 # Only enable Kerberos authentication if it is configured.
 KerberosAuthentication no
 KerberosOrLocalPasswd no
 KerberosTicketCleanup yes
 #KerberosGetAFSToken no
+{% endif %}
 
+{% if ssh_gssapi_support -%}
 # Only enable GSSAPI authentication if it is configured.
 GSSAPIAuthentication no
 GSSAPICleanupCredentials yes
+{% endif %}
 
 # In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here. For key-based authentication this is not necessary, since all keys must be explicitely enabled.
 {% if ssh_deny_users -%}
@@ -229,7 +235,9 @@ Subsystem sftp internal-sftp -l INFO -f LOCAL6
 # These lines must appear at the *end* of sshd_config
 Match Group sftponly
     ForceCommand internal-sftp -l INFO -f LOCAL6
+{% if sftp_chroot %}
     ChrootDirectory {{ sftp_chroot_dir }}
+{% endif %}
     AllowTcpForwarding no
     AllowAgentForwarding no
     PasswordAuthentication no

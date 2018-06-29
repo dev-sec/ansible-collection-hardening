@@ -36,7 +36,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_allow_tcp_forwarding` | false | false to disable TCP Forwarding. Set to true to allow TCP Forwarding.|
 |`ssh_gateway_ports` | `false` | `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.|
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
+|`ssh_pam_support` | true | true if SSH has PAM support.|
 |`ssh_use_pam` | false | false to disable pam authentication.|
+|`ssh_gssapi_support` | true | true if SSH has GSSAPI support.|
+|`ssh_kerberos_support` | true | true if SSH has Kerberos support.|
 |`ssh_deny_users` | '' | if specified, login is disallowed for user names that match one of the patterns.|
 |`ssh_allow_users` | '' | if specified, login is allowed only for user names that match one of the patterns.|
 |`ssh_deny_groups` | '' | if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.|
@@ -49,8 +52,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_print_motd` | false | false to disable printing of the MOTD|
 |`ssh_print_last_log` | false | false to disable display of last login information|
 |`sftp_enabled` | false | true to enable sftp configuration|
+|`sftp_chroot` | true | false to disable chroot for sftp|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
+|`sshd_moduli_file` | '/etc/ssh/moduli' | path to the SSH moduli file |
 |`sshd_moduli_minimum` | 2048 | remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam|
 |`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
@@ -148,7 +153,7 @@ If you find this isn't enough, feel free to activate the attributes `cbc_require
 
 **After using the role Ansibles template/copy/file module does not work anymore!**
 
-This role deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files.
+This role by default deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. Alternatively you can enable SFTP again by setting `sftp_enabled` to `true`.
 
 **Cannot restart sshd-service due to lack of privileges**
 
@@ -170,7 +175,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <github@gumpri.ch>
+* Author:: Sebastian Gumprich
 * Author:: Christoph Hartmann <chris@lollyrock.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
