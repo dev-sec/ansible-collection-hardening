@@ -6,7 +6,7 @@
 
 ## Description
 
-This roles provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
+This role provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
 
 It configures:
 
@@ -27,7 +27,13 @@ It will not:
 
 ## Requirements
 
-* Ansible 2.2.1
+* Ansible 2.4.2
+
+
+## Warning
+
+If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
+Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
 
 ## Variables
 
@@ -46,7 +52,6 @@ It will not:
 | `os_auth_pam_passwdqc_options`| "min=disabled,disabled,16,12,8" | set to any option line (as a string) that you want to pass to passwdqc|
 | `os_security_users_allow`| [] | list of things, that a user is allowed to do. May contain `change_user`.
 | `os_security_kernel_enable_module_loading`| true | true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)|
-| `os_security_kernel_enable_sysrq`| false | sysrq is a 'magical' key combo you can hit which the kernel will respond to regardless of whatever else it is doing, unless it is completely locked up. |
 | `os_security_kernel_enable_core_dump`| false | kernel is crashing or otherwise misbehaving and a kernel core dump is created |
 | `os_security_suid_sgid_enforce`| true | true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own|
 | `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
@@ -84,6 +89,8 @@ We disable the following filesystems, because they're most likely not used:
  * "udf"
  * "vfat"
 
+To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
+
 ## Example Playbook
 
     - hosts: localhost
@@ -92,7 +99,7 @@ We disable the following filesystems, because they're most likely not used:
 
 
 ## Changing sysctl variables
-+If you want to overwrite sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to overwrite the whole `sysctl_dict`).
+If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
 +So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
 ```
@@ -101,7 +108,7 @@ We disable the following filesystems, because they're most likely not used:
         - dev-sec.os-hardening
       vars:
         sysctl_overwrite:
-          # Disable IPv4 traffic forwarding.
+          # Enable IPv4 traffic forwarding.
           net.ipv4.ip_forward: 1
 ```
 
@@ -157,7 +164,7 @@ This role is mostly based on guides by:
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
 * [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
+* [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
 
 Thanks to all of you!
 ## Contributing
@@ -166,7 +173,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <sebastian.gumprich@38.de>
+* Author:: Sebastian Gumprich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

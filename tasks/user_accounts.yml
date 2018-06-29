@@ -40,5 +40,6 @@
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     password: '*'
+    createhome: False
   with_flattened:
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'

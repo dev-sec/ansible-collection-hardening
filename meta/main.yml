@@ -4,7 +4,7 @@ galaxy_info:
   description: 'This Ansible role provides numerous security-related configurations, providing all-round base protection.'
   company: Hardening Framework Team
   license: Apache License 2.0
-  min_ansible_version: '2.2.1'
+  min_ansible_version: '2.4.2'
   platforms:
     - name: EL
       versions:
@@ -19,6 +19,7 @@ galaxy_info:
       versions:
         - wheezy
         - jessie
+    - name: Amazon
   galaxy_tags:
     - system
     - security

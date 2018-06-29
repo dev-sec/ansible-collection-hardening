@@ -1,11 +1,67 @@
 # Change Log
 
+## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.0)
+
+**Implemented enhancements:**
+
+- Update some RH settings in this role [\#155](https://github.com/dev-sec/ansible-os-hardening/issues/155)
+- Removal of core dump hardening configuration if core dumps are allowed [\#129](https://github.com/dev-sec/ansible-os-hardening/issues/129)
+- Don't create home for system accounts [\#156](https://github.com/dev-sec/ansible-os-hardening/pull/156) ([oakey-b1](https://github.com/oakey-b1))
+- Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([pinguinkiste](https://github.com/pinguinkiste))
+- Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
+- Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
+- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
+- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- bug in ufw.j2 template [\#151](https://github.com/dev-sec/ansible-os-hardening/issues/151)
+- os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
+- replace single ticks with double ticks. fix \#151 [\#152](https://github.com/dev-sec/ansible-os-hardening/pull/152) ([rndmh3ro](https://github.com/rndmh3ro))
+- fixed tag [\#149](https://github.com/dev-sec/ansible-os-hardening/pull/149) ([martinbydefault](https://github.com/martinbydefault))
+
+**Closed issues:**
+
+- ansible hardening fails on ubuntu 16.04 with msg": "ERROR! 'sysctl\_rhel\_config' is undefined [\#147](https://github.com/dev-sec/ansible-os-hardening/issues/147)
+- Enhancement: Test with TestInfra and Molecule [\#128](https://github.com/dev-sec/ansible-os-hardening/issues/128)
+
+**Merged pull requests:**
+
+- move defaults to os-specific vars [\#157](https://github.com/dev-sec/ansible-os-hardening/pull/157) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.1.0...4.2.0)
+
+**Implemented enhancements:**
+
+- add modprobe template, control os-10 [\#138](https://github.com/dev-sec/ansible-os-hardening/pull/138) ([rndmh3ro](https://github.com/rndmh3ro))
+- new task for delete netrc files, control os-09 [\#137](https://github.com/dev-sec/ansible-os-hardening/pull/137) ([rndmh3ro](https://github.com/rndmh3ro))
+- add passwd task, control os-03 [\#136](https://github.com/dev-sec/ansible-os-hardening/pull/136) ([rndmh3ro](https://github.com/rndmh3ro))
+- remove prelink package, control package-09 [\#135](https://github.com/dev-sec/ansible-os-hardening/pull/135) ([rndmh3ro](https://github.com/rndmh3ro))
+- style update [\#134](https://github.com/dev-sec/ansible-os-hardening/pull/134) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix ansible.cfg and use comment filter [\#130](https://github.com/dev-sec/ansible-os-hardening/pull/130) ([fazlearefin](https://github.com/fazlearefin))
+
+**Fixed bugs:**
+
+- Why is rsync removed? [\#141](https://github.com/dev-sec/ansible-os-hardening/issues/141)
+- playbook makes OS undetectable [\#124](https://github.com/dev-sec/ansible-os-hardening/issues/124)
+- Centos7/RHEL7: Exec shield is enabled by default and not manageable anymore by sysctl.conf [\#118](https://github.com/dev-sec/ansible-os-hardening/issues/118)
+- Remove rsync from package blacklist [\#142](https://github.com/dev-sec/ansible-os-hardening/pull/142) ([duk3luk3](https://github.com/duk3luk3))
+
+**Merged pull requests:**
+
+- remove execshield sysctl-parameter on rhel7 [\#119](https://github.com/dev-sec/ansible-os-hardening/pull/119) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.1.0) (2017-06-27)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.0.0...4.1.0)
 
 **Fixed bugs:**
 
 - Change system accounts not on the user provided ignore-list items are not JSON serializable [\#125](https://github.com/dev-sec/ansible-os-hardening/issues/125)
+- Could not find gem 'ruby \(\>= 2.1.0\)' [\#116](https://github.com/dev-sec/ansible-os-hardening/issues/116)
+- The task sysctl fails when /etc/initramfs-tools is not present [\#111](https://github.com/dev-sec/ansible-os-hardening/issues/111)
+- Deprecation warning always\_run [\#103](https://github.com/dev-sec/ansible-os-hardening/issues/103)
 
 **Closed issues:**
 
@@ -30,9 +86,6 @@
 
 - The role fails when conditionally included [\#105](https://github.com/dev-sec/ansible-os-hardening/issues/105)
 - omit empty variables [\#106](https://github.com/dev-sec/ansible-os-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
-- Could not find gem 'ruby \(\>= 2.1.0\)' [\#116](https://github.com/dev-sec/ansible-os-hardening/issues/116)
-- The task sysctl fails when /etc/initramfs-tools is not present [\#111](https://github.com/dev-sec/ansible-os-hardening/issues/111)
-- Deprecation warning always\_run [\#103](https://github.com/dev-sec/ansible-os-hardening/issues/103)
 
 **Closed issues:**
 
