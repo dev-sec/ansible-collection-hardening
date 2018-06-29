@@ -35,7 +35,7 @@
   template:
     src: 'usr/share/pam-configs/pam_passwdqd.j2'
     dest: '{{ passwdqc_path }}'
-    mode: '0640'
+    mode: '0644'
     owner: 'root'
     group: 'root'
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and os_auth_pam_passwdqc_enable
@@ -56,7 +56,7 @@
   template:
     src: 'usr/share/pam-configs/pam_tally2.j2'
     dest: '{{ tally2_path }}'
-    mode: '0640'
+    mode: '0644'
     owner: 'root'
     group: 'root'
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and not os_auth_pam_passwdqc_enable and os_auth_retries > 0
