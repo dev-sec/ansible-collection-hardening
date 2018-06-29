@@ -15,7 +15,8 @@
   register: sshd_version
   check_mode: no
 
-- include_tasks: crypto.yml
+- name: include tasks to create crypo-vars
+  include_tasks: crypto.yml
 
 - name: create revoked_keys and set permissions to root/600
   template:
@@ -59,11 +60,12 @@
   notify: restart sshd
   when: sshd_register_moduli.stdout
 
-- include_tasks: ca_keys_and_principals.yml
+- name: include tasks to setup ca keys and principals
+  include_tasks: ca_keys_and_principals.yml
   when: ssh_trusted_user_ca_keys_file != ''
 
-# Install the 2FA packages and setup the config in PAM and SSH
-- include_tasks: 2fa.yml
+- name: include tasks to setup 2FA
+  include_tasks: 2fa.yml
   when:
     - ssh_use_pam
     - ssh_challengeresponseauthentication
@@ -76,5 +78,6 @@
   changed_when: false
   check_mode: no
 
-- include_tasks: selinux.yml
+- name: include selinux specific tasks
+  include_tasks: selinux.yml
   when: sestatus.rc == 0
