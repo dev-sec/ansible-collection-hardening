@@ -1,11 +1,11 @@
 ---
 - name: Set OS dependent variables
-  include_vars: "{{ item }}"
+  include_vars: '{{ item }}'
   with_first_found:
-   - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
-   - "{{ ansible_distribution }}.yml"
-   - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
-   - "{{ ansible_os_family }}.yml"
+   - '{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml'
+   - '{{ ansible_distribution }}.yml'
+   - '{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml'
+   - '{{ ansible_os_family }}.yml'
 
 - name: get openssh-version
   shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
@@ -18,17 +18,33 @@
 - include_tasks: crypto.yml
 
 - name: create revoked_keys and set permissions to root/600
-  template: src='revoked_keys.j2' dest='/etc/ssh/revoked_keys' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
+  template:
+    src: 'revoked_keys.j2'
+    dest: '/etc/ssh/revoked_keys'
+    mode: '0600'
+    owner: '{{ ssh_owner }}'
+    group: '{{ ssh_group }}'
   notify: restart sshd
   when: ssh_server_hardening
 
 - name: create sshd_config and set permissions to root/600
-  template: src='opensshd.conf.j2' dest='/etc/ssh/sshd_config' mode=0600 owner="{{ ssh_owner }}" group="{{ ssh_group }}" validate="/usr/sbin/sshd -T -f %s"
+  template:
+    src: 'opensshd.conf.j2'
+    dest: '/etc/ssh/sshd_config'
+    mode: '0600'
+    owner: '{{ ssh_owner }}'
+    group: '{{ ssh_group }}'
+    validate: '/usr/sbin/sshd -T -f %s'
   notify: restart sshd
   when: ssh_server_hardening
 
 - name: create ssh_config and set permissions to root/644
-  template: src='openssh.conf.j2' dest='/etc/ssh/ssh_config' mode=0644 owner="{{ ssh_owner }}" group="{{ ssh_group }}"
+  template:
+    src: 'openssh.conf.j2'
+    dest: '/etc/ssh/ssh_config'
+    mode: '0644'
+    owner: '{{ ssh_owner }}'
+    group: '{{ ssh_group }}'
   when: ssh_client_hardening
 
 - name: Check if {{ sshd_moduli_file }} contains weak DH parameters
@@ -46,6 +62,13 @@
 - include_tasks: ca_keys_and_principals.yml
   when: ssh_trusted_user_ca_keys_file != ''
 
+# Install the 2FA packages and setup the config in PAM and SSH
+- include_tasks: 2fa.yml
+  when:
+    - ssh_use_pam
+    - ssh_challengeresponseauthentication
+    - ssh_google_auth
+
 - name: test to see if selinux is installed and running
   command: getenforce
   register: sestatus
@@ -53,91 +76,5 @@
   changed_when: false
   check_mode: no
 
-# Install the 2FA packages and setup the config in PAM and SSH
-
-- block:
-  - name: Install google authenticator PAM module
-    apt: name=libpam-google-authenticator state=present
-    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-  - name: Install google authenticator PAM module
-    yum: name=google-authenticator state=present
-    when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
-
-  - name: Add google auth module to PAM
-    pamd:
-      name: sshd
-      type: auth
-      control: required
-      module_path: pam_google_authenticator.so
-
-  - name: Remove password auth from PAM
-    pamd:
-      name: sshd
-      type: auth
-      control: substack
-      module_path: password-auth
-      state: absent
-    when: ansible_distribution == 'RedHat' or ansible_distribution == 'Oracle Linux' or ansible_distribution == 'Amazon'
-
-  - name: Remove password auth from PAM
-    replace:
-      dest: /etc/pam.d/sshd
-      regexp: '^@include common-auth'
-      replace: '#@include common-auth'
-    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-  when:
-    - ssh_use_pam
-    - ssh_challengeresponseauthentication
-    - ssh_google_auth
-
-
-- block: # only runs when selinux is installed
-  - name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
-    package: name="{{item}}" state=present
-    with_items:
-      - policycoreutils-python
-      - checkpolicy
-    when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
-
-  - name: install selinux dependencies when selinux is installed on Debian or Ubuntu
-    apt: name="{{item}}" state=present
-    with_items:
-      - policycoreutils
-      - checkpolicy
-    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-  - name: check if ssh_password module is already installed
-    shell: "semodule -l | grep ssh_password"
-    register: ssh_password_module
-    failed_when: false
-    changed_when: false
-    check_mode: no
-
-  # The following tasks only get executed when selinux is in state enforcing, UsePam is "no" and the ssh_password module is installed.
-  # See this issue for more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
-  - block:
-    - name: Create selinux custom policy drop folder
-      file: path='{{ ssh_custom_selinux_dir }}' state=directory owner=root group=root mode=0750
-
-    - name: Distributing custom selinux policies
-      copy: src='ssh_password' dest='{{ ssh_custom_selinux_dir }}'
-
-    - name: check and compile policy
-      shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
-
-    - name: create selinux policy module package
-      shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
-
-    - name: install selinux policy
-      shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
-
-    when: not ssh_use_pam and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
-
-  # The following tasks only get executed when selinux is installed, UsePam is "yes" and the ssh_password module is installed.
-  - name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
-    command: semodule -r ssh_password
-    when: ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
-
+- include_tasks: selinux.yml
   when: sestatus.rc == 0
