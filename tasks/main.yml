@@ -13,13 +13,16 @@
       skip: true
   tags: always
 
+- import_tasks: auditd.yml
+  tags: auditd
+
 - import_tasks: limits.yml
   tags: limits
 
 - import_tasks: login_defs.yml
   tags: login_defs
 
-- include_tasks: minimize_access.yml
+- import_tasks: minimize_access.yml
   tags: minimize_access
 
 - import_tasks: pam.yml
