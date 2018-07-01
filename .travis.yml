@@ -15,13 +15,10 @@ env:
     version: latest
     init: /sbin/init
 
-# oracle 7 does not support ansible 2.4 yet
-# check oracle-epel if it is supported
-# http://yum.oracle.com/repo/OracleLinux/OL7/developer_EPEL/x86_64/index.html
-#  - distro: oracle7
-#    init: /usr/lib/systemd/systemd
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    version: latest
+  - distro: oracle7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
 
   - distro: ubuntu1604
     version: latest
@@ -62,7 +59,7 @@ script:
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/default.yml --diff --skip-tags "sysctl"'
 
    # Verify role
-  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-06 os-07 os-09 package-01 package-02 package-03 package-04 package-05 package-06 package-09'
+  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-05b os-06 os-07 os-09 os-10 os-11 package-01 package-02 package-03 package-05 package-06 package-08 package-09 --no-distinct-exit'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
