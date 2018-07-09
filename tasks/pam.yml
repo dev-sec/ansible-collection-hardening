@@ -6,6 +6,10 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
 
+# the reason for this is so a user cannot connect to a server,
+# that isn't connected to an LDAP server anymore.
+# normally caching credentials shouldn't be necessary for most machines.
+# removing it provides some more security while not removing usability.
 - name: remove pam ccreds on Debian systems
   apt:
     name: '{{ os_packages_pam_ccreds }}'
