@@ -8,6 +8,10 @@
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
+    - name: Install firefox to get Xorg
+      package:
+        name: firefox
+        state: present
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
