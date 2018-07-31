@@ -21,7 +21,7 @@ provisioner:
   roles_path: ../ansible-os-hardening/
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
-  playbook: default.yml
+  playbook: tests/test.yml
 
 platforms:
 - name: centos6-ansible-latest
