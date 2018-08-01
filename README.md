@@ -27,8 +27,7 @@ It will not:
 
 ## Requirements
 
-* Ansible 2.4.2
-
+* Ansible 2.5.0
 
 ## Warning
 
