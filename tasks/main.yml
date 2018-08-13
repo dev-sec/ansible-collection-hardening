@@ -1,4 +1,4 @@
 ---
 
 - include_tasks: main_2.yml
-  when: "not (ssh_dependency | default(false))"
+  when: ssh_hardening_enabled | default(true)
