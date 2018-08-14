@@ -16,7 +16,7 @@ provisioner:
   require_ruby_for_busser: false
   ansible_verbose: true
   roles_path: ../ansible-ssh-hardening/
-  playbook: default.yml
+  playbook: tests/default.yml
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
 
