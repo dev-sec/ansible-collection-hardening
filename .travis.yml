@@ -15,10 +15,10 @@ env:
     version: latest
     init: /sbin/init
 
-  - distro: oracle7
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
+#  - distro: oracle7
+#    init: /lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    version: latest
 
   - distro: ubuntu1604
     version: latest
