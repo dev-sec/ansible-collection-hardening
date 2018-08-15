@@ -7,7 +7,7 @@ env:
     init: /sbin/init
 
   - distro: centos7
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
@@ -15,10 +15,10 @@ env:
     version: latest
     init: /sbin/init
 
-  - distro: oracle7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
+#  - distro: oracle7
+#    init: /lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    version: latest
 
   - distro: ubuntu1604
     version: latest
@@ -43,8 +43,9 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: amazon
-    init: /sbin/init
+    init: /lib/systemd/systemd
     version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   # Pull container
