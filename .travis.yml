@@ -7,7 +7,7 @@ env:
     init: /sbin/init
 
   - distro: centos7
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
@@ -16,7 +16,7 @@ env:
     init: /sbin/init
 
   - distro: oracle7
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
