@@ -43,8 +43,9 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: amazon
-    init: /sbin/init
+    init: /lib/systemd/systemd
     version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   # Pull container
