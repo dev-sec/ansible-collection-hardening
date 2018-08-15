@@ -1,0 +1,15 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  hosts: localhost
+  pre_tasks:
+    - package: name="{{item}}" state=installed
+      with_items:
+        - "systemd"
+      ignore_errors: true
+    - apt: name="{{item}}" state=installed update_cache=true
+      with_items:
+        - "systemd"
+      ignore_errors: true
+  roles:
+    - nginxinc.nginx
+    - ansible-nginx-hardening

@@ -3,14 +3,27 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: config should not be worldwide read- or writeable
-  file: path="/etc/nginx" mode="o-rw" owner="root" group="root" recurse=yes
+  file:
+    path: "/etc/nginx"
+    mode: "o-rw"
+    owner: "root"
+    group: "root"
+    recurse: yes
 
 - name: create additional configuration
-  template: src="hardening.conf.j2" dest="{{nginx_config_conf_dir}}/90.hardening.conf" owner="root" group="root"
+  template:
+    src: "hardening.conf.j2"
+    dest: "{{ nginx_config_conf_dir }}/90.hardening.conf"
+    owner: "root"
+    group: "root"
   notify: reload nginx
 
 - name: change configuration in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*server_tokens" line="server_tokens {{nginx_server_tokens}};" insertafter="http {"
+  lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    regexp: "^\\s*server_tokens"
+    line: "server_tokens {{ nginx_server_tokens }};"
+    insertafter: "http {"
   notify: reload nginx
 
 - name: change ssl_protocols in main nginx.conf
@@ -22,22 +35,36 @@
   notify: reload nginx
 
 - name: change client_max_body_size in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*client_max_body_size" line="client_max_body_size {{nginx_client_max_body_size}};" insertafter="http {"
+  lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    regexp: "^\\s*client_max_body_size"
+    line: "client_max_body_size {{ nginx_client_max_body_size }};"
+    insertafter: "http {"
   notify: reload nginx
 
 - name: change client_body_buffer_size in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*client_body_buffer_size" line="client_body_buffer_size {{nginx_client_body_buffer_size}};" insertafter="http {"
+  lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    regexp: "^\\s*client_body_buffer_size"
+    line: "client_body_buffer_size {{ nginx_client_body_buffer_size }};"
+    insertafter: "http {"
   notify: reload nginx
 
 - name: change keepalive_timeout in main nginx.conf
-  lineinfile: dest="/etc/nginx/nginx.conf" regexp="^\s*keepalive_timeout" line="keepalive_timeout {{nginx_keepalive_timeout}};" insertafter="http {"
+  lineinfile:
+    dest: "/etc/nginx/nginx.conf"
+    regexp: "^\\s*keepalive_timeout"
+    line: "keepalive_timeout {{ nginx_keepalive_timeout }};"
+    insertafter: "http {"
   notify: reload nginx
 
 - name: remove default.conf
-  file: path="{{nginx_default_conf}}" state=absent
+  file:
+    path: "{{ nginx_default_conf }}"
+    state: absent
   when: nginx_remove_default_site
   notify: reload nginx
 
 - name: generate dh group
-  command: openssl dhparam -out {{nginx_dh_param}} {{nginx_dh_size}} creates={{nginx_dh_param}}
+  command: openssl dhparam -out {{ nginx_dh_param }} {{ nginx_dh_size }} creates={{ nginx_dh_param }}
   notify: reload nginx
