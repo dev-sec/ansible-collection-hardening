@@ -1,1 +1,3 @@
 ---
+mysql_hardening_log_dir: '/var/log'
+mysql_hardening_log_file: 'mysql.log'

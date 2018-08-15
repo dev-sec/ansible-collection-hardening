@@ -5,8 +5,9 @@ mysql_daemon_enabled: yes
 
 # general configuration
 mysql_cnf_owner: 'root' # owner of /etc/mysql/*.cnf files
+mysql_cnf_group: 'root' # owner of /etc/mysql/*.cnf files
 mysql_hardening_user: 'mysql' # owner of data
-mysql_hardening_group: 'root'
+mysql_hardening_group: 'mysql'
 mysql_datadir: '/var/lib/mysql'
 mysql_hardening_mysql_hardening_conf_file: '{{mysql_hardening_mysql_confd_dir}}/hardening.cnf'
 # You have to change this to your own strong enough mysql root password

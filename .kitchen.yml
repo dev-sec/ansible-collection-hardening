@@ -1,8 +1,10 @@
 ---
 driver:
   name: docker
-  privileged: true
   use_sudo: false
+  privileged: true
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
 
 transport:
   max_ssh_sessions: 5
@@ -11,16 +13,18 @@ provisioner:
   name: ansible_playbook
   hosts: all
   require_ansible_repo: false
-  require_ansible_omnibus: true
   require_chef_for_busser: false
   require_ruby_for_busser: false
   ansible_verbose: true
   ansible_diff: true
 
   roles_path: ../ansible-mysql-hardening/
-  playbook: default.yml
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
   requirements_path: requirements.yml
   sudo_command: 'sudo -E -H'
+  playbook: tests/test.yml
+  galaxy_ignore_certs: true
 
 platforms:
 - name: centos6-ansible-latest
@@ -31,6 +35,10 @@ platforms:
   driver:
     image: rndmh3ro/docker-centos7-ansible:latest
     platform: centos
+    run_command: /sbin/init
+    provision_command:
+      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+      - systemctl enable sshd.service
 - name: oracle6-ansible-latest
   driver:
     image: rndmh3ro/docker-oracle6-ansible:latest
@@ -38,19 +46,17 @@ platforms:
 - name: oracle7-ansible-latest
   driver:
     image: rndmh3ro/docker-oracle7-ansible:latest
+    run_command: /sbin/init
     platform: centos
     run_command: /sbin/init
     provision_command:
       - systemctl enable ssh.service
-- name: ubuntu1604-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1604-ansible:latest
-    platform: ubuntu
-    run_command: /sbin/init
 - name: ubuntu1804-ansible-latest
   driver:
     image: rndmh3ro/docker-ubuntu1804-ansible:latest
     platform: ubuntu
+    provision_command:
+      - systemctl enable ssh.service
 - name: debian9-ansible-latest
   driver:
     image: rndmh3ro/docker-debian9-ansible:latest
@@ -72,15 +78,9 @@ platforms:
     image: rndmh3ro/docker-amazon-ansible:latest
     platform: centos
     run_command: /sbin/init
-#- name: amazon-ansible-latest
-#  driver:
-#    image: rndmh3ro/docker-amazon-ansible:latest
-#    platform: centos
-#    run_command: /sbin/init
-#    provision_command:
-#      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-#      - systemctl enable sshd.service
-
+    provision_command:
+      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+      - systemctl enable sshd.service
 verifier:
   name: inspec
   sudo: true
