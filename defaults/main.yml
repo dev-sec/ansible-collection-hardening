@@ -241,3 +241,7 @@ ssh_challengeresponseauthentication: false
 
 # a list of public keys that are never accepted by the ssh server
 ssh_server_revoked_keys: []
+
+# Set to false to turn the role into a no-op. Useful when using
+# the Ansible role dependency mechanism.
+ssh_hardening_enabled: true
