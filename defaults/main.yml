@@ -243,3 +243,7 @@ os_unused_filesystems:
 
 # whitelist for used filesystems
 os_filesystem_whitelist: []
+
+# Set to false to turn the role into a no-op. Useful when using
+# the Ansible role dependency mechanism.
+os_hardening_enabled: true
