@@ -31,12 +31,4 @@
   file:
     path: /etc/security/limits.d/10.hardcore.conf
     state: absent
-
-- name: create sane limits.conf | sysctl-31a, sysctl-31b
-  template:
-    src: 'etc/security/limits.d/limits.conf.j2'
-    dest: '/etc/security/limits.d/10.hardcore.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0440'
   when: 'os_security_kernel_enable_core_dump'

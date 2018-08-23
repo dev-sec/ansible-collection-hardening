@@ -12,7 +12,7 @@
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:
     os_security_users_allow: change_user
-    os_security_kernel_enable_core_dump: false
+    os_security_kernel_enable_core_dump: true
     os_security_suid_sgid_remove_from_unknown: true
     os_auth_pam_passwdqc_enable: false
     os_desktop_enable: true
