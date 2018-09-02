@@ -1,5 +1,39 @@
 # Change Log
 
+## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...HEAD)
+
+**Implemented enhancements:**
+
+- Warning about "include" for tasks for ansible-playbook 2.4.0 \(devel f0a5854e39\) [\#131](https://github.com/dev-sec/ansible-os-hardening/issues/131)
+- fix problems with efi and vfat [\#190](https://github.com/dev-sec/ansible-os-hardening/pull/190) ([rndmh3ro](https://github.com/rndmh3ro))
+- added os\_hardening\_enabled flag [\#186](https://github.com/dev-sec/ansible-os-hardening/pull/186) ([jcheroske](https://github.com/jcheroske))
+- add amazon run opts to travis [\#183](https://github.com/dev-sec/ansible-os-hardening/pull/183) ([rndmh3ro](https://github.com/rndmh3ro))
+- use package instead of yum and apt [\#180](https://github.com/dev-sec/ansible-os-hardening/pull/180) ([rndmh3ro](https://github.com/rndmh3ro))
+- add oracle7 to travis [\#178](https://github.com/dev-sec/ansible-os-hardening/pull/178) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix wrong permissions passwdqc \#170 [\#176](https://github.com/dev-sec/ansible-os-hardening/pull/176) ([rndmh3ro](https://github.com/rndmh3ro))
+- ipv4 forwarding comment is inconsistent with example [\#174](https://github.com/dev-sec/ansible-os-hardening/pull/174) ([carchrae](https://github.com/carchrae))
+- Rename pam\_passwdqd.j2 to pam\_passwdqc.j2 [\#172](https://github.com/dev-sec/ansible-os-hardening/pull/172) ([martinbydefault](https://github.com/martinbydefault))
+- Use package state 'present' since 'installed' is deprecated [\#168](https://github.com/dev-sec/ansible-os-hardening/pull/168) ([Normo](https://github.com/Normo))
+- Update syntax to Ansible 2.4 [\#161](https://github.com/dev-sec/ansible-os-hardening/pull/161) ([thomasjpfan](https://github.com/thomasjpfan))
+- add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add support for Amazon Linux [\#158](https://github.com/dev-sec/ansible-os-hardening/pull/158) ([woneill](https://github.com/woneill))
+- install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) ([rndmh3ro](https://github.com/rndmh3ro))
+- Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) ([HelioCampos](https://github.com/HelioCampos))
+
+**Fixed bugs:**
+
+- minimize\_access: maximum recursion depth exceeded on Ansible 2.5 [\#171](https://github.com/dev-sec/ansible-os-hardening/issues/171)
+- wrong permissions passwdqc [\#170](https://github.com/dev-sec/ansible-os-hardening/issues/170)
+- Update deprecated `include` statements [\#166](https://github.com/dev-sec/ansible-os-hardening/issues/166)
+- Strongly recommend against disabling vfat by default [\#162](https://github.com/dev-sec/ansible-os-hardening/issues/162)
+- System completely unresponsive after role execution [\#145](https://github.com/dev-sec/ansible-os-hardening/issues/145)
+- do not install passwdqc on amazon linux [\#189](https://github.com/dev-sec/ansible-os-hardening/pull/189) ([rndmh3ro](https://github.com/rndmh3ro))
+- add back run opts for debian 8 in travis [\#184](https://github.com/dev-sec/ansible-os-hardening/pull/184) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix core dump config file creation when core dumps are disabled [\#182](https://github.com/dev-sec/ansible-os-hardening/pull/182) ([Normo](https://github.com/Normo))
+- change minimize access method [\#181](https://github.com/dev-sec/ansible-os-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.0)
 
@@ -8,7 +42,7 @@
 - Update some RH settings in this role [\#155](https://github.com/dev-sec/ansible-os-hardening/issues/155)
 - Removal of core dump hardening configuration if core dumps are allowed [\#129](https://github.com/dev-sec/ansible-os-hardening/issues/129)
 - Don't create home for system accounts [\#156](https://github.com/dev-sec/ansible-os-hardening/pull/156) ([oakey-b1](https://github.com/oakey-b1))
-- Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([pinguinkiste](https://github.com/pinguinkiste))
+- Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([manuelprinz](https://github.com/manuelprinz))
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
 - add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
