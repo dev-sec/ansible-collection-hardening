@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
-
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...HEAD)
+## [5.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.0.0) (2018-09-02)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...5.0.0)
 
 **Implemented enhancements:**
 
@@ -35,7 +34,7 @@
 - change minimize access method [\#181](https://github.com/dev-sec/ansible-os-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.0)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.1...4.3.0)
 
 **Implemented enhancements:**
 
@@ -51,7 +50,6 @@
 **Fixed bugs:**
 
 - bug in ufw.j2 template [\#151](https://github.com/dev-sec/ansible-os-hardening/issues/151)
-- os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
 - replace single ticks with double ticks. fix \#151 [\#152](https://github.com/dev-sec/ansible-os-hardening/pull/152) ([rndmh3ro](https://github.com/rndmh3ro))
 - fixed tag [\#149](https://github.com/dev-sec/ansible-os-hardening/pull/149) ([martinbydefault](https://github.com/martinbydefault))
 
@@ -63,6 +61,13 @@
 **Merged pull requests:**
 
 - move defaults to os-specific vars [\#157](https://github.com/dev-sec/ansible-os-hardening/pull/157) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [4.3.1](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.1) (2017-09-13)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.1)
+
+**Fixed bugs:**
+
+- os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
 
 ## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.1.0...4.2.0)
