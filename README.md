@@ -35,10 +35,10 @@ It works with the following nginx-roles, including, but not limited to:
 | [nginx_limit_conn_zone][] | `$binary_remote_addr zone=default:10m` | Sets parameters for a shared memory zone that will keep states for various keys.  |
 | [nginx_limit_conn][] | `default 5` | Sets the shared memory zone and the maximum allowed number of connections for a given key value. |
 | [nginx_add_header][] | `[ "X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"" ]` |Adds the specified field to a response header provided that the response code equals 200, 201, 204, 206, 301, 302, 303, 304, or 307. |
-| [nginx_ssl_protocols][] | `TLSv1 TLSv1.1 TLSv1.2` | Specifies the SSL protocol which should be used. |
+| [nginx_ssl_protocols][] | `TLSv1.2` | Specifies the SSL protocol which should be used. |
 | [nginx_ssl_ciphers][] | *see defaults.yml* | Specifies the TLS ciphers which should be used. |
 | [nginx_ssl_prefer_server_ciphers][] | `on` | Specifies that server ciphers should be preferred over client ciphers when using the TLS protocols. Set to false to disable it. |
-| [nginx_dh-size][] | `2048` | Specifies the length of DH parameters for EDH ciphers. |
+| [nginx_dh_size][] | `2048` | Specifies the length of DH parameters for EDH ciphers. |
 
 ## Example Playbook
 
@@ -130,4 +130,4 @@ limitations under the License.
 [nginx_ssl_protocols]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 [nginx_ssl_ciphers]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers
 [nginx_ssl_prefer_server_ciphers]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
-[nginx_dh-size]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
+[nginx_dh_size]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
