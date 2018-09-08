@@ -86,7 +86,24 @@ verifier:
   name: inspec
   sudo: true
   inspec_tests:
-    - https://github.com/dev-sec/nginx-baseline
+    - ../nginx-baseline
+    #- https://github.com/dev-sec/nginx-baseline
+  controls:
+    - nginx-01
+    - nginx-02
+    - nginx-03
+    - nginx-04
+    - nginx-05
+    - nginx-06
+    - nginx-07
+    - nginx-08
+    - nginx-09
+    - nginx-10
+    - nginx-12
+    - nginx-13
+    - nginx-14
+    - nginx-15
+    - nginx-17
 
 suites:
 - name: nginx
