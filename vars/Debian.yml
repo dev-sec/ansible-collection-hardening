@@ -1,4 +1,0 @@
-nginx_root_dir: '/etc/nginx'
-nginx_config_conf_dir: '/etc/nginx/conf.d'
-nginx_default_conf: '/etc/nginx/sites-enabled/default'
-nginx_service_name: 'nginx'

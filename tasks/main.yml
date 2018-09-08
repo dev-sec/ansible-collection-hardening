@@ -1,7 +1,4 @@
 ---
-- name: add the OS specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
-
 - name: config should not be worldwide read- or writeable
   file:
     path: "/etc/nginx"
