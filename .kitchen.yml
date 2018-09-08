@@ -60,10 +60,6 @@ platforms:
     run_command: /sbin/init
     provision_command:
       - systemctl enable ssh.service
-- name: debian7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian7-ansible:latest
-    platform: debian
 - name: debian8-ansible-latest
   driver:
     image: rndmh3ro/docker-debian8-ansible:latest

@@ -62,10 +62,6 @@ platforms:
 - name: oracle-7
   driver_config:
     box: boxcutter/ol72
-- name: debian-7
-  driver_config:
-    box: debian-7
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.8_chef-provisionerless.box
 - name: debian-8
   driver_config:
     box: debian-8
