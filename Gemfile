@@ -16,3 +16,7 @@ end
 group :tools do
   gem 'github_changelog_generator', '~> 1'
 end
+
+gem 'kitchen-dokken'
+
+gem 'rb-readline'
