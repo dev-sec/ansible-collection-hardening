@@ -1,5 +1,21 @@
 # Change Log
 
+## [2.0.0](https://github.com/dev-sec/ansible-nginx-hardening/tree/2.0.0) (2018-09-08)
+[Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/1.0.2...2.0.0)
+
+**Implemented enhancements:**
+
+- Update readme to include baselines [\#10](https://github.com/dev-sec/ansible-nginx-hardening/issues/10)
+- Update testing, remove useless params, style update [\#18](https://github.com/dev-sec/ansible-nginx-hardening/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update README.md [\#14](https://github.com/dev-sec/ansible-nginx-hardening/pull/14) ([vishesh92](https://github.com/vishesh92))
+- Add comment filter to {{ansible\_managed}} string [\#12](https://github.com/dev-sec/ansible-nginx-hardening/pull/12) ([fazlearefin](https://github.com/fazlearefin))
+- use new Docker images [\#8](https://github.com/dev-sec/ansible-nginx-hardening/pull/8) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- Running kitchen verify asks for 'roots' password [\#11](https://github.com/dev-sec/ansible-nginx-hardening/issues/11)
+- Fix duplicate ssl\_prefer\_server\_ciphers error [\#16](https://github.com/dev-sec/ansible-nginx-hardening/pull/16) ([oakey-b1](https://github.com/oakey-b1))
+
 ## [1.0.2](https://github.com/dev-sec/ansible-nginx-hardening/tree/1.0.2) (2016-10-24)
 [Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/1.0.1...1.0.2)
 
