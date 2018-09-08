@@ -23,6 +23,7 @@ provisioner:
   https_proxy: <%= ENV['https_proxy'] || nil %>
   playbook: tests/test.yml
   requirements_path: requirements.yml
+  galaxy_ignore_certs: true
 
 platforms:
 - name: centos6-ansible-latest
