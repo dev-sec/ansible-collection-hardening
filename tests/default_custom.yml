@@ -74,6 +74,5 @@
       - aes128-ctr
       - aes256-cbc
     ssh_kex:
-      - curve25519-sha256@libssh.org
       - diffie-hellman-group-exchange-sha256
       - diffie-hellman-group-exchange-sha1
