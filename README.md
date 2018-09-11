@@ -70,6 +70,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_use_dns` | `false` | Specifies whether sshd should look up the remote host name, and to check that the resolved host name for the remote IP address maps back to the very same IP address. |
 |`ssh_server_revoked_keys` | [] | a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.|
 |`ssh_max_startups` | '10:30:100' | Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon.|
+|`ssh_macs` | [] | Change this list to overwrite macs. Defaults found in `defaults/main.yml` |
+|`ssh_kex` | [] | Change this list to overwrite kexs. Defaults found in `defaults/main.yml` |
+|`ssh_ciphers` | [] | Change this list to overwrite ciphers. Defaults found in `defaults/main.yml` |
 
 ## Example Playbook
 
