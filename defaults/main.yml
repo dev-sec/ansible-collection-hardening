@@ -14,18 +14,6 @@ ssh_compression: false                  # sshd
 ssh_client_hardening: true          # ssh
 ssh_server_hardening: true          # sshd
 
-# true if CBC for ciphers is required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure ciphers enabled. CBC is a weak alternative. Anything weaker should be avoided and is thus not available.
-ssh_client_cbc_required: false          # ssh
-ssh_server_cbc_required: false          # sshd
-
-# true if weaker HMAC mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure HMACs enabled.
-ssh_client_weak_hmac: false             # ssh
-ssh_server_weak_hmac: false             # sshd
-
-# true if weaker Key-Exchange (KEX) mechanisms are required. This is usually only necessary, if older M2M mechanism need to communicate with SSH, that don't have any of the configured secure KEXs enabled.
-ssh_client_weak_kex: false              # ssh
-ssh_server_weak_kex: false              # sshd
-
 # If true, password login is allowed
 ssh_client_password_login: false          # ssh
 ssh_server_password_login: false          # sshd
@@ -184,8 +172,6 @@ ssh_macs_59_default:
   - hmac-sha2-256
   - hmac-ripemd160
 
-ssh_macs_59_weak: "{{ ssh_macs_59_default + ['hmac-sha1'] }}"
-
 ssh_macs_66_default:
   - hmac-sha2-512-etm@openssh.com
   - hmac-sha2-256-etm@openssh.com
@@ -200,14 +186,10 @@ ssh_macs_76_default:
   - hmac-sha2-512
   - hmac-sha2-256
 
-ssh_macs_66_weak: "{{ ssh_macs_66_default + ['hmac-sha1'] }}"
-
 ssh_ciphers_53_default:
   - aes256-ctr
   - aes192-ctr
   - aes128-ctr
-
-ssh_ciphers_53_weak: "{{ ssh_ciphers_53_default + ['aes256-cbc', 'aes192-cbc', 'aes128-cbc'] }}"
 
 ssh_ciphers_66_default:
   - chacha20-poly1305@openssh.com
@@ -217,18 +199,12 @@ ssh_ciphers_66_default:
   - aes192-ctr
   - aes128-ctr
 
-ssh_ciphers_66_weak: "{{ ssh_ciphers_66_default + ['aes256-cbc', 'aes192-cbc', 'aes128-cbc'] }}"
-
 ssh_kex_59_default:
   - diffie-hellman-group-exchange-sha256
-
-ssh_kex_59_weak: "{{ ssh_kex_59_default + ['diffie-hellman-group14-sha1', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group1-sha1'] }}"
 
 ssh_kex_66_default:
   - curve25519-sha256@libssh.org
   - diffie-hellman-group-exchange-sha256
-
-ssh_kex_66_weak: "{{ ssh_kex_66_default + ['diffie-hellman-group14-sha1', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group1-sha1'] }}"
 
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
