@@ -1,5 +1,56 @@
 # Change Log
 
+## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/5.0.0...HEAD)
+
+**Fixed bugs:**
+
+- Weak kex are controlled by wrong variable ? [\#174](https://github.com/dev-sec/ansible-ssh-hardening/issues/174)
+
+## [5.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/5.0.0) (2018-09-16)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.4.0...5.0.0)
+
+**Implemented enhancements:**
+
+- Fixing the broken Ansible dependency mechanism [\#176](https://github.com/dev-sec/ansible-ssh-hardening/issues/176)
+- Include new baseline-tests [\#161](https://github.com/dev-sec/ansible-ssh-hardening/issues/161)
+- GlobalKnownHostsFile missing from ssh\_config [\#155](https://github.com/dev-sec/ansible-ssh-hardening/issues/155)
+- Options not compatible with OpenSSH server 7.6 [\#151](https://github.com/dev-sec/ansible-ssh-hardening/issues/151)
+- Kitchen travis [\#180](https://github.com/dev-sec/ansible-ssh-hardening/pull/180) ([rndmh3ro](https://github.com/rndmh3ro))
+- update config of kex, macs, ciphers [\#179](https://github.com/dev-sec/ansible-ssh-hardening/pull/179) ([rndmh3ro](https://github.com/rndmh3ro))
+- add debian 9 and a comment [\#178](https://github.com/dev-sec/ansible-ssh-hardening/pull/178) ([rndmh3ro](https://github.com/rndmh3ro))
+- Dependency flag [\#177](https://github.com/dev-sec/ansible-ssh-hardening/pull/177) ([jcheroske](https://github.com/jcheroske))
+- Travis [\#173](https://github.com/dev-sec/ansible-ssh-hardening/pull/173) ([rndmh3ro](https://github.com/rndmh3ro))
+- OpenBSD Support [\#171](https://github.com/dev-sec/ansible-ssh-hardening/pull/171) ([jbronn](https://github.com/jbronn))
+- Implement disabling chroot for sftp [\#166](https://github.com/dev-sec/ansible-ssh-hardening/pull/166) ([towo](https://github.com/towo))
+- New tests [\#163](https://github.com/dev-sec/ansible-ssh-hardening/pull/163) ([rndmh3ro](https://github.com/rndmh3ro))
+- yaml-lint update, refactor tasks [\#162](https://github.com/dev-sec/ansible-ssh-hardening/pull/162) ([rndmh3ro](https://github.com/rndmh3ro))
+- Handle a few deprecated OpenSSH options [\#160](https://github.com/dev-sec/ansible-ssh-hardening/pull/160) ([ageis](https://github.com/ageis))
+- Added support for TrustedUserCAKeys and AuthorizedPrincipalsFile. [\#157](https://github.com/dev-sec/ansible-ssh-hardening/pull/157) ([gdelafond](https://github.com/gdelafond))
+- Adds sshd config for keyboard-interactive pam device [\#156](https://github.com/dev-sec/ansible-ssh-hardening/pull/156) ([rcII](https://github.com/rcII))
+- Use package state 'present' since 'installed' is deprecated [\#154](https://github.com/dev-sec/ansible-ssh-hardening/pull/154) ([Normo](https://github.com/Normo))
+- conform to current dev-sec/ssh-baseline [\#150](https://github.com/dev-sec/ansible-ssh-hardening/pull/150) ([alval5280](https://github.com/alval5280))
+- new parameter: ssh\_max\_startups [\#149](https://github.com/dev-sec/ansible-ssh-hardening/pull/149) ([aeschbacher](https://github.com/aeschbacher))
+- Update syntax to 2.4 [\#148](https://github.com/dev-sec/ansible-ssh-hardening/pull/148) ([thomasjpfan](https://github.com/thomasjpfan))
+- Amazonlinux-Testing [\#147](https://github.com/dev-sec/ansible-ssh-hardening/pull/147) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fixed trailing whitespace [\#146](https://github.com/dev-sec/ansible-ssh-hardening/pull/146) ([zbrojny120](https://github.com/zbrojny120))
+- Add support for Amazon Linux [\#145](https://github.com/dev-sec/ansible-ssh-hardening/pull/145) ([woneill](https://github.com/woneill))
+
+**Fixed bugs:**
+
+- ssh\_server\_weak\_kex variable is not used any where  [\#167](https://github.com/dev-sec/ansible-ssh-hardening/issues/167)
+- opensshd.conf.j2 template type error [\#159](https://github.com/dev-sec/ansible-ssh-hardening/issues/159)
+-  line 56: Bad SSH2 mac spec [\#135](https://github.com/dev-sec/ansible-ssh-hardening/issues/135)
+
+**Closed issues:**
+
+- Travis & Debian 9 "Stretch" [\#158](https://github.com/dev-sec/ansible-ssh-hardening/issues/158)
+
+**Merged pull requests:**
+
+- remove oracle7 from travis tests for the time being [\#181](https://github.com/dev-sec/ansible-ssh-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.4.0) (2017-12-29)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.3.1...4.4.0)
 
@@ -10,12 +61,11 @@
 - allow configuration of GatewayPorts [\#136](https://github.com/dev-sec/ansible-ssh-hardening/pull/136) ([pwyliu](https://github.com/pwyliu))
 - Added support for AuthorizedKeysFile config setting [\#132](https://github.com/dev-sec/ansible-ssh-hardening/pull/132) ([hyrsky](https://github.com/hyrsky))
 - corrected comments explaining the task's behaviour [\#131](https://github.com/dev-sec/ansible-ssh-hardening/pull/131) ([martinbydefault](https://github.com/martinbydefault))
-- Add Two-Factor Authentication [\#123](https://github.com/dev-sec/ansible-ssh-hardening/pull/123) ([lazzurs](https://github.com/lazzurs))
+- Feature/2fa auth [\#123](https://github.com/dev-sec/ansible-ssh-hardening/pull/123) ([lazzurs](https://github.com/lazzurs))
 
 **Fixed bugs:**
 
 - ssh\_use\_dns used twice in defaults/main.yml [\#129](https://github.com/dev-sec/ansible-ssh-hardening/issues/129)
-- line 56: Bad SSH2 mac spec [\#135](https://github.com/dev-sec/ansible-ssh-hardening/issues/135)
 
 **Closed issues:**
 
