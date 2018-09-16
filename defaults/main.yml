@@ -247,3 +247,6 @@ os_filesystem_whitelist: []
 # Set to false to turn the role into a no-op. Useful when using
 # the Ansible role dependency mechanism.
 os_hardening_enabled: true
+
+# Set to false to disable installing and configuring auditd.
+os_auditd_enabled: true

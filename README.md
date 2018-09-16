@@ -16,9 +16,10 @@ It configures:
  * Shadow password suite configuration
  * Configures system path permissions
  * Disable core dumps via soft limits
- * Restrict Root Logins to System Console
+ * Restrict root Logins to System Console
  * Set SUIDs
  * Configures kernel parameters via sysctl
+ * Install and configure auditd
 
 It will not:
 
@@ -61,7 +62,8 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 | `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
 | `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
 | `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
-| `ufw_default_forward_policy` | DROP| set default forward policy of ufw to `DROP` |
+| `ufw_default_forward_policy` | DROP | set default forward policy of ufw to `DROP` |
+| `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
 
 ## Packages
 
@@ -86,7 +88,7 @@ We disable the following filesystems, because they're most likely not used:
  * "hfsplus"
  * "squashfs"
  * "udf"
- * "vfat"
+ * "vfat" # only if uefi is not in use
 
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
