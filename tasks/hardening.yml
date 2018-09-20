@@ -15,6 +15,7 @@
 
 - import_tasks: auditd.yml
   tags: auditd
+  when: os_auditd_enabled
 
 - import_tasks: limits.yml
   tags: limits

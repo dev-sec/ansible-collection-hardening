@@ -62,6 +62,8 @@
 
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
   hosts: localhost
+  vars:
+    - os_auditd_enabled: false
   pre_tasks:
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
