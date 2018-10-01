@@ -7,3 +7,10 @@ sysctl_rhel_config:
   kernel.exec-shield: 1
   # Syncookies is used to prevent SYN-flooding attacks.
   net.ipv4.tcp_syncookies: 1
+
+os_auth_uid_min: 500
+os_auth_gid_min: 500
+os_auth_sys_uid_min: 201
+os_auth_sys_uid_max: 499
+os_auth_sys_gid_min: 201
+os_auth_sys_gid_max: 499
