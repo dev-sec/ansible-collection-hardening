@@ -6,7 +6,7 @@ auth        required      pam_tally2.so deny={{ os_auth_retries }} onerr=fail un
 {% endif %}
 auth        required      pam_env.so
 auth        sufficient    pam_unix.so nullok try_first_pass
-auth        requisite     pam_succeed_if.so uid >= 500 quiet
+auth        requisite     pam_succeed_if.so uid >= {{os_auth_uid_min}} quiet
 auth        required      pam_deny.so
 
 {% if os_auth_retries > 0 %}
@@ -14,7 +14,7 @@ account     required      pam_tally2.so
 {% endif %}
 account     required      pam_unix.so
 account     sufficient    pam_localuser.so
-account     sufficient    pam_succeed_if.so uid < 500 quiet
+account     sufficient    pam_succeed_if.so uid < {{os_auth_uid_min}} quiet
 account     required      pam_permit.so
 
 {% if (os_auth_pam_passwdqc_enable|bool) %}
