@@ -62,6 +62,13 @@ platforms:
     run_command: /sbin/init
     provision_command:
       - systemctl enable ssh.service
+- name: ubuntu1804-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1804-ansible:latest
+    platform: ubuntu
+    run_command: /sbin/init
+    provision_command:
+      - systemctl enable ssh.service
 - name: debian7-ansible-latest
   driver:
     image: rndmh3ro/docker-debian7-ansible:latest
