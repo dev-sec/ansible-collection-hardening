@@ -31,7 +31,8 @@ env:
 
   - distro: ubuntu1804
     version: latest
-    init: /sbin/init
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: debian7
     version: latest
