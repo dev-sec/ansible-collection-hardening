@@ -16,7 +16,7 @@ It works with the following nginx-roles, including, but not limited to:
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 ## Requirements
 
-* Ansible >= 1.9
+* Ansible >= 2.5
 
 ## Role Variables
 
