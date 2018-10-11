@@ -32,6 +32,9 @@ platforms:
   driver_config:
     box: opscode-ubuntu-16.04
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-16.04_chef-provisionerless.box
+- name: ubuntu18.04
+  driver_config:
+    box: ubuntu/bionic64
 - name: centos6
   driver_config:
     box: bento/centos-6.9
