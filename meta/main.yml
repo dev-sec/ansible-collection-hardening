@@ -15,10 +15,12 @@ galaxy_info:
         - precise
         - trusty
         - xenial
+        - bionic
     - name: Debian
       versions:
         - wheezy
         - jessie
+        - stretch
   galaxy_tags:
     - system
     - security
