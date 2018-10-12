@@ -32,4 +32,4 @@
     owner: 'root'
     group: 'root'
     mode: '0750'
-  when: os_security_users_allow != None
+  when: '"change_user" not in os_security_users_allow'

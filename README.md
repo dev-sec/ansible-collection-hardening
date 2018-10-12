@@ -94,23 +94,25 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
 
 ## Example Playbook
 
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+```
 
 ## Changing sysctl variables
-If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
-+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
-```
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-      vars:
-        sysctl_overwrite:
-          # Enable IPv4 traffic forwarding.
-          net.ipv4.ip_forward: 1
+If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
 ```
 
 Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
