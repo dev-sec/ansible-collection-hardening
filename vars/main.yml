@@ -43,6 +43,7 @@ os_security_suid_sgid_system_whitelist:
   - '/bin/mount'
   - '/bin/ping'
   - '/bin/su'
+  - '/usr/bin/su'
   - '/bin/umount'
   - '/sbin/pam_timestamp_check'
   - '/sbin/unix_chkpwd'
