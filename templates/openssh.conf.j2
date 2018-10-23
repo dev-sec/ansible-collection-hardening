@@ -82,7 +82,7 @@ ForwardX11 no
 
 # Never use host-based authentication. It can be exploited.
 HostbasedAuthentication no
-{% if sshd_version.stdout is version('7.4', '<=') %}
+{% if sshd_version.stdout is version('7.4', '<') %}
 RhostsRSAAuthentication no
 # Enable RSA authentication via identity files.
 RSAAuthentication yes
