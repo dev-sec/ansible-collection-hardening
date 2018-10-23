@@ -75,7 +75,7 @@ LogLevel VERBOSE
 # --------------
 
 # Secure Login directives.
-{% if sshd_version.stdout | float  < 7.5 -%}
+{% if sshd_version.stdout is version('7.5', '<') %}
 UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 {% endif %}
 
