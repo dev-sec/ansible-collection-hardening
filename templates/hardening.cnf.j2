@@ -6,7 +6,7 @@ skip-show-database
 skip-grant-tables
 {% endif %}
 
-{% for (key, value) in mysql_hardening_options.iteritems() %}
+{% for (key, value) in mysql_hardening_options.items() %}
 {{ key }} = {{ value }}
 {% endfor %}
 
