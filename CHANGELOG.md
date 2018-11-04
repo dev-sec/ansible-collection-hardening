@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.1.0) (2018-10-17)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.0.0...5.1.0)
+
+**Implemented enhancements:**
+
+- add ubuntu 1804 support [\#196](https://github.com/dev-sec/ansible-os-hardening/pull/196) ([rndmh3ro](https://github.com/rndmh3ro))
+- add option to disable auditd [\#192](https://github.com/dev-sec/ansible-os-hardening/pull/192) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- auditd causing v5.0 to fail on unpriviledged LXC's [\#191](https://github.com/dev-sec/ansible-os-hardening/issues/191)
+- Setting os\_security\_users\_allow has no effect [\#175](https://github.com/dev-sec/ansible-os-hardening/issues/175)
+- add /usr/bin/su to suid\_guid whitelist [\#199](https://github.com/dev-sec/ansible-os-hardening/pull/199) ([ccolic](https://github.com/ccolic))
+- ensure that permissions to su-binary are not restricted to root user and group only, if os\_security\_users\_allow contains the value change\_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) ([szEvEz](https://github.com/szEvEz))
+
 ## [5.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.0.0) (2018-09-02)
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...5.0.0)
 
