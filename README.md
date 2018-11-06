@@ -12,7 +12,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 
 ## Requirements
 
-* Ansible > 2.4
+* Ansible > 2.5
 
 ## Role Variables
 | Name           | Default Value | Description                        |
