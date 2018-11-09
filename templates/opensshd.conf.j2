@@ -121,7 +121,7 @@ KerberosTicketCleanup yes
 
 {% if ssh_gssapi_support -%}
 # Only enable GSSAPI authentication if it is configured.
-GSSAPIAuthentication no
+GSSAPIAuthentication yes
 GSSAPICleanupCredentials yes
 {% endif %}
 
