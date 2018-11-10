@@ -32,7 +32,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
 |`ssh_pam_support` | true | true if SSH has PAM support.|
 |`ssh_use_pam` | false | false to disable pam authentication.|
-|`ssh_gssapi_support` | true | true if SSH has GSSAPI support.|
+|`ssh_gssapi_support` | false | true if SSH has GSSAPI support.|
 |`ssh_kerberos_support` | true | true if SSH has Kerberos support.|
 |`ssh_deny_users` | '' | if specified, login is disallowed for user names that match one of the patterns.|
 |`ssh_allow_users` | '' | if specified, login is allowed only for user names that match one of the patterns.|

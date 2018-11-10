@@ -74,7 +74,7 @@ ssh_google_auth: false # sshd
 ssh_pam_device: false # sshd
 
 # true if SSH support GSSAPI
-ssh_gssapi_support: true
+ssh_gssapi_support: false
 
 # true if SSH support Kerberos
 ssh_kerberos_support: true
