@@ -168,7 +168,7 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 # no real advantage without denied shell access
 AllowTcpForwarding {{ 'yes' if (ssh_allow_tcp_forwarding|bool) else 'no' }}
 
-# Disable agent formwarding, since local agent could be accessed through forwarded connection.
+# Disable agent forwarding, since local agent could be accessed through forwarded connection.
 # no real advantage without denied shell access
 AllowAgentForwarding {{ 'yes' if (ssh_allow_agent_forwarding|bool) else 'no' }}
 
