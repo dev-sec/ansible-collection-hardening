@@ -48,8 +48,8 @@ ssh_permit_tunnel: false
 #     options: ['StrictHostKeyChecking no']
 ssh_remote_hosts: []
 
-# false to disable root login altogether. Set to true to allow root to login via key-based mechanism.
-ssh_allow_root_with_key: false          # sshd
+# Set this to "without-password" or "yes" to allow root to login
+ssh_permit_root_login: 'no'          # sshd
 
 # false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
 ssh_allow_tcp_forwarding: false         # sshd

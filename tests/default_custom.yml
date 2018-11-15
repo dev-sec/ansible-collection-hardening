@@ -21,7 +21,6 @@
     - ansible-ssh-hardening
   vars:
     network_ipv6_enable: true
-    ssh_allow_root_with_key: true
     ssh_allow_tcp_forwarding: true
     ssh_gateway_ports: true
     ssh_allow_agent_forwarding: true
@@ -37,6 +36,7 @@
     ssh_deny_groups: 'foo bar'
     ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
     ssh_max_auth_retries: 10
+    ssh_permit_root_login: "without-password"
     ssh_permit_tunnel: true
     ssh_print_motd: true
     ssh_print_last_log: true
