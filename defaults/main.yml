@@ -221,3 +221,9 @@ ssh_server_revoked_keys: []
 # Set to false to turn the role into a no-op. Useful when using
 # the Ansible role dependency mechanism.
 ssh_hardening_enabled: true
+
+# Custom options for SSH client configuration file
+ssh_custom_options: []
+
+# Custom options for SSH daemon configuration file
+sshd_custom_options: []
