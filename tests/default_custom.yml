@@ -79,5 +79,5 @@
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"
     sshd_custom_options:
-      - "StreamLocalBindUnlink yes"
+      - "AcceptEnv LANG"
 
