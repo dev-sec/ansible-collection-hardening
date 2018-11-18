@@ -27,7 +27,7 @@
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*ssl_protocols'
-    line: "    ssl_protocols {{nginx_ssl_protocols}};"
+    line: "    ssl_protocols {{ nginx_ssl_protocols }};"
     insertafter: "http {"
   notify: restart nginx
 
@@ -35,7 +35,7 @@
   lineinfile:
      dest: "/etc/nginx/nginx.conf"
      regexp: '^\s*ssl_prefer_server_ciphers'
-     line: "    ssl_prefer_server_ciphers {{nginx_ssl_prefer_server_ciphers}};"
+     line: "    ssl_prefer_server_ciphers {{ nginx_ssl_prefer_server_ciphers }};"
      insertafter: "http {"
   notify: restart nginx
 
@@ -74,7 +74,7 @@
     - "/etc/nginx/sites-enabled/default"
 
 - name: generate dh group
-  command: "openssl dhparam -out /etc/nginx/dh{{nginx_dh_size}}.pem {{ nginx_dh_size }}"
+  command: "openssl dhparam -out /etc/nginx/dh{{ nginx_dh_size }}.pem {{ nginx_dh_size }}"
   args:
-    creates: "/etc/nginx/dh{{nginx_dh_size}}.pem"
+    creates: "/etc/nginx/dh{{ nginx_dh_size }}.pem"
   notify: restart nginx
