@@ -6,8 +6,8 @@
 # Basic configuration
 # ===================
 
-# Either disable or only allowssh root login via certificates.
-PermitRootLogin {{ 'without-password' if (ssh_allow_root_with_key|bool) else 'no' }}
+# Either disable or only allow root login via certificates.
+PermitRootLogin {{ ssh_permit_root_login }}
 
 # Define which port sshd should listen to. Default to `22`.
 {% for port in ssh_server_ports -%}
