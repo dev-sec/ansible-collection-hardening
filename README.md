@@ -73,6 +73,8 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_macs` | [] | Change this list to overwrite macs. Defaults found in `defaults/main.yml` |
 |`ssh_kex` | [] | Change this list to overwrite kexs. Defaults found in `defaults/main.yml` |
 |`ssh_ciphers` | [] | Change this list to overwrite ciphers. Defaults found in `defaults/main.yml` |
+|`ssh_custom_options` | [] | Custom lines for SSH client configuration |
+|`sshd_custom_options` | [] | Custom lines for SSH daemon configuration |
 
 ## Example Playbook
 

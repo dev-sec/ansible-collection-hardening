@@ -76,3 +76,8 @@
     ssh_kex:
       - diffie-hellman-group-exchange-sha256
       - diffie-hellman-group-exchange-sha1
+    ssh_custom_options:
+      - "Include /etc/ssh/ssh_config.d/*"
+    sshd_custom_options:
+      - "AcceptEnv LANG"
+

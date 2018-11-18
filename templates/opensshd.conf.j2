@@ -221,6 +221,10 @@ DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 # Reject keys that are explicitly blacklisted
 RevokedKeys /etc/ssh/revoked_keys
 
+{% for line in sshd_custom_options %}
+{{ line }}
+{% endfor %}
+
 {% if sftp_enabled %}
 # SFTP matching configuration
 # ===========================

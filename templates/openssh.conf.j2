@@ -115,3 +115,7 @@ Compression yes
 # Disable experimental client roaming. This is known to cause potential issues with secrets being disclosed to malicious servers and defaults to being disabled.
 UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
 {% endif %}
+
+{% for line in ssh_custom_options %}
+{{ line }}
+{% endfor %}
