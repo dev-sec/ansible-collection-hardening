@@ -17,7 +17,7 @@ provisioner:
   require_ansible_omnibus: true
   ansible_verbose: true
   ansible_diff: true
-  hosts: all
+
   roles_path: ../ansible-ssh-hardening/
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
