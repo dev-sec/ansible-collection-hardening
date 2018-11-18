@@ -25,7 +25,7 @@
     ssh_allow_tcp_forwarding: true
     ssh_gateway_ports: true
     ssh_allow_agent_forwarding: true
-    ssh_server_permit_environment_vars: ['PWD','HTTP_PROXY']
+    ssh_server_permit_environment_vars: ['PWD', 'HTTP_PROXY']
     ssh_client_alive_interval: 100
     ssh_client_alive_count: 10
     ssh_client_password_login: true
@@ -63,7 +63,7 @@
     ssh_trusted_user_ca_keys:
       - '# ssh-rsa ...'
     ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
-    ssh_authorized_principals :
+    ssh_authorized_principals:
       - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
     ssh_macs:
       - hmac-sha2-512
