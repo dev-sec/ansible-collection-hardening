@@ -27,7 +27,7 @@ os_security_suid_sgid_remove_from_unknown: false
 
 # remove packages with known issues
 os_security_packages_clean: true
-os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server', 'prelink']
+os_security_packages_list: ['xinetd', 'inetd', 'ypserv', 'telnet-server', 'rsh-server', 'prelink']
 
 # Allow interactive startup (rhel, centos)
 os_security_init_prompt: true
