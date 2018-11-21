@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.1.0](https://github.com/dev-sec/ansible-nginx-hardening/tree/2.1.0) (2018-11-18)
+[Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/2.0.0...2.1.0)
+
+**Merged pull requests:**
+
+- add ubuntu 18.04 support [\#20](https://github.com/dev-sec/ansible-nginx-hardening/pull/20) ([rndmh3ro](https://github.com/rndmh3ro))
+- updated minimum required ansible version to 2.5 in README, as the used 'loop' keyword was introduced in version 2.5 [\#19](https://github.com/dev-sec/ansible-nginx-hardening/pull/19) ([szEvEz](https://github.com/szEvEz))
+
 ## [2.0.0](https://github.com/dev-sec/ansible-nginx-hardening/tree/2.0.0) (2018-09-08)
 [Full Changelog](https://github.com/dev-sec/ansible-nginx-hardening/compare/1.0.2...2.0.0)
 
