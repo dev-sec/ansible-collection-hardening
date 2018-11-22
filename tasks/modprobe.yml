@@ -1,7 +1,7 @@
 ---
 - name: install modprobe to disable filesystems | os-10
   package:
-    name: '{{modprobe_package}}'
+    name: '{{ modprobe_package }}'
     state: 'present'
 
 - name: check if efi is installed
@@ -21,4 +21,3 @@
     owner: 'root'
     group: 'root'
     mode: '0640'
-
