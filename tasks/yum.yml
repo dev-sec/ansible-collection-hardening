@@ -27,8 +27,11 @@
     dest: '{{ item }}'
     regexp: '^\s*gpgcheck: 0'
     replace: 'gpgcheck: 1'
+  register: status
+  failed_when: status.rc is defined and status.rc != 257
   with_flattened:
     - '/etc/yum.conf'
+    - '/etc/dnf/dnf.conf'
     - '{{ yum_repos.stdout_lines| default([]) }}'
 
 - name: activate gpg-check for yum rhn if it exists
