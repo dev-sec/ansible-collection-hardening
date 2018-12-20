@@ -2,11 +2,43 @@
 
 ## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/5.0.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- PermitRootLogin yes [\#190](https://github.com/dev-sec/ansible-ssh-hardening/issues/190)
 
 **Fixed bugs:**
 
+- sshd\_custom\_options not working.. [\#200](https://github.com/dev-sec/ansible-ssh-hardening/issues/200)
+
+## [6.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.0.0) (2018-11-18)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/5.0.0...6.0.0)
+
+**Implemented enhancements:**
+
+- Ubuntu 18.04 support [\#182](https://github.com/dev-sec/ansible-ssh-hardening/issues/182)
+- Update opensshd.conf.js [\#196](https://github.com/dev-sec/ansible-ssh-hardening/pull/196) ([ikr0m](https://github.com/ikr0m))
+
+**Fixed bugs:**
+
+- GSSAPI support broken. Can't be enabled. [\#192](https://github.com/dev-sec/ansible-ssh-hardening/issues/192)
+- Unsupported option "rhostsrsaauthentication" "rsaauthentication" [\#184](https://github.com/dev-sec/ansible-ssh-hardening/issues/184)
 - Weak kex are controlled by wrong variable ? [\#174](https://github.com/dev-sec/ansible-ssh-hardening/issues/174)
+- Can't connect to server by SSH after applying this role [\#115](https://github.com/dev-sec/ansible-ssh-hardening/issues/115)
+
+**Closed issues:**
+
+- Support StreamLocalBindUnlink [\#197](https://github.com/dev-sec/ansible-ssh-hardening/issues/197)
+- Add molecule testing [\#183](https://github.com/dev-sec/ansible-ssh-hardening/issues/183)
+
+**Merged pull requests:**
+
+- Support for custom configuration [\#199](https://github.com/dev-sec/ansible-ssh-hardening/pull/199) ([MatthiasLohr](https://github.com/MatthiasLohr))
+- parameterize PermitRootLogin [\#195](https://github.com/dev-sec/ansible-ssh-hardening/pull/195) ([rndmh3ro](https://github.com/rndmh3ro))
+- set 'GSSAPIAuthentication yes' if variable 'ssh\_gssapi\_support' is set to 'true' [\#194](https://github.com/dev-sec/ansible-ssh-hardening/pull/194) ([szEvEz](https://github.com/szEvEz))
+- Use ansible version compare module [\#187](https://github.com/dev-sec/ansible-ssh-hardening/pull/187) ([Neophy7e](https://github.com/Neophy7e))
+- add ubuntu 18.04 support [\#186](https://github.com/dev-sec/ansible-ssh-hardening/pull/186) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [5.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/5.0.0) (2018-09-16)
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.4.0...5.0.0)
