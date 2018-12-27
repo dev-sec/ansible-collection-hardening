@@ -5,49 +5,94 @@ env:
   - distro: centos6
     version: latest
     init: /sbin/init
-
+    test_playbook: test.yml
+  
   - distro: centos7
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
+    test_playbook: test.yml
 
   - distro: oracle6
     version: latest
     init: /sbin/init
-
-#  - distro: oracle7
-#    init: /usr/lib/systemd/systemd
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    version: latest
+    test_playbook: test.yml
 
   - distro: ubuntu1404
     version: latest
     init: /sbin/init
+    test_playbook: test.yml
 
   - distro: ubuntu1604
     version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: test.yml
 
   - distro: ubuntu1804
     version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: test.yml
 
   - distro: debian8
     version: latest
     init: /sbin/init
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: test.yml
 
   - distro: debian9
     version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: test.yml
 
-#  - distro: amazon
-#    init: /lib/systemd/systemd
-#    version: latest
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: centos6
+    version: latest
+    init: /sbin/init
+    test_playbook: official-nginx-role-redhat.yml
+
+  - distro: centos7
+    init: /lib/systemd/systemd
+    container_id: $(mktemp)
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    version: latest
+    test_playbook: official-nginx-role-redhat.yml
+
+  - distro: oracle6
+    version: latest
+    init: /sbin/init
+    test_playbook: official-nginx-role-redhat.yml
+
+  - distro: ubuntu1404
+    version: latest
+    init: /sbin/init
+    test_playbook: official-nginx-role-debian.yml
+
+  - distro: ubuntu1604
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: official-nginx-role-debian.yml
+
+  - distro: ubuntu1804
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: official-nginx-role-debian.yml
+
+  - distro: debian8
+    version: latest
+    init: /sbin/init
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: official-nginx-role-debian.yml
+
+  - distro: debian9
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: official-nginx-role-debian.yml
+
 
 before_install:
   # Pull container
@@ -55,17 +100,16 @@ before_install:
 
 script:
   - container_id=$(mktemp)
-  # Run container in detached state.
+  # Run container in detached state
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-nginx-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
   # Install ansible galaxy requirements
   - 'docker exec "$(cat ${container_id})" ansible-galaxy -c install -r /etc/ansible/roles/ansible-nginx-hardening/requirements.yml -p /etc/ansible/roles/'
-
-  # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-nginx-hardening/tests/test.yml -vv'
+  
+  # Test role
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-nginx-hardening/tests/"${test_playbook}" -vv'
 
   # Verify role
-  #- 'inspec exec https://github.com/dev-sec/nginx-baseline/ -t docker://$(cat ${container_id}) --controls=nginx-01 nginx-02 nginx-03 nginx-04 nginx-05 nginx-06 nginx-07 nginx-08 nginx-09 nginx-10 nginx-12 nginx-13 nginx-14 nginx-15 nginx-17 --no-distinct-exit'
   - 'inspec exec https://github.com/dev-sec/nginx-baseline/ -t docker://$(cat ${container_id}) --controls=nginx-01 nginx-02 nginx-03 nginx-05 nginx-06 nginx-07 nginx-08 nginx-09 nginx-10 nginx-12 nginx-13 nginx-15 nginx-17 --no-distinct-exit'
 
 notifications:

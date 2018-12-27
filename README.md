@@ -10,6 +10,7 @@ This role provides secure nginx configuration. It is intended to be compliant wi
 
 It works with the following nginx-roles, including, but not limited to:
 * [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx/)
+* [nginxinc.nginx](https://galaxy.ansible.com/nginxinc/nginx)
 * [jdauphant.nginx](https://galaxy.ansible.com/jdauphant/nginx/)
 * [franklinkim.nginx](https://galaxy.ansible.com/franklinkim/nginx/)
 
