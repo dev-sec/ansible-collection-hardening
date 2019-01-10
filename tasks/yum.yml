@@ -21,7 +21,7 @@
   # failed_when is needed because by default replace module will fail if the file doesn't exists.
   # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
   # All other errors will still be raised.
-- name: activate gpg-check for yum-repos
+- name: activate gpg-check for config files
   replace:
     dest: '{{ item }}'
     regexp: '^\s*gpgcheck: 0'
