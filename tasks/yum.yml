@@ -14,14 +14,13 @@
   changed_when: False
   register: yum_repos
 
-- name: check if rhnplugin.conf exists
-  stat:
-    path: '/etc/yum/pluginconf.d/rhnplugin.conf'
-  register: rhnplugin_file
-
   # for the 'default([])' see here:
   # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
   # https://stackoverflow.com/questions/37067827/ansible-deprecation-warning-for-undefined-variable-despite-when-clause
+  #
+  # failed_when is needed because by default replace module will fail if the file doesn't exists.
+  # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
+  # All other errors will still be raised.
 - name: activate gpg-check for yum-repos
   replace:
     dest: '{{ item }}'
@@ -33,13 +32,7 @@
     - '/etc/yum.conf'
     - '/etc/dnf/dnf.conf'
     - '{{ yum_repos.stdout_lines| default([]) }}'
-
-- name: activate gpg-check for yum rhn if it exists
-  replace:
-    dest: '/etc/yum/pluginconf.d/rhnplugin.conf'
-    regexp: '^\s*gpgcheck: 0'
-    replace: 'gpgcheck: 1'
-  when: rhnplugin_file.stat.exists
+    - '/etc/yum/pluginconf.d/rhnplugin.conf'
 
 - name: remove deprecated or insecure packages | package-01 - package-09
   yum:
