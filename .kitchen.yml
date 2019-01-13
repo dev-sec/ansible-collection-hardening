@@ -90,6 +90,15 @@ platforms:
     provision_command:
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
+- name: fedora-ansible-latest
+  driver:
+    image: rndmh3ro/docker-fedora-ansible:latest
+    platform: centos
+    run_command: /sbin/init
+    provision_command:
+      - dnf install -y python
+      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+      - systemctl enable sshd.service
 
 verifier:
   name: inspec
