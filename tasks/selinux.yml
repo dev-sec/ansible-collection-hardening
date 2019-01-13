@@ -10,11 +10,8 @@
 
 - name: install selinux dependencies when selinux is installed on Debian or Ubuntu
   apt:
-    name: '{{ item }}'
+    name: ['policycoreutils', 'checkpolicy']
     state: present
-  with_items:
-    - 'policycoreutils'
-    - 'checkpolicy'
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: check if ssh_password module is already installed
