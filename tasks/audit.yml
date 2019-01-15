@@ -28,7 +28,7 @@
     type: dword
 
 - name: Account Logon Audit Log | windows-audit-203
-  win_command: AuditPol /Set /Category:\"Account Logon\" /Failure:Enable /Success:Enable
+  win_command: AuditPol /Set /Category:"Account Logon" /Failure:Enable /Success:Enable
   register: accountLogonAudit
   args:
     creates: C:\accountLogonAudit.lock
@@ -41,7 +41,7 @@
   when: accountLogonAudit
 
 - name: Audit Application Group Management | windows-audit-204
-  win_command: AuditPol /Set /SubCategory:\"Application Group Management\" /Failure:Enable /Success:Enable
+  win_command: AuditPol /Set /SubCategory:"Application Group Management" /Failure:Enable /Success:Enable
   register: appGroupMngmtAudit
   args:
     creates: C:\appGroupMngmtAudit.lock
@@ -54,7 +54,7 @@
   when: appGroupMngmtAudit
 
 - name: Audit Computer Account Management | windows-audit-205
-  win_command: AuditPol /Set /SubCategory:\"Computer Account Management\" /Failure:Enable /Success:Enable
+  win_command: AuditPol /Set /SubCategory:"Computer Account Management" /Failure:Enable /Success:Enable
   register: appAccountMngmtAudit
   args:
     creates: C:\appAccountMngmtAudit.lock
@@ -68,7 +68,7 @@
 
 
 - name: Audit Application Group Management | windows-audit-206
-  win_command: AuditPol /Set /SubCategory:\"Distribution Group Management\" /Failure:Enable /Success:Enable
+  win_command: AuditPol /Set /SubCategory:"Distribution Group Management" /Failure:Enable /Success:Enable
   register: distGroupMngmtAudit
   args:
     creates: C:\distGroupMngmtAudit.lock
