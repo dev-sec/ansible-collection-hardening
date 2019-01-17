@@ -115,7 +115,7 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
       net.ipv4.ip_forward: 1
 ```
 
-Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
+Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
 
 ## Local Testing
 
