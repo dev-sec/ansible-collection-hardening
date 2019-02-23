@@ -15,7 +15,9 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: check if ssh_password module is already installed
-  shell: 'semodule -l | grep ssh_password'
+  shell: 'set -o pipefail && semodule -l | grep ssh_password'
+  args:
+    executable: /bin/bash
   register: ssh_password_module
   failed_when: false
   changed_when: false
@@ -38,17 +40,18 @@
       dest: '{{ ssh_custom_selinux_dir }}'
 
   - name: check and compile policy
-    shell: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
+    command: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
 
   - name: create selinux policy module package
-    shell: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
+    command: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
 
   - name: install selinux policy
-    shell: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
+    command: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
 
   when: not ssh_use_pam and sestatus.stdout != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
 
 # The following tasks only get executed when selinux is installed, UsePam is 'yes' and the ssh_password module is installed.
-- name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk (http://danwalsh.livejournal.com/12333.html)
+# See http://danwalsh.livejournal.com/12333.html for more info
+- name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk
   command: semodule -r ssh_password
   when: ssh_use_pam and ssh_password_module.stdout.find('ssh_password') == 0
