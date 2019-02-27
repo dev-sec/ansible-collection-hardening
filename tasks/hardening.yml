@@ -8,9 +8,9 @@
    - '{{ ansible_os_family }}.yml'
 
 - name: get openssh-version
-  shell: ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
+  shell: set -o pipefail && ssh -V 2>&1 | sed -r 's/.*_([0-9]*\.[0-9]).*/\1/g'
   args:
-    executable: /bin/sh
+    executable: /bin/bash
   changed_when: false
   register: sshd_version
   check_mode: no
@@ -62,7 +62,7 @@
 
 - name: include tasks to setup ca keys and principals
   include_tasks: ca_keys_and_principals.yml
-  when: ssh_trusted_user_ca_keys_file != ''
+  when: ssh_trusted_user_ca_keys_file | length > 0
 
 - name: include tasks to setup 2FA
   include_tasks: 2fa.yml
