@@ -68,9 +68,9 @@ script:
 
   # Verify role
   # remove the UseLogin-check, see here for reasons: https://github.com/dev-sec/ansible-ssh-hardening/pull/141
-  - 'inspec exec https://github.com/dev-sec/ssh-baseline/ -t docker://$(cat ${container_id}) --controls=sshd-01 sshd-02 sshd-03 sshd-04 sshd-05 sshd-06 sshd-07 sshd-08 sshd-09 sshd-10 sshd-11 sshd-12 sshd-13 sshd-14 sshd-16 sshd-17 sshd-18 sshd-19 sshd-20 sshd-21 sshd-22 sshd-23 sshd-24 sshd-25 sshd-26 sshd-27 sshd-28 sshd-29 sshd-30 sshd-31 sshd-32 sshd-33 sshd-34 sshd-35 sshd-36 sshd-37 sshd-38 sshd-39 sshd-40 sshd-41 sshd-42 sshd-43 sshd-44 sshd-45 sshd-46 sshd-47 sshd-48 --no-distinct-exit'
+  - 'inspec exec https://github.com/dev-sec/ssh-baseline/ -t docker://$(cat ${container_id}) --controls=sshd-01 sshd-02 sshd-03 sshd-04 sshd-05 sshd-06 sshd-07 sshd-08 sshd-09 sshd-10 sshd-11 sshd-12 sshd-13 sshd-14 sshd-15 sshd-16 sshd-17 sshd-18 sshd-19 sshd-20 sshd-21 sshd-22 sshd-23 sshd-24 sshd-25 sshd-26 sshd-27 sshd-28 sshd-29 sshd-30 sshd-31 sshd-32 sshd-33 sshd-34 sshd-35 sshd-36 sshd-37 sshd-38 sshd-39 sshd-40 sshd-41 sshd-42 sshd-43 sshd-44 sshd-45 sshd-46 sshd-47 sshd-48 --no-distinct-exit'
   # remove UseRoaming and RhostsRSAAuthentication because these options are deprecated - ssh-14, ssh-15, ssh-21
-  - 'inspec exec https://github.com/dev-sec/ssh-baseline/ -t docker://$(cat ${container_id}) --controls=ssh-01 ssh-02 ssh-03 ssh-04 ssh-05 ssh-06 ssh-07 ssh-08 ssh-09 ssh-10 ssh-11 ssh-12 ssh-13 ssh-16 ssh-17 ssh-18 ssh-19 ssh-20 --no-distinct-exit'
+  - 'inspec exec https://github.com/dev-sec/ssh-baseline/ -t docker://$(cat ${container_id}) --controls=ssh-01 ssh-02 ssh-03 ssh-04 ssh-05 ssh-06 ssh-07 ssh-08 ssh-09 ssh-10 ssh-11 ssh-12 ssh-13 ssh-14 ssh-15 ssh-16 ssh-17 ssh-18 ssh-19 ssh-20 --no-distinct-exit'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
