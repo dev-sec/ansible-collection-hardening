@@ -256,7 +256,9 @@ Match Group sftponly
 
 {% for item in ssh_server_match_group %}
 Match Group {{ item.group }}
-    {{ item.rules | indent(4) }}
+  {% for rule in item.rules %}
+    {{ rule | indent(4) }}
+  {% endfor %}
 {% endfor %}
 {% endif %}
 
@@ -267,6 +269,8 @@ Match Group {{ item.group }}
 
 {% for item in ssh_server_match_user %}
 Match User {{ item.user }}
-    {{ item.rules | indent(4) }}
+  {% for rule in item.rules %}
+    {{ rule | indent(4) }}
+  {% endfor %}
 {% endfor %}
 {% endif %}
