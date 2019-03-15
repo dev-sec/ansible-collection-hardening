@@ -49,12 +49,12 @@
       - group: 'root'
         rules:
           - 'AllowTcpForwarding yes'
-          - 'PermitTTY no'
+          - 'AllowAgentForwarding no'
     ssh_server_match_user:
       - user: 'root'
         rules:
           - 'AllowTcpForwarding yes'
-          - 'PermitTTY no'
+          - 'AllowAgentForwarding no'
     ssh_remote_hosts:
       - names: ['example.com', 'example2.com']
         options: ['Port 2222', 'ForwardAgent yes']
