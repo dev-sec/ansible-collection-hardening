@@ -1,4 +1,4 @@
 ---
 
-- include_tasks: hardening.yml
+- import_tasks: hardening.yml
   when: os_hardening_enabled
