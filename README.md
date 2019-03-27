@@ -35,6 +35,20 @@ It will not:
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
 Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
 
+If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
+```
+
+
+
 ## Variables
 
 | Name           | Default Value | Description                        |
