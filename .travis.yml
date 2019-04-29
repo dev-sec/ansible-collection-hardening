@@ -28,25 +28,25 @@ env:
 #    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
-#  - distro: ubuntu1404
-#    version: latest
-#    run_opts: "--privileged"
-#    init: /sbin/init
-
-  - distro: debian7
+  - distro: ubuntu1804
     version: latest
-    run_opts: "--privileged"
-    init: /sbin/init
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
-#  - distro: debian8
+#  - distro: debian9
 #    version: latest
-#    init: /bin/systemd
+#    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
- # - distro: debian9
- #   version: latest
- #   init: /lib/systemd/systemd
- #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: amazon
+    init: /lib/systemd/systemd
+    version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: fedora
+    init: /lib/systemd/systemd
+    version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   # Pull container
