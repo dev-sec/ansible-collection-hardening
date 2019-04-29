@@ -15,6 +15,14 @@ This role focuses on security configuration of MySQL. Therefore you can add this
 * Ansible
 * Set up `mysql_root_password` variable
 
+## Installation
+
+Install the role with ansible-galaxy:
+
+```
+ansible-galaxy install dev-sec.mysqmysqll-hardening
+```
+
 ### Example Playbook
 
     - hosts: localhost
