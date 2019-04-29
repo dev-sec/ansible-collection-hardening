@@ -3,6 +3,14 @@
 # This is the ssh client system-wide configuration file.
 # See sshd_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
 
+{% if sshd_custom_options -%}
+# Custom configuration that overwrites default configuration
+# ==========================================================
+{% for line in sshd_custom_options -%}
+{{ line }}
+{% endfor %}
+{% endif %}
+
 # Basic configuration
 # ===================
 
@@ -143,15 +151,15 @@ DenyGroups {{ssh_deny_groups}}
 AllowGroups {{ssh_allow_groups}}
 {% endif %}
 
-{% if ssh_authorized_keys_file %}
+{% if ssh_authorized_keys_file -%}
 AuthorizedKeysFile {{ ssh_authorized_keys_file }}
 {% endif %}
 
-{% if ssh_trusted_user_ca_keys_file %}
+{% if ssh_trusted_user_ca_keys_file -%}
 TrustedUserCAKeys {{ ssh_trusted_user_ca_keys_file }}
-{%    if ssh_authorized_principals_file  %}
+{% if ssh_authorized_principals_file -%}
 AuthorizedPrincipalsFile {{ ssh_authorized_principals_file }}
-{%     endif %}
+{% endif %}
 {% endif %}
 
 # Network
@@ -175,13 +183,13 @@ AllowTcpForwarding {{ 'yes' if (ssh_allow_tcp_forwarding|bool) else 'no' }}
 # no real advantage without denied shell access
 AllowAgentForwarding {{ 'yes' if (ssh_allow_agent_forwarding|bool) else 'no' }}
 
-{% if ssh_gateway_ports|bool %}
+{% if ssh_gateway_ports|bool -%}
 # Port forwardings are forced to bind to the wildcard address
 GatewayPorts yes
-{% elif ssh_gateway_ports == 'clientspecified' %}
+{% elif ssh_gateway_ports == 'clientspecified' -%}
 # Clients allowed to specify which address to bind port forwardings to
 GatewayPorts clientspecified
-{% else %}
+{% else -%}
 # Do not allow remote port forwardings to bind to non-loopback addresses.
 GatewayPorts no
 {% endif %}
@@ -193,12 +201,12 @@ X11UseLocalhost yes
 # User environment configuration
 # ==============================
 
-{% if ssh_server_permit_environment_vars %}
+{% if ssh_server_permit_environment_vars -%}
 PermitUserEnvironment yes
-{% for item in ssh_server_permit_environment_vars %}
+{% for item in ssh_server_permit_environment_vars -%}
 AcceptEnv {{ item }}
 {% endfor %}
-{% else %}
+{% else -%}
 PermitUserEnvironment no
 {% endif %}
 
@@ -217,18 +225,14 @@ PrintLastLog {{ 'yes' if (ssh_print_last_log|bool) else 'no' }}
 
 Banner {{ '/etc/ssh/banner.txt' if (ssh_banner|bool) else 'none' }}
 
-{% if ansible_os_family == 'Debian' %}
+{% if ansible_os_family == 'Debian' -%}
 DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 {% endif %}
 
 # Reject keys that are explicitly blacklisted
 RevokedKeys /etc/ssh/revoked_keys
 
-{% for line in sshd_custom_options %}
-{{ line }}
-{% endfor %}
-
-{% if sftp_enabled %}
+{% if sftp_enabled -%}
 # SFTP matching configuration
 # ===========================
 # Configuration, in case SFTP is used
@@ -240,7 +244,7 @@ Subsystem sftp internal-sftp -l INFO -f LOCAL6
 # These lines must appear at the *end* of sshd_config
 Match Group sftponly
     ForceCommand internal-sftp -l INFO -f LOCAL6
-{% if sftp_chroot %}
+{% if sftp_chroot -%}
     ChrootDirectory {{ sftp_chroot_dir }}
 {% endif %}
     AllowTcpForwarding no
@@ -250,26 +254,25 @@ Match Group sftponly
     X11Forwarding no
 {% endif %}
 
-{% if ssh_server_match_group %}
+{% if ssh_server_match_group -%}
 # Group matching configuration
 # ============================
 
-{% for item in ssh_server_match_group %}
+{% for item in ssh_server_match_group -%}
 Match Group {{ item.group }}
-  {% for rule in item.rules %}
+  {% for rule in item.rules -%}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}
 {% endif %}
 
-
-{% if ssh_server_match_user %}
+{% if ssh_server_match_user -%}
 # User matching configuration
 # ===========================
 
-{% for item in ssh_server_match_user %}
+{% for item in ssh_server_match_user -%}
 Match User {{ item.user }}
-  {% for rule in item.rules %}
+  {% for rule in item.rules -%}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}

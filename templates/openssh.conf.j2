@@ -2,7 +2,15 @@
 
 # This is the ssh client system-wide configuration file.
 # See ssh_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
-#
+
+{% if sshd_custom_options -%}
+# Custom configuration that overwrites default configuration
+# ==========================================================
+{% for line in sshd_custom_options %}
+{{ line }}
+{% endfor %}
+{% endif %}
+
 # Basic configuration
 # ===================
 
@@ -115,7 +123,3 @@ Compression yes
 # Disable experimental client roaming. This is known to cause potential issues with secrets being disclosed to malicious servers and defaults to being disabled.
 UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
 {% endif %}
-
-{% for line in ssh_custom_options %}
-{{ line }}
-{% endfor %}
