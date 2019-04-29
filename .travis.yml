@@ -25,10 +25,6 @@ env:
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 #    version: latest
 
-  - distro: ubuntu1404
-    version: latest
-    init: /sbin/init
-
   - distro: ubuntu1604
     version: latest
     init: /lib/systemd/systemd
@@ -37,15 +33,6 @@ env:
   - distro: ubuntu1804
     version: latest
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  - distro: debian7
-    version: latest
-    init: /sbin/init
-
-  - distro: debian8
-    version: latest
-    init: /sbin/init
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: debian9
