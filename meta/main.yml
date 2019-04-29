@@ -12,14 +12,13 @@ galaxy_info:
         - 7
     - name: Ubuntu
       versions:
-        - precise
-        - trusty
         - xenial
+        - beaver
     - name: Debian
       versions:
-        - wheezy
         - jessie
     - name: Amazon
+    - name: Fedora
   galaxy_tags:
     - system
     - security

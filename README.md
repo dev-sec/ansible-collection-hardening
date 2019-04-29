@@ -116,27 +116,27 @@ bundle install
 ### Testing with Docker
 ```
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
+bundle exec kitchen test ssh-ubuntu1804-ansible-latest
 
 # test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
+bundle exec kitchen create ssh-ubuntu1804-ansible-latest
+bundle exec kitchen converge ssh-ubuntu1804-ansible-latest
 ```
 
 ### Testing with Virtualbox
 ```
 # fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1204
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test ssh-ubuntu-1804
 
 # test on all machines
 KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
 
 # for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1204
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1204
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create ssh-ubuntu-1804
+KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge ssh-ubuntu-1804
 ```
 For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
 
