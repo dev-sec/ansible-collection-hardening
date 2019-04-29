@@ -76,6 +76,23 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_custom_options` | [] | Custom lines for SSH client configuration |
 |`sshd_custom_options` | [] | Custom lines for SSH daemon configuration |
 
+## Configuring settings not listed in role-variables
+
+If you want to configure ssh options that are not listed above, you can use `ssh_custom_options` (for `/etc/ssh/ssh_config`) or `sshd_custom_options` (for `/etc/ssh/sshd_config`) to set them. These options will be set on the **beginning** of the file so you can override options further down in the file.
+
+Example playbook:
+
+```
+- hosts: localhost
+  roles:
+    - dev-sec.ssh-hardening
+  vars:
+    ssh_custom_options:
+      - "Include /etc/ssh/ssh_config.d/*"
+    sshd_custom_options:
+      - "AcceptEnv LANG"
+```
+
 ## Example Playbook
 
     - hosts: localhost
