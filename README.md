@@ -20,7 +20,7 @@ This role focuses on security configuration of MySQL. Therefore you can add this
 Install the role with ansible-galaxy:
 
 ```
-ansible-galaxy install dev-sec.mysqmysqll-hardening
+ansible-galaxy install dev-sec.mysql-hardening
 ```
 
 ### Example Playbook
