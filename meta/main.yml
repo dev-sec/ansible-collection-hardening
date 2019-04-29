@@ -13,7 +13,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - xenial
-        - beaver
+        - bionic
     - name: Debian
       versions:
         - jessie
