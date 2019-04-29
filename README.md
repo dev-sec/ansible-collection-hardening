@@ -15,6 +15,7 @@ It works with the following nginx-roles, including, but not limited to:
 * [franklinkim.nginx](https://galaxy.ansible.com/franklinkim/nginx/)
 
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
+
 ## Requirements
 
 * Ansible >= 2.5
@@ -40,6 +41,14 @@ It works with the following nginx-roles, including, but not limited to:
 | [nginx_ssl_ciphers][] | *see defaults.yml* | Specifies the TLS ciphers which should be used. |
 | [nginx_ssl_prefer_server_ciphers][] | `on` | Specifies that server ciphers should be preferred over client ciphers when using the TLS protocols. Set to false to disable it. |
 | [nginx_dh_size][] | `2048` | Specifies the length of DH parameters for EDH ciphers. |
+
+## Installation
+
+Install the role with ansible-galaxy:
+
+```
+ansible-galaxy install dev-sec.nginx-hardening
+```
 
 ## Example Playbook
 
