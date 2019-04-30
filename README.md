@@ -6,7 +6,7 @@
 
 ## Description
 
-This roles provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
+This role provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
 
 It configures:
 
@@ -16,9 +16,10 @@ It configures:
  * Shadow password suite configuration
  * Configures system path permissions
  * Disable core dumps via soft limits
- * Restrict Root Logins to System Console
+ * Restrict root Logins to System Console
  * Set SUIDs
  * Configures kernel parameters via sysctl
+ * Install and configure auditd
 
 It will not:
 
@@ -27,13 +28,26 @@ It will not:
 
 ## Requirements
 
-* Ansible 2.2.1
-
+* Ansible 2.5.0
 
 ## Warning
 
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
 Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
+If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
+```
+
+
 
 ## Variables
 
@@ -57,12 +71,13 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 | `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
 | `os_security_suid_sgid_whitelist`| [] | a list of paths which should not have their SUID/SGID bits altered|
 | `os_security_suid_sgid_remove_from_unknown`| false | true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.|
-| `os_security_packages_clean'`| true | removes packages with known issues. See section packages.|
+| `os_security_packages_clean`| true | removes packages with known issues. See section packages.|
 | `ufw_manage_defaults` | true | true means apply all settings with `ufw_` prefix|
 | `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
 | `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
 | `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
-| `ufw_default_forward_policy` | DROP| set default forward policy of ufw to `DROP` |
+| `ufw_default_forward_policy` | DROP | set default forward policy of ufw to `DROP` |
+| `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
 
 ## Packages
 
@@ -87,32 +102,42 @@ We disable the following filesystems, because they're most likely not used:
  * "hfsplus"
  * "squashfs"
  * "udf"
- * "vfat"
+ * "vfat" # only if uefi is not in use
 
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
+## Installation
+
+Install the role with ansible-galaxy:
+
+```
+ansible-galaxy install dev-sec.os-hardening
+```
+
 ## Example Playbook
 
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+```
 
 ## Changing sysctl variables
-+If you want to overwrite sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to overwrite the whole `sysctl_dict`).
-+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
-```
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-      vars:
-        sysctl_overwrite:
-          # Disable IPv4 traffic forwarding.
-          net.ipv4.ip_forward: 1
+If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
 ```
 
-Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
+Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
 
 ## Local Testing
 
@@ -164,7 +189,7 @@ This role is mostly based on guides by:
 * [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
 * [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* [Deutsche Telekom, Group IT Security, Security Requirements (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si)
+* [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
 
 Thanks to all of you!
 ## Contributing
@@ -173,7 +198,7 @@ See [contributor guideline](CONTRIBUTING.md).
 
 ## License and Author
 
-* Author:: Sebastian Gumprich <sebastian.gumprich@38.de>
+* Author:: Sebastian Gumprich
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

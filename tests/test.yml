@@ -8,9 +8,18 @@
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
+    - name: install required tools on fedora
+      dnf:
+        name:
+          - python
+          - findutils
+          - procps-ng
+      when: ansible_distribution == 'Fedora'
+    - name: create recursing symlink to test minimize access
+      shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:
     os_security_users_allow: change_user
-    os_security_kernel_enable_core_dump: false
+    os_security_kernel_enable_core_dump: true
     os_security_suid_sgid_remove_from_unknown: true
     os_auth_pam_passwdqc_enable: false
     os_desktop_enable: true
@@ -18,7 +27,7 @@
     os_auth_allow_homeless: true
     os_security_suid_sgid_blacklist: ['/bin/umount']
     os_security_suid_sgid_whitelist: ['/usr/bin/rlogin']
-    os_filesystem_whitelist: ['vfat']
+    os_filesystem_whitelist: []
     sysctl_config:
       net.ipv4.ip_forward: 0
       net.ipv6.conf.all.forwarding: 0
@@ -57,9 +66,10 @@
       fs.suid_dumpable: 0
       kernel.randomize_va_space: 2
 
-
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
   hosts: localhost
+  vars:
+    - os_auditd_enabled: false
   pre_tasks:
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
@@ -67,4 +77,3 @@
       when: ansible_os_family == 'Debian'
   roles:
     - ansible-os-hardening
-

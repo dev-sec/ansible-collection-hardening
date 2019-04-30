@@ -8,23 +8,24 @@
 
 - name: set Daemon umask, do config for rhel-family | NSA 2.2.4.1
   template:
-    src: 'rhel_sysconfig_init.j2'
+    src: 'etc/sysconfig/rhel_sysconfig_init.j2'
     dest: '/etc/sysconfig/init'
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS'
+  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or
+        ansible_distribution == 'CentOS' or ansible_distribution == 'Amazon'
 
 - name: install initramfs-tools
   apt:
     name: 'initramfs-tools'
-    state: 'installed'
+    state: 'present'
     update_cache: true
   when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
 
 - name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
   template:
-    src: 'modules.j2'
+    src: 'etc/initramfs-tools/modules.j2'
     dest: '/etc/initramfs-tools/modules'
     owner: 'root'
     group: 'root'
@@ -57,11 +58,12 @@
     reload: yes
     ignoreerrors: yes
   with_dict: '{{ sysctl_rhel_config }}'
-  when: (ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and ansible_distribution_major_version < '7'
+  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and
+        ansible_distribution_major_version is version_compare('7', '<')) or ansible_distribution == 'Amazon'
 
 - name: Apply ufw defaults
   template:
-    src: 'ufw.j2'
+    src: 'etc/default/ufw.j2'
     dest: '/etc/default/ufw'
   when: ufw_manage_defaults and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
   tags: ufw
