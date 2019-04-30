@@ -39,39 +39,46 @@ platforms:
   driver:
     image: rndmh3ro/docker-oracle7-ansible:latest
     platform: centos
-- name: ubuntu1404-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1404-ansible:latest
-    platform: ubuntu
+    run_command: /sbin/init
+    provision_command:
+      - systemctl enable ssh.service
 - name: ubuntu1604-ansible-latest
   driver:
     image: rndmh3ro/docker-ubuntu1604-ansible:latest
     platform: ubuntu
-- name: debian7-ansible-latest
+    run_command: /sbin/init
+- name: ubuntu1804-ansible-latest
   driver:
-    image: rndmh3ro/docker-debian7-ansible:latest
-    platform: debian
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get update
-    - RUN /usr/bin/apt-get install -y procps
-- name: debian8-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian8-ansible:latest
-    platform: debian
-    intermediate_instructions:
-    - RUN /usr/bin/apt-get update
-    - RUN /usr/bin/apt-get install -y procps
-    pid_one_command: /bin/systemd
+    image: rndmh3ro/docker-ubuntu1804-ansible:latest
+    platform: ubuntu
 - name: debian9-ansible-latest
   driver:
     image: rndmh3ro/docker-debian9-ansible:latest
     platform: debian
+    run_command: /sbin/init
+    provision_command:
+      - apt install -y systemd-sysv
+      - systemctl enable ssh.service
+- name: amazon-ansible-latest
+  driver:
+    image: rndmh3ro/docker-amazon-ansible:latest
+    platform: centos
+    run_command: /sbin/init
+#- name: amazon-ansible-latest
+#  driver:
+#    image: rndmh3ro/docker-amazon-ansible:latest
+#    platform: centos
+#    run_command: /sbin/init
+#    provision_command:
+#      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+#      - systemctl enable sshd.service
 
 verifier:
   name: inspec
   sudo: true
   inspec_tests:
-    - https://github.com/dev-sec/mysql-baseline
+     - ../mysql-baseline
+#    - https://github.com/dev-sec/mysql-baseline
 
 suites:
 - name: mysql

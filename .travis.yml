@@ -28,25 +28,25 @@ env:
 #    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
-#  - distro: ubuntu1404
-#    version: latest
-#    run_opts: "--privileged"
-#    init: /sbin/init
-
-  - distro: debian7
+  - distro: ubuntu1804
     version: latest
-    run_opts: "--privileged"
-    init: /sbin/init
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
-#  - distro: debian8
+#  - distro: debian9
 #    version: latest
-#    init: /bin/systemd
+#    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
- # - distro: debian9
- #   version: latest
- #   init: /lib/systemd/systemd
- #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: amazon
+    init: /lib/systemd/systemd
+    version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: fedora
+    init: /lib/systemd/systemd
+    version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   # Pull container
@@ -58,7 +58,7 @@ script:
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-mysql-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
   # Install ansible galaxy requirements
-  - 'docker exec "$(cat ${container_id})" ansible-galaxy install -r /etc/ansible/roles/ansible-mysql-hardening/requirements.yml -p /etc/ansible/roles/'
+  - 'docker exec "$(cat ${container_id})" ansible-galaxy install -c -r /etc/ansible/roles/ansible-mysql-hardening/requirements.yml -p /etc/ansible/roles/'
 
   # Test role.
   - 'travis_wait docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-mysql-hardening/default.yml'
