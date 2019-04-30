@@ -71,13 +71,6 @@
     - ssh_challengeresponseauthentication
     - ssh_google_auth
 
-- name: test to see if selinux is installed and running
-  command: getenforce
-  register: sestatus
-  failed_when: false
-  changed_when: false
-  check_mode: no
-
 - name: include selinux specific tasks
   include_tasks: selinux.yml
-  when: sestatus.rc == 0
+  when: ansible_selinux and ansible_selinux.status != "disabled"
