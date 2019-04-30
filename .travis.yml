@@ -6,7 +6,7 @@ env:
     version: latest
     init: /sbin/init
     test_playbook: test.yml
-  
+
   - distro: centos7
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
@@ -14,11 +14,6 @@ env:
     test_playbook: test.yml
 
   - distro: oracle6
-    version: latest
-    init: /sbin/init
-    test_playbook: test.yml
-
-  - distro: ubuntu1404
     version: latest
     init: /sbin/init
     test_playbook: test.yml
@@ -35,17 +30,23 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: test.yml
 
-  - distro: debian8
-    version: latest
-    init: /sbin/init
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    test_playbook: test.yml
-
   - distro: debian9
     version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: test.yml
+
+#  - distro: amazon
+#    init: /lib/systemd/systemd
+#    version: latest
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    test_playbook: test.yml
+#
+#  - distro: fedora
+#    init: /lib/systemd/systemd
+#    version: latest
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    test_playbook: test.yml
 
   - distro: centos6
     version: latest
@@ -64,11 +65,6 @@ env:
     init: /sbin/init
     test_playbook: official-nginx-role-redhat.yml
 
-  - distro: ubuntu1404
-    version: latest
-    init: /sbin/init
-    test_playbook: official-nginx-role-debian.yml
-
   - distro: ubuntu1604
     version: latest
     init: /lib/systemd/systemd
@@ -81,17 +77,23 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: official-nginx-role-debian.yml
 
-  - distro: debian8
-    version: latest
-    init: /sbin/init
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    test_playbook: official-nginx-role-debian.yml
-
   - distro: debian9
     version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: official-nginx-role-debian.yml
+
+#  - distro: amazon
+#    init: /lib/systemd/systemd
+#    version: latest
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    test_playbook: official-nginx-role-debian.yml
+#
+#  - distro: fedora
+#    init: /lib/systemd/systemd
+#    version: latest
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    test_playbook: official-nginx-role-debian.yml
 
 
 before_install:

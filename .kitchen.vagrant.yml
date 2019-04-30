@@ -25,47 +25,30 @@ transport:
   max_ssh_sessions: 5
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
-- name: ubuntu-14.04
-  driver_config:
-    box: opscode-ubuntu-14.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
 - name: ubuntu-16.04
   driver_config:
-    box: opscode-ubuntu-16.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-16.04_chef-provisionerless.box
-- name: centos-6.4
+    box: bento/ubuntu-16.04
+- name: ubuntu-18.04
   driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-6.5
+    box: bento/ubuntu-18.04
+- name: centos-6
   driver_config:
-    box: opscode-centos-6.5
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
-- name: centos-6.8
-  driver_config:
-    box: bento/centos-6.8
+    box: bento/centos-6
 - name: centos-7
   driver_config:
-    box: bento/centos-7.2
-- name: oracle-6.4
+    box: bento/centos-7
+- name: oracle-6
   driver_config:
-    box: oracle-6.4
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
-- name: oracle-6.5
-  driver_config:
-    box: oracle-6.5
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+    box: bento/oracle-6
 - name: oracle-7
   driver_config:
-    box: boxcutter/ol72
-- name: debian-8
+    box: bento/oracle-7
+- name: debian-9
   driver_config:
-    box: debian-8
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-8.1_chef-provisionerless.box
+    box: bento/debian-9
+- name: amazon
+  driver_config:
+    box: bento/amazonlinux-2
 
 verifier:
   name: inspec

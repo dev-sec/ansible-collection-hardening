@@ -50,10 +50,6 @@ platforms:
     provision_command:
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
-- name: ubuntu1404-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1404-ansible:latest
-    platform: ubuntu
 - name: ubuntu1604-ansible-latest
   driver:
     image: rndmh3ro/docker-ubuntu1604-ansible:latest
@@ -68,10 +64,6 @@ platforms:
     run_command: /sbin/init
     provision_command:
       - systemctl enable ssh.service
-- name: debian8-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian8-ansible:latest
-    platform: debian
 - name: debian9-ansible-latest
   driver:
     image: rndmh3ro/docker-debian9-ansible:latest
