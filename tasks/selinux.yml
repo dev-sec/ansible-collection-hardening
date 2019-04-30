@@ -57,7 +57,7 @@
   - name: install selinux policy
     command: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
 
-  when: not ssh_use_pam and ansible_selinux != 'Disabled' and ssh_password_module.stdout.find('ssh_password') != 0
+  when: not ssh_use_pam and ssh_password_module.stdout.find('ssh_password') != 0
 
 # The following tasks only get executed when selinux is installed, UsePam is 'yes' and the ssh_password module is installed.
 # See http://danwalsh.livejournal.com/12333.html for more info

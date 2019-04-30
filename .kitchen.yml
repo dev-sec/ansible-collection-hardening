@@ -6,9 +6,6 @@ driver:
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
 
-transport:
-  max_ssh_sessions: 5
-
 provisioner:
   name: ansible_playbook
   hosts: all
