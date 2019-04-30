@@ -11,6 +11,7 @@ group :integration do
   gem 'kitchen-sync'
   gem 'kitchen-transport-rsync'
   gem 'kitchen-docker'
+  gem 'inspec', '~> 3'
 end
 
 group :tools do
