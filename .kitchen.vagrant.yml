@@ -20,8 +20,8 @@ provisioner:
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
 
-transport:
-  max_ssh_sessions: 5
+#transport:
+#  max_ssh_sessions: 5
 
 platforms:
 - name: ubuntu-16.04
