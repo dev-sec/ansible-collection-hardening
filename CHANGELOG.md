@@ -1,6 +1,34 @@
-# Change Log
+# Changelog
+
+## [5.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.0) (2019-05-04)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.1.0...5.2.0)
+
+**Implemented enhancements:**
+
+- Speed up "minimize access on found files" task [\#208](https://github.com/dev-sec/ansible-os-hardening/issues/208)
+- Fedora support? [\#163](https://github.com/dev-sec/ansible-os-hardening/issues/163)
+- remove eol'd OS and add new [\#217](https://github.com/dev-sec/ansible-os-hardening/pull/217) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add note about docker under warning [\#214](https://github.com/dev-sec/ansible-os-hardening/pull/214) ([ChrisMcKee](https://github.com/ChrisMcKee))
+- change minimize access tasks to speed them up [\#209](https://github.com/dev-sec/ansible-os-hardening/pull/209) ([rndmh3ro](https://github.com/rndmh3ro))
+- Added fedora support [\#206](https://github.com/dev-sec/ansible-os-hardening/pull/206) ([jonaswre](https://github.com/jonaswre))
+- Pass package list directly to apt and yum modules without using with\_items loop [\#200](https://github.com/dev-sec/ansible-os-hardening/pull/200) ([Normo](https://github.com/Normo))
+
+**Fixed bugs:**
+
+- login.defs.j2 template: ENV\_PATH is missing ':' before variable substitution [\#202](https://github.com/dev-sec/ansible-os-hardening/issues/202)
+- 'sysctl\_rhel\_config' is undefined [\#167](https://github.com/dev-sec/ansible-os-hardening/issues/167)
+- RHEL 7.4: Too many setuid bits removed [\#140](https://github.com/dev-sec/ansible-os-hardening/issues/140)
+- Fix typo [\#212](https://github.com/dev-sec/ansible-os-hardening/pull/212) ([ruslo](https://github.com/ruslo))
+- Update modprobe to 0644 [\#211](https://github.com/dev-sec/ansible-os-hardening/pull/211) ([joshuatalb](https://github.com/joshuatalb))
+- Test Kitchen Vagrant Fixes [\#210](https://github.com/dev-sec/ansible-os-hardening/pull/210) ([joshuatalb](https://github.com/joshuatalb))
+- \[readme\] Update documentation link [\#207](https://github.com/dev-sec/ansible-os-hardening/pull/207) ([pmav99](https://github.com/pmav99))
+- fix ansible lint remarks [\#204](https://github.com/dev-sec/ansible-os-hardening/pull/204) ([rndmh3ro](https://github.com/rndmh3ro))
+- add colon to user env paths - fix \#202 [\#203](https://github.com/dev-sec/ansible-os-hardening/pull/203) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix errors produced by ansible-lint [\#159](https://github.com/dev-sec/ansible-os-hardening/pull/159) ([zbrojny120](https://github.com/zbrojny120))
 
 ## [5.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.1.0) (2018-10-17)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.0.0...5.1.0)
 
 **Implemented enhancements:**
@@ -16,6 +44,7 @@
 - ensure that permissions to su-binary are not restricted to root user and group only, if os\_security\_users\_allow contains the value change\_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) ([szEvEz](https://github.com/szEvEz))
 
 ## [5.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.0.0) (2018-09-02)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...5.0.0)
 
 **Implemented enhancements:**
@@ -49,6 +78,7 @@
 - change minimize access method [\#181](https://github.com/dev-sec/ansible-os-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.1...4.3.0)
 
 **Implemented enhancements:**
@@ -78,6 +108,7 @@
 - move defaults to os-specific vars [\#157](https://github.com/dev-sec/ansible-os-hardening/pull/157) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.3.1](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.1) (2017-09-13)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.1)
 
 **Fixed bugs:**
@@ -85,6 +116,7 @@
 - os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
 
 ## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.1.0...4.2.0)
 
 **Implemented enhancements:**
@@ -108,6 +140,7 @@
 - remove execshield sysctl-parameter on rhel7 [\#119](https://github.com/dev-sec/ansible-os-hardening/pull/119) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.1.0) (2017-06-27)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.0.0...4.1.0)
 
 **Fixed bugs:**
@@ -128,6 +161,7 @@
 - add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.2.0...4.0.0)
 
 **Implemented enhancements:**
@@ -139,7 +173,6 @@
 **Fixed bugs:**
 
 - The role fails when conditionally included [\#105](https://github.com/dev-sec/ansible-os-hardening/issues/105)
-- omit empty variables [\#106](https://github.com/dev-sec/ansible-os-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -154,6 +187,7 @@
 - Don’t refer to this role as "playbook" in the role description [\#104](https://github.com/dev-sec/ansible-os-hardening/pull/104) ([ypid](https://github.com/ypid))
 
 ## [3.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.2.0) (2016-10-24)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1.0...3.2.0)
 
 **Fixed bugs:**
@@ -171,9 +205,11 @@
 - add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [3.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.1.0) (2016-08-03)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1...3.1.0)
 
 ## [3.1](https://github.com/dev-sec/ansible-os-hardening/tree/3.1) (2016-07-27)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.0.0...3.1)
 
 **Implemented enhancements:**
@@ -196,7 +232,6 @@
 - Permissions on /etc/shadow can lock out GUI users [\#86](https://github.com/dev-sec/ansible-os-hardening/issues/86)
 - network related sysctl rewritten by ufw in ubuntu  [\#82](https://github.com/dev-sec/ansible-os-hardening/issues/82)
 - ansible \>= 2.0 complains: Using bare variables is deprecated [\#78](https://github.com/dev-sec/ansible-os-hardening/issues/78)
-- Norm-Audit-Hardening-Audit [\#76](https://github.com/dev-sec/ansible-os-hardening/issues/76)
 
 **Merged pull requests:**
 
@@ -204,6 +239,7 @@
 - Permits overriding permissions on /etc/shadow [\#89](https://github.com/dev-sec/ansible-os-hardening/pull/89) ([conorsch](https://github.com/conorsch))
 
 ## [3.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.0.0) (2016-03-13)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/2.0.0...3.0.0)
 
 **Implemented enhancements:**
@@ -223,7 +259,6 @@
 
 - Updates "tags" parameters on includes in main.yml [\#66](https://github.com/dev-sec/ansible-os-hardening/pull/66) ([conorsch](https://github.com/conorsch))
 - Suid set def var, fix \#64 [\#63](https://github.com/dev-sec/ansible-os-hardening/pull/63) ([rndmh3ro](https://github.com/rndmh3ro))
-- ERROR! Include tasks should not specify tags in more than one way [\#60](https://github.com/dev-sec/ansible-os-hardening/pull/60) ([fitz123](https://github.com/fitz123))
 
 **Closed issues:**
 
@@ -236,6 +271,7 @@
 - Release 3.0.0 [\#75](https://github.com/dev-sec/ansible-os-hardening/pull/75) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/2.0.0) (2015-11-28)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/1.0.0...2.0.0)
 
 **Closed issues:**
@@ -254,6 +290,9 @@
 - improved travis-tests to cover more cases [\#42](https://github.com/dev-sec/ansible-os-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/1.0.0) (2015-09-01)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/06d1464e95cad7ccc24734b934a158b16dfc5014...1.0.0)
+
 **Closed issues:**
 
 - ansible-os-hardening/tasks/minimize\_access.yml [\#38](https://github.com/dev-sec/ansible-os-hardening/issues/38)
@@ -300,4 +339,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
