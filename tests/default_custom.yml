@@ -85,4 +85,3 @@
       - "Include /etc/ssh/ssh_config.d/*"
     sshd_custom_options:
       - "AcceptEnv LANG"
-
