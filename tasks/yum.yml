@@ -31,7 +31,7 @@
   with_flattened:
     - '/etc/yum.conf'
     - '/etc/dnf/dnf.conf'
-    - '{{ yum_repos.stdout_lines| default([]) }}'
+    - '{{ yum_repos.stdout_lines| default([]) }}' # noqa 104
     - '/etc/yum/pluginconf.d/rhnplugin.conf'
 
 - name: remove deprecated or insecure packages | package-01 - package-09

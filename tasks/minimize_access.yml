@@ -1,6 +1,6 @@
 ---
 - name: find files with write-permissions for group
-  shell: "find -L {{ item }} -perm /go+w -type f"
+  shell: "find -L {{ item }} -perm /go+w -type f" # noqa 305
   with_flattened:
     - '/usr/local/sbin'
     - '/usr/local/bin'
@@ -8,7 +8,7 @@
     - '/usr/bin'
     - '/sbin'
     - '/bin'
-    - "{{ os_env_extra_user_paths }}"
+    - "{{ os_env_extra_user_paths }}" # noqa 104
   register: minimize_access_directories
   ignore_errors: true
   changed_when: false
@@ -19,7 +19,7 @@
     mode: 'go-w'
     state: file
   with_subelements:
-    - "{{minimize_access_directories.results }}"
+    - "{{ minimize_access_directories.results }}"
     - stdout_lines
 
 - name: change shadow ownership to root and mode to 0600 | os-02
