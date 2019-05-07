@@ -244,7 +244,7 @@ Subsystem sftp internal-sftp -l INFO -f LOCAL6
 # These lines must appear at the *end* of sshd_config
 Match Group sftponly
     ForceCommand internal-sftp -l INFO -f LOCAL6
-{% if sftp_chroot -%}
+{% if sftp_chroot %}
     ChrootDirectory {{ sftp_chroot_dir }}
 {% endif %}
     AllowTcpForwarding no
@@ -260,7 +260,7 @@ Match Group sftponly
 
 {% for item in ssh_server_match_group -%}
 Match Group {{ item.group }}
-  {% for rule in item.rules -%}
+  {% for rule in item.rules %}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}
@@ -272,7 +272,7 @@ Match Group {{ item.group }}
 
 {% for item in ssh_server_match_user -%}
 Match User {{ item.user }}
-  {% for rule in item.rules -%}
+  {% for rule in item.rules %}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}
