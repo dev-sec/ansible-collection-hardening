@@ -56,7 +56,7 @@ script:
 
   # Test role.
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/tests/default_custom.yml --diff'
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/tests/default.yml -diff'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-ssh-hardening/tests/default.yml --diff'
 
   # Verify role
   # remove the UseLogin-check, see here for reasons: https://github.com/dev-sec/ansible-ssh-hardening/pull/141
