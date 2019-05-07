@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.1) (2019-05-07)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.0...6.1.1)
+
+**Fixed bugs:**
+
+- Missing indent for `ChrootDirectory` in `Match Group sftponly` [\#221](https://github.com/dev-sec/ansible-ssh-hardening/issues/221)
+
+**Merged pull requests:**
+
+- fix indentation for matches [\#222](https://github.com/dev-sec/ansible-ssh-hardening/pull/222) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [6.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.0) (2019-05-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.0.0...6.1.0)
