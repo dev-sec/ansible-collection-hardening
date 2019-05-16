@@ -1,9 +1,8 @@
 # windows-hardening (Ansible Role)
 
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
-[![Ansible Galaxy]()][3]
-
 ## Description
+
+**This role is in a very early stage and may not work correctly or secure your servers the way you expect it! Please do not rely on it securing you Windows servers (yet).**
 
 These roles ensure that a Windows 2012 R2 or Windows 2016 system is compliant with the [DevSec Windows Baseline](https://github.com/dev-sec/windows-baseline).
 
