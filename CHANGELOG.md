@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.1.2](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.2) (2019-05-17)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.1...6.1.2)
+
+**Fixed bugs:**
+
+- sshd\_custom\_options used in ssh\_config generation [\#224](https://github.com/dev-sec/ansible-ssh-hardening/issues/224)
+
+**Merged pull requests:**
+
+- use correct variable ssh\_custom\_options in ssh\_config template [\#225](https://github.com/dev-sec/ansible-ssh-hardening/pull/225) ([rndmh3ro](https://github.com/rndmh3ro))
+
+
 ## [6.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.1) (2019-05-07)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.0...6.1.1)
