@@ -15,7 +15,7 @@
 
 - import_tasks: auditd.yml
   tags: auditd
-  when: os_auditd_enabled
+  when: os_auditd_enabled | bool
 
 - import_tasks: limits.yml
   tags: limits
@@ -39,7 +39,7 @@
   tags: securetty
 
 - import_tasks: suid_sgid.yml
-  when: os_security_suid_sgid_enforce
+  when: os_security_suid_sgid_enforce  | bool
   tags: suid_sgid
 
 - import_tasks: sysctl.yml
