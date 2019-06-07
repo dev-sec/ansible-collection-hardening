@@ -26,7 +26,7 @@
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'
   notify: restart sshd
-  when: ssh_server_hardening
+  when: ssh_server_hardening | bool
 
 - name: create sshd_config and set permissions to root/600
   template:
@@ -37,7 +37,7 @@
     group: '{{ ssh_group }}'
     validate: '/usr/sbin/sshd -T -C user=root -C host=localhost -C addr=localhost -f %s'
   notify: restart sshd
-  when: ssh_server_hardening
+  when: ssh_server_hardening | bool
 
 - name: create ssh_config and set permissions to root/644
   template:
@@ -46,7 +46,7 @@
     mode: '0644'
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'
-  when: ssh_client_hardening
+  when: ssh_client_hardening | bool
 
 - name: Check if {{ sshd_moduli_file }} contains weak DH parameters
   shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
@@ -67,9 +67,9 @@
 - name: include tasks to setup 2FA
   include_tasks: 2fa.yml
   when:
-    - ssh_use_pam
-    - ssh_challengeresponseauthentication
-    - ssh_google_auth
+    - ssh_use_pam | bool
+    - ssh_challengeresponseauthentication | bool
+    - ssh_google_auth | bool
 
 - name: include selinux specific tasks
   include_tasks: selinux.yml
