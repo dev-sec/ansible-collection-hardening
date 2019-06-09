@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.2.1](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.1) (2019-06-09)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.2.0...5.2.1)
+
+**Implemented enhancements:**
+
+- Fix deprecation warnings in Ansible 2.8 [\#224](https://github.com/dev-sec/ansible-os-hardening/pull/224) ([Normo](https://github.com/Normo))
+- add docs to find-task in minimize access. fix \#219 [\#220](https://github.com/dev-sec/ansible-os-hardening/pull/220) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- `squash\_actions` deprecation warning [\#218](https://github.com/dev-sec/ansible-os-hardening/issues/218)
+
 ## [5.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.0) (2019-05-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.1.0...5.2.0)
