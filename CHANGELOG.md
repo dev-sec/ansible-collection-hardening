@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.3) (2019-06-09)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.2...6.1.3)
+
+**Implemented enhancements:**
+
+- Fix squash\_actions deprecation in test playbooks [\#228](https://github.com/dev-sec/ansible-ssh-hardening/pull/228) ([Normo](https://github.com/Normo))
+- Fix deprecation warnings in Ansible 2.8 [\#227](https://github.com/dev-sec/ansible-ssh-hardening/pull/227) ([Normo](https://github.com/Normo))
+
+**Fixed bugs:**
+
+- deprecation warnings in Ansible 2.8 [\#226](https://github.com/dev-sec/ansible-ssh-hardening/issues/226)
+
 ## [6.1.2](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.2) (2019-05-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.1...6.1.2)
@@ -11,7 +24,6 @@
 **Merged pull requests:**
 
 - use correct variable ssh\_custom\_options in ssh\_config template [\#225](https://github.com/dev-sec/ansible-ssh-hardening/pull/225) ([rndmh3ro](https://github.com/rndmh3ro))
-
 
 ## [6.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.1) (2019-05-07)
 
