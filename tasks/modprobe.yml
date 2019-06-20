@@ -20,4 +20,4 @@
     dest: '/etc/modprobe.d/dev-sec.conf'
     owner: 'root'
     group: 'root'
-    mode: '0640'
+    mode: '0644'
