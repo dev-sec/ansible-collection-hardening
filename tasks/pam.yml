@@ -13,7 +13,7 @@
 - name: remove pam ccreds to disable password caching (for apt variants)
   apt:
     name: '{{ os_packages_pam_ccreds }}'
-    state: 'present'
+    state: 'absent'
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: remove pam ccreds to disable password caching (for Yum variants)
