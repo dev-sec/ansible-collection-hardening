@@ -10,10 +10,18 @@
 # that isn't connected to an LDAP server anymore.
 # normally caching credentials shouldn't be necessary for most machines.
 # removing it provides some more security while not removing usability.
-- name: remove pam ccreds to disable password caching
-  package:
+- name: remove pam ccreds to disable password caching (for apt variants)
+  apt:
     name: '{{ os_packages_pam_ccreds }}'
-    state: 'absent'
+    state: 'present'
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: remove pam ccreds to disable password caching (for Yum variants)
+  yum:
+    name: '{{ os_packages_pam_ccreds }}'
+    state: 'present'
+    lock_timeout: 180
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'Amazon Linux' or ansible_distribution == 'Fedora'
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
   apt:
