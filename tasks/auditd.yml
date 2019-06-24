@@ -1,9 +1,17 @@
 ---
 
-- name: install auditd package | package-08
-  package:
+- name: install auditd package (for apt variants) | package-08
+  apt:
     name: '{{ auditd_package }}'
     state: 'present'
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: install auditd package (for Yum variants) | package-08
+  yum:
+    name: '{{ auditd_package }}'
+    state: 'present'
+    lock_timeout: 180
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'Amazon Linux' or ansible_distribution == 'Fedora'
 
 - name: configure auditd | package-08
   template:

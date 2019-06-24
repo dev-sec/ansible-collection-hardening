@@ -1,8 +1,17 @@
 ---
-- name: install modprobe to disable filesystems | os-10
-  package:
+
+- name: install modprobe to disable filesystems (for apt variants) | os-10
+  apt:
     name: '{{ modprobe_package }}'
     state: 'present'
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: install modprobe to disable filesystems (for Yum variants) | os-10
+  yum:
+    name: '{{ modprobe_package }}'
+    state: 'present'
+    lock_timeout: 180
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' or ansible_distribution == 'Amazon Linux' or ansible_distribution == 'Fedora'
 
 - name: check if efi is installed
   stat:
