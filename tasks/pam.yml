@@ -78,7 +78,7 @@
   yum:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'present'
-  when: (ansible_os_family == 'RedHat' and ansible_facts.distribution_version is version('7', '<') and not ansible_distribution == 'Amazon')
+  when: (ansible_os_family == 'RedHat' and ansible_facts.distribution_version|int is version('7', '<') and not ansible_distribution == 'Amazon')
         and os_auth_pam_passwdqc_enable
 
 - name: remove passwdqc
