@@ -15,7 +15,7 @@
 - name: set UID_MAX on Debian-systems if no login.defs exist
   set_fact:
     uid_max: '999'
-  when: ansible_os_family == 'Debian' and not uid_min
+  when: ansible_facts.os_family == 'Debian' and not uid_min
 
 - name: set UID_MAX on other systems if no login.defs exist
   set_fact:

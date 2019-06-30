@@ -7,14 +7,14 @@
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
     - name: install required tools on fedora
       dnf:
         name:
           - python
           - findutils
           - procps-ng
-      when: ansible_distribution == 'Fedora'
+      when: ansible_facts.distribution == 'Fedora'
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:
@@ -74,6 +74,6 @@
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
   roles:
     - ansible-os-hardening
