@@ -13,15 +13,15 @@
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or
-        ansible_distribution == 'CentOS' or ansible_distribution == 'Amazon'
+  when: ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or
+        ansible_facts.distribution == 'CentOS' or ansible_facts.distribution == 'Amazon'
 
 - name: install initramfs-tools
   apt:
     name: 'initramfs-tools'
     state: 'present'
     update_cache: true
-  when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
+  when: ansible_facts.os_family == 'Debian' and os_security_kernel_enable_module_loading
 
 - name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
   template:
@@ -32,7 +32,7 @@
     mode: '0440'
   notify:
     - update-initramfs
-  when: ansible_os_family == 'Debian' and os_security_kernel_enable_module_loading
+  when: ansible_facts.os_family == 'Debian' and os_security_kernel_enable_module_loading
   register: initramfs
 
 - name: create a combined sysctl-dict if overwrites are defined
@@ -58,12 +58,12 @@
     reload: yes
     ignoreerrors: yes
   with_dict: '{{ sysctl_rhel_config }}'
-  when: ((ansible_distribution == 'RedHat' or ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS') and
-        ansible_distribution_major_version is version_compare('7', '<')) or ansible_distribution == 'Amazon'
+  when: ((ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'CentOS') and
+        ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'
 
 - name: Apply ufw defaults
   template:
     src: 'etc/default/ufw.j2'
     dest: '/etc/default/ufw'
-  when: ufw_manage_defaults and (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+  when: ufw_manage_defaults and (ansible_facts.distribution == 'Debian' or ansible_facts.distribution == 'Ubuntu')
   tags: ufw

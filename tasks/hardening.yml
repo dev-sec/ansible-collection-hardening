@@ -1,15 +1,15 @@
 ---
 - name: Set OS family dependent variables
-  include_vars: '{{ ansible_os_family }}.yml'
+  include_vars: '{{ ansible_facts.os_family }}.yml'
   tags: always
 
 - name: Set OS dependent variables
   include_vars: '{{ item }}'
   with_first_found:
     - files:
-      - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
-      - '{{ ansible_distribution }}.yml'
-      - '{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml'
+      - '{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml'
+      - '{{ ansible_facts.distribution }}.yml'
+      - '{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml'
       skip: true
   tags: always
 
@@ -52,9 +52,9 @@
   tags: rhosts
 
 - import_tasks: yum.yml
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts.os_family == 'RedHat'
   tags: yum
 
 - import_tasks: apt.yml
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: ansible_facts.distribution == 'Debian' or ansible_facts.distribution == 'Ubuntu'
   tags: apt
