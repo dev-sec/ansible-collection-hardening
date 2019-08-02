@@ -47,6 +47,11 @@
     sftp_enabled: true
     sftp_chroot: true
     #ssh_server_enabled: false
+    ssh_server_match_address:
+      - address: '192.168.1.1/24'
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
     ssh_server_match_group:
       - group: 'root'
         rules:

@@ -64,6 +64,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_print_debian_banner` | `false` | `true` to print debian specific banner |
 |`ssh_server_enabled` | `true` | `false` to disable the opensshd server |
 |`ssh_server_hardening` | `true` | `false` to stop harden the server |
+|`ssh_server_match_address` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
 |`ssh_server_match_group` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
 |`ssh_server_match_user` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
 |`ssh_server_permit_environment_vars` | `false` | `true` to specify that ~/.ssh/environment and environment= options in ~/.ssh/authorized_keys are processed by sshd |
