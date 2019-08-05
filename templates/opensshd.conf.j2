@@ -254,6 +254,18 @@ Match Group sftponly
     X11Forwarding no
 {% endif %}
 
+{% if ssh_server_match_address -%}
+# Address matching configuration
+# ============================
+
+{% for item in ssh_server_match_address -%}
+Match Address {{ item.address }}
+  {% for rule in item.rules %}
+    {{ rule | indent(4) }}
+  {% endfor %}
+{% endfor %}
+{% endif %}
+
 {% if ssh_server_match_group -%}
 # Group matching configuration
 # ============================
