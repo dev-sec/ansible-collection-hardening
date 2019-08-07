@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.2.0) (2019-08-07)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.3...6.2.0)
+
+**Implemented enhancements:**
+
+- added support for `ssh\_server\_match\_address` \(\#230\) [\#231](https://github.com/dev-sec/ansible-ssh-hardening/pull/231) ([MatthiasLohr](https://github.com/MatthiasLohr))
+
+**Closed issues:**
+
+- Add new option ssh\_server\_match\_address [\#230](https://github.com/dev-sec/ansible-ssh-hardening/issues/230)
+
 ## [6.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.3) (2019-06-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.2...6.1.3)
@@ -372,6 +384,7 @@
 **Merged pull requests:**
 
 - New release 3.0.0 [\#59](https://github.com/dev-sec/ansible-ssh-hardening/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add var to travis job [\#42](https://github.com/dev-sec/ansible-ssh-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/2.0.0) (2015-11-28)
 
@@ -384,7 +397,6 @@
 **Merged pull requests:**
 
 - New dir layout. Fix \#43 [\#44](https://github.com/dev-sec/ansible-ssh-hardening/pull/44) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add var to travis job [\#42](https://github.com/dev-sec/ansible-ssh-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 - sftp\_enable option [\#41](https://github.com/dev-sec/ansible-ssh-hardening/pull/41) ([fitz123](https://github.com/fitz123))
 
 ## [1.2.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2.1) (2015-10-16)
