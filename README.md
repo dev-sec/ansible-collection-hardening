@@ -31,7 +31,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_gateway_ports` | `false` | `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.|
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
 |`ssh_pam_support` | true | true if SSH has PAM support.|
-|`ssh_use_pam` | false | false to disable pam authentication.|
+|`ssh_use_pam` | true | false to disable pam authentication.|
 |`ssh_gssapi_support` | false | true if SSH has GSSAPI support.|
 |`ssh_kerberos_support` | true | true if SSH has Kerberos support.|
 |`ssh_deny_users` | '' | if specified, login is disallowed for user names that match one of the patterns.|
