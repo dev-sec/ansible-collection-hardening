@@ -230,3 +230,9 @@ ssh_custom_options: []
 
 # Custom options for SSH daemon configuration file
 sshd_custom_options: []
+
+# Logging
+sshd_syslog_facility: 'AUTH'
+sshd_log_level: 'VERBOSE'
+
+sshd_strict_modes: yes
