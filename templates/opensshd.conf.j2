@@ -42,11 +42,11 @@ HostKey {{key}}          # Req 20
 Protocol 2
 
 # Make sure sshd checks file modes and ownership before accepting logins. This prevents accidental misconfiguration.
-StrictModes yes
+StrictModes {{ 'yes' if (sshd_strict_modes|bool) else 'no' }}
 
 # Logging, obsoletes QuietMode and FascistLogging
-SyslogFacility AUTH
-LogLevel VERBOSE
+SyslogFacility {{ sshd_syslog_facility }}
+LogLevel {{ sshd_log_level }}
 
 # Cryptography
 # ------------
