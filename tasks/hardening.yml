@@ -69,7 +69,6 @@
   when:
     - ssh_use_pam | bool
     - ssh_challengeresponseauthentication | bool
-    - ssh_google_auth | bool
 
 - name: include selinux specific tasks
   include_tasks: selinux.yml

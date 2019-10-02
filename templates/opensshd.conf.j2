@@ -107,15 +107,9 @@ HostbasedAuthentication no
 {% if ssh_pam_support -%}
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
-{% if ssh_google_auth %}
-# Force public key auth then ask for google auth code
-AuthenticationMethods publickey,keyboard-interactive
-{% endif %}
 
-# Force public key auth then ask for pam device input
-{% if ssh_pam_device %}
-AuthenticationMethods publickey,keyboard-interactive:pam
-{% endif %}
+# Set AuthenticationMethods per default to publickey
+AuthenticationMethods {{ sshd_authenticationmethods }}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
