@@ -128,6 +128,10 @@ bundle exec kitchen test
 # for development
 bundle exec kitchen create ssh-ubuntu1804-ansible-latest
 bundle exec kitchen converge ssh-ubuntu1804-ansible-latest
+bundle exec kitchen verify ssh-ubuntu1804-ansible-latest
+
+# cleanup
+bundle exec kitchen destroy ssh-ubuntu1804-ansible-latest
 ```
 
 ### Testing with Virtualbox
