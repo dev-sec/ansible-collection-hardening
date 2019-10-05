@@ -2,5 +2,5 @@ sshd_service_name: sshd
 ssh_owner: root
 ssh_group: root
 ssh_selinux_packages:
-  - policycoreutils-python
+  - python3-policycoreutils
   - checkpolicy
