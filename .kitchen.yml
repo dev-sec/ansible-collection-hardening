@@ -59,6 +59,14 @@ platforms:
     provision_command:
       - apt install -y systemd-sysv
       - systemctl enable ssh.service
+- name: debian10-ansible-latest
+  driver:
+    image: rndmh3ro/docker-debian10-ansible:latest
+    platform: debian
+    run_command: /sbin/init
+    provision_command:
+      - apt install -y systemd-sysv
+      - systemctl enable ssh.service
 - name: amazon-ansible-latest
   driver:
     image: rndmh3ro/docker-amazon-ansible:latest
