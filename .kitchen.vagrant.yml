@@ -44,7 +44,7 @@ platforms:
     box: bento/debian-9
 - name: debian-10
   driver_config:
-    box: docker-debian10-ansible
+    box: bento/debian-10
 - name: amazon
   driver_config:
     box: bento/amazonlinux-2
