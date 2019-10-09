@@ -40,6 +40,9 @@ platforms:
 - name: debian-9
   driver_config:
     box: bento/debian-9
+- name: debian-10
+  driver_config:
+    box: bento/debian-10
 - name: amazon
   driver_config:
     box: bento/amazonlinux-2
