@@ -36,6 +36,12 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: test.yml
 
+  - distro: debian10
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    test_playbook: test.yml
+
 #  - distro: amazon
 #    init: /lib/systemd/systemd
 #    version: latest
