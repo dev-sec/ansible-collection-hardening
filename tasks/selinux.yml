@@ -1,18 +1,8 @@
 ---
-- name: install selinux dependencies when selinux is installed on RHEL or Oracle Linux
+- name: install selinux dependencies when selinux is installed
   package:
-    name: '{{ item }}'
+    name: '{{ ssh_selinux_packages }}'
     state: present
-  with_items:
-    - 'policycoreutils-python'
-    - 'checkpolicy'
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
-
-- name: install selinux dependencies when selinux is installed on Debian or Ubuntu
-  apt:
-    name: ['policycoreutils', 'checkpolicy']
-    state: present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: "authorize {{ ssh_server_ports }} ports for selinux"
   seport:
