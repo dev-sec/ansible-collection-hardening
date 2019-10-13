@@ -155,6 +155,7 @@ ssh_server_match_group: false           # sshd
 ssh_server_match_address: false           # sshd
 
 ssh_server_permit_environment_vars: false
+ssh_server_accept_env_vars : ''
 
 # maximum number of concurrent unauthenticated connections to the SSH daemon
 ssh_max_startups: '10:30:100'           # sshd
