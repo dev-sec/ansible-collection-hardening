@@ -203,11 +203,12 @@ X11UseLocalhost yes
 
 {% if ssh_server_permit_environment_vars -%}
 PermitUserEnvironment yes
-{% for item in ssh_server_permit_environment_vars -%}
-AcceptEnv {{ item }}
-{% endfor %}
 {% else -%}
 PermitUserEnvironment no
+{% endif %}
+
+{% if ssh_server_accept_env_vars -%}
+AcceptEnv {{ ssh_server_accept_env_vars }}
 {% endif %}
 
 # Misc. configuration

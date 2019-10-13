@@ -68,6 +68,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_server_match_group` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
 |`ssh_server_match_user` | '' | Introduces a conditional block.  If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file. |
 |`ssh_server_permit_environment_vars` | `false` | `true` to specify that ~/.ssh/environment and environment= options in ~/.ssh/authorized_keys are processed by sshd |
+|`ssh_server_accept_env_vars`| '' | Specifies what environment variables sent by the client will be copied into the session's enviroment, multiple environment variables may be separated by whitespace |
 |`ssh_use_dns` | `false` | Specifies whether sshd should look up the remote host name, and to check that the resolved host name for the remote IP address maps back to the very same IP address. |
 |`ssh_server_revoked_keys` | [] | a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.|
 |`ssh_max_startups` | '10:30:100' | Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon.|
