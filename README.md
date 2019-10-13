@@ -54,8 +54,6 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_challengeresponseauthentication` | false | Specifies whether challenge-response authentication is allowed (e.g. via PAM) |
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
 |`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
-|`ssh_google_auth` | false | `true` to enable google authenticator based TOTP 2FA |
-|`ssh_pam_device` | false | `true` to enable  public key auth with pam device 2FA |
 |`ssh_banner` | `false` | `true` to print a banner on login |
 |`ssh_client_hardening` | `true` | `false` to stop harden the client |
 |`ssh_client_port` | `'22'` | Specifies the port number to connect on the remote host. |
@@ -79,6 +77,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`sshd_syslog_facility` | 'AUTH' | The facility code that is used when logging messages from sshd |
 |`sshd_log_level` | 'VERBOSE' | the verbosity level that is used when logging messages from sshd | 
 |`sshd_strict_modes` | 'yes' | Check file modes and ownership of the user's files and home directory before accepting login |
+|`sshd_authenticationmethods` | `publickey` | Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`
 
 ## Configuring settings not listed in role-variables
 

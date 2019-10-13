@@ -67,11 +67,8 @@ ssh_pam_support: true
 # false to disable pam authentication.
 ssh_use_pam: true # sshd
 
-# false to disable google 2fa authentication
-ssh_google_auth: false # sshd
-
-# false to disable pam device 2FA input
-ssh_pam_device: false # sshd
+# specify AuthenticationMethods
+sshd_authenticationmethods: 'publickey'
 
 # true if SSH support GSSAPI
 ssh_gssapi_support: false
