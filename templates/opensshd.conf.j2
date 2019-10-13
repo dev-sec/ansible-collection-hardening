@@ -109,7 +109,10 @@ UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
 
 # Set AuthenticationMethods per default to publickey
+# AuthenticationMethods was introduced in OpenSSH 6.2 - https://www.openssh.com/txt/release-6.2
+{% if sshd_version.stdout is version('6.2', '>=') %}
 AuthenticationMethods {{ sshd_authenticationmethods }}
+{% endif %}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
