@@ -20,7 +20,6 @@ env:
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
-    ANSIBLE_PYTHON_INTERPRETER: auto
 
   - distro: oracle6
     version: latest
