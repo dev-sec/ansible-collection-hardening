@@ -58,3 +58,8 @@
 - import_tasks: apt.yml
   when: ansible_facts.distribution == 'Debian' or ansible_facts.distribution == 'Ubuntu'
   tags: apt
+
+- import_tasks: selinux.yml
+  tags: selinux
+  when:
+    - ansible_facts.selinux.status == 'enabled'
