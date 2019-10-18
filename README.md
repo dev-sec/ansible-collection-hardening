@@ -46,6 +46,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_print_motd` | false | false to disable printing of the MOTD|
 |`ssh_print_last_log` | false | false to disable display of last login information|
 |`sftp_enabled` | false | true to enable sftp configuration|
+|`sftp_umask` | 0027 | Specifies the umask for sftp|
 |`sftp_chroot` | true | false to disable chroot for sftp|
 |`sftp_chroot_dir` | /home/%u | change default sftp chroot location|
 |`ssh_client_roaming` | false | enable experimental client roaming|
@@ -76,7 +77,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_custom_options` | [] | Custom lines for SSH client configuration |
 |`sshd_custom_options` | [] | Custom lines for SSH daemon configuration |
 |`sshd_syslog_facility` | 'AUTH' | The facility code that is used when logging messages from sshd |
-|`sshd_log_level` | 'VERBOSE' | the verbosity level that is used when logging messages from sshd | 
+|`sshd_log_level` | 'VERBOSE' | the verbosity level that is used when logging messages from sshd |
 |`sshd_strict_modes` | 'yes' | Check file modes and ownership of the user's files and home directory before accepting login |
 |`sshd_authenticationmethods` | `publickey` | Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`
 

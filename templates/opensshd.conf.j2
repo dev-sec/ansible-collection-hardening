@@ -233,11 +233,11 @@ RevokedKeys /etc/ssh/revoked_keys
 # override default of no subsystems
 # Subsystem sftp /opt/app/openssh5/libexec/sftp-server
 
-Subsystem sftp internal-sftp -l INFO -f LOCAL6
+Subsystem sftp internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
 
 # These lines must appear at the *end* of sshd_config
 Match Group sftponly
-    ForceCommand internal-sftp -l INFO -f LOCAL6
+    ForceCommand internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
 {% if sftp_chroot %}
     ChrootDirectory {{ sftp_chroot_dir }}
 {% endif %}

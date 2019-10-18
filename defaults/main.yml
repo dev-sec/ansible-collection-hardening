@@ -136,6 +136,9 @@ sftp_enabled: false
 # false to disable sftp chroot
 sftp_chroot: true
 
+# sftp default umask
+sftp_umask: 0027
+
 # change default sftp chroot location
 sftp_chroot_dir: /home/%u
 
