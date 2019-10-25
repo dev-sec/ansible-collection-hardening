@@ -4,6 +4,10 @@
   roles:
     - ansible-os-hardening
   pre_tasks:
+    - name: set ansible_python_interpreter to auto on systems with ansible 2.8
+      set_fact:
+        ansible_python_interpreter: "auto"
+      when: ansible_version.full is version('2.8', '>')
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
@@ -18,7 +22,6 @@
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:
-    ansible_python_interpreter: auto
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: true
     os_security_suid_sgid_remove_from_unknown: true
