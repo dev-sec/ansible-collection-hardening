@@ -4,6 +4,11 @@
   roles:
     - ansible-os-hardening
   pre_tasks:
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
+
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
@@ -59,7 +64,7 @@
       net.ipv6.conf.default.accept_ra_rtr_pref: 0
       net.ipv6.conf.default.accept_ra_pinfo: 0
       net.ipv6.conf.default.accept_ra_defrtr: 0
-      net.ipv6.conf.default.autoconf: 0
+      net.ipv6.conf.default.conf: 0
       net.ipv6.conf.default.dad_transmits: 0
       net.ipv6.conf.default.max_addresses: 1
       kernel.sysrq: 0
@@ -69,8 +74,13 @@
 - name: wrapper playbook for kitchen testing "ansible-os-hardening"
   hosts: localhost
   vars:
-    - os_auditd_enabled: false
+    os_auditd_enabled: false
   pre_tasks:
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
+
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
