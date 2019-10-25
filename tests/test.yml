@@ -4,10 +4,11 @@
   roles:
     - ansible-os-hardening
   pre_tasks:
-    - name: set ansible_python_interpreter to auto on systems with ansible 2.8
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
       set_fact:
-        ansible_python_interpreter: "auto"
-      when: ansible_version.full is version('2.8', '>')
+        ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
+
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
@@ -75,10 +76,11 @@
   vars:
     os_auditd_enabled: false
   pre_tasks:
-    - name: set ansible_python_interpreter to auto on systems with ansible 2.8
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
       set_fact:
-        ansible_python_interpreter: "auto"
-      when: ansible_version.full is version('2.8', '>')
+        ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
+
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
         update_cache: yes
