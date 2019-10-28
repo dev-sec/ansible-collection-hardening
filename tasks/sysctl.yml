@@ -49,7 +49,6 @@
     reload: yes
     ignoreerrors: yes
   with_dict: '{{ sysctl_config }}'
-  when: ansible_virtualization_type != 'docker' and ansible_virtualization_type != 'openvz'
 
 - name: Change various sysctl-settings on rhel6-hosts or older, look at the sysctl-vars file for documentation
   sysctl:
