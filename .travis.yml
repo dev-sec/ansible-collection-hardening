@@ -68,7 +68,7 @@ script:
   - 'docker exec "$(cat ${container_id})" ansible-playbook --version'
 
    # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/tests/test.yml --diff --skip-tags "sysctl"'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/tests/test.yml --diff'
 
    # Verify role
   - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-05b os-06 os-07 os-09 os-10 os-11 package-01 package-02 package-03 package-05 package-06 package-08 package-09 --no-distinct-exit'
