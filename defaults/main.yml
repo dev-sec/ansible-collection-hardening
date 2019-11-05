@@ -250,6 +250,7 @@ os_hardening_enabled: true
 
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
+os_auditd_max_log_file_action: keep_logs
 
 # Set the SELinux state, can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
