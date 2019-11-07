@@ -78,6 +78,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 | `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
 | `ufw_default_forward_policy` | DROP | set default forward policy of ufw to `DROP` |
 | `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
+| `os_auditd_max_log_file_action` | `keep_logs` | Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`. |
 
 ## Packages
 
