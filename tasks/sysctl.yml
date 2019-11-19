@@ -63,7 +63,7 @@
       when: ((ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'CentOS') and
             ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'
             
-  when: ansible_virtualization_type != 'docker' and ansible_virtualization_type != 'openvz'
+  when: ansible_virtualization_type not in ['docker', 'openvz', 'lxc']
 
 - name: Apply ufw defaults
   template:
