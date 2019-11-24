@@ -27,5 +27,5 @@ os_auth_sys_uid_max: 499
 os_auth_sys_gid_min: 100
 os_auth_sys_gid_max: 499
 
-modprobe_package: 'module-init-tools'
+modprobe_package: 'kmod-compat'
 auditd_package: 'auditd'
