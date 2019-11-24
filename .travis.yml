@@ -56,7 +56,7 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
   - distro: opensuse_tumbleweed
-    init: /lib/systemd/systemd
+    init: /usr/lib/systemd
     version: latest
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
