@@ -109,7 +109,7 @@ platforms:
     platform: opensuse
     run_command: /sbin/init
     provision_command:
-      - zypper install -y python
+      - zypper install -y systemd-sysvinit python
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
 
