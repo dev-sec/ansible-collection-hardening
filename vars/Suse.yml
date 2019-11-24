@@ -13,7 +13,7 @@ os_nologin_shell_path: '/sbin/nologin'
 # You must provide key/value pairs for owner, group, and mode if overriding.
 os_shadow_perms:
   owner: root
-  group: root
+  group: shadow
   mode: '0640'
 
 os_passwd_perms:
