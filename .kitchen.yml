@@ -103,6 +103,15 @@ platforms:
       - dnf install -y python
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
+- name: opensuse_tumbleweed-ansible-latest
+  driver:
+    image: rndmh3ro/docker-opensuse_tumbleweed-ansible
+    platform: opensuse
+    run_command: /sbin/init
+    provision_command:
+      - zypper install -y python
+      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+      - systemctl enable sshd.service
 
 verifier:
   name: inspec
