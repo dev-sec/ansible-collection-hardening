@@ -177,7 +177,7 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 {% if sshd_version.stdout is version('6.2', '>=') %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all')) else 'no' }}
 {% else %}
-AllowTcpForwarding {{ 'yes' if (ssh_allow_tcp_forwarding|bool) else 'no' }}
+AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else 'no' }}
 {% endif %}
 
 # Disable agent forwarding, since local agent could be accessed through forwarded connection.

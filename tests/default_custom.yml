@@ -23,7 +23,7 @@
     - ansible-ssh-hardening
   vars:
     network_ipv6_enable: true
-    ssh_allow_tcp_forwarding: 'local'
+    ssh_allow_tcp_forwarding: 'yes'
     ssh_gateway_ports: true
     ssh_allow_agent_forwarding: true
     ssh_server_permit_environment_vars: 'yes'
