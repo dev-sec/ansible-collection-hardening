@@ -56,7 +56,7 @@ platforms:
     box: bento/amazonlinux-2
 - name: opensuse_tumbleweed
   driver_config:
-    box: bento/opensuse_tumbleweed
+    box: opensuse/Tumbleweed.x86_64
 
 verifier:
   name: inspec
