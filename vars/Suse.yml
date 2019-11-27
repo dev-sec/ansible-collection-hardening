@@ -28,4 +28,4 @@ os_auth_sys_gid_min: 100
 os_auth_sys_gid_max: 499
 
 modprobe_package: 'kmod-compat'
-auditd_package: 'auditd'
+auditd_package: 'audit'
