@@ -108,7 +108,7 @@ platforms:
     image: rndmh3ro/docker-opensuse_tumbleweed-ansible
     platform: opensuse
     provision_command:
-      - zypper -n install python-xml rpm-python
+      - zypper -n install python-xml rpm-python systemd-sysvinit
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
 
