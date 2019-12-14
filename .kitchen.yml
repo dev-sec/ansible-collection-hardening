@@ -7,7 +7,7 @@ driver:
   https_proxy: <%= ENV['https_proxy'] || nil %>
 
 transport:
-  max_ssh_sessions: 5
+  max_ssh_sessions: 1
 
 provisioner:
   name: ansible_playbook
@@ -101,6 +101,14 @@ platforms:
     run_command: /sbin/init
     provision_command:
       - dnf install -y python
+      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+      - systemctl enable sshd.service
+- name: opensuse_tumbleweed-ansible-latest
+  driver:
+    image: rndmh3ro/docker-opensuse_tumbleweed-ansible
+    platform: opensuse
+    provision_command:
+      - zypper -n install python-xml rpm-python
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
 

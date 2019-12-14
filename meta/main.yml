@@ -21,6 +21,7 @@ galaxy_info:
         - buster
     - name: Amazon
     - name: Fedora
+    - name: openSUSE
   galaxy_tags:
     - system
     - security

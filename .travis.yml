@@ -55,6 +55,11 @@ env:
     version: latest
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
+  # - distro: opensuse_tumbleweed
+  #   init: /usr/lib/systemd/systemd
+  #   version: latest
+  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/run:/run:ro"
+
 before_install:
   # Pull container
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
