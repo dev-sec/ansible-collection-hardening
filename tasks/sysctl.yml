@@ -41,7 +41,7 @@
       set_fact:
         sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
       when: sysctl_overwrite | default()
-      
+
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
       sysctl:
         name: '{{ item.key }}'
@@ -51,7 +51,7 @@
         reload: yes
         ignoreerrors: yes
       with_dict: '{{ sysctl_config }}'
-      
+
     - name: Change various sysctl-settings on rhel6-hosts or older, look at the sysctl-vars file for documentation
       sysctl:
         name: '{{ item.key }}'
@@ -62,7 +62,7 @@
       with_dict: '{{ sysctl_rhel_config }}'
       when: ((ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'CentOS') and
             ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'
-            
+
   when: ansible_virtualization_type not in ['docker', 'openvz', 'lxc']
 
 - name: Apply ufw defaults
