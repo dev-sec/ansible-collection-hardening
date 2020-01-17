@@ -209,6 +209,11 @@ ssh_kex_59_default:
 ssh_kex_66_default:
   - curve25519-sha256@libssh.org
   - diffie-hellman-group-exchange-sha256
+  
+ssh_kex_80_default:
+  - sntrup4591761x25519-sha512@tinyssh.org
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
 
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: '/etc/selinux/local-policies'
