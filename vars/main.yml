@@ -109,3 +109,6 @@ os_security_suid_sgid_system_whitelist:
 
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
+
+# set message for login.defs missing test
+logindefs_missing_msg: 'login.defs does not exist'
