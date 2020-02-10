@@ -90,7 +90,7 @@ ForwardX11 no
 
 # Never use host-based authentication. It can be exploited.
 HostbasedAuthentication no
-{% if sshd_version.stdout is version('7.6', '<') %}
+{% if sshd_version is version('7.6', '<') %}
 RhostsRSAAuthentication no
 # Enable RSA authentication via identity files.
 RSAAuthentication yes
@@ -119,7 +119,7 @@ Compression yes
 #EscapeChar ~
 #VisualHostKey yes
 
-{% if sshd_version.stdout is version('7.1', '<=') %}
+{% if sshd_version is version('7.1', '<=') %}
 # Disable experimental client roaming. This is known to cause potential issues with secrets being disclosed to malicious servers and defaults to being disabled.
 UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
 {% endif %}
