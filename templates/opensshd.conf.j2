@@ -83,10 +83,10 @@ LogLevel {{ sshd_log_level }}
 # --------------
 
 # Secure Login directives.
-{% if sshd_version.stdout is version('7.4', '<') %}
+{% if sshd_version is version('7.4', '<') %}
 UseLogin no
 {% endif %}
-{% if sshd_version.stdout is version('7.5', '<') %}
+{% if sshd_version is version('7.5', '<') %}
 UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 {% endif %}
 
@@ -110,7 +110,7 @@ UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 
 # Set AuthenticationMethods per default to publickey
 # AuthenticationMethods was introduced in OpenSSH 6.2 - https://www.openssh.com/txt/release-6.2
-{% if sshd_version.stdout is version('6.2', '>=') %}
+{% if sshd_version is version('6.2', '>=') %}
 AuthenticationMethods {{ sshd_authenticationmethods }}
 {% endif %}
 
@@ -174,7 +174,7 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
-{% if sshd_version.stdout is version('6.2', '>=') %}
+{% if sshd_version is version('6.2', '>=') %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all')) else 'no' }}
 {% else %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else 'no' }}
