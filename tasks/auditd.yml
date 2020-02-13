@@ -4,6 +4,7 @@
   package:
     name: '{{ auditd_package }}'
     state: 'present'
+  tags: auditd
 
 - name: configure auditd | package-08
   template:
@@ -12,3 +13,5 @@
     owner: 'root'
     group: 'root'
     mode: '0640'
+  notify: 'restart-auditd'
+  tags: auditd
