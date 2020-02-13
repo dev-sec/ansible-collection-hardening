@@ -10,6 +10,8 @@
 - name: get openssh-version
   command: ssh -V
   register: sshd_version_raw
+  changed_when: false
+  check_mode: no
 
 - name: parse openssh-version
   set_fact:
