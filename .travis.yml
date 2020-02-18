@@ -58,6 +58,9 @@ before_install:
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
 
 script:
+  - pip install --user ansible-lint
+  - ansible-lint ./
+
   - container_id=$(mktemp)
   # Run container in detached state.
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-mysql-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
