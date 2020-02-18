@@ -65,7 +65,9 @@ before_install:
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
 
 script:
+  - pip install ansible-lint
   - ansible-lint ./
+
   - container_id=$(mktemp)
   # Run container in detached state.
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-os-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
