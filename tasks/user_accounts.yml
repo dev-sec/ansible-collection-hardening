@@ -10,7 +10,7 @@
 - name: calculate UID_MAX from UID_MIN by substracting 1
   set_fact:
     uid_max: '{{ uid_min.stdout | int - 1 }}'
-  when: uid_min.stdout|int > 0 
+  when: uid_min.stdout|int > 0
 
 - name: set UID_MAX on Debian-systems if no login.defs exist
   set_fact:
