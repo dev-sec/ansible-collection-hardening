@@ -3,7 +3,6 @@
   command: 'update-initramfs -u'
 
 - name: restart-auditd
-  service:
-    name: auditd
-    state: restarted
-    use: service
+  command:
+    cmd: 'service auditd restart' # rhel: see: https://access.redhat.com/solutions/2664811
+    warn: no # sadly 'service' module fails in that case also by using 'use: service'
