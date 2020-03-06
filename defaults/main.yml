@@ -226,6 +226,23 @@ sysctl_config:
   fs.protected_hardlinks: 1
   fs.protected_symlinks: 1
 
+  # These settings are set to the maximum supported value in order to
+  # improve ASLR effectiveness for mmap, at the cost of increased
+  # address-space fragmentation. | Tail-1
+  vm.mmap_rnd_bits: 32
+  vm.mmap_rnd_compat_bits: 16
+
+  # Some off-the-shelf malware exploit kernel addresses exposed
+  # via /proc/kallsyms so by not making these addresses easily available
+  # we increase the cost of such attack some what; now such malware has
+  # to check which kernel Tails is running and then fetch the corresponding
+  # kernel address map from some external source. This is not hard,
+  # but certainly not all malware has such functionality. | Tails-2
+  kernel.kptr_restrict: 2
+
+  # kexec is dangerous: it enables replacement of the running kernel. | Tails-3
+  kernel.kexec_load_disabled: 1
+
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
 sysctl_overwrite:
@@ -240,6 +257,12 @@ os_unused_filesystems:
   - "squashfs"
   - "udf"
   - "vfat"
+  # Obsolete network protocols that should be disabled
+  # per CIS Oracle Linux 6 Benchmark (2016)
+  - "tipc" # CIS 3.5.4
+  - "sctp" # CIS 3.5.2
+  - "dccp" # CIS 3.5.1
+  - "rds"  # CIS 3.5.3
 
 # whitelist for used filesystems
 os_filesystem_whitelist: []
