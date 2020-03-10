@@ -55,12 +55,15 @@
   register: sshd_register_moduli
   changed_when: false
   check_mode: no
+  when: ssh_server_hardening | bool
 
 - name: remove all small primes
   shell: awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }} > {{ sshd_moduli_file }}.new ;
          [ -r {{ sshd_moduli_file }}.new -a -s {{ sshd_moduli_file }}.new ] && mv {{ sshd_moduli_file }}.new {{ sshd_moduli_file }} || true
   notify: restart sshd
-  when: sshd_register_moduli.stdout
+  when:
+    - ssh_server_hardening | bool
+    - sshd_register_moduli.stdout
 
 - name: include tasks to setup ca keys and principals
   include_tasks: ca_keys_and_principals.yml
