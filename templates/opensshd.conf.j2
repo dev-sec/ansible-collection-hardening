@@ -87,7 +87,7 @@ LogLevel {{ sshd_log_level }}
 UseLogin no
 {% endif %}
 {% if sshd_version is version('7.5', '<') %}
-UsePrivilegeSeparation {% if (ansible_distribution == 'Debian' and ansible_distribution_major_version <= '6') or (ansible_os_family in ['Oracle Linux', 'RedHat'] and ansible_distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 {% endif %}
 
 LoginGraceTime 30s
@@ -217,13 +217,13 @@ UseDNS {{ 'yes' if (ssh_use_dns|bool) else 'no' }}
 
 PrintMotd {{ 'yes' if (ssh_print_motd|bool) else 'no' }}
 
-{% if ansible_os_family != 'FreeBSD' %}
+{% if ansible_facts.os_family != 'FreeBSD' %}
 PrintLastLog {{ 'yes' if (ssh_print_last_log|bool) else 'no' }}
 {% endif %}
 
 Banner {{ '/etc/ssh/banner.txt' if (ssh_banner|bool) else 'none' }}
 
-{% if ansible_os_family == 'Debian' -%}
+{% if ansible_facts.os_family == 'Debian' -%}
 DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 {% endif %}
 
