@@ -69,12 +69,6 @@
   include_tasks: ca_keys_and_principals.yml
   when: ssh_trusted_user_ca_keys_file | length > 0
 
-- name: include tasks to setup 2FA
-  include_tasks: 2fa.yml
-  when:
-    - ssh_use_pam | bool
-    - ssh_challengeresponseauthentication | bool
-
 - name: include selinux specific tasks
   include_tasks: selinux.yml
   when: ansible_selinux and ansible_selinux.status == "enabled"
