@@ -8,6 +8,7 @@
 #
 #-- Modified for Linux.  --marekm
 
+{% if os_useradd_mail_dir is defined %}
 # *REQUIRED for useradd/userdel/usermod*
 #
 # Directory where mailboxes reside, _or_ name of file, relative to the home directory.  If you _do_ define `MAIL_DIR` and `MAIL_FILE`, `MAIL_DIR` takes precedence.
@@ -20,9 +21,14 @@
 #
 # See default PAM configuration files provided for login, su, etc.
 # This is a temporary situation: setting these variables will soon move to `/etc/default/useradd` and the variables will then be no more supported
-MAIL_DIR          /var/mail
-#MAIL_FILE         .mail
+MAIL_DIR          {{ os_useradd_mail_dir }}
+{% endif %}
 
+{% if os_useradd_create_home is defined %}
+# If useradd should create home directories for users by default
+CREATE_HOME	      {{ 'yes' if os_useradd_create_home else 'no' }}
+
+{% endif %}
 # Enable logging and display of `/var/log/faillog` login failure info. This option conflicts with the `pam_tally` PAM module.
 FAILLOG_ENAB      yes
 
@@ -58,7 +64,7 @@ HUSHLOGIN_FILE    .hushlogin
 
 # *REQUIRED*: The default PATH settings, for superuser and normal users. (they are minimal, add the rest in the shell startup files)
 ENV_SUPATH        PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ENV_PATH          PATH=/usr/local/bin:/usr/bin:/bin:{{ os_env_extra_user_paths| join (':') }}
+ENV_PATH          PATH=/usr/local/bin:/usr/bin:/bin:{{ os_env_extra_user_paths | join (':') }}
 
 # Terminal permissions
 # --------------------
