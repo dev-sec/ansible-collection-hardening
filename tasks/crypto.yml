@@ -36,7 +36,7 @@
   set_fact:
     ssh_macs: '{{ ssh_macs_53_el_6_5_default }}'
   when:
-    - ansible_distribution in ['CentOS', 'RedHat']
+    - ansible_distribution in ['CentOS', 'OracleLinux', 'RedHat']
     - ansible_distribution_version is version('6.5', '>=')
     - not ssh_macs
 
