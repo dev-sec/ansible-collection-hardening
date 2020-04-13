@@ -27,6 +27,9 @@ os_auth_sys_uid_max: 999
 os_auth_sys_gid_min: 100
 os_auth_sys_gid_max: 999
 
+# defaults for useradd
+os_useradd_mail_dir: /var/mail
+
 modprobe_package: 'kmod'
 auditd_package: 'auditd'
 

@@ -175,17 +175,6 @@ sysctl_config:
 
   kernel.core_uses_pid: 1
 
-  # When an attacker is trying to exploit the local kernel, it is often
-  # helpful to be able to examine where in memory the kernel, modules,
-  # and data structures live. As such, kernel addresses should be treated
-  # as sensitive information.
-  #
-  # Many files and interfaces contain these addresses (e.g. /proc/kallsyms,
-  # /proc/modules, etc), and this setting can censor the addresses. A value
-  # of "0" allows all users to see the kernel addresses. A value of "1"
-  # limits visibility to the root user, and "2" blocks even the root user.
-  kernel.kptr_restrict: 1
-
   # The PTRACE system is used for debugging.  With it, a single user process
   # can attach to any other dumpable process owned by the same user.  In the
   # case of malicious software, it is possible to use PTRACE to access
@@ -232,6 +221,16 @@ sysctl_config:
   vm.mmap_rnd_bits: 32
   vm.mmap_rnd_compat_bits: 16
 
+  # When an attacker is trying to exploit the local kernel, it is often
+  # helpful to be able to examine where in memory the kernel, modules,
+  # and data structures live. As such, kernel addresses should be treated
+  # as sensitive information.
+  #
+  # Many files and interfaces contain these addresses (e.g. /proc/kallsyms,
+  # /proc/modules, etc), and this setting can censor the addresses. A value
+  # of "0" allows all users to see the kernel addresses. A value of "1"
+  # limits visibility to the root user, and "2" blocks even the root user.
+  #
   # Some off-the-shelf malware exploit kernel addresses exposed
   # via /proc/kallsyms so by not making these addresses easily available
   # we increase the cost of such attack some what; now such malware has

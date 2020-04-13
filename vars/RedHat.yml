@@ -27,5 +27,9 @@ os_auth_sys_uid_max: 999
 os_auth_sys_gid_min: 201
 os_auth_sys_gid_max: 999
 
+# defaults for useradd
+os_useradd_mail_dir: /var/spool/mail
+os_useradd_create_home: true
+
 modprobe_package: 'module-init-tools'
 auditd_package: 'audit'
