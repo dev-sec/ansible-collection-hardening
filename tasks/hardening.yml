@@ -41,6 +41,18 @@
   notify: restart sshd
   when: ssh_server_hardening | bool
 
+- name: disable dynamic MOTD
+  pamd:
+    name: sshd
+    type: session
+    control: optional
+    module_path: pam_motd.so
+    state: absent
+  when:
+    - ssh_server_hardening | bool
+    - ssh_pam_support | bool
+    - not (ssh_print_motd | bool)
+
 - name: create ssh_config and set permissions to root/644
   template:
     src: 'openssh.conf.j2'
