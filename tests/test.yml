@@ -4,7 +4,7 @@
   roles:
     - ansible-os-hardening
   pre_tasks:
-    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora/Centos 8+
       set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
       when: (ansible_facts.distribution == 'Fedora') or
@@ -77,7 +77,7 @@
   vars:
     os_auditd_enabled: false
   pre_tasks:
-    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora/Centos 8+
       set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
       when: (ansible_facts.distribution == 'Fedora') or
