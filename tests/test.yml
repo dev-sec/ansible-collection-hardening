@@ -7,7 +7,8 @@
     - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
       set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
-      when: ansible_facts.distribution == 'Fedora'
+      when: (ansible_facts.distribution == 'Fedora') or
+            (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "8")
 
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
@@ -79,7 +80,8 @@
     - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
       set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
-      when: ansible_facts.distribution == 'Fedora'
+      when: (ansible_facts.distribution == 'Fedora') or
+            (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "8")
 
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
