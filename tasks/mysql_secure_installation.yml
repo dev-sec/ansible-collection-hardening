@@ -5,11 +5,16 @@
 #  package: pkg=python-mysqldb state=present
 
 
-- name: Install MySQL-python for Ansible
-  apt: name=python-mysqldb state=present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+- name: Install python3-mysqldb for Ansible
+  apt: name=python3-mysqldb state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '20.04'
 
 - name: Install python-mysqldb for Ansible
+  apt: name=python-mysqldb state=present
+  when: ansible_distribution == 'Debian' or
+        (ansible_distribution == 'Ubuntu' and ansible_distribution_version < '20.04')
+
+- name: Install MySQL-python for Ansible
   yum: name=MySQL-python state=present
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
