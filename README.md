@@ -72,6 +72,8 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 | `os_security_suid_sgid_whitelist`| [] | a list of paths which should not have their SUID/SGID bits altered|
 | `os_security_suid_sgid_remove_from_unknown`| false | true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.|
 | `os_security_packages_clean`| true | removes packages with known issues. See section packages.|
+| `os_selinux_state` | enforcing | Set the SELinux state, can be either disabled, permissive, or enforcing. |
+| `os_selinux_policy` | targeted | Set the SELinux polixy. |
 | `ufw_manage_defaults` | true | true means apply all settings with `ufw_` prefix|
 | `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
 | `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
