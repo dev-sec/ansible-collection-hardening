@@ -1,13 +1,48 @@
 # Changelog
 
-## [7.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/7.0.0) (2019-09-17)
+## [8.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/8.0.0) (2020-04-21)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/7.0.0...8.0.0)
+
+**Implemented enhancements:**
+
+- Remove dependency on bash [\#265](https://github.com/dev-sec/ansible-ssh-hardening/issues/265)
+- Possibility to use other value than yes/no for AllowTCPforwarding [\#255](https://github.com/dev-sec/ansible-ssh-hardening/issues/255)
+- Add support for Debian Buster in ansible-ssh-hardening [\#248](https://github.com/dev-sec/ansible-ssh-hardening/issues/248)
+- Some options not configurable via the role [\#239](https://github.com/dev-sec/ansible-ssh-hardening/issues/239)
+- PermitUserEnvironment should not be conflated with AcceptEnv [\#232](https://github.com/dev-sec/ansible-ssh-hardening/issues/232)
+- Disable also dynamic MOTD via PAM if enabled - refs \#271 [\#273](https://github.com/dev-sec/ansible-ssh-hardening/pull/273) ([ancoron](https://github.com/ancoron))
+- Use sha2 HMACs on RHEL 6 / CentOS 6. [\#270](https://github.com/dev-sec/ansible-ssh-hardening/pull/270) ([foonix](https://github.com/foonix))
+- Removing 2fa [\#269](https://github.com/dev-sec/ansible-ssh-hardening/pull/269) ([dennisse](https://github.com/dennisse))
+- Renaming Ansible variables discovered from systems [\#268](https://github.com/dev-sec/ansible-ssh-hardening/pull/268) ([PovilasGT](https://github.com/PovilasGT))
+- Do not use bash to get ssh version [\#266](https://github.com/dev-sec/ansible-ssh-hardening/pull/266) ([kljensen](https://github.com/kljensen))
+- Add 'all', 'local', 'yes', 'no' options support for AllowTcpForwarding variable [\#257](https://github.com/dev-sec/ansible-ssh-hardening/pull/257) ([brnck](https://github.com/brnck))
+- Support KEX for OpenSSH 8.0+ & quantum resistant KEX [\#254](https://github.com/dev-sec/ansible-ssh-hardening/pull/254) ([lunarthegrey](https://github.com/lunarthegrey))
+- SFTP: set default umask to 0027 [\#252](https://github.com/dev-sec/ansible-ssh-hardening/pull/252) ([Slamdunk](https://github.com/Slamdunk))
+- Separate PermitUserEnviroment from AcceptEnv [\#251](https://github.com/dev-sec/ansible-ssh-hardening/pull/251) ([szEvEz](https://github.com/szEvEz))
+- Feature: Debian 10 \(Buster\) support [\#249](https://github.com/dev-sec/ansible-ssh-hardening/pull/249) ([jaredledvina](https://github.com/jaredledvina))
+- fix broken packages, extend README with furhter development instructions [\#246](https://github.com/dev-sec/ansible-ssh-hardening/pull/246) ([szEvEz](https://github.com/szEvEz))
+- refactor authenticationmethod settings, allow user to set authenticat… [\#245](https://github.com/dev-sec/ansible-ssh-hardening/pull/245) ([szEvEz](https://github.com/szEvEz))
+- RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
+- Added ssh\_syslog\_facility, ssh\_log\_level and ssh\_strict\_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))
+- set UsePAM to yes by default [\#233](https://github.com/dev-sec/ansible-ssh-hardening/pull/233) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- HostKey comment "\# Req 20" breaks key based auth [\#262](https://github.com/dev-sec/ansible-ssh-hardening/issues/262)
+- SSH fails to start/connect if custom server ports is set on CentOS 7.6 [\#212](https://github.com/dev-sec/ansible-ssh-hardening/issues/212)
+- Google 2fa authentication problem [\#170](https://github.com/dev-sec/ansible-ssh-hardening/issues/170)
+- vars: remove empty main.yml file [\#274](https://github.com/dev-sec/ansible-ssh-hardening/pull/274) ([paulfantom](https://github.com/paulfantom))
+- Only manage moduli when hardening server [\#267](https://github.com/dev-sec/ansible-ssh-hardening/pull/267) ([jbronn](https://github.com/jbronn))
+- Remove comment from sshd config HostKey param [\#263](https://github.com/dev-sec/ansible-ssh-hardening/pull/263) ([abtreece](https://github.com/abtreece))
+
+## [7.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/7.0.0) (2019-09-15)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.2.0...7.0.0)
 
 **Implemented enhancements:**
 
 - Add new option ssh\_server\_match\_address [\#230](https://github.com/dev-sec/ansible-ssh-hardening/issues/230)
-- set UsePAM to yes by default [\#233](https://github.com/dev-sec/ansible-ssh-hardening/pull/233) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -115,7 +150,7 @@
 - Support for custom configuration [\#199](https://github.com/dev-sec/ansible-ssh-hardening/pull/199) ([MatthiasLohr](https://github.com/MatthiasLohr))
 - parameterize PermitRootLogin [\#195](https://github.com/dev-sec/ansible-ssh-hardening/pull/195) ([rndmh3ro](https://github.com/rndmh3ro))
 - set 'GSSAPIAuthentication yes' if variable 'ssh\_gssapi\_support' is set to 'true' [\#194](https://github.com/dev-sec/ansible-ssh-hardening/pull/194) ([szEvEz](https://github.com/szEvEz))
-- Use ansible version compare module [\#187](https://github.com/dev-sec/ansible-ssh-hardening/pull/187) ([Neophy7e](https://github.com/Neophy7e))
+- Use ansible version compare module [\#187](https://github.com/dev-sec/ansible-ssh-hardening/pull/187) ([BentoumiTech](https://github.com/BentoumiTech))
 - add ubuntu 18.04 support [\#186](https://github.com/dev-sec/ansible-ssh-hardening/pull/186) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [5.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/5.0.0) (2018-09-16)
@@ -141,7 +176,6 @@
 - Added support for TrustedUserCAKeys and AuthorizedPrincipalsFile. [\#157](https://github.com/dev-sec/ansible-ssh-hardening/pull/157) ([gdelafond](https://github.com/gdelafond))
 - Adds sshd config for keyboard-interactive pam device [\#156](https://github.com/dev-sec/ansible-ssh-hardening/pull/156) ([rcII](https://github.com/rcII))
 - Use package state 'present' since 'installed' is deprecated [\#154](https://github.com/dev-sec/ansible-ssh-hardening/pull/154) ([Normo](https://github.com/Normo))
-- conform to current dev-sec/ssh-baseline [\#150](https://github.com/dev-sec/ansible-ssh-hardening/pull/150) ([alval5280](https://github.com/alval5280))
 - new parameter: ssh\_max\_startups [\#149](https://github.com/dev-sec/ansible-ssh-hardening/pull/149) ([aeschbacher](https://github.com/aeschbacher))
 - Update syntax to 2.4 [\#148](https://github.com/dev-sec/ansible-ssh-hardening/pull/148) ([thomasjpfan](https://github.com/thomasjpfan))
 - Amazonlinux-Testing [\#147](https://github.com/dev-sec/ansible-ssh-hardening/pull/147) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -161,6 +195,7 @@
 **Merged pull requests:**
 
 - remove oracle7 from travis tests for the time being [\#181](https://github.com/dev-sec/ansible-ssh-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
+- Remove deprecated UseLogin option [\#141](https://github.com/dev-sec/ansible-ssh-hardening/pull/141) ([syhe](https://github.com/syhe))
 
 ## [4.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.4.0) (2017-12-29)
 
@@ -169,6 +204,7 @@
 **Implemented enhancements:**
 
 - Changes in selinux section to avoid confusion and some inconsistencies [\#127](https://github.com/dev-sec/ansible-ssh-hardening/issues/127)
+- conform to current dev-sec/ssh-baseline [\#150](https://github.com/dev-sec/ansible-ssh-hardening/pull/150) ([alval5280](https://github.com/alval5280))
 - Issue \#137: Fix sshd\_config's "Match Group sftponly" [\#138](https://github.com/dev-sec/ansible-ssh-hardening/pull/138) ([kekumu](https://github.com/kekumu))
 - allow configuration of GatewayPorts [\#136](https://github.com/dev-sec/ansible-ssh-hardening/pull/136) ([pwyliu](https://github.com/pwyliu))
 - Added support for AuthorizedKeysFile config setting [\#132](https://github.com/dev-sec/ansible-ssh-hardening/pull/132) ([hyrsky](https://github.com/hyrsky))
@@ -188,7 +224,6 @@
 
 **Merged pull requests:**
 
-- Remove deprecated UseLogin option [\#141](https://github.com/dev-sec/ansible-ssh-hardening/pull/141) ([syhe](https://github.com/syhe))
 - Macs kex ciphers [\#139](https://github.com/dev-sec/ansible-ssh-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 - force /bin/sh when getting openssh-version [\#134](https://github.com/dev-sec/ansible-ssh-hardening/pull/134) ([gtz42](https://github.com/gtz42))
 
@@ -384,7 +419,7 @@
 
 **Implemented enhancements:**
 
-- Added sftp\_enabled, sftp\_chroot\_dir, and ssh\_client\_roaming from the … [\#57](https://github.com/dev-sec/ansible-ssh-hardening/pull/57) ([shirokatze](https://github.com/shirokatze))
+- Added sftp\_enabled, sftp\_chroot\_dir, and ssh\_client\_roaming from the … [\#57](https://github.com/dev-sec/ansible-ssh-hardening/pull/57) ([ghost](https://github.com/ghost))
 - add test support for ansible 1.9 and 2.0 [\#56](https://github.com/dev-sec/ansible-ssh-hardening/pull/56) ([rndmh3ro](https://github.com/rndmh3ro))
 - update platforms in meta-file [\#52](https://github.com/dev-sec/ansible-ssh-hardening/pull/52) ([rndmh3ro](https://github.com/rndmh3ro))
 - add webhook for ansible galaxy [\#51](https://github.com/dev-sec/ansible-ssh-hardening/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -401,6 +436,7 @@
 **Merged pull requests:**
 
 - New release 3.0.0 [\#59](https://github.com/dev-sec/ansible-ssh-hardening/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add var to travis job [\#42](https://github.com/dev-sec/ansible-ssh-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/2.0.0) (2015-11-28)
 
@@ -413,7 +449,6 @@
 **Merged pull requests:**
 
 - New dir layout. Fix \#43 [\#44](https://github.com/dev-sec/ansible-ssh-hardening/pull/44) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add var to travis job [\#42](https://github.com/dev-sec/ansible-ssh-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 - sftp\_enable option [\#41](https://github.com/dev-sec/ansible-ssh-hardening/pull/41) ([fitz123](https://github.com/fitz123))
 
 ## [1.2.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.2.1) (2015-10-16)
@@ -436,7 +471,6 @@
 
 - bugfix. Now option true for PrintLastLog is available again [\#39](https://github.com/dev-sec/ansible-ssh-hardening/pull/39) ([fitz123](https://github.com/fitz123))
 - Add more travis-tests [\#38](https://github.com/dev-sec/ansible-ssh-hardening/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
-- Support for selinux and pam. fix \#23 [\#35](https://github.com/dev-sec/ansible-ssh-hardening/pull/35) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/1.1) (2015-09-01)
 
@@ -455,6 +489,7 @@
 
 - Change variable for hmac from server to client [\#37](https://github.com/dev-sec/ansible-ssh-hardening/pull/37) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update kitchen-ansible, remove separate debian install [\#36](https://github.com/dev-sec/ansible-ssh-hardening/pull/36) ([rndmh3ro](https://github.com/rndmh3ro))
+- Support for selinux and pam. fix \#23 [\#35](https://github.com/dev-sec/ansible-ssh-hardening/pull/35) ([rndmh3ro](https://github.com/rndmh3ro))
 - Separate ssh client and server ports. Fix \#33 [\#34](https://github.com/dev-sec/ansible-ssh-hardening/pull/34) ([rndmh3ro](https://github.com/rndmh3ro))
 - update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#32](https://github.com/dev-sec/ansible-ssh-hardening/pull/32) ([chris-rock](https://github.com/chris-rock))
 - Make MaxAuthTries configurable [\#31](https://github.com/dev-sec/ansible-ssh-hardening/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
