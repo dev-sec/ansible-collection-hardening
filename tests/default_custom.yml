@@ -79,6 +79,11 @@
     ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
     ssh_authorized_principals:
       - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
+    ssh_host_key_algorithms:
+      - ssh-ed25519
+      - rsa-sha2-512
+      - rsa-sha2-256
+      - ssh-rsa
     ssh_macs:
       - hmac-sha2-512
       - hmac-sha2-256
