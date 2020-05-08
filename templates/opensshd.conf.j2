@@ -35,6 +35,9 @@ ListenAddress {{address}}
 HostKey {{key}}
 {% endfor %}
 
+# Specifies the host key algorithms that the server offers.
+{{ "HostKeyAlgorithms "+ssh_host_key_algorithms| join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
+
 # Security configuration
 # ======================
 
