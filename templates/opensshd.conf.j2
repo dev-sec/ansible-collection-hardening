@@ -87,7 +87,7 @@ LogLevel {{ sshd_log_level }}
 UseLogin no
 {% endif %}
 {% if sshd_version is version('7.5', '<') %}
-UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6' and not ansible_facts.distribution == 'Amazon') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 {% endif %}
 
 LoginGraceTime 30s
