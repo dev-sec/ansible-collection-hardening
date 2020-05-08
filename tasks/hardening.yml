@@ -83,4 +83,4 @@
 
 - name: include selinux specific tasks
   include_tasks: selinux.yml
-  when: ansible_selinux and ansible_selinux.status == "enabled"
+  when: ansible_facts.selinux and ansible_facts.selinux.status == "enabled"
