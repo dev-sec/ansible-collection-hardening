@@ -1,6 +1,23 @@
 # Changelog
 
-## [2.1.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.1.0) (2019-12-14)
+## [Unreleased](https://github.com/dev-sec/ansible-mysql-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.1.0...HEAD)
+
+**Implemented enhancements:**
+
+- add changelog and release workflow [\#45](https://github.com/dev-sec/ansible-mysql-hardening/pull/45) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- New Tag? [\#41](https://github.com/dev-sec/ansible-mysql-hardening/issues/41)
+
+**Merged pull requests:**
+
+- Use python3-mysqldb for Ubuntu 20.04 [\#44](https://github.com/dev-sec/ansible-mysql-hardening/pull/44) ([shadinaif](https://github.com/shadinaif))
+- add ansible-lint [\#43](https://github.com/dev-sec/ansible-mysql-hardening/pull/43) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [2.1.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.1.0) (2019-10-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.0.0...2.1.0)
 
