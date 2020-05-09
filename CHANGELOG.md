@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+## [8.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/8.1.0) (2020-05-09)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.0.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.0.0...8.1.0)
 
 **Implemented enhancements:**
 
@@ -453,6 +453,7 @@
 **Closed issues:**
 
 - Fix directory structure. [\#43](https://github.com/dev-sec/ansible-ssh-hardening/issues/43)
+- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
 
 **Merged pull requests:**
 
@@ -493,9 +494,7 @@
 **Closed issues:**
 
 - ssh\_ports - individual client/server config [\#33](https://github.com/dev-sec/ansible-ssh-hardening/issues/33)
-- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
 - UsePAM should probably default to yes on Red Hat Linux 7 [\#23](https://github.com/dev-sec/ansible-ssh-hardening/issues/23)
-- Running test-kitchen fails [\#2](https://github.com/dev-sec/ansible-ssh-hardening/issues/2)
 
 **Merged pull requests:**
 
@@ -527,6 +526,7 @@
 
 - add travis test for ubuntu 12.04 [\#7](https://github.com/dev-sec/ansible-ssh-hardening/issues/7)
 - Use handler for sshd restart [\#6](https://github.com/dev-sec/ansible-ssh-hardening/issues/6)
+- Running test-kitchen fails [\#2](https://github.com/dev-sec/ansible-ssh-hardening/issues/2)
 
 **Merged pull requests:**
 
