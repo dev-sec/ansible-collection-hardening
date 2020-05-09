@@ -29,8 +29,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           since_tag: ${{ steps.previoustag.outputs.tag }}
-          # wait for https://github.com/CharMixer/auto-changelog-action/pull/3
-          #future_release: ${{ steps.version.outputs.next-version }}
+          future_release: ${{ steps.version.outputs.next-version }}
 
       - name: Read CHANGELOG.md
         id: package
