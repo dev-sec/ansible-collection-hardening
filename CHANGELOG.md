@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- add changelog and release workflow [\#271](https://github.com/dev-sec/ansible-os-hardening/pull/271) ([rndmh3ro](https://github.com/rndmh3ro))
+- github action for changelog generation [\#270](https://github.com/dev-sec/ansible-os-hardening/pull/270) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [6.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.0) (2020-05-05)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.2.1...6.0.0)
