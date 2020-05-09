@@ -2,11 +2,17 @@
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
   hosts: localhost
   pre_tasks:
-    - package: name="{{item}}" state=present
-      with_items:
-        - "openssh-clients"
-        - "openssh-server"
-        - "libselinux-python"
+    - name: use python3
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when: ansible_facts.distribution == 'Fedora'
+
+    - package: name="{{ packages }}" state=present
+      vars:
+        packages:
+          - openssh-clients
+          - openssh-server
+          - libselinux-python
       ignore_errors: true
     - apt: name="{{packages}}" state=present update_cache=true
       vars:
