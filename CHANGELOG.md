@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.1.0...HEAD)
+
+**Fixed bugs:**
+
+- Disable Ubuntu dynamic login MOTD [\#271](https://github.com/dev-sec/ansible-ssh-hardening/issues/271)
+
 ## [8.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/8.1.0) (2020-05-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.0.0...8.1.0)
@@ -386,10 +394,6 @@
 - Selinux issue [\#75](https://github.com/dev-sec/ansible-ssh-hardening/issues/75)
 - Running the tests locally [\#61](https://github.com/dev-sec/ansible-ssh-hardening/issues/61)
 
-**Closed issues:**
-
-- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
-
 ## [3.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/3.1.0) (2016-08-03)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1...3.1.0)
@@ -419,7 +423,6 @@
 **Closed issues:**
 
 - `ssh\_server\_ports` a bit misleading in the vars section? [\#62](https://github.com/dev-sec/ansible-ssh-hardening/issues/62)
-- sftp\_enabled: false will break Ansible's template module [\#55](https://github.com/dev-sec/ansible-ssh-hardening/issues/55)
 - Move cipher/kex/mac vars to defaults [\#53](https://github.com/dev-sec/ansible-ssh-hardening/issues/53)
 
 **Merged pull requests:**
@@ -457,6 +460,7 @@
 **Closed issues:**
 
 - Fix directory structure. [\#43](https://github.com/dev-sec/ansible-ssh-hardening/issues/43)
+- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
 
 **Merged pull requests:**
 
@@ -496,6 +500,7 @@
 
 **Closed issues:**
 
+- sftp\_enabled: false will break Ansible's template module [\#55](https://github.com/dev-sec/ansible-ssh-hardening/issues/55)
 - ssh\_ports - individual client/server config [\#33](https://github.com/dev-sec/ansible-ssh-hardening/issues/33)
 - UsePAM should probably default to yes on Red Hat Linux 7 [\#23](https://github.com/dev-sec/ansible-ssh-hardening/issues/23)
 
