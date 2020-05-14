@@ -113,8 +113,7 @@ PermitLocalCommand no
 # Misc. configuration
 # ===================
 
-# Enable compression. More pressure on the CPU, less on the network.
-Compression yes
+Compression {{ 'yes' if (ssh_client_compression|bool) else 'no' }}
 
 #EscapeChar ~
 #VisualHostKey yes

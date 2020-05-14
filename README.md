@@ -59,7 +59,8 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_banner` | `false` | `true` to print a banner on login |
 |`ssh_client_hardening` | `true` | `false` to stop harden the client |
 |`ssh_client_port` | `'22'` | Specifies the port number to connect on the remote host. |
-|`ssh_compression` | `false` | Specifies whether compression is enabled after the user has authenticated successfully. |
+|`ssh_client_compression` | `false` | Specifies whether the client requests compression. |
+|`ssh_compression` | `false` | Specifies whether server-side compression is enabled after the user has authenticated successfully. |
 |`ssh_max_auth_retries` | `2` | Specifies the maximum number of authentication attempts permitted per connection. |
 |`ssh_print_debian_banner` | `false` | `true` to print debian specific banner |
 |`ssh_server_enabled` | `true` | `false` to disable the opensshd server |
