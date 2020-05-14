@@ -126,7 +126,6 @@
 - add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support for Amazon Linux [\#158](https://github.com/dev-sec/ansible-os-hardening/pull/158) ([woneill](https://github.com/woneill))
 - install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) ([rndmh3ro](https://github.com/rndmh3ro))
-- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) ([HelioCampos](https://github.com/HelioCampos))
 
 **Fixed bugs:**
@@ -153,6 +152,7 @@
 - Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([manuelprinz](https://github.com/manuelprinz))
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
+- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
 - update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
@@ -322,6 +322,7 @@
 
 - Updates "tags" parameters on includes in main.yml [\#66](https://github.com/dev-sec/ansible-os-hardening/pull/66) ([conorsch](https://github.com/conorsch))
 - Suid set def var, fix \#64 [\#63](https://github.com/dev-sec/ansible-os-hardening/pull/63) ([rndmh3ro](https://github.com/rndmh3ro))
+- ERROR! Include tasks should not specify tags in more than one way [\#60](https://github.com/dev-sec/ansible-os-hardening/pull/60) ([fitz123](https://github.com/fitz123))
 
 **Closed issues:**
 
