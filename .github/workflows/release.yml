@@ -1,0 +1,50 @@
+name: New release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  generate_changelog:
+    runs-on: ubuntu-latest
+    name: create release draft
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: calculate next version
+        id: version
+        uses: patrickjahns/version-drafter-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate changelog
+        uses: charmixer/auto-changelog-action@8095796
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          since_tag: ${{ steps.previoustag.outputs.tag }}
+          future_release: ${{ steps.version.outputs.next-version }}
+
+      - name: Read CHANGELOG.md
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./CHANGELOG.md
+
+      - name: Create Release draft
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          release_name: ${{ steps.version.outputs.next-version }}
+          tag_name: ${{ steps.version.outputs.next-version }}
+          body: |
+            ${{ steps.package.outputs.content }}
+          draft: true

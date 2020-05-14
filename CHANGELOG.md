@@ -1,6 +1,113 @@
-# Change Log
+# Changelog
+
+## [6.0.1](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.1) (2020-05-09)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.0...6.0.1)
+
+**Implemented enhancements:**
+
+- add changelog and release workflow [\#271](https://github.com/dev-sec/ansible-os-hardening/pull/271) ([rndmh3ro](https://github.com/rndmh3ro))
+- github action for changelog generation [\#270](https://github.com/dev-sec/ansible-os-hardening/pull/270) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [6.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.0) (2020-05-05)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.2.1...6.0.0)
+
+**Implemented enhancements:**
+
+- Configure audit=1 for more accurate auid auditing [\#253](https://github.com/dev-sec/ansible-os-hardening/issues/253)
+- Add Debian Buster support for ansible-os-hardening [\#233](https://github.com/dev-sec/ansible-os-hardening/issues/233)
+- Add CentOS 8 support for ansible-os-hardening [\#232](https://github.com/dev-sec/ansible-os-hardening/issues/232)
+- Add selinux configuration [\#154](https://github.com/dev-sec/ansible-os-hardening/issues/154)
+- Make useradd defaults in login.defs dependent on OS [\#266](https://github.com/dev-sec/ansible-os-hardening/pull/266) ([Aisbergg](https://github.com/Aisbergg))
+- Add kernel hardening parameters from Tails and CIS Benchmark [\#263](https://github.com/dev-sec/ansible-os-hardening/pull/263) ([kravietz](https://github.com/kravietz))
+- add ansible-lint [\#262](https://github.com/dev-sec/ansible-os-hardening/pull/262) ([rndmh3ro](https://github.com/rndmh3ro))
+- Remove trailing space [\#261](https://github.com/dev-sec/ansible-os-hardening/pull/261) ([kravietz](https://github.com/kravietz))
+- Add kernel parameter information to README [\#259](https://github.com/dev-sec/ansible-os-hardening/pull/259) ([jaredledvina](https://github.com/jaredledvina))
+- Remove trailing whitespaces \(ansible-lint 201\) [\#254](https://github.com/dev-sec/ansible-os-hardening/pull/254) ([kravietz](https://github.com/kravietz))
+- Standardize the var ordering [\#251](https://github.com/dev-sec/ansible-os-hardening/pull/251) ([dustinmiller1337](https://github.com/dustinmiller1337))
+- Add intial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-os-hardening/pull/250) ([dustinmiller1337](https://github.com/dustinmiller1337))
+- Make max\_log\_file\_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-os-hardening/pull/246) ([jandd](https://github.com/jandd))
+- Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-os-hardening/pull/240) ([okupriyanov](https://github.com/okupriyanov))
+- Fedora - Use new auto ansible\_python\_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-os-hardening/pull/239) ([jaredledvina](https://github.com/jaredledvina))
+- add test support for CentOS8 [\#237](https://github.com/dev-sec/ansible-os-hardening/pull/237) ([yeoldegrove](https://github.com/yeoldegrove))
+- Support configuring SELinux and default to enforcing [\#236](https://github.com/dev-sec/ansible-os-hardening/pull/236) ([jaredledvina](https://github.com/jaredledvina))
+- Add test support for debian buster [\#234](https://github.com/dev-sec/ansible-os-hardening/pull/234) ([123Haynes](https://github.com/123Haynes))
+- Changed local var name to a less common one [\#231](https://github.com/dev-sec/ansible-os-hardening/pull/231) ([rgarrigue](https://github.com/rgarrigue))
+- Use ansible facts for vars [\#226](https://github.com/dev-sec/ansible-os-hardening/pull/226) ([joshuatalb](https://github.com/joshuatalb))
+
+**Fixed bugs:**
+
+- /etc/login.defs alters centos 7/8 default values [\#265](https://github.com/dev-sec/ansible-os-hardening/issues/265)
+- Invalid Conditionals in user\_accounts.yml [\#255](https://github.com/dev-sec/ansible-os-hardening/issues/255)
+- `auth-system` related files are created for non-RHEL systems \(e.g. Debian\) [\#247](https://github.com/dev-sec/ansible-os-hardening/issues/247)
+- NSA website links are stale [\#227](https://github.com/dev-sec/ansible-os-hardening/issues/227)
+- Running ansible on python3 throughs "TypeError: '\<=' not supported between instances of 'str' and 'int'"  [\#223](https://github.com/dev-sec/ansible-os-hardening/issues/223)
+- \[lots of\] deprecation warnings in Ansible 2.8 [\#221](https://github.com/dev-sec/ansible-os-hardening/issues/221)
+- Add a "don't fail on error" switch ? [\#148](https://github.com/dev-sec/ansible-os-hardening/issues/148)
+- Addressing issue \#255 [\#258](https://github.com/dev-sec/ansible-os-hardening/pull/258) ([ljkimmel](https://github.com/ljkimmel))
+- Fix \#247, cleanup conditions [\#248](https://github.com/dev-sec/ansible-os-hardening/pull/248) ([fernandezcuesta](https://github.com/fernandezcuesta))
+- Fix error on applying the sysctl vars on containers [\#243](https://github.com/dev-sec/ansible-os-hardening/pull/243) ([okupriyanov](https://github.com/okupriyanov))
+- Update location of NSA RHEL 5 Guide [\#235](https://github.com/dev-sec/ansible-os-hardening/pull/235) ([jaredledvina](https://github.com/jaredledvina))
+
+## [5.2.1](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.1) (2019-06-09)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.2.0...5.2.1)
+
+**Implemented enhancements:**
+
+- Fix deprecation warnings in Ansible 2.8 [\#224](https://github.com/dev-sec/ansible-os-hardening/pull/224) ([Normo](https://github.com/Normo))
+- add docs to find-task in minimize access. fix \#219 [\#220](https://github.com/dev-sec/ansible-os-hardening/pull/220) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- `squash\_actions` deprecation warning [\#218](https://github.com/dev-sec/ansible-os-hardening/issues/218)
+
+## [5.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.0) (2019-05-04)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.1.0...5.2.0)
+
+**Implemented enhancements:**
+
+- Speed up "minimize access on found files" task [\#208](https://github.com/dev-sec/ansible-os-hardening/issues/208)
+- Fedora support? [\#163](https://github.com/dev-sec/ansible-os-hardening/issues/163)
+- remove eol'd OS and add new [\#217](https://github.com/dev-sec/ansible-os-hardening/pull/217) ([rndmh3ro](https://github.com/rndmh3ro))
+- Add note about docker under warning [\#214](https://github.com/dev-sec/ansible-os-hardening/pull/214) ([ChrisMcKee](https://github.com/ChrisMcKee))
+- change minimize access tasks to speed them up [\#209](https://github.com/dev-sec/ansible-os-hardening/pull/209) ([rndmh3ro](https://github.com/rndmh3ro))
+- Added fedora support [\#206](https://github.com/dev-sec/ansible-os-hardening/pull/206) ([jonaswre](https://github.com/jonaswre))
+- Pass package list directly to apt and yum modules without using with\_items loop [\#200](https://github.com/dev-sec/ansible-os-hardening/pull/200) ([Normo](https://github.com/Normo))
+
+**Fixed bugs:**
+
+- login.defs.j2 template: ENV\_PATH is missing ':' before variable substitution [\#202](https://github.com/dev-sec/ansible-os-hardening/issues/202)
+- 'sysctl\_rhel\_config' is undefined [\#167](https://github.com/dev-sec/ansible-os-hardening/issues/167)
+- RHEL 7.4: Too many setuid bits removed [\#140](https://github.com/dev-sec/ansible-os-hardening/issues/140)
+- Fix typo [\#212](https://github.com/dev-sec/ansible-os-hardening/pull/212) ([ruslo](https://github.com/ruslo))
+- Update modprobe to 0644 [\#211](https://github.com/dev-sec/ansible-os-hardening/pull/211) ([joshuatalb](https://github.com/joshuatalb))
+- Test Kitchen Vagrant Fixes [\#210](https://github.com/dev-sec/ansible-os-hardening/pull/210) ([joshuatalb](https://github.com/joshuatalb))
+- \[readme\] Update documentation link [\#207](https://github.com/dev-sec/ansible-os-hardening/pull/207) ([pmav99](https://github.com/pmav99))
+- fix ansible lint remarks [\#204](https://github.com/dev-sec/ansible-os-hardening/pull/204) ([rndmh3ro](https://github.com/rndmh3ro))
+- add colon to user env paths - fix \#202 [\#203](https://github.com/dev-sec/ansible-os-hardening/pull/203) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix errors produced by ansible-lint [\#159](https://github.com/dev-sec/ansible-os-hardening/pull/159) ([zbrojny120](https://github.com/zbrojny120))
+
+## [5.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.1.0) (2018-10-17)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/5.0.0...5.1.0)
+
+**Implemented enhancements:**
+
+- add ubuntu 1804 support [\#196](https://github.com/dev-sec/ansible-os-hardening/pull/196) ([rndmh3ro](https://github.com/rndmh3ro))
+- add option to disable auditd [\#192](https://github.com/dev-sec/ansible-os-hardening/pull/192) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Fixed bugs:**
+
+- auditd causing v5.0 to fail on unpriviledged LXC's [\#191](https://github.com/dev-sec/ansible-os-hardening/issues/191)
+- Setting os\_security\_users\_allow has no effect [\#175](https://github.com/dev-sec/ansible-os-hardening/issues/175)
+- add /usr/bin/su to suid\_guid whitelist [\#199](https://github.com/dev-sec/ansible-os-hardening/pull/199) ([ccolic](https://github.com/ccolic))
+- ensure that permissions to su-binary are not restricted to root user and group only, if os\_security\_users\_allow contains the value change\_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) ([szEvEz](https://github.com/szEvEz))
 
 ## [5.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.0.0) (2018-09-02)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.0...5.0.0)
 
 **Implemented enhancements:**
@@ -19,6 +126,7 @@
 - add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support for Amazon Linux [\#158](https://github.com/dev-sec/ansible-os-hardening/pull/158) ([woneill](https://github.com/woneill))
 - install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) ([rndmh3ro](https://github.com/rndmh3ro))
+- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) ([HelioCampos](https://github.com/HelioCampos))
 
 **Fixed bugs:**
@@ -34,6 +142,7 @@
 - change minimize access method [\#181](https://github.com/dev-sec/ansible-os-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.1...4.3.0)
 
 **Implemented enhancements:**
@@ -44,7 +153,6 @@
 - Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([manuelprinz](https://github.com/manuelprinz))
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
-- add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
 - update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
@@ -63,6 +171,7 @@
 - move defaults to os-specific vars [\#157](https://github.com/dev-sec/ansible-os-hardening/pull/157) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.3.1](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.1) (2017-09-13)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.2.0...4.3.1)
 
 **Fixed bugs:**
@@ -70,6 +179,7 @@
 - os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115)
 
 ## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.1.0...4.2.0)
 
 **Implemented enhancements:**
@@ -93,6 +203,7 @@
 - remove execshield sysctl-parameter on rhel7 [\#119](https://github.com/dev-sec/ansible-os-hardening/pull/119) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.1.0) (2017-06-27)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.0.0...4.1.0)
 
 **Fixed bugs:**
@@ -113,6 +224,7 @@
 - add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.2.0...4.0.0)
 
 **Implemented enhancements:**
@@ -124,7 +236,6 @@
 **Fixed bugs:**
 
 - The role fails when conditionally included [\#105](https://github.com/dev-sec/ansible-os-hardening/issues/105)
-- omit empty variables [\#106](https://github.com/dev-sec/ansible-os-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -139,6 +250,7 @@
 - Don’t refer to this role as "playbook" in the role description [\#104](https://github.com/dev-sec/ansible-os-hardening/pull/104) ([ypid](https://github.com/ypid))
 
 ## [3.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.2.0) (2016-10-24)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1.0...3.2.0)
 
 **Fixed bugs:**
@@ -156,9 +268,11 @@
 - add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [3.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.1.0) (2016-08-03)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.1...3.1.0)
 
 ## [3.1](https://github.com/dev-sec/ansible-os-hardening/tree/3.1) (2016-07-27)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/3.0.0...3.1)
 
 **Implemented enhancements:**
@@ -181,7 +295,6 @@
 - Permissions on /etc/shadow can lock out GUI users [\#86](https://github.com/dev-sec/ansible-os-hardening/issues/86)
 - network related sysctl rewritten by ufw in ubuntu  [\#82](https://github.com/dev-sec/ansible-os-hardening/issues/82)
 - ansible \>= 2.0 complains: Using bare variables is deprecated [\#78](https://github.com/dev-sec/ansible-os-hardening/issues/78)
-- Norm-Audit-Hardening-Audit [\#76](https://github.com/dev-sec/ansible-os-hardening/issues/76)
 
 **Merged pull requests:**
 
@@ -189,6 +302,7 @@
 - Permits overriding permissions on /etc/shadow [\#89](https://github.com/dev-sec/ansible-os-hardening/pull/89) ([conorsch](https://github.com/conorsch))
 
 ## [3.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.0.0) (2016-03-13)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/2.0.0...3.0.0)
 
 **Implemented enhancements:**
@@ -208,7 +322,6 @@
 
 - Updates "tags" parameters on includes in main.yml [\#66](https://github.com/dev-sec/ansible-os-hardening/pull/66) ([conorsch](https://github.com/conorsch))
 - Suid set def var, fix \#64 [\#63](https://github.com/dev-sec/ansible-os-hardening/pull/63) ([rndmh3ro](https://github.com/rndmh3ro))
-- ERROR! Include tasks should not specify tags in more than one way [\#60](https://github.com/dev-sec/ansible-os-hardening/pull/60) ([fitz123](https://github.com/fitz123))
 
 **Closed issues:**
 
@@ -221,6 +334,7 @@
 - Release 3.0.0 [\#75](https://github.com/dev-sec/ansible-os-hardening/pull/75) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/2.0.0) (2015-11-28)
+
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/1.0.0...2.0.0)
 
 **Closed issues:**
@@ -239,6 +353,9 @@
 - improved travis-tests to cover more cases [\#42](https://github.com/dev-sec/ansible-os-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/1.0.0) (2015-09-01)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/06d1464e95cad7ccc24734b934a158b16dfc5014...1.0.0)
+
 **Closed issues:**
 
 - ansible-os-hardening/tasks/minimize\_access.yml [\#38](https://github.com/dev-sec/ansible-os-hardening/issues/38)
@@ -285,4 +402,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*

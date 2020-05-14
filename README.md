@@ -35,6 +35,20 @@ It will not:
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
 Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
 
+If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
+```
+
+
+
 ## Variables
 
 | Name           | Default Value | Description                        |
@@ -57,24 +71,27 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 | `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
 | `os_security_suid_sgid_whitelist`| [] | a list of paths which should not have their SUID/SGID bits altered|
 | `os_security_suid_sgid_remove_from_unknown`| false | true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.|
-| `os_security_packages_clean'`| true | removes packages with known issues. See section packages.|
+| `os_security_packages_clean`| true | removes packages with known issues. See section packages.|
+| `os_selinux_state` | enforcing | Set the SELinux state, can be either disabled, permissive, or enforcing. |
+| `os_selinux_policy` | targeted | Set the SELinux polixy. |
 | `ufw_manage_defaults` | true | true means apply all settings with `ufw_` prefix|
 | `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
 | `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
 | `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
 | `ufw_default_forward_policy` | DROP | set default forward policy of ufw to `DROP` |
 | `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
+| `os_auditd_max_log_file_action` | `keep_logs` | Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`. |
 
 ## Packages
 
 We remove the following packages:
 
- * xinetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
- * inetd ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.1)
- * tftp-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.5)
- * ypserv ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.4)
- * telnet-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.2)
- * rsh-server ([NSA](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf), Chapter 3.2.3)
+ * xinetd ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.1)
+ * inetd ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.1)
+ * tftp-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.5)
+ * ypserv ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.4)
+ * telnet-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.2)
+ * rsh-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.3)
  * prelink ([open-scap](https://static.open-scap.org/ssg-guides/ssg-sl7-guide-ospp-rhel7-server.html#xccdf_org.ssgproject.content_rule_disable_prelink))
 
 ## Disabled filesystems
@@ -92,28 +109,44 @@ We disable the following filesystems, because they're most likely not used:
 
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
+## Installation
+
+Install the role with ansible-galaxy:
+
+```
+ansible-galaxy install dev-sec.os-hardening
+```
+
 ## Example Playbook
 
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+```
 
 ## Changing sysctl variables
+
 If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
-+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
 
-```
-    - hosts: localhost
-      roles:
-        - dev-sec.os-hardening
-      vars:
-        sysctl_overwrite:
-          # Enable IPv4 traffic forwarding.
-          net.ipv4.ip_forward: 1
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
 ```
 
-Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/intro_configuration.html#hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
+Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
+
+## Improving Kernel Audit logging
+
+By default, any process that starts before the `auditd` daemon will have an AUID of `4294967295`. To improve this and provide more accurate logging, it's recommended to add the kernel boot parameter `audit=1` to you configuration. Without doing this, you will find that your `auditd` logs fail to properly audit all processes. 
+
+For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters. 
 
 ## Local Testing
 
