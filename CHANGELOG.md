@@ -8,6 +8,10 @@
 
 - Disable Ubuntu dynamic login MOTD [\#271](https://github.com/dev-sec/ansible-ssh-hardening/issues/271)
 
+**Closed issues:**
+
+- Ubuntu disable dynamic MOTD failing [\#283](https://github.com/dev-sec/ansible-ssh-hardening/issues/283)
+
 ## [8.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/8.1.0) (2020-05-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.0.0...8.1.0)
