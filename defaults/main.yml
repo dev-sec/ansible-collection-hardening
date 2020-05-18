@@ -8,6 +8,7 @@ ssh_server_enabled: true               # sshd
 ssh_use_dns: false                      # sshd
 
 # true or value if compression is needed
+ssh_client_compression: false           # ssh
 ssh_compression: false                  # sshd
 
 # For which components (client and server) to generate the configuration for. Can be useful when running against a client without an SSH server.
