@@ -322,7 +322,6 @@
 
 - Updates "tags" parameters on includes in main.yml [\#66](https://github.com/dev-sec/ansible-os-hardening/pull/66) ([conorsch](https://github.com/conorsch))
 - Suid set def var, fix \#64 [\#63](https://github.com/dev-sec/ansible-os-hardening/pull/63) ([rndmh3ro](https://github.com/rndmh3ro))
-- ERROR! Include tasks should not specify tags in more than one way [\#60](https://github.com/dev-sec/ansible-os-hardening/pull/60) ([fitz123](https://github.com/fitz123))
 
 **Closed issues:**
 
