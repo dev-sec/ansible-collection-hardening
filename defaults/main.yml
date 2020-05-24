@@ -14,5 +14,5 @@ win_security_LockoutDuration: 15
 win_security_SeRemoteInteractiveLogonRight: '*S-1-5-32-544'
 win_security_SeTcbPrivilege: '*S-1-0-0'
 win_security_SeMachineAccountPrivilege: '*S-1-5-32-544'
-win_security_SeTrustedCredManAccessPrivilege: '*S-1-0-0'
+win_security_SeTrustedCredManAccessPrivilege: ''
 win_security_SeNetworkLogonRight: '*S-1-0-0'
