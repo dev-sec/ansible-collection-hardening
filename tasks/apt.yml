@@ -3,4 +3,5 @@
   apt:
     name: '{{ os_security_packages_list }}'
     state: 'absent'
+    purge: 'yes'
   when: os_security_packages_clean | bool
