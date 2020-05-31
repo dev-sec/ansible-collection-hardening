@@ -95,9 +95,9 @@ UseLogin no
 UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6' and not ansible_facts.distribution == 'Amazon') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
 {% endif %}
 
-LoginGraceTime 30s
+LoginGraceTime {{ssh_login_grace_time}}
 MaxAuthTries {{ssh_max_auth_retries}}
-MaxSessions 10
+MaxSessions {{ssh_max_sessions}}
 MaxStartups {{ssh_max_startups}}
 
 # Enable public key authentication
