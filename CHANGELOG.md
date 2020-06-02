@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
+## [6.0.2](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.2) (2020-06-02)
 
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.1...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.1...6.0.2)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - purge insecure packages [\#275](https://github.com/dev-sec/ansible-os-hardening/pull/275) ([chris-rock](https://github.com/chris-rock))
 
