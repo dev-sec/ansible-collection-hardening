@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.0) (2020-06-02)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.0.0...9.1.0)
+
+**Implemented enhancements:**
+
+- allow customization of login gracetime and max sessins [\#287](https://github.com/dev-sec/ansible-ssh-hardening/pull/287) ([chris-rock](https://github.com/chris-rock))
+
 ## [9.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.0.0) (2020-05-18)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/8.1.0...9.0.0)
