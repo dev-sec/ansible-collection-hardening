@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/dev-sec/ansible-os-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.1...HEAD)
+
+**Merged pull requests:**
+
+- purge insecure packages [\#275](https://github.com/dev-sec/ansible-os-hardening/pull/275) ([chris-rock](https://github.com/chris-rock))
+
 ## [6.0.1](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.1) (2020-05-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.0...6.0.1)
@@ -28,7 +36,7 @@
 - Standardize the var ordering [\#251](https://github.com/dev-sec/ansible-os-hardening/pull/251) ([dustinmiller1337](https://github.com/dustinmiller1337))
 - Add intial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-os-hardening/pull/250) ([dustinmiller1337](https://github.com/dustinmiller1337))
 - Make max\_log\_file\_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-os-hardening/pull/246) ([jandd](https://github.com/jandd))
-- Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-os-hardening/pull/240) ([okupriyanov](https://github.com/okupriyanov))
+- Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-os-hardening/pull/240) ([ghost](https://github.com/ghost))
 - Fedora - Use new auto ansible\_python\_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-os-hardening/pull/239) ([jaredledvina](https://github.com/jaredledvina))
 - add test support for CentOS8 [\#237](https://github.com/dev-sec/ansible-os-hardening/pull/237) ([yeoldegrove](https://github.com/yeoldegrove))
 - Support configuring SELinux and default to enforcing [\#236](https://github.com/dev-sec/ansible-os-hardening/pull/236) ([jaredledvina](https://github.com/jaredledvina))
@@ -47,7 +55,7 @@
 - Add a "don't fail on error" switch ? [\#148](https://github.com/dev-sec/ansible-os-hardening/issues/148)
 - Addressing issue \#255 [\#258](https://github.com/dev-sec/ansible-os-hardening/pull/258) ([ljkimmel](https://github.com/ljkimmel))
 - Fix \#247, cleanup conditions [\#248](https://github.com/dev-sec/ansible-os-hardening/pull/248) ([fernandezcuesta](https://github.com/fernandezcuesta))
-- Fix error on applying the sysctl vars on containers [\#243](https://github.com/dev-sec/ansible-os-hardening/pull/243) ([okupriyanov](https://github.com/okupriyanov))
+- Fix error on applying the sysctl vars on containers [\#243](https://github.com/dev-sec/ansible-os-hardening/pull/243) ([ghost](https://github.com/ghost))
 - Update location of NSA RHEL 5 Guide [\#235](https://github.com/dev-sec/ansible-os-hardening/pull/235) ([jaredledvina](https://github.com/jaredledvina))
 
 ## [5.2.1](https://github.com/dev-sec/ansible-os-hardening/tree/5.2.1) (2019-06-09)
