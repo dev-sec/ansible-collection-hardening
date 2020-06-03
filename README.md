@@ -28,7 +28,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_permit_tunnel` | false | true if SSH Port Tunneling is required |
 |`ssh_remote_hosts` | [] | one or more hosts and their custom options for the ssh-client. Default is empty. See examples in `defaults/main.yml`.|
 |`ssh_permit_root_login` | no | Disable root-login. Set to `without-password` or `yes` to enable root-login |
-|`ssh_allow_tcp_forwarding` | no | `no` to disable TCP Forwarding. Set to `yes` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `yes`, `no`, `all` or `local`|
+|`ssh_allow_tcp_forwarding` | no | `'no'` to disable TCP Forwarding. Set to `'yes'` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'` or `'local'`. <br> *Note*: values passed to this variable must be strings, thus values `'yes'` and `'no'` should be passed with quotes. |
 |`ssh_gateway_ports` | `false` | `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.|
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
 |`ssh_pam_support` | true | true if SSH has PAM support.|
