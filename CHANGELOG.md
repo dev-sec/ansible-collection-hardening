@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.0...HEAD)
+
+**Fixed bugs:**
+
+- AllowTCPForwarding set to `no` although I have `ssh\_allow\_tcp\_forwarding: yes` [\#286](https://github.com/dev-sec/ansible-ssh-hardening/issues/286)
+- `ssh\_allow\_tcp\_forwarding`: use quotes for values [\#288](https://github.com/dev-sec/ansible-ssh-hardening/pull/288) ([jeanmonet](https://github.com/jeanmonet))
+
 ## [9.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.0) (2020-06-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.0.0...9.1.0)
