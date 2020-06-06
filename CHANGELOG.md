@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.1](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.1) (2020-06-06)
+
+[Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.0...2.2.1)
+
+**Implemented enhancements:**
+
+- unify changelog and release actions [\#46](https://github.com/dev-sec/ansible-mysql-hardening/pull/46) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [2.2.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.0) (2020-05-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.1.0...2.2.0)
@@ -25,16 +33,11 @@
 - replace iteritems with items for python3 support [\#33](https://github.com/dev-sec/ansible-mysql-hardening/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - make mysql daemon enabling configurable [\#30](https://github.com/dev-sec/ansible-mysql-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix ansible.cfg settings [\#29](https://github.com/dev-sec/ansible-mysql-hardening/pull/29) ([fazlearefin](https://github.com/fazlearefin))
-- Add CentOS7 with MariaDB support [\#27](https://github.com/dev-sec/ansible-mysql-hardening/pull/27) ([chrispoupart](https://github.com/chrispoupart))
 
 **Fixed bugs:**
 
 - Template fails to render with Python 3 [\#32](https://github.com/dev-sec/ansible-mysql-hardening/issues/32)
 - my.cnf symlink turns into None? [\#24](https://github.com/dev-sec/ansible-mysql-hardening/issues/24)
-
-**Merged pull requests:**
-
-- use new docker files [\#26](https://github.com/dev-sec/ansible-mysql-hardening/pull/26) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.0.0) (2017-05-07)
 
@@ -43,11 +46,17 @@
 **Implemented enhancements:**
 
 - Add CentOS7 with MariaDB support [\#23](https://github.com/dev-sec/ansible-mysql-hardening/issues/23)
+- Add CentOS7 with MariaDB support [\#27](https://github.com/dev-sec/ansible-mysql-hardening/pull/27) ([chrispoupart](https://github.com/chrispoupart))
 - - renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
+- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
 - error on task protect my.cnf [\#20](https://github.com/dev-sec/ansible-mysql-hardening/issues/20)
+
+**Merged pull requests:**
+
+- use new docker files [\#26](https://github.com/dev-sec/ansible-mysql-hardening/pull/26) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.0.0](https://github.com/dev-sec/ansible-mysql-hardening/tree/1.0.0) (2016-06-28)
 
@@ -55,7 +64,6 @@
 
 **Implemented enhancements:**
 
-- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add changelog generator [\#7](https://github.com/dev-sec/ansible-mysql-hardening/pull/7) ([chris-rock](https://github.com/chris-rock))
 
 **Closed issues:**
