@@ -16,6 +16,7 @@
 **Implemented enhancements:**
 
 - Update readme to include baselines [\#10](https://github.com/dev-sec/ansible-nginx-hardening/issues/10)
+- Add travis builds for official nginx role [\#21](https://github.com/dev-sec/ansible-nginx-hardening/pull/21) ([szEvEz](https://github.com/szEvEz))
 - Update testing, remove useless params, style update [\#18](https://github.com/dev-sec/ansible-nginx-hardening/pull/18) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update README.md [\#14](https://github.com/dev-sec/ansible-nginx-hardening/pull/14) ([vishesh92](https://github.com/vishesh92))
 - Add comment filter to {{ansible\_managed}} string [\#12](https://github.com/dev-sec/ansible-nginx-hardening/pull/12) ([fazlearefin](https://github.com/fazlearefin))
