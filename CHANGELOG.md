@@ -1,8 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-ssh-hardening/tree/HEAD)
+## [9.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.1) (2020-06-06)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.0...9.1.1)
+
+**Implemented enhancements:**
+
+- unify changelog and release actions [\#289](https://github.com/dev-sec/ansible-ssh-hardening/pull/289) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
