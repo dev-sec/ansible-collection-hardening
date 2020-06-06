@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.3](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.3) (2020-06-06)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.2...6.0.3)
+
+**Merged pull requests:**
+
+- unify changelog and release actions [\#279](https://github.com/dev-sec/ansible-os-hardening/pull/279) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [6.0.2](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.2) (2020-06-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.1...6.0.2)
