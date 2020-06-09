@@ -1,5 +1,5 @@
 - name: restart sshd
-  service: 
+  service:
     name: '{{ sshd_service_name }}'
     state: restarted
   when: ssh_server_enabled | bool
