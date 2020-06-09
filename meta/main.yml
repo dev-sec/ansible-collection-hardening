@@ -20,6 +20,7 @@ galaxy_info:
         - buster
     - name: Amazon
     - name: Fedora
+    - name: Archlinux
   galaxy_tags:
     - system
     - security
