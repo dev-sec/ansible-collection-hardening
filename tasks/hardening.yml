@@ -37,7 +37,7 @@
     mode: '0600'
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'
-    validate: '/usr/sbin/sshd -T -C user=root -C host=localhost -C addr=localhost -f %s'
+    validate: '/usr/sbin/sshd -T -C user=root -C host=localhost -C addr=localhost -C lport=22 -f %s'
   notify: restart sshd
   when: ssh_server_hardening | bool
 
