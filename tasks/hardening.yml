@@ -1,11 +1,11 @@
 ---
-- name: Set OS dependent variables
+- name: set OS dependent variables
   include_vars: '{{ item }}'
   with_first_found:
-   - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
-   - '{{ ansible_facts.distribution }}.yml'
-   - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
-   - '{{ ansible_facts.os_family }}.yml'
+    - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
+    - '{{ ansible_facts.distribution }}.yml'
+    - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
+    - '{{ ansible_facts.os_family }}.yml'
 
 - name: get openssh-version
   command: ssh -V
@@ -62,7 +62,7 @@
     group: '{{ ssh_group }}'
   when: ssh_client_hardening | bool
 
-- name: Check if {{ sshd_moduli_file }} contains weak DH parameters
+- name: check if {{ sshd_moduli_file }} contains weak DH parameters
   shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
   register: sshd_register_moduli
   changed_when: false
