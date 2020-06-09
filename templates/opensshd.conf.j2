@@ -1,12 +1,13 @@
+#jinja2: trim_blocks: "true", lstrip_blocks: "true"
 # {{ansible_managed|comment}}
 
 # This is the ssh client system-wide configuration file.
 # See sshd_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
 
-{% if sshd_custom_options -%}
+{% if sshd_custom_options %}
 # Custom configuration that overwrites default configuration
 # ==========================================================
-{% for line in sshd_custom_options -%}
+{% for line in sshd_custom_options %}
 {{ line }}
 {% endfor %}
 {% endif %}
@@ -18,7 +19,7 @@
 PermitRootLogin {{ ssh_permit_root_login }}
 
 # Define which port sshd should listen to. Default to `22`.
-{% for port in ssh_server_ports -%}
+{% for port in ssh_server_ports %}
 Port {{port}}
 {% endfor %}
 
@@ -26,12 +27,12 @@ Port {{port}}
 AddressFamily {{ 'any' if (network_ipv6_enable|bool) else 'inet' }}
 
 # Define which addresses sshd should listen to. Default to `0.0.0.0`, ie make sure you put your desired address in here, since otherwise sshd will listen to everyone.
-{% for address in ssh_listen_to -%}
+{% for address in ssh_listen_to %}
 ListenAddress {{address}}
 {% endfor %}
 
 # List HostKeys here.
-{% for key in ssh_host_key_files -%}
+{% for key in ssh_host_key_files %}
 HostKey {{key}}
 {% endfor %}
 
@@ -92,7 +93,7 @@ LogLevel {{ sshd_log_level }}
 UseLogin no
 {% endif %}
 {% if sshd_version is version('7.5', '<') %}
-UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6' and not ansible_facts.distribution == 'Amazon') -%}{{ssh_ps53}}{% else %}{{ssh_ps59}}{% endif %}
+UsePrivilegeSeparation {% if (ansible_facts.distribution == 'Debian' and ansible_facts.distribution_major_version <= '6') or (ansible_facts.os_family in ['Oracle Linux', 'RedHat'] and ansible_facts.distribution_major_version <= '6' and not ansible_facts.distribution == 'Amazon') %}{{ ssh_ps53}}{% else %}{{ ssh_ps59}}{% endif %}
 {% endif %}
 
 LoginGraceTime {{ssh_login_grace_time}}
@@ -109,7 +110,7 @@ IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
 # Enable PAM to enforce system wide rules
-{% if ssh_pam_support -%}
+{% if ssh_pam_support %}
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
 
@@ -124,7 +125,7 @@ PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
 PermitEmptyPasswords no
 ChallengeResponseAuthentication {{ 'yes' if (ssh_challengeresponseauthentication|bool) else 'no' }}
 
-{% if ssh_kerberos_support -%}
+{% if ssh_kerberos_support %}
 # Only enable Kerberos authentication if it is configured.
 KerberosAuthentication no
 KerberosOrLocalPasswd no
@@ -189,13 +190,13 @@ AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in (
 # no real advantage without denied shell access
 AllowAgentForwarding {{ 'yes' if (ssh_allow_agent_forwarding|bool) else 'no' }}
 
-{% if ssh_gateway_ports|bool -%}
+{% if ssh_gateway_ports|bool %}
 # Port forwardings are forced to bind to the wildcard address
 GatewayPorts yes
-{% elif ssh_gateway_ports == 'clientspecified' -%}
+{% elif ssh_gateway_ports == 'clientspecified' %}
 # Clients allowed to specify which address to bind port forwardings to
 GatewayPorts clientspecified
-{% else -%}
+{% else %}
 # Do not allow remote port forwardings to bind to non-loopback addresses.
 GatewayPorts no
 {% endif %}
@@ -209,7 +210,7 @@ X11UseLocalhost yes
 
 PermitUserEnvironment {{ ssh_server_permit_environment_vars }}
 
-{% if ssh_server_accept_env_vars -%}
+{% if ssh_server_accept_env_vars %}
 AcceptEnv {{ ssh_server_accept_env_vars }}
 {% endif %}
 
@@ -228,14 +229,14 @@ PrintLastLog {{ 'yes' if (ssh_print_last_log|bool) else 'no' }}
 
 Banner {{ '/etc/ssh/banner.txt' if (ssh_banner|bool) else 'none' }}
 
-{% if ansible_facts.os_family == 'Debian' -%}
+{% if ansible_facts.os_family == 'Debian' %}
 DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}
 {% endif %}
 
 # Reject keys that are explicitly blacklisted
 RevokedKeys /etc/ssh/revoked_keys
 
-{% if sftp_enabled -%}
+{% if sftp_enabled %}
 # SFTP matching configuration
 # ===========================
 # Configuration, in case SFTP is used
@@ -257,11 +258,11 @@ Match Group sftponly
     X11Forwarding no
 {% endif %}
 
-{% if ssh_server_match_address -%}
+{% if ssh_server_match_address %}
 # Address matching configuration
 # ============================
 
-{% for item in ssh_server_match_address -%}
+{% for item in ssh_server_match_address %}
 Match Address {{ item.address }}
   {% for rule in item.rules %}
     {{ rule | indent(4) }}
@@ -269,11 +270,11 @@ Match Address {{ item.address }}
 {% endfor %}
 {% endif %}
 
-{% if ssh_server_match_group -%}
+{% if ssh_server_match_group %}
 # Group matching configuration
 # ============================
 
-{% for item in ssh_server_match_group -%}
+{% for item in ssh_server_match_group %}
 Match Group {{ item.group }}
   {% for rule in item.rules %}
     {{ rule | indent(4) }}
@@ -281,11 +282,11 @@ Match Group {{ item.group }}
 {% endfor %}
 {% endif %}
 
-{% if ssh_server_match_user -%}
+{% if ssh_server_match_user %}
 # User matching configuration
 # ===========================
 
-{% for item in ssh_server_match_user -%}
+{% for item in ssh_server_match_user %}
 Match User {{ item.user }}
   {% for rule in item.rules %}
     {{ rule | indent(4) }}

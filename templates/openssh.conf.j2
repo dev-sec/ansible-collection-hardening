@@ -1,9 +1,10 @@
+#jinja2: trim_blocks: "true", lstrip_blocks: "true"
 # {{ansible_managed|comment}}
 
 # This is the ssh client system-wide configuration file.
 # See ssh_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
 
-{% if ssh_custom_options -%}
+{% if ssh_custom_options %}
 # Custom configuration that overwrites default configuration
 # ==========================================================
 {% for line in ssh_custom_options %}
@@ -17,14 +18,14 @@
 # Address family should always be limited to the active network configuration.
 AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
 
-{% for host in ssh_remote_hosts -%}
+{% for host in ssh_remote_hosts %}
 {% if loop.first %}
 # Host-specific configuration
 {% endif %}
 Host {{ host.names | join(' ') }}
   {{ host.options | join("\n") | indent(2) }}
 
-{% endfor -%}
+{% endfor %}
 
 # Global defaults for all Hosts
 Host *
