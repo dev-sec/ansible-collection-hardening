@@ -24,6 +24,7 @@
       vars:
         packages:
           - "openssh"
+          - "awk"
       ignore_errors: true
     - file: path="/var/run/sshd" state=directory
     - name: create ssh host keys
