@@ -47,14 +47,19 @@
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'
 
 - name: get all home directories in /home, but skip ignored users
-  shell: ls -1 /home
+  find:
+    paths: /home/
+    recurse: no
+    file_type: directory
+    excludes: "{{ os_ignore_home_folder_users | join(',') }}"
   register: home_directories
   when: os_chmod_home_folders | bool
 
 - name: set ownership of /home directories to 0700
   file:
     mode: 0700
-    path: /home/{{ item }}
-  loop: "{{ home_directories.stdout_lines | difference(os_ignore_home_folder_users) }}"
+    path: {{ item }}
+  loop:
+    - "{{ home_directories.files | map(attribute='path') | list }}"
   ignore_errors: True
   when: os_chmod_home_folders | bool
