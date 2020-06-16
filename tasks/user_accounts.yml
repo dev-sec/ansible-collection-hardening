@@ -61,5 +61,4 @@
     path: {{ item }}
   loop:
     - "{{ home_directories.files | map(attribute='path') | list }}"
-  ignore_errors: True
   when: os_chmod_home_folders | bool
