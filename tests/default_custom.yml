@@ -18,7 +18,7 @@
       ignore_errors: true
     
     - apt: 
-        name: "{{packages}}" 
+        name: "{{ packages }}" 
         state: present 
         update_cache: true
       vars:
