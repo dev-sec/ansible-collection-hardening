@@ -24,7 +24,7 @@
 # The following tasks only get executed when selinux is in state enforcing,
 # UsePam is 'no' and the ssh_password module is installed. See this issue for
 # more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
-- when: 
+- when:
     - not (ssh_use_pam | bool)
     - ('ssh_password' in ssh_password_module.stdout)
   block:
@@ -56,6 +56,6 @@
 # http://danwalsh.livejournal.com/12333.html for more info
 - name: remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk
   command: semodule -r ssh_password
-  when: 
+  when:
     - ssh_use_pam | bool
     - ('ssh_password' not in ssh_password_module.stdout)
