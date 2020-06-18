@@ -59,6 +59,7 @@
   file:
     mode: 0700
     path: "{{ item }}"
+    state: directory
   loop:
     - "{{ home_directories.files | map(attribute='path') | list }}"
   when: os_chmod_home_folders | bool
