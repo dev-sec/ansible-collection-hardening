@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-18)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.1...9.2.0)
+
+**Implemented enhancements:**
+
+- Add archlinux support [\#291](https://github.com/dev-sec/ansible-ssh-hardening/pull/291) ([djesionek](https://github.com/djesionek))
+
 ## [9.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.1) (2020-06-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.0...9.1.1)
@@ -7,6 +15,7 @@
 **Implemented enhancements:**
 
 - unify changelog and release actions [\#289](https://github.com/dev-sec/ansible-ssh-hardening/pull/289) ([rndmh3ro](https://github.com/rndmh3ro))
+- allow customization of login gracetime and max sessins [\#287](https://github.com/dev-sec/ansible-ssh-hardening/pull/287) ([chris-rock](https://github.com/chris-rock))
 
 **Fixed bugs:**
 
@@ -16,10 +25,6 @@
 ## [9.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.0) (2020-06-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.0.0...9.1.0)
-
-**Implemented enhancements:**
-
-- allow customization of login gracetime and max sessins [\#287](https://github.com/dev-sec/ansible-ssh-hardening/pull/287) ([chris-rock](https://github.com/chris-rock))
 
 ## [9.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.0.0) (2020-05-18)
 
@@ -295,7 +300,7 @@
 
 ## [4.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.3.0) (2017-08-03)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.3...4.3.0)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.2.0...4.3.0)
 
 **Implemented enhancements:**
 
@@ -307,13 +312,13 @@
 - Don't overwrite ssh\_host\_key\_files if set manually [\#125](https://github.com/dev-sec/ansible-ssh-hardening/pull/125) ([oakey-b1](https://github.com/oakey-b1))
 - Add comment filter to {{ansible\_managed}} string [\#121](https://github.com/dev-sec/ansible-ssh-hardening/pull/121) ([fazlearefin](https://github.com/fazlearefin))
 
-## [4.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.3) (2017-06-30)
-
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.2.0...4.1.3)
-
 ## [4.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.2.0) (2017-06-30)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.2...4.2.0)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.3...4.2.0)
+
+## [4.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.3) (2017-06-30)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/4.1.2...4.1.3)
 
 **Implemented enhancements:**
 
