@@ -20,6 +20,12 @@
           - "openssh-client"
           - "openssh-server"
       ignore_errors: true
+    - pacman: name="{{packages}}" state=present update_cache=true
+      vars:
+        packages:
+          - "openssh"
+          - "awk"
+      ignore_errors: true
     - file: path="/var/run/sshd" state=directory
     - name: create ssh host keys
       command: "ssh-keygen -A"
