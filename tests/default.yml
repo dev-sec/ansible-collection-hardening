@@ -31,6 +31,14 @@
         path: "/var/run/sshd" 
         state: directory
         
+
+    - pacman: name="{{packages}}" state=present update_cache=true
+      vars:
+        packages:
+          - "openssh"
+          - "awk"
+      ignore_errors: true
+
     - name: create ssh host keys
       command: "ssh-keygen -A"
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or 

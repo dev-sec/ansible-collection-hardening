@@ -1,0 +1,3 @@
+sshd_service_name: sshd
+ssh_owner: root
+ssh_group: root
