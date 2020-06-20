@@ -1,12 +1,13 @@
 # Changelog
 
-## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-18)
+## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.1...9.2.0)
 
 **Implemented enhancements:**
 
 - Add archlinux support [\#291](https://github.com/dev-sec/ansible-ssh-hardening/pull/291) ([djesionek](https://github.com/djesionek))
+- Harmonize style [\#290](https://github.com/dev-sec/ansible-ssh-hardening/pull/290) ([aisbergg](https://github.com/aisbergg))
 
 ## [9.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.1) (2020-06-06)
 
@@ -15,7 +16,6 @@
 **Implemented enhancements:**
 
 - unify changelog and release actions [\#289](https://github.com/dev-sec/ansible-ssh-hardening/pull/289) ([rndmh3ro](https://github.com/rndmh3ro))
-- allow customization of login gracetime and max sessins [\#287](https://github.com/dev-sec/ansible-ssh-hardening/pull/287) ([chris-rock](https://github.com/chris-rock))
 
 **Fixed bugs:**
 
@@ -25,6 +25,10 @@
 ## [9.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.0) (2020-06-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.0.0...9.1.0)
+
+**Implemented enhancements:**
+
+- allow customization of login gracetime and max sessins [\#287](https://github.com/dev-sec/ansible-ssh-hardening/pull/287) ([chris-rock](https://github.com/chris-rock))
 
 ## [9.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.0.0) (2020-05-18)
 
@@ -305,7 +309,6 @@
 **Implemented enhancements:**
 
 - Fix ansible.cfg settings [\#122](https://github.com/dev-sec/ansible-ssh-hardening/pull/122) ([fazlearefin](https://github.com/fazlearefin))
-- Finish 94 [\#116](https://github.com/dev-sec/ansible-ssh-hardening/pull/116) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
@@ -384,6 +387,7 @@
 **Implemented enhancements:**
 
 - Avoid small primes for DH and allow rebuild of DH primes [\#89](https://github.com/dev-sec/ansible-ssh-hardening/issues/89)
+- Finish 94 [\#116](https://github.com/dev-sec/ansible-ssh-hardening/pull/116) ([rndmh3ro](https://github.com/rndmh3ro))
 - Accommodate missing plugins in kitchen\_vagrant\_block.rb [\#100](https://github.com/dev-sec/ansible-ssh-hardening/pull/100) ([fullyint](https://github.com/fullyint))
 - Use different Hostkeys according to installed ssh version [\#99](https://github.com/dev-sec/ansible-ssh-hardening/pull/99) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove small dh primes [\#97](https://github.com/dev-sec/ansible-ssh-hardening/pull/97) ([rndmh3ro](https://github.com/rndmh3ro))
