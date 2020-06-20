@@ -1,5 +1,4 @@
 ---
-
 - name: set hostkeys according to openssh-version
   set_fact:
     ssh_host_key_files: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key']

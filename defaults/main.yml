@@ -1,38 +1,38 @@
 # true if IPv6 is needed
-network_ipv6_enable: false              # sshd + ssh
+network_ipv6_enable: false          # sshd + ssh
 
 # true if sshd should be started and enabled
-ssh_server_enabled: true               # sshd
+ssh_server_enabled: true            # sshd
 
 # true if DNS resolutions are needed, look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
-ssh_use_dns: false                      # sshd
+ssh_use_dns: false                  # sshd
 
 # true or value if compression is needed
-ssh_client_compression: false           # ssh
-ssh_compression: false                  # sshd
+ssh_client_compression: false       # ssh
+ssh_compression: false              # sshd
 
 # For which components (client and server) to generate the configuration for. Can be useful when running against a client without an SSH server.
 ssh_client_hardening: true          # ssh
 ssh_server_hardening: true          # sshd
 
 # If true, password login is allowed
-ssh_client_password_login: false          # ssh
-ssh_server_password_login: false          # sshd
+ssh_client_password_login: false    # ssh
+ssh_server_password_login: false    # sshd
 
 # ports on which ssh-server should listen
-ssh_server_ports: ['22']      # sshd
+ssh_server_ports: ['22']            # sshd
 
 # port to which ssh-client should connect
-ssh_client_port: '22'         # ssh
+ssh_client_port: '22'               # ssh
 
 # one or more ip addresses, to which ssh-server should listen to. Default is empty, but should be configured for security reasons!
-ssh_listen_to: ['0.0.0.0']    # sshd
+ssh_listen_to: ['0.0.0.0']          # sshd
 
 # Host keys to look for when starting sshd.
-ssh_host_key_files: []  # sshd
+ssh_host_key_files: []              # sshd
 
 # Specifies the host key algorithms that the server offers
-ssh_host_key_algorithms: []  # sshd
+ssh_host_key_algorithms: []         # sshd
 
 # specifies the time allowed for successful authentication to the SSH server
 ssh_login_grace_time: 30s
@@ -43,13 +43,13 @@ ssh_max_auth_retries: 2
 # Specifies the maximum number of open sessions permitted from a given connection
 ssh_max_sessions: 10
 
-ssh_client_alive_interval: 300          # sshd
-ssh_client_alive_count: 3               # sshd
+ssh_client_alive_interval: 300      # sshd
+ssh_client_alive_count: 3           # sshd
 
 # Allow SSH Tunnels
 ssh_permit_tunnel: false
 
-# Hosts with custom options.            # ssh
+# Hosts with custom options.        # ssh
 # Example:
 # ssh_remote_hosts:
 #   - names: ['example.com', 'example2.com']
@@ -59,23 +59,23 @@ ssh_permit_tunnel: false
 ssh_remote_hosts: []
 
 # Set this to "without-password" or "yes" to allow root to login
-ssh_permit_root_login: 'no'          # sshd
+ssh_permit_root_login: 'no'         # sshd
 
 # false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
-ssh_allow_tcp_forwarding: 'no'        # sshd
+ssh_allow_tcp_forwarding: 'no'      # sshd
 
 # false to disable binding forwarded ports to non-loopback addresses. Set to true to force binding on wildcard address.
 # Set to 'clientspecified' to allow the client to specify which address to bind to.
-ssh_gateway_ports: false                # sshd
+ssh_gateway_ports: false            # sshd
 
 # false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
-ssh_allow_agent_forwarding: false       # sshd
+ssh_allow_agent_forwarding: false   # sshd
 
 # true if SSH has PAM support
 ssh_pam_support: true
 
 # false to disable pam authentication.
-ssh_use_pam: true # sshd
+ssh_use_pam: true                   # sshd
 
 # specify AuthenticationMethods
 sshd_authenticationmethods: 'publickey'
@@ -87,29 +87,29 @@ ssh_gssapi_support: false
 ssh_kerberos_support: true
 
 # if specified, login is disallowed for user names that match one of the patterns.
-ssh_deny_users: ''      # sshd
+ssh_deny_users: ''                  # sshd
 
 # if specified, login is allowed only for user names that match one of the patterns.
-ssh_allow_users: ''      # sshd
+ssh_allow_users: ''                 # sshd
 
 # if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
-ssh_deny_groups: ''      # sshd
+ssh_deny_groups: ''                 # sshd
 
 # if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
-ssh_allow_groups: ''      # sshd
+ssh_allow_groups: ''                # sshd
 
 # change default file that contains the public keys that can be used for user authentication.
-ssh_authorized_keys_file: ''      # sshd
+ssh_authorized_keys_file: ''        # sshd
 
 # specifies the file containing trusted certificate authorities public keys used to sign user certificates.
-ssh_trusted_user_ca_keys_file: ''      # sshd
+ssh_trusted_user_ca_keys_file: ''   # sshd
 
 # set the trusted certificate authorities public keys used to sign user certificates.
 # Example:
 # ssh_trusted_user_ca_keys:
 #   - 'ssh-rsa ... comment1'
 #   - 'ssh-rsa ... comment2'
-ssh_trusted_user_ca_keys: []      # sshd
+ssh_trusted_user_ca_keys: []        # sshd
 
 # specifies the file containing principals that are allowed. Only used if ssh_trusted_user_ca_keys_file is set.
 # Example:
@@ -119,26 +119,26 @@ ssh_trusted_user_ca_keys: []      # sshd
 # replaced by the username of that user. After expansion, the path is taken to be
 # an absolute path or one relative to the user's home directory.
 #
-ssh_authorized_principals_file: ''      # sshd
+ssh_authorized_principals_file: ''  # sshd
 
 # list of hashes containing file paths and authorized principals. Only used if ssh_authorized_principals_file is set.
 # Example:
 # ssh_authorized_principals:
 #   - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
 #   - { path: '/etc/ssh/auth_principals/myuser', principals: [ 'masteradmin', 'webserver' ] }
-ssh_authorized_principals: []      # sshd
+ssh_authorized_principals: []       # sshd
 
 # false to disable printing of the MOTD
-ssh_print_motd: false      # sshd
+ssh_print_motd: false               # sshd
 
 # false to disable display of last login information
-ssh_print_last_log: false    # sshd
+ssh_print_last_log: false           # sshd
 
 # false to disable serving /etc/ssh/banner.txt before authentication is allowed
-ssh_banner: false # sshd
+ssh_banner: false                   # sshd
 
 # false to disable distribution version leakage during initial protocol handshake
-ssh_print_debian_banner: false # sshd (Debian OS family only)
+ssh_print_debian_banner: false      # sshd (Debian OS family only)
 
 # true to enable sftp configuration
 sftp_enabled: false
@@ -156,19 +156,19 @@ sftp_chroot_dir: /home/%u
 ssh_client_roaming: false
 
 # list of hashes (containing user and rules) to generate Match User blocks for.
-ssh_server_match_user: false            # sshd
+ssh_server_match_user: false        # sshd
 
 # list of hashes (containing group and rules) to generate Match Group blocks for.
-ssh_server_match_group: false           # sshd
+ssh_server_match_group: false       # sshd
 
 # list of hashes (containing addresses/subnets and rules) to generate Match Address blocks for.
-ssh_server_match_address: false           # sshd
+ssh_server_match_address: false     # sshd
 
 ssh_server_permit_environment_vars: 'no'
 ssh_server_accept_env_vars : ''
 
 # maximum number of concurrent unauthenticated connections to the SSH daemon
-ssh_max_startups: '10:30:100'           # sshd
+ssh_max_startups: '10:30:100'       # sshd
 
 ssh_ps53: 'yes'
 ssh_ps59: 'sandbox'
