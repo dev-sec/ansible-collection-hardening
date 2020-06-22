@@ -73,6 +73,9 @@
     sftp_enabled: true
     sftp_chroot: true
     #ssh_server_enabled: false
+    ssh_server_ports:
+      - 22
+      - 222
     ssh_server_match_address:
       - address: '192.168.1.1/24'
         rules:
@@ -85,6 +88,11 @@
           - 'AllowAgentForwarding no'
     ssh_server_match_user:
       - user: 'root'
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
+    ssh_server_match_local_port:
+      - port: 222
         rules:
           - 'AllowTcpForwarding yes'
           - 'AllowAgentForwarding no'

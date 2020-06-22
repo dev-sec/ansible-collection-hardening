@@ -155,14 +155,17 @@ sftp_chroot_dir: /home/%u
 # enable experimental client roaming
 ssh_client_roaming: false
 
-# list of hashes (containing user and rules) to generate Match User blocks for.
+# list of hashes (containing user and rules) to generate Match User blocks for
 ssh_server_match_user: false        # sshd
 
-# list of hashes (containing group and rules) to generate Match Group blocks for.
+# list of hashes (containing group and rules) to generate Match Group blocks for
 ssh_server_match_group: false       # sshd
 
-# list of hashes (containing addresses/subnets and rules) to generate Match Address blocks for.
+# list of hashes (containing addresses/subnets and rules) to generate Match Address blocks for
 ssh_server_match_address: false     # sshd
+
+# list of hashes (containing port and rules) to generate Match LocalPort blocks for
+ssh_server_match_local_port: false  # sshd
 
 ssh_server_permit_environment_vars: 'no'
 ssh_server_accept_env_vars : ''

@@ -261,8 +261,8 @@ Match Group sftponly
     PermitRootLogin no
     X11Forwarding no
 {% endif %}
-
 {% if ssh_server_match_address %}
+
 # Address matching configuration
 # ============================
 
@@ -273,8 +273,8 @@ Match Address {{ item.address }}
   {% endfor %}
 {% endfor %}
 {% endif %}
-
 {% if ssh_server_match_group %}
+
 # Group matching configuration
 # ============================
 
@@ -285,13 +285,25 @@ Match Group {{ item.group }}
   {% endfor %}
 {% endfor %}
 {% endif %}
-
 {% if ssh_server_match_user %}
+
 # User matching configuration
 # ===========================
 
 {% for item in ssh_server_match_user %}
 Match User {{ item.user }}
+  {% for rule in item.rules %}
+    {{ rule | indent(4) }}
+  {% endfor %}
+{% endfor %}
+{% endif %}
+{% if ssh_server_match_local_port %}
+
+# LocalPort matching configuration
+# ================================
+
+{% for item in ssh_server_match_local_port %}
+Match LocalPort {{ item.port }}
   {% for rule in item.rules %}
     {{ rule | indent(4) }}
   {% endfor %}
