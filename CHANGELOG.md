@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-20)
+## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.1...9.2.0)
 
@@ -8,6 +8,10 @@
 
 - Add archlinux support [\#291](https://github.com/dev-sec/ansible-ssh-hardening/pull/291) ([djesionek](https://github.com/djesionek))
 - Harmonize style [\#290](https://github.com/dev-sec/ansible-ssh-hardening/pull/290) ([aisbergg](https://github.com/aisbergg))
+
+**Merged pull requests:**
+
+- Add option to create 'LocalPort' match blocks [\#295](https://github.com/dev-sec/ansible-ssh-hardening/pull/295) ([aisbergg](https://github.com/aisbergg))
 
 ## [9.1.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.1.1) (2020-06-06)
 
@@ -183,6 +187,10 @@
 - Using more than one rule in a Group or User Match block? [\#207](https://github.com/dev-sec/ansible-ssh-hardening/issues/207)
 - fix multiple match rules not working \#207 [\#208](https://github.com/dev-sec/ansible-ssh-hardening/pull/208) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Merged pull requests:**
+
+- Support for custom configuration [\#199](https://github.com/dev-sec/ansible-ssh-hardening/pull/199) ([MatthiasLohr](https://github.com/MatthiasLohr))
+
 ## [6.0.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.0.0) (2018-11-18)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/5.0.0...6.0.0)
@@ -206,7 +214,6 @@
 
 **Merged pull requests:**
 
-- Support for custom configuration [\#199](https://github.com/dev-sec/ansible-ssh-hardening/pull/199) ([MatthiasLohr](https://github.com/MatthiasLohr))
 - parameterize PermitRootLogin [\#195](https://github.com/dev-sec/ansible-ssh-hardening/pull/195) ([rndmh3ro](https://github.com/rndmh3ro))
 - set 'GSSAPIAuthentication yes' if variable 'ssh\_gssapi\_support' is set to 'true' [\#194](https://github.com/dev-sec/ansible-ssh-hardening/pull/194) ([szEvEz](https://github.com/szEvEz))
 - Use ansible version compare module [\#187](https://github.com/dev-sec/ansible-ssh-hardening/pull/187) ([BentoumiTech](https://github.com/BentoumiTech))
@@ -309,6 +316,7 @@
 **Implemented enhancements:**
 
 - Fix ansible.cfg settings [\#122](https://github.com/dev-sec/ansible-ssh-hardening/pull/122) ([fazlearefin](https://github.com/fazlearefin))
+- Finish 94 [\#116](https://github.com/dev-sec/ansible-ssh-hardening/pull/116) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
@@ -359,6 +367,7 @@
 **Implemented enhancements:**
 
 - fix validation error [\#113](https://github.com/dev-sec/ansible-ssh-hardening/pull/113) ([pwyliu](https://github.com/pwyliu))
+- Accommodate missing plugins in kitchen\_vagrant\_block.rb [\#100](https://github.com/dev-sec/ansible-ssh-hardening/pull/100) ([fullyint](https://github.com/fullyint))
 
 ## [4.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/4.1.0) (2017-05-09)
 
@@ -387,8 +396,6 @@
 **Implemented enhancements:**
 
 - Avoid small primes for DH and allow rebuild of DH primes [\#89](https://github.com/dev-sec/ansible-ssh-hardening/issues/89)
-- Finish 94 [\#116](https://github.com/dev-sec/ansible-ssh-hardening/pull/116) ([rndmh3ro](https://github.com/rndmh3ro))
-- Accommodate missing plugins in kitchen\_vagrant\_block.rb [\#100](https://github.com/dev-sec/ansible-ssh-hardening/pull/100) ([fullyint](https://github.com/fullyint))
 - Use different Hostkeys according to installed ssh version [\#99](https://github.com/dev-sec/ansible-ssh-hardening/pull/99) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove small dh primes [\#97](https://github.com/dev-sec/ansible-ssh-hardening/pull/97) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add Ed25519 SSH host key to match commit 28b4df3 in ssh-baseline [\#96](https://github.com/dev-sec/ansible-ssh-hardening/pull/96) ([techraf](https://github.com/techraf))
