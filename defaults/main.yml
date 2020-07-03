@@ -71,6 +71,9 @@ ssh_gateway_ports: false            # sshd
 # false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
 ssh_allow_agent_forwarding: false   # sshd
 
+# false to disable X11 Forwarding. Set to true to allow X11 Forwarding.
+ssh_x11_forwarding: false   # sshd
+
 # true if SSH has PAM support
 ssh_pam_support: true
 
