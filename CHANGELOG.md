@@ -1,10 +1,26 @@
 # Changelog
 
+## [6.0.4](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.4) (2020-07-05)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.3...6.0.4)
+
+**Fixed bugs:**
+
+- Is it safe to use on Debian 10? The build is failing. [\#281](https://github.com/dev-sec/ansible-os-hardening/issues/281)
+
+**Closed issues:**
+
+- The state of the galaxy release [\#269](https://github.com/dev-sec/ansible-os-hardening/issues/269)
+
+**Merged pull requests:**
+
+- install procps in debian so sysctl.conf exists [\#282](https://github.com/dev-sec/ansible-os-hardening/pull/282) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [6.0.3](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.3) (2020-06-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.2...6.0.3)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - unify changelog and release actions [\#279](https://github.com/dev-sec/ansible-os-hardening/pull/279) ([rndmh3ro](https://github.com/rndmh3ro))
 
@@ -35,7 +51,7 @@
 - Add Debian Buster support for ansible-os-hardening [\#233](https://github.com/dev-sec/ansible-os-hardening/issues/233)
 - Add CentOS 8 support for ansible-os-hardening [\#232](https://github.com/dev-sec/ansible-os-hardening/issues/232)
 - Add selinux configuration [\#154](https://github.com/dev-sec/ansible-os-hardening/issues/154)
-- Make useradd defaults in login.defs dependent on OS [\#266](https://github.com/dev-sec/ansible-os-hardening/pull/266) ([Aisbergg](https://github.com/Aisbergg))
+- Make useradd defaults in login.defs dependent on OS [\#266](https://github.com/dev-sec/ansible-os-hardening/pull/266) ([aisbergg](https://github.com/aisbergg))
 - Add kernel hardening parameters from Tails and CIS Benchmark [\#263](https://github.com/dev-sec/ansible-os-hardening/pull/263) ([kravietz](https://github.com/kravietz))
 - add ansible-lint [\#262](https://github.com/dev-sec/ansible-os-hardening/pull/262) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove trailing space [\#261](https://github.com/dev-sec/ansible-os-hardening/pull/261) ([kravietz](https://github.com/kravietz))
