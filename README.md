@@ -31,6 +31,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_allow_tcp_forwarding` | no | `'no'` to disable TCP Forwarding. Set to `'yes'` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'` or `'local'`. <br> *Note*: values passed to this variable must be strings, thus values `'yes'` and `'no'` should be passed with quotes. |
 |`ssh_gateway_ports` | `false` | `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.|
 |`ssh_allow_agent_forwarding` | false | false to disable Agent Forwarding. Set to true to allow Agent Forwarding.|
+|`ssh_x11_forwarding` | false | false to disable X11 Forwarding. Set to true to allow X11 Forwarding.|
 |`ssh_pam_support` | true | true if SSH has PAM support.|
 |`ssh_use_pam` | true | false to disable pam authentication.|
 |`ssh_gssapi_support` | false | true if SSH has GSSAPI support.|
@@ -61,7 +62,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_client_port` | `'22'` | Specifies the port number to connect on the remote host. |
 |`ssh_client_compression` | `false` | Specifies whether the client requests compression. |
 |`ssh_compression` | `false` | Specifies whether server-side compression is enabled after the user has authenticated successfully. |
-|`ssh_login_grace_time` | `30s` | specifies the time allowed for successful authentication to the SSH server | 
+|`ssh_login_grace_time` | `30s` | specifies the time allowed for successful authentication to the SSH server |
 |`ssh_max_auth_retries` | `2` | Specifies the maximum number of authentication attempts permitted per connection. |
 |`ssh_max_sessions` | `10` | Specifies the maximum number of open sessions permitted from a given connection. |
 |`ssh_print_debian_banner` | `false` | `true` to print debian specific banner |
