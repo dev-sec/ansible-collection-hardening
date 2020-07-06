@@ -7,40 +7,46 @@
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
-    - package:
-        name: "{{ packages }}" 
-        state: present
-      vars:
-        packages:
+    - yum:
+        name:
           - openssh-clients
           - openssh-server
           - libselinux-python
-      ignore_errors: true
-    
-    - apt: 
-        name: "{{ packages }}" 
-        state: present 
+        state: present
         update_cache: true
-      vars:
-        packages:
-          - "openssh-client"
-          - "openssh-server"
       ignore_errors: true
-    
-    - file: 
-        path: "/var/run/sshd" 
+
+    - dnf:
+        name:
+          - openssh-clients
+          - openssh-server
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - apt:
+        name:
+          - openssh-client
+          - openssh-server
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - file:
+        path: "/var/run/sshd"
         state: directory
-    
-    - pacman: name="{{packages}}" state=present update_cache=true
-      vars:
-        packages:
+
+    - pacman:
+        name:
           - "openssh"
           - "awk"
+        state: present
+        update_cache: true
       ignore_errors: true
 
     - name: create ssh host keys
       command: "ssh-keygen -A"
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or 
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
             ansible_facts.distribution == "Fedora" or
             ansible_facts.distribution == "Amazon"
 
