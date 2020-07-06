@@ -9,6 +9,10 @@
 - Add support for X11 configuration [\#297](https://github.com/dev-sec/ansible-ssh-hardening/issues/297)
 - allow customization of X11Forwarding [\#300](https://github.com/dev-sec/ansible-ssh-hardening/pull/300) ([divialth](https://github.com/divialth))
 
+**Fixed bugs:**
+
+- fix package install in tests [\#301](https://github.com/dev-sec/ansible-ssh-hardening/pull/301) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.1.1...9.2.0)
@@ -98,6 +102,7 @@
 - fix broken packages, extend README with furhter development instructions [\#246](https://github.com/dev-sec/ansible-ssh-hardening/pull/246) ([szEvEz](https://github.com/szEvEz))
 - refactor authenticationmethod settings, allow user to set authenticat… [\#245](https://github.com/dev-sec/ansible-ssh-hardening/pull/245) ([szEvEz](https://github.com/szEvEz))
 - RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
+- Added ssh\_syslog\_facility, ssh\_log\_level and ssh\_strict\_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))
 
 **Fixed bugs:**
 
@@ -115,7 +120,6 @@
 **Implemented enhancements:**
 
 - Add new option ssh\_server\_match\_address [\#230](https://github.com/dev-sec/ansible-ssh-hardening/issues/230)
-- Added ssh\_syslog\_facility, ssh\_log\_level and ssh\_strict\_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))
 - set UsePAM to yes by default [\#233](https://github.com/dev-sec/ansible-ssh-hardening/pull/233) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
