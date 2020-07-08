@@ -17,7 +17,7 @@
   set_fact:
     sshd_version: "{{ sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
 
-- name: include tasks to create crypo-vars
+- name: include tasks to create crypto-vars
   include_tasks: crypto.yml
 
 - name: create revoked_keys and set permissions to root/600
