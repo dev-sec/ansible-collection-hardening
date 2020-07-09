@@ -1,0 +1,27 @@
+---
+- name: set macs according to openssh-version if openssh >= 5.3
+  set_fact:
+    ssh_macs: '{{ ssh_macs_53_default }}'
+  when: sshd_version is version('5.3', '>=')
+
+- name: set macs for Enterprise Linux >= 6.5 (openssh 5.3 with backports)
+  set_fact:
+    ssh_macs: '{{ ssh_macs_53_el_6_5_default }}'
+  when:
+    - ansible_facts.distribution in ['CentOS', 'OracleLinux', 'RedHat']
+    - ansible_facts.distribution_version is version('6.5', '>=')
+
+- name: set macs according to openssh-version if openssh >= 5.9
+  set_fact:
+    ssh_macs: '{{ ssh_macs_59_default }}'
+  when: sshd_version is version('5.9', '>=')
+
+- name: set macs according to openssh-version if openssh >= 6.6
+  set_fact:
+    ssh_macs: '{{ ssh_macs_66_default }}'
+  when: sshd_version is version('6.6', '>=')
+
+- name: set macs according to openssh-version if openssh >= 7.6
+  set_fact:
+    ssh_macs: '{{ ssh_macs_76_default }}'
+  when: sshd_version is version('7.6', '>=')
