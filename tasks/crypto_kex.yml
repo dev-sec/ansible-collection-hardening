@@ -1,0 +1,15 @@
+---
+- name: set kex according to openssh-version if openssh >= 5.9
+  set_fact:
+    ssh_kex: '{{ ssh_kex_59_default }}'
+  when: sshd_version is version('5.9', '>=')
+
+- name: set kex according to openssh-version if openssh >= 6.6
+  set_fact:
+    ssh_kex: '{{ ssh_kex_66_default }}'
+  when: sshd_version is version('6.6', '>=')
+
+- name: set kex according to openssh-version if openssh >= 8.0
+  set_fact:
+    ssh_kex: '{{ ssh_kex_80_default }}'
+  when: sshd_version is version('8.0', '>=')
