@@ -17,9 +17,6 @@
   set_fact:
     sshd_version: "{{ sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
 
-- name: include tasks to create crypo-vars
-  include_tasks: crypto.yml
-
 - name: set default for ssh_host_key_files if not supplied
   include_tasks: crypto_hostkeys.yml
   when: not ssh_host_key_files
