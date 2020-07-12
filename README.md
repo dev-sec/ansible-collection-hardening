@@ -1,7 +1,6 @@
 # ssh-hardening (Ansible Role)
 
 [![Build Status](http://img.shields.io/travis/dev-sec/ansible-ssh-hardening.svg)][1]
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][2]
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-ssh--hardening-660198.svg)][3]
 
 ## Description
