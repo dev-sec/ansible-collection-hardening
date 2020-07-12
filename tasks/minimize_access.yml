@@ -48,3 +48,15 @@
     group: 'root'
     mode: '0750'
   when: '"change_user" not in os_security_users_allow'
+
+- name: set option hidepid for proc filesystem
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^proc.*'
+    line: '{{ proc_hidepid_entry }}'
+    owner: '{{ os_passwd_perms.owner }}'
+    group: '{{ os_passwd_perms.group }}'
+    mode: '{{ os_passwd_perms.mode }}'
+
+- name: remount filesystem
+  shell: mount -a

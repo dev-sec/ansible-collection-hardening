@@ -109,3 +109,5 @@ os_security_suid_sgid_system_whitelist:
 
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
+
+proc_hidepid_entry: 'proc                    /proc                   proc    defaults,nosuid,nodev,noexec,relatime,hidepid=2,gid=root    0 0'
