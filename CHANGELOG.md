@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.1) (2020-07-12)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.3.0...9.3.1)
+
+**Closed issues:**
+
+- Simplify crypto.yml checks with blocks [\#256](https://github.com/dev-sec/ansible-ssh-hardening/issues/256)
+
 ## [9.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.0) (2020-07-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.2.0...9.3.0)
@@ -11,11 +19,14 @@
 - fix typo in hardening.yml [\#304](https://github.com/dev-sec/ansible-ssh-hardening/pull/304) ([schurzi](https://github.com/schurzi))
 - allow customization of X11Forwarding [\#300](https://github.com/dev-sec/ansible-ssh-hardening/pull/300) ([divialth](https://github.com/divialth))
 
+**Fixed bugs:**
+
+- fix package install in tests [\#301](https://github.com/dev-sec/ansible-ssh-hardening/pull/301) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Closed issues:**
 
 - Typo in hardening.yml [\#303](https://github.com/dev-sec/ansible-ssh-hardening/issues/303)
 - Task create sshd\_config and set permissions fails [\#302](https://github.com/dev-sec/ansible-ssh-hardening/issues/302)
-- Simplify crypto.yml checks with blocks [\#256](https://github.com/dev-sec/ansible-ssh-hardening/issues/256)
 
 ## [9.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.2.0) (2020-06-25)
 
@@ -27,10 +38,6 @@
 - Add option to create 'LocalPort' match blocks [\#295](https://github.com/dev-sec/ansible-ssh-hardening/pull/295) ([aisbergg](https://github.com/aisbergg))
 - Add archlinux support [\#291](https://github.com/dev-sec/ansible-ssh-hardening/pull/291) ([djesionek](https://github.com/djesionek))
 - Harmonize style [\#290](https://github.com/dev-sec/ansible-ssh-hardening/pull/290) ([aisbergg](https://github.com/aisbergg))
-
-**Fixed bugs:**
-
-- fix package install in tests [\#301](https://github.com/dev-sec/ansible-ssh-hardening/pull/301) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
 
