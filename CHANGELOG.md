@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.0.4](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.4) (2020-07-05)
+## [6.0.4](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.4) (2020-07-12)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.3...6.0.4)
 
@@ -185,7 +185,6 @@
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
 - add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
-- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -216,6 +215,7 @@
 
 **Implemented enhancements:**
 
+- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 - add modprobe template, control os-10 [\#138](https://github.com/dev-sec/ansible-os-hardening/pull/138) ([rndmh3ro](https://github.com/rndmh3ro))
 - new task for delete netrc files, control os-09 [\#137](https://github.com/dev-sec/ansible-os-hardening/pull/137) ([rndmh3ro](https://github.com/rndmh3ro))
 - add passwd task, control os-03 [\#136](https://github.com/dev-sec/ansible-os-hardening/pull/136) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -315,7 +315,6 @@
 - debian 8 support [\#88](https://github.com/dev-sec/ansible-os-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
 - Ufw manage defaults [\#85](https://github.com/dev-sec/ansible-os-hardening/pull/85) ([fitz123](https://github.com/fitz123))
 - replace ignore\_errors to failed\_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) ([fitz123](https://github.com/fitz123))
-- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 
 **Fixed bugs:**
 
@@ -339,6 +338,7 @@
 
 **Implemented enhancements:**
 
+- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 - update platforms in meta-file [\#69](https://github.com/dev-sec/ansible-os-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
 - add webhook for ansible galaxy [\#68](https://github.com/dev-sec/ansible-os-hardening/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - Move sysctl vars to defaults [\#67](https://github.com/dev-sec/ansible-os-hardening/pull/67) ([rndmh3ro](https://github.com/rndmh3ro))
