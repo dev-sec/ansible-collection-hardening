@@ -61,7 +61,7 @@
     owner: '{{ os_passwd_perms.owner }}'
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
-	when: fstab_file.stat.exists
+  when: fstab_file.stat.exists
 
 - name: set option hidepid for proc filesystem
   lineinfile:
@@ -71,4 +71,4 @@
     owner: '{{ os_passwd_perms.owner }}'
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
-	when: fstab_file.stat.exists
+  when: fstab_file.stat.exists
