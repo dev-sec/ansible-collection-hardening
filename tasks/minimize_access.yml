@@ -50,9 +50,9 @@
   when: '"change_user" not in os_security_users_allow'
 
 - name: Ensure file /etc/fstab exists
-   stat:
-     path: /etc/fstab
-   register: fstab
+  stats:
+    path: /etc/fstab
+  register: fstab
 
 - name: Create proc mount point
   file:
