@@ -1,12 +1,17 @@
 # Changelog
 
-## [9.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.1) (2020-07-12)
+## [9.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.1) (2020-07-13)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.3.0...9.3.1)
 
 **Closed issues:**
 
+- Idempotency when changing sshd ports [\#299](https://github.com/dev-sec/ansible-ssh-hardening/issues/299)
 - Simplify crypto.yml checks with blocks [\#256](https://github.com/dev-sec/ansible-ssh-hardening/issues/256)
+
+**Merged pull requests:**
+
+- README: New section on server port and idempotency [\#307](https://github.com/dev-sec/ansible-ssh-hardening/pull/307) ([nununo](https://github.com/nununo))
 
 ## [9.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.0) (2020-07-09)
 
