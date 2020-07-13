@@ -49,6 +49,11 @@
     mode: '0750'
   when: '"change_user" not in os_security_users_allow'
 
+- name: Check if file /etc/fstab exists
+   stat:
+     path: /etc/fstab
+   register: fstab
+
 - name: Create proc mount point
   file:
     path: /proc
@@ -56,6 +61,7 @@
     owner: '{{ os_passwd_perms.owner }}'
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
+	when: fstab.stat.exists
 
 - name: set option hidepid for proc filesystem
   lineinfile:
@@ -65,3 +71,4 @@
     owner: '{{ os_passwd_perms.owner }}'
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
+	when: fstab.stat.exists
