@@ -49,7 +49,7 @@
     mode: '0750'
   when: '"change_user" not in os_security_users_allow'
 
-- name: Check if file /etc/fstab exists
+- name: Ensure file /etc/fstab exists
    stat:
      path: /etc/fstab
    register: fstab
