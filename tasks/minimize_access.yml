@@ -57,6 +57,3 @@
     owner: '{{ os_passwd_perms.owner }}'
     group: '{{ os_passwd_perms.group }}'
     mode: '{{ os_passwd_perms.mode }}'
-
-- name: remount filesystem
-  shell: mount -a
