@@ -54,5 +54,5 @@
     path: /proc
     src: proc
     fstype: proc
-    opts: '{{ proc_mnt_options }}' 
+    opts: '{{ proc_mnt_options }}'
     state: present
