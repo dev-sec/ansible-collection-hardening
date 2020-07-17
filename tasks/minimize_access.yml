@@ -56,4 +56,3 @@
     fstype: proc
     opts: '{{ proc_mnt_options }}' 
     state: present
-  tags: [test]
