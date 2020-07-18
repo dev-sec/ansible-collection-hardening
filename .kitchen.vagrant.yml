@@ -33,6 +33,9 @@ platforms:
 - name: centos-7
   driver_config:
     box: bento/centos-7
+- name: centos-8
+  driver_config:
+    box: bento/centos-8
 - name: oracle-6
   driver_config:
     box: bento/oracle-6

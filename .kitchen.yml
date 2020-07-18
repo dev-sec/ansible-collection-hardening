@@ -36,6 +36,20 @@ platforms:
     provision_command:
       - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
       - systemctl enable sshd.service
+- name: centos8-ansible-latest
+  driver:
+    image: rndmh3ro/docker-centos8-ansible:latest
+    platform: centos
+    cap_add:
+      - SYS_ADMIN
+    volume:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    run_command: /sbin/init
+    provision_command:
+      - sed -i '/nologin/d' /etc/pam.d/sshd
+      - systemctl enable sshd.service
+  provisioner:
+    ansible_binary_path: "/usr/local/bin"
 - name: oracle6-ansible-latest
   driver:
     image: rndmh3ro/docker-oracle6-ansible:latest

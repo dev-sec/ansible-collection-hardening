@@ -97,3 +97,13 @@
 - name: include selinux specific tasks
   include_tasks: selinux.yml
   when: ansible_facts.selinux and ansible_facts.selinux.status == "enabled"
+
+- name: disable system CRYPTO_POLICY for RHEL8+
+  lineinfile:
+    path: /etc/sysconfig/sshd
+    regexp: 'CRYPTO_POLICY='
+    line: CRYPTO_POLICY=
+  when:
+    - ansible_facts.distribution in ['CentOS', 'OracleLinux', 'RedHat']
+    - ansible_facts.distribution_version is version('8.0', '>=')
+    - sshd_disable_crypto_policy | bool
