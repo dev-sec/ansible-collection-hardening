@@ -1,17 +1,24 @@
 # Changelog
 
-## [9.3.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.1) (2020-07-13)
+## [9.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.4.0) (2020-07-20)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.3.0...9.3.1)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.3.0...9.4.0)
+
+**Implemented enhancements:**
+
+- Add CentOS 8 support for ansible-ssh-hardening [\#247](https://github.com/dev-sec/ansible-ssh-hardening/issues/247)
+- add support for CentOS8 [\#309](https://github.com/dev-sec/ansible-ssh-hardening/pull/309) ([schurzi](https://github.com/schurzi))
+- README: New section on server port and idempotency [\#307](https://github.com/dev-sec/ansible-ssh-hardening/pull/307) ([nununo](https://github.com/nununo))
+
+**Fixed bugs:**
+
+- CBC Ciphers should be disabled by default. [\#308](https://github.com/dev-sec/ansible-ssh-hardening/issues/308)
 
 **Closed issues:**
 
 - Idempotency when changing sshd ports [\#299](https://github.com/dev-sec/ansible-ssh-hardening/issues/299)
 - Simplify crypto.yml checks with blocks [\#256](https://github.com/dev-sec/ansible-ssh-hardening/issues/256)
-
-**Merged pull requests:**
-
-- README: New section on server port and idempotency [\#307](https://github.com/dev-sec/ansible-ssh-hardening/pull/307) ([nununo](https://github.com/nununo))
+- Possibility for customising host key algorithms? [\#243](https://github.com/dev-sec/ansible-ssh-hardening/issues/243)
 
 ## [9.3.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.3.0) (2020-07-09)
 
@@ -471,10 +478,6 @@
 - Selinux issue [\#75](https://github.com/dev-sec/ansible-ssh-hardening/issues/75)
 - Running the tests locally [\#61](https://github.com/dev-sec/ansible-ssh-hardening/issues/61)
 
-**Closed issues:**
-
-- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
-
 ## [3.1.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/3.1.0) (2016-08-03)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/3.1...3.1.0)
@@ -582,6 +585,7 @@
 **Closed issues:**
 
 - ssh\_ports - individual client/server config [\#33](https://github.com/dev-sec/ansible-ssh-hardening/issues/33)
+- Applied-Crypto-Hardening project and new cyphers. [\#28](https://github.com/dev-sec/ansible-ssh-hardening/issues/28)
 - UsePAM should probably default to yes on Red Hat Linux 7 [\#23](https://github.com/dev-sec/ansible-ssh-hardening/issues/23)
 
 **Merged pull requests:**
