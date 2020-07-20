@@ -130,6 +130,7 @@ bundle install
 ```
 
 ### Testing with Docker
+
 ```
 # fast test on one machine
 bundle exec kitchen test ssh-ubuntu1804-ansible-latest
