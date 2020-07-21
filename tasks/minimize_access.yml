@@ -48,3 +48,11 @@
     group: 'root'
     mode: '0750'
   when: '"change_user" not in os_security_users_allow'
+
+- name: set option hidepid for proc filesystem
+  mount:
+    path: /proc
+    src: proc
+    fstype: proc
+    opts: '{{ proc_mnt_options }}'
+    state: present
