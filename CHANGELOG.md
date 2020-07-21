@@ -1,8 +1,12 @@
 # Changelog
 
-## [6.0.4](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.4) (2020-07-12)
+## [6.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.1.0) (2020-07-21)
 
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.3...6.0.4)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.0.3...6.1.0)
+
+**Implemented enhancements:**
+
+- Mount proc filesystem using hidepid option [\#283](https://github.com/dev-sec/ansible-os-hardening/pull/283) ([alegrey91](https://github.com/alegrey91))
 
 **Fixed bugs:**
 
@@ -185,6 +189,7 @@
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
 - add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
+- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -215,7 +220,6 @@
 
 **Implemented enhancements:**
 
-- update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
 - add modprobe template, control os-10 [\#138](https://github.com/dev-sec/ansible-os-hardening/pull/138) ([rndmh3ro](https://github.com/rndmh3ro))
 - new task for delete netrc files, control os-09 [\#137](https://github.com/dev-sec/ansible-os-hardening/pull/137) ([rndmh3ro](https://github.com/rndmh3ro))
 - add passwd task, control os-03 [\#136](https://github.com/dev-sec/ansible-os-hardening/pull/136) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -297,7 +301,6 @@
 
 - update template [\#101](https://github.com/dev-sec/ansible-os-hardening/pull/101) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix deprecation warning for undefined error. \#99 [\#100](https://github.com/dev-sec/ansible-os-hardening/pull/100) ([rndmh3ro](https://github.com/rndmh3ro))
-- add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [3.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.1.0) (2016-08-03)
 
@@ -315,6 +318,7 @@
 - debian 8 support [\#88](https://github.com/dev-sec/ansible-os-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
 - Ufw manage defaults [\#85](https://github.com/dev-sec/ansible-os-hardening/pull/85) ([fitz123](https://github.com/fitz123))
 - replace ignore\_errors to failed\_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) ([fitz123](https://github.com/fitz123))
+- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 
 **Fixed bugs:**
 
@@ -329,6 +333,7 @@
 
 **Merged pull requests:**
 
+- add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix a formatting issue in readme. [\#92](https://github.com/dev-sec/ansible-os-hardening/pull/92) ([vivekagr](https://github.com/vivekagr))
 - Permits overriding permissions on /etc/shadow [\#89](https://github.com/dev-sec/ansible-os-hardening/pull/89) ([conorsch](https://github.com/conorsch))
 
@@ -338,7 +343,6 @@
 
 **Implemented enhancements:**
 
-- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 - update platforms in meta-file [\#69](https://github.com/dev-sec/ansible-os-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
 - add webhook for ansible galaxy [\#68](https://github.com/dev-sec/ansible-os-hardening/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - Move sysctl vars to defaults [\#67](https://github.com/dev-sec/ansible-os-hardening/pull/67) ([rndmh3ro](https://github.com/rndmh3ro))
