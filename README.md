@@ -81,7 +81,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 | `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
 | `os_auditd_max_log_file_action` | `keep_logs` | Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`. |
 | `hidepid_option` | `2` | `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc. |
-| `proc_mnt_options` | `defaults,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }},gid=root` | Mount proc with hardenized options, including `hidepid` with variable value. |
+| `proc_mnt_options` | `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}` | Mount proc with hardenized options, including `hidepid` with variable value. |
 
 ## Packages
 
@@ -226,4 +226,3 @@ limitations under the License.
 [1]: http://travis-ci.org/dev-sec/ansible-os-hardening
 [2]: https://gitter.im/dev-sec/general
 [3]: https://galaxy.ansible.com/dev-sec/os-hardening
-
