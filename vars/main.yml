@@ -111,4 +111,4 @@ os_security_suid_sgid_system_whitelist:
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
 
 hidepid_option: '2' # allowed values: 0, 1, 2
-proc_mnt_options: 'defaults,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }},gid=root'
+proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
