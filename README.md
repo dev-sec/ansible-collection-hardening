@@ -16,10 +16,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
 ## Role Variables
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
-|`network_ipv6_enable` | false |true if IPv6 is needed|
+|`network_ipv6_enable` | false |true if IPv6 is needed. `ssh_listen_to` must also be set to listen to IPv6 addresses (for example `[::]`).|
 |`ssh_server_ports` | ['22'] |ports on which ssh-server should listen|
 |`ssh_client_port` | '22' |port to which ssh-client should connect|
-|`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all adresseses, but should be configured to specific addresses for security reasons!|
+|`ssh_listen_to` | ['0.0.0.0'] |one or more ip addresses, to which ssh-server should listen to. Default is all IPv4 adresses, but should be configured to specific addresses for security reasons!|
 |`ssh_host_key_files` | [] |Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version|
 |`ssh_host_key_algorithms` | [] | Host key algorithms that the server offers. If empty the [default list](https://man.openbsd.org/sshd_config#HostKeyAlgorithms) will be used, otherwise overrides the setting with specified list of algorithms|
 |`ssh_client_alive_interval` | 600 | specifies an interval for sending keepalive messages |
