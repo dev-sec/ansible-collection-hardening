@@ -278,3 +278,6 @@ os_auditd_max_log_file_action: keep_logs
 os_selinux_state: enforcing
 # Set the SELinux polixy.
 os_selinux_policy: targeted
+
+hidepid_option: '2' # allowed values: 0, 1, 2
+proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
