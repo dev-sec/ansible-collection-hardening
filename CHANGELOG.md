@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.4.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.4.1) (2020-07-22)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.4.0...9.4.1)
+
+**Fixed bugs:**
+
+- network\_ipv6\_enable: true not working [\#311](https://github.com/dev-sec/ansible-ssh-hardening/issues/311)
+
+**Merged pull requests:**
+
+- improve testing in kitchen and travis [\#313](https://github.com/dev-sec/ansible-ssh-hardening/pull/313) ([schurzi](https://github.com/schurzi))
+
 ## [9.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.4.0) (2020-07-21)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.3.0...9.4.0)
@@ -13,7 +25,6 @@
 
 **Fixed bugs:**
 
-- network\_ipv6\_enable: true not working [\#311](https://github.com/dev-sec/ansible-ssh-hardening/issues/311)
 - CBC Ciphers should be disabled by default. [\#308](https://github.com/dev-sec/ansible-ssh-hardening/issues/308)
 
 **Closed issues:**
