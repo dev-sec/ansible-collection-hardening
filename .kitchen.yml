@@ -111,7 +111,7 @@ platforms:
     image: rndmh3ro/docker-fedora-ansible:latest
     platform: centos
     provision_command:
-      - dnf install -y python
+      - dnf install -y python procps-ng
       - sed -i '/nologin/d' /etc/pam.d/sshd
       - systemctl enable sshd.service
 

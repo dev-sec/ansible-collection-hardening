@@ -20,6 +20,7 @@
         name:
           - openssh-clients
           - openssh-server
+          - procps-ng
         state: present
         update_cache: true
       ignore_errors: true
