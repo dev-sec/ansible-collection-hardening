@@ -1,0 +1,18 @@
+---
+win_security_policy_template_location: 'C:\Windows\security\templates'
+win_security_policy_database_location: 'C:\Windows\security\database'
+win_security_policy_log_location: 'C:\Windows\security\logs'
+win_security_policy_database_name: 'hardening.sdb'
+
+# System access settings
+win_security_PasswordComplexity: 1
+win_security_LockoutBadCount: 4
+win_security_ResetLockoutCount: 15
+win_security_LockoutDuration: 15
+
+# Security policy rights / privileges settings.
+win_security_SeRemoteInteractiveLogonRight: '*S-1-5-32-544'
+win_security_SeTcbPrivilege: '*S-1-0-0'
+win_security_SeMachineAccountPrivilege: '*S-1-5-32-544'
+win_security_SeTrustedCredManAccessPrivilege: ''
+win_security_SeNetworkLogonRight: '*S-1-0-0'

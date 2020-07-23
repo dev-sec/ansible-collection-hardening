@@ -1,0 +1,4 @@
+name: windows-hardening-integration-tests
+depends:
+  - name: windows-baseline
+    url: https://github.com/dev-sec/windows-baseline

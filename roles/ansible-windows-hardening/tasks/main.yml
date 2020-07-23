@@ -1,0 +1,30 @@
+---
+- include: access.yml
+  tags: access
+
+- include: account.yml
+  tags: account
+
+- include: audit.yml
+  tags: audit
+
+- include: ie.yml
+  tags: ie
+
+- include: misc.yml
+  tags: misc
+
+- include: password_policy.yml
+  tags: password_policy
+
+- include: powershell.yml
+  tags: powershell
+
+- include: rdp.yml
+  tags: rdp
+
+- include: security_policy.yml
+  tags: security_policy
+
+- include: user_rights.yml
+  tags: user_rights

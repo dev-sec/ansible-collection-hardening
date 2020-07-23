@@ -1,0 +1,16 @@
+---
+# Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts
+- name: Powershell ScriptBlock Logging | powershell-script-blocklogging
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+    name: "EnableScriptBlockLogging"
+    data: "0"
+    type: dword
+
+# Transcription creates a unique record of every PowerShell session, including all input and output, exactly as it appears in the session.
+- name: Powershell Transcription | powershell-transcription
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription
+    name: "EnableTranscripting"
+    data: "0"
+    type: dword

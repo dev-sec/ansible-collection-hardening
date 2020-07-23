@@ -1,0 +1,28 @@
+---
+- name: Microsoft Online Accounts | microsoft-online-accounts
+  win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\PolicyManager\default\Settings\AllowYourAccount
+    name: "value"
+    data: "0"
+    type: dword
+
+- name: Disable Windows Store | disable-windows-store
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore
+    name: "AutoDownload"
+    data: "4"
+    type: dword
+
+- name: Ensure Turn off Automatic Download and Install of Updates is set to Disabled
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\WindowsStore
+    name: "DisableOSUpgrade"
+    data: "1"
+    type: dword
+
+- name: Disable indexing encrypted files | disable-index-encrypted-files
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+    name: "AllowIndexingEncryptedStoresOrItems"
+    data: "0"
+    type: dword

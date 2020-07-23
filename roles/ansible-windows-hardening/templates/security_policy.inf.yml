@@ -1,0 +1,20 @@
+[Unicode]
+Unicode=yes
+
+[Version]
+signature="$CHICAGO$"
+Revision=1
+
+[System Access]
+PasswordComplexity = {{win_security_PasswordComplexity}}
+LockoutBadCount = {{win_security_LockoutBadCount}}
+ResetLockoutCount = {{win_security_ResetLockoutCount}}
+LockoutDuration = {{win_security_LockoutDuration}}
+
+[Privilege Rights]
+SeRemoteInteractiveLogonRight = {{win_security_SeRemoteInteractiveLogonRight}}
+SeTcbPrivilege = {{win_security_SeTcbPrivilege}}
+SeMachineAccountPrivilege = {{win_security_SeMachineAccountPrivilege}}
+SeTrustedCredManAccessPrivilege = {{win_security_SeTrustedCredManAccessPrivilege}}
+SeNetworkLogonRight = {{win_security_SeNetworkLogonRight}}
+
