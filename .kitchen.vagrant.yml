@@ -1,0 +1,62 @@
+---
+driver:
+  name: vagrant
+  driver_config:
+    http_proxy: <%= ENV['http_proxy'] || nil %>
+    https_proxy: <%= ENV['https_proxy'] || nil %>
+  vagrantfiles:
+    - kitchen_vagrant_block.rb
+
+provisioner:
+  name: ansible_playbook
+  hosts: all
+  require_ansible_repo: false
+  require_ansible_omnibus: true
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbose: true
+  roles_path: ../ansible-ssh-hardening/
+  playbook: tests/default.yml
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
+
+platforms:
+- name: ubuntu-16.04
+  driver_config:
+    box: bento/ubuntu-16.04
+- name: ubuntu-18.04
+  driver_config:
+    box: bento/ubuntu-18.04
+- name: centos-6
+  driver_config:
+    box: bento/centos-6
+- name: centos-7
+  driver_config:
+    box: bento/centos-7
+- name: centos-8
+  driver_config:
+    box: bento/centos-8
+- name: oracle-6
+  driver_config:
+    box: bento/oracle-6
+- name: oracle-7
+  driver_config:
+    box: bento/oracle-7
+- name: debian-9
+  driver_config:
+    box: bento/debian-9
+- name: debian-10
+  driver_config:
+    box: bento/debian-10
+- name: amazon
+  driver_config:
+    box: bento/amazonlinux-2
+
+verifier:
+  name: inspec
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/ssh-baseline/
+
+suites:
+- name: ssh

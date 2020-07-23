@@ -1,0 +1,139 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
+  hosts: localhost
+  pre_tasks:
+    - name: use python3
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when: ansible_facts.distribution == 'Fedora'
+
+    - yum:
+        name:
+          - openssh-clients
+          - openssh-server
+          - libselinux-python
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - dnf:
+        name:
+          - openssh-clients
+          - openssh-server
+          - procps-ng
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - apt:
+        name:
+          - openssh-client
+          - openssh-server
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - file:
+        path: "/var/run/sshd"
+        state: directory
+
+    - pacman:
+        name:
+          - "openssh"
+          - "awk"
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - name: create ssh host keys
+      command: "ssh-keygen -A"
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
+            ansible_facts.distribution == "Fedora" or
+            ansible_facts.distribution == "Amazon"
+
+  roles:
+    - ansible-ssh-hardening
+  vars:
+    network_ipv6_enable: true
+    ssh_allow_tcp_forwarding: 'yes'
+    ssh_gateway_ports: true
+    ssh_allow_agent_forwarding: true
+    ssh_server_permit_environment_vars: 'yes'
+    ssh_server_accept_env_vars: 'PWD HTTP_PROXY'
+    ssh_client_alive_interval: 100
+    ssh_client_alive_count: 10
+    ssh_client_password_login: true
+    ssh_challengeresponseauthentication: true
+    ssh_compression: true
+    ssh_allow_users: 'root kitchen vagrant'
+    ssh_allow_groups: 'root kitchen vagrant'
+    ssh_deny_users: 'foo bar'
+    ssh_deny_groups: 'foo bar'
+    ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
+    ssh_max_auth_retries: 10
+    ssh_permit_root_login: "without-password"
+    ssh_permit_tunnel: true
+    ssh_print_motd: true
+    ssh_print_last_log: true
+    ssh_banner: true
+    ssh_server_password_login: true
+    sftp_enabled: true
+    sftp_chroot: true
+    #ssh_server_enabled: false
+    ssh_server_ports:
+      - 22
+      - 222
+    ssh_server_match_address:
+      - address: '192.168.1.1/24'
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
+    ssh_server_match_group:
+      - group: 'root'
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
+    ssh_server_match_user:
+      - user: 'root'
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
+    ssh_server_match_local_port:
+      - port: 222
+        rules:
+          - 'AllowTcpForwarding yes'
+          - 'AllowAgentForwarding no'
+    ssh_remote_hosts:
+      - names: ['example.com', 'example2.com']
+        options: ['Port 2222', 'ForwardAgent yes']
+      - names: ['example3.com']
+        options: ['StrictHostKeyChecking no']
+    ssh_use_dns: true
+    ssh_use_pam: true
+    ssh_max_startups: '10:30:60'
+    ssh_trusted_user_ca_keys_file: '/etc/ssh/ca.pub'
+    ssh_trusted_user_ca_keys:
+      - '# ssh-rsa ...'
+    ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
+    ssh_authorized_principals:
+      - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
+    ssh_host_key_algorithms:
+      - ssh-ed25519
+      - rsa-sha2-512
+      - rsa-sha2-256
+      - ssh-rsa
+    ssh_macs:
+      - hmac-sha2-512
+      - hmac-sha2-256
+    ssh_ciphers:
+      - aes256-ctr
+      - aes192-ctr
+      - aes128-ctr
+      - aes256-cbc
+    ssh_kex:
+      - diffie-hellman-group-exchange-sha256
+      - diffie-hellman-group-exchange-sha1
+    ssh_custom_options:
+      - "Include /etc/ssh/ssh_config.d/*"
+    sshd_custom_options:
+      - "AcceptEnv LANG"
