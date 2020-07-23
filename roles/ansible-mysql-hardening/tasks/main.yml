@@ -1,0 +1,21 @@
+---
+
+- name: add the OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  tags: always
+
+- include: configure.yml
+  when: mysql_hardening_enabled | bool
+  tags:
+    - mysql_hardening
+
+- include: mysql_secure_installation.yml
+  when: mysql_hardening_enabled | bool
+  tags:
+    - mysql_hardening
+    - mysql_secure_installation

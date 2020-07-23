@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  author: "Sebastian Gumprich"
+  description: 'This Ansible playbook provides security configuration for mysql.'
+  company: Hardening Framework Team
+  license: Apache License 2.0
+  min_ansible_version: '1.9'
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - jessie
+    - name: Amazon
+    - name: Fedora
+  galaxy_tags:
+    - system
+    - security
+    - hardening
+    - database
+    - mysql
+dependencies: []

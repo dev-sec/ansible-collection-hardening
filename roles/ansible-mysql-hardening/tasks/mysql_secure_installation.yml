@@ -1,0 +1,56 @@
+---
+
+# supported for ansible ver => 2.0
+#- name: Install python-mysqldb for Ansible
+#  package: pkg=python-mysqldb state=present
+
+
+- name: Install python3-mysqldb for Ansible
+  apt: name=python3-mysqldb state=present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '20.04'
+
+- name: Install python-mysqldb for Ansible
+  apt: name=python-mysqldb state=present
+  when: ansible_distribution == 'Debian' or
+        (ansible_distribution == 'Ubuntu' and ansible_distribution_version < '20.04')
+
+- name: Install MySQL-python for Ansible
+  yum: name=MySQL-python state=present
+  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
+
+- debug: msg="WARNING - you have to change default mysql_root_password"
+  when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+
+- name: root password is present
+  mysql_user: name=root host={{item}} password={{mysql_root_password | mandatory}} state=present
+  with_items:
+    - '::1'
+    - '127.0.0.1'
+    - 'localhost'
+
+- name: install .my.cnf with credentials
+  template: src=my.cnf.j2 dest={{mysql_user_home}}/.my.cnf
+            mode=0400
+  tags: my_cnf
+
+- name: test database is absent
+  mysql_db: name=test state=absent
+  when: mysql_remove_test_database
+
+- name: anonymous users are absent
+  mysql_user: name='' state=absent host_all=yes
+  when: mysql_remove_anonymous_users
+
+- name: copy mysql_remove_remote_root
+  copy: src='{{item}}.sql' dest='/tmp/{{item}}.sql'
+  with_items:
+    - mysql_remove_remote_root
+  when: mysql_remove_remote_root
+  changed_when: false
+
+- name: apply mysql_remove_remote_root
+  mysql_db: name='mysql' state=import target='/tmp/{{item}}.sql'
+  with_items:
+    - mysql_remove_remote_root
+  when: mysql_remove_remote_root
+  changed_when: false
