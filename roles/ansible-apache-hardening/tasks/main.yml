@@ -1,0 +1,33 @@
+---
+- name: add the OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags: always
+
+- name: config should not be worldwide read- or writeable | DTAG SEC Req 3.36-3
+  file: path="{{apache_server_root}}" recurse=yes mode="o-rwx" owner="{{apache_user}}" group="{{apache_group}}"
+
+- name: Get installed version of Apache.
+  shell: "{{ apache_daemon_path }}/{{ apache_daemon }} -v"
+  changed_when: false
+  register: _apache_version
+
+- name: Create apache_version variable.
+  set_fact:
+    apache_version: '{{ _apache_version.stdout.split()[2].split("/")[1] }}'
+
+- name: create directories in case they don't exist
+  file: path="{{item}}" state=directory owner="{{apache_user}}" group="{{apache_group}}" mode=0740
+  with_items:
+    - "{{apache_server_root}}"
+    - "{{apache_confd_dir}}"
+    - "{{apache_conf_dir}}"
+    - "{{apache_vhost_load_dir}}"
+    - "{{apache_logroot}}"
+
+
+- name: configure httpd.conf
+  template: src="httpd.conf.j2" dest="{{apache_conf_dir}}/{{apache_conf_file}}" owner="{{apache_user}}" group="{{apache_group}}" mode=0640 backup=yes
+  notify: restart apache
+
+- name: harden apache
+  template: src="hardening.conf.j2" dest="{{apache_confd_dir}}/90.hardening.conf" owner="{{apache_user}}" group="{{apache_group}}" mode=0640 backup=yes

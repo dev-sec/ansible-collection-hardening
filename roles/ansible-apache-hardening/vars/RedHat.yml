@@ -1,0 +1,20 @@
+---
+apache_daemon: "httpd"
+apache_daemon_path: "/usr/sbin"
+apache_conf_file: "httpd.conf"
+apache_error_log: "error.log"
+
+apache_server_root: "/etc/httpd"
+apache_confd_dir: "{{apache_server_root}}/conf.d"
+apache_conf_dir: "{{apache_server_root}}/conf"
+apache_mod_load_dir: "{{apache_confd_dir}}"
+apache_vhost_load_dir: "{{apache_confd_dir}}"
+apache_ports_file: "{{apache_conf_dir}}/ports.conf"
+apache_logroot: "/var/log/httpd"
+
+apache_error_documents_path: "/usr/share/httpd/error"
+apache_icons_path: "/var/www/icons"
+apache_user: "apache"
+apache_group: "apache"
+
+apache_pid_file: "run/httpd.pid"

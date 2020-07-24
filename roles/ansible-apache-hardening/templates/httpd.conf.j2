@@ -1,0 +1,107 @@
+# {{ansible_managed}}
+# Security
+ServerTokens {{ apache_server_tokens }}
+ServerSignature {{ apache_server_signature }}
+TraceEnable {{ apache_trace_enable }}
+
+ServerName {{ apache_servername }}
+ServerRoot {{ apache_server_root }}
+PidFile {{ apache_pid_file }}
+Timeout {{ apache_timeout }}
+KeepAlive {{ apache_keepalive }}
+MaxKeepAliveRequests {{ apache_max_keepalive_requests }}
+KeepAliveTimeout {{ apache_keepalive_timeout }}
+
+User {{ apache_user }}
+Group {{ apache_group }}
+
+AccessFileName .htaccess
+<FilesMatch "^\.ht">
+{% if apache_version.split('.')[1] == '4' %}
+    Require all denied
+{% else %}
+     Order allow,deny
+     Deny from all
+     Satisfy all
+{% endif %}
+</FilesMatch>
+
+<Directory />
+  Options -Indexes -FollowSymLinks
+  AllowOverride None
+</Directory>
+
+# TODO: variablen!
+DefaultType none
+HostnameLookups Off
+ErrorLog "{{ apache_logroot }}/{{ apache_error_log }}"
+LogLevel {{ apache_log_level }}
+EnableSendfile {{ apache_sendfile }}
+{% if apache_allow_encoded_slashes %}
+AllowEncodedSlashes "{{ apache_allow_encoded_slashes }}"
+{% endif %}
+
+Include "{{ apache_mod_load_dir }}/*.load"
+{% if apache_mod_load_dir != apache_confd_dir and apache_mod_load_dir != apache_vhost_load_dir %}
+Include "{{ apache_mod_load_dir }}/*.conf"
+{% endif %}
+#Include "{{ apache_ports_file }}"
+
+LogFormat "%h %l %u %t \"%r\" }}s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" }}s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+{% if apache_version.split('.')[1] == '4' %}
+IncludeOptional "{{ apache_confd_dir }}/*.conf"
+{% else %}
+Include "{{ apache_confd_dir }}/*.conf"
+{% endif %}
+
+{% if apache_vhost_load_dir != apache_confd_dir %}
+{% if apache_version.split('.')[1] == '4' %}
+IncludeOptional "{{ apache_vhost_load_dir }}/*"
+{% else %}
+Include "{{ apache_vhost_load_dir }}/*"
+{% endif %}
+{% endif %}
+
+{% if apache_error_documents %}
+# /usr/share/apache2/error on debian
+Alias /error/ "{{ apache_error_documents_path }}/"
+
+<Directory "{{ apache_error_documents_path }}">
+  AllowOverride None
+  Options IncludesNoExec
+  AddOutputFilter Includes html
+  AddHandler type-map var
+# TODO
+{% if apache_version.split('.')[1] == '4' %}
+  Require all granted
+{% else %}
+  Order allow,deny
+  Allow from all
+{% endif %}
+  LanguagePriority en cs de es fr it nl sv pt-br ro
+  ForceLanguagePriority Prefer Fallback
+</Directory>
+
+ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var
+ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var
+ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var
+ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var
+ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var
+ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var
+ErrorDocument 410 /error/HTTP_GONE.html.var
+ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var
+ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var
+ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var
+ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var
+ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var
+ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var
+ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var
+ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var
+ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var
+ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var
+{% endif %}
+

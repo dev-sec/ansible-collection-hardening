@@ -1,0 +1,20 @@
+---
+apache_server_tokens: 'Prod'
+apache_server_signature: 'Off'
+apache_trace_enable: 'Off'
+apache_servername: "{{ansible_nodename}}"
+apache_timeout: 120
+apache_keepalive: 'Off'
+apache_max_keepalive_requests: 100
+apache_keepalive_timeout: 15
+
+apache_log_level: warn
+
+apache_sendfile: 'On'
+apache_allow_encoded_slashes:
+
+# Manage apache error documents
+apache_error_documents: true
+
+apache_allowed_http_methods: "GET POST"
+apache_modules_to_disable: "cgi cgid"

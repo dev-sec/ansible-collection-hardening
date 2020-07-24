@@ -1,0 +1,20 @@
+---
+apache_daemon: "apache2"
+apache_daemon_path: "/usr/sbin"
+apache_conf_file: "apache2.conf"
+apache_error_log: "error.log"
+
+apache_server_root: "/etc/apache2"
+apache_confd_dir: "{{apache_conf_dir}}/conf.d"
+apache_conf_dir: "/etc/apache2"
+apache_mod_load_dir: "{{apache_conf_dir}}/mods-enabled"
+apache_vhost_load_dir: "{{apache_conf_dir}}/sites-enabled"
+apache_ports_file: "{{apache_conf_dir}}/ports.conf"
+apache_logroot: "/var/log/apache2"
+
+apache_error_documents_path: "/usr/share/apache2/error"
+apache_icons_path: "/usr/share/apache2/icons"
+apache_user: "www-data"
+apache_group: "www-data"
+
+apache_pid_file: "run/httpd.pid"
