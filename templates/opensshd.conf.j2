@@ -231,7 +231,7 @@ PrintMotd {{ 'yes' if (ssh_print_motd|bool) else 'no' }}
 PrintLastLog {{ 'yes' if (ssh_print_last_log|bool) else 'no' }}
 {% endif %}
 
-Banner {{ '/etc/ssh/banner.txt' if (ssh_banner|bool) else 'none' }}
+Banner {{ ssh_banner_path if (ssh_banner|bool) else 'none' }}
 
 {% if ansible_facts.os_family == 'Debian' %}
 DebianBanner {{ 'yes' if (ssh_print_debian_banner|bool) else 'no' }}

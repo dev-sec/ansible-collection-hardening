@@ -137,8 +137,11 @@ ssh_print_motd: false               # sshd
 # false to disable display of last login information
 ssh_print_last_log: false           # sshd
 
-# false to disable serving /etc/ssh/banner.txt before authentication is allowed
+# false to disable serving ssh warning banner before authentication is allowed
 ssh_banner: false                   # sshd
+
+# path to file with ssh warning banner 
+ssh_banner_path: '/etc/ssh/banner.txt'
 
 # false to disable distribution version leakage during initial protocol handshake
 ssh_print_debian_banner: false      # sshd (Debian OS family only)

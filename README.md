@@ -57,6 +57,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`ssh_client_password_login` | false | `true` to allow password-based authentication with the ssh client |
 |`ssh_server_password_login` | false | `true` to allow password-based authentication with the ssh server |
 |`ssh_banner` | `false` | `true` to print a banner on login |
+|`ssh_banner_path`| '/etc/sshd/banner.txt' | path to the SSH banner file |
 |`ssh_client_hardening` | `true` | `false` to stop harden the client |
 |`ssh_client_port` | `'22'` | Specifies the port number to connect on the remote host. |
 |`ssh_client_compression` | `false` | Specifies whether the client requests compression. |
