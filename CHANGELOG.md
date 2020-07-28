@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.6.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.6.0) (2020-07-28)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.5.0...9.6.0)
+
+**Implemented enhancements:**
+
+- add SmartOS support [\#294](https://github.com/dev-sec/ansible-ssh-hardening/pull/294) ([aqw](https://github.com/aqw))
+
 ## [9.5.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.5.0) (2020-07-27)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.4.0...9.5.0)
@@ -557,7 +565,6 @@
 
 **Closed issues:**
 
-- Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/dev-sec/ansible-ssh-hardening/issues/50)
 - should generate new ssh host key files [\#45](https://github.com/dev-sec/ansible-ssh-hardening/issues/45)
 
 **Merged pull requests:**
@@ -570,6 +577,7 @@
 
 **Closed issues:**
 
+- Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/dev-sec/ansible-ssh-hardening/issues/50)
 - Fix directory structure. [\#43](https://github.com/dev-sec/ansible-ssh-hardening/issues/43)
 
 **Merged pull requests:**
