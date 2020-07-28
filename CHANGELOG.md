@@ -8,6 +8,15 @@
 
 - add SmartOS support [\#294](https://github.com/dev-sec/ansible-ssh-hardening/pull/294) ([aqw](https://github.com/aqw))
 
+**Fixed bugs:**
+
+- fix local kitchen tests [\#318](https://github.com/dev-sec/ansible-ssh-hardening/pull/318) ([schurzi](https://github.com/schurzi))
+- fix sftp\_umask; store as literal not octal [\#317](https://github.com/dev-sec/ansible-ssh-hardening/pull/317) ([aqw](https://github.com/aqw))
+
+**Closed issues:**
+
+- Make SSH banner path configurable [\#315](https://github.com/dev-sec/ansible-ssh-hardening/issues/315)
+
 ## [9.5.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.5.0) (2020-07-27)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.4.0...9.5.0)
@@ -59,7 +68,6 @@
 - Add support for X11 configuration [\#297](https://github.com/dev-sec/ansible-ssh-hardening/issues/297)
 - add blocks to crypto.yml checks [\#305](https://github.com/dev-sec/ansible-ssh-hardening/pull/305) ([schurzi](https://github.com/schurzi))
 - fix typo in hardening.yml [\#304](https://github.com/dev-sec/ansible-ssh-hardening/pull/304) ([schurzi](https://github.com/schurzi))
-- allow customization of X11Forwarding [\#300](https://github.com/dev-sec/ansible-ssh-hardening/pull/300) ([divialth](https://github.com/divialth))
 
 **Fixed bugs:**
 
@@ -77,6 +85,7 @@
 **Implemented enhancements:**
 
 - Add RHEL 8 Support  [\#261](https://github.com/dev-sec/ansible-ssh-hardening/issues/261)
+- allow customization of X11Forwarding [\#300](https://github.com/dev-sec/ansible-ssh-hardening/pull/300) ([divialth](https://github.com/divialth))
 - Add option to create 'LocalPort' match blocks [\#295](https://github.com/dev-sec/ansible-ssh-hardening/pull/295) ([aisbergg](https://github.com/aisbergg))
 - Add archlinux support [\#291](https://github.com/dev-sec/ansible-ssh-hardening/pull/291) ([djesionek](https://github.com/djesionek))
 - Harmonize style [\#290](https://github.com/dev-sec/ansible-ssh-hardening/pull/290) ([aisbergg](https://github.com/aisbergg))
@@ -565,6 +574,7 @@
 
 **Closed issues:**
 
+- Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/dev-sec/ansible-ssh-hardening/issues/50)
 - should generate new ssh host key files [\#45](https://github.com/dev-sec/ansible-ssh-hardening/issues/45)
 
 **Merged pull requests:**
@@ -577,7 +587,6 @@
 
 **Closed issues:**
 
-- Install from ansible galaxy missing files \(tasks\) [\#50](https://github.com/dev-sec/ansible-ssh-hardening/issues/50)
 - Fix directory structure. [\#43](https://github.com/dev-sec/ansible-ssh-hardening/issues/43)
 
 **Merged pull requests:**
