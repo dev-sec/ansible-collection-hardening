@@ -5,7 +5,12 @@ driver:
   cap_add:
     - SYS_ADMIN
   volume:
-    - /sys/fs/cgroup:/sys/fs/cgroup
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  run_options:
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
   run_command: /sbin/init
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
