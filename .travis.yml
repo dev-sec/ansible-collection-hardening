@@ -25,7 +25,7 @@ env:
     - distro=amazon
     - distro=fedora
     - distro=opensuse_tumbleweed
-      run_opts="--cap-add SYS_ADMIN --volume=/run:/run:ro"
+      run_opts="--cap-add SYS_ADMIN --tmpfs /run --tmpfs /tmp --tmpfs /run/lock"
 
 before_install:
   # Pull container
