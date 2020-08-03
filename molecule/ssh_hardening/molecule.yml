@@ -1,0 +1,30 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint: |
+  yamllint roles/ssh_hardening/ molecule/ssh_hardening/ .github/workflows/ssh_hardening.yml
+  ansible-lint roles/ssh_hardening/
+platforms:
+  - name: instance
+    image: "rndmh3ro/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+    tty: True
+    environment:
+      container: docker
+provisioner:
+  name: ansible
+  vvv: True
+verifier:
+  name: inspec
