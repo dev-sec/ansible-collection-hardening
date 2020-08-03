@@ -1,8 +1,12 @@
 # Changelog
 
-## [6.1.1](https://github.com/dev-sec/ansible-os-hardening/tree/6.1.1) (2020-07-22)
+## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-03)
 
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.1.1)
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
+
+**Implemented enhancements:**
+
+- improve testing [\#287](https://github.com/dev-sec/ansible-os-hardening/pull/287) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
@@ -188,10 +192,6 @@
 - Fix core dump config file creation when core dumps are disabled [\#182](https://github.com/dev-sec/ansible-os-hardening/pull/182) ([Normo](https://github.com/Normo))
 - change minimize access method [\#181](https://github.com/dev-sec/ansible-os-hardening/pull/181) ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Merged pull requests:**
-
-- add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [4.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.3.0) (2018-01-03)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/4.3.1...4.3.0)
@@ -273,6 +273,7 @@
 **Merged pull requests:**
 
 - Converts set to JSON-serializable list [\#126](https://github.com/dev-sec/ansible-os-hardening/pull/126) ([pestaa](https://github.com/pestaa))
+- add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
 
@@ -334,6 +335,7 @@
 - debian 8 support [\#88](https://github.com/dev-sec/ansible-os-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
 - Ufw manage defaults [\#85](https://github.com/dev-sec/ansible-os-hardening/pull/85) ([fitz123](https://github.com/fitz123))
 - replace ignore\_errors to failed\_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) ([fitz123](https://github.com/fitz123))
+- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 
 **Fixed bugs:**
 
@@ -357,7 +359,6 @@
 
 **Implemented enhancements:**
 
-- fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 - update platforms in meta-file [\#69](https://github.com/dev-sec/ansible-os-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
 - add webhook for ansible galaxy [\#68](https://github.com/dev-sec/ansible-os-hardening/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
 - Move sysctl vars to defaults [\#67](https://github.com/dev-sec/ansible-os-hardening/pull/67) ([rndmh3ro](https://github.com/rndmh3ro))
