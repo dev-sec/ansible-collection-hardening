@@ -24,6 +24,9 @@
           - findutils
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
+    - name: install required tools on SuSE
+      shell: "zypper -n install python-xml"
+      when: ansible_facts.os_family == 'Suse'
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
   vars:

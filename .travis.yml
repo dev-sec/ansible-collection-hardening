@@ -2,63 +2,30 @@
 services: docker
 
 env:
-  - distro: centos6
-    version: latest
-    init: /sbin/init
-
-  - distro: centos7
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
-
-  - distro: centos8
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
-
-  - distro: fedora
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
-
-  - distro: oracle6
-    version: latest
-    init: /sbin/init
-
-#  - distro: oracle7
-#    init: /lib/systemd/systemd
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    version: latest
-
-  - distro: ubuntu1604
-    version: latest
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  - distro: ubuntu1804
-    version: latest
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  - distro: debian9
-    version: latest
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  - distro: debian10
-    version: latest
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  - distro: amazon
-    init: /lib/systemd/systemd
-    version: latest
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-  # - distro: opensuse_tumbleweed
-  #   init: /usr/lib/systemd/systemd
-  #   version: latest
-  #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/run:/run:ro"
+  global:
+    - version=latest
+    - init=/sbin/init
+    - run_opts="--cap-add SYS_ADMIN"
+    - volume="/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  jobs:
+    - distro=centos6
+      volume=":"
+      run_opts=""
+    - distro=centos7
+    - distro=centos8
+    - distro=oracle6
+      volume=":"
+      run_opts=""
+#    - distro=oracle7
+    - distro=ubuntu1604
+    - distro=ubuntu1804
+    - distro=debian9
+      init=/lib/systemd/systemd
+    - distro=debian10
+    - distro=amazon
+    - distro=fedora
+    - distro=opensuse_tumbleweed
+      run_opts="--privileged"
 
 before_install:
   # Pull container
@@ -70,7 +37,7 @@ script:
 
   - container_id=$(mktemp)
   # Run container in detached state.
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-os-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
+  - 'docker run --detach --volume="${volume}" --volume="${PWD}":/etc/ansible/roles/ansible-os-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
   # Output Ansible version from docker image
   - 'docker exec "$(cat ${container_id})" ansible-playbook --version'
@@ -79,7 +46,7 @@ script:
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/tests/test.yml --diff'
 
    # Verify role
-  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --controls=os-01 os-02 os-03 os-04 os-05 os-05b os-06 os-07 os-09 os-10 os-11 package-01 package-02 package-03 package-05 package-06 package-08 package-09 --no-distinct-exit'
+  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
