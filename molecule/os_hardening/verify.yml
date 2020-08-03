@@ -10,7 +10,7 @@
     inspec_el_os_version: 7
   roles:
     - darkwizard242.inspec
-    - geerlingguy.git 
+    - geerlingguy.git
   tasks:
     - name: Execute Inspec tests
       command: "/opt/inspec/bin/inspec exec --no-show-progress --no-color --no-distinct-exit --chef-license accept https://github.com/dev-sec/linux-baseline.git"
