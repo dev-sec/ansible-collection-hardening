@@ -25,7 +25,7 @@ env:
     - distro=amazon
     - distro=fedora
     - distro=opensuse_tumbleweed
-      run_opts="--cap-add SYS_ADMIN --volume /run:/run:rw --tmpfs /tmp --tmpfs /run/lock"
+      run_opts="--privileged"
 
 before_install:
   # Pull container
@@ -45,9 +45,8 @@ script:
    # Test role.
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/tests/test.yml --diff'
 
-  - env
    # Verify role
-  - 'strace -e network -s8000 -f inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit --controls=os-02'
+  - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
