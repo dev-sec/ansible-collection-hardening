@@ -3,16 +3,11 @@
   file:
     name: '/etc/yum.repos.d/{{ item }}.repo'
     state: 'absent'
-  with_items:
+  loop:
     - 'CentOS-Debuginfo'
     - 'CentOS-Media'
     - 'CentOS-Vault'
   when: os_security_packages_clean | bool
-
-- name: get yum-repository-files
-  shell: 'find /etc/yum.repos.d/ -type f -name *.repo'
-  changed_when: False
-  register: yum_repos
 
   # for the 'default([])' see here:
   # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
@@ -31,8 +26,15 @@
   with_flattened:
     - '/etc/yum.conf'
     - '/etc/dnf/dnf.conf'
-    - '{{ yum_repos.stdout_lines| default([]) }}' # noqa 104
     - '/etc/yum/pluginconf.d/rhnplugin.conf'
+
+- name: activate gpg-check for repositories
+  replace:
+    dest: '{{ item }}'
+    regexp: '^\s*gpgcheck: 0'
+    replace: 'gpgcheck: 1'
+  with_fileglob:
+    - '/etc/yum.repos.d/*.repo'
 
 - name: remove deprecated or insecure packages | package-01 - package-09
   yum:
