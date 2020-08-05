@@ -6,22 +6,6 @@
     - nginx_ppa_use: true
     - nginx_ppa_version: stable
   tasks:
-    - apt_repository:
-        repo: "deb http://ftp.debian.org/debian jessie-backports main"
-        state: present
-      when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
-
-    - set_fact:
-        nginx_default_release: "jessie-backports"
-      when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
-
-    - package:
-        name:
-        - "systemd"
-        - "python3-apt"
-        update_cache: true
-      ignore_errors: true
-
     - include_role:
         name: geerlingguy.nginx
 
