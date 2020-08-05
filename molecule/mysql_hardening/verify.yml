@@ -13,7 +13,7 @@
     - geerlingguy.git
   tasks:
     - name: Execute Inspec tests
-      command: "/opt/inspec/bin/inspec exec --no-show-progress --no-color --no-distinct-exit --chef-license accept https://github.com/dev-sec/mysql-baseline.git"
+      command: "/opt/inspec/bin/inspec exec --no-show-progress --no-color --no-distinct-exit --chef-license accept https://github.com/dev-sec/mysql-baseline/archive/log.zip"
       register: test_results
       changed_when: false
       ignore_errors: true

@@ -1,27 +1,8 @@
 ---
-# supported for ansible ver => 2.0
-#- name: Install python-mysqldb for Ansible
-#  package: pkg=python-mysqldb state=present
-
-
-- name: Install python3-mysqldb for Ansible
-  apt:
-    name: python3-mysqldb
+- name: Install mysqld python libary for Ansible
+  package:
+    name: "{{ mysql_python_package }}"
     state: present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version >= '20.04'
-
-- name: Install python-mysqldb for Ansible
-  apt:
-    name: python-mysqldb
-    state: present
-  when: ansible_distribution == 'Debian' or
-        (ansible_distribution == 'Ubuntu' and ansible_distribution_version < '20.04')
-
-- name: Install MySQL-python for Ansible
-  yum:
-    name: MySQL-python
-    state: present
-  when: ansible_os_family == 'RedHat' or ansible_os_family == 'Oracle Linux'
 
 - debug:
     msg: "WARNING - you have to change default mysql_root_password"
