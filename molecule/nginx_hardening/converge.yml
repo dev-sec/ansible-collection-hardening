@@ -1,5 +1,6 @@
 ---
 - name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  become: true
   hosts: localhost
   vars:
     - nginx_ppa_use: true
