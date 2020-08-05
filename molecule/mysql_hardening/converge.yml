@@ -5,10 +5,10 @@
   become: true
   tasks:
     - include_role:
-      name: geerlingguy.mysql
+        name: geerlingguy.mysql
 
     - include_role:
-      name: mysql_hardening
+        name: mysql_hardening
   vars:
     overwrite_global_mycnf: no
     mysql_root_password: iloverandompasswordsbutthiswilldo
