@@ -18,7 +18,7 @@
 - name: remove vfat from fs-list if /boot/efi is mounted
   set_fact:
     os_unused_filesystems: "{{ os_unused_filesystems | difference('vfat') }}"
-  when: ('vfat' in "{{ ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | map(attribute='fstype') | list  }}")
+  when: ('vfat' in ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | map(attribute='fstype') | list)
 
 - name: disable unused filesystems | os-10
   template:
