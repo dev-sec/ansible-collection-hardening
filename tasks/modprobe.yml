@@ -14,11 +14,9 @@
     os_unused_filesystems: "{{ os_unused_filesystems | difference('vfat') }}"
   when: efi_installed.stat.isdir is defined and efi_installed.stat.isdir
 
-# some systems seem to require /boot/efi mounted while not exposing /sys/firmware/efi
-- name: remove vfat from fs-list if /boot/efi is mounted
+- name: remove used filesystems from fs-list
   set_fact:
-    os_unused_filesystems: "{{ os_unused_filesystems | difference('vfat') }}"
-  when: ('vfat' in ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | map(attribute='fstype') | list)
+    os_unused_filesystems: "{{ os_unused_filesystems | difference(ansible_mounts | map(attribute='fstype') | list) }}"
 
 - name: disable unused filesystems | os-10
   template:
