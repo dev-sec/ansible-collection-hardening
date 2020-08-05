@@ -1,0 +1,25 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  hosts: localhost
+  vars:
+    - nginx_ppa_use: true
+    - nginx_ppa_version: stable
+  pre_tasks:
+    - apt_repository:
+        repo: "deb http://ftp.debian.org/debian jessie-backports main"
+        state: present
+      when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
+    - set_fact:
+        nginx_default_release: "jessie-backports"
+      when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
+    - package: name="{{item}}" state=installed
+      with_items:
+        - "systemd"
+      ignore_errors: true
+    - apt: name="{{item}}" state=installed update_cache=true
+      with_items:
+        - "systemd"
+      ignore_errors: true
+  roles:
+    - geerlingguy.nginx
+    - ansible-nginx-hardening

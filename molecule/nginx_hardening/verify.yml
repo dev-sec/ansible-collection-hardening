@@ -1,0 +1,28 @@
+---
+# This is an example playbook to execute inspec tests.
+# Tests need distributed to the appropriate ansible host/groups
+# prior to execution by `inspec exec`.
+
+- name: Verify
+  hosts: all
+  become: true
+  vars:
+    inspec_el_os_version: 7
+  roles:
+    - darkwizard242.inspec
+    - geerlingguy.git
+  tasks:
+    - name: Execute Inspec tests
+      command: "/opt/inspec/bin/inspec exec --no-show-progress --no-color --no-distinct-exit --chef-license accept https://github.com/dev-sec/nginx-baseline.git"
+      register: test_results
+      changed_when: false
+      ignore_errors: true
+
+    - name: Display details about the Inspec results
+      debug:
+        msg: "{{ test_results.stdout_lines }}"
+
+    - name: Fail when tests fail
+      fail:
+        msg: "Inspec failed to validate"
+      when: test_results.rc != 0
