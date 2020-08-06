@@ -23,7 +23,7 @@
     replace: 'gpgcheck: 1'
   register: status
   failed_when: status.rc is defined and status.rc != 257
-  with_flattened:
+  loop:
     - '/etc/yum.conf'
     - '/etc/dnf/dnf.conf'
     - '/etc/yum/pluginconf.d/rhnplugin.conf'
