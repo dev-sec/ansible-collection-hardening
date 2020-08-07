@@ -13,7 +13,3 @@ group :integration do
   gem 'kitchen-docker'
   gem 'inspec', '~> 3'
 end
-
-group :tools do
-  gem 'github_changelog_generator', '~> 1'
-end
