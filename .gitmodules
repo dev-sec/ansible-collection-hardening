@@ -10,3 +10,9 @@
 [submodule "roles/mysql_hardening"]
 	path = roles/mysql_hardening
 	url = https://github.com/dev-sec/ansible-mysql-hardening/
+[submodule "roles/ssh_hardening"]
+	path = roles/ssh_hardening
+	url = https://github.com/dev-sec/ansible-ssh-hardening/
+[submodule "roles/os_hardening"]
+	path = roles/os_hardening
+	url = https://github.com/dev-sec/ansible-os-hardening/
