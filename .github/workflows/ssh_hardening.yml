@@ -41,6 +41,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: ansible_collections/devsec/hardening
+          submodules: true
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v1
