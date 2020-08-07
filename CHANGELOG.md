@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-08-07)
+
+[Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
+
+**Merged pull requests:**
+
+- update testing [\#48](https://github.com/dev-sec/ansible-mysql-hardening/pull/48) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [2.2.1](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.1) (2020-06-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.0...2.2.1)
