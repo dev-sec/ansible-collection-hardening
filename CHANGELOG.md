@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-03)
+## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-07)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
 
@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-os-hardening/pull/289) ([schurzi](https://github.com/schurzi))
 - move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-os-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.1.0) (2020-07-21)
