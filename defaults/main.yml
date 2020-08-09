@@ -133,6 +133,7 @@ ssh_authorized_principals: []       # sshd
 
 # false to disable printing of the MOTD
 ssh_print_motd: false               # sshd
+ssh_print_pam_motd: false           # sshd
 
 # false to disable display of last login information
 ssh_print_last_log: false           # sshd
