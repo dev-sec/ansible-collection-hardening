@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.7.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.0) (2020-08-09)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.6.0...9.7.0)
+
+**Implemented enhancements:**
+
+- add separate option for controlling motd via pam [\#320](https://github.com/dev-sec/ansible-ssh-hardening/pull/320) ([schurzi](https://github.com/schurzi))
+
 ## [9.6.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.6.0) (2020-07-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.5.0...9.6.0)
@@ -508,7 +516,6 @@
 **Implemented enhancements:**
 
 - CentOS 7 selinux dependencies [\#76](https://github.com/dev-sec/ansible-ssh-hardening/issues/76)
-- install selinux dependencies, check for already installed semodule [\#79](https://github.com/dev-sec/ansible-ssh-hardening/pull/79) ([rndmh3ro](https://github.com/rndmh3ro))
 - Parameterise Banner and DebianBanner as defaults [\#77](https://github.com/dev-sec/ansible-ssh-hardening/pull/77) ([tsenart](https://github.com/tsenart))
 
 **Fixed bugs:**
@@ -536,6 +543,7 @@
 **Implemented enhancements:**
 
 - Add Xenial / Ubuntu 16.04 LTS to meta/main.yml [\#63](https://github.com/dev-sec/ansible-ssh-hardening/issues/63)
+- install selinux dependencies, check for already installed semodule [\#79](https://github.com/dev-sec/ansible-ssh-hardening/pull/79) ([rndmh3ro](https://github.com/rndmh3ro))
 - Use new ciphers, kex, macs and priv separation sandbox for redhat family 7 [\#73](https://github.com/dev-sec/ansible-ssh-hardening/pull/73) ([atomic111](https://github.com/atomic111))
 - add docker support [\#71](https://github.com/dev-sec/ansible-ssh-hardening/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
 - add always\_run: true to task. fix \#64 [\#69](https://github.com/dev-sec/ansible-ssh-hardening/pull/69) ([rndmh3ro](https://github.com/rndmh3ro))
