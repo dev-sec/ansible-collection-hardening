@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
   options:
-    role-file: requirements.yml
+    role-file: molecule/ssh_hardening/requirements.yml
 driver:
   name: docker
 lint: |
