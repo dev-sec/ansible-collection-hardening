@@ -30,6 +30,8 @@ jobs:
             command: /lib/systemd/systemd
           - distro: ubuntu1804
             command: /lib/systemd/systemd
+          - distro: ubuntu2004
+            command: /lib/systemd/systemd
           - distro: debian9
             command: /lib/systemd/systemd
           - distro: debian10
