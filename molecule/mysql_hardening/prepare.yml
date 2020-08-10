@@ -16,7 +16,7 @@
     - name: install procps for debian systems
       apt:
         name: procps
-        state: installed
+        state: present
         update_cache: yes
       when: ansible_distribution == 'Debian'
 
