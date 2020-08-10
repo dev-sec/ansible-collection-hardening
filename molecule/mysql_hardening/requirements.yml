@@ -1,3 +1,7 @@
 roles:
-  - darkwizard242.inspec
-  - geerlingguy.git
+  - name: darkwizard242.inspec
+    version: 1.1.0
+  - name: geerlingguy.git
+    version: 3.0.0
+  - name: geerlingguy.mysql
+    version: 3.3.0
