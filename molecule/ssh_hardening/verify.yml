@@ -1,24 +1,20 @@
 ---
-# This is an example playbook to execute inspec tests.
-# Tests need distributed to the appropriate ansible host/groups
-# prior to execution by `inspec exec`.
-
 - name: Verify
   hosts: all
   become: true
-  vars:
-    inspec_el_os_version: 7
   roles:
-    - darkwizard242.inspec
     - geerlingguy.git
   tasks:
-    - name: Execute Inspec tests
-      command: "/opt/inspec/bin/inspec exec --no-show-progress --no-color --no-distinct-exit --chef-license accept https://github.com/dev-sec/ssh-baseline.git"
+    - name: install cinc-auditor
+      shell: "curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor -v 4"
+
+    - name: Execute cinc-auditor tests
+      command: "cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline.git"
       register: test_results
       changed_when: false
       ignore_errors: true
 
-    - name: Display details about the Inspec results
+    - name: Display details about the cinc-auditor results
       debug:
         msg: "{{ test_results.stdout_lines }}"
 
