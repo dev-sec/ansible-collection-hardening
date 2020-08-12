@@ -6,7 +6,7 @@
     - geerlingguy.git
   tasks:
     - name: install cinc-auditor
-      shell: "curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor -v 4"
+      shell: "wget -O - -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor -v 4"
 
     - name: Execute cinc-auditor tests
       command: "cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/mysql-baseline.git"
