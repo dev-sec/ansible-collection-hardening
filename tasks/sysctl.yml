@@ -13,15 +13,16 @@
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or
-        ansible_facts.distribution == 'CentOS' or ansible_facts.distribution == 'Amazon'
+  when: ansible_facts.distribution in ['Amazon', 'CentOS', 'Fedora', 'RedHat']
 
 - name: install initramfs-tools
   apt:
     name: 'initramfs-tools'
     state: 'present'
     update_cache: true
-  when: ansible_facts.os_family == 'Debian' and os_security_kernel_enable_module_loading
+  when:
+    - ansible_facts.os_family == 'Debian'
+    - os_security_kernel_enable_module_loading
 
 - name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
   template:
@@ -32,7 +33,9 @@
     mode: '0440'
   notify:
     - update-initramfs
-  when: ansible_facts.os_family == 'Debian' and os_security_kernel_enable_module_loading
+  when:
+    - ansible_facts.os_family == 'Debian'
+    - os_security_kernel_enable_module_loading
   register: initramfs
 
 - name: change sysctls
@@ -60,14 +63,16 @@
         reload: yes
         ignoreerrors: yes
       with_dict: '{{ sysctl_rhel_config }}'
-      when: ((ansible_facts.distribution == 'RedHat' or ansible_facts.distribution == 'Fedora' or ansible_facts.distribution == 'CentOS') and
+      when: ((ansible_facts.distribution in ['CentOS', 'Fedora', 'RedHat']) and
             ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'
 
-  when: ansible_virtualization_type not in ['docker', 'openvz', 'lxc']
+  when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
 - name: Apply ufw defaults
   template:
     src: 'etc/default/ufw.j2'
     dest: '/etc/default/ufw'
-  when: ufw_manage_defaults and (ansible_facts.distribution == 'Debian' or ansible_facts.distribution == 'Ubuntu')
+  when:
+    - ufw_manage_defaults
+    - ansible_facts.distribution in ['Debian', 'Ubuntu']
   tags: ufw
