@@ -30,7 +30,7 @@
 # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
 # All other errors will still be raised.
 - name: activate gpg-check for config files
-  lineinfile:
+  replace:
     path: '{{ item }}'
     regexp: '^\s*gpgcheck\W.*'
     line: 'gpgcheck=1'
