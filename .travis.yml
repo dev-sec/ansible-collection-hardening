@@ -24,6 +24,7 @@ env:
     - distro=debian10
     - distro=amazon
     - distro=fedora
+      init=/lib/systemd/systemd
     - distro=opensuse_tumbleweed
       run_opts="--privileged"
 
