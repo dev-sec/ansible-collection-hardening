@@ -1,12 +1,13 @@
 # Changelog
 
-## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-13)
+## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
 
 **Implemented enhancements:**
 
 - Optimize and unify when clause [\#295](https://github.com/dev-sec/ansible-os-hardening/pull/295) ([Alexhha](https://github.com/Alexhha))
+- use find module instead of shell [\#294](https://github.com/dev-sec/ansible-os-hardening/pull/294) ([danielkubat](https://github.com/danielkubat))
 - improve testing [\#287](https://github.com/dev-sec/ansible-os-hardening/pull/287) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
@@ -407,6 +408,7 @@
 - Add explicit role-path to kitchen.yml [\#52](https://github.com/dev-sec/ansible-os-hardening/pull/52) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix pam passwdqc template [\#51](https://github.com/dev-sec/ansible-os-hardening/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 - New dir layout [\#49](https://github.com/dev-sec/ansible-os-hardening/pull/49) ([rndmh3ro](https://github.com/rndmh3ro))
+- remove duplicate "update pam" task [\#46](https://github.com/dev-sec/ansible-os-hardening/pull/46) ([fitz123](https://github.com/fitz123))
 - Fix stuck in case pam files was updated before by force update [\#45](https://github.com/dev-sec/ansible-os-hardening/pull/45) ([fitz123](https://github.com/fitz123))
 - Fix nologin shell path [\#44](https://github.com/dev-sec/ansible-os-hardening/pull/44) ([fitz123](https://github.com/fitz123))
 - improved travis-tests to cover more cases [\#42](https://github.com/dev-sec/ansible-os-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -425,7 +427,6 @@
 
 **Merged pull requests:**
 
-- remove duplicate "update pam" task [\#46](https://github.com/dev-sec/ansible-os-hardening/pull/46) ([fitz123](https://github.com/fitz123))
 - Update kitchen-ansible, remove separate debian install [\#40](https://github.com/dev-sec/ansible-os-hardening/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add mode to su-binary task. Fix \#38 [\#39](https://github.com/dev-sec/ansible-os-hardening/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#37](https://github.com/dev-sec/ansible-os-hardening/pull/37) ([chris-rock](https://github.com/chris-rock))
