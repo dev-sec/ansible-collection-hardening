@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-16)
+## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
 
@@ -13,6 +13,7 @@
 **Fixed bugs:**
 
 - Inconsistent use of role vars/role defaults [\#284](https://github.com/dev-sec/ansible-os-hardening/issues/284)
+- replace module parameter fixed [\#297](https://github.com/dev-sec/ansible-os-hardening/pull/297) ([danielkubat](https://github.com/danielkubat))
 
 **Closed issues:**
 
@@ -24,6 +25,7 @@
 **Merged pull requests:**
 
 - fix fedora build [\#296](https://github.com/dev-sec/ansible-os-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
+- do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-os-hardening/pull/289) ([schurzi](https://github.com/schurzi))
 - move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-os-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.1.0) (2020-07-21)
@@ -44,7 +46,6 @@
 
 **Merged pull requests:**
 
-- do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-os-hardening/pull/289) ([schurzi](https://github.com/schurzi))
 - install procps in debian so sysctl.conf exists [\#282](https://github.com/dev-sec/ansible-os-hardening/pull/282) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.0.3](https://github.com/dev-sec/ansible-os-hardening/tree/6.0.3) (2020-06-06)
@@ -186,7 +187,9 @@
 - Rename pam\_passwdqd.j2 to pam\_passwdqc.j2 [\#172](https://github.com/dev-sec/ansible-os-hardening/pull/172) ([martinbydefault](https://github.com/martinbydefault))
 - Use package state 'present' since 'installed' is deprecated [\#168](https://github.com/dev-sec/ansible-os-hardening/pull/168) ([Normo](https://github.com/Normo))
 - Update syntax to Ansible 2.4 [\#161](https://github.com/dev-sec/ansible-os-hardening/pull/161) ([thomasjpfan](https://github.com/thomasjpfan))
+- add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support for Amazon Linux [\#158](https://github.com/dev-sec/ansible-os-hardening/pull/158) ([woneill](https://github.com/woneill))
+- install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) ([HelioCampos](https://github.com/HelioCampos))
 
 **Fixed bugs:**
@@ -209,14 +212,12 @@
 
 - Update some RH settings in this role [\#155](https://github.com/dev-sec/ansible-os-hardening/issues/155)
 - Removal of core dump hardening configuration if core dumps are allowed [\#129](https://github.com/dev-sec/ansible-os-hardening/issues/129)
-- add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) ([rndmh3ro](https://github.com/rndmh3ro))
 - Don't create home for system accounts [\#156](https://github.com/dev-sec/ansible-os-hardening/pull/156) ([oakey-b1](https://github.com/oakey-b1))
 - Prevent disabling of filesystems via whitelist [\#153](https://github.com/dev-sec/ansible-os-hardening/pull/153) ([manuelprinz](https://github.com/manuelprinz))
 - Add kernel hardening settings from Ubuntu /etc/sysctl.d [\#150](https://github.com/dev-sec/ansible-os-hardening/pull/150) ([kravietz](https://github.com/kravietz))
 - Removal of core dump hardening configuration if core dumps are allowed [\#146](https://github.com/dev-sec/ansible-os-hardening/pull/146) ([martinbydefault](https://github.com/martinbydefault))
 - add missing sysctl parameter [\#143](https://github.com/dev-sec/ansible-os-hardening/pull/143) ([rndmh3ro](https://github.com/rndmh3ro))
 - update readme [\#139](https://github.com/dev-sec/ansible-os-hardening/pull/139) ([rndmh3ro](https://github.com/rndmh3ro))
-- add modprobe template, control os-10 [\#138](https://github.com/dev-sec/ansible-os-hardening/pull/138) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -247,7 +248,7 @@
 
 **Implemented enhancements:**
 
-- install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) ([rndmh3ro](https://github.com/rndmh3ro))
+- add modprobe template, control os-10 [\#138](https://github.com/dev-sec/ansible-os-hardening/pull/138) ([rndmh3ro](https://github.com/rndmh3ro))
 - new task for delete netrc files, control os-09 [\#137](https://github.com/dev-sec/ansible-os-hardening/pull/137) ([rndmh3ro](https://github.com/rndmh3ro))
 - add passwd task, control os-03 [\#136](https://github.com/dev-sec/ansible-os-hardening/pull/136) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove prelink package, control package-09 [\#135](https://github.com/dev-sec/ansible-os-hardening/pull/135) ([rndmh3ro](https://github.com/rndmh3ro))
