@@ -5,8 +5,14 @@
   roles:
     - geerlingguy.git
   tasks:
+    - name: download cinc-auditor
+      get_url:
+        url: https://omnitruck.cinc.sh/install.sh
+        dest: /tmp/install.sh
+        mode: '0775'
+
     - name: install cinc-auditor
-      shell: "wget -O - -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor -v 4"
+      shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
 
     - name: Execute cinc-auditor tests
       command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/linux-baseline.git"
