@@ -33,7 +33,7 @@
   replace:
     path: '{{ item }}'
     regexp: '^\s*gpgcheck\W.*'
-    line: 'gpgcheck=1'
+    replace: 'gpgcheck=1'
   register: status
   failed_when: status.rc is defined and status.rc != 257
   loop:
