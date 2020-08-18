@@ -23,7 +23,7 @@
     path: '{{ item.path }}'
     regexp: '^\s*gpgcheck.*'
     replace: 'gpgcheck=1'
-    mode: preserve
+    mode: 0644
   with_items:
     - '{{ yum_repos.files | default([]) }}'
 
@@ -35,7 +35,7 @@
     path: '{{ item }}'
     regexp: '^\s*gpgcheck\W.*'
     replace: 'gpgcheck=1'
-    mode: preserve
+    mode: 0644
   register: status
   failed_when: status.rc is defined and status.rc != 257
   loop:
