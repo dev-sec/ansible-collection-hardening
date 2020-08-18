@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-08-18)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
+
+**Implemented enhancements:**
+
+- Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299)
+- file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
+
 ## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
