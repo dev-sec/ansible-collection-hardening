@@ -72,6 +72,7 @@
   template:
     src: 'etc/default/ufw.j2'
     dest: '/etc/default/ufw'
+    mode: '0644'
   when:
     - ufw_manage_defaults
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
