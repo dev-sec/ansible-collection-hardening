@@ -34,6 +34,14 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
+    - yum:
+        name:
+          - openssh-clients
+          - openssh
+        state: present
+        update_cache: true
+      ignore_errors: true
+
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
       changed_when: false
