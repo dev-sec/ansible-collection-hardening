@@ -1,6 +1,6 @@
 ---
 name: "devsec.os_hardening"
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     paths:
       - 'roles/os_hardening/**'

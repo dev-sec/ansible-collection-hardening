@@ -27,7 +27,7 @@ provisioner:
   name: ansible
   vvv: true
 verifier:
-  name: inspec
+  name: ansible
 
 scenario:
   create_sequence:
