@@ -19,27 +19,16 @@ jobs:
       matrix:
         molecule_distro:
           - distro: centos7
-            command: /lib/systemd/systemd
           - distro: centos8
-            command: /lib/systemd/systemd
           - distro: fedora
-            command: /lib/systemd/systemd
           - distro: ubuntu1604
-            command: /lib/systemd/systemd
           - distro: ubuntu1804
-            command: /lib/systemd/systemd
           - distro: ubuntu2004
-            command: /lib/systemd/systemd
           - distro: debian9
-            command: /lib/systemd/systemd
           - distro: debian10
-            command: /lib/systemd/systemd
           - distro: amazon
-            command: /lib/systemd/systemd
           - distro: arch
-            command: /lib/systemd/systemd
           - distro: opensuse_tumbleweed
-            command: /lib/systemd/systemd
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -70,5 +59,4 @@ jobs:
           molecule test -s ssh_hardening
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro.distro }}
-          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_distro.command }}
         working-directory: ansible_collections/devsec/hardening
