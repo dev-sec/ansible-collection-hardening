@@ -38,6 +38,10 @@ jobs:
             command: /lib/systemd/systemd
           - distro: amazon
             command: /lib/systemd/systemd
+          - distro: arch
+            command: /lib/systemd/systemd
+          - distro: opensuse_tumbleweed
+            command: /lib/systemd/systemd
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
