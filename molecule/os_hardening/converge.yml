@@ -5,7 +5,8 @@
   collections:
     - devsec.hardening
   tasks:
-
+    - set_fact:
+        ansible_virtualization_type: "docker"
     - include_role:
         name: os_hardening
   vars:
