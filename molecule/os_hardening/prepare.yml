@@ -34,7 +34,8 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
-    - yum:
+    - name: install required tools on RHEL
+      yum:
         name:
           - openssh-clients
           - openssh
