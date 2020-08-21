@@ -4,15 +4,6 @@
   hosts: all
   become: true
   tasks:
-    - name: Run the equivalent of "apt-get update" as a separate step
-      apt:
-        update_cache: yes
-      when: ansible_os_family == 'Debian'
-
-    - file:
-        path: "/etc/mysql"
-        state: directory
-
     - name: install procps for debian systems
       apt:
         name: procps
@@ -20,12 +11,6 @@
         update_cache: yes
       when: ansible_distribution == 'Debian'
 
-    - name: set logfile according to OS
-      set_fact:
-        mysql_log_error: "/var/log/mysql.log"
-      when: ansible_os_family == "Debian"
-
-    - name: set logfile according to OSA
-      set_fact:
-        mysql_log_error: "/var/log/mysqld.log"
-      when: ansible_os_family == "RedHat"
+    - file:
+        path: "/etc/mysql"
+        state: directory

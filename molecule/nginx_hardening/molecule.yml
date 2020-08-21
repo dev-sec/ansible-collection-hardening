@@ -36,7 +36,6 @@ scenario:
     - prepare
   check_sequence:
     - dependency
-    - cleanup
     - destroy
     - create
     - prepare
@@ -44,16 +43,15 @@ scenario:
     - check
     - destroy
   converge_sequence:
+    - dependency
     - create
     - prepare
     - converge
   destroy_sequence:
-    - cleanup
     - destroy
   test_sequence:
     - dependency
     - lint
-    - cleanup
     - destroy
     - syntax
     - create
@@ -61,5 +59,4 @@ scenario:
     - converge
     # - idempotence  # role not idempotent
     - verify
-    - cleanup
     - destroy
