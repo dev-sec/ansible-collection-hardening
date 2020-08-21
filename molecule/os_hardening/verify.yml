@@ -10,7 +10,6 @@
         url: https://omnitruck.cinc.sh/install.sh
         dest: /tmp/install.sh
         mode: '0775'
-        validate_certs: false # centos 6: If the website serving the url uses SNI you need python >= 2.7.9 on your managed machine
 
     - name: install cinc-auditor
       shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
