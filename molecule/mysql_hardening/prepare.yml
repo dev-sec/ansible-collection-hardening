@@ -8,7 +8,7 @@
       apt:
         name: procps
         state: present
-        update_cache: yes
+        update_cache: true
       when: ansible_distribution == 'Debian'
 
     - name: install required tools on SuSE

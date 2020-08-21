@@ -1,3 +1,4 @@
+---
 - name: prepare playbook for kitchen testing "ansible-nginx-hardening" with custom settings
   become: true
   hosts: all
@@ -19,7 +20,7 @@
 
     - package:
         name:
-        - "systemd"
-        - "python3-apt"
+          - "systemd"
+          - "python3-apt"
         update_cache: true
       ignore_errors: true

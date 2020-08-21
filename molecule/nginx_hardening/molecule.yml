@@ -20,12 +20,12 @@ platforms:
       - /run
     capabilities:
       - SYS_ADMIN
-    tty: True
+    tty: true
     environment:
       container: docker
 provisioner:
   name: ansible
-  vvv: True
+  vvv: true
 verifier:
   name: inspec
 

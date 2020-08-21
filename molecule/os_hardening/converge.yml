@@ -57,7 +57,7 @@
       fs.suid_dumpable: 0
       kernel.randomize_va_space: 2
 
-#- name: wrapper playbook for kitchen testing "ansible-os-hardening"
+# - name: wrapper playbook for kitchen testing "ansible-os-hardening"
 #  hosts: all
 #  become: true
 #  collections:

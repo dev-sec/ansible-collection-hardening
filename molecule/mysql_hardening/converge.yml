@@ -25,8 +25,8 @@
     - include_role:
         name: mysql_hardening
   vars:
-    overwrite_global_mycnf: no
+    overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo
     mysql_user_password: iloverandompasswordsbutthiswilldo
     mysql_config_file: /etc/mysql/mariadb.cnf
-    mysql_root_password_update: yes
+    mysql_root_password_update: true
