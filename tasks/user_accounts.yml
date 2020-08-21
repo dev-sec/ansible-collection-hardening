@@ -4,8 +4,8 @@
   args:
     removes: /etc/login.defs
   register: uid_min
-  check_mode: False
-  changed_when: False
+  check_mode: false
+  changed_when: false
 
 - name: calculate UID_MAX from UID_MIN by substracting 1
   set_fact:
@@ -28,20 +28,20 @@
   command: awk -F'':'' '{ if ( $3 <= {{ uid_max|quote }} ) print $1}' /etc/passwd
   args:
     removes: /etc/passwd
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: sys_accs
 
 - name: remove always ignored system accounts from list
   set_fact:
     sys_accs_cond: '{{ sys_accs.stdout_lines | difference(os_always_ignore_users) }}'
-  check_mode: False
+  check_mode: false
 
 - name: change system accounts not on the user provided ignore-list
   user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     password: '*'
-    createhome: False
+    createhome: false
   with_flattened:
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'

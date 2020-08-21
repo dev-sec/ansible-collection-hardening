@@ -49,10 +49,10 @@
       sysctl:
         name: '{{ item.key }}'
         value: '{{ item.value }}'
-        sysctl_set: yes
+        sysctl_set: true
         state: present
-        reload: yes
-        ignoreerrors: yes
+        reload: true
+        ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
 
     - name: Change various sysctl-settings on rhel6-hosts or older, look at the sysctl-vars file for documentation
@@ -60,8 +60,8 @@
         name: '{{ item.key }}'
         value: '{{ item.value }}'
         state: present
-        reload: yes
-        ignoreerrors: yes
+        reload: true
+        ignoreerrors: true
       with_dict: '{{ sysctl_rhel_config }}'
       when: ((ansible_facts.distribution in ['CentOS', 'Fedora', 'RedHat']) and
             ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'

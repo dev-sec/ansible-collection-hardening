@@ -1,14 +1,15 @@
+---
 os_desktop_enable: false
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
-os_auth_pw_min_age: 7 # discourage password cycling
+os_auth_pw_min_age: 7  # discourage password cycling
 os_auth_retries: 5
-os_auth_lockout_time: 600 # 10min
+os_auth_lockout_time: 600  # 10min
 os_auth_timeout: 60
 os_auth_allow_homeless: false
 os_auth_pam_passwdqc_enable: true
-os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8' # used in RHEL6
-os_auth_pam_pwquality_options: 'try_first_pass retry=3 type=' # used in RHEL7
+os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'  # used in RHEL6
+os_auth_pam_pwquality_options: 'try_first_pass retry=3 type='  # used in RHEL7
 os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 
 os_chfn_restrict: ''
@@ -258,10 +259,10 @@ os_unused_filesystems:
   - "vfat"
   # Obsolete network protocols that should be disabled
   # per CIS Oracle Linux 6 Benchmark (2016)
-  - "tipc" # CIS 3.5.4
-  - "sctp" # CIS 3.5.2
-  - "dccp" # CIS 3.5.1
-  - "rds"  # CIS 3.5.3
+  - "tipc"  # CIS 3.5.4
+  - "sctp"  # CIS 3.5.2
+  - "dccp"  # CIS 3.5.1
+  - "rds"   # CIS 3.5.3
 
 # whitelist for used filesystems
 os_filesystem_whitelist: []
@@ -279,5 +280,5 @@ os_selinux_state: enforcing
 # Set the SELinux polixy.
 os_selinux_policy: targeted
 
-hidepid_option: '2' # allowed values: 0, 1, 2
+hidepid_option: '2'  # allowed values: 0, 1, 2
 proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'

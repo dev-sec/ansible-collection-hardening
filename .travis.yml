@@ -16,7 +16,7 @@ env:
     - distro=oracle6
       volume=":"
       run_opts=""
-#    - distro=oracle7
+    # - distro=oracle7
     - distro=ubuntu1604
     - distro=ubuntu1804
     - distro=debian9
@@ -43,10 +43,10 @@ script:
   # Output Ansible version from docker image
   - 'docker exec "$(cat ${container_id})" ansible-playbook --version'
 
-   # Test role.
+  # Test role.
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-os-hardening/tests/test.yml --diff'
 
-   # Verify role
+  # Verify role
   - 'inspec exec https://github.com/dev-sec/linux-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit'
 
 notifications:
