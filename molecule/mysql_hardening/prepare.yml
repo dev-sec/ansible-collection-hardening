@@ -11,6 +11,12 @@
         update_cache: yes
       when: ansible_distribution == 'Debian'
 
+    - name: install required tools on SuSE
+      zypper:
+        name: "python-xml"
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
     - file:
         path: "/etc/mysql"
         state: directory

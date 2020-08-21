@@ -7,6 +7,12 @@
         state: present
       when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
 
+    - name: install required tools on SuSE
+      zypper:
+        name: "python-xml"
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
     - set_fact:
         nginx_default_release: "jessie-backports"
       when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '8'
