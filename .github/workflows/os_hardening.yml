@@ -54,6 +54,9 @@ jobs:
 
       - name: Test with molecule
         run: |
+          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
+            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
+          fi
           molecule --version
           molecule test -s os_hardening
         env:
