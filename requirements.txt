@@ -1,0 +1,6 @@
+molecule
+molecule-inspec
+yamllint
+ansible-lint
+docker
+flake8
