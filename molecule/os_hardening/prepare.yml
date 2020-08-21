@@ -20,10 +20,12 @@
       apt:
         update_cache: true
       when: ansible_facts.os_family == 'Debian'
+
     - name: install required tools on debian
       apt:
         name: procps
       when: ansible_facts.os_family == 'Debian'
+
     - name: install required tools on fedora
       dnf:
         name:
@@ -31,6 +33,7 @@
           - findutils
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
+
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
       changed_when: false
