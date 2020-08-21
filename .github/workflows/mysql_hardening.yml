@@ -24,8 +24,8 @@ jobs:
             command: /lib/systemd/systemd
           - distro: centos8
             command: /lib/systemd/systemd
-          - distro: fedora
-            command: /lib/systemd/systemd
+        #  - distro: fedora                 # geerlingguy.mysql does not support fedora
+        #    command: /lib/systemd/systemd
           - distro: ubuntu1604
             command: /lib/systemd/systemd
           - distro: ubuntu1804
