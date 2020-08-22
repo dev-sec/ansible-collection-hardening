@@ -79,7 +79,7 @@
     ssh_server_password_login: true
     sftp_enabled: true
     sftp_chroot: true
-    #ssh_server_enabled: false
+    # ssh_server_enabled: false
     ssh_server_ports:
       - 22
       - 222

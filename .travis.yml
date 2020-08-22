@@ -16,7 +16,7 @@ env:
     - distro=oracle6
       volume=":"
       run_opts=""
-#    - distro=oracle7
+    # - distro=oracle7
     - distro=ubuntu1604
     - distro=ubuntu1804
     - distro=debian9

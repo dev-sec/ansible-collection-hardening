@@ -1,3 +1,4 @@
+---
 # true if IPv6 is needed
 network_ipv6_enable: false          # sshd + ssh
 
@@ -141,7 +142,7 @@ ssh_print_last_log: false           # sshd
 # false to disable serving ssh warning banner before authentication is allowed
 ssh_banner: false                   # sshd
 
-# path to file with ssh warning banner 
+# path to file with ssh warning banner
 ssh_banner_path: '/etc/ssh/banner.txt'
 
 # false to disable distribution version leakage during initial protocol handshake
@@ -233,7 +234,7 @@ ssh_kex_59_default:
 ssh_kex_66_default:
   - curve25519-sha256@libssh.org
   - diffie-hellman-group-exchange-sha256
-  
+
 ssh_kex_80_default:
   - sntrup4591761x25519-sha512@tinyssh.org
   - curve25519-sha256@libssh.org
@@ -265,7 +266,7 @@ sshd_custom_options: []
 sshd_syslog_facility: 'AUTH'
 sshd_log_level: 'VERBOSE'
 
-sshd_strict_modes: yes
+sshd_strict_modes: true
 
 # disable CRYPTO_POLICY to take settings from sshd configuration
 # see: https://access.redhat.com/solutions/4410591

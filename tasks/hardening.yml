@@ -11,7 +11,7 @@
   command: ssh -V
   register: sshd_version_raw
   changed_when: false
-  check_mode: no
+  check_mode: false
 
 - name: parse openssh-version
   set_fact:
@@ -61,7 +61,7 @@
     control: optional
     module_path: pam_motd.so
     state: absent
-    backup: yes
+    backup: true
   when:
     - ssh_server_hardening | bool
     - ssh_pam_support | bool
@@ -80,7 +80,7 @@
   shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
   register: sshd_register_moduli
   changed_when: false
-  check_mode: no
+  check_mode: false
   when: ssh_server_hardening | bool
 
 - name: remove all small primes
@@ -101,7 +101,7 @@
 
 - name: gather package facts
   package_facts:
-  check_mode: no
+  check_mode: false
   when:
     - sshd_disable_crypto_policy | bool
 
@@ -109,6 +109,9 @@
   copy:
     src: sshd
     dest: /etc/sysconfig/sshd
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
   when:
     - sshd_disable_crypto_policy | bool
     - ('crypto-policies' in ansible_facts.packages)

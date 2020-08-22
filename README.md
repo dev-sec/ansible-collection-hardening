@@ -85,7 +85,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 |`sshd_custom_options` | [] | Custom lines for SSH daemon configuration |
 |`sshd_syslog_facility` | 'AUTH' | The facility code that is used when logging messages from sshd |
 |`sshd_log_level` | 'VERBOSE' | the verbosity level that is used when logging messages from sshd |
-|`sshd_strict_modes` | 'yes' | Check file modes and ownership of the user's files and home directory before accepting login |
+|`sshd_strict_modes` | true | Check file modes and ownership of the user's files and home directory before accepting login |
 |`sshd_authenticationmethods` | `publickey` | Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`
 
 ## Configuring settings not listed in role-variables

@@ -19,7 +19,7 @@
   register: ssh_password_module
   failed_when: false
   changed_when: false
-  check_mode: no
+  check_mode: false
 
 # The following tasks only get executed when selinux is in state enforcing,
 # UsePam is 'no' and the ssh_password module is not installed. See this issue for
@@ -40,6 +40,9 @@
       copy:
         src: 'ssh_password'
         dest: '{{ ssh_custom_selinux_dir }}'
+        owner: 'root'
+        group: 'root'
+        mode: '0600'
 
     - name: check and compile policy
       command: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
