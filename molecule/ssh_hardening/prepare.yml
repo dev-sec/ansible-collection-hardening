@@ -38,9 +38,8 @@
       ignore_errors: true
 
     - name: install required tools on SuSE
-      zypper:
-        name: "python-xml"
-        state: present
+      # cannot use zypper module, since it depends on python-xml
+      shell: "zypper -n install python-xml"
       when: ansible_facts.os_family == 'Suse'
 
     - name: install packages
