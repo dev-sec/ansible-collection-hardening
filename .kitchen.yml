@@ -131,6 +131,15 @@ platforms:
         - sed -i '/systemd/d' /etc/pam.d/common-session
         - systemctl enable sshd.service
 
+  - name: arch-ansible-latest
+    driver:
+      image: rndmh3ro/docker-arch-ansible:latest
+      platform: arch
+      run_command: /usr/lib/systemd/systemd
+      provision_command:
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
+
 verifier:
   name: inspec
   sudo: true

@@ -27,6 +27,9 @@ env:
       init=/lib/systemd/systemd
     - distro=opensuse_tumbleweed
       run_opts="--privileged"
+    - distro=arch
+      init=/usr/lib/systemd/systemd
+      run_opts="--privileged"
 
 before_install:
   # Pull container
