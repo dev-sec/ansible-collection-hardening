@@ -11,7 +11,7 @@ lint: |
 platforms:
   - name: instance
     image: "rndmh3ro/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
-    command: /lib/systemd/systemd
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
@@ -27,7 +27,7 @@ provisioner:
   name: ansible
   vvv: true
 verifier:
-  name: inspec
+  name: ansible
 
 scenario:
   create_sequence:

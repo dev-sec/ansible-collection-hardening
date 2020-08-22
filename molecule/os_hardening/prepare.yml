@@ -11,9 +11,8 @@
       when: ansible_facts.distribution == 'Fedora'
 
     - name: install required tools on SuSE
-      zypper:
-        name: "python-xml"
-        state: present
+      # cannot use zypper module, since it depends on python-xml
+      shell: "zypper -n install python-xml"
       when: ansible_facts.os_family == 'Suse'
 
     - name: Run the equivalent of "apt-get update" as a separate step
@@ -33,6 +32,15 @@
           - findutils
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
+
+    - name: install required tools on RHEL
+      yum:
+        name:
+          - openssh-clients
+          - openssh
+        state: present
+        update_cache: true
+      ignore_errors: true
 
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"

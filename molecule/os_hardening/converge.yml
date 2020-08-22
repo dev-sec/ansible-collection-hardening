@@ -5,7 +5,9 @@
   collections:
     - devsec.hardening
   tasks:
-
+    - name: workaround for https://github.com/ansible/ansible/issues/66304
+      set_fact:
+        ansible_virtualization_type: "docker"
     - include_role:
         name: os_hardening
   vars:
