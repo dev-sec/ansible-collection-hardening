@@ -1,6 +1,6 @@
 ---
 name: "devsec.ssh_hardening"
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     paths:
       - 'roles/ssh_hardening/**'
@@ -55,6 +55,9 @@ jobs:
 
       - name: Test with molecule
         run: |
+          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
+            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
+          fi
           molecule --version
           molecule test -s ssh_hardening
         env:
