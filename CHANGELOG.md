@@ -1,13 +1,18 @@
 # Changelog
 
-## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-08-18)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-08-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
 
 **Implemented enhancements:**
 
 - Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299)
+- fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) ([schurzi](https://github.com/schurzi))
 - file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
+
+**Closed issues:**
+
+- Any planned support for RHEL/CentOS 8? [\#298](https://github.com/dev-sec/ansible-os-hardening/issues/298)
 
 ## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
@@ -424,6 +429,7 @@
 - Fix stuck in case pam files was updated before by force update [\#45](https://github.com/dev-sec/ansible-os-hardening/pull/45) ([fitz123](https://github.com/fitz123))
 - Fix nologin shell path [\#44](https://github.com/dev-sec/ansible-os-hardening/pull/44) ([fitz123](https://github.com/fitz123))
 - improved travis-tests to cover more cases [\#42](https://github.com/dev-sec/ansible-os-hardening/pull/42) ([rndmh3ro](https://github.com/rndmh3ro))
+- Create limits.d-directory if it does not exist. [\#33](https://github.com/dev-sec/ansible-os-hardening/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [1.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/1.0.0) (2015-09-01)
 
@@ -444,7 +450,6 @@
 - update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#37](https://github.com/dev-sec/ansible-os-hardening/pull/37) ([chris-rock](https://github.com/chris-rock))
 - Change oneliner if-statements to be more readable [\#36](https://github.com/dev-sec/ansible-os-hardening/pull/36) ([rndmh3ro](https://github.com/rndmh3ro))
 - Separate system-vars from editable vars. Fix \#34 [\#35](https://github.com/dev-sec/ansible-os-hardening/pull/35) ([rndmh3ro](https://github.com/rndmh3ro))
-- Create limits.d-directory if it does not exist. [\#33](https://github.com/dev-sec/ansible-os-hardening/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add correct CONTRIB-file [\#32](https://github.com/dev-sec/ansible-os-hardening/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add Ansible Galaxy badge [\#31](https://github.com/dev-sec/ansible-os-hardening/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
 -  Update readme, todo, changelog, vars [\#30](https://github.com/dev-sec/ansible-os-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
