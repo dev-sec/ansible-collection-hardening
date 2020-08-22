@@ -33,103 +33,103 @@ provisioner:
   playbook: tests/test.yml
 
 platforms:
-- name: centos6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos6-ansible:latest
-    platform: centos
-    provision_command:
-      - sed -i '/loginuid/d' /etc/pam.d/sshd
+  - name: centos6-ansible-latest
+    driver:
+      image: rndmh3ro/docker-centos6-ansible:latest
+      platform: centos
+      provision_command:
+        - sed -i '/loginuid/d' /etc/pam.d/sshd
 
-- name: centos7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos7-ansible:latest
-    platform: centos
-    provision_command:
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - systemctl enable sshd.service
+  - name: centos7-ansible-latest
+    driver:
+      image: rndmh3ro/docker-centos7-ansible:latest
+      platform: centos
+      provision_command:
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
 
-- name: centos8-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos8-ansible:latest
-    platform: centos
-    provision_command:
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - systemctl enable sshd.service
-  provisioner:
-    ansible_binary_path: "/usr/local/bin"
+  - name: centos8-ansible-latest
+    driver:
+      image: rndmh3ro/docker-centos8-ansible:latest
+      platform: centos
+      provision_command:
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
+    provisioner:
+      ansible_binary_path: "/usr/local/bin"
 
-- name: oracle6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle6-ansible:latest
-    platform: centos
-    provision_command:
-      - sed -i '/loginuid/d' /etc/pam.d/sshd
+  - name: oracle6-ansible-latest
+    driver:
+      image: rndmh3ro/docker-oracle6-ansible:latest
+      platform: centos
+      provision_command:
+        - sed -i '/loginuid/d' /etc/pam.d/sshd
 
-- name: oracle7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle7-ansible:latest
-    platform: centos
-    provision_command:
-      - yum -y install initscripts
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - systemctl enable sshd.service
+  - name: oracle7-ansible-latest
+    driver:
+      image: rndmh3ro/docker-oracle7-ansible:latest
+      platform: centos
+      provision_command:
+        - yum -y install initscripts
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
 
-- name: ubuntu1604-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1604-ansible:latest
-    platform: ubuntu
-    provision_command:
-      - systemctl enable ssh.service
+  - name: ubuntu1604-ansible-latest
+    driver:
+      image: rndmh3ro/docker-ubuntu1604-ansible:latest
+      platform: ubuntu
+      provision_command:
+        - systemctl enable ssh.service
 
-- name: ubuntu1804-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1804-ansible:latest
-    platform: ubuntu
-    provision_command:
-      - systemctl enable ssh.service
+  - name: ubuntu1804-ansible-latest
+    driver:
+      image: rndmh3ro/docker-ubuntu1804-ansible:latest
+      platform: ubuntu
+      provision_command:
+        - systemctl enable ssh.service
 
-- name: debian9-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian9-ansible:latest
-    platform: debian
-    provision_command:
-      - apt install -y systemd-sysv
-      - systemctl enable ssh.service
+  - name: debian9-ansible-latest
+    driver:
+      image: rndmh3ro/docker-debian9-ansible:latest
+      platform: debian
+      provision_command:
+        - apt install -y systemd-sysv
+        - systemctl enable ssh.service
 
-- name: debian10-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian10-ansible:latest
-    platform: debian
-    provision_command:
-      - apt install -y systemd-sysv
-      - systemctl enable ssh.service
+  - name: debian10-ansible-latest
+    driver:
+      image: rndmh3ro/docker-debian10-ansible:latest
+      platform: debian
+      provision_command:
+        - apt install -y systemd-sysv
+        - systemctl enable ssh.service
 
-- name: amazon-ansible-latest
-  driver:
-    image: rndmh3ro/docker-amazon-ansible:latest
-    platform: centos
-    provision_command:
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - systemctl enable sshd.service
+  - name: amazon-ansible-latest
+    driver:
+      image: rndmh3ro/docker-amazon-ansible:latest
+      platform: centos
+      provision_command:
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
 
-- name: fedora-ansible-latest
-  driver:
-    image: rndmh3ro/docker-fedora-ansible:latest
-    platform: centos
-    provision_command:
-      - dnf install -y python
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - systemctl enable sshd.service
+  - name: fedora-ansible-latest
+    driver:
+      image: rndmh3ro/docker-fedora-ansible:latest
+      platform: centos
+      provision_command:
+        - dnf install -y python
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
 
-- name: opensuse_tumbleweed-ansible-latest
-  driver:
-    image: rndmh3ro/docker-opensuse_tumbleweed-ansible
-    platform: opensuse
-    provision_command:
-      - zypper -n install python-xml
-      - sed -i '/nologin/d' /etc/pam.d/sshd
-      - sed -i '/systemd/d' /etc/pam.d/common-session
-      - systemctl enable sshd.service
+  - name: opensuse_tumbleweed-ansible-latest
+    driver:
+      image: rndmh3ro/docker-opensuse_tumbleweed-ansible
+      platform: opensuse
+      provision_command:
+        - zypper -n install python-xml
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - sed -i '/systemd/d' /etc/pam.d/common-session
+        - systemctl enable sshd.service
 
 verifier:
   name: inspec
@@ -141,4 +141,4 @@ verifier:
     - /^(?!sysctl-|package-07).+/
 
 suites:
-- name: os
+  - name: os

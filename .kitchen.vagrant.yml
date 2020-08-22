@@ -24,50 +24,50 @@ transport:
   max_ssh_sessions: 1
 
 platforms:
-- name: ubuntu-16.04
-  driver_config:
-    box: bento/ubuntu-16.04
-- name: ubuntu-18.04
-  driver_config:
-    box: bento/ubuntu-18.04
-- name: centos-6
-  driver_config:
-    box: bento/centos-6.7
-    provision: true
-    vagrantfiles:
-      - rhel6_provision.rb
-- name: centos-7
-  driver_config:
-    box: bento/centos-7
-- name: centos-8
-  driver_config:
-    box: bento/centos-8
-- name: oracle-6
-  driver_config:
-    box: bento/oracle-6
-    provision: true
-    vagrantfiles:
-      - rhel6_provision.rb
-- name: oracle-7
-  driver_config:
-    box: bento/oracle-7
-- name: debian-9
-  driver_config:
-    box: bento/debian-9
-- name: debian-10
-  driver_config:
-    box: bento/debian-10
-- name: amazon
-  driver_config:
-    box: bento/amazonlinux-2
-- name: opensuse_tumbleweed
-  driver_config:
-    box: opensuse/Tumbleweed.x86_64
-    provision: true
-    vagrantfiles:
-      - suse_provision.rb
-  provisioner:
-    ansible_binary_path: "/usr/local/bin"
+  - name: ubuntu-16.04
+    driver_config:
+      box: bento/ubuntu-16.04
+  - name: ubuntu-18.04
+    driver_config:
+      box: bento/ubuntu-18.04
+  - name: centos-6
+    driver_config:
+      box: bento/centos-6.7
+      provision: true
+      vagrantfiles:
+        - rhel6_provision.rb
+  - name: centos-7
+    driver_config:
+      box: bento/centos-7
+  - name: centos-8
+    driver_config:
+      box: bento/centos-8
+  - name: oracle-6
+    driver_config:
+      box: bento/oracle-6
+      provision: true
+      vagrantfiles:
+        - rhel6_provision.rb
+  - name: oracle-7
+    driver_config:
+      box: bento/oracle-7
+  - name: debian-9
+    driver_config:
+      box: bento/debian-9
+  - name: debian-10
+    driver_config:
+      box: bento/debian-10
+  - name: amazon
+    driver_config:
+      box: bento/amazonlinux-2
+  - name: opensuse_tumbleweed
+    driver_config:
+      box: opensuse/Tumbleweed.x86_64
+      provision: true
+      vagrantfiles:
+        - suse_provision.rb
+    provisioner:
+      ansible_binary_path: "/usr/local/bin"
 
 verifier:
   name: inspec
@@ -76,4 +76,4 @@ verifier:
     - https://github.com/dev-sec/linux-baseline/
 
 suites:
-- name: os
+  - name: os

@@ -2,7 +2,7 @@
 - name: update pam on Debian systems
   command: 'pam-auth-update --package'
   when: ansible_facts.distribution in ['Debian', 'Ubuntu']
-  changed_when: False
+  changed_when: false
   environment:
     DEBIAN_FRONTEND: noninteractive
 

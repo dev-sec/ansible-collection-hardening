@@ -1,8 +1,8 @@
 ---
 - name: Get user accounts | os-09
   command: "awk -F: '{print $1}' /etc/passwd"
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: users_accounts
 
 - name: delete rhosts-files from system | os-09
