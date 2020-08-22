@@ -5,6 +5,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
+    state: touch
 
 - name: set Daemon umask, do config for rhel-family | NSA 2.2.4.1
   template:

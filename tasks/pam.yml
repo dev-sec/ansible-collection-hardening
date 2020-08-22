@@ -14,6 +14,8 @@
   package:
     name: '{{ os_packages_pam_ccreds }}'
     state: 'absent'
+  when:
+    - ansible_facts.os_family != 'Archlinux'
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
   apt:
@@ -121,7 +123,9 @@
 - name: Gather package facts
   package_facts:
     manager: auto
-  when: ansible_facts.os_family != 'Suse'
+  when:
+    - ansible_facts.os_family != 'Suse'
+    - ansible_facts.os_family != 'Archlinux'
 
 - name: NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
   template:
@@ -132,4 +136,5 @@
     group: 'root'
   when:
     - ansible_facts.os_family != 'Suse'
+    - ansible_facts.os_family != 'Archlinux'
     - "'libuser' in ansible_facts.packages"
