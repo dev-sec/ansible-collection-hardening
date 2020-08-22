@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.7.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.1) (2020-08-22)
+
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.7.0...9.7.1)
+
+**Implemented enhancements:**
+
+- fix litner errors [\#322](https://github.com/dev-sec/ansible-ssh-hardening/pull/322) ([schurzi](https://github.com/schurzi))
+
 ## [9.7.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.0) (2020-08-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.6.0...9.7.0)
@@ -53,7 +61,6 @@
 **Merged pull requests:**
 
 - improve testing in kitchen and travis [\#313](https://github.com/dev-sec/ansible-ssh-hardening/pull/313) ([schurzi](https://github.com/schurzi))
-- Travis fix [\#310](https://github.com/dev-sec/ansible-ssh-hardening/pull/310) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [9.4.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.4.0) (2020-07-21)
 
@@ -186,7 +193,6 @@
 - refactor authenticationmethod settings, allow user to set authenticat… [\#245](https://github.com/dev-sec/ansible-ssh-hardening/pull/245) ([szEvEz](https://github.com/szEvEz))
 - RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
 - Added ssh\_syslog\_facility, ssh\_log\_level and ssh\_strict\_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))
-- added support for `ssh\_server\_match\_address` \(\#230\) [\#231](https://github.com/dev-sec/ansible-ssh-hardening/pull/231) ([MatthiasLohr](https://github.com/MatthiasLohr))
 
 **Fixed bugs:**
 
@@ -221,6 +227,10 @@
 ## [6.2.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.2.0) (2019-08-05)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/6.1.3...6.2.0)
+
+**Implemented enhancements:**
+
+- added support for `ssh\_server\_match\_address` \(\#230\) [\#231](https://github.com/dev-sec/ansible-ssh-hardening/pull/231) ([MatthiasLohr](https://github.com/MatthiasLohr))
 
 ## [6.1.3](https://github.com/dev-sec/ansible-ssh-hardening/tree/6.1.3) (2019-06-09)
 
