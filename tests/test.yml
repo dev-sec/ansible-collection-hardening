@@ -1,11 +1,10 @@
 ---
-
 - name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: localhost
   pre_tasks:
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
-        update_cache: yes
+        update_cache: true
       when: ansible_os_family == 'Debian'
     - file:
         path: "/etc/mysql"
@@ -14,7 +13,7 @@
       apt:
         name: procps
         state: installed
-        update_cache: yes
+        update_cache: true
       when: ansible_distribution == 'Debian'
     - name: set logfile according to OS
       set_fact:
@@ -25,11 +24,11 @@
         mysql_log_error: "/var/log/mysqld.log"
       when: ansible_os_family == "RedHat"
   vars:
-    overwrite_global_mycnf: no
+    overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo
     mysql_user_password: iloverandompasswordsbutthiswilldo
     mysql_config_file: /etc/mysql/mariadb.cnf
-    mysql_root_password_update: yes
+    mysql_root_password_update: true
   roles:
     - geerlingguy.mysql
     - ansible-mysql-hardening
