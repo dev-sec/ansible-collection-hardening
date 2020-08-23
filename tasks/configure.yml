@@ -3,7 +3,7 @@
 - name: protect my.cnf
   file:
     path: '{{ mysql_hardening_mysql_conf_file }}'
-    mode: 0400
+    mode: '0400'
     owner: '{{ mysql_cnf_owner }}'
     group: '{{ mysql_cnf_owner }}'
     follow: true
@@ -18,7 +18,7 @@
 
 - name: ensure permissions on mysql-logfile are correct
   file:
-    path: '{{ mysql_hardening_log_dir }}/{{ mysql_hardening_log_file }}'
+    path: '{{ mysql_hardening_log_file }}'
     state: file
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_group }}'
