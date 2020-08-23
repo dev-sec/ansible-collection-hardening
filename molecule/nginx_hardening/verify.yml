@@ -5,6 +5,24 @@
   roles:
     - geerlingguy.git
   tasks:
+    - name: install fake SuSE-release for cinc compatibility
+      copy:
+        content: |
+          openSUSE Faked Enterprise 2020 (x86_64)
+          VERSION = 2020
+          CODENAME = Faked Feature
+        dest: /etc/SuSE-release
+        owner: root
+        group: root
+        mode: '0444'
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: install git for SuSE since geerlinguy.git does not support it
+      zypper:
+        name: git
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
     - name: download cinc-auditor
       get_url:
         url: https://omnitruck.cinc.sh/install.sh
