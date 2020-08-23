@@ -1,7 +1,8 @@
+---
 # switcher to enable/disable role
-mysql_hardening_enabled: yes
+mysql_hardening_enabled: true
 
-mysql_daemon_enabled: yes
+mysql_daemon_enabled: true
 
 # general configuration
 mysql_cnf_owner: 'root' # owner of /etc/mysql/*.cnf files

@@ -1,6 +1,7 @@
+---
 name: New release
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master
@@ -59,7 +60,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This token is provided by Actions, you do not need to create your own token
         with:
           release_name: ${{ steps.version.outputs.next-version }}
           tag_name: ${{ steps.version.outputs.next-version }}
