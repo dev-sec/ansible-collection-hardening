@@ -42,17 +42,17 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: test.yml
 
-#  - distro: amazon
-#    init: /lib/systemd/systemd
-#    version: latest
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    test_playbook: test.yml
-#
-#  - distro: fedora
-#    init: /lib/systemd/systemd
-#    version: latest
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    test_playbook: test.yml
+  #  - distro: amazon
+  #    init: /lib/systemd/systemd
+  #    version: latest
+  #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #    test_playbook: test.yml
+  #
+  #  - distro: fedora
+  #    init: /lib/systemd/systemd
+  #    version: latest
+  #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #    test_playbook: test.yml
 
   - distro: centos6
     version: latest
@@ -89,19 +89,6 @@ env:
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     test_playbook: official-nginx-role-debian.yml
 
-#  - distro: amazon
-#    init: /lib/systemd/systemd
-#    version: latest
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    test_playbook: official-nginx-role-debian.yml
-#
-#  - distro: fedora
-#    init: /lib/systemd/systemd
-#    version: latest
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-#    test_playbook: official-nginx-role-debian.yml
-
-
 before_install:
   # Pull container
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
@@ -116,7 +103,7 @@ script:
 
   # Install ansible galaxy requirements
   - 'docker exec "$(cat ${container_id})" ansible-galaxy -c install -r /etc/ansible/roles/ansible-nginx-hardening/requirements.yml -p /etc/ansible/roles/'
-  
+
   # Test role
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-nginx-hardening/tests/"${test_playbook}" -vv'
 

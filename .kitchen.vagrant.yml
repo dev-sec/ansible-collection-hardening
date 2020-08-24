@@ -25,33 +25,33 @@ transport:
   max_ssh_sessions: 5
 
 platforms:
-- name: ubuntu-16.04
-  driver_config:
-    box: bento/ubuntu-16.04
-- name: ubuntu-18.04
-  driver_config:
-    box: bento/ubuntu-18.04
-- name: centos-6
-  driver_config:
-    box: bento/centos-6
-- name: centos-7
-  driver_config:
-    box: bento/centos-7
-- name: oracle-6
-  driver_config:
-    box: bento/oracle-6
-- name: oracle-7
-  driver_config:
-    box: bento/oracle-7
-- name: debian-9
-  driver_config:
-    box: bento/debian-9
-- name: debian-10
-  driver_config:
-    box: bento/debian-10
-- name: amazon
-  driver_config:
-    box: bento/amazonlinux-2
+  - name: ubuntu-16.04
+    driver_config:
+      box: bento/ubuntu-16.04
+  - name: ubuntu-18.04
+    driver_config:
+      box: bento/ubuntu-18.04
+  - name: centos-6
+    driver_config:
+      box: bento/centos-6
+  - name: centos-7
+    driver_config:
+      box: bento/centos-7
+  - name: oracle-6
+    driver_config:
+      box: bento/oracle-6
+  - name: oracle-7
+    driver_config:
+      box: bento/oracle-7
+  - name: debian-9
+    driver_config:
+      box: bento/debian-9
+  - name: debian-10
+    driver_config:
+      box: bento/debian-10
+  - name: amazon
+    driver_config:
+      box: bento/amazonlinux-2
 
 verifier:
   name: inspec
@@ -60,4 +60,4 @@ verifier:
     - https://github.com/dev-sec/nginx-baseline/
 
 suites:
-- name: nginx
+  - name: nginx

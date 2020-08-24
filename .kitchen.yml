@@ -26,75 +26,74 @@ provisioner:
   galaxy_ignore_certs: true
 
 platforms:
-- name: centos6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos6-ansible:latest
-    platform: centos
-- name: centos7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-centos7-ansible:latest
-    platform: centos
-    run_command: /sbin/init
-    provision_command:
-      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-      - systemctl enable sshd.service
-- name: oracle6-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle6-ansible:latest
-    platform: centos
-- name: oracle7-ansible-latest
-  driver:
-    image: rndmh3ro/docker-oracle7-ansible:latest
-    run_command: /sbin/init
-    platform: centos
-    provision_command:
-      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-      - systemctl enable sshd.service
-- name: ubuntu1604-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1604-ansible:latest
-    platform: ubuntu
-    run_command: /sbin/init
-    provision_command:
-      - systemctl enable ssh.service
-- name: ubuntu1804-ansible-latest
-  driver:
-    image: rndmh3ro/docker-ubuntu1804-ansible:latest
-    platform: ubuntu
-    run_command: /sbin/init
-    provision_command:
-      - systemctl enable ssh.service
-- name: debian9-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian9-ansible:latest
-    platform: debian
-    run_command: /sbin/init
-    provision_command:
-      - apt install -y systemd-sysv
-      - systemctl enable ssh.service
-- name: debian10-ansible-latest
-  driver:
-    image: rndmh3ro/docker-debian10-ansible:latest
-    platform: debian
-    run_command: /sbin/init
-    provision_command:
-      - apt install -y systemd-sysv
-      - systemctl enable ssh.service
-- name: amazon-ansible-latest
-  driver:
-    image: rndmh3ro/docker-amazon-ansible:latest
-    platform: centos
-    run_command: /sbin/init
-    provision_command:
-      - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-      - systemctl enable sshd.service
+  - name: centos6-ansible-latest
+    driver:
+      image: rndmh3ro/docker-centos6-ansible:latest
+      platform: centos
+  - name: centos7-ansible-latest
+    driver:
+      image: rndmh3ro/docker-centos7-ansible:latest
+      platform: centos
+      run_command: /sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+  - name: oracle6-ansible-latest
+    driver:
+      image: rndmh3ro/docker-oracle6-ansible:latest
+      platform: centos
+  - name: oracle7-ansible-latest
+    driver:
+      image: rndmh3ro/docker-oracle7-ansible:latest
+      run_command: /sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+  - name: ubuntu1604-ansible-latest
+    driver:
+      image: rndmh3ro/docker-ubuntu1604-ansible:latest
+      platform: ubuntu
+      run_command: /sbin/init
+      provision_command:
+        - systemctl enable ssh.service
+  - name: ubuntu1804-ansible-latest
+    driver:
+      image: rndmh3ro/docker-ubuntu1804-ansible:latest
+      platform: ubuntu
+      run_command: /sbin/init
+      provision_command:
+        - systemctl enable ssh.service
+  - name: debian9-ansible-latest
+    driver:
+      image: rndmh3ro/docker-debian9-ansible:latest
+      platform: debian
+      run_command: /sbin/init
+      provision_command:
+        - apt install -y systemd-sysv
+        - systemctl enable ssh.service
+  - name: debian10-ansible-latest
+    driver:
+      image: rndmh3ro/docker-debian10-ansible:latest
+      platform: debian
+      run_command: /sbin/init
+      provision_command:
+        - apt install -y systemd-sysv
+        - systemctl enable ssh.service
+  - name: amazon-ansible-latest
+    driver:
+      image: rndmh3ro/docker-amazon-ansible:latest
+      platform: centos
+      run_command: /sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
 
 verifier:
   name: inspec
   sudo: true
   inspec_tests:
-    - ../nginx-baseline
-    #- https://github.com/dev-sec/nginx-baseline
+    - https://github.com/dev-sec/nginx-baseline
   controls:
     - nginx-01
     - nginx-02
@@ -113,4 +112,4 @@ verifier:
     - nginx-17
 
 suites:
-- name: nginx
+  - name: nginx
