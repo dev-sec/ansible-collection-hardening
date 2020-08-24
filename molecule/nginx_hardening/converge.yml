@@ -7,7 +7,4 @@
     - nginx_ppa_version: stable
   tasks:
     - include_role:
-        name: geerlingguy.nginx
-
-    - include_role:
         name: nginx_hardening

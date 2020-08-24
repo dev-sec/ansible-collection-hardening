@@ -1,6 +1,6 @@
 ---
 name: "devsec.nginx_hardening"
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     paths:
       - 'roles/nginx_hardening/**'
