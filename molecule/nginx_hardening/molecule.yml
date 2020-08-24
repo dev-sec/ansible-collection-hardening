@@ -27,7 +27,7 @@ provisioner:
   name: ansible
   vvv: true
 verifier:
-  name: inspec
+  name: ansible
 
 scenario:
   create_sequence:
@@ -57,6 +57,6 @@ scenario:
     - create
     - prepare
     - converge
-    # - idempotence  # role not idempotent
+    - idempotence
     - verify
     - destroy

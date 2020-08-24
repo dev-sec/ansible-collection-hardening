@@ -14,3 +14,6 @@
         name: "python3-apt"
         update_cache: true
       ignore_errors: true
+
+    - include_role:
+        name: geerlingguy.nginx
