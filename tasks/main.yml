@@ -1,12 +1,4 @@
 ---
-- name: config should not be worldwide read- or writeable
-  file:
-    path: "/etc/nginx"
-    mode: "o-rw"
-    owner: "root"
-    group: "root"
-    recurse: true
-
 - name: create additional configuration
   template:
     src: "hardening.conf.j2"
@@ -97,3 +89,11 @@
   args:
     creates: "/etc/nginx/dh{{ nginx_dh_size }}.pem"
   notify: restart nginx
+
+- name: config should not be worldwide read- or writeable
+  file:
+    path: "/etc/nginx"
+    mode: "o-rw"
+    owner: "root"
+    group: "root"
+    recurse: true
