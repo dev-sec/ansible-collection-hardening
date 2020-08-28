@@ -102,7 +102,7 @@ script:
   - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-nginx-hardening:ro ${run_opts} rndmh3ro/docker-${distro}-ansible:${version} "${init}" > "${container_id}"'
 
   # Install ansible galaxy requirements
-  - 'docker exec "$(cat ${container_id})" ansible-galaxy -c install -r /etc/ansible/roles/ansible-nginx-hardening/requirements.yml -p /etc/ansible/roles/'
+  - 'docker exec "$(cat ${container_id})" ansible-galaxy install --ignore-certs -r /etc/ansible/roles/ansible-nginx-hardening/requirements.yml -p /etc/ansible/roles/'
 
   # Test role
   - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-nginx-hardening/tests/"${test_playbook}" -vv'

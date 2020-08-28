@@ -85,15 +85,10 @@
     - "/etc/nginx/sites-enabled/default"
 
 - name: generate dh group
-  command: "openssl dhparam -out /etc/nginx/dh{{ nginx_dh_size }}.pem {{ nginx_dh_size }}"
-  args:
-    creates: "/etc/nginx/dh{{ nginx_dh_size }}.pem"
-  notify: restart nginx
-
-- name: config should not be worldwide read- or writeable
-  file:
-    path: "/etc/nginx"
-    mode: "o-rw"
+  openssl_dhparam:
+    path: "/etc/nginx/dh{{ nginx_dh_size }}.pem"
+    size: "{{ nginx_dh_size }}"
+    mode: '0640'
     owner: "root"
     group: "root"
-    recurse: true
+  notify: restart nginx
