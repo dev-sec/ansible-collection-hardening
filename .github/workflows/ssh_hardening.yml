@@ -1,6 +1,7 @@
 ---
 name: "devsec.ssh_hardening"
 on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
   push:
     paths:
       - 'roles/ssh_hardening/**'

@@ -1,6 +1,7 @@
 ---
 name: "devsec.nginx_hardening"
 on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
   push:
     paths:
       - 'roles/nginx_hardening/**'
