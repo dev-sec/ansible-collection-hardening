@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-08-22)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-09-19)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
 
@@ -10,6 +10,10 @@
 - Arch support [\#303](https://github.com/dev-sec/ansible-os-hardening/pull/303) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) ([schurzi](https://github.com/schurzi))
 - file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
+
+**Fixed bugs:**
+
+- do not touch sysctl file to avoid idempotency problems [\#309](https://github.com/dev-sec/ansible-os-hardening/pull/309) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -277,10 +281,6 @@
 - Centos7/RHEL7: Exec shield is enabled by default and not manageable anymore by sysctl.conf [\#118](https://github.com/dev-sec/ansible-os-hardening/issues/118)
 - Remove rsync from package blacklist [\#142](https://github.com/dev-sec/ansible-os-hardening/pull/142) ([duk3luk3](https://github.com/duk3luk3))
 
-**Closed issues:**
-
-- Update readme to include baselines [\#122](https://github.com/dev-sec/ansible-os-hardening/issues/122)
-
 **Merged pull requests:**
 
 - remove execshield sysctl-parameter on rhel7 [\#119](https://github.com/dev-sec/ansible-os-hardening/pull/119) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -299,6 +299,7 @@
 **Closed issues:**
 
 - Enhancement: Pin python dependencies for development and testing [\#127](https://github.com/dev-sec/ansible-os-hardening/issues/127)
+- Update readme to include baselines [\#122](https://github.com/dev-sec/ansible-os-hardening/issues/122)
 
 **Merged pull requests:**
 
