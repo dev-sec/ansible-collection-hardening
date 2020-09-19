@@ -3,7 +3,7 @@
 - name: protect my.cnf
   file:
     path: '{{ mysql_hardening_mysql_conf_file }}'
-    mode: '0400'
+    mode: '0640'
     owner: '{{ mysql_cnf_owner }}'
     group: '{{ mysql_cnf_owner }}'
     follow: true
@@ -15,6 +15,7 @@
     state: directory
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_user }}'
+    mode: '0750'
 
 - name: ensure permissions on mysql-logfile are correct
   file:
@@ -22,6 +23,7 @@
     state: file
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_group }}'
+    mode: '0640'
 
 - name: check mysql configuration-directory exists and has right permissions
   file:
@@ -29,7 +31,7 @@
     state: directory
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_group }}'
-    mode: '0570'
+    mode: '0750'
 
 - name: check include-dir directive is present in my.cnf
   lineinfile:
@@ -46,7 +48,7 @@
     dest: '{{ mysql_hardening_mysql_hardening_conf_file }}'
     owner: '{{ mysql_cnf_owner }}'
     group: '{{ mysql_cnf_group }}'
-    mode: '0460'
+    mode: '0640'
   notify: restart mysql
 
 - name: enable mysql
