@@ -33,6 +33,14 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
+    - name: install packages
+      pacman:
+        name:
+          - "awk"
+        state: present
+        update_cache: true
+      ignore_errors: true
+
     - name: install required tools on RHEL
       yum:
         name:
