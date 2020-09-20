@@ -21,7 +21,7 @@ jobs:
         molecule_distro:
           - distro: centos7
           - distro: centos8
-#          - distro: fedora                 # geerlingguy.mysql does not support fedora
+          # - distro: fedora                 # geerlingguy.mysql does not support fedora
           - distro: ubuntu1604
           - distro: ubuntu1804
           - distro: ubuntu2004
