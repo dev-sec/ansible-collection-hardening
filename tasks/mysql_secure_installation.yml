@@ -39,6 +39,7 @@
   copy:
     src: '{{ item }}.sql'
     dest: '/tmp/{{ item }}.sql'
+    mode: '0400'
   with_items:
     - mysql_remove_remote_root
   when: mysql_remove_remote_root
