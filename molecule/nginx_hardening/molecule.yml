@@ -10,8 +10,8 @@ lint: |
   ansible-lint roles/nginx_hardening/
 platforms:
   - name: instance
-    image: "rndmh3ro/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
-    command: /lib/systemd/systemd
+    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
