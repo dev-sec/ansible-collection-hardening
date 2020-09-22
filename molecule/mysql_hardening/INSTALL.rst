@@ -1,6 +1,6 @@
-*******
+******
 Docker driver installation guide
-*******
+******
 
 Requirements
 ============
