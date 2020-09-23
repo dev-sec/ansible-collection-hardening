@@ -82,6 +82,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 | `os_auditd_max_log_file_action` | `keep_logs` | Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`. |
 | `hidepid_option` | `2` | `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc. |
 | `proc_mnt_options` | `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}` | Mount proc with hardenized options, including `hidepid` with variable value. |
+| `sysctl_config_blacklist` | [] | filter the default sysctl_config options which are applied. Add all options which should not be applied to this variable.|
 
 ## Packages
 

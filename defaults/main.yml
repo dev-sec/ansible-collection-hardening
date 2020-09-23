@@ -52,6 +52,7 @@ ufw_default_application_policy: 'SKIP'
 ufw_manage_builtins: 'no'
 ufw_ipt_modules: 'nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns'
 
+sysctl_config_blacklist: []
 sysctl_config:
   # Disable IPv4 traffic forwarding. | sysctl-01
   net.ipv4.ip_forward: 0

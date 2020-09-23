@@ -43,8 +43,12 @@
   block:
     - name: create a combined sysctl-dict if overwrites are defined
       set_fact:
-        sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
+        sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite)}}'
       when: sysctl_overwrite | default()
+
+    - name: filter sysctl_config by sysctl_config_blacklist
+      set_fact:
+        sysctl_config: "{% set res = {} %}{% for key in sysctl_config.keys() %}{% if key not in sysctl_config_blacklist %}{% set ignored = res.update({ key: sysctl_config[key]}) %}{% endif %}{% endfor %}{{ res }}"
 
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
       sysctl:
