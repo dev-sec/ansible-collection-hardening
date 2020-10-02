@@ -29,10 +29,14 @@ It will not:
 
 * Ansible 2.5.0
 
-## Warning
+## Known Limitations
+
+### Testing with inspec
 
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
 Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
+### Docker support
 
 If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
 
@@ -45,6 +49,21 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
       # Enable IPv4 traffic forwarding.
       net.ipv4.ip_forward: 1
 ```
+
+### sysctl - vm.mmap_rnd_bits
+
+We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct aplicable maximum. If you encounter this error you have to override this sysctl in your playbook.
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      vm.mmap_rnd_bits: 16
+```
+
+We know, this is the case on Paspberry Pi and possibly some other ARM based devices.
 
 ## Variables
 
