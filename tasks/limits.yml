@@ -23,6 +23,9 @@
       owner: 'root'
       group: 'root'
       mode: '0440'
+      state: touch
+      modification_time: preserve
+      access_time: preserve
 
   when: not os_security_kernel_enable_core_dump | bool
 
