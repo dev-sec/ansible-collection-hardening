@@ -1,18 +1,21 @@
 # Changelog
 
-## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-09-20)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
 
 **Implemented enhancements:**
 
 - Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299)
+- make ssh tests work [\#304](https://github.com/dev-sec/ansible-os-hardening/pull/304) ([schurzi](https://github.com/schurzi))
 - Arch support [\#303](https://github.com/dev-sec/ansible-os-hardening/pull/303) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) ([schurzi](https://github.com/schurzi))
 - file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
 
 **Fixed bugs:**
 
+- Task "set 10.hardcore.conf perms to 0400 and root ownership" fails in check mode [\#313](https://github.com/dev-sec/ansible-os-hardening/issues/313)
+- use touch for 10.hardcore.conf to avoid problems with dry-run [\#314](https://github.com/dev-sec/ansible-os-hardening/pull/314) ([schurzi](https://github.com/schurzi))
 - use touch with no date changes [\#310](https://github.com/dev-sec/ansible-os-hardening/pull/310) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not touch sysctl file to avoid idempotency problems [\#309](https://github.com/dev-sec/ansible-os-hardening/pull/309) ([rndmh3ro](https://github.com/rndmh3ro))
 
@@ -141,6 +144,7 @@
 **Implemented enhancements:**
 
 - Fix deprecation warnings in Ansible 2.8 [\#224](https://github.com/dev-sec/ansible-os-hardening/pull/224) ([Normo](https://github.com/Normo))
+- add docs to find-task in minimize access. fix \#219 [\#220](https://github.com/dev-sec/ansible-os-hardening/pull/220) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -154,7 +158,6 @@
 
 - Speed up "minimize access on found files" task [\#208](https://github.com/dev-sec/ansible-os-hardening/issues/208)
 - Fedora support? [\#163](https://github.com/dev-sec/ansible-os-hardening/issues/163)
-- add docs to find-task in minimize access. fix \#219 [\#220](https://github.com/dev-sec/ansible-os-hardening/pull/220) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove eol'd OS and add new [\#217](https://github.com/dev-sec/ansible-os-hardening/pull/217) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add note about docker under warning [\#214](https://github.com/dev-sec/ansible-os-hardening/pull/214) ([ChrisMcKee](https://github.com/ChrisMcKee))
 - change minimize access tasks to speed them up [\#209](https://github.com/dev-sec/ansible-os-hardening/pull/209) ([rndmh3ro](https://github.com/rndmh3ro))
