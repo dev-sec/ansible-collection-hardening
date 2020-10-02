@@ -35,25 +35,49 @@ This hardening role installs the hardening but expects an existing installation 
 - `mysql_datadir: '/var/lib/mysql'` The MySQL data directory
 - `mysql_hardening_mysql_hardening_conf_file: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
 
-## Security Options
+## Role Variables
 
-Further information is already available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)
+* `mysql_hardening_chroot`
+  * Default: ""
+  * Description: [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
+* `mysql_hardening_options.safe-user-create`
+  * Default: 1
+  * Description: [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)
+* `mysql_hardening_options.secure-auth`
+  * Default: 1
+  * Description: [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)
+* `mysql_hardening_options.skip-symbolic-links`
+  * Default: 1
+  * Description: [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links)
+* `mysql_hardening_skip_grant_tables:`
+  * Default: false
+  * Description: [skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables)
+* `mysql_hardening_skip_show_database`
+  * Default: 1
+  * Description: [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)
+* `mysql_hardening_options.local-infile`
+  * Default: 0
+  * Description: [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
+* `mysql_hardening_options.allow-suspicious-udfs`
+  * Default: 0
+  * Description: [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
+* `mysql_hardening_chroot.automatic-sp-privileges`
+  * Default: 0
+  * Description: [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
+* `mysql_hardening_options.secure-file-priv`
+  * Default: /tmp
+  * Description: [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
+* `mysql_allow_remote_root`
+  * Default: false
+  * Description: delete remote root users
+* `mysql_remove_anonymous_users`
+  * Default: true
+  * Description: remove users without authentication
+* `mysql_remove_test_database`
+  * Default: true
+  * Description: remove test database
 
-| Name           | Default Value | Description                        |
-| -------------- | ------------- | -----------------------------------|
-| `mysql_hardening_chroot` | "" | [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)|
-| `mysql_hardening_options.safe-user-create` | 1 | [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)|
-| `mysql_hardening_options.secure-auth` | 1 | [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)|
-| `mysql_hardening_options.skip-symbolic-links` | 1 | [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links)|
-| `mysql_hardening_skip_grant_tables:` | false | [skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables)|
-| `mysql_hardening_skip_show_database` | 1 | [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)|
-| `mysql_hardening_options.local-infile` | 0 | [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)|
-| `mysql_hardening_options.allow-suspicious-udfs` | 0 | [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)|
-| `mysql_hardening_chroot.automatic-sp-privileges` | 0 | [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)|
-| `mysql_hardening_options.secure-file-priv` | /tmp | [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)|
-| `mysql_allow_remote_root` | false | delete remote root users |
-| `mysql_remove_anonymous_users` | true | remove users without authentication |
-| `mysql_remove_test_database` | true | remove test database |
+Further information is available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)
 
 ## Local Testing
 
