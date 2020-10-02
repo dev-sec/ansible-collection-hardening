@@ -52,7 +52,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 
 ### sysctl - vm.mmap_rnd_bits
 
-We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct aplicable maximum. If you encounter this error you have to override this sysctl in your playbook.
+We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct applicable maximum. If you encounter this error you have to override this sysctl in your playbook.
 
 ```yaml
 - hosts: localhost
@@ -63,7 +63,7 @@ We are setting this sysctl to a default of `32`, some systems only support small
       vm.mmap_rnd_bits: 16
 ```
 
-We know, this is the case on Paspberry Pi and possibly some other ARM based devices.
+We know that this is the case on Raspberry Pi.
 
 ## Variables
 
