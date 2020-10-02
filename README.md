@@ -29,10 +29,14 @@ It will not:
 
 * Ansible 2.5.0
 
-## Warning
+## Known Limitations
+
+### Testing with inspec
 
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
 Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
+### Docker support
 
 If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
 
@@ -46,42 +50,113 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
       net.ipv4.ip_forward: 1
 ```
 
+### sysctl - vm.mmap_rnd_bits
 
+We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct applicable maximum. If you encounter this error you have to override this sysctl in your playbook.
+
+```yaml
+- hosts: localhost
+  roles:
+    - dev-sec.os-hardening
+  vars:
+    sysctl_overwrite:
+      vm.mmap_rnd_bits: 16
+```
+
+We know that this is the case on Raspberry Pi.
 
 ## Variables
 
-| Name           | Default Value | Description                        |
-| -------------- | ------------- | -----------------------------------|
-| `os_desktop_enable`| false |  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc|
-| `os_env_extra_user_paths`| [] | add additional paths to the user's `PATH` variable (default is empty).|
-| `os_env_umask`| 027| set default permissions for new files to `750` |
-| `os_auth_pw_max_age`| 60 | maximum password age (set to `99999` to effectively disable it) |
-| `os_auth_pw_min_age`| 7 | minimum password age (before allowing any other password change)|
-| `os_auth_retries`| 5 | the maximum number of authentication attempts, before the account is locked for some time|
-| `os_auth_lockout_time`| 600 | time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts|
-| `os_auth_timeout`| 60 | authentication timeout in seconds, so login will exit if this time passes|
-| `os_auth_allow_homeless`| false | true if to allow users without home to login|
-| `os_auth_pam_passwdqc_enable`| true | true if you want to use strong password checking in PAM using passwdqc|
-| `os_auth_pam_passwdqc_options`| "min=disabled,disabled,16,12,8" | set to any option line (as a string) that you want to pass to passwdqc|
-| `os_security_users_allow`| [] | list of things, that a user is allowed to do. May contain `change_user`.
-| `os_security_kernel_enable_module_loading`| true | true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)|
-| `os_security_kernel_enable_core_dump`| false | kernel is crashing or otherwise misbehaving and a kernel core dump is created |
-| `os_security_suid_sgid_enforce`| true | true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own|
-| `os_security_suid_sgid_blacklist`| [] | a list of paths which should have their SUID/SGID bits removed|
-| `os_security_suid_sgid_whitelist`| [] | a list of paths which should not have their SUID/SGID bits altered|
-| `os_security_suid_sgid_remove_from_unknown`| false | true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.|
-| `os_security_packages_clean`| true | removes packages with known issues. See section packages.|
-| `os_selinux_state` | enforcing | Set the SELinux state, can be either disabled, permissive, or enforcing. |
-| `os_selinux_policy` | targeted | Set the SELinux polixy. |
-| `ufw_manage_defaults` | true | true means apply all settings with `ufw_` prefix|
-| `ufw_ipt_sysctl` | '' | by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
-| `ufw_default_input_policy` | DROP | set default input policy of ufw to `DROP` |
-| `ufw_default_output_policy` | ACCEPT | set default output policy of ufw to `ACCEPT` |
-| `ufw_default_forward_policy` | DROP | set default forward policy of ufw to `DROP` |
-| `os_auditd_enabled` | true | Set to false to disable installing and configuring auditd. |
-| `os_auditd_max_log_file_action` | `keep_logs` | Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`. |
-| `hidepid_option` | `2` | `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc. |
-| `proc_mnt_options` | `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}` | Mount proc with hardenized options, including `hidepid` with variable value. |
+* `os_desktop_enable`
+  * Default: `false`
+  * Description:  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
+* `os_env_extra_user_paths`
+  * Default: `[]`
+  * Description: add additional paths to the user's `PATH` variable (default is empty).
+* `os_env_umask`
+  * Default: `027`
+  * Description: set default permissions for new files to `750`
+* `os_auth_pw_max_age`
+  * Default: `60`
+  * Description: maximum password age (set to `99999` to effectively disable it)
+* `os_auth_pw_min_age`
+  * Default: `7`
+  * Description: minimum password age (before allowing any other password change)
+* `os_auth_retries`
+  * Default: `5`
+  * Description: the maximum number of authentication attempts, before the account is locked for some time
+* `os_auth_lockout_time`
+  * Default: `600`
+  * Description: time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+* `os_auth_timeout`
+  * Default: `60`
+  * Description: authentication timeout in seconds, so login will exit if this time passes
+* `os_auth_allow_homeless`
+  * Default: `false`
+  * Description: true if to allow users without home to login
+* `os_auth_pam_passwdqc_enable`
+  * Default: `true`
+  * Description: true if you want to use strong password checking in PAM using passwdqc
+* `os_auth_pam_passwdqc_options`
+  * Default: `min=disabled,disabled,16,12,8`
+  * Description: set to any option line (as a string) that you want to pass to passwdqc
+* `os_security_users_allow`
+  * Default: `[]`
+  * Description: list of things, that a user is allowed to do. May contain `change_user`.
+* `os_security_kernel_enable_module_loading`
+  * Default: `true`
+  * Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+* `os_security_kernel_enable_core_dump`
+  * Default: `false`
+  * Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created
+* `os_security_suid_sgid_enforce`
+  * Default: `true`
+  * Description: true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
+* `os_security_suid_sgid_blacklist`
+  * Default: `[]`
+  * Description: a list of paths which should have their SUID/SGID bits removed
+* `os_security_suid_sgid_whitelist`
+  * Default: `[]`
+  * Description: a list of paths which should not have their SUID/SGID bits altered
+* `os_security_suid_sgid_remove_from_unknown`
+  * Default: `false`
+  * Description: true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
+* `os_security_packages_clean`
+  * Default: `true`
+  * Description: removes packages with known issues. See section packages.
+* `os_selinux_state`
+  * Default: `enforcing`
+  * Description: Set the SELinux state, can be either disabled, permissive, or enforcing.
+* `os_selinux_policy`
+  * Default: `targeted`
+  * Description: Set the SELinux polixy.
+* `ufw_manage_defaults`
+  * Default: `true`
+  * Description: true means apply all settings with `ufw_` prefix
+* `ufw_ipt_sysctl`
+  * Default: `''`
+  * Description: by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
+* `ufw_default_input_policy`
+  * Default: `DROP`
+  * Description: set default input policy of ufw to `DROP`
+* `ufw_default_output_policy`
+  * Default: `ACCEPT`
+  * Description: set default output policy of ufw to `ACCEPT`
+* `ufw_default_forward_policy`
+  * Default: `DROP`
+  * Description: set default forward policy of ufw to `DROP`
+* `os_auditd_enabled`
+  * Default: `true`
+  * Description: Set to false to disable installing and configuring auditd.
+* `os_auditd_max_log_file_action`
+  * Default: `keep_logs`
+  * Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
+* `hidepid_option`
+  * Default: `2`
+  * Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.
+* `proc_mnt_options`
+  * Default: `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}`
+  * Description: Mount proc with hardenized options, including `hidepid` with variable value.
 
 ## Packages
 
