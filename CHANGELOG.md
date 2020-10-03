@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-09-21)
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-03)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
 
 **Implemented enhancements:**
 
+- update readme to new layout for vars [\#53](https://github.com/dev-sec/ansible-mysql-hardening/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
 - add mode to copy task [\#51](https://github.com/dev-sec/ansible-mysql-hardening/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix linting errors and simplivy vars-handling [\#49](https://github.com/dev-sec/ansible-mysql-hardening/pull/49) ([rndmh3ro](https://github.com/rndmh3ro))
 
