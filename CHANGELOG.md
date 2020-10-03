@@ -1,11 +1,12 @@
 # Changelog
 
-## [9.7.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.1) (2020-08-22)
+## [9.7.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.1) (2020-10-03)
 
 [Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.7.0...9.7.1)
 
 **Implemented enhancements:**
 
+- update readme to new layout for vars [\#326](https://github.com/dev-sec/ansible-ssh-hardening/pull/326) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix litner errors [\#322](https://github.com/dev-sec/ansible-ssh-hardening/pull/322) ([schurzi](https://github.com/schurzi))
 
 ## [9.7.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.0) (2020-08-16)
@@ -191,7 +192,6 @@
 - Feature: Debian 10 \(Buster\) support [\#249](https://github.com/dev-sec/ansible-ssh-hardening/pull/249) ([jaredledvina](https://github.com/jaredledvina))
 - fix broken packages, extend README with furhter development instructions [\#246](https://github.com/dev-sec/ansible-ssh-hardening/pull/246) ([szEvEz](https://github.com/szEvEz))
 - refactor authenticationmethod settings, allow user to set authenticat… [\#245](https://github.com/dev-sec/ansible-ssh-hardening/pull/245) ([szEvEz](https://github.com/szEvEz))
-- RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
 - Added ssh\_syslog\_facility, ssh\_log\_level and ssh\_strict\_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))
 
 **Fixed bugs:**
@@ -238,6 +238,7 @@
 
 **Implemented enhancements:**
 
+- RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
 - Fix squash\_actions deprecation in test playbooks [\#228](https://github.com/dev-sec/ansible-ssh-hardening/pull/228) ([Normo](https://github.com/Normo))
 - Fix deprecation warnings in Ansible 2.8 [\#227](https://github.com/dev-sec/ansible-ssh-hardening/pull/227) ([Normo](https://github.com/Normo))
 
