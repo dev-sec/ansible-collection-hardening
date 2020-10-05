@@ -1,13 +1,13 @@
 # Changelog
 
-## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-02)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-05)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
 
 **Implemented enhancements:**
 
 - Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299)
-- make ssh tests work [\#304](https://github.com/dev-sec/ansible-os-hardening/pull/304) ([schurzi](https://github.com/schurzi))
+- Improve Documentation [\#315](https://github.com/dev-sec/ansible-os-hardening/pull/315) ([schurzi](https://github.com/schurzi))
 - Arch support [\#303](https://github.com/dev-sec/ansible-os-hardening/pull/303) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) ([schurzi](https://github.com/schurzi))
 - file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
@@ -22,6 +22,10 @@
 **Closed issues:**
 
 - Any planned support for RHEL/CentOS 8? [\#298](https://github.com/dev-sec/ansible-os-hardening/issues/298)
+
+**Merged pull requests:**
+
+- adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-os-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
