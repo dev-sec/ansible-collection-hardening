@@ -38,7 +38,7 @@ before_install:
 script:
   - pip install ansible-lint
   - ansible-lint --version
-  - pip install PyYAML==3.13
+  - pip freeze
   - ansible-lint . -vv
   - python --version
 
