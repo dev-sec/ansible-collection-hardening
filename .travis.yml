@@ -37,7 +37,7 @@ before_install:
 
 script:
   - pip install --user ansible-lint
-  - ansible-lint ./
+  - ansible-lint ./ -vv
 
   - container_id=$(mktemp)
   # Run container in detached state.
