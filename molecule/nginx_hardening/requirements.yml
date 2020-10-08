@@ -1,4 +1,4 @@
 ---
 roles:
   - geerlingguy.git
-  - nginxinc.nginx
+  - geerlingguy.nginx
