@@ -15,16 +15,6 @@
       shell: "zypper -n install python-xml"
       when: ansible_facts.os_family == 'Suse'
 
-    - name: Run the equivalent of "apt-get update" as a separate step
-      apt:
-        update_cache: true
-      when: ansible_facts.os_family == 'Debian'
-
-    - name: install required tools on debian
-      apt:
-        name: procps
-      when: ansible_facts.os_family == 'Debian'
-
     - name: install required tools on fedora
       dnf:
         name:
