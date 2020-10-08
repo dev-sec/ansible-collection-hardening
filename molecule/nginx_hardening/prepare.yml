@@ -16,4 +16,4 @@
       ignore_errors: true
 
     - include_role:
-        name: geerlingguy.nginx
+        name: nginxinc.nginx

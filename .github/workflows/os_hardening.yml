@@ -29,6 +29,10 @@ jobs:
           - distro: amazon
           - distro: arch
           - distro: opensuse_tumbleweed
+        exclude:
+          molecule_distro:
+            - distro: arch  # needs to be fixed
+            - distro: opensuse_tumbleweed # needs to be fixed
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2

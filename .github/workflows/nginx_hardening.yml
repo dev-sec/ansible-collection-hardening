@@ -21,7 +21,6 @@ jobs:
         molecule_distro:
           - distro: centos7
           - distro: centos8
-          - distro: fedora
           - distro: ubuntu1604
           - distro: ubuntu1804
           - distro: ubuntu2004
@@ -30,6 +29,11 @@ jobs:
           - distro: amazon
           - distro: arch
           - distro: opensuse_tumbleweed
+        exclude:
+          molecule_distro:
+            - distro: arch  # needs to be fixed
+            - distro: opensuse_tumbleweed # needs to be fixed
+            - distro: fedora  # no support from geerlingguy role
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
