@@ -27,13 +27,9 @@ jobs:
           - debian9
           - debian10
           - amazon
-          - arch
-          - opensuse_tumbleweed
-        exclude:
-          - molecule_distro:
-            - arch  # needs to be fixed
-            - opensuse_tumbleweed # needs to be fixed
-            - fedora  # no support from geerlingguy role
+          # - arch  # needs to be fixed
+          # - opensuse_tumbleweed  # needs to be fixed
+          # - fedora  # no support from geerlingguy role
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2

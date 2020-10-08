@@ -27,11 +27,9 @@ jobs:
           - debian9
           - debian10
           - amazon
-        exclude:
-          - molecule_distro:
-            - arch  # needs to be fixed
-            - opensuse_tumbleweed  # needs to be fixed
-            - fedora  # geerlingguy.mysql does not support fedora
+          # - arch  # needs to be fixed
+          # - opensuse_tumbleweed  # needs to be fixed
+          # - fedora  # geerlingguy.mysql does not support fedora
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
