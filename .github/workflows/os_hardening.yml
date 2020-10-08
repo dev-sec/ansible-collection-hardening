@@ -27,8 +27,8 @@ jobs:
           - debian9
           - debian10
           - amazon
+          - opensuse_tumbleweed
           # - arch  # needs to be fixed
-          # - opensuse_tumbleweed  # needs to be fixed
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
