@@ -31,7 +31,7 @@ jobs:
           - distro: arch
           - distro: opensuse_tumbleweed
         exclude:
-          molecule_distro:
+          - molecule_distro:
             - distro: arch  # needs to be fixed
             - distro: opensuse_tumbleweed # needs to be fixed
     steps:

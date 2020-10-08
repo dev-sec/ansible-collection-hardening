@@ -28,7 +28,7 @@ jobs:
           - distro: debian10
           - distro: amazon
         exclude:
-          molecule_distro:
+          - molecule_distro:
             - distro: arch  # needs to be fixed
             - distro: opensuse_tumbleweed  # needs to be fixed
             - distro: fedora  # geerlingguy.mysql does not support fedora
