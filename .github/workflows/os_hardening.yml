@@ -19,20 +19,20 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - distro: centos7
-          - distro: centos8
-          - distro: ubuntu1604
-          - distro: ubuntu1804
-          - distro: ubuntu2004
-          - distro: debian9
-          - distro: debian10
-          - distro: amazon
-          - distro: arch
-          - distro: opensuse_tumbleweed
+          - centos7
+          - centos8
+          - ubuntu1604
+          - ubuntu1804
+          - ubuntu2004
+          - debian9
+          - debian10
+          - amazon
+          - arch
+          - opensuse_tumbleweed
         exclude:
           - molecule_distro:
-            - distro: arch  # needs to be fixed
-            - distro: opensuse_tumbleweed # needs to be fixed
+            - arch  # needs to be fixed
+            - opensuse_tumbleweed # needs to be fixed
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -65,5 +65,5 @@ jobs:
           molecule --version
           molecule test -s os_hardening
         env:
-          MOLECULE_DISTRO: ${{ matrix.molecule_distro.distro }}
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
