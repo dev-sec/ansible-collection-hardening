@@ -34,9 +34,6 @@ jobs:
           - molecule_distro:
             - arch  # needs to be fixed
             - opensuse_tumbleweed # needs to be fixed
-
-        exclude:
-          - python: 3.8  # blocked by ansible/ansible#70155
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
