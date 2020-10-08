@@ -1,5 +1,4 @@
 molecule
-molecule-inspec
 yamllint
 ansible-lint
 docker
