@@ -4,13 +4,6 @@
   hosts: all
   become: true
   tasks:
-    - name: install procps for debian systems
-      apt:
-        name: procps
-        state: present
-        update_cache: true
-      when: ansible_distribution == 'Debian'
-
     - name: install required tools on SuSE
       zypper:
         name: "python-xml"
