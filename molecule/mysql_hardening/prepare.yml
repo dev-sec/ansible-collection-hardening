@@ -4,6 +4,11 @@
   hosts: all
   become: true
   tasks:
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
     - name: install required tools on SuSE
       zypper:
         name: "python-xml"
