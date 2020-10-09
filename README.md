@@ -18,22 +18,24 @@ This role focuses on security configuration of MySQL. Therefore you can add this
 
 Install the role with ansible-galaxy:
 
-```
+```sh
 ansible-galaxy install dev-sec.mysql-hardening
 ```
 
 ### Example Playbook
 
-    - hosts: localhost
-      roles:
-        - dev-sec.mysql-hardening
+```yml
+- hosts: localhost
+  roles:
+    - dev-sec.mysql-hardening
+```
 
 This hardening role installs the hardening but expects an existing installation of MySQL, MariaDB or Percona. Please ensure that the following variables are set accordingly:
 
-- `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
-- `mysql_hardening_user: 'mysql'` The user that mysql runs as.
-- `mysql_datadir: '/var/lib/mysql'` The MySQL data directory
-- `mysql_hardening_mysql_hardening_conf_file: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
+* `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
+* `mysql_hardening_user: 'mysql'` The user that mysql runs as.
+* `mysql_datadir: '/var/lib/mysql'` The MySQL data directory
+* `mysql_hardening_mysql_hardening_conf_file: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
 
 ## Role Variables
 
@@ -87,27 +89,32 @@ You can also use vagrant and Virtualbox or VMWare to run tests locally. You will
 
 Next install test-kitchen:
 
-```bash
+```sh
 # Install dependencies
 gem install bundler
 bundle install
 ```
 
 ### Testing with Docker
-```
+
+```sh
+# list all available machines
+bundle exec kitchen list
+
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
+bundle exec kitchen test mysql-centos7-ansible-latest
 
 # test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
+bundle exec kitchen create mysql-centos7-ansible-latest
+bundle exec kitchen converge mysql-centos7-ansible-latest
 ```
 
 ### Testing with Virtualbox
-```
+
+```sh
 # fast test on one machine
 KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1404
 
@@ -118,6 +125,7 @@ KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
 KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1404
 KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1404
 ```
+
 For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
 
 ## License and Author

@@ -35,22 +35,8 @@
     host_all: true
   when: mysql_remove_anonymous_users
 
-- name: copy mysql_remove_remote_root
-  copy:
-    src: '{{ item }}.sql'
-    dest: '/tmp/{{ item }}.sql'
-    mode: '0400'
-  with_items:
-    - mysql_remove_remote_root
+- name: remove remote root
+  community.mysql.mysql_query:
+    query:
+      - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
   when: mysql_remove_remote_root
-  changed_when: false
-
-- name: apply mysql_remove_remote_root
-  mysql_db:
-    name: 'mysql'
-    state: import
-    target: '/tmp/{{ item }}.sql'
-  with_items:
-    - mysql_remove_remote_root
-  when: mysql_remove_remote_root
-  changed_when: false
