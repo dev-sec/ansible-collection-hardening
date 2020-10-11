@@ -19,7 +19,7 @@
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
     - include_role:
-        name: geerlingguy.mysql
+        name: dev-sec.mysql
 
     - include_role:
         name: mysql_hardening
