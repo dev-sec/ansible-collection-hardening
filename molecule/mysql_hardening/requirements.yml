@@ -2,6 +2,6 @@
 roles:
   - name: geerlingguy.git
     version: 3.0.0
-  - name: dec-sec.mysql
+  - name: dev-sec.mysql
     version: master
 
