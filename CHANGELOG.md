@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-03)
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-11)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
 
 **Implemented enhancements:**
 
+- Use mysql\_query module instead of temporary files [\#56](https://github.com/dev-sec/ansible-mysql-hardening/pull/56) ([szEvEz](https://github.com/szEvEz))
 - update readme to new layout for vars [\#53](https://github.com/dev-sec/ansible-mysql-hardening/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
 - add mode to copy task [\#51](https://github.com/dev-sec/ansible-mysql-hardening/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix linting errors and simplivy vars-handling [\#49](https://github.com/dev-sec/ansible-mysql-hardening/pull/49) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -14,6 +15,11 @@
 
 - permissions on /etc/mysql/mysql.cnf too restrictive [\#35](https://github.com/dev-sec/ansible-mysql-hardening/issues/35)
 - add modes to template and file tasks [\#50](https://github.com/dev-sec/ansible-mysql-hardening/pull/50) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Use mysql\_query module instead of temporary files [\#52](https://github.com/dev-sec/ansible-mysql-hardening/issues/52)
+- Add Centos 8 support for ansible-mysql-hardening [\#36](https://github.com/dev-sec/ansible-mysql-hardening/issues/36)
 
 **Merged pull requests:**
 
