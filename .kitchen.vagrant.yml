@@ -13,6 +13,7 @@ provisioner:
   roles_path: ../ansible-mysql-hardening/
   playbook: default.yml
   requirements_path: requirements.yml
+  requirements_collection_path: requirements.yml
   sudo_command: 'sudo -E -H'
 
 transport:

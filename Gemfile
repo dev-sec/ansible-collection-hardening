@@ -3,13 +3,13 @@
 source 'https://rubygems.org'
 
 group :integration do
-  gem 'test-kitchen', '~> 1.0'
+  gem 'test-kitchen'
   gem 'kitchen-ansible'
   gem 'kitchen-vagrant'
   gem 'kitchen-inspec'
-  gem 'kitchen-sharedtests', '~> 0.2.0'
+  gem 'kitchen-sharedtests'
   gem 'kitchen-sync'
-  gem 'kitchen-transport-rsync'
   gem 'kitchen-docker'
-  gem 'inspec', '~> 3'
+  gem 'inspec'
+  gem 'aws-sdk'
 end

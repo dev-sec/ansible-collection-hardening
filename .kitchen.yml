@@ -22,6 +22,9 @@ provisioner:
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
   requirements_path: requirements.yml
+  requirements_collection_path: requirements.yml
+#  ansible_cfg_path: ansible.cfg
+#  ansible_cfg_overwrite: true
   sudo_command: 'sudo -E -H'
   playbook: tests/test.yml
   galaxy_ignore_certs: true

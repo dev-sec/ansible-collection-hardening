@@ -1,2 +1,6 @@
 ---
-- src: geerlingguy.mysql
+collections:
+  - community.mysql
+
+roles:
+  - src: geerlingguy.mysql

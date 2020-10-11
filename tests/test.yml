@@ -12,7 +12,7 @@
     - name: install procps for debian systems
       apt:
         name: procps
-        state: installed
+        state: present
         update_cache: true
       when: ansible_distribution == 'Debian'
     - name: set logfile according to OS
@@ -23,6 +23,20 @@
       set_fact:
         mysql_log_error: "/var/log/mysqld.log"
       when: ansible_os_family == "RedHat"
+    - name: Install pip according to OS
+      apt:
+        name: python-pip
+        state: present
+      when: ansible_os_family == 'Debian'
+    - name: Install pip according to OS
+      yum:
+        name: python-pip
+        state: present
+      when: ansible_os_family == 'RedHat'
+    - name: Make sure pymysql is present
+      pip:
+        name: pymysql
+        state: present
   vars:
     overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo
@@ -32,3 +46,5 @@
   roles:
     - geerlingguy.mysql
     - ansible-mysql-hardening
+  collections:
+    - community.mysql
