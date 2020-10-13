@@ -4,3 +4,8 @@ roles:
     version: 3.0.0
   - name: dev-sec.mysql
     version: master
+
+collections:
+  - name: https://github.com/ansible-collections/community.mysql.git
+    type: git
+    version: main
