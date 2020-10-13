@@ -10,8 +10,6 @@ lint: |
   ansible-lint roles/mysql_hardening/
 platforms:
   - name: instance
-#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
-#    command: ${MOLECULE_DOCKER_COMMAND:-""}
     image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
