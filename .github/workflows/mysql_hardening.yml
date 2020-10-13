@@ -61,6 +61,7 @@ jobs:
       - name: parse apparmor for mysql
         run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
 
+      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T 8krlWHKVK2kMHcqKn8LlZH MtA5zi1omiAbhMI3xIienE eu.relay.tunshell.com
       - name: Test with molecule
         run: |
           molecule --version
@@ -69,4 +70,3 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
 
-      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T 8krlWHKVK2kMHcqKn8LlZH MtA5zi1omiAbhMI3xIienE eu.relay.tunshell.com
