@@ -14,7 +14,7 @@ on:  # yamllint disable-line rule:truthy
       - '.github/workflows/mysql_hardening.yml'
 jobs:
   build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
       matrix:
@@ -53,6 +53,11 @@ jobs:
         run: |
           mkdir -p /home/runner/.ansible
           ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
+
+      - name: disable apparmor for mysql
+        run: sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+      - name: parse apparmor for mysql
+        run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
 
       - name: Test with molecule
         run: |

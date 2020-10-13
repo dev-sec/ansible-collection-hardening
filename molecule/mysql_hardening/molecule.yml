@@ -18,8 +18,6 @@ platforms:
     pre_build_image: true
     environment:
       container: docker
-    security_opts:
-      - apparmor=unconfined
 provisioner:
   name: ansible
   config_options:

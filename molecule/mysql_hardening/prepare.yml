@@ -21,17 +21,3 @@
       file:
         path: "/etc/mysql/conf.d"
         state: directory
-
-    - name: install apparmor to have apparmor_parser
-      apt:
-        name: apparmor
-      when: ansible_distribution == 'Ubuntu'
-
-    - name: disable apparmor for mysql
-      shell: "ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/"
-      when: ansible_distribution == 'Ubuntu'
-
-    - name: disable apparmor for mysql
-      shell: "apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld"
-      when: ansible_distribution == 'Ubuntu'
-
