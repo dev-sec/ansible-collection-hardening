@@ -19,11 +19,5 @@
 
     - name: create missing directory
       file:
-        path: "/etc/mysql"
+        path: "/etc/mysql/conf.d"
         state: directory
-
-    - name: disable apparmor for mysql
-      service:
-        name: "apparmor"
-        state: stopped
-      when: ansible_distribution == 'Ubuntu'
