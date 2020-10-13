@@ -19,19 +19,18 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - centos7
-          - centos8
-          - ubuntu1604
-          - ubuntu1804
+          # - centos7
+          # - centos8
+          # - ubuntu1604
+          # - ubuntu1804
           - ubuntu2004
-          - debian9
-          - debian10
-          - amazon
+          # - debian9
+          # - debian10
+          # - amazon
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # needs to be fixed
           # - fedora  # geerlingguy.mysql does not support fedora
     steps:
-      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T 09qmVqm8XsxOs58QeB7PGQ 4Zt1cMbeeEwqL1kGQOOlh3 eu.relay.tunshell.com
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -69,3 +68,5 @@ jobs:
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
+
+      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T 8krlWHKVK2kMHcqKn8LlZH MtA5zi1omiAbhMI3xIienE eu.relay.tunshell.com
