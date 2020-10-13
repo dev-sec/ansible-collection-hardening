@@ -68,4 +68,3 @@ jobs:
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
-
