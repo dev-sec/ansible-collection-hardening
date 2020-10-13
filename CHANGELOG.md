@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-11)
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-13)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
 
@@ -14,6 +14,7 @@
 **Fixed bugs:**
 
 - permissions on /etc/mysql/mysql.cnf too restrictive [\#35](https://github.com/dev-sec/ansible-mysql-hardening/issues/35)
+- fix missing variables [\#55](https://github.com/dev-sec/ansible-mysql-hardening/pull/55) ([rndmh3ro](https://github.com/rndmh3ro))
 - add modes to template and file tasks [\#50](https://github.com/dev-sec/ansible-mysql-hardening/pull/50) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
