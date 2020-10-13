@@ -43,8 +43,9 @@
     mysql_user_password: iloverandompasswordsbutthiswilldo
     mysql_config_file: /etc/mysql/mariadb.cnf
     mysql_root_password_update: true
+    login_unix_socket: "{{ '/var/run/mysqld/mysqld.sock' if ansible_distribution == 'Debian' else '' | default(omit) }}"
   roles:
-    - geerlingguy.mysql
+    - dev-sec.mysql
     - ansible-mysql-hardening
   collections:
     - community.mysql

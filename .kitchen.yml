@@ -17,23 +17,16 @@ provisioner:
   require_ruby_for_busser: false
   ansible_verbose: true
   ansible_diff: true
-
   roles_path: ../ansible-mysql-hardening/
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
   requirements_path: requirements.yml
   requirements_collection_path: requirements.yml
-#  ansible_cfg_path: ansible.cfg
-#  ansible_cfg_overwrite: true
   sudo_command: 'sudo -E -H'
   playbook: tests/test.yml
   galaxy_ignore_certs: true
 
 platforms:
-  - name: centos6-ansible-latest
-    driver:
-      image: rndmh3ro/docker-centos6-ansible:latest
-      platform: centos
   - name: centos7-ansible-latest
     driver:
       image: rndmh3ro/docker-centos7-ansible:latest
@@ -42,20 +35,19 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
-  - name: oracle6-ansible-latest
-    driver:
-      image: rndmh3ro/docker-oracle6-ansible:latest
-      platform: centos
   - name: oracle7-ansible-latest
     driver:
       image: rndmh3ro/docker-oracle7-ansible:latest
       run_command: /sbin/init
       platform: centos
       provision_command:
-        - systemctl enable ssh.service
+        - yum -y install initscripts
+        - sed -i '/nologin/d' /etc/pam.d/sshd
+        - systemctl enable sshd.service
   - name: ubuntu1804-ansible-latest
     driver:
       image: rndmh3ro/docker-ubuntu1804-ansible:latest
+      run_command: /sbin/init
       platform: ubuntu
       provision_command:
         - systemctl enable ssh.service

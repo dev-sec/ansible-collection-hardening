@@ -1,11 +1,10 @@
 ---
-
 - name: protect my.cnf
   file:
     path: '{{ mysql_hardening_mysql_conf_file }}'
     mode: '0640'
     owner: '{{ mysql_cnf_owner }}'
-    group: '{{ mysql_cnf_owner }}'
+    group: '{{ mysql_cnf_group }}'
     follow: true
     state: file
 

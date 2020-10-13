@@ -14,6 +14,7 @@
     host_all: true
     password: '{{ mysql_root_password | mandatory }}'
     state: present
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
 
 - name: install .my.cnf with credentials
   template:
@@ -26,6 +27,7 @@
   mysql_db:
     name: test
     state: absent
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_test_database
 
 - name: anonymous users are absent
@@ -33,10 +35,12 @@
     name: ''
     state: absent
     host_all: true
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_anonymous_users
 
 - name: remove remote root
   community.mysql.mysql_query:
     query:
       - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root

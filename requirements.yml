@@ -3,4 +3,5 @@ collections:
   - community.mysql
 
 roles:
-  - src: geerlingguy.mysql
+  - src: dev-sec.mysql
+    version: master

@@ -10,6 +10,6 @@ group :integration do
   gem 'kitchen-sharedtests'
   gem 'kitchen-sync'
   gem 'kitchen-docker'
-  gem 'inspec'
+  gem 'inspec-bin'
   gem 'aws-sdk'
 end
