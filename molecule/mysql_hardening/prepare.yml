@@ -21,3 +21,4 @@
       file:
         path: "/etc/mysql/conf.d"
         state: directory
+        mode: "0777"  # testing
