@@ -19,14 +19,14 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          # - centos7
-          # - centos8
-          # - ubuntu1604
-          # - ubuntu1804
+          - centos7
+          - centos8
+          - ubuntu1604
+          - ubuntu1804
           - ubuntu2004
-          # - debian9
-          # - debian10
-          # - amazon
+          - debian9
+          - debian10
+          - amazon
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # needs to be fixed
           # - fedora  # geerlingguy.mysql does not support fedora
