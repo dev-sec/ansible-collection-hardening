@@ -62,7 +62,8 @@ jobs:
       - name: apparmor
         run: |
             set -x
-            sudo apt-get remove mysql-server --purge
+            sudo touch /etc/apparmor.d/usr.sbin.mysqld
+            sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
             sudo apt-get install apparmor-profiles
             sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
 
@@ -73,3 +74,4 @@ jobs:
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
+
