@@ -1,11 +1,12 @@
 # Changelog
 
-## [9.7.1](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.7.1) (2020-10-09)
+## [9.8.0](https://github.com/dev-sec/ansible-ssh-hardening/tree/9.8.0) (2020-10-15)
 
-[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.7.0...9.7.1)
+[Full Changelog](https://github.com/dev-sec/ansible-ssh-hardening/compare/9.7.0...9.8.0)
 
 **Implemented enhancements:**
 
+- add SuSE support [\#328](https://github.com/dev-sec/ansible-ssh-hardening/pull/328) ([schurzi](https://github.com/schurzi))
 - update readme to new layout for vars [\#326](https://github.com/dev-sec/ansible-ssh-hardening/pull/326) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix litner errors [\#322](https://github.com/dev-sec/ansible-ssh-hardening/pull/322) ([schurzi](https://github.com/schurzi))
 
@@ -245,6 +246,7 @@
 
 - Fix squash\_actions deprecation in test playbooks [\#228](https://github.com/dev-sec/ansible-ssh-hardening/pull/228) ([Normo](https://github.com/Normo))
 - Fix deprecation warnings in Ansible 2.8 [\#227](https://github.com/dev-sec/ansible-ssh-hardening/pull/227) ([Normo](https://github.com/Normo))
+- Make ansible-lint happy [\#204](https://github.com/dev-sec/ansible-ssh-hardening/pull/204) ([alexclear](https://github.com/alexclear))
 
 **Fixed bugs:**
 
@@ -287,10 +289,8 @@
 - Remove eol os and add fedora [\#218](https://github.com/dev-sec/ansible-ssh-hardening/pull/218) ([rndmh3ro](https://github.com/rndmh3ro))
 - document and move custom variables [\#217](https://github.com/dev-sec/ansible-ssh-hardening/pull/217) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix: allow other ssh ports using selinux [\#214](https://github.com/dev-sec/ansible-ssh-hardening/pull/214) ([guilieb](https://github.com/guilieb))
-- Make ansible-lint happy [\#204](https://github.com/dev-sec/ansible-ssh-hardening/pull/204) ([alexclear](https://github.com/alexclear))
 - Fix ssh and sshd config files to satisfy inspec reqs on all Testkitchen setups [\#203](https://github.com/dev-sec/ansible-ssh-hardening/pull/203) ([alexclear](https://github.com/alexclear))
 - enable ssh 7.7p1 support [\#202](https://github.com/dev-sec/ansible-ssh-hardening/pull/202) ([rndmh3ro](https://github.com/rndmh3ro))
-- Removed DEPRECATION WARNING for apt, using list instead of with\_items [\#201](https://github.com/dev-sec/ansible-ssh-hardening/pull/201) ([jonaswre](https://github.com/jonaswre))
 
 **Fixed bugs:**
 
@@ -304,6 +304,7 @@
 **Implemented enhancements:**
 
 - Ubuntu 18.04 support [\#182](https://github.com/dev-sec/ansible-ssh-hardening/issues/182)
+- Removed DEPRECATION WARNING for apt, using list instead of with\_items [\#201](https://github.com/dev-sec/ansible-ssh-hardening/pull/201) ([jonaswre](https://github.com/jonaswre))
 - Update opensshd.conf.js [\#196](https://github.com/dev-sec/ansible-ssh-hardening/pull/196) ([ikr0m](https://github.com/ikr0m))
 
 **Fixed bugs:**
