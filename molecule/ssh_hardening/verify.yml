@@ -23,6 +23,11 @@
         state: present
       when: ansible_facts.os_family == 'Suse'
 
+    - name: install crypto compat modules on fedora
+      dnf:
+        name: libxcrypt-compat
+      when: ansible_facts.distribution == 'Fedora'
+
     - name: download cinc-auditor
       get_url:
         url: https://omnitruck.cinc.sh/install.sh
