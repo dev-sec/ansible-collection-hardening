@@ -26,15 +26,9 @@ platforms:
   - name: ubuntu-18.04
     driver_config:
       box: bento/ubuntu-18.04
-  - name: centos-6
-    driver_config:
-      box: bento/centos-6
   - name: centos-7
     driver_config:
       box: bento/centos-7
-  - name: oracle-6
-    driver_config:
-      box: bento/oracle-6
   - name: oracle-7
     driver_config:
       box: bento/oracle-7

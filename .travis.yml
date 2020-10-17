@@ -2,20 +2,13 @@
 services: docker
 
 env:
-  - distro: centos6
-    version: latest
-    init: /sbin/init
-
   - distro: centos7
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
-  - distro: oracle6
-    version: latest
-    init: /sbin/init
-
   - distro: oracle7
+    version: latest
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
@@ -54,8 +47,8 @@ before_install:
   - 'docker pull rndmh3ro/docker-${distro}-ansible:${version}'
 
 script:
-  - pip install --user ansible-lint
-  - ansible-lint ./
+  - gem install bundler
+  - bundle install
 
   - container_id=$(mktemp)
   # Run container in detached state.
@@ -63,12 +56,13 @@ script:
 
   # Install ansible galaxy requirements
   - 'docker exec "$(cat ${container_id})" ansible-galaxy install -c -r /etc/ansible/roles/ansible-mysql-hardening/requirements.yml -p /etc/ansible/roles/'
+  - 'docker exec "$(cat ${container_id})" ansible-galaxy collection install -c community.mysql'
 
   # Test role.
   - 'travis_wait docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-mysql-hardening/tests/test.yml'
 
   # Verify role
-  - 'inspec exec https://github.com/dev-sec/mysql-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit'
+  - 'inspec exec https://github.com/dev-sec/mysql-baseline/ -t docker://$(cat ${container_id}) --no-distinct-exit --chef-license=accept'
 
 after_failure:
   # Check MySQL settings.
