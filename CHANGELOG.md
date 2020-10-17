@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-13)
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
 
@@ -24,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Fix kitchen and travisci for major distros [\#57](https://github.com/dev-sec/ansible-mysql-hardening/pull/57) ([szEvEz](https://github.com/szEvEz))
 - update testing [\#48](https://github.com/dev-sec/ansible-mysql-hardening/pull/48) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.2.1](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.1) (2020-06-06)
