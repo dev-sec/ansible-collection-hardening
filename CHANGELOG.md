@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-17)
+## [2.2.2](https://github.com/dev-sec/ansible-mysql-hardening/tree/2.2.2) (2020-10-18)
 
 [Full Changelog](https://github.com/dev-sec/ansible-mysql-hardening/compare/2.2.1...2.2.2)
 
@@ -24,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Run ansible-lint via github action [\#58](https://github.com/dev-sec/ansible-mysql-hardening/pull/58) ([szEvEz](https://github.com/szEvEz))
 - Fix kitchen and travisci for major distros [\#57](https://github.com/dev-sec/ansible-mysql-hardening/pull/57) ([szEvEz](https://github.com/szEvEz))
 - update testing [\#48](https://github.com/dev-sec/ansible-mysql-hardening/pull/48) ([rndmh3ro](https://github.com/rndmh3ro))
 
@@ -59,7 +60,6 @@
 - remove eol'd OS and add new [\#34](https://github.com/dev-sec/ansible-mysql-hardening/pull/34) ([rndmh3ro](https://github.com/rndmh3ro))
 - replace iteritems with items for python3 support [\#33](https://github.com/dev-sec/ansible-mysql-hardening/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - make mysql daemon enabling configurable [\#30](https://github.com/dev-sec/ansible-mysql-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
-- Fix ansible.cfg settings [\#29](https://github.com/dev-sec/ansible-mysql-hardening/pull/29) ([fazlearefin](https://github.com/fazlearefin))
 
 **Fixed bugs:**
 
@@ -73,9 +73,9 @@
 **Implemented enhancements:**
 
 - Add CentOS7 with MariaDB support [\#23](https://github.com/dev-sec/ansible-mysql-hardening/issues/23)
+- Fix ansible.cfg settings [\#29](https://github.com/dev-sec/ansible-mysql-hardening/pull/29) ([fazlearefin](https://github.com/fazlearefin))
 - Add CentOS7 with MariaDB support [\#27](https://github.com/dev-sec/ansible-mysql-hardening/pull/27) ([chrispoupart](https://github.com/chrispoupart))
 - - renamed 'mysql\_hardening\_mysql\_conf' var to 'mysql\_hardening\_mysql\_… [\#22](https://github.com/dev-sec/ansible-mysql-hardening/pull/22) ([agno01](https://github.com/agno01))
-- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
@@ -91,6 +91,7 @@
 
 **Implemented enhancements:**
 
+- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add changelog generator [\#7](https://github.com/dev-sec/ansible-mysql-hardening/pull/7) ([chris-rock](https://github.com/chris-rock))
 
 **Closed issues:**
