@@ -1,6 +1,7 @@
 # mysql-hardening (Ansible role)
 
 [![Build Status](http://img.shields.io/travis/dev-sec/ansible-mysql-hardening.svg)][1]
+![Ansible Lint](https://github.com/dev-sec/ansible-mysql-hardening/workflows/Ansible%20Lint/badge.svg?branch=master)
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-mysql--hardening-660198.svg)][3]
 
 ## Description

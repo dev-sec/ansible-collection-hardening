@@ -6,9 +6,11 @@
       apt:
         update_cache: true
       when: ansible_os_family == 'Debian'
-    - file:
+    - name: Create mysql directory if it does not exist
+      file:
         path: "/etc/mysql"
         state: directory
+        mode: 0755
     - name: install procps for debian systems
       apt:
         name: procps
