@@ -56,10 +56,11 @@ jobs:
       - name: apparmor
         run: |
             set -x
+            sudo apt-get install apparmor-profiles
             sudo touch /etc/apparmor.d/usr.sbin.mysqld
             sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
-            sudo apt-get install apparmor-profiles
             sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
+            sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld || true
       - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T vFowK8cCZtrVAVp16WkNVa boyN02q8Sj8LQUxB7wbb56 eu.relay.tunshell.com
       - name: Test with molecule
         run: |
