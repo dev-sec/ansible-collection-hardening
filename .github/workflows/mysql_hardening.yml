@@ -51,19 +51,19 @@ jobs:
           mkdir -p /home/runner/.ansible
           ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
 
-      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T FrADhYQiZAC1nftJTC75Ub oqeu29cyjcC2N9OX7qvG0O eu.relay.tunshell.com
+#      - run: curl -sSf https://lets.tunshell.com/init.sh | sh /dev/stdin T FrADhYQiZAC1nftJTC75Ub oqeu29cyjcC2N9OX7qvG0O eu.relay.tunshell.com
 
       # that was a hard one to fix. robert did it thankfully
       # https://github.com/robertdebock/ansible-role-mysql/commit/7562e99099b06282391ab7ed102b393a0406d212
-      - name: apparmor
-        run: |
-            set -x
-            sudo apt-get install apparmor-profiles
-            sudo sed -i 's!/var/lib/mysql!/dev/shm/mysql!' /etc/mysql/mysql.conf.d/mysqld.cnf
-            sudo sed -i 's!/var/lib/mysql!/dev/shm/mysql!' /etc/apparmor.d/usr.sbin.mysqld
-            sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.mysqld
-            sudo cp -rp /var/lib/mysql /dev/shm
-            sudo mv /var/lib/mysql /var/lib/mysql.local
+#      - name: apparmor
+#        run: |
+#            set -x
+#            sudo apt-get install apparmor-profiles
+#            sudo sed -i 's!/var/lib/mysql!/dev/shm/mysql!' /etc/mysql/mysql.conf.d/mysqld.cnf
+#            sudo sed -i 's!/var/lib/mysql!/dev/shm/mysql!' /etc/apparmor.d/usr.sbin.mysqld
+#            sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.mysqld
+#            sudo cp -rp /var/lib/mysql /dev/shm
+#            sudo mv /var/lib/mysql /var/lib/mysql.local
 
       - name: Test with molecule
         run: |
