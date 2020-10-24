@@ -31,14 +31,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
 
-      - name: Generate changelog for the release
-        uses: charmixer/auto-changelog-action@8095796
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          since_tag: ${{ steps.previoustag.outputs.tag }}
-          future_release: ${{ steps.version.outputs.next-version }}
-          output: CHANGELOGRELEASE.md
-
       - name: push changelog
         uses: github-actions-x/commit@v2.6
         with:
@@ -50,6 +42,14 @@ jobs:
           name: dev-sec CI
           email: hello@dev-sec.io
 
+      - name: Generate changelog for the release
+        uses: charmixer/auto-changelog-action@8095796
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          since_tag: ${{ steps.previoustag.outputs.tag }}
+          future_release: ${{ steps.version.outputs.next-version }}
+          output: CHANGELOGRELEASE.md
+
       - name: Read CHANGELOG.md
         id: package
         uses: juliangruber/read-file-action@v1
@@ -60,10 +60,25 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This token is provided by Actions, you do not need to create your own token
         with:
           release_name: ${{ steps.version.outputs.next-version }}
           tag_name: ${{ steps.version.outputs.next-version }}
           body: |
             ${{ steps.package.outputs.content }}
           draft: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible
+
+      - name: Build and publish collection
+        run: |
+          ansible-galaxy collection build .
+          ansible-galaxy collection publish *.tar.gz --token=$API_TOKEN
