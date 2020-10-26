@@ -1,17 +1,18 @@
 # Ansible Collection - devsec.hardening
 
-![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
+![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
+![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
+![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
+
+## Description
 
 This collections provides battle tested hardening for:
 
 * Linux operating systems:
-  * CentOS 7
-  * CentOS 8
-  * Ubuntu 16.04
-  * Ubuntu 18.04
-  * Ubuntu 20.04
-  * Debian 9
-  * Debian 10
+  * CentOS 7/8
+  * Ubuntu 16.04/18.04/20.04
+  * Debian 9/10
   * Arch Linux (some roles supported)
   * Suse Tumbleweed (some roles supported)
   * Fedora (some roles supported)
@@ -19,11 +20,8 @@ This collections provides battle tested hardening for:
 * OpenSSH 5.3 and later
 * Nginx 1.0.16 or later
 * MySQL
-  * MySQL >= 5.7.31
-  * MySQL >= 8.0.3
-  * MariaDB >= 5.5.65
-  * MariaDB >= 10.1.45
-  * MariaDB >= 10.3.17
+  * MySQL >= 5.7.31, >= 8.0.3
+  * MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
 
 The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
