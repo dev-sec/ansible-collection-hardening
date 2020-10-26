@@ -81,4 +81,4 @@ jobs:
       - name: Build and publish collection
         run: |
           ansible-galaxy collection build .
-          ansible-galaxy collection publish *.tar.gz --token=$API_TOKEN 
+          ansible-galaxy collection publish *.tar.gz --token=$API_TOKEN
