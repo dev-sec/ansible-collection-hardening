@@ -2,10 +2,6 @@
 
 ![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
 
-## Looking for the old ansible-ssh-hardening role?
-
-This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
-
 ## Description
 
 This role provides secure ssh-client and ssh-server configurations. It is intended to be compliant with the [DevSec SSH Baseline](https://github.com/dev-sec/ssh-baseline).
