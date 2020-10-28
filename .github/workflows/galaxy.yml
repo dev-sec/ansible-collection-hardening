@@ -1,0 +1,39 @@
+---
+name: Publish collection to Ansible Galaxy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # deploy the collection first, because if it fails, we don't want
+      # to update the galaxy.yml
+      - name: Deploy the collection
+        uses: artis3n/ansible_galaxy_collection@v2
+        with:
+          api_key: ${{ secrets.GALAXY_API_KEY }}
+          galaxy_version: ${{ github.event.release.tag_name }}
+
+      - name: update galaxy.yml with new version
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: 'galaxy.yml'
+        env:
+          version: "${{ github.event.release.tag_name }}"
+
+      - name: push galaxy.yml
+        uses: github-actions-x/commit@v2.7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'update galaxy.yml with new version'
+          force-add: 'true'
+          files: galaxy.yml
+          name: dev-sec CI
+          email: hello@dev-sec.io
