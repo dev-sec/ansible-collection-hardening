@@ -62,7 +62,7 @@ tags:
 dependencies: {}
 
 # The URL of the originating SCM repository
-repository: https://github.com/dev-sec/ansible-mysql-hardening
+repository: https://github.com/dev-sec/ansible-os-hardening
 
 # The URL to the homepage of the collection/project
 homepage: https://dev-sec.io/
