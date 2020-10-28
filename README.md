@@ -5,7 +5,7 @@
 
 ## Looking for the old ansible-os-hardening role?
 
-The old role is now part of the hardening-collection. You can find the old role in the branch `os-hardening-role`.
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
 ## Description
 
