@@ -1,7 +1,10 @@
-# nginx-hardening (Ansible Role)
+# devsec.nginx_hardening
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-nginx-hardening.svg)][1]
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-nginx--hardening-660198.svg)][3]
+![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
+
+## Looking for the old ansible-nginx-hardening role?
+
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
 ## Description
 
@@ -17,7 +20,7 @@ It works with the following nginx-roles, including, but not limited to:
 
 ## Requirements
 
-* Ansible >= 2.5
+* Ansible >= 2.9
 
 ## Role Variables
 
@@ -76,87 +79,15 @@ er.
   * Default: `2048`
   * Description: Specifies the length of DH parameters for EDH ciphers.
 
-## Installation
-
-Install the role with ansible-galaxy:
-
-```
-ansible-galaxy install dev-sec.nginx-hardening
-```
-
 ## Example Playbook
 
-    - hosts: localhost
-      roles:
-        - dev-sec.nginx-hardening
-
-## Local Testing
-
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system. See [Get started](https://docs.docker.com/) for a Docker package suitable to for your system.
-
-You can also use vagrant and Virtualbox or VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
-
-Next install test-kitchen:
-
-```bash
-# Install dependencies
-gem install bundler
-bundle install
 ```
-
-### Testing with Docker
-
+- hosts: localhost
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.nginx_hardening
 ```
-# fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
-
-# test on all machines
-bundle exec kitchen test
-
-# for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
-```
-
-### Testing with Virtualbox
-
-```
-# fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test nginx-ansible-19-ubuntu-1404
-
-# test on all machines
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
-
-# for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create nginx-ansible-19-ubuntu-1404
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge nginx-ansible-19-ubuntu-1404
-```
-
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
-
-## Contributing
-
-See [contributor guideline](CONTRIBUTING.md).
-
-## License and Author
-
-* Author:: Sebastian Gumprich
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-[1]: http://travis-ci.org/dev-sec/ansible-nginx-hardening
-[2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/dev-sec/nginx-hardening/
 
 [nginx_client_body_buffer_size]: http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
 [nginx_client_max_body_size]: http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
