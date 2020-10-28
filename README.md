@@ -1,37 +1,37 @@
-# mysql-hardening (Ansible role)
+# devsec.mysql_hardening
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-mysql-hardening.svg)][1]
-![Ansible Lint](https://github.com/dev-sec/ansible-mysql-hardening/workflows/Ansible%20Lint/badge.svg?branch=master)
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-mysql--hardening-660198.svg)][3]
+![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+
+## Looking for the old ansible-mysql-hardening role?
+
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
 ## Description
 
-Provides security configurations for MySQL. It is intended to set up production-ready mysql instances that are configured with minimal surface for attackers. Furthermore it is intended to be compliant with the [DevSec MySQL Baseline](https://github.com/dev-sec/mysql-baseline).
+This role provides security configurations for MySQL and its derivates. It is intended to set up production-ready MySQL instances that are configured with minimal surface for attackers. Furthermore it is intended to be compliant with the [DevSec MySQL Baseline](https://github.com/dev-sec/mysql-baseline).
 
-This role focuses on security configuration of MySQL. Therefore you can add this hardening role alongside your existing MySQL configuration in Ansible.
+It configures:
+
+* Permissions for the various configuration files and folders
+* Removes anonymous users, root-users without a password and test databases
+* various hardening options inside MySQL
 
 ## Requirements
 
-* Ansible
-* Set up `mysql_root_password` variable
+* Ansible 2.9.0
+* An existing MySQL installation
 
-## Installation
-
-Install the role with ansible-galaxy:
-
-```sh
-ansible-galaxy install dev-sec.mysql-hardening
-```
-
-### Example Playbook
+### Example playbook
 
 ```yml
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.mysql-hardening
+    - devsec.mysql_hardening
 ```
 
-This hardening role installs the hardening but expects an existing installation of MySQL, MariaDB or Percona. Please ensure that the following variables are set accordingly:
+This role expects an existing installation of MySQL or MariaDB. Please ensure that the following variables are set accordingly:
 
 * `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
 * `mysql_hardening_user: 'mysql'` The user that mysql runs as.
@@ -81,71 +81,3 @@ This hardening role installs the hardening but expects an existing installation 
   * Description: remove test database
 
 Further information is available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)
-
-## Local Testing
-
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system. See [Get started](https://docs.docker.com/) for a Docker package suitable to for your system.
-
-You can also use vagrant and Virtualbox or VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
-
-Next install test-kitchen:
-
-```sh
-# Install dependencies
-gem install bundler
-bundle install
-```
-
-### Testing with Docker
-
-```sh
-# list all available machines
-bundle exec kitchen list
-
-# fast test on one machine
-bundle exec kitchen test mysql-centos7-ansible-latest
-
-# test on all machines
-bundle exec kitchen test
-
-# for development
-bundle exec kitchen create mysql-centos7-ansible-latest
-bundle exec kitchen converge mysql-centos7-ansible-latest
-```
-
-### Testing with Virtualbox
-
-```sh
-# fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1404
-
-# test on all machines
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
-
-# for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1404
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1404
-```
-
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
-
-## License and Author
-
-* Author:: Sebastian Gumprich
-* Author:: Anton Lugovoi <anton.lugovoi@outlook.com>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-[1]: http://travis-ci.org/dev-sec/ansible-mysql-hardening
-[2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/dev-sec/mysql-hardening/

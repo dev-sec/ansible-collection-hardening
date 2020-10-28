@@ -1,7 +1,0 @@
----
-collections:
-  - community.mysql
-
-roles:
-  - src: dev-sec.mysql
-    version: master
