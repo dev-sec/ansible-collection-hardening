@@ -2,10 +2,6 @@
 
 ![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
 
-## Looking for the old ansible-nginx-hardening role?
-
-This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
-
 ## Description
 
 This role provides secure nginx configuration. It is intended to be compliant with the [DevSec Nginx Baseline](https://github.com/dev-sec/nginx-baseline).
