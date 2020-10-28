@@ -2,10 +2,6 @@
 
 ![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
 
-## Looking for the old ansible-mysql-hardening role?
-
-This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
-
 ## Description
 
 This role provides security configurations for MySQL and its derivates. It is intended to set up production-ready MySQL instances that are configured with minimal surface for attackers. Furthermore it is intended to be compliant with the [DevSec MySQL Baseline](https://github.com/dev-sec/mysql-baseline).
