@@ -1,17 +1,20 @@
-# ssh-hardening (Ansible Role)
+# dev-sec.ssh_hardening
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-ssh-hardening.svg)][1]
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-ssh--hardening-660198.svg)][3]
+![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
+
+## Looking for the old ansible-ssh-hardening role?
+
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
 ## Description
 
-This role provides secure ssh-client and ssh-server configurations.  It is intended to be compliant with the [DevSec SSH Baseline](https://github.com/dev-sec/ssh-baseline).
+This role provides secure ssh-client and ssh-server configurations. It is intended to be compliant with the [DevSec SSH Baseline](https://github.com/dev-sec/ssh-baseline).
 
 Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
 
 ## Requirements
 
-* Ansible > 2.5
+* Ansible >= 2.9
 
 ## Role Variables
 
@@ -229,6 +232,16 @@ Warning: This role disables root-login on the target server! Please make sure yo
   * Default: `publickey`
   * Description: Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`
 
+## Example Playbook
+
+```
+- hosts: localhost
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.ssh_hardening
+```
+
 ## Configuring settings not listed in role-variables
 
 If you want to configure ssh options that are not listed above, you can use `ssh_custom_options` (for `/etc/ssh/ssh_config`) or `sshd_custom_options` (for `/etc/ssh/sshd_config`) to set them. These options will be set on the **beginning** of the file so you can override options further down in the file.
@@ -237,8 +250,10 @@ Example playbook:
 
 ```
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.ssh-hardening
+    - devsec.ssh_hardening
   vars:
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"
@@ -251,123 +266,3 @@ Example playbook:
 This role uses the default port 22 or the port configured in the inventory to connect to the server. If the default `ssh` port is changed via `ssh_server_ports`, once the ssh server is restarted, it will still try to connect using the previous port. In order to run this role again on the same server the inventory will have to be updated to use the new ssh port.
 
 If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.
-
-## Example Playbook
-
-    - hosts: localhost
-      roles:
-        - dev-sec.ssh-hardening
-
-## Local Testing
-
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system. See [Get started](https://docs.docker.com/) for a Docker package suitable to for your system.
-
-You can also use vagrant and Virtualbox or VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
-
-Next install test-kitchen:
-
-```bash
-# Install dependencies
-gem install bundler
-bundle install
-```
-
-### Testing with Docker
-
-```
-# fast test on one machine
-bundle exec kitchen test ssh-ubuntu1804-ansible-latest
-
-# test on all machines
-bundle exec kitchen test
-
-# for development
-bundle exec kitchen create ssh-ubuntu1804-ansible-latest
-bundle exec kitchen converge ssh-ubuntu1804-ansible-latest
-bundle exec kitchen verify ssh-ubuntu1804-ansible-latest
-
-# cleanup
-bundle exec kitchen destroy ssh-ubuntu1804-ansible-latest
-```
-
-### Testing with Virtualbox
-```
-# fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test ssh-ubuntu-1804
-
-# test on all machines
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
-
-# for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create ssh-ubuntu-1804
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge ssh-ubuntu-1804
-```
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
-
-## FAQ / Pitfalls
-
-**I can't log into my account. I have registered the client key, but it still doesn't let me it.**
-
-If you have exhausted all typical issues (firewall, network, key missing, wrong key, account disabled etc.), it may be that your account is locked. The quickest way to find out is to look at the password hash for your user:
-
-    sudo grep myuser /etc/shadow
-
-If the hash includes an `!`, your account is locked:
-
-    myuser:!:16280:7:60:7:::
-
-The proper way to solve this is to unlock the account (`passwd -u myuser`). If the user doesn't have a password, you should can unlock it via:
-
-    usermod -p "*" myuser
-
-Alternatively, if you intend to use PAM, you enabled it via `ssh_use_pam: true`. PAM will allow locked users to get in with keys.
-
-
-**Why doesn't my application connect via SSH anymore?**
-
-Always look into log files first and if possible look at the negotiation between client and server that is completed when connecting.
-
-We have seen some issues in applications (based on python and ruby) that are due to their use of an outdated crypto set. This collides with this hardening module, which reduced the list of ciphers, message authentication codes (MACs) and key exchange (KEX) algorithms to a more secure selection.
-
-**After using the role Ansibles template/copy/file module does not work anymore!**
-
-This role by default deactivates SFTP. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. Alternatively you can enable SFTP again by setting `sftp_enabled` to `true`.
-
-**Cannot restart sshd-service due to lack of privileges**
-
-If you get the following error when running handler "restart sshd"
-```
-Unable to restart service ssh: Failed to restart ssh.service: Access denied
-```
-or
-```
-failure 1 running systemctl show for 'ssh': Failed to connect to bus: No such file or directory
-```
-either run the playbook as `root` (without `become: yes` at the playbook level), or add `become: yes` to the handler.
-
-This is a bug with Ansible: see [here](https://github.com/dev-sec/ansible-ssh-hardening/pull/81) and [here](https://github.com/ansible/ansible/issues/17490) for more information.
-
-## Contributing
-
-See [contributor guideline](CONTRIBUTING.md).
-
-## License and Author
-
-* Author:: Sebastian Gumprich
-* Author:: Christoph Hartmann <chris@lollyrock.com>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-[1]: http://travis-ci.org/dev-sec/ansible-ssh-hardening
-[2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/dev-sec/ssh-hardening/
