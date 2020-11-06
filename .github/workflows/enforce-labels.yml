@@ -6,7 +6,6 @@ on:
 jobs:
   enforce-label:
     runs-on: ubuntu-latest
-    steps:
-    - uses: yogevbd/enforce-label-action@2.1.0
+    - uses: actions/labeler@main
       with:
-        REQUIRED_LABELS_ANY: "breaking,bug,enhancement,minor,patch,major,question,os_hardening,mysql_hardening,nginx_hardening,ssh_hardening"
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

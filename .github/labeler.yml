@@ -1,0 +1,20 @@
+---
+mysql_hardening:
+  - 'roles/mysql_hardening/**'
+  - 'molecule/mysql_hardening/**'
+  - '.github/workflows/mysql_hardening.yml'
+
+os_hardening:
+  - 'roles/os_hardening/**'
+  - 'molecule/os_hardening/**'
+  - '.github/workflows/os_hardening.yml'
+
+ssh_hardening:
+  - 'roles/ssh_hardening/**'
+  - 'molecule/ssh_hardening/**'
+  - '.github/workflows/ssh_hardening.yml'
+
+nginx_hardening:
+  - 'roles/nginx_hardening/**'
+  - 'molecule/nginx_hardening/**'
+  - '.github/workflows/nginx_hardening.yml'
