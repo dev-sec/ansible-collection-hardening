@@ -1,4 +1,4 @@
-name: Enforce PR labels
+name: "Enforce PR labels"
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
 jobs:
   enforce-label:
     runs-on: ubuntu-latest
+    steps:
     - uses: actions/labeler@main
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
