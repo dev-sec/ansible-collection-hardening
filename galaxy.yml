@@ -69,3 +69,17 @@ homepage: https://dev-sec.io/
 
 # The URL to the collection issue tracker
 issues: https://github.com/dev-sec/ansible-os-hardening/issues
+
+# ignore files not needed for release
+build_ignore:
+  - codecov.yml
+  - .github
+  - .gitattributes
+  - .gitignore
+  - hacking
+  - requirements.txt
+  - test-requirements.txt
+  - tests
+  - .tox
+  - tox.ini
+  - .yamllint
