@@ -26,17 +26,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@8095796
+        uses: charmixer/auto-changelog-action@9715f33
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
+          issue_line_labels: "ALL"
 
       - name: Generate changelog for the release
-        uses: charmixer/auto-changelog-action@8095796
+        uses: charmixer/auto-changelog-action@9715f33
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           since_tag: ${{ steps.previoustag.outputs.tag }}
           future_release: ${{ steps.version.outputs.next-version }}
+          issue_line_labels: "ALL"
           output: CHANGELOGRELEASE.md
 
       - name: push changelog
