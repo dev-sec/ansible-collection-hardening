@@ -1,0 +1,46 @@
+---
+- name: Install mysqld python libary for Ansible
+  package:
+    name: '{{ mysql_python_package }}'
+    state: present
+
+- debug:
+    msg: 'WARNING - you have to change default mysql_root_password'
+  when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+
+- name: root password is present
+  mysql_user:
+    name: 'root'
+    host_all: true
+    password: '{{ mysql_root_password | mandatory }}'
+    state: present
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+
+- name: install .my.cnf with credentials
+  template:
+    src: 'my.cnf.j2'
+    dest: '{{ mysql_user_home }}/.my.cnf'
+    mode: '0400'
+  tags: my_cnf
+
+- name: test database is absent
+  mysql_db:
+    name: test
+    state: absent
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  when: mysql_remove_test_database
+
+- name: anonymous users are absent
+  mysql_user:
+    name: ''
+    state: absent
+    host_all: true
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  when: mysql_remove_anonymous_users
+
+- name: remove remote root
+  community.mysql.mysql_query:
+    query:
+      - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  when: mysql_remove_remote_root

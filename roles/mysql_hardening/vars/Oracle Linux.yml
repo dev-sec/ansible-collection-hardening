@@ -1,0 +1,9 @@
+---
+mysql_daemon: mysqld
+
+mysql_hardening_mysql_conf_file: '/etc/my.cnf'
+mysql_hardening_mysql_confd_dir: '/etc/my.cnf.d'
+
+mysql_hardening_log_file: '/var/log/mysqld.log'
+
+mysql_hardening_group: 'adm'
