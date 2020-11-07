@@ -4,9 +4,6 @@
 [submodule "roles/apache_hardening"]
 	path = roles/apache_hardening
 	url = https://github.com/dev-sec/ansible-apache-hardening/
-[submodule "roles/nginx_hardening"]
-	path = roles/nginx_hardening
-	url = https://github.com/dev-sec/ansible-nginx-hardening/
 [submodule "roles/mysql_hardening"]
 	path = roles/mysql_hardening
 	url = https://github.com/dev-sec/ansible-mysql-hardening/
