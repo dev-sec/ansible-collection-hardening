@@ -1,0 +1,6 @@
+---
+sshd_path: /usr/sbin/sshd
+ssh_host_keys_dir: '/etc/ssh'
+sshd_service_name: sshd
+ssh_owner: root
+ssh_group: wheel

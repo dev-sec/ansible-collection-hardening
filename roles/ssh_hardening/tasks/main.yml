@@ -1,0 +1,3 @@
+---
+- include_tasks: hardening.yml
+  when: ssh_hardening_enabled | bool

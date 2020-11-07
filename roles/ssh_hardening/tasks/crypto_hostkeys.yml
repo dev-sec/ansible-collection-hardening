@@ -1,0 +1,21 @@
+---
+- name: set hostkeys according to openssh-version if openssh >= 5.3
+  set_fact:
+    ssh_host_key_files:
+      - "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
+  when: sshd_version is version('5.3', '>=')
+
+- name: set hostkeys according to openssh-version if openssh >= 6.0
+  set_fact:
+    ssh_host_key_files:
+      - "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
+      - "{{ ssh_host_keys_dir }}/ssh_host_ecdsa_key"
+  when: sshd_version is version('6.0', '>=')
+
+- name: set hostkeys according to openssh-version if openssh >= 6.3
+  set_fact:
+    ssh_host_key_files:
+      - "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
+      - "{{ ssh_host_keys_dir }}/ssh_host_ecdsa_key"
+      - "{{ ssh_host_keys_dir }}/ssh_host_ed25519_key"
+  when: sshd_version is version('6.3', '>=')

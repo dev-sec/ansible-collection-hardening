@@ -1,0 +1,8 @@
+---
+sshd_path: /usr/lib/ssh/sshd
+ssh_host_keys_dir: '/var/ssh'
+sshd_service_name: ssh
+ssh_owner: root
+ssh_group: root
+
+ssh_pam_support: false
