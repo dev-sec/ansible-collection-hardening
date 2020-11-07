@@ -1,40 +1,44 @@
-# os-hardening (Ansible Role)
+# devsec.os_hardening
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-os-hardening.svg)][1]
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-os--hardening-660198.svg)][3]
+![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+
+
+## Looking for the old ansible-os-hardening role?
+
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
 ## Description
 
-This role provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
+This role provides numerous security-related configurations, providing all-round base protection. It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
 
 It configures:
 
- * Configures package management e.g. allows only signed packages
- * Remove packages with known issues
- * Configures `pam` and `pam_limits` module
- * Shadow password suite configuration
- * Configures system path permissions
- * Disable core dumps via soft limits
- * Restrict root Logins to System Console
- * Set SUIDs
- * Configures kernel parameters via sysctl
- * Install and configure auditd
+* Remove unused yum repositories and enable GPG key-checking
+* Remove packages with known issues
+* Configures pam for strong password checks
+* Installs and configures auditd
+* Disable core dumps via soft limits
+* sets a restrictive umask
+* Configures execute permissions of files in system paths
+* Hardens access to shadow and passwd files
+* Disables unused filesystems
+* Disables rhosts
+* Configures secure ttys
+* Configures kernel parameters via sysctl
+* Enables selinux on EL-based systems
+* Remove SUIDs and GUIDs
+* Configures login and passwords of system accounts
 
 It will not:
 
- * Update system packages
- * Install security patches
+* Update system packages
+* Install security patches
 
 ## Requirements
 
-* Ansible 2.5.0
+* Ansible 2.9.0
 
 ## Known Limitations
-
-### Testing with inspec
-
-If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
-Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
 
 ### Docker support
 
@@ -42,8 +46,10 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 
 ```yaml
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.os-hardening
+    - devsec.os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.
@@ -56,12 +62,20 @@ We are setting this sysctl to a default of `32`, some systems only support small
 
 ```yaml
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.os-hardening
+    - devsec.os_hardening
   vars:
     sysctl_overwrite:
       vm.mmap_rnd_bits: 16
 ```
+
+### Testing with inspec
+
+If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
+Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
 
 We know that this is the case on Raspberry Pi.
 
@@ -185,20 +199,14 @@ We disable the following filesystems, because they're most likely not used:
 
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
-## Installation
-
-Install the role with ansible-galaxy:
-
-```
-ansible-galaxy install dev-sec.os-hardening
-```
-
 ## Example Playbook
 
 ```yaml
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.os-hardening
+    - devsec.os_hardening
 ```
 
 ## Changing sysctl variables
@@ -208,8 +216,10 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
 
 ```yaml
 - hosts: localhost
+  collections:
+    - devsec.hardening
   roles:
-    - dev-sec.os-hardening
+    - devsec.os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.
@@ -220,54 +230,11 @@ Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com
 
 ## Improving Kernel Audit logging
 
-By default, any process that starts before the `auditd` daemon will have an AUID of `4294967295`. To improve this and provide more accurate logging, it's recommended to add the kernel boot parameter `audit=1` to you configuration. Without doing this, you will find that your `auditd` logs fail to properly audit all processes. 
+By default, any process that starts before the `auditd` daemon will have an AUID of `4294967295`. To improve this and provide more accurate logging, it's recommended to add the kernel boot parameter `audit=1` to you configuration. Without doing this, you will find that your `auditd` logs fail to properly audit all processes.
 
-For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters. 
+For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters.
 
-## Local Testing
-
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system. See [Get started](https://docs.docker.com/) for a Docker package suitable to for your system.
-
-You can also use vagrant and Virtualbox or VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
-
-Next install test-kitchen:
-
-```bash
-# Install dependencies
-gem install bundler
-bundle install
-```
-
-### Testing with Docker
-```
-# fast test on one machine
-bundle exec kitchen test default-ubuntu-1404
-
-# test on all machines
-bundle exec kitchen test
-
-# for development
-bundle exec kitchen create default-ubuntu-1404
-bundle exec kitchen converge default-ubuntu-1404
-```
-
-### Testing with Virtualbox
-```
-# fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1404
-
-# test on all machines
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
-
-# for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1404
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1404
-```
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
-
-## Contributors + Kudos
-
-...
+## More information
 
 This role is mostly based on guides by:
 
@@ -275,29 +242,3 @@ This role is mostly based on guides by:
 * [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 * [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
 * [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
-
-Thanks to all of you!
-## Contributing
-
-See [contributor guideline](CONTRIBUTING.md).
-
-## License and Author
-
-* Author:: Sebastian Gumprich
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
-[1]: http://travis-ci.org/dev-sec/ansible-os-hardening
-[2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/dev-sec/os-hardening
