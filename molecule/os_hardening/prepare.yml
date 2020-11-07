@@ -1,0 +1,52 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
+  hosts: all
+  become: true
+  collections:
+    - devsec.hardening
+  tasks:
+    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
+
+    - name: Run the equivalent of "apt-get update && apt-get upgrade"
+      apt:
+        name: "*"
+        state: latest
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: install required tools on SuSE
+      # cannot use zypper module, since it depends on python-xml
+      shell: "zypper -n install python-xml"
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: install required tools on fedora
+      dnf:
+        name:
+          - python
+          - findutils
+          - procps-ng
+      when: ansible_facts.distribution == 'Fedora'
+
+    - name: install packages
+      pacman:
+        name:
+          - "awk"
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - name: install required tools on RHEL
+      yum:
+        name:
+          - openssh-clients
+          - openssh
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - name: create recursing symlink to test minimize access
+      shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
+      changed_when: false

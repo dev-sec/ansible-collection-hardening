@@ -1,4 +1,0 @@
----
-
-- import_tasks: hardening.yml
-  when: os_hardening_enabled | bool

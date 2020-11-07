@@ -1,0 +1,68 @@
+---
+name: "devsec.os_hardening"
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening/**'
+      - '.github/workflows/os_hardening.yml'
+  pull_request:
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening/**'
+      - '.github/workflows/os_hardening.yml'
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro:
+          - centos7
+          - centos8
+          - ubuntu1604
+          - ubuntu1804
+          - ubuntu2004
+          - debian9
+          - debian10
+          - amazon
+          - opensuse_tumbleweed
+          # - arch  # needs to be fixed
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/devsec/hardening
+          submodules: true
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      - name: Install dependencies
+        run: |
+          sudo apt install git
+          python -m pip install --no-cache-dir --upgrade pip
+          pip install -r requirements.txt
+        working-directory: ansible_collections/devsec/hardening
+
+      - name: Create default collection path symlink
+        run: |
+          mkdir -p /home/runner/.ansible
+          ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
+
+      - name: Test with molecule
+        run: |
+          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
+            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
+          fi
+          molecule --version
+          molecule test -s os_hardening
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+        working-directory: ansible_collections/devsec/hardening

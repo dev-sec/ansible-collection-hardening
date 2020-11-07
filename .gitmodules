@@ -1,0 +1,18 @@
+[submodule "roles/windows_hardening"]
+	path = roles/windows_hardening
+	url = https://github.com/dev-sec/ansible-windows-hardening/
+[submodule "roles/apache_hardening"]
+	path = roles/apache_hardening
+	url = https://github.com/dev-sec/ansible-apache-hardening/
+[submodule "roles/nginx_hardening"]
+	path = roles/nginx_hardening
+	url = https://github.com/dev-sec/ansible-nginx-hardening/
+[submodule "roles/mysql_hardening"]
+	path = roles/mysql_hardening
+	url = https://github.com/dev-sec/ansible-mysql-hardening/
+[submodule "roles/ssh_hardening"]
+	path = roles/ssh_hardening
+	url = https://github.com/dev-sec/ansible-ssh-hardening/
+[submodule "roles/os_hardening"]
+	path = roles/os_hardening
+	url = https://github.com/dev-sec/ansible-os-hardening/

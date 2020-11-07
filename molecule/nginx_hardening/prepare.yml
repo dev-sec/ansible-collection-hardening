@@ -1,0 +1,24 @@
+---
+- name: prepare playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  become: true
+  hosts: all
+  tasks:
+    - name: install required tools on SuSE
+      zypper:
+        name: "python-xml"
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: install required packages
+      package:
+        name: "python3-apt"
+        update_cache: true
+      ignore_errors: true
+
+    - name: Set correct distribution Version for Amazon Linux
+      set_fact:
+        ansible_distribution_major_version: 7
+      when: ansible_distribution == 'Amazon'
+
+    - include_role:
+        name: geerlingguy.nginx

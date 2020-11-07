@@ -1,0 +1,63 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/mysql_hardening/requirements.yml
+driver:
+  name: docker
+lint: |
+  yamllint roles/mysql_hardening/ molecule/mysql_hardening/ .github/workflows/mysql_hardening.yml
+  ansible-lint roles/mysql_hardening/
+platforms:
+  - name: instance
+    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+    environment:
+      container: docker
+    security_opts:
+      - apparmor=unconfined
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      callback_whitelist: profile_tasks, timer, yaml
+verifier:
+  name: ansible
+
+scenario:
+  create_sequence:
+    - dependency
+    - create
+    - prepare
+  check_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - check
+    - destroy
+  converge_sequence:
+    - dependency
+    - create
+    - prepare
+    - converge
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - dependency
+    - lint
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    # - idempotence  # not idempotent
+    - verify
+    - destroy
+
