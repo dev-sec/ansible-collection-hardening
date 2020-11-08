@@ -9,26 +9,26 @@
 
 This collections provides battle tested hardening for:
 
-* Linux operating systems:
-  * CentOS 7/8
-  * Ubuntu 16.04/18.04/20.04
-  * Debian 9/10
-  * Arch Linux (some roles supported)
-  * Suse Tumbleweed (some roles supported)
-  * Fedora (some roles supported)
-  * Amazon Linux (some roles supported)
-* OpenSSH 5.3 and later
-* Nginx 1.0.16 or later
-* MySQL
-  * MySQL >= 5.7.31, >= 8.0.3
-  * MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
+- Linux operating systems:
+  - CentOS 7/8
+  - Ubuntu 16.04/18.04/20.04
+  - Debian 9/10
+  - Arch Linux (some roles supported)
+  - Suse Tumbleweed (some roles supported)
+  - Fedora (some roles supported)
+  - Amazon Linux (some roles supported)
+- OpenSSH 5.3 and later
+- Nginx 1.0.16 or later
+- MySQL
+  - MySQL >= 5.7.31, >= 8.0.3
+  - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
 
 The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
-* https://github.com/dev-sec/linux-baseline
-* https://github.com/dev-sec/ssh-baseline
-* https://github.com/dev-sec/nginx-baseline
-* https://github.com/dev-sec/mysql-baseline
+- https://github.com/dev-sec/linux-baseline
+- https://github.com/dev-sec/ssh-baseline
+- https://github.com/dev-sec/nginx-baseline
+- https://github.com/dev-sec/mysql-baseline
 
 ## Tested with Ansible
 
@@ -36,15 +36,15 @@ The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
 ## Included content
 
-* [os_hardening](roles/os_hardening/)
-* [ssh_hardening](roles/ssh_hardening/)
-* [mysql_hardening](roles/mysql_hardening/)
-* [nginx_hardening](roles/nginx_hardening/)
+- [os_hardening](roles/os_hardening/)
+- [ssh_hardening](roles/ssh_hardening/)
+- [mysql_hardening](roles/mysql_hardening/)
+- [nginx_hardening](roles/nginx_hardening/)
 
 In progress, not working:
-* [apache_hardening](roles/apache_hardening/)
-* [windows_hardening](roles/windows_hardening/)
 
+- [apache_hardening](roles/apache_hardening/)
+- [windows_hardening](roles/windows_hardening/)
 
 ## Using this collection
 
@@ -63,8 +63,9 @@ See the [changelog](https://github.com/dev-sec/ansible-os-hardening/tree/master/
 ## Roadmap
 
 Todos:
-* Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/).
-* Add support for more operating systems,
+
+- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/).
+- Add support for more operating systems,
 
 ## More information
 
