@@ -1,0 +1,7 @@
+---
+- name: remove deprecated or insecure packages | package-01 - package-09
+  apt:
+    name: '{{ os_security_packages_list }}'
+    state: 'absent'
+    purge: 'yes'
+  when: os_security_packages_clean | bool

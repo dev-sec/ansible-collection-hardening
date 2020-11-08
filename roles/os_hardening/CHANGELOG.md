@@ -1,19 +1,57 @@
 # Changelog
 
-## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-07)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-05)
+
+[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
+
+**Implemented enhancements:**
+
+- Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299)
+- Improve Documentation [\#315](https://github.com/dev-sec/ansible-os-hardening/pull/315) ([schurzi](https://github.com/schurzi))
+- Arch support [\#303](https://github.com/dev-sec/ansible-os-hardening/pull/303) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) ([schurzi](https://github.com/schurzi))
+- file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
+
+**Fixed bugs:**
+
+- Task "set 10.hardcore.conf perms to 0400 and root ownership" fails in check mode [\#313](https://github.com/dev-sec/ansible-os-hardening/issues/313)
+- use touch for 10.hardcore.conf to avoid problems with dry-run [\#314](https://github.com/dev-sec/ansible-os-hardening/pull/314) ([schurzi](https://github.com/schurzi))
+- use touch with no date changes [\#310](https://github.com/dev-sec/ansible-os-hardening/pull/310) ([rndmh3ro](https://github.com/rndmh3ro))
+- do not touch sysctl file to avoid idempotency problems [\#309](https://github.com/dev-sec/ansible-os-hardening/pull/309) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Any planned support for RHEL/CentOS 8? [\#298](https://github.com/dev-sec/ansible-os-hardening/issues/298)
+
+**Merged pull requests:**
+
+- adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-os-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)
 
 **Implemented enhancements:**
 
+- Optimize and unify when clause [\#295](https://github.com/dev-sec/ansible-os-hardening/pull/295) ([Alexhha](https://github.com/Alexhha))
+- use find module instead of shell [\#294](https://github.com/dev-sec/ansible-os-hardening/pull/294) ([danielkubat](https://github.com/danielkubat))
 - improve testing [\#287](https://github.com/dev-sec/ansible-os-hardening/pull/287) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
 - Inconsistent use of role vars/role defaults [\#284](https://github.com/dev-sec/ansible-os-hardening/issues/284)
+- replace module parameter fixed [\#297](https://github.com/dev-sec/ansible-os-hardening/pull/297) ([danielkubat](https://github.com/danielkubat))
+
+**Closed issues:**
+
+- Consider using find module instead of shell [\#293](https://github.com/dev-sec/ansible-os-hardening/issues/293)
+- Optimize logical OR in when clause [\#292](https://github.com/dev-sec/ansible-os-hardening/issues/292)
+- vfat added to dev-sec.conf, but efi is used [\#288](https://github.com/dev-sec/ansible-os-hardening/issues/288)
+- OpenSUSE Support [\#249](https://github.com/dev-sec/ansible-os-hardening/issues/249)
 
 **Merged pull requests:**
 
+- fix fedora build [\#296](https://github.com/dev-sec/ansible-os-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-os-hardening/pull/289) ([schurzi](https://github.com/schurzi))
 - move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-os-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 
