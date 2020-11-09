@@ -48,7 +48,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
   collections:
     - devsec.hardening
   roles:
-    - devsec.os_hardening
+    - devsec.hardening.os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.
@@ -64,7 +64,7 @@ We are setting this sysctl to a default of `32`, some systems only support small
   collections:
     - devsec.hardening
   roles:
-    - devsec.os_hardening
+    - devsec.hardening.os_hardening
   vars:
     sysctl_overwrite:
       vm.mmap_rnd_bits: 16
@@ -204,7 +204,7 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
   collections:
     - devsec.hardening
   roles:
-    - devsec.os_hardening
+    - devsec.hardening.os_hardening
 ```
 
 ## Changing sysctl variables
@@ -217,7 +217,7 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
   collections:
     - devsec.hardening
   roles:
-    - devsec.os_hardening
+    - devsec.hardening.os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.

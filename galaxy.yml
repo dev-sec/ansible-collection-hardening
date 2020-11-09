@@ -7,7 +7,7 @@ namespace: devsec
 name: hardening
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 1.0.0
+version: 0.9.0
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -18,21 +18,7 @@ authors:
 - dev-sec <hello@dev-sec.io>
 
 # A short summary description of the collection
-description: >-
-  This collections provides battle tested hardening for:
-    * Linux operating systems:
-      * CentOS 7/8
-      * Ubuntu 16.04/18.04/20.04
-      * Debian 9/10
-      * Arch Linux (some roles supported)
-      * Suse Tumbleweed (some roles supported)
-      * Fedora (some roles supported)
-      * Amazon Linux (some roles supported)
-    * OpenSSH 5.3 and later
-    * Nginx 1.0.16 or later
-    * MySQL
-      * MySQL >= 5.7.31, >= 8.0.3
-      * MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
+description: This collections provides battle tested hardening for Linux, SSH, nginx, MySQL
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -46,7 +32,7 @@ license_file: ''
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
 tags:
-  - dev-sec
+  - devsec
   - hardening
   - centos
   - ubuntu

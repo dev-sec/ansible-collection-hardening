@@ -83,7 +83,7 @@ It works with the following nginx-roles, including, but not limited to:
   collections:
     - devsec.hardening
   roles:
-    - devsec.nginx_hardening
+    - devsec.hardening.nginx_hardening
 ```
 
 [nginx_client_body_buffer_size]: http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size

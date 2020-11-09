@@ -24,7 +24,7 @@ It configures:
   collections:
     - devsec.hardening
   roles:
-    - devsec.mysql_hardening
+    - devsec.hardening.mysql_hardening
 ```
 
 This role expects an existing installation of MySQL or MariaDB. Please ensure that the following variables are set accordingly:
