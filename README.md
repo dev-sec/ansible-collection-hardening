@@ -30,6 +30,10 @@ The hardening is intended to be compliant with the Inspec DevSec Baselines:
 - https://github.com/dev-sec/nginx-baseline
 - https://github.com/dev-sec/mysql-baseline
 
+## Looking for the old ansible-os-hardening role?
+
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
+
 ## Tested with Ansible
 
 2.10
