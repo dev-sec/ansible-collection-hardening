@@ -123,9 +123,9 @@
 - Remove trailing whitespaces \(ansible-lint 201\) [\#254](https://github.com/dev-sec/ansible-os-hardening/pull/254) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([kravietz](https://github.com/kravietz))
 - Standardize the var ordering [\#251](https://github.com/dev-sec/ansible-os-hardening/pull/251) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([dustinmiller1337](https://github.com/dustinmiller1337))
 - Add intial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-os-hardening/pull/250) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([dustinmiller1337](https://github.com/dustinmiller1337))
-- Make max\_log\_file\_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-os-hardening/pull/246) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jandd](https://github.com/jandd))
+- Make max_log_file_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-os-hardening/pull/246) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jandd](https://github.com/jandd))
 - Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-os-hardening/pull/240) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([ghost](https://github.com/ghost))
-- Fedora - Use new auto ansible\_python\_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-os-hardening/pull/239) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jaredledvina](https://github.com/jaredledvina))
+- Fedora - Use new auto ansible_python_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-os-hardening/pull/239) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jaredledvina](https://github.com/jaredledvina))
 - add test support for CentOS8 [\#237](https://github.com/dev-sec/ansible-os-hardening/pull/237) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([yeoldegrove](https://github.com/yeoldegrove))
 - Support configuring SELinux and default to enforcing [\#236](https://github.com/dev-sec/ansible-os-hardening/pull/236) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jaredledvina](https://github.com/jaredledvina))
 - Add test support for debian buster [\#234](https://github.com/dev-sec/ansible-os-hardening/pull/234) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([123Haynes](https://github.com/123Haynes))
@@ -135,10 +135,10 @@
 **Fixed bugs:**
 
 - /etc/login.defs alters centos 7/8 default values [\#265](https://github.com/dev-sec/ansible-os-hardening/issues/265) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
-- Invalid Conditionals in user\_accounts.yml [\#255](https://github.com/dev-sec/ansible-os-hardening/issues/255) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- Invalid Conditionals in user_accounts.yml [\#255](https://github.com/dev-sec/ansible-os-hardening/issues/255) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - `auth-system` related files are created for non-RHEL systems \(e.g. Debian\) [\#247](https://github.com/dev-sec/ansible-os-hardening/issues/247) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - NSA website links are stale [\#227](https://github.com/dev-sec/ansible-os-hardening/issues/227) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[hacktoberfest](https://github.com/dev-sec/ansible-os-hardening/labels/hacktoberfest)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
-- Running ansible on python3 throughs "TypeError: '\<=' not supported between instances of 'str' and 'int'"  [\#223](https://github.com/dev-sec/ansible-os-hardening/issues/223) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- Running ansible on python3 throughs "TypeError: '\<=' not supported between instances of 'str' and 'int'" [\#223](https://github.com/dev-sec/ansible-os-hardening/issues/223) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - \[lots of\] deprecation warnings in Ansible 2.8 [\#221](https://github.com/dev-sec/ansible-os-hardening/issues/221) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
 - Add a "don't fail on error" switch ? [\#148](https://github.com/dev-sec/ansible-os-hardening/issues/148) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - Addressing issue \#255 [\#258](https://github.com/dev-sec/ansible-os-hardening/pull/258) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([ljkimmel](https://github.com/ljkimmel))
@@ -171,12 +171,12 @@
 - Add note about docker under warning [\#214](https://github.com/dev-sec/ansible-os-hardening/pull/214) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([ChrisMcKee](https://github.com/ChrisMcKee))
 - change minimize access tasks to speed them up [\#209](https://github.com/dev-sec/ansible-os-hardening/pull/209) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Added fedora support [\#206](https://github.com/dev-sec/ansible-os-hardening/pull/206) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jonaswre](https://github.com/jonaswre))
-- Pass package list directly to apt and yum modules without using with\_items loop [\#200](https://github.com/dev-sec/ansible-os-hardening/pull/200) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([Normo](https://github.com/Normo))
+- Pass package list directly to apt and yum modules without using with_items loop [\#200](https://github.com/dev-sec/ansible-os-hardening/pull/200) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([Normo](https://github.com/Normo))
 
 **Fixed bugs:**
 
-- login.defs.j2 template: ENV\_PATH is missing ':' before variable substitution [\#202](https://github.com/dev-sec/ansible-os-hardening/issues/202) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- 'sysctl\_rhel\_config' is undefined [\#167](https://github.com/dev-sec/ansible-os-hardening/issues/167) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- login.defs.j2 template: ENV_PATH is missing ':' before variable substitution [\#202](https://github.com/dev-sec/ansible-os-hardening/issues/202) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- 'sysctl_rhel_config' is undefined [\#167](https://github.com/dev-sec/ansible-os-hardening/issues/167) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - RHEL 7.4: Too many setuid bits removed [\#140](https://github.com/dev-sec/ansible-os-hardening/issues/140) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
 - Fix typo [\#212](https://github.com/dev-sec/ansible-os-hardening/pull/212) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([ruslo](https://github.com/ruslo))
 - Update modprobe to 0644 [\#211](https://github.com/dev-sec/ansible-os-hardening/pull/211) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([joshuatalb](https://github.com/joshuatalb))
@@ -198,9 +198,9 @@
 **Fixed bugs:**
 
 - auditd causing v5.0 to fail on unpriviledged LXC's [\#191](https://github.com/dev-sec/ansible-os-hardening/issues/191) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- Setting os\_security\_users\_allow has no effect [\#175](https://github.com/dev-sec/ansible-os-hardening/issues/175) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- add /usr/bin/su to suid\_guid whitelist [\#199](https://github.com/dev-sec/ansible-os-hardening/pull/199) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([ccolic](https://github.com/ccolic))
-- ensure that permissions to su-binary are not restricted to root user and group only, if os\_security\_users\_allow contains the value change\_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([szEvEz](https://github.com/szEvEz))
+- Setting os_security_users_allow has no effect [\#175](https://github.com/dev-sec/ansible-os-hardening/issues/175) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- add /usr/bin/su to suid_guid whitelist [\#199](https://github.com/dev-sec/ansible-os-hardening/pull/199) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([ccolic](https://github.com/ccolic))
+- ensure that permissions to su-binary are not restricted to root user and group only, if os_security_users_allow contains the value change_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] ([szEvEz](https://github.com/szEvEz))
 
 ## [5.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/5.0.0) (2018-09-02)
 
@@ -210,23 +210,23 @@
 
 - Warning about "include" for tasks for ansible-playbook 2.4.0 \(devel f0a5854e39\) [\#131](https://github.com/dev-sec/ansible-os-hardening/issues/131) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)]
 - fix problems with efi and vfat [\#190](https://github.com/dev-sec/ansible-os-hardening/pull/190) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
-- added os\_hardening\_enabled flag [\#186](https://github.com/dev-sec/ansible-os-hardening/pull/186) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jcheroske](https://github.com/jcheroske))
+- added os_hardening_enabled flag [\#186](https://github.com/dev-sec/ansible-os-hardening/pull/186) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([jcheroske](https://github.com/jcheroske))
 - add amazon run opts to travis [\#183](https://github.com/dev-sec/ansible-os-hardening/pull/183) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - use package instead of yum and apt [\#180](https://github.com/dev-sec/ansible-os-hardening/pull/180) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - add oracle7 to travis [\#178](https://github.com/dev-sec/ansible-os-hardening/pull/178) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix wrong permissions passwdqc \#170 [\#176](https://github.com/dev-sec/ansible-os-hardening/pull/176) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - ipv4 forwarding comment is inconsistent with example [\#174](https://github.com/dev-sec/ansible-os-hardening/pull/174) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([carchrae](https://github.com/carchrae))
-- Rename pam\_passwdqd.j2 to pam\_passwdqc.j2 [\#172](https://github.com/dev-sec/ansible-os-hardening/pull/172) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([martinbydefault](https://github.com/martinbydefault))
+- Rename pam_passwdqd.j2 to pam_passwdqc.j2 [\#172](https://github.com/dev-sec/ansible-os-hardening/pull/172) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([martinbydefault](https://github.com/martinbydefault))
 - Use package state 'present' since 'installed' is deprecated [\#168](https://github.com/dev-sec/ansible-os-hardening/pull/168) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([Normo](https://github.com/Normo))
 - Update syntax to Ansible 2.4 [\#161](https://github.com/dev-sec/ansible-os-hardening/pull/161) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([thomasjpfan](https://github.com/thomasjpfan))
 - add amazon linux testing [\#160](https://github.com/dev-sec/ansible-os-hardening/pull/160) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support for Amazon Linux [\#158](https://github.com/dev-sec/ansible-os-hardening/pull/158) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([woneill](https://github.com/woneill))
 - install and configure auditd - fix inspec package-08 [\#144](https://github.com/dev-sec/ansible-os-hardening/pull/144) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
-- Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([HelioCampos](https://github.com/HelioCampos))
+- Remove deprecated include for static tasks and use instead import_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-os-hardening/pull/132) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([HelioCampos](https://github.com/HelioCampos))
 
 **Fixed bugs:**
 
-- minimize\_access: maximum recursion depth exceeded on Ansible 2.5 [\#171](https://github.com/dev-sec/ansible-os-hardening/issues/171) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- minimize_access: maximum recursion depth exceeded on Ansible 2.5 [\#171](https://github.com/dev-sec/ansible-os-hardening/issues/171) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - wrong permissions passwdqc [\#170](https://github.com/dev-sec/ansible-os-hardening/issues/170) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - Update deprecated `include` statements [\#166](https://github.com/dev-sec/ansible-os-hardening/issues/166) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - Strongly recommend against disabling vfat by default [\#162](https://github.com/dev-sec/ansible-os-hardening/issues/162) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
@@ -259,7 +259,7 @@
 
 **Closed issues:**
 
-- ansible hardening fails on ubuntu 16.04 with msg": "ERROR! 'sysctl\_rhel\_config' is undefined [\#147](https://github.com/dev-sec/ansible-os-hardening/issues/147)
+- ansible hardening fails on ubuntu 16.04 with msg": "ERROR! 'sysctl_rhel_config' is undefined [\#147](https://github.com/dev-sec/ansible-os-hardening/issues/147)
 - Enhancement: Test with TestInfra and Molecule [\#128](https://github.com/dev-sec/ansible-os-hardening/issues/128)
 
 **Merged pull requests:**
@@ -272,7 +272,7 @@
 
 **Fixed bugs:**
 
-- os\_security\_kernel\_enable\_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- os_security_kernel_enable_sysrq is not implemented [\#115](https://github.com/dev-sec/ansible-os-hardening/issues/115) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 
 ## [4.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.2.0) (2017-08-08)
 
@@ -307,7 +307,7 @@
 - Change system accounts not on the user provided ignore-list items are not JSON serializable [\#125](https://github.com/dev-sec/ansible-os-hardening/issues/125) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - Could not find gem 'ruby \(\>= 2.1.0\)' [\#116](https://github.com/dev-sec/ansible-os-hardening/issues/116) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - The task sysctl fails when /etc/initramfs-tools is not present [\#111](https://github.com/dev-sec/ansible-os-hardening/issues/111) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- Deprecation warning always\_run [\#103](https://github.com/dev-sec/ansible-os-hardening/issues/103) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- Deprecation warning always_run [\#103](https://github.com/dev-sec/ansible-os-hardening/issues/103) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 
 **Closed issues:**
 
@@ -353,15 +353,15 @@
 
 - CentOS 7 selinux dependencies [\#102](https://github.com/dev-sec/ansible-os-hardening/issues/102) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - ubuntu xenial warning during activate gpg-check for yum-repos [\#99](https://github.com/dev-sec/ansible-os-hardening/issues/99) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- rhel\_system\_auth.j2 is still using pam\_passwdqc.so for CentOS 7 [\#98](https://github.com/dev-sec/ansible-os-hardening/issues/98) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
-- Enable pam\_pwquality in rhel-family \> 7 [\#73](https://github.com/dev-sec/ansible-os-hardening/issues/73) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
+- rhel_system_auth.j2 is still using pam_passwdqc.so for CentOS 7 [\#98](https://github.com/dev-sec/ansible-os-hardening/issues/98) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- Enable pam_pwquality in rhel-family \> 7 [\#73](https://github.com/dev-sec/ansible-os-hardening/issues/73) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
 - "irc" user always changed after reboot [\#53](https://github.com/dev-sec/ansible-os-hardening/issues/53) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
 
 **Merged pull requests:**
 
 - update template [\#101](https://github.com/dev-sec/ansible-os-hardening/pull/101) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix deprecation warning for undefined error. \#99 [\#100](https://github.com/dev-sec/ansible-os-hardening/pull/100) ([rndmh3ro](https://github.com/rndmh3ro))
-- add rhel7 pam\_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
+- add rhel7 pam_pwquality. fix \#73 [\#94](https://github.com/dev-sec/ansible-os-hardening/pull/94) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [3.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/3.1.0) (2016-08-03)
 
@@ -378,18 +378,18 @@
 - Docker [\#90](https://github.com/dev-sec/ansible-os-hardening/pull/90) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - debian 8 support [\#88](https://github.com/dev-sec/ansible-os-hardening/pull/88) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Ufw manage defaults [\#85](https://github.com/dev-sec/ansible-os-hardening/pull/85) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([fitz123](https://github.com/fitz123))
-- replace ignore\_errors to failed\_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([fitz123](https://github.com/fitz123))
+- replace ignore_errors to failed_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([fitz123](https://github.com/fitz123))
 - fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([fitz123](https://github.com/fitz123))
 
 **Fixed bugs:**
 
-- Centos 7.1 fails at  \[Change various sysctl-settings on rhel-hosts...\] [\#74](https://github.com/dev-sec/ansible-os-hardening/issues/74) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
+- Centos 7.1 fails at \[Change various sysctl-settings on rhel-hosts...\] [\#74](https://github.com/dev-sec/ansible-os-hardening/issues/74) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)]
 - Hardening fails on Centos 7.1 at task 'minimize access' [\#71](https://github.com/dev-sec/ansible-os-hardening/issues/71) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[help wanted](https://github.com/dev-sec/ansible-os-hardening/labels/help%20wanted)]
 
 **Closed issues:**
 
 - Permissions on /etc/shadow can lock out GUI users [\#86](https://github.com/dev-sec/ansible-os-hardening/issues/86)
-- network related sysctl rewritten by ufw in ubuntu  [\#82](https://github.com/dev-sec/ansible-os-hardening/issues/82)
+- network related sysctl rewritten by ufw in ubuntu [\#82](https://github.com/dev-sec/ansible-os-hardening/issues/82)
 - ansible \>= 2.0 complains: Using bare variables is deprecated [\#78](https://github.com/dev-sec/ansible-os-hardening/issues/78)
 
 **Merged pull requests:**
@@ -406,7 +406,7 @@
 - update platforms in meta-file [\#69](https://github.com/dev-sec/ansible-os-hardening/pull/69) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - add webhook for ansible galaxy [\#68](https://github.com/dev-sec/ansible-os-hardening/pull/68) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Move sysctl vars to defaults [\#67](https://github.com/dev-sec/ansible-os-hardening/pull/67) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
-- make sys\_uid and sys\_gid configurable [\#62](https://github.com/dev-sec/ansible-os-hardening/pull/62) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
+- make sys_uid and sys_gid configurable [\#62](https://github.com/dev-sec/ansible-os-hardening/pull/62) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Ansible 2.0 support [\#59](https://github.com/dev-sec/ansible-os-hardening/pull/59) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
 - use inspec as test framework [\#58](https://github.com/dev-sec/ansible-os-hardening/pull/58) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([chris-rock](https://github.com/chris-rock))
 - Packages as attributes [\#57](https://github.com/dev-sec/ansible-os-hardening/pull/57) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] ([rndmh3ro](https://github.com/rndmh3ro))
@@ -454,7 +454,7 @@
 
 **Closed issues:**
 
-- ansible-os-hardening/tasks/minimize\_access.yml [\#38](https://github.com/dev-sec/ansible-os-hardening/issues/38)
+- ansible-os-hardening/tasks/minimize_access.yml [\#38](https://github.com/dev-sec/ansible-os-hardening/issues/38)
 - Role configuration. vars/main.yml? [\#34](https://github.com/dev-sec/ansible-os-hardening/issues/34)
 - Sysctl reloading [\#18](https://github.com/dev-sec/ansible-os-hardening/issues/18)
 - Add conditions for disabling of ip forwarding [\#15](https://github.com/dev-sec/ansible-os-hardening/issues/15)
@@ -464,19 +464,19 @@
 
 - Update kitchen-ansible, remove separate debian install [\#40](https://github.com/dev-sec/ansible-os-hardening/pull/40) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add mode to su-binary task. Fix \#38 [\#39](https://github.com/dev-sec/ansible-os-hardening/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
-- update common kitchen.yml platforms \(ansible\), kitchen\_debian.yml platforms \(ansible\) [\#37](https://github.com/dev-sec/ansible-os-hardening/pull/37) ([chris-rock](https://github.com/chris-rock))
+- update common kitchen.yml platforms \(ansible\), kitchen_debian.yml platforms \(ansible\) [\#37](https://github.com/dev-sec/ansible-os-hardening/pull/37) ([chris-rock](https://github.com/chris-rock))
 - Change oneliner if-statements to be more readable [\#36](https://github.com/dev-sec/ansible-os-hardening/pull/36) ([rndmh3ro](https://github.com/rndmh3ro))
 - Separate system-vars from editable vars. Fix \#34 [\#35](https://github.com/dev-sec/ansible-os-hardening/pull/35) ([rndmh3ro](https://github.com/rndmh3ro))
 - Create limits.d-directory if it does not exist. [\#33](https://github.com/dev-sec/ansible-os-hardening/pull/33) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add correct CONTRIB-file [\#32](https://github.com/dev-sec/ansible-os-hardening/pull/32) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add Ansible Galaxy badge [\#31](https://github.com/dev-sec/ansible-os-hardening/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
--  Update readme, todo, changelog, vars [\#30](https://github.com/dev-sec/ansible-os-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update readme, todo, changelog, vars [\#30](https://github.com/dev-sec/ansible-os-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
 - List-cleanup and follow symlinks added [\#29](https://github.com/dev-sec/ansible-os-hardening/pull/29) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add module configuration [\#28](https://github.com/dev-sec/ansible-os-hardening/pull/28) ([rndmh3ro](https://github.com/rndmh3ro))
 - Fix two sysctl-settings [\#27](https://github.com/dev-sec/ansible-os-hardening/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add meta-files for Ansible Galaxy [\#26](https://github.com/dev-sec/ansible-os-hardening/pull/26) ([rndmh3ro](https://github.com/rndmh3ro))
 - Disable System Accounts. Fix \#6 [\#25](https://github.com/dev-sec/ansible-os-hardening/pull/25) ([rndmh3ro](https://github.com/rndmh3ro))
-- Use changed\_when to avoid changed tasks [\#24](https://github.com/dev-sec/ansible-os-hardening/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
+- Use changed_when to avoid changed tasks [\#24](https://github.com/dev-sec/ansible-os-hardening/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
 - Delete authconfig-task on rhel-systems [\#23](https://github.com/dev-sec/ansible-os-hardening/pull/23) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add missing rhosts-include task [\#21](https://github.com/dev-sec/ansible-os-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - Change sysctl-task. Fix \#18 [\#20](https://github.com/dev-sec/ansible-os-hardening/pull/20) ([rndmh3ro](https://github.com/rndmh3ro))
@@ -496,6 +496,4 @@
 - Add Securetty-support [\#2](https://github.com/dev-sec/ansible-os-hardening/pull/2) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add profile.conf configuration [\#1](https://github.com/dev-sec/ansible-os-hardening/pull/1) ([rndmh3ro](https://github.com/rndmh3ro))
 
-
-
-\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
+\* _This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)_
