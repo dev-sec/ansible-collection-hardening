@@ -18,7 +18,7 @@ authors:
 - dev-sec <hello@dev-sec.io>
 
 # A short summary description of the collection
-description: This collections provides battle tested hardening for Linux, SSH, nginx, MySQL
+description: This collection provides battle tested hardening for Linux, SSH, nginx, MySQL
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
