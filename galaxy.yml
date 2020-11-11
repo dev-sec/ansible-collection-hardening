@@ -7,7 +7,7 @@ namespace: devsec
 name: hardening
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 0.9.0
+version: 7.0.0
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
