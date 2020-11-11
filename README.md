@@ -7,7 +7,7 @@
 
 ## Description
 
-This collections provides battle tested hardening for:
+This collection provides battle tested hardening for:
 
 - Linux operating systems:
   - CentOS 7/8
