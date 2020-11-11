@@ -1,0 +1,23 @@
+---
+
+- name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
+  hosts: all
+  become: true
+  tasks:
+    - name: Run the equivalent of "apt-get update && apt-get upgrade"
+      apt:
+        name: "*"
+        state: latest
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: install required tools on SuSE
+      zypper:
+        name: "python-xml"
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: create missing directory
+      file:
+        path: "/etc/mysql/conf.d"
+        state: directory

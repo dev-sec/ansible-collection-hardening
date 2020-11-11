@@ -1,303 +1,92 @@
-# os-hardening (Ansible Role)
+# Ansible Collection - devsec.hardening
 
-[![Build Status](http://img.shields.io/travis/dev-sec/ansible-os-hardening.svg)][1]
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-os--hardening-660198.svg)][3]
+![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
+![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
+![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
 
 ## Description
 
-This role provides numerous security-related configurations, providing all-round base protection.  It is intended to be compliant with the [DevSec Linux Baseline](https://github.com/dev-sec/linux-baseline).
+This collections provides battle tested hardening for:
 
-It configures:
+- Linux operating systems:
+  - CentOS 7/8
+  - Ubuntu 16.04/18.04/20.04
+  - Debian 9/10
+  - Arch Linux (some roles supported)
+  - Suse Tumbleweed (some roles supported)
+  - Fedora (some roles supported)
+  - Amazon Linux (some roles supported)
+- OpenSSH 5.3 and later
+- Nginx 1.0.16 or later
+- MySQL
+  - MySQL >= 5.7.31, >= 8.0.3
+  - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
 
- * Configures package management e.g. allows only signed packages
- * Remove packages with known issues
- * Configures `pam` and `pam_limits` module
- * Shadow password suite configuration
- * Configures system path permissions
- * Disable core dumps via soft limits
- * Restrict root Logins to System Console
- * Set SUIDs
- * Configures kernel parameters via sysctl
- * Install and configure auditd
+The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
-It will not:
+- https://github.com/dev-sec/linux-baseline
+- https://github.com/dev-sec/ssh-baseline
+- https://github.com/dev-sec/nginx-baseline
+- https://github.com/dev-sec/mysql-baseline
 
- * Update system packages
- * Install security patches
+## Looking for the old ansible-os-hardening role?
 
-## Requirements
+This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
-* Ansible 2.5.0
+## Tested with Ansible
 
-## Known Limitations
+2.10
 
-### Testing with inspec
+## Included content
 
-If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
-Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+- [os_hardening](roles/os_hardening/)
+- [ssh_hardening](roles/ssh_hardening/)
+- [mysql_hardening](roles/mysql_hardening/)
+- [nginx_hardening](roles/nginx_hardening/)
 
-### Docker support
+In progress, not working:
 
-If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
+- [apache_hardening](roles/apache_hardening/)
+- [windows_hardening](roles/windows_hardening/)
 
-```yaml
-- hosts: localhost
-  roles:
-    - dev-sec.os-hardening
-  vars:
-    sysctl_overwrite:
-      # Enable IPv4 traffic forwarding.
-      net.ipv4.ip_forward: 1
-```
+## Using this collection
 
-### sysctl - vm.mmap_rnd_bits
+Please refer to the examples in the readmes of the role.
 
-We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct applicable maximum. If you encounter this error you have to override this sysctl in your playbook.
+See [Ansible Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html) for more details.
 
-```yaml
-- hosts: localhost
-  roles:
-    - dev-sec.os-hardening
-  vars:
-    sysctl_overwrite:
-      vm.mmap_rnd_bits: 16
-```
+## Contributing to this collection
 
-We know that this is the case on Raspberry Pi.
+See the [contributor guideline](CONTRIBUTING.md).
 
-## Variables
+## Release notes
 
-* `os_desktop_enable`
-  * Default: `false`
-  * Description:  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `os_env_extra_user_paths`
-  * Default: `[]`
-  * Description: add additional paths to the user's `PATH` variable (default is empty).
-* `os_env_umask`
-  * Default: `027`
-  * Description: set default permissions for new files to `750`
-* `os_auth_pw_max_age`
-  * Default: `60`
-  * Description: maximum password age (set to `99999` to effectively disable it)
-* `os_auth_pw_min_age`
-  * Default: `7`
-  * Description: minimum password age (before allowing any other password change)
-* `os_auth_retries`
-  * Default: `5`
-  * Description: the maximum number of authentication attempts, before the account is locked for some time
-* `os_auth_lockout_time`
-  * Default: `600`
-  * Description: time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
-* `os_auth_timeout`
-  * Default: `60`
-  * Description: authentication timeout in seconds, so login will exit if this time passes
-* `os_auth_allow_homeless`
-  * Default: `false`
-  * Description: true if to allow users without home to login
-* `os_auth_pam_passwdqc_enable`
-  * Default: `true`
-  * Description: true if you want to use strong password checking in PAM using passwdqc
-* `os_auth_pam_passwdqc_options`
-  * Default: `min=disabled,disabled,16,12,8`
-  * Description: set to any option line (as a string) that you want to pass to passwdqc
-* `os_security_users_allow`
-  * Default: `[]`
-  * Description: list of things, that a user is allowed to do. May contain `change_user`.
-* `os_security_kernel_enable_module_loading`
-  * Default: `true`
-  * Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
-* `os_security_kernel_enable_core_dump`
-  * Default: `false`
-  * Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created
-* `os_security_suid_sgid_enforce`
-  * Default: `true`
-  * Description: true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
-* `os_security_suid_sgid_blacklist`
-  * Default: `[]`
-  * Description: a list of paths which should have their SUID/SGID bits removed
-* `os_security_suid_sgid_whitelist`
-  * Default: `[]`
-  * Description: a list of paths which should not have their SUID/SGID bits altered
-* `os_security_suid_sgid_remove_from_unknown`
-  * Default: `false`
-  * Description: true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
-* `os_security_packages_clean`
-  * Default: `true`
-  * Description: removes packages with known issues. See section packages.
-* `os_selinux_state`
-  * Default: `enforcing`
-  * Description: Set the SELinux state, can be either disabled, permissive, or enforcing.
-* `os_selinux_policy`
-  * Default: `targeted`
-  * Description: Set the SELinux polixy.
-* `ufw_manage_defaults`
-  * Default: `true`
-  * Description: true means apply all settings with `ufw_` prefix
-* `ufw_ipt_sysctl`
-  * Default: `''`
-  * Description: by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
-* `ufw_default_input_policy`
-  * Default: `DROP`
-  * Description: set default input policy of ufw to `DROP`
-* `ufw_default_output_policy`
-  * Default: `ACCEPT`
-  * Description: set default output policy of ufw to `ACCEPT`
-* `ufw_default_forward_policy`
-  * Default: `DROP`
-  * Description: set default forward policy of ufw to `DROP`
-* `os_auditd_enabled`
-  * Default: `true`
-  * Description: Set to false to disable installing and configuring auditd.
-* `os_auditd_max_log_file_action`
-  * Default: `keep_logs`
-  * Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
-* `hidepid_option`
-  * Default: `2`
-  * Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.
-* `proc_mnt_options`
-  * Default: `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}`
-  * Description: Mount proc with hardenized options, including `hidepid` with variable value.
+See the [changelog](https://github.com/dev-sec/ansible-os-hardening/tree/master/CHANGELOG.md).
 
-## Packages
+## Roadmap
 
-We remove the following packages:
+Todos:
 
- * xinetd ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.1)
- * inetd ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.1)
- * tftp-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.5)
- * ypserv ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.4)
- * telnet-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.2)
- * rsh-server ([NSA](https://apps.nsa.gov/iaarchive/library/ia-guidance/security-configuration/operating-systems/guide-to-the-secure-configuration-of-red-hat-enterprise.cfm), Chapter 3.2.3)
- * prelink ([open-scap](https://static.open-scap.org/ssg-guides/ssg-sl7-guide-ospp-rhel7-server.html#xccdf_org.ssgproject.content_rule_disable_prelink))
+- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/).
+- Add support for more operating systems,
 
-## Disabled filesystems
+## More information
 
-We disable the following filesystems, because they're most likely not used:
+General information:
 
- * "cramfs"
- * "freevxfs"
- * "jffs2"
- * "hfs"
- * "hfsplus"
- * "squashfs"
- * "udf"
- * "vfat" # only if uefi is not in use
+- [Ansible Collection overview](https://github.com/ansible-collections/overview)
+- [Ansible User guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+- [Ansible Developer guide](https://docs.ansible.com/ansible/latest/dev_guide/index.html)
+- [Ansible Collections Checklist](https://github.com/ansible-collections/overview/blob/master/collection_requirements.rst)
+- [Ansible Community code of conduct](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html)
+- [The Bullhorn (the Ansible Contributor newsletter)](https://us19.campaign-archive.com/home/?u=56d874e027110e35dea0e03c1&id=d6635f5420)
+- [Changes impacting Contributors](https://github.com/ansible-collections/overview/issues/45)
 
-To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
+## Licensing
 
-## Installation
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-Install the role with ansible-galaxy:
+http://www.apache.org/licenses/LICENSE-2.0
 
-```
-ansible-galaxy install dev-sec.os-hardening
-```
-
-## Example Playbook
-
-```yaml
-- hosts: localhost
-  roles:
-    - dev-sec.os-hardening
-```
-
-## Changing sysctl variables
-
-If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
-So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
-
-```yaml
-- hosts: localhost
-  roles:
-    - dev-sec.os-hardening
-  vars:
-    sysctl_overwrite:
-      # Enable IPv4 traffic forwarding.
-      net.ipv4.ip_forward: 1
-```
-
-Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
-
-## Improving Kernel Audit logging
-
-By default, any process that starts before the `auditd` daemon will have an AUID of `4294967295`. To improve this and provide more accurate logging, it's recommended to add the kernel boot parameter `audit=1` to you configuration. Without doing this, you will find that your `auditd` logs fail to properly audit all processes. 
-
-For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters. 
-
-## Local Testing
-
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system. See [Get started](https://docs.docker.com/) for a Docker package suitable to for your system.
-
-You can also use vagrant and Virtualbox or VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
-
-Next install test-kitchen:
-
-```bash
-# Install dependencies
-gem install bundler
-bundle install
-```
-
-### Testing with Docker
-```
-# fast test on one machine
-bundle exec kitchen test default-ubuntu-1404
-
-# test on all machines
-bundle exec kitchen test
-
-# for development
-bundle exec kitchen create default-ubuntu-1404
-bundle exec kitchen converge default-ubuntu-1404
-```
-
-### Testing with Virtualbox
-```
-# fast test on one machine
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test default-ubuntu-1404
-
-# test on all machines
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen test
-
-# for development
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen create default-ubuntu-1404
-KITCHEN_YAML=".kitchen.vagrant.yml" bundle exec kitchen converge default-ubuntu-1404
-```
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
-
-## Contributors + Kudos
-
-...
-
-This role is mostly based on guides by:
-
-* [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
-* [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
-* [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
-* [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
-
-Thanks to all of you!
-## Contributing
-
-See [contributor guideline](CONTRIBUTING.md).
-
-## License and Author
-
-* Author:: Sebastian Gumprich
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
-[1]: http://travis-ci.org/dev-sec/ansible-os-hardening
-[2]: https://gitter.im/dev-sec/general
-[3]: https://galaxy.ansible.com/dev-sec/os-hardening
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

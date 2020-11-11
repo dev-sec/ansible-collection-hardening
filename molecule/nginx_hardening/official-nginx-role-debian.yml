@@ -1,0 +1,24 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  hosts: localhost
+  vars:
+    - nginx_main_template_enable: true
+    - nginx_main_template:
+        template_file: nginx.conf.j2
+        conf_file_name: nginx.conf
+        conf_file_location: /etc/nginx/
+        user: www-data
+        worker_processes: auto
+        error_level: warn
+        worker_connections: 1024
+        http_enable: true
+        http_settings:
+          keepalive_timeout: 65
+          cache: false
+          rate_limit: false
+          keyval: false
+        stream_enable: false
+        http_global_autoindex: false
+  roles:
+    - nginxinc.nginx
+    - nginx_hardening

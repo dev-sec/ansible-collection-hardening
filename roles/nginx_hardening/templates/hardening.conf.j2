@@ -1,0 +1,16 @@
+# {{ ansible_managed|comment }}
+# Additional configuration for Nginx.
+
+client_header_buffer_size   {{ nginx_client_header_buffer_size }};
+large_client_header_buffers {{ nginx_large_client_header_buffers }};
+client_body_timeout         {{ nginx_client_body_timeout }};
+client_header_timeout       {{ nginx_client_header_timeout }};
+send_timeout                {{ nginx_send_timeout }};
+limit_conn_zone             {{ nginx_limit_conn_zone }};
+limit_conn                  {{ nginx_limit_conn }};
+ssl_ciphers                 '{{ nginx_ssl_ciphers }}';
+ssl_session_tickets         {{ nginx_ssl_session_tickets }};
+ssl_dhparam                 /etc/nginx/dh{{ nginx_dh_size }}.pem;
+{% for header in nginx_add_header %}
+add_header                  {{ header }};
+{% endfor %}

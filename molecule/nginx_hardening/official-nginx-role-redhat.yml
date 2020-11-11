@@ -1,0 +1,6 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+  hosts: localhost
+  roles:
+    - nginxinc.nginx
+    - nginx_hardening

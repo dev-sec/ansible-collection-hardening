@@ -1,0 +1,29 @@
+---
+nginx_client_body_buffer_size: '1k'
+nginx_remove_default_site: true
+nginx_client_max_body_size: '1k'
+nginx_keepalive_timeout: '5 5'
+nginx_server_tokens: 'off'
+nginx_client_header_buffer_size: "1k"
+nginx_large_client_header_buffers: "2 1k"
+nginx_client_body_timeout: "10"
+nginx_client_header_timeout: "10"
+nginx_send_timeout: "10"
+nginx_limit_conn_zone: "$binary_remote_addr zone=default:10m"
+nginx_limit_conn: "default 5"
+nginx_add_header: [
+# vvoid clickjacking
+"X-Frame-Options SAMEORIGIN",
+# disable content-type sniffing
+"X-Content-Type-Options nosniff",
+# XSS filter
+"X-XSS-Protection \"1; mode=block\"",
+"Strict-Transport-Security max-age=15768000",
+"Content-Security-Policy \"script-src 'self'; object-src 'self'\"" ]
+
+nginx_set_cookie_flag: "* HttpOnly secure"
+nginx_ssl_prefer_server_ciphers: "on"
+nginx_ssl_protocols: "TLSv1.2"
+nginx_ssl_ciphers: "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256"
+nginx_ssl_session_tickets: "off"
+nginx_dh_size: "2048"

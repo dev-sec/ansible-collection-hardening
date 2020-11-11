@@ -1,0 +1,5 @@
+molecule[docker]
+yamllint
+ansible-lint
+docker
+flake8

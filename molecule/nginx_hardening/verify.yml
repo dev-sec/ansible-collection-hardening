@@ -1,0 +1,58 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  roles:
+    - geerlingguy.git
+  tasks:
+    - name: install fake SuSE-release for cinc compatibility
+      copy:
+        content: |
+          openSUSE Faked Enterprise 2020 (x86_64)
+          VERSION = 2020
+          CODENAME = Faked Feature
+        dest: /etc/SuSE-release
+        owner: root
+        group: root
+        mode: '0444'
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: install git for SuSE since geerlinguy.git does not support it
+      zypper:
+        name: git
+        state: present
+      when: ansible_facts.os_family == 'Suse'
+
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: true
+      when: ansible_facts.os_family == 'Debian'
+
+    - name: install required tools on debian
+      apt:
+        name: procps
+      when: ansible_facts.os_family == 'Debian'
+
+    - name: download cinc-auditor
+      get_url:
+        url: https://omnitruck.cinc.sh/install.sh
+        dest: /tmp/install.sh
+        mode: '0775'
+
+    - name: install cinc-auditor
+      shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
+
+    - name: Execute cinc-auditor tests
+      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/nginx-baseline.git"
+      register: test_results
+      changed_when: false
+      ignore_errors: true
+
+    - name: Display details about the cinc-auditor results
+      debug:
+        msg: "{{ test_results.stdout_lines }}"
+
+    - name: Fail when tests fail
+      fail:
+        msg: "Inspec failed to validate"
+      when: test_results.rc != 0

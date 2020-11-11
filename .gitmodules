@@ -1,0 +1,6 @@
+[submodule "roles/windows_hardening"]
+	path = roles/windows_hardening
+	url = https://github.com/dev-sec/ansible-windows-hardening/
+[submodule "roles/apache_hardening"]
+	path = roles/apache_hardening
+	url = https://github.com/dev-sec/ansible-apache-hardening/

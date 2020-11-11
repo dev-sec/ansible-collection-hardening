@@ -1,0 +1,14 @@
+---
+mysql_daemon: mysql
+
+mysql_hardening_mysql_conf_file: '/etc/mysql/my.cnf'
+mysql_hardening_mysql_confd_dir: '/etc/mysql/conf.d'
+
+mysql_hardening_log_file: '/var/log/mysql/error.log'
+
+mysql_hardening_group: 'adm'
+
+mysql_cnf_owner: 'root'  # owner of /etc/mysql/*.cnf files
+mysql_cnf_group: 'mysql'  # owner of /etc/mysql/*.cnf files
+
+mysql_python_package: "python3-pymysql"

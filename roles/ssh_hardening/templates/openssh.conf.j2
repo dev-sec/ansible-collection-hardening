@@ -1,0 +1,125 @@
+#jinja2: trim_blocks: "true", lstrip_blocks: "true"
+{{ ansible_managed | comment }}
+
+# This is the ssh client system-wide configuration file.
+# See ssh_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
+
+{% if ssh_custom_options %}
+# Custom configuration that overwrites default configuration
+# ==========================================================
+{% for line in ssh_custom_options %}
+{{ line }}
+{% endfor %}
+{% endif %}
+
+# Basic configuration
+# ===================
+
+# Address family should always be limited to the active network configuration.
+AddressFamily {{ 'any' if network_ipv6_enable else 'inet' }}
+
+{% for host in ssh_remote_hosts %}
+{% if loop.first %}
+# Host-specific configuration
+{% endif %}
+Host {{ host.names | join(' ') }}
+  {{ host.options | join('\n') | indent(2) }}
+
+{% endfor %}
+
+# Global defaults for all Hosts
+Host *
+
+# The port at the destination should be defined
+Port {{ ssh_client_port }}
+
+# Identity file configuration. You may restrict available identity files. Otherwise ssh will search for a pattern and use any that matches.
+#IdentityFile ~/.ssh/identity
+#IdentityFile ~/.ssh/id_rsa
+#IdentityFile ~/.ssh/id_dsa
+
+
+# Security configuration
+# ======================
+
+# Set the protocol version to 2 for security reasons. Disables legacy support.
+Protocol 2
+
+# Make sure passphrase querying is enabled
+BatchMode no
+
+# Prevent IP spoofing by checking to host IP against the `known_hosts` file.
+CheckHostIP yes
+
+# Always ask before adding keys to the `known_hosts` file. Do not set to `yes`.
+StrictHostKeyChecking ask
+
+
+# **Ciphers** -- If your clients don't support CTR (eg older versions), cbc will be added
+# CBC: is true if you want to connect with OpenSSL-base libraries
+# eg ruby Net::SSH::Transport::CipherFactory requires cbc-versions of the given openssh ciphers to work
+# -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
+#
+
+{# This outputs 'Ciphers <list-of-ciphers>' if ssh_ciphers is defined or '#Ciphers' if ssh_ciphers is undefined #}
+{{ 'Ciphers ' ~ ssh_ciphers|join(',') if ssh_ciphers else 'Ciphers'|comment }}
+
+# **Hash algorithms** -- Make sure not to use SHA1 for hashing, unless it is really necessary.
+# Weak HMAC is sometimes required if older package versions are used
+# eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
+#
+
+{# This outputs 'MACs <list-of-macs>' if ssh_macs is defined or '#MACs' if ssh_macs is undefined #}
+{{ 'MACs ' ~ ssh_macs|join(',') if ssh_macs else 'MACs'|comment }}
+
+# Alternative setting, if OpenSSH version is below v5.9
+#MACs hmac-ripemd160
+
+# **Key Exchange Algorithms** -- Make sure not to use SHA1 for kex, unless it is really necessary
+# Weak kex is sometimes required if older package versions are used
+# eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
+# based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
+
+{# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined or '#KexAlgorithms' if ssh_kex is undefined #}
+{{ 'KexAlgorithms ' ~ ssh_kex|join(',') if ssh_kex else 'KexAlgorithms'|comment }}
+
+# Disable agent forwarding, since local agent could be accessed through forwarded connection.
+ForwardAgent no
+
+# Disable X11 forwarding, since local X11 display could be accessed through forwarded connection.
+ForwardX11 no
+
+# Never use host-based authentication. It can be exploited.
+HostbasedAuthentication no
+{% if sshd_version is version('7.6', '<') %}
+RhostsRSAAuthentication no
+# Enable RSA authentication via identity files.
+RSAAuthentication yes
+{% endif %}
+
+# Disable password-based authentication, it can allow for potentially easier brute-force attacks.
+PasswordAuthentication {{ 'yes' if ssh_client_password_login else 'no' }}
+
+# Only use GSSAPIAuthentication if implemented on the network.
+GSSAPIAuthentication no
+GSSAPIDelegateCredentials no
+
+# Disable tunneling
+Tunnel no
+
+# Disable local command execution.
+PermitLocalCommand no
+
+
+# Misc. configuration
+# ===================
+
+Compression {{ 'yes' if (ssh_client_compression|bool) else 'no' }}
+
+#EscapeChar ~
+#VisualHostKey yes
+
+{% if sshd_version is version('7.1', '<=') %}
+# Disable experimental client roaming. This is known to cause potential issues with secrets being disclosed to malicious servers and defaults to being disabled.
+UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
+{% endif %}

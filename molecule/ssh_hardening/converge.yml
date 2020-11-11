@@ -1,0 +1,9 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+  hosts: all
+  become: true
+  collections:
+    - devsec.hardening
+  tasks:
+    - include_role:
+        name: ssh_hardening

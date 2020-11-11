@@ -1,0 +1,52 @@
+---
+# switcher to enable/disable role
+mysql_hardening_enabled: true
+
+mysql_daemon_enabled: true
+
+# general configuration
+mysql_datadir: '/var/lib/mysql'
+mysql_hardening_mysql_hardening_conf_file: '{{mysql_hardening_mysql_confd_dir}}/hardening.cnf'
+# You have to change this to your own strong enough mysql root password
+mysql_root_password: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+# There .my.cnf with mysql root credentials will be installed
+mysql_user_home: "{{ ansible_env.HOME}}"
+
+# ensure the following parameters are set properly
+mysql_remove_remote_root: true
+mysql_remove_anonymous_users: true
+mysql_remove_test_database: true
+
+# @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database
+mysql_hardening_skip_show_database: true
+
+# @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables
+mysql_hardening_skip_grant_tables: false
+
+# @see http://www.symantec.com/connect/articles/securing-mysql-step-step
+# @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot
+mysql_hardening_chroot: ""
+
+mysql_hardening_options:
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create
+  safe-user-create: 1
+
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-auth
+  secure-auth: 1
+
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-symbolic-links
+  skip-symbolic-links: 1
+
+  # @see http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar-local-infile
+  local-infile: 0
+
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-allow-suspicious-udfs
+  allow-suspicious-udfs: 0
+
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar-automatic-sp-privileges
+  automatic-sp-privileges: 0
+
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-file-priv
+  secure-file-priv: '/tmp'
+  # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_user
+  user: '{{mysql_hardening_user}}'

@@ -1,0 +1,15 @@
+[mysqld]
+{% if mysql_hardening_skip_show_database -%}
+skip-show-database
+{% endif %}
+{% if mysql_hardening_skip_grant_tables -%}
+skip-grant-tables
+{% endif %}
+
+{% for (key, value) in mysql_hardening_options.items() %}
+{{ key }} = {{ value }}
+{% endfor %}
+
+{% if mysql_hardening_chroot %}
+chroot = '{{ mysql_hardening_chroot }}'
+{% endif %}
