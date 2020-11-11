@@ -1,6 +1,6 @@
 # Changelog
 
-## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-05)
+## [6.3.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.3.0) (2020-10-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...6.3.0)
 
@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- prettier markdown files action added [\#322](https://github.com/dev-sec/ansible-os-hardening/pull/322) ([danielkubat](https://github.com/danielkubat))
 - adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-os-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
@@ -291,6 +292,7 @@
 
 **Merged pull requests:**
 
+- add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 - remove execshield sysctl-parameter on rhel7 [\#119](https://github.com/dev-sec/ansible-os-hardening/pull/119) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.1.0) (2017-06-27)
@@ -312,7 +314,6 @@
 **Merged pull requests:**
 
 - Converts set to JSON-serializable list [\#126](https://github.com/dev-sec/ansible-os-hardening/pull/126) ([pestaa](https://github.com/pestaa))
-- add more sysctl settings, allow overwriting [\#120](https://github.com/dev-sec/ansible-os-hardening/pull/120) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/4.0.0) (2017-03-14)
 
