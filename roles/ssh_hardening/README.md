@@ -15,140 +15,137 @@ Warning: This role disables root-login on the target server! Please make sure yo
 ## Role Variables
 
 - `network_ipv6_enable`
-  - Default: false
+  - Default: `false`
   - Description: true if IPv6 is needed. `ssh_listen_to` must also be set to listen to IPv6 addresses (for example `[::]`).
 - `ssh_server_ports`
-  - Default: ['22']
+  - Default: `['22']`
   - Description: ports on which ssh-server should listen
 - `ssh_client_port`
-  - Default: '22'
-  - Description: port to which ssh-client should connect
+  - Default: `'22'`
+  - Description: Specifies the port number to connect on the remote host.
 - `ssh_listen_to`
-  - Default: ['0.0.0.0']
+  - Default: `['0.0.0.0']`
   - Description: one or more ip addresses, to which ssh-server should listen to. Default is all IPv4 adresses, but should be configured to specific addresses for security reasons!
 - `ssh_host_key_files`
-  - Default: []
+  - Default: `[]`
   - Description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version
 - `ssh_host_key_algorithms`
-  - Default: []
+  - Default: `[]`
   - Description: Host key algorithms that the server offers. If empty the [default list](https://man.openbsd.org/sshd_config#HostKeyAlgorithms) will be used, otherwise overrides the setting with specified list of algorithms
 - `ssh_client_alive_interval`
-  - Default: 600
+  - Default: `600`
   - Description: specifies an interval for sending keepalive messages
 - `ssh_client_alive_count`
-  - Default: 3
+  - Default: `3`
   - Description: defines how often keep-alive messages are sent
 - `ssh_permit_tunnel`
-  - Default: false
+  - Default: `false`
   - Description: true if SSH Port Tunneling is required
 - `ssh_remote_hosts`
-  - Default: []
+  - Default: `[]`
   - Description: one or more hosts and their custom options for the ssh-client. Default is empty. See examples in `defaults/main.yml`.
 - `ssh_permit_root_login`
-  - Default: no
-  - Description: Disable root-login. Set to `without-password` or `yes` to enable root-login
+  - Default: `no`
+  - Description: Disable root-login. Set to `'without-password'` or `'yes'` to enable root-login - The quotes are required!
 - `ssh_allow_tcp_forwarding`
-  - Default: no
+  - Default: `no`
   - Description: `'no'` to disable TCP Forwarding. Set to `'yes'` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'` or `'local'`. <br> _Note_: values passed to this variable must be strings, thus values `'yes'` and `'no'` should be passed with quotes.
 - `ssh_gateway_ports`
   - Default: `false`
   - Description: `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
 - `ssh_allow_agent_forwarding`
-  - Default: false
+  - Default: `false`
   - Description: false to disable Agent Forwarding. Set to true to allow Agent Forwarding.
 - `ssh_x11_forwarding`
-  - Default: false
+  - Default: `false`
   - Description: false to disable X11 Forwarding. Set to true to allow X11 Forwarding.
 - `ssh_pam_support`
-  - Default: true
+  - Default: `true`
   - Description: true if SSH has PAM support.
 - `ssh_use_pam`
-  - Default: true
+  - Default: `true`
   - Description: false to disable pam authentication.
 - `ssh_gssapi_support`
-  - Default: false
+  - Default: `false`
   - Description: true if SSH has GSSAPI support.
 - `ssh_kerberos_support`
-  - Default: true
+  - Default: `true`
   - Description: true if SSH has Kerberos support.
 - `ssh_deny_users`
-  - Default: ''
+  - Default: `''`
   - Description: if specified, login is disallowed for user names that match one of the patterns.
 - `ssh_allow_users`
-  - Default: ''
+  - Default: `''`
   - Description: if specified, login is allowed only for user names that match one of the patterns.
 - `ssh_deny_groups`
-  - Default: ''
+  - Default: `''`
   - Description: if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
 - `ssh_allow_groups`
-  - Default: ''
+  - Default: `''`
   - Description: if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
 - `ssh_authorized_keys_file`
-  - Default: ''
+  - Default: `''`
   - Description: change default file that contains the public keys that can be used for user authentication.
 - `ssh_trusted_user_ca_keys_file`
-  - Default: ''
+  - Default: `''`
   - Description: specifies the file containing trusted certificate authorities public keys used to sign user certificates.
 - `ssh_trusted_user_ca_keys`
-  - Default: []
+  - Default: `[]`
   - Description: set the trusted certificate authorities public keys used to sign user certificates. Only used if `ssh_trusted_user_ca_keys_file` is set.
 - `ssh_authorized_principals_file`
-  - Default: ''
+  - Default: `''`
   - Description: specifies the file containing principals that are allowed. Only used if `ssh_trusted_user_ca_keys_file` is set.
 - `ssh_authorized_principals`
-  - Default: []
+  - Default: `[]`
   - Description: list of hashes containing file paths and authorized principals, see `default_custom.yml` for all options. Only used if `ssh_authorized_principals_file` is set.
 - `ssh_print_motd`
-  - Default: false
+  - Default: `false`
   - Description: false to disable printing of the MOTD
 - `ssh_print_pam_motd`
-  - Default: false
+  - Default: `false`
   - Description: false to disable printing of the MOTD via pam (Debian and Ubuntu)
 - `ssh_print_last_log`
-  - Default: false
+  - Default: `false`
   - Description: false to disable display of last login information
 - `sftp_enabled`
-  - Default: false
+  - Default: `false`
   - Description: true to enable sftp configuration
 - `sftp_umask`
-  - Default: '0027'
+  - Default: `'0027'`
   - Description: Specifies the umask for sftp
 - `sftp_chroot`
-  - Default: true
+  - Default: `true`
   - Description: false to disable chroot for sftp
 - `sftp_chroot_dir`
-  - Default: /home/%u
+  - Default: `/home/%u`
   - Description: change default sftp chroot location
 - `ssh_client_roaming`
-  - Default: false
+  - Default: `false`
   - Description: enable experimental client roaming
 - `sshd_moduli_file`
-  - Default: '/etc/ssh/moduli'
+  - Default: `'/etc/ssh/moduli'`
   - Description: path to the SSH moduli file
 - `sshd_moduli_minimum`
-  - Default: 2048
+  - Default: `2048`
   - Description: remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam
 - `ssh_challengeresponseauthentication`
-  - Default: false
+  - Default: `false`
   - Description: Specifies whether challenge-response authentication is allowed (e.g. via PAM)
 - `ssh_client_password_login`
-  - Default: false
+  - Default: `false`
   - Description: `true` to allow password-based authentication with the ssh client
 - `ssh_server_password_login`
-  - Default: false
+  - Default: `false`
   - Description: `true` to allow password-based authentication with the ssh server
 - `ssh_banner`
   - Default: `false`
   - Description: `true` to print a banner on login
 - `ssh_banner_path`
-  - Default: '/etc/sshd/banner.txt'
+  - Default: `'/etc/sshd/banner.txt'`
   - Description: path to the SSH banner file
 - `ssh_client_hardening`
   - Default: `true`
   - Description: `false` to stop harden the client
-- `ssh_client_port`
-  - Default: `'22'`
-  - Description: Specifies the port number to connect on the remote host.
 - `ssh_client_compression`
   - Default: `false`
   - Description: Specifies whether the client requests compression.
@@ -174,55 +171,55 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Default: `true`
   - Description: `false` to stop harden the server
 - `ssh_server_match_address`
-  - Default: ''
+  - Default: `''`
   - Description: Introduces a conditional block. If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file.
 - `ssh_server_match_group`
-  - Default: ''
+  - Default: `''`
   - Description: Introduces a conditional block. If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file.
 - `ssh_server_match_user`
-  - Default: ''
+  - Default: `''`
   - Description: Introduces a conditional block. If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file.
 - `ssh_server_match_local_port`
-  - Default: ''
+  - Default: `''`
   - Description: Introduces a conditional block. If all of the criteria on the Match line are satisfied, the keywords on the following lines override those set in the global section of the config file, until either another Match line or the end of the file.
 - `ssh_server_permit_environment_vars`
   - Default: `no`
   - Description: `yes` to specify that ~/.ssh/environment and environment= options in ~/.ssh/authorized_keys are processed by sshd. With openssh version 7.8 it is possible to specify a whitelist of environment variable names in addition to global "yes" or "no" settings
 - `ssh_server_accept_env_vars`
-  - Default: ''
+  - Default: `''`
   - Description: Specifies what environment variables sent by the client will be copied into the session's environment, multiple environment variables may be separated by whitespace
 - `ssh_use_dns`
   - Default: `false`
   - Description: Specifies whether sshd should look up the remote host name, and to check that the resolved host name for the remote IP address maps back to the very same IP address.
 - `ssh_server_revoked_keys`
-  - Default: []
+  - Default: `[]`
   - Description: a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.
 - `ssh_max_startups`
-  - Default: '10:30:100'
+  - Default: `'10:30:100'`
   - Description: Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon.
 - `ssh_macs`
-  - Default: []
+  - Default: `[]`
   - Description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
 - `ssh_kex`
-  - Default: []
+  - Default: `[]`
   - Description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
 - `ssh_ciphers`
-  - Default: []
+  - Default: `[]`
   - Description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
 - `ssh_custom_options`
-  - Default: []
+  - Default: `[]`
   - Description: Custom lines for SSH client configuration
 - `sshd_custom_options`
-  - Default: []
+  - Default: `[]`
   - Description: Custom lines for SSH daemon configuration
 - `sshd_syslog_facility`
-  - Default: 'AUTH'
+  - Default: `'AUTH'`
   - Description: The facility code that is used when logging messages from sshd
 - `sshd_log_level`
-  - Default: 'VERBOSE'
+  - Default: `'VERBOSE'`
   - Description: the verbosity level that is used when logging messages from sshd
 - `sshd_strict_modes`
-  - Default: true
+  - Default: `true`
   - Description: Check file modes and ownership of the user's files and home directory before accepting login
 - `sshd_authenticationmethods`
   - Default: `publickey`
@@ -230,7 +227,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 
 ## Example Playbook
 
-```
+```yml
 - hosts: localhost
   collections:
     - devsec.hardening
@@ -244,7 +241,7 @@ If you want to configure ssh options that are not listed above, you can use `ssh
 
 Example playbook:
 
-```
+```yml
 - hosts: localhost
   collections:
     - devsec.hardening
