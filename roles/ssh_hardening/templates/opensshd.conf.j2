@@ -37,7 +37,7 @@ ListenAddress {{ address }}
 HostKey {{ key }}
 {% endfor %}
 
-#  Host key algorithms that the server offers.
+# Host key algorithms that the server offers.
 {% if sshd_version is version('5.8', '>=') %}
 {{ "HostKeyAlgorithms " ~ ssh_host_key_algorithms|join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
 {% endif %}
@@ -142,7 +142,8 @@ KerberosTicketCleanup yes
 GSSAPIAuthentication {{ 'yes' if ssh_gssapi_support else 'no' }}
 GSSAPICleanupCredentials yes
 
-# In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here. For key-based authentication this is not necessary, since all keys must be explicitely enabled.
+# In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here.
+# For key-based authentication this is not necessary, since all keys must be explicitely enabled.
 {% if ssh_deny_users %}
 DenyUsers {{ ssh_deny_users }}
 {% endif %}
@@ -176,7 +177,8 @@ AuthorizedPrincipalsFile {{ ssh_authorized_principals_file }}
 # Disable TCP keep alive since it is spoofable. Use ClientAlive messages instead, they use the encrypted channel
 TCPKeepAlive no
 
-# Manage `ClientAlive..` signals via interval and maximum count. This will periodically check up to a `..CountMax` number of times within `..Interval` timeframe, and abort the connection once these fail.
+# Manage `ClientAlive..` signals via interval and maximum count.
+# This will periodically check up to a `..CountMax` number of times within `..Interval` timeframe, and abort the connection once these fail.
 ClientAliveInterval {{ ssh_client_alive_interval }}
 ClientAliveCountMax {{ ssh_client_alive_count }}
 
