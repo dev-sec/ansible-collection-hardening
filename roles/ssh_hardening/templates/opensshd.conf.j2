@@ -1,8 +1,8 @@
 #jinja2: trim_blocks: "true", lstrip_blocks: "true"
 {{ ansible_managed | comment }}
 
-# This is the ssh client system-wide configuration file.
-# See sshd_config(5) for more information on any settings used. Comments will be added only to clarify why a configuration was chosen.
+# This is the sshd server system-wide configuration file.
+# See sshd_config(5) for more information.
 
 {% if sshd_custom_options %}
 # Custom configuration that overwrites default configuration
@@ -18,7 +18,7 @@
 # Either disable or only allow root login via certificates.
 PermitRootLogin {{ ssh_permit_root_login }}
 
-# Define which port sshd should listen to. Default to `22`.
+# TCP port sshd should listen on. Default is 22.
 {% for port in ssh_server_ports %}
 Port {{ port }}
 {% endfor %}
@@ -26,17 +26,18 @@ Port {{ port }}
 # Address family should always be limited to the active network configuration.
 AddressFamily {{ 'any' if (network_ipv6_enable|bool) else 'inet' }}
 
-# Define which addresses sshd should listen to. Default to `0.0.0.0`, ie make sure you put your desired address in here, since otherwise sshd will listen to everyone.
+# Addresses sshd listens on. Default is 0.0.0.0.
+# Specify desired address here if you don't want sshd to listen on all available addresses.
 {% for address in ssh_listen_to %}
 ListenAddress {{ address }}
 {% endfor %}
 
-# List HostKeys here.
+# HostKeys are listed here.
 {% for key in ssh_host_key_files %}
 HostKey {{ key }}
 {% endfor %}
 
-# Specifies the host key algorithms that the server offers.
+#  Host key algorithms that the server offers.
 {% if sshd_version is version('5.8', '>=') %}
 {{ "HostKeyAlgorithms " ~ ssh_host_key_algorithms|join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
 {% endif %}
@@ -44,7 +45,7 @@ HostKey {{ key }}
 # Security configuration
 # ======================
 
-# Set the protocol version to 2 for security reasons. Disables legacy support.
+# Set the protocol version explicitly to 2. Version 1 is obsolete and should not be used.
 Protocol 2
 
 # Make sure sshd checks file modes and ownership before accepting logins. This prevents accidental misconfiguration.
@@ -66,7 +67,7 @@ LogLevel {{ sshd_log_level }}
 {# This outputs 'Ciphers <list-of-ciphers>' if ssh_ciphers is defined or '#Ciphers' if ssh_ciphers is undefined #}
 {{ 'Ciphers ' ~ ssh_ciphers|join(',') if ssh_ciphers else 'Ciphers'|comment }}
 
-# **Hash algorithms** -- Make sure not to use SHA1 for hashing, unless it is really necessary.
+# **Hash algorithms** -- SHA-1 is formally deprecated by NIST in 2011 because of security issues.
 # Weak HMAC is sometimes required if older package versions are used
 # eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
 #
@@ -77,7 +78,7 @@ LogLevel {{ sshd_log_level }}
 # Alternative setting, if OpenSSH version is below v5.9
 #MACs hmac-ripemd160
 
-# **Key Exchange Algorithms** -- Make sure not to use SHA1 for kex, unless it is really necessary
+# **Key Exchange Algorithms** -- SHA-1 is formally deprecated by NIST in 2011 because of security issues.
 # Weak kex is sometimes required if older package versions are used
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
@@ -113,7 +114,7 @@ IgnoreRhosts yes
 IgnoreUserKnownHosts yes
 HostbasedAuthentication no
 
-# Enable PAM to enforce system wide rules
+# Enable PAM to enforce system wide rules.
 {% if ssh_pam_support %}
 UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
