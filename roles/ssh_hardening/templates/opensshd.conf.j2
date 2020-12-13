@@ -45,9 +45,12 @@ HostKey {{ key }}
 # Security configuration
 # ======================
 
+{# Support for legacy SSHv1 has been completely removed from OpenSSH in version 7.6 -#}
+{% if sshd_version is version('7.6', '<') %}
 # Set the protocol version explicitly to 2. Version 1 is obsolete and should not be used.
 Protocol 2
 
+{% endif %}
 # Make sure sshd checks file modes and ownership before accepting logins. This prevents accidental misconfiguration.
 StrictModes {{ 'yes' if (sshd_strict_modes|bool) else 'no' }}
 
