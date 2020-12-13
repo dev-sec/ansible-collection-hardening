@@ -1,37 +1,5 @@
 # Changelog
 
-## [7.0.0](https://github.com/dev-sec/ansible-os-hardening/tree/7.0.0) (2020-11-11)
-
-[Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.2.0...7.0.0)
-
-**Breaking changes:**
-
-- Move all roles to one single collection [\#332](https://github.com/dev-sec/ansible-os-hardening/pull/332) [[breaking](https://github.com/dev-sec/ansible-os-hardening/labels/breaking)] ([rndmh3ro](https://github.com/rndmh3ro))
-
-**Implemented enhancements:**
-
-- Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-os-hardening/issues/299) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] [[minor](https://github.com/dev-sec/ansible-os-hardening/labels/minor)] [[os_hardening](https://github.com/dev-sec/ansible-os-hardening/labels/os_hardening)]
-- Improve Documentation [\#315](https://github.com/dev-sec/ansible-os-hardening/pull/315) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] [[os_hardening](https://github.com/dev-sec/ansible-os-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
-- Arch support [\#303](https://github.com/dev-sec/ansible-os-hardening/pull/303) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] [[minor](https://github.com/dev-sec/ansible-os-hardening/labels/minor)] [[os_hardening](https://github.com/dev-sec/ansible-os-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- fix linting for molecule [\#301](https://github.com/dev-sec/ansible-os-hardening/pull/301) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] [[os_hardening](https://github.com/dev-sec/ansible-os-hardening/labels/os_hardening)] [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)] ([schurzi](https://github.com/schurzi))
-- file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-os-hardening/pull/300) [[enhancement](https://github.com/dev-sec/ansible-os-hardening/labels/enhancement)] [[minor](https://github.com/dev-sec/ansible-os-hardening/labels/minor)] [[os_hardening](https://github.com/dev-sec/ansible-os-hardening/labels/os_hardening)] ([danielkubat](https://github.com/danielkubat))
-
-**Fixed bugs:**
-
-- Task "set 10.hardcore.conf perms to 0400 and root ownership" fails in check mode [\#313](https://github.com/dev-sec/ansible-os-hardening/issues/313) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)]
-- use touch for 10.hardcore.conf to avoid problems with dry-run [\#314](https://github.com/dev-sec/ansible-os-hardening/pull/314) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)] ([schurzi](https://github.com/schurzi))
-- use touch with no date changes [\#310](https://github.com/dev-sec/ansible-os-hardening/pull/310) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)] ([rndmh3ro](https://github.com/rndmh3ro))
-- do not touch sysctl file to avoid idempotency problems [\#309](https://github.com/dev-sec/ansible-os-hardening/pull/309) [[bug](https://github.com/dev-sec/ansible-os-hardening/labels/bug)] [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)] ([rndmh3ro](https://github.com/rndmh3ro))
-
-**Closed issues:**
-
-- Any planned support for RHEL/CentOS 8? [\#298](https://github.com/dev-sec/ansible-os-hardening/issues/298)
-
-**Merged pull requests:**
-
-- prettier markdown files action added [\#322](https://github.com/dev-sec/ansible-os-hardening/pull/322) ([danielkubat](https://github.com/danielkubat))
-- adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-os-hardening/pull/311) [[patch](https://github.com/dev-sec/ansible-os-hardening/labels/patch)] ([rndmh3ro](https://github.com/rndmh3ro))
-
 ## [6.2.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.2.0) (2020-08-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-os-hardening/compare/6.1.0...6.2.0)

@@ -28,10 +28,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@8095796
+        uses: charmixer/auto-changelog-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
+          # this excludes all versions prior to the collection-release
+          # since they break the changelog generation with the error:
+          # "No common ancestor between ... and $version"
+          exclude_tags_regex: "[0-6]\.\d\.\d"
 
       - name: push changelog
         uses: github-actions-x/commit@v2.6
