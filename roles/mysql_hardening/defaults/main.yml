@@ -31,9 +31,6 @@ mysql_hardening_options:
   # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create
   safe-user-create: 1
 
-  # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-auth
-  secure-auth: 1
-
   # @see http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-symbolic-links
   skip-symbolic-links: 1
 
