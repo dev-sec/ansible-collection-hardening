@@ -86,8 +86,8 @@ We know that this is the case on Raspberry Pi.
   - Default: `[]`
   - Description: add additional paths to the user's `PATH` variable (default is empty).
 - `os_env_umask`
-  - Default: `027`
-  - Description: set default permissions for new files to `750`
+  - Default: `027` or `077` depending on the platform.
+  - Description: set default permissions for new files to `750` or `700`.
 - `os_auth_pw_max_age`
   - Default: `60`
   - Description: maximum password age (set to `99999` to effectively disable it)
