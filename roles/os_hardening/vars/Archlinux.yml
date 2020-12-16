@@ -12,7 +12,7 @@ os_passwd_perms:
   group: root
   mode: '0644'
 
-os_env_umask: '027'
+os_env_umask_default: '027'
 
 os_auth_uid_min: 1000
 os_auth_gid_min: 1000

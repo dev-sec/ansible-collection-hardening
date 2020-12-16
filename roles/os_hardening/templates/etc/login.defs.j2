@@ -92,7 +92,7 @@ KILLCHAR          025
 # Prefix these values with `0` to get octal, `0x` to get hexadecimal.
 # `022` is the "historical" value in Debian for UMASK
 # `027`, or even `077`, could be considered better for privacy.
-UMASK             {{ os_env_umask }}
+UMASK             {{ os_env_umask | default(os_env_umask_default, true) }}
 
 # Enable setting of the umask group bits to be the same as owner bits (examples: `022` -> `002`, `077` -> `007`) for non-root users, if the uid is the same as gid, and username is the same as the primary group name.
 # If set to yes, userdel will remove the user´s group if it contains no more members, and useradd will create by default a group with the name of the user.
