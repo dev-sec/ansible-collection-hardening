@@ -19,7 +19,8 @@
 
 - name: Set OS dependend variables, if not already defined by user
   set_fact:
-    '{{ item.key }}': '{{ lookup("vars", item.key, default=item.value) }}'
+    '{{ item.key }}': '{{ item.value }}'
+  when: "not lookup('varnames', item.key)"
   with_dict: '{{ os_family_vars | combine(os_distribution_vars | default([])) }}'
 
 - import_tasks: auditd.yml
