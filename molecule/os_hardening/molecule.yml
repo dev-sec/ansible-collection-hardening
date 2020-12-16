@@ -62,4 +62,5 @@ scenario:
     - converge
     - idempotence
     - verify
+    - variable_override
     - destroy
