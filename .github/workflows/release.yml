@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     name: create release draft
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
 
       - name: 'Get Previous tag'
         id: previoustag
@@ -26,18 +28,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@8095796
+        uses: charmixer/auto-changelog-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
-
-      - name: Generate changelog for the release
-        uses: charmixer/auto-changelog-action@8095796
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          since_tag: ${{ steps.previoustag.outputs.tag }}
-          future_release: ${{ steps.version.outputs.next-version }}
-          output: CHANGELOGRELEASE.md
+          issue_line_labels: "ALL"
+          # this excludes all versions prior to the collection-release
+          # since they break the changelog generation with the error:
+          # "No common ancestor between ... and $version"
+          exclude_tags_regex: '[0-6]\.\d\.\d'
 
       - name: push changelog
         uses: github-actions-x/commit@v2.6
@@ -49,6 +48,25 @@ jobs:
           files: CHANGELOG.md
           name: dev-sec CI
           email: hello@dev-sec.io
+
+      # do a second checkout to prevent race situation
+      # changelog gets updated but action works on old commit id
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog for the release
+        uses: charmixer/auto-changelog-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          since_tag: ${{ steps.previoustag.outputs.tag }}
+          future_release: ${{ steps.version.outputs.next-version }}
+          issue_line_labels: "ALL"
+          output: CHANGELOGRELEASE.md
+          # this excludes all versions prior to the collection-release
+          # since they break the changelog generation with the error:
+          # "No common ancestor between ... and $version"
+          exclude_tags_regex: '[0-6]\.\d\.\d'
 
       - name: Read CHANGELOG.md
         id: package

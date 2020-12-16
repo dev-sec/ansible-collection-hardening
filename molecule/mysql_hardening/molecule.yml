@@ -60,4 +60,3 @@ scenario:
     # - idempotence  # not idempotent
     - verify
     - destroy
-
