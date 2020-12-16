@@ -42,9 +42,12 @@ Port {{ ssh_client_port }}
 # Security configuration
 # ======================
 
-# Set the protocol version to 2 for security reasons. Disables legacy support.
+{# Support for legacy SSHv1 has been completely removed from OpenSSH in version 7.6 -#}
+{% if sshd_version is version('7.6', '<') %}
+# Set the protocol version explicitly to 2. Version 1 is obsolete and should not be used.
 Protocol 2
 
+{% endif %}
 # Make sure passphrase querying is enabled
 BatchMode no
 
