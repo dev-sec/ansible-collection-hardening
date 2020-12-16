@@ -46,7 +46,7 @@
 - name: create sshd_config and set permissions to root/600
   template:
     src: 'opensshd.conf.j2'
-    dest: '/etc/ssh/sshd_config'
+    dest: "{{ ssh_server_config_file }}"
     mode: '0600'
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'
@@ -70,7 +70,7 @@
 - name: create ssh_config and set permissions to root/644
   template:
     src: 'openssh.conf.j2'
-    dest: '/etc/ssh/ssh_config'
+    dest: "{{ ssh_client_config_file }}"
     mode: '0644'
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'

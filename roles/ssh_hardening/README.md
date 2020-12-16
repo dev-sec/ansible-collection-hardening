@@ -17,6 +17,12 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `network_ipv6_enable`
   - Default: `false`
   - Description: true if IPv6 is needed. `ssh_listen_to` must also be set to listen to IPv6 addresses (for example `[::]`).
+- `ssh_client_config_file`
+  - Default: `'/etc/ssh/ssh_config'`
+  - Description: path of the ssh client configuration file, e.g. `/etc/ssh/ssh_config.d/custom.conf`
+- `ssh_server_config_file`
+  - Default: `'/etc/ssh/sshd_config'`
+  - Description: path of the ssh server configuration file, e.g. `/etc/ssh/sshd_config.d/custom.conf`
 - `ssh_server_ports`
   - Default: `['22']`
   - Description: ports on which ssh-server should listen
