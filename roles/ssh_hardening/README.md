@@ -136,7 +136,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: `true` to allow password-based authentication with the ssh client
 - `ssh_server_password_login`
   - Default: `false`
-  - Description: `true` to allow password-based authentication to the ssh server. You probably also need to change `sshd_authenticationmethods` to include `password` if you set `ssh_server_password_login`: true
+  - Description: `true` to allow password-based authentication to the ssh server. You probably also need to change `sshd_authenticationmethods` to include `password` if you set `ssh_server_password_login`: `true`
 - `ssh_banner`
   - Default: `false`
   - Description: `true` to print a banner on login
