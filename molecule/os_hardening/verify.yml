@@ -62,8 +62,11 @@
       set_fact:
         ansible_virtualization_type: "docker"
         os_env_umask: "027 #override"
+
     - include_role:
         name: os_hardening
+
     - name: verify os_env_umask
       shell:
         cmd: "grep '027 #override' /etc/login.defs"
+      changed_when: false
