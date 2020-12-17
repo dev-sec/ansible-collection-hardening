@@ -66,4 +66,4 @@
         name: os_hardening
     - name: verify os_env_umask
       shell:
-        cmd: grep "027 #override" /etc/login.defs
+        cmd: "grep '027 #override' /etc/login.defs"
