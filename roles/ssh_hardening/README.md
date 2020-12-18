@@ -104,9 +104,6 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_authorized_principals`
   - Default: `[]`
   - Description: list of hashes containing file paths and authorized principals, see `default_custom.yml` for all options. Only used if `ssh_authorized_principals_file` is set.
-- `ssh_print_motd`
-  - Default: `false`
-  - Description: false to disable printing of the MOTD
 - `ssh_print_pam_motd`
   - Default: `false`
   - Description: false to disable printing of the MOTD via pam (Debian and Ubuntu)
