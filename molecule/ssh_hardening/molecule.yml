@@ -63,4 +63,3 @@ scenario:
     - idempotence
     - verify
     - destroy
-

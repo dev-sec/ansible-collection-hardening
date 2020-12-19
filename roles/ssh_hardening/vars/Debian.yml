@@ -15,3 +15,5 @@ ssh_kerberos_support: true
 ssh_pam_support: true
 
 sshd_moduli_file: '/etc/ssh/moduli'
+
+sshd_disable_crypto_policy: false
