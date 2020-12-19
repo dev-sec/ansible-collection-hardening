@@ -1,0 +1,52 @@
+---
+ssh_macs_53_default:
+  - hmac-ripemd160
+  - hmac-sha1
+
+ssh_macs_53_el_6_5_default:
+  - hmac-sha2-512
+  - hmac-sha2-256
+
+ssh_macs_59_default:
+  - hmac-sha2-512
+  - hmac-sha2-256
+  - hmac-ripemd160
+
+ssh_macs_66_default:
+  - hmac-sha2-512-etm@openssh.com
+  - hmac-sha2-256-etm@openssh.com
+  - umac-128-etm@openssh.com
+  - hmac-sha2-512
+  - hmac-sha2-256
+
+ssh_macs_76_default:
+  - hmac-sha2-512-etm@openssh.com
+  - hmac-sha2-256-etm@openssh.com
+  - umac-128-etm@openssh.com
+  - hmac-sha2-512
+  - hmac-sha2-256
+
+ssh_ciphers_53_default:
+  - aes256-ctr
+  - aes192-ctr
+  - aes128-ctr
+
+ssh_ciphers_66_default:
+  - chacha20-poly1305@openssh.com
+  - aes256-gcm@openssh.com
+  - aes128-gcm@openssh.com
+  - aes256-ctr
+  - aes192-ctr
+  - aes128-ctr
+
+ssh_kex_59_default:
+  - diffie-hellman-group-exchange-sha256
+
+ssh_kex_66_default:
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
+
+ssh_kex_80_default:
+  - sntrup4591761x25519-sha512@tinyssh.org
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256
