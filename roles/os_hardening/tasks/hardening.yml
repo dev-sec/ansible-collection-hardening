@@ -1,27 +1,22 @@
 ---
-- name: Fetch OS family dependent variables
-  include_vars:
-    file: '{{ ansible_facts.os_family }}.yml'
-    name: 'os_family_vars'
-  tags: always
-
 - name: Fetch OS dependent variables
   include_vars:
     file: '{{ item }}'
-    name: 'os_distribution_vars'
+    name: 'os_vars'
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
         - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.os_family }}.yml'
       skip: true
   tags: always
 
 - name: Set OS dependent variables, if not already defined by user
   set_fact:
     '{{ item.key }}': '{{ item.value }}'
-  when: "not lookup('varnames', item.key)"
-  with_dict: '{{ os_family_vars | combine(os_distribution_vars | default([])) }}'
+  when: "not lookup('varnames', '^' + item.key + '$')"
+  with_dict: '{{ os_vars }}'
 
 - import_tasks: auditd.yml
   tags: auditd
