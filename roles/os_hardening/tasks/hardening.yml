@@ -17,7 +17,7 @@
       skip: true
   tags: always
 
-- name: Set OS dependend variables, if not already defined by user
+- name: Set OS dependent variables, if not already defined by user
   set_fact:
     '{{ item.key }}': '{{ item.value }}'
   when: "not lookup('varnames', item.key)"
