@@ -7,3 +7,13 @@ ssh_group: root
 ssh_selinux_packages:
   - policycoreutils-python
   - checkpolicy
+
+# true if SSH support Kerberos
+ssh_kerberos_support: true
+
+# true if SSH has PAM support
+ssh_pam_support: true
+
+sshd_moduli_file: '/etc/ssh/moduli'
+
+sshd_disable_crypto_policy: false

@@ -271,9 +271,6 @@ os_filesystem_whitelist: []
 # the Ansible role dependency mechanism.
 os_hardening_enabled: true
 
-# Set the umask you want to apply, or leave empty to use the defaults.
-os_env_umask: ''
-
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
 os_auditd_max_log_file_action: keep_logs
