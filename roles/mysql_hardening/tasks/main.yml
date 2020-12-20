@@ -12,9 +12,9 @@
       skip: true
   tags: always
 
-# we only override variables with our default, if they have not been specified already
+# we only override variables with our default if they have not been specified already.
 # by default the lookup functions finds all varnames containing the string, therefore
-# we add ^ and $ to denote start and end of string, so this returns only exact maches
+# we add ^ and $ to denote start and end of string, so this returns only exact maches.
 - name: Set OS dependent variables, if not already defined by user
   set_fact:
     '{{ item.key }}': '{{ item.value }}'
