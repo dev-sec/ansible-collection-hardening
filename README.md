@@ -1,9 +1,9 @@
 # Ansible Collection - devsec.hardening
 
 ![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
-![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
-![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
 ![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
+![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
+![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
 
 ## Description
 
@@ -11,24 +11,24 @@ This collection provides battle tested hardening for:
 
 - Linux operating systems:
   - CentOS 7/8
-  - Ubuntu 16.04/18.04/20.04
   - Debian 9/10
-  - Arch Linux (some roles supported)
-  - Suse Tumbleweed (some roles supported)
-  - Fedora (some roles supported)
+  - Ubuntu 16.04/18.04/20.04
   - Amazon Linux (some roles supported)
-- OpenSSH 5.3 and later
-- Nginx 1.0.16 or later
+  - Arch Linux (some roles supported)
+  - Fedora (some roles supported)
+  - Suse Tumbleweed (some roles supported)
 - MySQL
   - MySQL >= 5.7.31, >= 8.0.3
   - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17
+- Nginx 1.0.16 or later
+- OpenSSH 5.3 and later
 
 The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
 - https://github.com/dev-sec/linux-baseline
-- https://github.com/dev-sec/ssh-baseline
-- https://github.com/dev-sec/nginx-baseline
 - https://github.com/dev-sec/mysql-baseline
+- https://github.com/dev-sec/nginx-baseline
+- https://github.com/dev-sec/ssh-baseline
 
 ## Looking for the old ansible-os-hardening role?
 
@@ -41,9 +41,9 @@ This role is now part of the hardening-collection. You can find the old role in 
 ## Included content
 
 - [os_hardening](roles/os_hardening/)
-- [ssh_hardening](roles/ssh_hardening/)
 - [mysql_hardening](roles/mysql_hardening/)
 - [nginx_hardening](roles/nginx_hardening/)
+- [ssh_hardening](roles/ssh_hardening/)
 
 In progress, not working:
 
