@@ -34,9 +34,9 @@ The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
 This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
 
-## Tested with Ansible
+## Minimum required Ansible-version
 
-2.10
+- > = 2.9.10
 
 ## Included content
 
