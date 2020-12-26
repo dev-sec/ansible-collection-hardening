@@ -177,12 +177,11 @@ AuthorizedPrincipalsFile {{ ssh_authorized_principals_file }}
 # Network
 # -------
 
-# Disable TCP keep alive since it is spoofable. Use ClientAlive messages instead, they use the encrypted channel
+# Disable TCP keep alive since it is spoofable. Use ClientAlive messages instead, which use the encrypted channel
 TCPKeepAlive no
 
-# Manage `ClientAlive..` signals via interval and maximum count.
-# This will periodically check up to a `..CountMax` number of times within `..Interval` timeframe,
-# and abort the connection once these fail.
+# Set the SSH session idle timout.
+# The connection will automatically logout after ClientAliveInterval * ClientAliveCountMax seconds of inactivity.
 ClientAliveInterval {{ ssh_client_alive_interval }}
 ClientAliveCountMax {{ ssh_client_alive_count }}
 
