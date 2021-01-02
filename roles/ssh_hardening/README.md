@@ -201,7 +201,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Default: `[]`
   - Description: a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.
 - `ssh_max_startups`
-  - Default: `'10:30:100'`
+  - Default: `'10:30:60'`
   - Description: Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon.
 - `ssh_macs`
   - Default: `[]`
