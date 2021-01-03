@@ -2,7 +2,7 @@
 
 os_packages_pam_ccreds: 'pam_ccreds'
 os_packages_pam_passwdqc: 'pam_passwdqc'
-os_packages_pam_cracklib: 'cracklib'
+os_packages_pam_cracklib: 'pam_cracklib'
 os_nologin_shell_path: '/sbin/nologin'
 
 # Different distros use different standards for /etc/shadow perms, e.g.
@@ -10,27 +10,28 @@ os_nologin_shell_path: '/sbin/nologin'
 # You must provide key/value pairs for owner, group, and mode if overriding.
 os_shadow_perms:
   owner: root
-  group: shadow
-  mode: '0640'
+  group: root
+  mode: '0000'
 
 os_passwd_perms:
   owner: root
   group: root
   mode: '0644'
 
-os_env_umask: '027'
+os_env_umask: '077'
 
 os_auth_uid_min: 1000
 os_auth_gid_min: 1000
-os_auth_sys_uid_min: 100
-os_auth_sys_uid_max: 499
-os_auth_sys_gid_min: 100
-os_auth_sys_gid_max: 499
+os_auth_sys_uid_min: 201
+os_auth_sys_uid_max: 999
+os_auth_sys_gid_min: 201
+os_auth_sys_gid_max: 999
 
 # defaults for useradd
-os_useradd_create_home: false
+os_useradd_mail_dir: /var/spool/mail
+os_useradd_create_home: true
 
-modprobe_package: 'kmod-compat'
+modprobe_package: 'module-init-tools'
 auditd_package: 'audit'
 
-hidepid_option: '2'  # allowed values: 0, 1, 2
+hidepid_option: '0'  # allowed values: 0, 1, 2

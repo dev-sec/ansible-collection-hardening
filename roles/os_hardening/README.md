@@ -55,6 +55,18 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
       net.ipv4.ip_forward: 1
 ```
 
+### hidepid on RHEL/CentOS 7
+
+When having `polkit-0.112-18.el7` (and later) installed and `/proc` mounted with `hidepid=2`, everytime someone uses `systemctl` the following error is displayed, but systemctl runs successfully.
+
+```
+Error registering authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject (polkit-error-quark, 0)
+```
+
+We decided to set `hidepid=0` to remove the error message, if you want to use the other proposed workaround, you have to setup the user yourself and set our option to `hidepid_option: 2` via Ansible vars.
+
+For further details see [RedHat: "GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject" seen when executing systemctl command](https://access.redhat.com/solutions/5005111) or [#364: hidepid=2 gives error when running systemctl on EL7](https://github.com/dev-sec/ansible-collection-hardening/issues/364)
+
 ### sysctl - vm.mmap_rnd_bits
 
 We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct applicable maximum. If you encounter this error you have to override this sysctl in your playbook.
@@ -164,7 +176,7 @@ We know that this is the case on Raspberry Pi.
   - Default: `keep_logs`
   - Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
 - `hidepid_option`
-  - Default: `2`
+  - Default: `2` (on RHEL/CentOS7 `0`, see known limitations)
   - Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.
 - `proc_mnt_options`
   - Default: `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}`

@@ -33,3 +33,5 @@ os_useradd_create_home: true
 
 modprobe_package: 'module-init-tools'
 auditd_package: 'audit'
+
+hidepid_option: '2'  # allowed values: 0, 1, 2

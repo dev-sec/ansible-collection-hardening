@@ -42,3 +42,5 @@ sysctl_rhel_config:
   kernel.exec-shield: 1
   # Syncookies is used to prevent SYN-flooding attacks.
   net.ipv4.tcp_syncookies: 1
+
+hidepid_option: '2'  # allowed values: 0, 1, 2
