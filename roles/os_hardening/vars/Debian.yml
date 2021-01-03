@@ -35,3 +35,5 @@ auditd_package: 'auditd'
 
 tally2_path: '/usr/share/pam-configs/tally2'
 passwdqc_path: '/usr/share/pam-configs/passwdqc'
+
+hidepid_option: '2'  # allowed values: 0, 1, 2

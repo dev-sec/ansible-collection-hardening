@@ -23,3 +23,5 @@ os_auth_sys_gid_max: 999
 
 modprobe_package: 'kmod'
 auditd_package: 'audit'
+
+hidepid_option: '2'  # allowed values: 0, 1, 2
