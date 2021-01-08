@@ -93,7 +93,7 @@ We know that this is the case on Raspberry Pi.
 
 - `os_desktop_enable`
   - Default: `false`
-  - Description: true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
+  - Description: true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc.
 - `os_env_extra_user_paths`
   - Default: `[]`
   - Description: add additional paths to the user's `PATH` variable (default is empty).
@@ -102,46 +102,46 @@ We know that this is the case on Raspberry Pi.
   - Description: set default permissions for new files to `750` or `700`.
 - `os_auth_pw_max_age`
   - Default: `60`
-  - Description: maximum password age (set to `99999` to effectively disable it)
+  - Description: maximum password age (set to `99999` to effectively disable it).
 - `os_auth_pw_min_age`
   - Default: `7`
-  - Description: minimum password age (before allowing any other password change)
+  - Description: minimum password age (before allowing any other password change).
 - `os_auth_retries`
   - Default: `5`
-  - Description: the maximum number of authentication attempts, before the account is locked for some time
+  - Description: the maximum number of authentication attempts, before the account is locked for some time.
 - `os_auth_lockout_time`
   - Default: `600`
-  - Description: time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+  - Description: time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts.
 - `os_auth_timeout`
   - Default: `60`
-  - Description: authentication timeout in seconds, so login will exit if this time passes
+  - Description: authentication timeout in seconds, so login will exit if this time passes.
 - `os_auth_allow_homeless`
   - Default: `false`
-  - Description: true if to allow users without home to login
+  - Description: true if to allow users without home to login.
 - `os_auth_pam_passwdqc_enable`
   - Default: `true`
-  - Description: true if you want to use strong password checking in PAM using passwdqc
+  - Description: true if you want to use strong password checking in PAM using passwdqc.
 - `os_auth_pam_passwdqc_options`
   - Default: `min=disabled,disabled,16,12,8`
-  - Description: set to any option line (as a string) that you want to pass to passwdqc
+  - Description: set to any option line (as a string) that you want to pass to passwdqc.
 - `os_security_users_allow`
   - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
 - `os_security_kernel_enable_module_loading`
   - Default: `true`
-  - Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+  - Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`).
 - `os_security_kernel_enable_core_dump`
   - Default: `false`
-  - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created
+  - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created.
 - `os_security_suid_sgid_enforce`
   - Default: `true`
-  - Description: true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own
+  - Description: true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own.
 - `os_security_suid_sgid_blacklist`
   - Default: `[]`
-  - Description: a list of paths which should have their SUID/SGID bits removed
+  - Description: a list of paths which should have their SUID/SGID bits removed.
 - `os_security_suid_sgid_whitelist`
   - Default: `[]`
-  - Description: a list of paths which should not have their SUID/SGID bits altered
+  - Description: a list of paths which should not have their SUID/SGID bits altered.
 - `os_security_suid_sgid_remove_from_unknown`
   - Default: `false`
   - Description: true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
@@ -156,19 +156,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set the SELinux polixy.
 - `ufw_manage_defaults`
   - Default: `true`
-  - Description: true means apply all settings with `ufw_` prefix
+  - Description: true means apply all settings with `ufw_` prefix.
 - `ufw_ipt_sysctl`
   - Default: `''`
-  - Description: by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`
+  - Description: by default it disables IPT_SYSCTL in /etc/default/ufw. If you want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl dictionary, for example `/etc/ufw/sysctl.conf`.
 - `ufw_default_input_policy`
   - Default: `DROP`
-  - Description: set default input policy of ufw to `DROP`
+  - Description: set default input policy of ufw to `DROP`.
 - `ufw_default_output_policy`
   - Default: `ACCEPT`
-  - Description: set default output policy of ufw to `ACCEPT`
+  - Description: set default output policy of ufw to `ACCEPT`.
 - `ufw_default_forward_policy`
   - Default: `DROP`
-  - Description: set default forward policy of ufw to `DROP`
+  - Description: set default forward policy of ufw to `DROP`.
 - `os_auditd_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring auditd.
