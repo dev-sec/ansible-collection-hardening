@@ -177,7 +177,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
 - `os_auditd_max_log_file`
   - Default: `6`
-  - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action. Useful in combination with  `os_auditd_max_log_file_action` set to `rotate`. The value given must be numeric.
+  - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action. The value given must be numeric.
 - `hidepid_option`
   - Default: `2` (on RHEL/CentOS7 `0`, see known limitations)
   - Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.
