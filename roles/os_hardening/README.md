@@ -12,11 +12,11 @@ This role provides numerous security-related configurations, providing all-round
 
 It configures:
 
-- Remove unused yum repositories and enable GPG key-checking
-- Remove packages with known issues
+- Removes unused yum repositories and enables GPG key-checking
+- Removes packages with known issues
 - Configures pam for strong password checks
 - Installs and configures auditd
-- Disable core dumps via soft limits
+- Disables core dumps via soft limits
 - sets a restrictive umask
 - Configures execute permissions of files in system paths
 - Hardens access to shadow and passwd files
@@ -25,7 +25,7 @@ It configures:
 - Configures secure ttys
 - Configures kernel parameters via sysctl
 - Enables selinux on EL-based systems
-- Remove SUIDs and GUIDs
+- Removes SUIDs and GUIDs
 - Configures login and passwords of system accounts
 
 It will not:
