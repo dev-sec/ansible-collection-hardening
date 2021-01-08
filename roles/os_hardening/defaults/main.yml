@@ -260,10 +260,10 @@ os_unused_filesystems:
   - "vfat"
   # Obsolete network protocols that should be disabled
   # per CIS Oracle Linux 6 Benchmark (2016)
-  - "tipc"  # CIS 3.5.4
-  - "sctp"  # CIS 3.5.2
   - "dccp"  # CIS 3.5.1
   - "rds"   # CIS 3.5.3
+  - "sctp"  # CIS 3.5.2
+  - "tipc"  # CIS 3.5.4
 
 # whitelist for used filesystems
 os_filesystem_whitelist: []
