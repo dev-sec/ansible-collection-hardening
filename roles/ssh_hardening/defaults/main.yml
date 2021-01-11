@@ -177,7 +177,7 @@ ssh_server_permit_environment_vars: 'no'
 ssh_server_accept_env_vars: ''
 
 # maximum number of concurrent unauthenticated connections to the SSH daemon
-ssh_max_startups: '10:30:100'       # sshd
+ssh_max_startups: '10:30:60'       # sshd
 
 ssh_ps53: 'yes'
 ssh_ps59: 'sandbox'
