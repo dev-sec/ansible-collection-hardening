@@ -20,7 +20,7 @@ salsa20-x86_64
 blowfish-x86_64
 {% endif %}
 
-{% if 'amd' in ansible_facts.processor %}
+{% if 'AuthenticAMD' in ansible_facts.processor %}
 # AMD-specific optimizations
 kvm-amd
 {% else %}
