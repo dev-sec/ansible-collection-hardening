@@ -171,6 +171,14 @@ sysctl_config:
   # RFC 1337 fix F1 | sysctl-10
   net.ipv4.tcp_rfc1337: 1
 
+  # Attackers use SYN flood attacks to perform a denial of service attack on a system
+  # by sending many SYN packets without completing the three way handshake.
+  # This will quickly use up slots in the kernel's half-open connection queue and
+  # prevent legitimate connections from succeeding.
+  # SYN cookies allow the system to keep accepting valid connections, even if
+  # under a denial of service attack. CIS Distro Independent 3.2.8.
+  net.ipv4.tcp_syncookies: 1
+
   # Send(router) or accept(host) RFC1620 shared media redirects | sysctl-12
   net.ipv4.conf.all.shared_media: 1
   net.ipv4.conf.default.shared_media: 1

@@ -40,7 +40,5 @@ os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt', 'ec2-user']
 sysctl_rhel_config:
   # ExecShield protection against buffer overflows
   kernel.exec-shield: 1
-  # Syncookies is used to prevent SYN-flooding attacks.
-  net.ipv4.tcp_syncookies: 1
 
 hidepid_option: '2'  # allowed values: 0, 1, 2
