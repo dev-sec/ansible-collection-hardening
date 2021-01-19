@@ -1,19 +1,21 @@
 ---
-- name: remove default 2048 bits RSA hostkey
-  file:
-    path: "{{ item }}"
-    state: absent
-  loop:
-    - "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
-    - "{{ ssh_host_keys_dir }}/ssh_host_rsa_key.pub"
+- name: replace default 2048 bits RSA keypair with 4096 bits keypair
+  openssh_keypair:
+    state: present
+    type: rsa
+    size: 4096
+    path: "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
+    force: false
+    regenerate: partial_idempotence
 
-- name: generate recommended 4096 bits RSA hostkey
-  shell:
-    cmd: 'ssh-keygen -q -t rsa -b 4096 -f ssh_host_rsa_key -N "" < /dev/null'
-    chdir: "{{ ssh_host_keys_dir }}"
-  register: result
-  changed_when:
-    - result.rc == 0
+# In RHEL and Fedora, the 'ssh_keys' group is the group owner of the host private SSH keys.
+# Since the openssh_keypair module needs to read the key to provide idempotency, we need to set ownership and group based on specific OS vars.
+- name: change host private key ownership, group and permissions
+  file:
+    path: "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
+    owner: "{{ ssh_host_keys_owner }}"
+    group: "{{ ssh_host_keys_group }}"
+    mode: "0600"
 
 - name: set hostkeys according to openssh-version if openssh >= 5.3
   set_fact:
