@@ -11,6 +11,9 @@
   shell:
     cmd: 'ssh-keygen -q -t rsa -b 4096 -f ssh_host_rsa_key -N "" < /dev/null'
     chdir: "{{ ssh_host_keys_dir }}"
+  register: result
+  changed_when:
+    - result.rc == 0
 
 - name: set hostkeys according to openssh-version if openssh >= 5.3
   set_fact:
