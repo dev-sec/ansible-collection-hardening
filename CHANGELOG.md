@@ -19,6 +19,7 @@
 - make the os\_env\_umask variable usable [\#351](https://github.com/dev-sec/ansible-collection-hardening/pull/351) ([sprat](https://github.com/sprat))
 - Fix \#348: make ssh configuration files paths configurable [\#350](https://github.com/dev-sec/ansible-collection-hardening/pull/350) ([sprat](https://github.com/sprat))
 - Removed Protocol statement in later versions of sshd, since the code … [\#342](https://github.com/dev-sec/ansible-collection-hardening/pull/342) ([joubbi](https://github.com/joubbi))
+- Improvements of comments in opensshd.conf.j2  \#338 [\#339](https://github.com/dev-sec/ansible-collection-hardening/pull/339) ([joubbi](https://github.com/joubbi))
 
 **Fixed bugs:**
 
@@ -37,6 +38,7 @@
 
 **Merged pull requests:**
 
+- make release workflow manually runnable [\#384](https://github.com/dev-sec/ansible-collection-hardening/pull/384) ([schurzi](https://github.com/schurzi))
 - run labeler workflow with higher privileges [\#383](https://github.com/dev-sec/ansible-collection-hardening/pull/383) ([schurzi](https://github.com/schurzi))
 - remove issue labels from changelog [\#382](https://github.com/dev-sec/ansible-collection-hardening/pull/382) ([schurzi](https://github.com/schurzi))
 - Added comment on top of templates about which role manages the file [\#378](https://github.com/dev-sec/ansible-collection-hardening/pull/378) ([joubbi](https://github.com/joubbi))
