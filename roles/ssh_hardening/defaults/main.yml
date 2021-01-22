@@ -36,6 +36,9 @@ ssh_listen_to: ['0.0.0.0']          # sshd
 # Host keys to look for when starting sshd.
 ssh_host_key_files: []              # sshd
 
+# Host certificates to look for when starting sshd.
+ssh_host_certificates: []           # sshd
+
 # Specifies the host key algorithms that the server offers
 ssh_host_key_algorithms: []         # sshd
 
