@@ -32,7 +32,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
-          issue_line_labels: "ALL"
           # this excludes all versions prior to the collection-release
           # since they break the changelog generation with the error:
           # "No common ancestor between ... and $version"
@@ -61,7 +60,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           since_tag: ${{ steps.previoustag.outputs.tag }}
           future_release: ${{ steps.version.outputs.next-version }}
-          issue_line_labels: "ALL"
           output: CHANGELOGRELEASE.md
           # this excludes all versions prior to the collection-release
           # since they break the changelog generation with the error:
