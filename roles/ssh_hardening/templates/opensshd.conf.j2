@@ -39,11 +39,9 @@ HostKey {{ key }}
 {% endfor %}
 
 # HostCertificates are listed here.
-{% if ssh_host_certificates -%}
 {% for certificate in ssh_host_certificates -%}
 HostCertificate {{ certificate }}
-{% endfor -%}
-{% endif %}
+{% endfor %}
 
 # Host key algorithms that the server offers.
 {% if sshd_version is version('5.8', '>=') %}
