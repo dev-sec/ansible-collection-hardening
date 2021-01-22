@@ -1,30 +1,49 @@
 # Changelog
 
-## [7.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.0.1) (2020-12-15)
+## [7.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.0) (2021-01-22)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.0.0...7.0.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.0.0...7.1.0)
 
 **Implemented enhancements:**
 
+- Default value for ssh\_max\_startups should be changed [\#366](https://github.com/dev-sec/ansible-collection-hardening/issues/366)
+- Comment in configuration files should state which collection was there [\#345](https://github.com/dev-sec/ansible-collection-hardening/issues/345)
 - Error on applying the sysctl vars on Debian Jessy [\#230](https://github.com/dev-sec/ansible-collection-hardening/issues/230)
-- Improvements of comments in opensshd.conf.j2 \#338 [\#339](https://github.com/dev-sec/ansible-collection-hardening/pull/339) ([joubbi](https://github.com/joubbi))
+- add Support for OpenSSH HostCertificate config option [\#380](https://github.com/dev-sec/ansible-collection-hardening/pull/380) ([mpraeger](https://github.com/mpraeger))
+- Syncookie [\#372](https://github.com/dev-sec/ansible-collection-hardening/pull/372) ([joubbi](https://github.com/joubbi))
+- Sorted sysctl values and lists in READMEs alphabetically \(No functional changes\). [\#371](https://github.com/dev-sec/ansible-collection-hardening/pull/371) ([joubbi](https://github.com/joubbi))
+- make auditd 'max\_log\_file' configurable [\#370](https://github.com/dev-sec/ansible-collection-hardening/pull/370) ([tgueldner-mms](https://github.com/tgueldner-mms))
+- reduce maximum unauthenticated ssh sessions [\#368](https://github.com/dev-sec/ansible-collection-hardening/pull/368) ([schurzi](https://github.com/schurzi))
+- add a runtime.yml to declare minimum ansible version [\#363](https://github.com/dev-sec/ansible-collection-hardening/pull/363) ([rndmh3ro](https://github.com/rndmh3ro))
+- change inclusion of os specific defaults [\#353](https://github.com/dev-sec/ansible-collection-hardening/pull/353) ([schurzi](https://github.com/schurzi))
+- make the os\_env\_umask variable usable [\#351](https://github.com/dev-sec/ansible-collection-hardening/pull/351) ([sprat](https://github.com/sprat))
+- Fix \#348: make ssh configuration files paths configurable [\#350](https://github.com/dev-sec/ansible-collection-hardening/pull/350) ([sprat](https://github.com/sprat))
+- Removed Protocol statement in later versions of sshd, since the code … [\#342](https://github.com/dev-sec/ansible-collection-hardening/pull/342) ([joubbi](https://github.com/joubbi))
+
+**Fixed bugs:**
+
+- Comments in opensshd.conf.j2 should be improved [\#338](https://github.com/dev-sec/ansible-collection-hardening/issues/338)
+- check for correct cpu vendor in initramfs-tools [\#374](https://github.com/dev-sec/ansible-collection-hardening/pull/374) ([schurzi](https://github.com/schurzi))
+- set hidepid=0 on RHEL/CentOS 7 [\#369](https://github.com/dev-sec/ansible-collection-hardening/pull/369) ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
 
-- Version 7.0.0 of "os-hardening" has not been published in Ansible Galaxy repository [\#340](https://github.com/dev-sec/ansible-collection-hardening/issues/340)
-- Comments in opensshd.conf.j2 should be improved [\#338](https://github.com/dev-sec/ansible-collection-hardening/issues/338)
-- pyinfra [\#336](https://github.com/dev-sec/ansible-collection-hardening/issues/336)
-- suffix \_hardening [\#334](https://github.com/dev-sec/ansible-collection-hardening/issues/334)
-- Incompatible with python 3 on CentOS [\#333](https://github.com/dev-sec/ansible-collection-hardening/issues/333)
-- squashfs not being disabled then failing test [\#308](https://github.com/dev-sec/ansible-collection-hardening/issues/308)
-- variable name inconsistency: ssh / sshd [\#329](https://github.com/dev-sec/ansible-collection-hardening/issues/329)
-- Getting “msg”: “Destination /etc not writable” even with become: yes [\#280](https://github.com/dev-sec/ansible-collection-hardening/issues/280)
+- initramfs-tools modules.j2 does not seem to be able to detect AMD CPUs [\#373](https://github.com/dev-sec/ansible-collection-hardening/issues/373)
+- How do i install this on Centos 8? [\#367](https://github.com/dev-sec/ansible-collection-hardening/issues/367)
+- hidepid=2 gives error when running systemctl on EL7 [\#364](https://github.com/dev-sec/ansible-collection-hardening/issues/364)
+- Allow putting the ssh/sshd config in alternative files [\#348](https://github.com/dev-sec/ansible-collection-hardening/issues/348)
+- os\_env\_umask has no effect [\#344](https://github.com/dev-sec/ansible-collection-hardening/issues/344)
+- Don't modify /etc/sysctl.conf [\#343](https://github.com/dev-sec/ansible-collection-hardening/issues/343)
 
 **Merged pull requests:**
 
+- run labeler workflow with higher privileges [\#383](https://github.com/dev-sec/ansible-collection-hardening/pull/383) ([schurzi](https://github.com/schurzi))
+- remove issue labels from changelog [\#382](https://github.com/dev-sec/ansible-collection-hardening/pull/382) ([schurzi](https://github.com/schurzi))
+- Added comment on top of templates about which role manages the file [\#378](https://github.com/dev-sec/ansible-collection-hardening/pull/378) ([joubbi](https://github.com/joubbi))
+- Regenerate RSA key with size 4096 bits [\#376](https://github.com/dev-sec/ansible-collection-hardening/pull/376) ([ssttehrani](https://github.com/ssttehrani))
 - fix second changelog generation task, too [\#349](https://github.com/dev-sec/ansible-collection-hardening/pull/349) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix changelog generation [\#341](https://github.com/dev-sec/ansible-collection-hardening/pull/341) ([rndmh3ro](https://github.com/rndmh3ro))
-- Improve README for ssh_hardening [\#335](https://github.com/dev-sec/ansible-collection-hardening/pull/335) ([szEvEz](https://github.com/szEvEz))
+- Improve README for ssh\_hardening [\#335](https://github.com/dev-sec/ansible-collection-hardening/pull/335) ([szEvEz](https://github.com/szEvEz))
 
 ## [7.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.0.0) (2020-11-11)
 
@@ -70,4 +89,6 @@
 - move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-collection-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 - install procps in debian so sysctl.conf exists [\#282](https://github.com/dev-sec/ansible-collection-hardening/pull/282) ([rndmh3ro](https://github.com/rndmh3ro))
 
-\* _This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)_
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
