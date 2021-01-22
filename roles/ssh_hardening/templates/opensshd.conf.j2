@@ -38,6 +38,12 @@ ListenAddress {{ address }}
 HostKey {{ key }}
 {% endfor %}
 
+{% if ssh_host_certificates -%}
+{% for certificate in ssh_host_certificates -%}
+HostCertificate {{ certificate }}
+{% endfor -%}
+{% endif -%}
+
 # Host key algorithms that the server offers.
 {% if sshd_version is version('5.8', '>=') %}
 {{ "HostKeyAlgorithms " ~ ssh_host_key_algorithms|join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
