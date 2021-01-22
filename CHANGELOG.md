@@ -1,8 +1,8 @@
 # Changelog
 
-## [7.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.0) (2021-01-22)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.0.0...7.1.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.0.0...HEAD)
 
 **Implemented enhancements:**
 
