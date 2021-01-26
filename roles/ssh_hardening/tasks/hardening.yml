@@ -129,3 +129,31 @@
   when:
     - sshd_disable_crypto_policy | bool
     - ('crypto-policies' in ansible_facts.packages)
+
+- name: find private SSH host keys.
+  find:
+    paths: /etc/ssh
+    patterns: 'ssh_host_*_key'
+  register: ssh_keys_private
+
+- name: ensure permissions on SSH private host key files are configured - CIS 5.2.3
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: root
+    group: root
+    mode: '0600'
+  with_items: "{{ ssh_keys_private.files }}"
+
+- name: find public SSH host keys.
+  find:
+    paths: /etc/ssh
+    patterns: 'ssh_host_*_key.pub'
+  register: ssh_keys_public
+
+- name: ensure permissions on SSH public host key files are configured - CIS 5.2.4
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  with_items: "{{ ssh_keys_public.files }}"
