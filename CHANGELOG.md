@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.1) (2021-02-05)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.1.0...7.1.1)
+
+**Fixed bugs:**
+
+- use fqcn for community.crypto.openssh\_keypair module [\#389](https://github.com/dev-sec/ansible-collection-hardening/pull/389) ([schurzi](https://github.com/schurzi))
+
+**Closed issues:**
+
+- AnsibleUndefinedVariable: 'ansible\_role\_name' is undefined with 7.1.0 [\#387](https://github.com/dev-sec/ansible-collection-hardening/issues/387)
+
 ## [7.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.0) (2021-02-02)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.0.0...7.1.0)
