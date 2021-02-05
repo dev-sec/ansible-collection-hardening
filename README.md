@@ -36,7 +36,7 @@ This role is now part of the hardening-collection. You can find the old role in 
 
 ## Minimum required Ansible-version
 
-- > = 2.9.10
+- Ansible >= 2.9.10
 
 ## Included content
 
