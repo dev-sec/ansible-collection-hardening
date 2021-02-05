@@ -1,6 +1,6 @@
 ---
 - name: replace default 2048 bits RSA keypair with 4096 bits keypair
-  openssh_keypair:
+  community.crypto.openssh_keypair:
     state: present
     type: rsa
     size: 4096
