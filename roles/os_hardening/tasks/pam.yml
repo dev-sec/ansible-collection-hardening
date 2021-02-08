@@ -53,12 +53,35 @@
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - not os_auth_pam_passwdqc_enable
 
-- name: delete tally2 config
+- name: install tally2
+  apt:
+    name: 'libpam-modules'
+    state: 'present'
+  when:
+    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - not os_auth_pam_passwdqc_enable
+    - os_auth_retries > 0
+
+- name: configure tally2
+  template:
+    src: 'usr/share/pam-configs/pam_tally2.j2'
+    dest: '{{ tally2_path }}'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when:
+    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - not os_auth_pam_passwdqc_enable
+    - os_auth_retries > 0
+
+- name: delete tally2 when retries is 0
   file:
-    path: /usr/share/pam-configs/tally2
+    path: '{{ tally2_path }}'
     state: 'absent'
   when:
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - not os_auth_pam_passwdqc_enable
+    - os_auth_retries == 0
 
 - name: remove pam_cracklib, because it does not play nice with passwdqc
   yum:
@@ -88,7 +111,7 @@
     - ansible_facts.os_family == 'RedHat'
     - not os_auth_pam_passwdqc_enable
 
-- name: configure pam via central system-auth config
+- name: configure passwdqc and tally via central system-auth confic
   template:
     src: 'etc/pam.d/rhel_system_auth.j2'
     dest: '/etc/pam.d/system-auth-ac'

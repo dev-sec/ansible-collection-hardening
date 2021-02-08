@@ -30,7 +30,7 @@ MAIL_DIR          {{ os_useradd_mail_dir }}
 CREATE_HOME       {{ 'yes' if os_useradd_create_home else 'no' }}
 
 {% endif %}
-# Enable logging and display of `/var/log/faillog` login failure info.
+# Enable logging and display of `/var/log/faillog` login failure info. This option conflicts with the `pam_tally` PAM module.
 FAILLOG_ENAB      yes
 
 # Enable display of unknown usernames when login failures are recorded.
