@@ -111,7 +111,7 @@
     - ansible_facts.os_family == 'RedHat'
     - not os_auth_pam_passwdqc_enable
 
-- name: configure passwdqc and tally via central system-auth confic
+- name: configure passwdqc and faillock via central system-auth confic
   template:
     src: 'etc/pam.d/rhel_system_auth.j2'
     dest: '/etc/pam.d/system-auth-ac'
