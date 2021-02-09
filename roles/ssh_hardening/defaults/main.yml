@@ -36,6 +36,9 @@ ssh_listen_to: ['0.0.0.0']          # sshd
 # Host keys to look for when starting sshd.
 ssh_host_key_files: []              # sshd
 
+# Host RSA key size in bits
+ssh_host_rsa_key_size: 4096         # sshd
+
 # Host certificates to look for when starting sshd.
 ssh_host_certificates: []           # sshd
 

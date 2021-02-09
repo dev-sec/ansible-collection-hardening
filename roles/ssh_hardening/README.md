@@ -35,6 +35,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_host_key_files`
   - Default: `[]`
   - Description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version.
+- `ssh_host_rsa_key_size`
+  - Default: `4096`
+  - Description: Specifies the number of bits in the private host RSA key to create.
 - `ssh_host_key_algorithms`
   - Default: `[]`
   - Description: Host key algorithms that the server offers. If empty the [default list](https://man.openbsd.org/sshd_config#HostKeyAlgorithms) will be used, otherwise overrides the setting with specified list of algorithms.
