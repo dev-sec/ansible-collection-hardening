@@ -12,6 +12,7 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
       - '.github/workflows/os_hardening.yml'
+
 jobs:
   build:
     runs-on: ubuntu-18.04
