@@ -4,8 +4,9 @@
     name: '{{ mysql_python_package }}'
     state: present
 
-- debug:
-    msg: 'WARNING - you have to change default mysql_root_password'
+- name: fail the role if the mysql root password was not set
+  fail:
+    msg: 'ERROR - you have to change default mysql_root_password'
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
 - name: root password is present
