@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.2.1) (2021-02-10)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.2.1)
+
+**Implemented enhancements:**
+
+- add restart handler variable for mysql role [\#399](https://github.com/dev-sec/ansible-collection-hardening/pull/399) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Merged pull requests:**
+
+- do not install mysql python package on target host [\#401](https://github.com/dev-sec/ansible-collection-hardening/pull/401) ([rndmh3ro](https://github.com/rndmh3ro))
+- make wrong password fail task [\#400](https://github.com/dev-sec/ansible-collection-hardening/pull/400) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [7.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.2.0) (2021-02-10)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.1.1...7.2.0)
@@ -107,7 +120,6 @@
 - Mount proc filesystem using hidepid option [\#283](https://github.com/dev-sec/ansible-collection-hardening/pull/283) ([alegrey91](https://github.com/alegrey91))
 - unify changelog and release actions [\#279](https://github.com/dev-sec/ansible-collection-hardening/pull/279) ([rndmh3ro](https://github.com/rndmh3ro))
 - purge insecure packages [\#275](https://github.com/dev-sec/ansible-collection-hardening/pull/275) ([chris-rock](https://github.com/chris-rock))
-- add changelog and release workflow [\#271](https://github.com/dev-sec/ansible-collection-hardening/pull/271) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
