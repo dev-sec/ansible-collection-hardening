@@ -5,7 +5,7 @@
 # This is also the reason why there's ignore_errors: true on the task.
 # also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
 - name: find files with write-permissions for group
-  shell: "find -L {{ item }} -perm /go+w -type f"  # noqa 305
+  shell: "find -L {{ item }} -perm /go+w -type f"  # noqa command-instead-of-shell
   with_flattened:
     - '/usr/local/sbin'
     - '/usr/local/bin'
@@ -13,7 +13,7 @@
     - '/usr/bin'
     - '/sbin'
     - '/bin'
-    - "{{ os_env_extra_user_paths }}"  # noqa 104
+    - "{{ os_env_extra_user_paths }}"  # noqa deprecated-bare-vars
   register: minimize_access_directories
   ignore_errors: true
   changed_when: false
