@@ -90,6 +90,31 @@
       file:
         path: '{{ tally2_path }}'
         state: 'absent'
+
+    - name: configure faillock
+      template:
+        src: 'etc/security/faillock.conf.j2'
+        dest: '/etc/security/faillock.conf'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+
+    - name: configure faillock pam
+      template:
+        src: 'usr/share/pam-configs/pam_faillock.j2'
+        dest: '/usr/share/pam-configs/faillock'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+      when:
+        - os_auth_retries > 0
+
+    - name: delete faillock when retries is 0
+      file:
+        path: '/usr/share/pam-configs/faillock'
+        state: 'absent'
+      when:
+        - os_auth_retries == 0
   when:
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - "'libpam-modules' in ansible_facts.packages"
