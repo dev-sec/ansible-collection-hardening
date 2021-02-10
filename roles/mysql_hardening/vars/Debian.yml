@@ -10,5 +10,3 @@ mysql_hardening_group: 'adm'
 
 mysql_cnf_owner: 'root'  # owner of /etc/mysql/*.cnf files
 mysql_cnf_group: 'mysql'  # owner of /etc/mysql/*.cnf files
-
-mysql_python_package: "python3-pymysql"

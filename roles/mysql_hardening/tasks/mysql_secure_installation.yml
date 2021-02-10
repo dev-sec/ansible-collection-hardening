@@ -1,9 +1,4 @@
 ---
-- name: Install mysqld python libary for Ansible
-  package:
-    name: '{{ mysql_python_package }}'
-    state: present
-
 - name: fail the role if the mysql root password was not set
   fail:
     msg: 'ERROR - you have to change default mysql_root_password'
