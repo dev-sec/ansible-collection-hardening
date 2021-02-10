@@ -16,12 +16,14 @@
 
 **Closed issues:**
 
+- Updating version in galaxy.yml should be part of the release process [\#396](https://github.com/dev-sec/ansible-collection-hardening/issues/396)
 - ssh\_hardening fail on keypair generation  [\#388](https://github.com/dev-sec/ansible-collection-hardening/issues/388)
 - The system must display the date and time of the last successful account logon upon an SSH logon. [\#362](https://github.com/dev-sec/ansible-collection-hardening/issues/362)
 - Error in "root password is present" step [\#326](https://github.com/dev-sec/ansible-collection-hardening/issues/326)
 
 **Merged pull requests:**
 
+- update ansible-lint to version 5 [\#397](https://github.com/dev-sec/ansible-collection-hardening/pull/397) ([schurzi](https://github.com/schurzi))
 - fix minimum required ansible version in docs [\#390](https://github.com/dev-sec/ansible-collection-hardening/pull/390) ([schurzi](https://github.com/schurzi))
 
 ## [7.1.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.1) (2021-02-05)
