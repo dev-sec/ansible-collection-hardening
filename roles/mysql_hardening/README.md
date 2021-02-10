@@ -75,5 +75,8 @@ This role expects an existing installation of MySQL or MariaDB. Please ensure th
 - `mysql_remove_test_database`
   - Default: true
   - Description: remove test database
+- `mysql_hardening_restart_mysql`
+  - Default: true
+  - Description: Restart mysql after running this role
 
 Further information is available at [Deutsche Telekom (German)](http://www.telekom.com/static/-/155996/7/technische-sicherheitsanforderungen-si) and [Symantec](http://www.symantec.com/connect/articles/securing-mysql-step-step)

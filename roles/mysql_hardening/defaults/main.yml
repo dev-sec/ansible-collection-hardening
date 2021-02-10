@@ -4,6 +4,8 @@ mysql_hardening_enabled: true
 
 mysql_daemon_enabled: true
 
+mysql_hardening_restart_mysql: true
+
 # general configuration
 mysql_datadir: '/var/lib/mysql'
 mysql_hardening_mysql_hardening_conf_file: '{{mysql_hardening_mysql_confd_dir}}/hardening.cnf'

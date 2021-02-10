@@ -33,7 +33,9 @@
 
 - name: set default for ssh_host_key_files if not supplied
   include_tasks: crypto_hostkeys.yml
-  when: not ssh_host_key_files
+  when:
+    - ssh_server_hardening | bool
+    - not ssh_host_key_files
 
 - name: set default for ssh_macs if not supplied
   include_tasks: crypto_macs.yml

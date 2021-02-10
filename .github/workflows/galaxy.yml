@@ -20,6 +20,11 @@ jobs:
           api_key: ${{ secrets.GALAXY_API_KEY }}
           galaxy_version: ${{ github.event.release.tag_name }}
 
+      # checkout master instead of the release-tag so we can push the galaxy.yml
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
       - name: update galaxy.yml with new version
         uses: microsoft/variable-substitution@v1
         with:

@@ -1,5 +1,6 @@
 molecule[docker]
 yamllint
+ansible
 ansible-lint
 docker
 flake8

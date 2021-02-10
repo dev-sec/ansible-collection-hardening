@@ -5,8 +5,6 @@ mysql_hardening_mysql_confd_dir: '/etc/my.cnf.d'
 
 mysql_hardening_log_file: '/var/log/mariadb/mariadb.log'
 
-mysql_python_package: 'MySQL-python'
-
 mysql_cnf_owner: 'root'  # owner of /etc/mysql/*.cnf files
 mysql_cnf_group: 'mysql'  # owner of /etc/mysql/*.cnf files
 
