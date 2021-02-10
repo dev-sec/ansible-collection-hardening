@@ -1,4 +1,7 @@
 ---
 
 - name: restart mysql
-  service: name='{{ mysql_daemon }}' state=restarted
+  service:
+    name: '{{ mysql_daemon }}'
+    state: restarted
+  when: mysql_hardening_restart_mysql | bool
