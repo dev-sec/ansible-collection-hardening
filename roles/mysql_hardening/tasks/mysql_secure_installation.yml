@@ -1,9 +1,4 @@
 ---
-- name: Install mysqld python libary for Ansible
-  package:
-    name: '{{ mysql_python_package }}'
-    state: present
-
 - debug:
     msg: 'WARNING - you have to change default mysql_root_password'
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
