@@ -124,6 +124,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auth_pam_passwdqc_options`
   - Default: `min=disabled,disabled,16,12,8`
   - Description: set to any option line (as a string) that you want to pass to passwdqc.
+- `os_auth_pam_sssd_enable`
+  - Default: `false` (on RHEL/CentOS8/Amazon/Fedora `true`)
+  - Description: activate PAM auth support for sssd
 - `os_security_users_allow`
   - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
