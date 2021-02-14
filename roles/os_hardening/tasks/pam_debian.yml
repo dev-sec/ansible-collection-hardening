@@ -67,6 +67,14 @@
         path: '{{ tally2_path }}'
         state: 'absent'
 
+    - name:  create tally directory
+      file:
+        path: '/var/run/faillock'
+        state: 'directory'
+        mode: '0755'
+        owner: 'root'
+        group: 'root'
+
     - name: configure faillock
       template:
         src: 'etc/security/faillock.conf.j2'
@@ -85,9 +93,26 @@
       when:
         - os_auth_retries > 0
 
+    - name: configure faillock pam authfail
+      template:
+        src: 'usr/share/pam-configs/pam_faillock_authfail.j2'
+        dest: '/usr/share/pam-configs/faillock_authfail'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+      when:
+        - os_auth_retries > 0
+
     - name: delete faillock when retries is 0
       file:
         path: '/usr/share/pam-configs/faillock'
+        state: 'absent'
+      when:
+        - os_auth_retries == 0
+
+    - name: delete faillock authfail when retries is 0
+      file:
+        path: '/usr/share/pam-configs/faillock_authfail'
         state: 'absent'
       when:
         - os_auth_retries == 0
