@@ -16,7 +16,7 @@
 
 - name: configure passwdqc
   template:
-    src: 'usr/share/pam-configs/pam_passwdqd.j2'
+    src: 'usr/share/pam-configs/pam_passwdqc.j2'
     dest: '{{ passwdqc_path }}'
     mode: '0644'
     owner: 'root'
