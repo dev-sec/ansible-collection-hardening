@@ -1,29 +1,4 @@
 ---
-- name: remove pam_cracklib, because it does not play nice with passwdqc
-  yum:
-    name: '{{ os_packages_pam_cracklib }}'
-    state: 'absent'
-  when:
-    - ansible_facts.distribution_major_version|int is version('7', '<')
-    - ansible_facts.distribution != 'Amazon'
-    - os_auth_pam_passwdqc_enable
-
-- name: install the package for strong password checking
-  yum:
-    name: '{{ os_packages_pam_passwdqc }}'
-    state: 'present'
-  when:
-    - ansible_facts.distribution_major_version|int is version('7', '<')
-    - ansible_facts.distribution != 'Amazon'
-    - os_auth_pam_passwdqc_enable
-
-- name: remove passwdqc
-  yum:
-    name: '{{ os_packages_pam_passwdqc }}'
-    state: 'absent'
-  when:
-    - not os_auth_pam_passwdqc_enable
-
 - name: configure passwdqc and faillock via central system-auth config
   template:
     src: 'etc/pam.d/rhel_system_auth.j2'
@@ -41,3 +16,10 @@
     owner: 'root'
     group: 'root'
     state: link
+
+- name: remove passwdqc
+  yum:
+    name: '{{ os_packages_pam_passwdqc }}'
+    state: 'absent'
+  when:
+    - not os_auth_pam_passwdqc_enable
