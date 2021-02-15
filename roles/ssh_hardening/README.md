@@ -244,7 +244,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.ssh_hardening
+    - ssh_hardening
 ```
 
 ## Configuring settings not listed in role-variables
@@ -258,7 +258,7 @@ Example playbook:
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.ssh_hardening
+    - ssh_hardening
   vars:
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"
