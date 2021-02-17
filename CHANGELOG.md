@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-02-15)
+## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-02-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.3.0)
 
@@ -9,8 +9,13 @@
 - Extend GSSAPI configuration support to ssh\_config [\#403](https://github.com/dev-sec/ansible-collection-hardening/pull/403) ([wzzrd](https://github.com/wzzrd))
 - add restart handler variable for mysql role [\#399](https://github.com/dev-sec/ansible-collection-hardening/pull/399) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Closed issues:**
+
+- Documentation should be updated [\#361](https://github.com/dev-sec/ansible-collection-hardening/issues/361)
+
 **Merged pull requests:**
 
+- remove FQCN from roles in examples [\#404](https://github.com/dev-sec/ansible-collection-hardening/pull/404) ([schurzi](https://github.com/schurzi))
 - do not install mysql python package on target host [\#401](https://github.com/dev-sec/ansible-collection-hardening/pull/401) ([rndmh3ro](https://github.com/rndmh3ro))
 - make wrong password fail task [\#400](https://github.com/dev-sec/ansible-collection-hardening/pull/400) ([rndmh3ro](https://github.com/rndmh3ro))
 
