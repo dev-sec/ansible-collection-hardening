@@ -25,6 +25,9 @@
   tags: auditd
   when: os_auditd_enabled | bool
 
+- import_tasks: cron.yml
+  tags: cron
+
 - import_tasks: limits.yml
   tags: limits
 
