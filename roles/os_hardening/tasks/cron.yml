@@ -1,0 +1,84 @@
+---
+# Granting write access to this directory for non-privileged users could provide
+# them the means for gaining unauthorized elevated privileges.
+# Granting read access to this directory could give an unprivileged user insight
+# in how to gain elevated privileges or circumvent auditing controls.
+# CIS 5.1.2 - CIS 5.1.7
+#
+- name: Check if /etc/crontab exists
+  stat:
+    path: /etc/crontab
+  register: osh_crontab
+
+- name: Ensure permissions on /etc/crontab are configured
+  ansible.builtin.file:
+    path: /etc/crontab
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_crontab.stat.exists
+
+- name: Check if /etc/cron.hourly exists
+  stat:
+    path: /etc/cron.hourly
+  register: osh_cron_hourly
+
+- name: Ensure permissions on /etc/cron.hourly are configured
+  ansible.builtin.file:
+    path: /etc/cron.hourly
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_cron_hourly.stat.exists
+
+- name: Check if /etc/cron.daily exists
+  stat:
+    path: /etc/cron.daily
+  register: osh_cron_daily
+
+- name: Ensure permissions on /etc/cron.daily are configured
+  ansible.builtin.file:
+    path: /etc/cron.daily
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_cron_daily.stat.exists
+
+- name: Check if /etc/cron.weekly exists
+  stat:
+    path: /etc/cron.weekly
+  register: osh_cron_weekly
+
+- name: Ensure permissions on /etc/cron.weekly are configured
+  ansible.builtin.file:
+    path: /etc/cron.weekly
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_cron_weekly.stat.exists
+
+- name: Check if /etc/cron.monthly exists
+  stat:
+    path: /etc/cron.monthly
+  register: osh_cron_monthly
+
+- name: Ensure permissions on /etc/cron.monthly are configured
+  ansible.builtin.file:
+    path: /etc/cron.monthly
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_cron_monthly.stat.exists
+
+- name: Check if /etc/cron.d exists
+  stat:
+    path: /etc/cron.d
+  register: osh_cron_d
+
+- name: Ensure permissions on /etc/cron.d are configured
+  ansible.builtin.file:
+    path: /etc/cron.d
+    owner: root
+    group: root
+    mode: '0600'
+  when: osh_cron_d.stat.exists
