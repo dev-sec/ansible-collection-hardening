@@ -15,7 +15,7 @@
     path: /etc/crontab
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_crontab.stat.exists
 
 - name: Check if /etc/cron.hourly exists
@@ -28,7 +28,7 @@
     path: /etc/cron.hourly
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_cron_hourly.stat.exists
 
 - name: Check if /etc/cron.daily exists
@@ -41,7 +41,7 @@
     path: /etc/cron.daily
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_cron_daily.stat.exists
 
 - name: Check if /etc/cron.weekly exists
@@ -54,7 +54,7 @@
     path: /etc/cron.weekly
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_cron_weekly.stat.exists
 
 - name: Check if /etc/cron.monthly exists
@@ -67,7 +67,7 @@
     path: /etc/cron.monthly
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_cron_monthly.stat.exists
 
 - name: Check if /etc/cron.d exists
@@ -80,5 +80,5 @@
     path: /etc/cron.d
     owner: root
     group: root
-    mode: '0600'
+    mode: og-rwx
   when: osh_cron_d.stat.exists
