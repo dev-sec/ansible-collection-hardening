@@ -17,15 +17,21 @@
 - name: check successfull login with correct password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
+  environment:
+    TMPDIR: /var/tmp
 
 - name: check unsuccessfull login with incorrect password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
+  environment:
+    TMPDIR: /var/tmp
   with_sequence: count=6
 
 - name: check ussuccessfull login, with orrect password (lockout)
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
+  environment:
+    TMPDIR: /var/tmp
 
 - name: wait for account to unlock
   pause:
@@ -34,3 +40,5 @@
 - name: check successfull login
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
+  environment:
+    TMPDIR: /var/tmp
