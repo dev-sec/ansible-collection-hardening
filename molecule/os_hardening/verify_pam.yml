@@ -21,7 +21,7 @@
 - name: check unsuccessfull login with incorrect password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
-  with_sequence: count=3
+  with_sequence: count=6
 
 - name: check ussuccessfull login, with orrect password (lockout)
   shell:
