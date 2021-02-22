@@ -14,7 +14,7 @@
     locale: "en_US.UTF-8"
   when: 
     - ansible_facts.os_family == 'RedHat'
-    - ansible_facts.distribution_major_version < '7'
+    - ansible_facts.distribution_major_version < '8'
 
 - name: create testuser
   user:
