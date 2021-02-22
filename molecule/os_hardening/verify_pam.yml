@@ -1,0 +1,36 @@
+---
+- name: download pam-tester
+  get_url:
+    url: https://github.com/schurzi/pam-tester/releases/download/latest/pam-tester
+    dest: /bin/pam-tester
+    mode: 0555
+
+- name: set password for test
+  set_fact:
+    test_pw: "myTest!pw"
+
+- name: create testuser
+  user:
+    name: testuser
+    password: "{{ test_pw | password_hash('sha512') }}"
+
+- name: check successfull login with correct password
+  shell:
+    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+
+- name: check unsuccessfull login with incorrect password
+  shell:
+    cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
+  with_sequence: count=3
+
+- name: check ussuccessfull login, with orrect password (lockout)
+  shell:
+    cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
+
+- name: wait for account to unlock
+  pause:
+    seconds: 20
+
+- name: check successfull login
+  shell:
+    cmd: "pam-tester --user testuser --password {{ test_pw }}"

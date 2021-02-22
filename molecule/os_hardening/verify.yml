@@ -70,3 +70,7 @@
       shell:
         cmd: "grep '027 #override' /etc/login.defs"
       changed_when: false
+
+    - name: include PAM tests
+      include: verify_pam.yml
+      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
