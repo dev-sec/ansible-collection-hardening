@@ -1,11 +1,4 @@
 ---
-- name: remove pam_cracklib, because it does not play nice with passwdqc
-  apt:
-    name: '{{ os_packages_pam_cracklib }}'
-    state: 'absent'
-  when:
-    - os_auth_pam_passwdqc_enable
-
 - name: install the package for strong password checking
   apt:
     name: '{{ os_packages_pam_passwdqc }}'

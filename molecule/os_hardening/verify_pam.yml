@@ -12,7 +12,7 @@
 - name: set locale for test
   set_fact:
     locale: "en_US.UTF-8"
-  when: 
+  when:
     - ansible_facts.os_family == 'RedHat'
     - ansible_facts.distribution_major_version < '8'
 
