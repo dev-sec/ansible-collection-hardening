@@ -11,8 +11,10 @@
 
 - name: set locale for test
   set_fact:
-    locale: "C.UTF-8"
-  when: ansible_facts.distribution in ['Debian', 'Ubuntu']
+    locale: "en_US.UTF-8"
+  when: 
+    - ansible_facts.os_family == 'RedHat'
+    - ansible_facts.distribution_major_version < '7'
 
 - name: create testuser
   user:
@@ -24,14 +26,14 @@
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
-    LC_ALL: "{{ locale | default('en_US.utf-8') }}"
+    LC_ALL: "{{ locale | default('C.utf-8') }}"
 
 - name: check unsuccessfull login with incorrect password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
   environment:
     TMPDIR: /var/tmp
-    LC_ALL: "{{ locale | default('en_US.utf-8') }}"
+    LC_ALL: "{{ locale | default('C.utf-8') }}"
   with_sequence: count=6
 
 - name: check ussuccessfull login, with orrect password (lockout)
@@ -39,7 +41,7 @@
     cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
   environment:
     TMPDIR: /var/tmp
-    LC_ALL: "{{ locale | default('en_US.utf-8') }}"
+    LC_ALL: "{{ locale | default('C.utf-8') }}"
 
 - name: wait for account to unlock
   pause:
@@ -50,4 +52,4 @@
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
-    LC_ALL: "{{ locale | default('en_US.utf-8') }}"
+    LC_ALL: "{{ locale | default('C.utf-8') }}"
