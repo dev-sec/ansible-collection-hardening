@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-02-17)
+## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-02-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.3.0)
 
@@ -131,7 +131,6 @@
 **Fixed bugs:**
 
 - Task "set 10.hardcore.conf perms to 0400 and root ownership" fails in check mode [\#313](https://github.com/dev-sec/ansible-collection-hardening/issues/313)
-- use touch for 10.hardcore.conf to avoid problems with dry-run [\#314](https://github.com/dev-sec/ansible-collection-hardening/pull/314) ([schurzi](https://github.com/schurzi))
 - use touch with no date changes [\#310](https://github.com/dev-sec/ansible-collection-hardening/pull/310) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not touch sysctl file to avoid idempotency problems [\#309](https://github.com/dev-sec/ansible-collection-hardening/pull/309) ([rndmh3ro](https://github.com/rndmh3ro))
 - replace module parameter fixed [\#297](https://github.com/dev-sec/ansible-collection-hardening/pull/297) ([danielkubat](https://github.com/danielkubat))
