@@ -76,7 +76,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: false to disable pam authentication.
 - `ssh_gssapi_support`
   - Default: `false`
-  - Description: true if SSH has GSSAPI support.
+  - Description: Set to true to enable GSSAPI authentication (both client and server).
+- `ssh_gssapi_delegation`
+  - Default: `false`
+  - Description: Set to true to enable GSSAPI credential forwarding.
 - `ssh_kerberos_support`
   - Default: `true`
   - Description: true if SSH has Kerberos support.
@@ -241,7 +244,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.ssh_hardening
+    - ssh_hardening
 ```
 
 ## Configuring settings not listed in role-variables
@@ -255,7 +258,7 @@ Example playbook:
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.ssh_hardening
+    - ssh_hardening
   vars:
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"

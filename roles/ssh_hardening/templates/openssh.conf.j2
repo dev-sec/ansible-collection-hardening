@@ -104,8 +104,8 @@ RSAAuthentication yes
 PasswordAuthentication {{ 'yes' if ssh_client_password_login else 'no' }}
 
 # Only use GSSAPIAuthentication if implemented on the network.
-GSSAPIAuthentication no
-GSSAPIDelegateCredentials no
+GSSAPIAuthentication {{ 'yes' if (ssh_gssapi_support|bool) else 'no' }}
+GSSAPIDelegateCredentials {{ 'yes' if (ssh_gssapi_delegation|bool) else 'no' }}
 
 # Disable tunneling
 Tunnel no

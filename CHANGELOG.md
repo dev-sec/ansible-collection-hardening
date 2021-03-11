@@ -1,15 +1,26 @@
 # Changelog
 
-## [7.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.2.1) (2021-02-10)
+## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-03-11)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.2.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.3.0)
 
 **Implemented enhancements:**
 
+- Extend GSSAPI configuration support to ssh\_config [\#403](https://github.com/dev-sec/ansible-collection-hardening/pull/403) ([wzzrd](https://github.com/wzzrd))
 - add restart handler variable for mysql role [\#399](https://github.com/dev-sec/ansible-collection-hardening/pull/399) ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Unable to connect with SSH \(Permission denied \(publickey\)\) [\#411](https://github.com/dev-sec/ansible-collection-hardening/issues/411)
+- TASK \[os\_hardening : configure auditd | package-08\] [\#410](https://github.com/dev-sec/ansible-collection-hardening/issues/410)
+- Collection throws undefined ansible\_role\_name error in auditd task [\#409](https://github.com/dev-sec/ansible-collection-hardening/issues/409)
+- Ensure permissions on /etc/crontab are configured [\#375](https://github.com/dev-sec/ansible-collection-hardening/issues/375)
+- Documentation should be updated [\#361](https://github.com/dev-sec/ansible-collection-hardening/issues/361)
 
 **Merged pull requests:**
 
+- Ensure permissions on /etc/crontab are configured [\#405](https://github.com/dev-sec/ansible-collection-hardening/pull/405) ([joubbi](https://github.com/joubbi))
+- remove FQCN from roles in examples [\#404](https://github.com/dev-sec/ansible-collection-hardening/pull/404) ([schurzi](https://github.com/schurzi))
 - do not install mysql python package on target host [\#401](https://github.com/dev-sec/ansible-collection-hardening/pull/401) ([rndmh3ro](https://github.com/rndmh3ro))
 - make wrong password fail task [\#400](https://github.com/dev-sec/ansible-collection-hardening/pull/400) ([rndmh3ro](https://github.com/rndmh3ro))
 
@@ -36,7 +47,6 @@
 
 **Merged pull requests:**
 
-- update ansible-lint to version 5 [\#397](https://github.com/dev-sec/ansible-collection-hardening/pull/397) ([schurzi](https://github.com/schurzi))
 - fix minimum required ansible version in docs [\#390](https://github.com/dev-sec/ansible-collection-hardening/pull/390) ([schurzi](https://github.com/schurzi))
 
 ## [7.1.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.1.1) (2021-02-05)
@@ -89,6 +99,7 @@
 
 **Merged pull requests:**
 
+- update ansible-lint to version 5 [\#397](https://github.com/dev-sec/ansible-collection-hardening/pull/397) ([schurzi](https://github.com/schurzi))
 - use version tag for changelog action [\#386](https://github.com/dev-sec/ansible-collection-hardening/pull/386) ([schurzi](https://github.com/schurzi))
 - make release workflow manually runnable [\#384](https://github.com/dev-sec/ansible-collection-hardening/pull/384) ([schurzi](https://github.com/schurzi))
 - run labeler workflow with higher privileges [\#383](https://github.com/dev-sec/ansible-collection-hardening/pull/383) ([schurzi](https://github.com/schurzi))
@@ -120,6 +131,7 @@
 - Mount proc filesystem using hidepid option [\#283](https://github.com/dev-sec/ansible-collection-hardening/pull/283) ([alegrey91](https://github.com/alegrey91))
 - unify changelog and release actions [\#279](https://github.com/dev-sec/ansible-collection-hardening/pull/279) ([rndmh3ro](https://github.com/rndmh3ro))
 - purge insecure packages [\#275](https://github.com/dev-sec/ansible-collection-hardening/pull/275) ([chris-rock](https://github.com/chris-rock))
+- add changelog and release workflow [\#271](https://github.com/dev-sec/ansible-collection-hardening/pull/271) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 

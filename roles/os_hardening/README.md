@@ -222,7 +222,7 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.os_hardening
+    - os_hardening
 ```
 
 ## Changing sysctl variables
@@ -235,7 +235,7 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
   collections:
     - devsec.hardening
   roles:
-    - devsec.hardening.os_hardening
+    - os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.

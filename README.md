@@ -50,6 +50,12 @@ In progress, not working:
 - [apache_hardening](roles/apache_hardening/)
 - [windows_hardening](roles/windows_hardening/)
 
+## Installation
+
+Install the collection via ansible-galaxy:
+
+`ansible-galaxy collection install devsec.hardening`
+
 ## Using this collection
 
 Please refer to the examples in the readmes of the role.
