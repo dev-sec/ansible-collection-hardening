@@ -19,7 +19,7 @@
     file_type: any
   register: cron_directories
 
-- name: Ensure permissions on /etc/cron are configured
+- name: Ensure permissions on cron files and directories are configured
   ansible.builtin.file:
     path: "{{ item.path }}"
     owner: root
