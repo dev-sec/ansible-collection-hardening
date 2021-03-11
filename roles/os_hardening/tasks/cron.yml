@@ -1,0 +1,28 @@
+---
+# Granting write access to this directory for non-privileged users could provide
+# them the means for gaining unauthorized elevated privileges.
+# Granting read access to this directory could give an unprivileged user insight
+# in how to gain elevated privileges or circumvent auditing controls.
+# CIS 5.1.2 - CIS 5.1.7
+#
+- name: Find cron files and directories
+  find:
+    paths:
+      - /etc
+    patterns:
+      - cron.hourly
+      - cron.daily
+      - cron.weekly
+      - cron.monthly
+      - cron.d
+      - crontab
+    file_type: any
+  register: cron_directories
+
+- name: Ensure permissions on cron files and directories are configured
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: root
+    group: root
+    mode: og-rwx
+  with_items: "{{ cron_directories.files }}"
