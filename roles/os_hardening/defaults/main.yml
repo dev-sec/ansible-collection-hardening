@@ -227,9 +227,10 @@ sysctl_config:
   net.ipv6.conf.default.accept_redirects: 0
   net.ipv6.conf.all.accept_redirects: 0
 
-  # Disable IPv6 traffic forwarding. | sysctl-19
+  # Disable IPv6 traffic forwarding.
   # Setting the flag to 0 ensures that a system with multiple interfaces (for example, a hard
   # proxy), will never be able to forward packets, and therefore, never serve as a router.
+  # | sysctl-19
   net.ipv6.conf.all.forwarding: 0
 
   # ignore RAs on Ipv6. | sysctl-25
