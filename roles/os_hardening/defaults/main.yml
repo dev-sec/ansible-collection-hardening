@@ -205,9 +205,6 @@ sysctl_config:
   net.ipv6.conf.default.accept_redirects: 0
   net.ipv6.conf.all.accept_redirects: 0
 
-  # Disable IPv6 | sysctl-18
-  net.ipv6.conf.all.disable_ipv6: 1
-
   # Disable IPv6 traffic forwarding. | sysctl-19
   net.ipv6.conf.all.forwarding: 0
 
