@@ -1,14 +1,14 @@
 ---
-- name: set ssh CA pub keys
+- name: Set ssh CA pub keys
   template:
     src: 'trusted_user_ca_keys.j2'
     dest: '{{ ssh_trusted_user_ca_keys_file }}'
     mode: '0644'
     owner: '{{ ssh_owner }}'
     group: '{{ ssh_group }}'
-  notify: restart sshd
+  notify: Restart sshd
 
-- name: create ssh authorized principals directories
+- name: Create ssh authorized principals directories
   file:
     path: '{{ item.path | dirname }}'
     mode: '{{ item.directorymode | default(0700) }}'
@@ -17,7 +17,7 @@
     state: directory
   loop: '{{ ssh_authorized_principals }}'
 
-- name: set ssh authorized principals
+- name: Set ssh authorized principals
   template:
     src: 'authorized_principals.j2'
     dest: '{{ item.path }}'

@@ -1,5 +1,5 @@
 ---
-- name: update pam on Debian systems
+- name: Update pam on Debian systems
   command: 'pam-auth-update --package'
   when: ansible_facts.distribution in ['Debian', 'Ubuntu']
   changed_when: false
@@ -10,14 +10,14 @@
 # that isn't connected to an LDAP server anymore.
 # normally caching credentials shouldn't be necessary for most machines.
 # removing it provides some more security while not removing usability.
-- name: remove pam ccreds to disable password caching
+- name: Remove pam ccreds to disable password caching
   package:
     name: '{{ os_packages_pam_ccreds }}'
     state: 'absent'
   when:
     - ansible_facts.os_family != 'Archlinux'
 
-- name: remove pam_cracklib, because it does not play nice with passwdqc
+- name: Remove pam_cracklib, because it does not play nice with passwdqc
   apt:
     name: '{{ os_packages_pam_cracklib }}'
     state: 'absent'
@@ -25,7 +25,7 @@
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - os_auth_pam_passwdqc_enable
 
-- name: install the package for strong password checking
+- name: Install the package for strong password checking
   apt:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'present'
@@ -34,7 +34,7 @@
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - os_auth_pam_passwdqc_enable
 
-- name: configure passwdqc
+- name: Configure passwdqc
   template:
     src: 'usr/share/pam-configs/pam_passwdqd.j2'
     dest: '{{ passwdqc_path }}'
@@ -45,7 +45,7 @@
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - os_auth_pam_passwdqc_enable
 
-- name: remove passwdqc
+- name: Remove passwdqc
   apt:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'absent'
@@ -53,7 +53,7 @@
     - ansible_facts.distribution in ['Debian', 'Ubuntu']
     - not os_auth_pam_passwdqc_enable
 
-- name: install tally2
+- name: Install tally2
   apt:
     name: 'libpam-modules'
     state: 'present'
@@ -62,7 +62,7 @@
     - not os_auth_pam_passwdqc_enable
     - os_auth_retries > 0
 
-- name: configure tally2
+- name: Configure tally2
   template:
     src: 'usr/share/pam-configs/pam_tally2.j2'
     dest: '{{ tally2_path }}'
@@ -74,7 +74,7 @@
     - not os_auth_pam_passwdqc_enable
     - os_auth_retries > 0
 
-- name: delete tally2 when retries is 0
+- name: Delete tally2 when retries is 0
   file:
     path: '{{ tally2_path }}'
     state: 'absent'
@@ -83,7 +83,7 @@
     - not os_auth_pam_passwdqc_enable
     - os_auth_retries == 0
 
-- name: remove pam_cracklib, because it does not play nice with passwdqc
+- name: Remove pam_cracklib, because it does not play nice with passwdqc
   yum:
     name: '{{ os_packages_pam_cracklib }}'
     state: 'absent'
@@ -93,7 +93,7 @@
     - ansible_facts.distribution != 'Amazon'
     - os_auth_pam_passwdqc_enable
 
-- name: install the package for strong password checking
+- name: Install the package for strong password checking
   yum:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'present'
@@ -103,7 +103,7 @@
     - ansible_facts.distribution != 'Amazon'
     - os_auth_pam_passwdqc_enable
 
-- name: remove passwdqc
+- name: Remove passwdqc
   yum:
     name: '{{ os_packages_pam_passwdqc }}'
     state: 'absent'
@@ -111,7 +111,7 @@
     - ansible_facts.os_family == 'RedHat'
     - not os_auth_pam_passwdqc_enable
 
-- name: configure passwdqc and tally via central system-auth confic
+- name: Configure passwdqc and tally via central system-auth confic
   template:
     src: 'etc/pam.d/rhel_system_auth.j2'
     dest: '/etc/pam.d/system-auth-ac'

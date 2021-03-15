@@ -1,5 +1,5 @@
 ---
-- name: remove unused repositories
+- name: Remove unused repositories
   file:
     name: '/etc/yum.repos.d/{{ item }}.repo'
     state: 'absent'
@@ -9,7 +9,7 @@
     - 'CentOS-Vault'
   when: os_security_packages_clean | bool
 
-- name: get yum-repository-files
+- name: Get yum-repository-files
   find:
     paths: '/etc/yum.repos.d'
     patterns: '*.repo'
@@ -18,7 +18,7 @@
 # for the 'default([])' see here:
 # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
 # https://stackoverflow.com/questions/37067827/ansible-deprecation-warning-for-undefined-variable-despite-when-clause
-- name: activate gpg-check for yum-repository-files
+- name: Activate gpg-check for yum-repository-files
   replace:
     path: '{{ item.path }}'
     regexp: '^\s*gpgcheck.*'
@@ -30,7 +30,7 @@
 # failed_when is needed because by default replace module will fail if the file doesn't exists.
 # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
 # All other errors will still be raised.
-- name: activate gpg-check for config files
+- name: Activate gpg-check for config files
   replace:
     path: '{{ item }}'
     regexp: '^\s*gpgcheck\W.*'
@@ -43,7 +43,7 @@
     - '/etc/dnf/dnf.conf'
     - '/etc/yum/pluginconf.d/rhnplugin.conf'
 
-- name: remove deprecated or insecure packages | package-01 - package-09
+- name: Remove deprecated or insecure packages | package-01 - package-09
   yum:
     name: '{{ os_security_packages_list }}'
     state: 'absent'

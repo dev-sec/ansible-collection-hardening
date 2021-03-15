@@ -1,5 +1,5 @@
 ---
-- name: create login.defs | os-05, os-05b
+- name: Create login.defs | os-05, os-05b
   template:
     src: 'etc/login.defs.j2'
     dest: '/etc/login.defs'

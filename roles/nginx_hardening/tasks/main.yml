@@ -1,5 +1,5 @@
 ---
-- name: create additional configuration
+- name: Create additional configuration
   template:
     src: "hardening.conf.j2"
     dest: "/etc/nginx/conf.d/90.hardening.conf"
@@ -8,7 +8,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change configuration in main nginx.conf
+- name: Change configuration in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*server_tokens'
@@ -19,7 +19,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change ssl_protocols in main nginx.conf
+- name: Change ssl_protocols in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*ssl_protocols'
@@ -30,7 +30,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change ssl_prefer_server_ciphers in main nginx.conf
+- name: Change ssl_prefer_server_ciphers in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*ssl_prefer_server_ciphers'
@@ -41,7 +41,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change client_max_body_size in main nginx.conf
+- name: Change client_max_body_size in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*client_max_body_size'
@@ -52,7 +52,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change client_body_buffer_size in main nginx.conf
+- name: Change client_body_buffer_size in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*client_body_buffer_size'
@@ -63,7 +63,7 @@
     group: "root"
   notify: restart nginx
 
-- name: change keepalive_timeout in main nginx.conf
+- name: Change keepalive_timeout in main nginx.conf
   lineinfile:
     dest: "/etc/nginx/nginx.conf"
     regexp: '^\s*keepalive_timeout'
@@ -74,7 +74,7 @@
     group: "root"
   notify: restart nginx
 
-- name: remove default.conf
+- name: Remove default.conf
   file:
     path: "{{ item }}"
     state: absent
@@ -84,7 +84,7 @@
     - "/etc/nginx/conf.d/default.conf"
     - "/etc/nginx/sites-enabled/default"
 
-- name: generate dh group
+- name: Generate dh group
   openssl_dhparam:
     path: "/etc/nginx/dh{{ nginx_dh_size }}.pem"
     size: "{{ nginx_dh_size }}"
