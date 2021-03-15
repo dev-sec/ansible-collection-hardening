@@ -38,7 +38,7 @@
     LANG: "{{ locale | default('C.UTF-8') }}"
   with_sequence: count=6
 
-- name: check ussuccessfull login, with orrect password (lockout)
+- name: check unsuccessfull login, with correct password (lockout)
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
   environment:

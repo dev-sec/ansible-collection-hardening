@@ -1,7 +1,7 @@
 ---
 - name: install the package for strong password checking
   apt:
-    name: '{{ os_packages_pam_passwdqc }}'
+    name: 'libpam-passwdqc'
     state: 'present'
     update_cache: 'yes'
   when:
@@ -16,13 +16,6 @@
     group: 'root'
   when:
     - os_auth_pam_passwdqc_enable
-
-- name: remove passwdqc
-  apt:
-    name: '{{ os_packages_pam_passwdqc }}'
-    state: 'absent'
-  when:
-    - not os_auth_pam_passwdqc_enable
 
 - name: install tally2
   apt:
@@ -118,3 +111,10 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
   changed_when: false
+
+- name: remove passwdqc
+  apt:
+    name: 'libpam-passwdqc'
+    state: 'absent'
+  when:
+    - not os_auth_pam_passwdqc_enable
