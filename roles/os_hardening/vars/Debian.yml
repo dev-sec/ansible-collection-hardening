@@ -1,8 +1,6 @@
 ---
 
 os_packages_pam_ccreds: 'libpam-ccreds'
-os_packages_pam_passwdqc: 'libpam-passwdqc'
-os_packages_pam_cracklib: 'libpam-cracklib'
 os_nologin_shell_path: '/usr/sbin/nologin'
 
 # Different distros use different standards for /etc/shadow perms, e.g.

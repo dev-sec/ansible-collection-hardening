@@ -124,6 +124,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auth_pam_passwdqc_options`
   - Default: `min=disabled,disabled,16,12,8`
   - Description: set to any option line (as a string) that you want to pass to passwdqc.
+- `os_auth_pam_sssd_enable`
+  - Default: `false` (on RHEL8/CentOS8/Fedora `true`)
+  - Description: activate PAM auth support for sssd
 - `os_security_users_allow`
   - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
@@ -248,6 +251,13 @@ By default, any process that starts before the `auditd` daemon will have an AUID
 For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters.
 
 ## More information
+
+We use specific PAM configuration for every linux distribution. This is a very diverse area, since every vendor seems to push their own system for managing PAM. We used following guides and sources for our configuration.
+
+- on Debian/Ubuntu we use [pam-config-framework](https://wiki.ubuntu.com/PAMConfigFrameworkSpec)
+- RHEL8 and compatible use information from [authselect](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_authentication_and_authorization_in_rhel/configuring-user-authentication-using-authselect_configuring-authentication-and-authorization-in-rhel), but our setup disables the configuration from authselect
+- RHEL 6/7 and compatible use [authconfig](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/authconfig-install), but our setup disables the configuration from authconfig
+- for RHEL 6/7 we also use information from [Desktop Security](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services#sec-Desktop_Security)
 
 This role is mostly based on guides by:
 

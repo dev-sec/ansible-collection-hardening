@@ -33,6 +33,10 @@
         name: procps
       when: ansible_facts.os_family == 'Debian'
 
+    - name: include PAM tests
+      include: verify_pam.yml
+      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+
     - name: download cinc-auditor
       get_url:
         url: https://omnitruck.cinc.sh/install.sh

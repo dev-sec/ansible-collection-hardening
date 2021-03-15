@@ -1,0 +1,120 @@
+---
+- name: install the package for strong password checking
+  apt:
+    name: 'libpam-passwdqc'
+    state: 'present'
+    update_cache: 'yes'
+  when:
+    - os_auth_pam_passwdqc_enable
+
+- name: configure passwdqc
+  template:
+    src: 'usr/share/pam-configs/pam_passwdqc.j2'
+    dest: '{{ passwdqc_path }}'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  when:
+    - os_auth_pam_passwdqc_enable
+
+- name: install tally2
+  apt:
+    name: 'libpam-modules'
+    state: 'present'
+  when:
+    - os_auth_retries > 0
+
+- name: manage tally on Debian stable
+  block:
+    - name: configure tally2
+      template:
+        src: 'usr/share/pam-configs/pam_tally2.j2'
+        dest: '{{ tally2_path }}'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+      when:
+        - os_auth_retries > 0
+
+    - name: delete tally2 when retries is 0
+      file:
+        path: '{{ tally2_path }}'
+        state: 'absent'
+      when:
+        - os_auth_retries == 0
+  when:
+    - "'libpam-modules' in ansible_facts.packages"
+    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '<')"
+
+- name: manage tally/faillock on Debian unstable
+  block:
+    - name: delete tally2
+      file:
+        path: '{{ tally2_path }}'
+        state: 'absent'
+
+    - name:  create tally directory
+      file:
+        path: '/var/run/faillock'
+        state: 'directory'
+        mode: '0755'
+        owner: 'root'
+        group: 'root'
+
+    - name: configure faillock
+      template:
+        src: 'etc/security/faillock.conf.j2'
+        dest: '/etc/security/faillock.conf'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+
+    - name: configure faillock pam
+      template:
+        src: 'usr/share/pam-configs/pam_faillock.j2'
+        dest: '/usr/share/pam-configs/faillock'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+      when:
+        - os_auth_retries > 0
+
+    - name: configure faillock pam authfail
+      template:
+        src: 'usr/share/pam-configs/pam_faillock_authfail.j2'
+        dest: '/usr/share/pam-configs/faillock_authfail'
+        mode: '0644'
+        owner: 'root'
+        group: 'root'
+      when:
+        - os_auth_retries > 0
+
+    - name: delete faillock when retries is 0
+      file:
+        path: '/usr/share/pam-configs/faillock'
+        state: 'absent'
+      when:
+        - os_auth_retries == 0
+
+    - name: delete faillock authfail when retries is 0
+      file:
+        path: '/usr/share/pam-configs/faillock_authfail'
+        state: 'absent'
+      when:
+        - os_auth_retries == 0
+  when:
+    - "'libpam-modules' in ansible_facts.packages"
+    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '>=')"
+
+- name: update pam on Debian systems
+  command: 'pam-auth-update --package'
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  changed_when: false
+
+- name: remove passwdqc
+  apt:
+    name: 'libpam-passwdqc'
+    state: 'absent'
+  when:
+    - not os_auth_pam_passwdqc_enable
