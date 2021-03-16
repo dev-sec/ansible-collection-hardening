@@ -57,9 +57,7 @@ jobs:
 
       - name: Generate changelog for the release
         run: |
-          sed '/## \[${{ steps.previoustag.outputs.tag }}\]/Q' \
-           /mnt/c/Develop/ansible-collection-hardening/CHANGELOG.md \
-           > CHANGELOGRELEASE.md
+          sed '/## \[${{ steps.previoustag.outputs.tag }}\]/Q' CHANGELOG.md > CHANGELOGRELEASE.md
 
       - name: Read CHANGELOG.md
         id: package
