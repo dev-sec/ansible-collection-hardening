@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.1) (2021-03-16)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.3.1)
+
+**Merged pull requests:**
+
+- Improve Documentation for sysctl defaults [\#418](https://github.com/dev-sec/ansible-collection-hardening/pull/418) ([joubbi](https://github.com/joubbi))
+
 ## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-03-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.2.0...7.3.0)
