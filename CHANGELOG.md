@@ -10,6 +10,7 @@
 - Replace pam\_tally2 with pam\_faillock in Redhat [\#273](https://github.com/dev-sec/ansible-collection-hardening/issues/273)
 - Extend GSSAPI configuration support to ssh\_config [\#403](https://github.com/dev-sec/ansible-collection-hardening/pull/403) ([wzzrd](https://github.com/wzzrd))
 - add restart handler variable for mysql role [\#399](https://github.com/dev-sec/ansible-collection-hardening/pull/399) ([rndmh3ro](https://github.com/rndmh3ro))
+- restructure PAM handling and update for currently supported Linux distributions [\#392](https://github.com/dev-sec/ansible-collection-hardening/pull/392) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
@@ -27,6 +28,7 @@
 
 **Merged pull requests:**
 
+- Improve Release Action [\#421](https://github.com/dev-sec/ansible-collection-hardening/pull/421) ([schurzi](https://github.com/schurzi))
 - remove FQCN from roles in examples [\#420](https://github.com/dev-sec/ansible-collection-hardening/pull/420) ([schurzi](https://github.com/schurzi))
 - Ensure permissions on /etc/crontab are configured [\#405](https://github.com/dev-sec/ansible-collection-hardening/pull/405) ([joubbi](https://github.com/joubbi))
 - remove FQCN from roles in examples [\#404](https://github.com/dev-sec/ansible-collection-hardening/pull/404) ([schurzi](https://github.com/schurzi))
@@ -80,7 +82,6 @@
 - Default value for ssh\_max\_startups should be changed [\#366](https://github.com/dev-sec/ansible-collection-hardening/issues/366)
 - Comment in configuration files should state which collection was there [\#345](https://github.com/dev-sec/ansible-collection-hardening/issues/345)
 - Error on applying the sysctl vars on Debian Jessy [\#230](https://github.com/dev-sec/ansible-collection-hardening/issues/230)
-- restructure PAM handling and update for currently supported Linux distributions [\#392](https://github.com/dev-sec/ansible-collection-hardening/pull/392) ([schurzi](https://github.com/schurzi))
 - add Support for OpenSSH HostCertificate config option [\#380](https://github.com/dev-sec/ansible-collection-hardening/pull/380) ([mpraeger](https://github.com/mpraeger))
 - Syncookie [\#372](https://github.com/dev-sec/ansible-collection-hardening/pull/372) ([joubbi](https://github.com/joubbi))
 - Sorted sysctl values and lists in READMEs alphabetically \(No functional changes\). [\#371](https://github.com/dev-sec/ansible-collection-hardening/pull/371) ([joubbi](https://github.com/joubbi))
