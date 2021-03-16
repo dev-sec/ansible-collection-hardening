@@ -56,16 +56,10 @@ jobs:
           fetch-depth: 0
 
       - name: Generate changelog for the release
-        uses: charmixer/auto-changelog-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          since_tag: ${{ steps.previoustag.outputs.tag }}
-          future_release: ${{ steps.version.outputs.next-version }}
-          output: CHANGELOGRELEASE.md
-          # this excludes all versions prior to the collection-release
-          # since they break the changelog generation with the error:
-          # "No common ancestor between ... and $version"
-          exclude_tags_regex: '[0-6]\.\d\.\d'
+        run: |
+          sed '/## \[${{ steps.previoustag.outputs.tag }}\]/Q' \
+           /mnt/c/Develop/ansible-collection-hardening/CHANGELOG.md \
+           > CHANGELOGRELEASE.md
 
       - name: Read CHANGELOG.md
         id: package
