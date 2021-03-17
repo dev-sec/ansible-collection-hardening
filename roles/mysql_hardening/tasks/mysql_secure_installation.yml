@@ -4,7 +4,7 @@
     msg: 'ERROR - you have to change default mysql_root_password'
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
-- name: Root password is present
+- name: ensure that the root password is present
   mysql_user:
     name: 'root'
     host_all: true
@@ -19,14 +19,14 @@
     mode: '0400'
   tags: my_cnf
 
-- name: Test database is absent
+- name: ensure that the test database is absent
   mysql_db:
     name: test
     state: absent
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_test_database
 
-- name: Anonymous users are absent
+- name: ensure that anonymous users are absent
   mysql_user:
     name: ''
     state: absent
@@ -34,9 +34,59 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_anonymous_users
 
-- name: Remove remote root
+- name: ensure that root can only login from localhost
   community.mysql.mysql_query:
     query:
       - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
+
+- name: get all users that have no password or authentication_string on MySQL version >= 5.7.6
+  community.mysql.mysql_query:
+    query:
+      - select GROUP_CONCAT(user,'@',host SEPARATOR ', ') as users from mysql.user where (length(password)=0 or password="") and (length(authentication_string)=0 or authentication_string="") and user NOT IN ('mysql.sys', 'mysqlxsys', 'mariadb.sys');
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_users_wo_passwords_or_auth_string
+  when:
+    - mysql_version.version.full is version('5.7.6', '>=')
+
+- name: get all users that have no password on MySQL version < 5.7.6
+  community.mysql.mysql_query:
+    query:
+      - select GROUP_CONCAT(user,'@',host SEPARATOR ', ') as users from mysql.user where (length(password)=0 or password="") and user NOT IN ('mysql.sys', 'mysqlxsys', 'mariadb.sys');
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_users_wo_passwords
+  when:
+    - mysql_version.version.full is version('5.7.6', '<')
+
+- name: create a fact for users without password or authentication_string
+  set_fact:
+    users_wo_password_or_auth_string: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
+  when:
+    - mysql_version.version.full is version('5.7.6', '>=')
+
+- name: create a fact for users without password
+  set_fact:
+    users_wo_password: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
+  when:
+    - mysql_version.version.full is version('5.7.6', '<')
+
+- name: ensure that there are no users without password or authentication_string
+  community.mysql.mysql_query:
+    query:
+      - "drop user {{ users_wo_password_or_auth_string }}"
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  when:
+    - users_wo_password_or_auth_string is defined
+    - users_wo_password_or_auth_string != ""
+    - mysql_version.version.full is version('5.7.6', '>=')
+
+- name: ensure that there are no users without password
+  community.mysql.mysql_query:
+    query:
+      - "drop user {{ users_wo_password }}"
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  when:
+    - users_wo_password is defined
+    - users_wo_password != ""
+    - mysql_version.version.full is version('5.7.6', '<')
