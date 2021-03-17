@@ -1,5 +1,5 @@
 ---
-- name: protect sysctl.conf
+- name: Protect sysctl.conf
   file:
     path: '/etc/sysctl.conf'
     owner: 'root'
@@ -9,7 +9,7 @@
     modification_time: preserve
     access_time: preserve
 
-- name: set Daemon umask, do config for rhel-family | NSA 2.2.4.1
+- name: Set Daemon umask, do config for rhel-family | NSA 2.2.4.1
   template:
     src: 'etc/sysconfig/rhel_sysconfig_init.j2'
     dest: '/etc/sysconfig/init'
@@ -18,7 +18,7 @@
     mode: '0544'
   when: ansible_facts.distribution in ['Amazon', 'CentOS', 'Fedora', 'RedHat']
 
-- name: install initramfs-tools
+- name: Install initramfs-tools
   apt:
     name: 'initramfs-tools'
     state: 'present'
@@ -27,7 +27,7 @@
     - ansible_facts.os_family == 'Debian'
     - os_security_kernel_enable_module_loading
 
-- name: rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
+- name: Rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
   template:
     src: 'etc/initramfs-tools/modules.j2'
     dest: '/etc/initramfs-tools/modules'
@@ -35,15 +35,15 @@
     group: 'root'
     mode: '0440'
   notify:
-    - update-initramfs
+    - Update-initramfs
   when:
     - ansible_facts.os_family == 'Debian'
     - os_security_kernel_enable_module_loading
   register: initramfs
 
-- name: change sysctls
+- name: Change sysctls
   block:
-    - name: create a combined sysctl-dict if overwrites are defined
+    - name: Create a combined sysctl-dict if overwrites are defined
       set_fact:
         sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
       when: sysctl_overwrite | default()

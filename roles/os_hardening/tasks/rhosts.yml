@@ -5,18 +5,18 @@
   check_mode: false
   register: users_accounts
 
-- name: delete rhosts-files from system | os-09
+- name: Delete rhosts-files from system | os-09
   file:
     dest: '~{{ item }}/.rhosts'
     state: 'absent'
   with_flattened: '{{ users_accounts.stdout_lines | default([]) }}'
 
-- name: delete hosts.equiv from system | os-01
+- name: Delete hosts.equiv from system | os-01
   file:
     dest: '/etc/hosts.equiv'
     state: 'absent'
 
-- name: delete .netrc-files from system | os-09
+- name: Delete .netrc-files from system | os-09
   file:
     dest: '~{{ item }}/.netrc'
     state: 'absent'

@@ -10,7 +10,7 @@
 # that isn't connected to an LDAP server anymore.
 # normally caching credentials shouldn't be necessary for most machines.
 # removing it provides some more security while not removing usability.
-- name: remove pam ccreds to disable password caching
+- name: Remove pam ccreds to disable password caching
   package:
     name: '{{ os_packages_pam_ccreds }}'
     state: 'absent'

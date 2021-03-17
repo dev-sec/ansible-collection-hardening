@@ -1,10 +1,10 @@
 ---
-- name: install auditd package | package-08
+- name: Install auditd package | package-08
   package:
     name: '{{ auditd_package }}'
     state: 'present'
 
-- name: configure auditd | package-08
+- name: Configure auditd | package-08
   template:
     src: 'etc/audit/auditd.conf.j2'
     dest: '/etc/audit/auditd.conf'

@@ -1,5 +1,5 @@
 ---
-- name: protect my.cnf
+- name: Protect my.cnf
   file:
     path: '{{ mysql_hardening_mysql_conf_file }}'
     mode: '0640'
@@ -8,7 +8,7 @@
     follow: true
     state: file
 
-- name: ensure permissions on mysql-datadir are correct
+- name: Ensure permissions on mysql-datadir are correct
   file:
     path: '{{ mysql_datadir }}'
     state: directory
@@ -16,7 +16,7 @@
     group: '{{ mysql_hardening_user }}'
     mode: '0750'
 
-- name: ensure permissions on mysql-logfile are correct
+- name: Ensure permissions on mysql-logfile are correct
   file:
     path: '{{ mysql_hardening_log_file }}'
     state: file
@@ -24,7 +24,7 @@
     group: '{{ mysql_hardening_group }}'
     mode: '0640'
 
-- name: check mysql configuration-directory exists and has right permissions
+- name: Check mysql configuration-directory exists and has right permissions
   file:
     path: '{{ mysql_hardening_mysql_confd_dir }}'
     state: directory
@@ -32,25 +32,25 @@
     group: '{{ mysql_hardening_group }}'
     mode: '0750'
 
-- name: check include-dir directive is present in my.cnf
+- name: Check include-dir directive is present in my.cnf
   lineinfile:
     dest: '{{ mysql_hardening_mysql_conf_file }}'
     line: '!includedir {{ mysql_hardening_mysql_confd_dir }}'
     insertafter: 'EOF'
     state: present
     backup: true
-  notify: restart mysql
+  notify: Restart mysql
 
-- name: apply hardening configuration
+- name: Apply hardening configuration
   template:
     src: 'hardening.cnf.j2'
     dest: '{{ mysql_hardening_mysql_hardening_conf_file }}'
     owner: '{{ mysql_cnf_owner }}'
     group: '{{ mysql_cnf_group }}'
     mode: '0640'
-  notify: restart mysql
+  notify: Restart mysql
 
-- name: enable mysql
+- name: Enable mysql
   service:
     name: '{{ mysql_daemon }}'
     enabled: '{{ mysql_daemon_enabled }}'
