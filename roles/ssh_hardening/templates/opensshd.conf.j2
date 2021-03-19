@@ -48,6 +48,11 @@ HostCertificate {{ certificate }}
 {{ "HostKeyAlgorithms " ~ ssh_host_key_algorithms|join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
 {% endif %}
 
+# Specifies the public key types the server accept.
+{% if sshd_version is version('5.8', '>=') %}
+{{ "PubkeyAcceptedKeyTypes " ~ ssh_pubkey_accepted_key_types|join(',') if ssh_pubkey_accepted_key_types else "PubkeyAcceptedKeyTypes"|comment }}
+{% endif %}
+
 # Security configuration
 # ======================
 

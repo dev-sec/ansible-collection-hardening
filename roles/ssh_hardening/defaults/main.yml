@@ -45,6 +45,9 @@ ssh_host_certificates: []           # sshd
 # Specifies the host key algorithms that the server offers
 ssh_host_key_algorithms: []         # sshd
 
+# Specifies the public key types the server accept
+ssh_pubkey_accepted_key_types: []   # sshd
+
 # specifies the time allowed for successful authentication to the SSH server
 ssh_login_grace_time: 30s
 

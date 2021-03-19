@@ -41,6 +41,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_host_key_algorithms`
   - Default: `[]`
   - Description: Host key algorithms that the server offers. If empty the [default list](https://man.openbsd.org/sshd_config#HostKeyAlgorithms) will be used, otherwise overrides the setting with specified list of algorithms.
+* `ssh_pubkey_accepted_key_types`
+  * Default: []
+  * Description: Public key types that the server accept. If empty the [default list](https://man7.org/linux/man-pages/man5/sshd_config.5.html#DESCRIPTION) will be used, otherwise overrides the setting with specified list of algorithms
 - `ssh_client_alive_interval`
   - Default: `600`
   - Description: specifies an interval for sending keepalive messages.
