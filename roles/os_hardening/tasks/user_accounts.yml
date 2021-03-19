@@ -49,7 +49,7 @@
 - name: get all home directories in /home, but skip ignored users
   find:
     paths: /home/
-    recurse: no
+    recurse: false
     file_type: directory
     excludes: "{{ os_ignore_home_folder_users | join(',') }}"
   register: home_directories
