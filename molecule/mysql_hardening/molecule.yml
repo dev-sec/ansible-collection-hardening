@@ -21,9 +21,9 @@ platforms:
     security_opts:
       - apparmor=unconfined
     env:
-      http_proxy: ${http_proxy}
-      https_proxy: ${https_proxy}
-      no_proxy: ${no_proxy}
+      http_proxy: "${http_proxy}"
+      https_proxy: "${https_proxy}"
+      no_proxy: "${no_proxy}"
       container: docker
 provisioner:
   name: ansible
