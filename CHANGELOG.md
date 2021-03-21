@@ -1,11 +1,16 @@
 # Changelog
 
-## [7.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.1) (2021-03-16)
+## [7.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.1) (2021-03-21)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.3.1)
 
+**Closed issues:**
+
+- Errors in packer build for vagrant builder [\#244](https://github.com/dev-sec/ansible-collection-hardening/issues/244)
+
 **Merged pull requests:**
 
+- add support for using a proxy to test with molecule [\#429](https://github.com/dev-sec/ansible-collection-hardening/pull/429) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Documentation for sysctl defaults [\#418](https://github.com/dev-sec/ansible-collection-hardening/pull/418) ([joubbi](https://github.com/joubbi))
 
 ## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-03-16)
