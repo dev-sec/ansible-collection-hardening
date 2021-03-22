@@ -45,3 +45,20 @@
     createhome: false
   with_flattened:
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'
+
+- name: get all home directories in /home, but skip ignored users
+  find:
+    paths: /home/
+    recurse: false
+    file_type: directory
+    excludes: "{{ os_ignore_home_folder_users | join(',') }}"
+  register: home_directories
+  when: os_chmod_home_folders | bool
+
+- name: set ownership of /home directories to 0700
+  file:
+    mode: 0700
+    path: "{{ item.path }}"
+    state: directory
+  loop: "{{ home_directories.files }}"
+  when: os_chmod_home_folders | bool
