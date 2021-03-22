@@ -58,8 +58,8 @@
 - name: set ownership of /home directories to 0700
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: directory
   loop:
-    - "{{ home_directories.files | map(attribute='path') | list }}"
+    - "{{ home_directories.files }}"
   when: os_chmod_home_folders | bool
