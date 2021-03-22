@@ -1,8 +1,8 @@
 # Changelog
 
-## [7.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.1) (2021-03-21)
+## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-22)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.3.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.4.0)
 
 **Closed issues:**
 
@@ -41,6 +41,7 @@
 
 **Merged pull requests:**
 
+- Harden user home dirs [\#428](https://github.com/dev-sec/ansible-collection-hardening/pull/428) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Release Action [\#421](https://github.com/dev-sec/ansible-collection-hardening/pull/421) ([schurzi](https://github.com/schurzi))
 - remove FQCN from roles in examples [\#420](https://github.com/dev-sec/ansible-collection-hardening/pull/420) ([schurzi](https://github.com/schurzi))
 - Ensure permissions on /etc/crontab are configured [\#405](https://github.com/dev-sec/ansible-collection-hardening/pull/405) ([joubbi](https://github.com/joubbi))
