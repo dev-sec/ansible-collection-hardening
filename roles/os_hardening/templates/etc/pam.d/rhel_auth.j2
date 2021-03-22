@@ -35,8 +35,8 @@ account     required      pam_permit.so
 {% if (os_auth_pam_passwdqc_enable | bool) %}
 password    required      pam_pwquality.so {{ os_auth_pam_pwquality_options }}
 {% endif %}
-# NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
-# NSA 2.3.3.6 Limit Password Reuse
+{# NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512 #}
+{# NSA 2.3.3.6 Limit Password Reuse #}
 password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5
 {% if (os_auth_pam_sssd_enable | bool) %}
 password    sufficient    pam_sss.so use_authtok
