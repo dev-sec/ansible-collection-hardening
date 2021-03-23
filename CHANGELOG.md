@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-22)
+## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.4.0)
 
@@ -10,7 +10,9 @@
 
 **Merged pull requests:**
 
+- Remove comments from PAM config file, but keep it in the template [\#430](https://github.com/dev-sec/ansible-collection-hardening/pull/430) ([joubbi](https://github.com/joubbi))
 - add support for using a proxy to test with molecule [\#429](https://github.com/dev-sec/ansible-collection-hardening/pull/429) ([rndmh3ro](https://github.com/rndmh3ro))
+- Harden user home dirs [\#428](https://github.com/dev-sec/ansible-collection-hardening/pull/428) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Documentation for sysctl defaults [\#418](https://github.com/dev-sec/ansible-collection-hardening/pull/418) ([joubbi](https://github.com/joubbi))
 
 ## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-03-16)
@@ -41,7 +43,6 @@
 
 **Merged pull requests:**
 
-- Harden user home dirs [\#428](https://github.com/dev-sec/ansible-collection-hardening/pull/428) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Release Action [\#421](https://github.com/dev-sec/ansible-collection-hardening/pull/421) ([schurzi](https://github.com/schurzi))
 - remove FQCN from roles in examples [\#420](https://github.com/dev-sec/ansible-collection-hardening/pull/420) ([schurzi](https://github.com/schurzi))
 - Ensure permissions on /etc/crontab are configured [\#405](https://github.com/dev-sec/ansible-collection-hardening/pull/405) ([joubbi](https://github.com/joubbi))
