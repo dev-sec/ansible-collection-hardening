@@ -4,6 +4,10 @@
   become: true
   collections:
     - devsec.hardening
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
       set_fact:

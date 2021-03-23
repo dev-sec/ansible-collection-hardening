@@ -3,6 +3,10 @@
 - name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: all
   become: true
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       apt:

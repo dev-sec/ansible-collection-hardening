@@ -187,6 +187,9 @@ We know that this is the case on Raspberry Pi.
 - `proc_mnt_options`
   - Default: `rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}`
   - Description: Mount proc with hardenized options, including `hidepid` with variable value.
+- `os_ignore_home_folder_users`
+  - Default: `lost+found`
+  - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
 
 ## Packages
 
