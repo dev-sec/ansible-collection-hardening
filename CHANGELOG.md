@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Improved comments. [\#436](https://github.com/dev-sec/ansible-collection-hardening/pull/436) ([joubbi](https://github.com/joubbi))
 - os\_auth\_pam\_pwquality\_options: Changed type to authtok\_type [\#432](https://github.com/dev-sec/ansible-collection-hardening/pull/432) ([joubbi](https://github.com/joubbi))
 
 ## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-23)
@@ -197,6 +198,7 @@
 - adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-collection-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix fedora build [\#296](https://github.com/dev-sec/ansible-collection-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-collection-hardening/pull/289) ([schurzi](https://github.com/schurzi))
+- move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-collection-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 - install procps in debian so sysctl.conf exists [\#282](https://github.com/dev-sec/ansible-collection-hardening/pull/282) ([rndmh3ro](https://github.com/rndmh3ro))
 
 
