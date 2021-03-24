@@ -1,8 +1,16 @@
 # Changelog
 
-## [7.4.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.1) (2021-03-23)
+## [7.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.5.0) (2021-03-24)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.4.0...7.4.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.4.0...7.5.0)
+
+**Implemented enhancements:**
+
+- Not accepting source routing for IPv6. This was already done for IPv4. [\#424](https://github.com/dev-sec/ansible-collection-hardening/pull/424) ([joubbi](https://github.com/joubbi))
+
+**Closed issues:**
+
+- Harden user home directories [\#276](https://github.com/dev-sec/ansible-collection-hardening/issues/276)
 
 **Merged pull requests:**
 
@@ -11,6 +19,10 @@
 ## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.3.0...7.4.0)
+
+**Implemented enhancements:**
+
+- Harden user home dirs [\#428](https://github.com/dev-sec/ansible-collection-hardening/pull/428) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -21,7 +33,6 @@
 - Use pam\_pwhistory.so instead of pam\_unix.so for remembering old passwords [\#431](https://github.com/dev-sec/ansible-collection-hardening/pull/431) ([joubbi](https://github.com/joubbi))
 - Remove comments from PAM config file, but keep it in the template [\#430](https://github.com/dev-sec/ansible-collection-hardening/pull/430) ([joubbi](https://github.com/joubbi))
 - add support for using a proxy to test with molecule [\#429](https://github.com/dev-sec/ansible-collection-hardening/pull/429) ([rndmh3ro](https://github.com/rndmh3ro))
-- Harden user home dirs [\#428](https://github.com/dev-sec/ansible-collection-hardening/pull/428) ([rndmh3ro](https://github.com/rndmh3ro))
 - Improve Documentation for sysctl defaults [\#418](https://github.com/dev-sec/ansible-collection-hardening/pull/418) ([joubbi](https://github.com/joubbi))
 
 ## [7.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.3.0) (2021-03-16)
@@ -186,7 +197,6 @@
 - adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-collection-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix fedora build [\#296](https://github.com/dev-sec/ansible-collection-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-collection-hardening/pull/289) ([schurzi](https://github.com/schurzi))
-- move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-collection-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 - install procps in debian so sysctl.conf exists [\#282](https://github.com/dev-sec/ansible-collection-hardening/pull/282) ([rndmh3ro](https://github.com/rndmh3ro))
 
 
