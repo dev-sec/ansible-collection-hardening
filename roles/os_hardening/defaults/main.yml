@@ -202,6 +202,8 @@ sysctl_config:
   # so disable it if not needed. | sysctl-13
   net.ipv4.conf.all.accept_source_route: 0
   net.ipv4.conf.default.accept_source_route: 0
+  net.ipv6.conf.all.accept_source_route: 0
+  net.ipv6.conf.default.accept_source_route: 0
 
   # For non-routers: don't send redirects.
   # An attacker could use a compromised host to send invalid ICMP redirects to other
