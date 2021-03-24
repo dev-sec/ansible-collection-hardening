@@ -2,14 +2,14 @@
 os_desktop_enable: false
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
-os_auth_pw_min_age: 7  # discourage password cycling
+os_auth_pw_min_age: 7  # Discourage password cycling
 os_auth_retries: 5
-os_auth_lockout_time: 600  # 10min
+os_auth_lockout_time: 600  # Seconds (600 = 10min)
 os_auth_timeout: 60
 os_auth_allow_homeless: false
 os_auth_pam_passwdqc_enable: true
-os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'  # used in RHEL6
-os_auth_pam_pwquality_options: 'try_first_pass retry=3 authtok_type='  # used in RHEL7
+os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'  # Used in RHEL6
+os_auth_pam_pwquality_options: 'try_first_pass retry=3 authtok_type='  # Used in RHEL7 and RHEL8
 os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 
 os_chfn_restrict: ''
@@ -17,22 +17,22 @@ os_chfn_restrict: ''
 # Set to false to disable chmod /home folders to 700
 os_chmod_home_folders: true
 
-# may contain: change_user
+# May contain: change_user
 os_security_users_allow: []
-# specify user home folders in /home that shouldn't be chmodded to 700
+# Specify user home folders in /home that shouldn't be chmodded to 700
 os_ignore_home_folder_users: ['lost+found']
-# specify system accounts those login should not be disabled and password not changed
+# Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: ['vagrant', 'kitchen']
 os_security_kernel_enable_module_loading: true
 os_security_kernel_enable_core_dump: false
 os_security_suid_sgid_enforce: true
-# user-defined blacklist and whitelist
+# User-defined blacklist and whitelist
 os_security_suid_sgid_blacklist: []
 os_security_suid_sgid_whitelist: []
-# if this is true, remove any suid/sgid bits from files that were not in the whitelist
+# If this is true, remove any suid/sgid bits from files that are not in the whitelist
 os_security_suid_sgid_remove_from_unknown: false
 
-# remove packages with known issues
+# Remove packages with known security issues
 os_security_packages_clean: true
 os_security_packages_list: ['xinetd', 'inetd', 'ypserv', 'telnet-server', 'rsh-server', 'prelink']
 
@@ -45,9 +45,9 @@ os_security_init_single: false
 ufw_manage_defaults: true
 
 # Empty variable disables IPT_SYSCTL in /etc/default/ufw
-# by default in Ubuntu it set to: /etc/ufw/sysctl.conf
-# CAUTION
-# if you enable it - it'll overwrite /etc/sysctl.conf file, managed by hardening framework
+# By default in Ubuntu it is set to: /etc/ufw/sysctl.conf
+# CAUTION!
+# If you enable it - it overwrites /etc/sysctl.conf file, managed by hardening framework
 ufw_ipt_sysctl: ''
 
 # Default ufw variables
@@ -213,7 +213,7 @@ sysctl_config:
   net.ipv4.conf.all.send_redirects: 0
   net.ipv4.conf.default.send_redirects: 0
 
-  # log martian packets
+  # Log martian packets
   # This feature logs packets with un-routable source addresses to the kernel log.
   # Enabling this feature and logging these packets allows an administrator to investigate
   # the possibility that an attacker is sending spoofed packets to their system.
@@ -239,7 +239,7 @@ sysctl_config:
   # Disable IPv6 | sysctl-18
   net.ipv6.conf.all.disable_ipv6: 1
 
-  # ignore RAs on Ipv6. | sysctl-25
+  # Ignore RAs on Ipv6. | sysctl-25
   net.ipv6.conf.all.accept_ra: 0
   net.ipv6.conf.default.accept_ra: 0
 
@@ -284,7 +284,7 @@ sysctl_config:
 # at task 'create a combined sysctl-dict if overwrites are defined'
 sysctl_overwrite:
 
-# disable unused filesystems
+# Disable unused filesystems
 os_unused_filesystems:
   - "cramfs"
   - "freevxfs"
@@ -301,7 +301,7 @@ os_unused_filesystems:
   - "sctp"  # CIS 3.5.2
   - "tipc"  # CIS 3.5.4
 
-# whitelist for used filesystems
+# Whitelist for used filesystems
 os_filesystem_whitelist: []
 
 # Set to false to turn the role into a no-op. Useful when using
@@ -313,9 +313,10 @@ os_auditd_enabled: true
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
 
-# Set the SELinux state, can be either disabled, permissive, or enforcing.
+# Set the SELinux state, which can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
 # Set the SELinux polixy.
 os_selinux_policy: targeted
 
+# Mount options for proc in /etc/fstab.
 proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
