@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.5.0) (2021-03-24)
+## [7.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.5.0) (2021-03-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.4.0...7.5.0)
 
@@ -16,6 +16,7 @@
 
 - Improved comments. [\#436](https://github.com/dev-sec/ansible-collection-hardening/pull/436) ([joubbi](https://github.com/joubbi))
 - os\_auth\_pam\_pwquality\_options: Changed type to authtok\_type [\#432](https://github.com/dev-sec/ansible-collection-hardening/pull/432) ([joubbi](https://github.com/joubbi))
+- Uppercased first letter of task names. [\#422](https://github.com/dev-sec/ansible-collection-hardening/pull/422) ([joubbi](https://github.com/joubbi))
 
 ## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-23)
 
