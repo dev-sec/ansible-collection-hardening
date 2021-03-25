@@ -1,12 +1,12 @@
 ---
-- name: install sssd-clients
+- name: Install sssd-clients
   yum:
     name: sssd-client
     state: 'present'
   when:
     - os_auth_pam_sssd_enable | bool
 
-- name: configure passwdqc and faillock via central system-auth config
+- name: Configure passwdqc and faillock via central system-auth config
   template:
     src: 'etc/pam.d/rhel_auth.j2'
     dest: '/etc/pam.d/system-auth-local'
@@ -14,7 +14,7 @@
     owner: 'root'
     group: 'root'
 
-- name: enable our config for system-auth
+- name: Enable our config for system-auth
   file:
     src: /etc/pam.d/system-auth-local
     dest: /etc/pam.d/system-auth
@@ -24,7 +24,7 @@
     state: link
     force: true
 
-- name: configure passwdqc and faillock via central password-auth config
+- name: Configure passwdqc and faillock via central password-auth config
   template:
     src: 'etc/pam.d/rhel_auth.j2'
     dest: '/etc/pam.d/password-auth-local'
@@ -32,7 +32,7 @@
     owner: 'root'
     group: 'root'
 
-- name: enable our config for password-auth
+- name: Enable our config for password-auth
   file:
     src: /etc/pam.d/password-auth-local
     dest: /etc/pam.d/password-auth
