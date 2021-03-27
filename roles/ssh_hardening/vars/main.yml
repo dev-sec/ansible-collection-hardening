@@ -50,3 +50,8 @@ ssh_kex_80_default:
   - sntrup4591761x25519-sha512@tinyssh.org
   - curve25519-sha256@libssh.org
   - diffie-hellman-group-exchange-sha256
+
+ssh_kex_85_default:
+  - sntrup761x25519-sha512@openssh.com
+  - curve25519-sha256@libssh.org
+  - diffie-hellman-group-exchange-sha256

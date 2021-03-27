@@ -13,3 +13,8 @@
   set_fact:
     ssh_kex: '{{ ssh_kex_80_default }}'
   when: sshd_version is version('8.0', '>=')
+
+- name: Set kex according to openssh-version if openssh >= 8.5
+  set_fact:
+    ssh_kex: '{{ ssh_kex_85_default }}'
+  when: sshd_version is version('8.5', '>=')
