@@ -6,5 +6,4 @@
   command:
     cmd: 'service auditd restart'  # rhel: see: https://access.redhat.com/solutions/2664811
     warn: false  # sadly 'service' module fails in that case also by using 'use: service'
-  tags:
-    - molecule-notest  # restarting auditd in a container does not work
+  when: molecule_yml is not defined  # restarting auditd in a container does not work
