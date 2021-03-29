@@ -21,6 +21,12 @@
         state: present
       when: ansible_facts.os_family == 'Suse'
 
+    - name: install jmespath to use the json_query filter
+      pip:
+        name: jmespath
+        state: present
+      delegate_to: localhost
+
     - name: create missing directory
       file:
         path: "/etc/mysql/conf.d"
@@ -41,6 +47,7 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
+
     - include_role:
         name: dev-sec.mysql
 
