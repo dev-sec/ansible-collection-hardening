@@ -5,7 +5,7 @@
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
 - name: ensure that the root password is present
-  mysql_user:
+  community.mysql.mysql_user:
     name: 'root'
     host_all: true
     password: '{{ mysql_root_password | mandatory }}'
@@ -20,14 +20,14 @@
   tags: my_cnf
 
 - name: ensure that the test database is absent
-  mysql_db:
+  community.mysql.mysql_db:
     name: test
     state: absent
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_test_database
 
 - name: ensure that anonymous users are absent
-  mysql_user:
+  community.mysql.mysql_user:
     name: ''
     state: absent
     host_all: true
