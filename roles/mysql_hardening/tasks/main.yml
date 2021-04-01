@@ -21,6 +21,29 @@
   when: "not lookup('varnames', '^' + item.key + '$')"
   with_dict: '{{ os_vars }}'
 
+- name: Gather package facts to check for mysql/mariadb version
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Check if MySQL or MariaDB is used
+  set_fact:
+    mysql_distribution: "{{ ansible_facts.packages['mysql-server'] is defined | ternary('mysql', 'mariadb') }}"
+
+- name: Check which MySQL/MariaDB version is used
+  community.mysql.mysql_info:
+    filter: version
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_version
+
+# see https://stackoverflow.com/a/59451077/2953919 for the
+# dict2items and vice versa magic
+- name: Drop the secure-auth parameter on MySQL >=8.0.3 (not mariadb)
+  set_fact:
+    mysql_hardening_options: "{{ mysql_hardening_options| dict2items | rejectattr('key', 'search', 'secure-auth') | list | items2dict }}"
+  when:
+    - mysql_version.version.full is version('8.0.3', '>=')
+    - mysql_distribution == "mysql"
+
 - include: configure.yml
   when: mysql_hardening_enabled | bool
   tags:

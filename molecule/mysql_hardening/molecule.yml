@@ -3,6 +3,7 @@ dependency:
   name: galaxy
   options:
     role-file: molecule/mysql_hardening/requirements.yml
+    requirements-file: molecule/mysql_hardening/requirements.yml
 driver:
   name: docker
 lint: |
