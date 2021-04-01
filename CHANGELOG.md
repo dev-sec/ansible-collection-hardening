@@ -8,6 +8,11 @@
 
 - Not accepting source routing for IPv6. This was already done for IPv4. [\#424](https://github.com/dev-sec/ansible-collection-hardening/pull/424) ([joubbi](https://github.com/joubbi))
 
+**Fixed bugs:**
+
+- SSH kex sntrup4591761x25519-sha512@tinyssh.org replaced [\#433](https://github.com/dev-sec/ansible-collection-hardening/issues/433)
+- Fix ssh kex sntrup761x25519-sha512@openssh.com for openssh \>= 8.5 [\#437](https://github.com/dev-sec/ansible-collection-hardening/pull/437) ([BenjaminBoehm](https://github.com/BenjaminBoehm))
+
 **Closed issues:**
 
 - Harden user home directories [\#276](https://github.com/dev-sec/ansible-collection-hardening/issues/276)
@@ -18,6 +23,7 @@
 - Improved comments. [\#436](https://github.com/dev-sec/ansible-collection-hardening/pull/436) ([joubbi](https://github.com/joubbi))
 - os\_auth\_pam\_pwquality\_options: Changed type to authtok\_type [\#432](https://github.com/dev-sec/ansible-collection-hardening/pull/432) ([joubbi](https://github.com/joubbi))
 - add restart-auditd handler after configuration change [\#427](https://github.com/dev-sec/ansible-collection-hardening/pull/427) ([rndmh3ro](https://github.com/rndmh3ro))
+- add new tasks to delete mysql users without passwords [\#423](https://github.com/dev-sec/ansible-collection-hardening/pull/423) ([rndmh3ro](https://github.com/rndmh3ro))
 - Uppercased first letter of task names. [\#422](https://github.com/dev-sec/ansible-collection-hardening/pull/422) ([joubbi](https://github.com/joubbi))
 
 ## [7.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.4.0) (2021-03-23)
@@ -158,7 +164,6 @@
 - Regenerate RSA key with size 4096 bits [\#376](https://github.com/dev-sec/ansible-collection-hardening/pull/376) ([ssttehrani](https://github.com/ssttehrani))
 - fix second changelog generation task, too [\#349](https://github.com/dev-sec/ansible-collection-hardening/pull/349) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix changelog generation [\#341](https://github.com/dev-sec/ansible-collection-hardening/pull/341) ([rndmh3ro](https://github.com/rndmh3ro))
-- Improve README for ssh\_hardening [\#335](https://github.com/dev-sec/ansible-collection-hardening/pull/335) ([szEvEz](https://github.com/szEvEz))
 
 ## [7.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.0.0) (2020-11-11)
 
@@ -172,6 +177,7 @@
 
 - Breaking change in ansible-lint - set file permissions explicitly [\#299](https://github.com/dev-sec/ansible-collection-hardening/issues/299)
 - Improve Documentation [\#315](https://github.com/dev-sec/ansible-collection-hardening/pull/315) ([schurzi](https://github.com/schurzi))
+- make ssh tests work [\#304](https://github.com/dev-sec/ansible-collection-hardening/pull/304) ([schurzi](https://github.com/schurzi))
 - Arch support [\#303](https://github.com/dev-sec/ansible-collection-hardening/pull/303) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix linting for molecule [\#301](https://github.com/dev-sec/ansible-collection-hardening/pull/301) ([schurzi](https://github.com/schurzi))
 - file permissions explicitly defined [\#300](https://github.com/dev-sec/ansible-collection-hardening/pull/300) ([danielkubat](https://github.com/danielkubat))
@@ -199,6 +205,7 @@
 
 - prettier markdown files action added [\#322](https://github.com/dev-sec/ansible-collection-hardening/pull/322) ([danielkubat](https://github.com/danielkubat))
 - adjust permissions on shadow file on suse [\#311](https://github.com/dev-sec/ansible-collection-hardening/pull/311) ([rndmh3ro](https://github.com/rndmh3ro))
+- fix tests for os\_hardening [\#302](https://github.com/dev-sec/ansible-collection-hardening/pull/302) ([schurzi](https://github.com/schurzi))
 - fix fedora build [\#296](https://github.com/dev-sec/ansible-collection-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-collection-hardening/pull/289) ([schurzi](https://github.com/schurzi))
 - move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-collection-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
