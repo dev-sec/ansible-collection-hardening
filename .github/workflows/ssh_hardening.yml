@@ -25,7 +25,6 @@ jobs:
           - centos7
           - centos8
           - fedora
-          - ubuntu1604
           - ubuntu1804
           - ubuntu2004
           - debian9
