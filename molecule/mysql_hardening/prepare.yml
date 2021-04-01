@@ -25,3 +25,34 @@
       file:
         path: "/etc/mysql/conf.d"
         state: directory
+
+    - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
+      set_fact:
+        mysql_python_package_debian: "python3-pymysql"
+      when:
+        - mysql_python_package_debian is not defined
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version|int > 19
+
+    - name: Determine required MySQL Python libraries.
+      set_fact:
+        mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
+      when:
+        - mysql_python_package_debian is not defined
+        - ansible_distribution != "Ubuntu"
+        - ansible_distribution_major_version|int < 20
+
+    - include_role:
+        name: dev-sec.mysql
+
+    - name: create a user with an empty password
+      community.mysql.mysql_query:
+        query:
+          - "CREATE USER foo@bar;"
+        login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  vars:
+    overwrite_global_mycnf: false
+    mysql_root_password: iloverandompasswordsbutthiswilldo
+    mysql_user_password: iloverandompasswordsbutthiswilldo
+    mysql_config_file: /etc/mysql/mariadb.cnf
+    mysql_root_password_update: true

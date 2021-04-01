@@ -4,3 +4,4 @@ ansible
 ansible-lint
 docker
 flake8
+jmespath

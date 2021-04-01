@@ -9,7 +9,7 @@ This role provides security configurations for MySQL and its derivates. It is in
 It configures:
 
 - Permissions for the various configuration files and folders
-- Removes anonymous users, root-users without a password and test databases
+- Removes anonymous users, users without a password or authentication_string and test databases
 - various hardening options inside MySQL
 
 ## Requirements
