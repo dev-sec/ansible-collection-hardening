@@ -41,8 +41,8 @@
   set_fact:
     mysql_hardening_options: "{{ mysql_hardening_options| dict2items | rejectattr('key', 'search', 'secure-auth') | list | items2dict }}"
   when:
-    - mysql_version.version.full is version('8.0.3', '>=')
     - mysql_distribution == "mysql"
+    - mysql_version.version.full is version('8.0.3', '>=')
 
 - include: configure.yml
   when: mysql_hardening_enabled | bool
