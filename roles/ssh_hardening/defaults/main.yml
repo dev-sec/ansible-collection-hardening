@@ -45,6 +45,9 @@ ssh_host_certificates: []           # sshd
 # Specifies the host key algorithms that the server offers
 ssh_host_key_algorithms: []         # sshd
 
+# Specifies the host key algorithms order the client will try
+ssh_client_host_key_algorithms: []  # ssh
+
 # specifies the time allowed for successful authentication to the SSH server
 ssh_login_grace_time: 30s
 

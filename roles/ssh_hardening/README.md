@@ -40,7 +40,10 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: Specifies the number of bits in the private host RSA key to create.
 - `ssh_host_key_algorithms`
   - Default: `[]`
-  - Description: Host key algorithms that the server offers. If empty the [default list](https://man.openbsd.org/sshd_config#HostKeyAlgorithms) will be used, otherwise overrides the setting with specified list of algorithms.
+  - Description: Host key algorithms that the server offers. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version!
+- `ssh_client_host_key_algorithms`
+  - Default: `[]`
+  - Description: Specifies the host key algorithms that the client wants to use in order of preference. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man ssh_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version!.
 - `ssh_client_alive_interval`
   - Default: `600`
   - Description: specifies an interval for sending keepalive messages.
