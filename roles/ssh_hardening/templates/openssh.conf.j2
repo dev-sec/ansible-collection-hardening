@@ -81,6 +81,9 @@ StrictHostKeyChecking ask
 {# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined or '#KexAlgorithms' if ssh_kex is undefined #}
 {{ 'KexAlgorithms ' ~ ssh_kex|join(',') if ssh_kex else 'KexAlgorithms'|comment }}
 
+# Specifies the host key algorithms that the client wants to use in order of preference.
+{{ "HostKeyAlgorithms " ~ ssh_client_host_key_algorithms|join(',') if ssh_client_host_key_algorithms else "HostKeyAlgorithms"|comment }}
+
 {% if sshd_version is version('5.9', '<') %}
 # Alternative setting, if OpenSSH version is below v5.9
 #MACs hmac-ripemd160
