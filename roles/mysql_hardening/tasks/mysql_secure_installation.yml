@@ -49,7 +49,7 @@
 - name: get all users that have no password or authentication_string on MySQL version >= 5.7.6
   community.mysql.mysql_query:
     query:
-      - SELECT GROUP_CONCAT(USER, '@', HOST SEPARATOR ', ') AS users
+      - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
         FROM mysql.user
         WHERE (length(authentication_string)=0
               OR authentication_string="")
@@ -64,7 +64,7 @@
 - name: get all users that have no password on MySQL version < 5.7.6
   community.mysql.mysql_query:
     query:
-      - SELECT GROUP_CONCAT(USER, '@', HOST SEPARATOR ', ') AS users
+      - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
         FROM mysql.user
         WHERE (length(password)=0
               OR password="")
