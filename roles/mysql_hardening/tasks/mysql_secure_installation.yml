@@ -46,7 +46,7 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
-- name: get all users that have no password or authentication_string on MySQL version >= 5.7.6
+- name: get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query:
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
@@ -59,9 +59,10 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   when:
-    - mysql_version.version.full is version('5.7.6', '>=')
+    - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
+      (mysql_distribution == "mariadb" and mysql_version.version.full is version('10.4.0', '>='))
 
-- name: get all users that have no password on MySQL version < 5.7.6
+- name: get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query:
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
@@ -76,7 +77,8 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   when:
-    - mysql_version.version.full is version('5.7.6', '<')
+    - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '<')) or
+      (mysql_distribution == "mariadb" and mysql_version.version.full is version('10.4.0', '<'))
 
 - name: create a fact for users without password or authentication_string
   set_fact:
