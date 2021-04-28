@@ -7,6 +7,12 @@
 **Fixed bugs:**
 
 - Check for MariaDB Version when selecting users without passwords [\#444](https://github.com/dev-sec/ansible-collection-hardening/pull/444) ([neubi4](https://github.com/neubi4))
+- Adds dependency on ansible.posix and community.general [\#415](https://github.com/dev-sec/ansible-collection-hardening/pull/415) ([irl](https://github.com/irl))
+
+**Closed issues:**
+
+- No dependency on ansible.posix collection [\#414](https://github.com/dev-sec/ansible-collection-hardening/issues/414)
+- No dependency on community.general [\#413](https://github.com/dev-sec/ansible-collection-hardening/issues/413)
 
 ## [7.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.6.0) (2021-04-27)
 
