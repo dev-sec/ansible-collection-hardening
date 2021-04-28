@@ -20,6 +20,7 @@ tags:
 dependencies:
   ansible.posix: '>=1.0.0'
   community.crypto: '>=1.0.0'
+  community.general: '>=1.0.0'
 repository: 'https://github.com/dev-sec/ansible-os-hardening'
 homepage: 'https://dev-sec.io/'
 issues: 'https://github.com/dev-sec/ansible-os-hardening/issues'
