@@ -62,7 +62,7 @@
     - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
       (mysql_distribution == "mariadb" and mysql_version.version.full is version('10.4.0', '>='))
 
-- name: get all users that have no password on MySQL version < 5.7.6 or Mariadb version < 10.4.0
+- name: get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query:
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
