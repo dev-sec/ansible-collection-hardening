@@ -198,7 +198,7 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
 {% if sshd_version is version('6.2', '>=') %}
-AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all')) else 'no' }}
+AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all', 'remote')) else 'no' }}
 {% else %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else 'no' }}
 {% endif %}
