@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.0) (2021-05-05)
+## [7.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.0) (2021-05-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.6.0...7.7.0)
 
@@ -11,6 +11,7 @@
 
 **Fixed bugs:**
 
+- Warning: iptables-legacy tables present, Debian 10 [\#274](https://github.com/dev-sec/ansible-collection-hardening/issues/274)
 - Check for MariaDB Version when selecting users without passwords [\#444](https://github.com/dev-sec/ansible-collection-hardening/pull/444) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([neubi4](https://github.com/neubi4))
 - Adds dependency on ansible.posix and community.general [\#415](https://github.com/dev-sec/ansible-collection-hardening/pull/415) ([irl](https://github.com/irl))
 
@@ -23,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Removed sysctl that tries to disable IPv6 [\#449](https://github.com/dev-sec/ansible-collection-hardening/pull/449) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lduesing](https://github.com/lduesing))
 - limit changelog labels to role names [\#448](https://github.com/dev-sec/ansible-collection-hardening/pull/448) ([schurzi](https://github.com/schurzi))
 - add back labels to changelog [\#446](https://github.com/dev-sec/ansible-collection-hardening/pull/446) ([rndmh3ro](https://github.com/rndmh3ro))
 
