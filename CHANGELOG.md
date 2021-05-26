@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.1) (2021-05-26)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.7.1)
+
+**Merged pull requests:**
+
+- enable ipv6 globally [\#450](https://github.com/dev-sec/ansible-collection-hardening/pull/450) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [7.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.0) (2021-05-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.6.0...7.7.0)
