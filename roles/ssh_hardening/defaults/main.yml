@@ -1,6 +1,6 @@
 ---
 # true if IPv6 is needed
-network_ipv6_enable: false          # sshd + ssh
+network_ipv6_enable: true          # sshd + ssh
 
 # Paths of the config files
 ssh_client_config_file: /etc/ssh/ssh_config   # ssh

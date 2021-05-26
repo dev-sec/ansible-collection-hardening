@@ -37,7 +37,6 @@
       net.ipv4.icmp_ignore_bogus_error_responses: 1
       net.ipv4.icmp_ratelimit: 100
       net.ipv4.icmp_ratemask: 88089
-      net.ipv6.conf.all.disable_ipv6: 1
       net.ipv4.conf.all.arp_ignore: 1
       net.ipv4.conf.all.arp_announce: 2
       net.ipv4.conf.all.shared_media: 1

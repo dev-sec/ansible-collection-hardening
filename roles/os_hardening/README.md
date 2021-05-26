@@ -172,6 +172,9 @@ We know that this is the case on Raspberry Pi.
 - `ufw_default_forward_policy`
   - Default: `DROP`
   - Description: set default forward policy of ufw to `DROP`.
+- `ufw_enable_ipv6`
+  - Default: `true`
+  - Description: Set to `true` to apply rules to support IPv6 (no means only IPv6 on loopback accepted).
 - `os_auditd_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring auditd.

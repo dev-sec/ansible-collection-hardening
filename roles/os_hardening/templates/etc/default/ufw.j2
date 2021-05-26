@@ -7,7 +7,7 @@
 # Set to yes to apply rules to support IPv6 (no means only IPv6 on loopback
 # accepted). You will need to 'disable' and then 'enable' the firewall for
 # the changes to take affect.
-IPV6={{ 'no' if sysctl_config['net.ipv6.conf.all.disable_ipv6'] is defined and sysctl_config['net.ipv6.conf.all.disable_ipv6'] == 1 else 'yes' }}
+IPV6={{ 'yes' if ufw_enable_ipv6 else 'no' }}
 
 # Set the default input policy to ACCEPT, DROP, or REJECT. Please note that if
 # you change this you will most likely want to adjust your rules.
