@@ -1,8 +1,16 @@
 # Changelog
 
-## [7.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.1) (2021-05-26)
+## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-23)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.7.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.8.0)
+
+**Fixed bugs:**
+
+- Use `include_tasks` for os\_hardening/main.yml [\#451](https://github.com/dev-sec/ansible-collection-hardening/pull/451) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([coadler](https://github.com/coadler))
+
+**Closed issues:**
+
+- Disable IPv6 | sysctl-18   net.ipv6.conf.all.disable\_ipv6: 1 [\#406](https://github.com/dev-sec/ansible-collection-hardening/issues/406) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
 
 **Merged pull requests:**
 
