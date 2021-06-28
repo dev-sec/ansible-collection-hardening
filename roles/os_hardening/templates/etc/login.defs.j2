@@ -173,8 +173,8 @@ ENCRYPT_METHOD    SHA512
 # With a lot of rounds, it is more difficult to brute forcing the password. But note also that it more CPU resources will be needed to authenticate users.
 # If not specified, the libc will choose the default number of rounds (5000). The values must be inside the 1000-999999999 range. If only one of the MIN or MAX values is set, then this value will be used.
 # If MIN > MAX, the highest value will be used.
-#SHA_CRYPT_MIN_ROUNDS    5000
-#SHA_CRYPT_MAX_ROUNDS    5000
+SHA_CRYPT_MIN_ROUNDS    {{ os_sha_crypt_min_rounds }}
+SHA_CRYPT_MAX_ROUNDS    {{ os_sha_crypt_max_rounds }}
 
 
 # Obsoleted by PAM
