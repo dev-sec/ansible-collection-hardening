@@ -211,6 +211,9 @@ We know that this is the case on Raspberry Pi.
 - `os_modprobe_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring modprobe.
+- `os_profile_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring profile.
 - `os_securetty_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring securetty.

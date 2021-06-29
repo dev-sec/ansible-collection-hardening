@@ -340,6 +340,9 @@ os_pam_enabled: true
 # Set to false to disable installing and configuring modprobe.
 os_modprobe_enabled: true
 
+# Set to false to disable installing and configuring profile.
+os_profile_enabled: true
+
 # Set to false to disable installing and configuring securetty.
 os_securetty_enabled: true
 
