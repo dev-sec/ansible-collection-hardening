@@ -1,11 +1,12 @@
 # Changelog
 
-## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-23)
+## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-29)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.8.0)
 
 **Fixed bugs:**
 
+- add tag always to os dependent vars task [\#456](https://github.com/dev-sec/ansible-collection-hardening/pull/456) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Use `include_tasks` for os\_hardening/main.yml [\#451](https://github.com/dev-sec/ansible-collection-hardening/pull/451) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([coadler](https://github.com/coadler))
 
 **Closed issues:**
