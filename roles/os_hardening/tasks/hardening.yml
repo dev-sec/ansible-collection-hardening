@@ -27,27 +27,35 @@
 
 - import_tasks: cron.yml
   tags: cron
+  when: os_cron_enabled | bool
 
 - import_tasks: limits.yml
   tags: limits
+  when: os_limits_enabled | bool
 
 - import_tasks: login_defs.yml
   tags: login_defs
+  when: os_login_defs_enabled | bool
 
 - import_tasks: minimize_access.yml
   tags: minimize_access
+  when: os_minimize_access_enabled | bool
 
 - import_tasks: pam.yml
   tags: pam
+  when: os_pam_enabled | bool
 
 - import_tasks: modprobe.yml
   tags: modprobe
+  when: os_modprobe_enabled | bool
 
 - import_tasks: profile.yml
   tags: profile
+  when: os_profile_enabled | bool
 
 - import_tasks: securetty.yml
   tags: securetty
+  when: os_securetty_enabled | bool
 
 - import_tasks: suid_sgid.yml
   when: os_security_suid_sgid_enforce  | bool
@@ -55,12 +63,15 @@
 
 - import_tasks: sysctl.yml
   tags: sysctl
+  when: os_sysctl_enabled | bool
 
 - import_tasks: user_accounts.yml
   tags: user_accounts
+  when: os_user_accounts_enabled | bool
 
 - import_tasks: rhosts.yml
   tags: rhosts
+  when: os_rhosts_enabled | bool
 
 - import_tasks: yum.yml
   when: ansible_facts.os_family == 'RedHat'

@@ -193,6 +193,36 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_home_folder_users`
   - Default: `lost+found`
   - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
+- `os_cron_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring cron.
+- `os_limits_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring limits.
+- `os_login_defs_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring login_defs.
+- `os_minimize_access_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring minimize_access.
+- `os_pam_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring pam.
+- `os_modprobe_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring modprobe.
+- `os_securetty_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring securetty.
+- `os_sysctl_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring sysctl.
+- `os_user_accounts_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring user_accounts.
+- `os_rhosts_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring rhosts.
 
 ## Packages
 

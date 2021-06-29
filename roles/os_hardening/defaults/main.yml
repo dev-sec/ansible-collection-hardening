@@ -321,3 +321,33 @@ os_selinux_policy: targeted
 
 # Mount options for proc in /etc/fstab.
 proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
+
+# Set to false to disable installing and configuring cron.
+os_cron_enabled: true
+
+# Set to false to disable installing and configuring limits.
+os_limits_enabled: true
+
+# Set to false to disable installing and configuring login_defs.
+os_login_defs_enabled: true
+
+# Set to false to disable installing and configuring minimize_access.
+os_minimize_access_enabled: true
+
+# Set to false to disable installing and configuring pam.
+os_pam_enabled: true
+
+# Set to false to disable installing and configuring modprobe.
+os_modprobe_enabled: true
+
+# Set to false to disable installing and configuring securetty.
+os_securetty_enabled: true
+
+# Set to false to disable installing and configuring sysctl.
+os_sysctl_enabled: true
+
+# Set to false to disable installing and configuring user_accounts.
+os_user_accounts_enabled: true
+
+# Set to false to disable installing and configuring rhosts.
+os_rhosts_enabled: true
