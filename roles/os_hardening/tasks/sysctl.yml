@@ -78,5 +78,5 @@
     mode: '0644'
   when:
     - ufw_manage_defaults
-    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - ansible_facts.os_family == 'Debian'
   tags: ufw
