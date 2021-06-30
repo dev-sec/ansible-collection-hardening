@@ -4,13 +4,6 @@
     ssh_macs: '{{ ssh_macs_53_default }}'
   when: sshd_version is version('5.3', '>=')
 
-- name: Set macs for Enterprise Linux >= 6.5 (openssh 5.3 with backports)
-  set_fact:
-    ssh_macs: '{{ ssh_macs_53_el_6_5_default }}'
-  when:
-    - ansible_facts.distribution in ['CentOS', 'OracleLinux', 'RedHat']
-    - ansible_facts.distribution_version is version('6.5', '>=')
-
 - name: Set macs according to openssh-version if openssh >= 5.9
   set_fact:
     ssh_macs: '{{ ssh_macs_59_default }}'

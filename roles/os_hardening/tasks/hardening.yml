@@ -68,7 +68,7 @@
   tags: yum
 
 - import_tasks: apt.yml
-  when: ansible_facts.distribution in ['Debian', 'Ubuntu']
+  when: ansible_facts.os_family == 'Debian'
   tags: apt
 
 - import_tasks: selinux.yml
