@@ -20,6 +20,7 @@
     '{{ item.key }}': '{{ item.value }}'
   when: "not lookup('varnames', '^' + item.key + '$')"
   with_dict: '{{ os_vars }}'
+  tags: always
 
 - name: Get openssh-version
   command: ssh -V

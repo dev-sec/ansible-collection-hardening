@@ -20,6 +20,7 @@
     '{{ item.key }}': '{{ item.value }}'
   when: "not lookup('varnames', '^' + item.key + '$')"
   with_dict: '{{ os_vars }}'
+  tags: always
 
 - import_tasks: auditd.yml
   tags: auditd
@@ -74,13 +75,19 @@
   when: os_rhosts_enabled | bool
 
 - import_tasks: yum.yml
-  when: ansible_facts.os_family == 'RedHat'
   tags: yum
+  when: 
+    - ansible_facts.os_family == 'RedHat'
+    - os_yum_enabled | bool
 
 - import_tasks: apt.yml
-  when: ansible_facts.distribution in ['Debian', 'Ubuntu']
   tags: apt
+  when: 
+    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - os_apt_enabled | bool
 
 - import_tasks: selinux.yml
   tags: selinux
-  when: ansible_facts.selinux.status == 'enabled'
+  when: 
+    - ansible_facts.selinux.status == 'enabled'
+    - os_selinux_enabled | bool

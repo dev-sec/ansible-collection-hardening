@@ -354,3 +354,18 @@ os_user_accounts_enabled: true
 
 # Set to false to disable installing and configuring rhosts.
 os_rhosts_enabled: true
+
+# Set to false to disable installing and configuring yum.
+os_yum_enabled: true
+
+# Set to false to disable installing and configuring apt.
+os_apt_enabled: true
+
+# Set to false to disable installing and configuring selinux.
+os_selinux_enabled: true
+
+# Define the number of SHA rounds.
+# With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users.
+# The values must be inside the 1000-999999999 range.
+os_sha_crypt_min_rounds: "640000"
+os_sha_crypt_max_rounds: "640000"

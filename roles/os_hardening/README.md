@@ -226,6 +226,21 @@ We know that this is the case on Raspberry Pi.
 - `os_rhosts_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring rhosts.
+- `os_yum_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring yum.
+- `os_apt_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring apt.
+- `os_selinux_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring selinux.
+- `os_sha_crypt_min_rounds`
+  - Default: `640000`
+  - Description: Define the number of minimum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+- `os_sha_crypt_max_rounds`
+  - Default: `640000`
+  - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
 
 ## Packages
 
