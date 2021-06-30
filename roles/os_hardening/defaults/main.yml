@@ -321,3 +321,9 @@ os_selinux_policy: targeted
 
 # Mount options for proc in /etc/fstab.
 proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
+
+# Define the number of SHA rounds.
+# With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users.
+# The values must be inside the 1000-999999999 range.
+os_sha_crypt_min_rounds: "640000"
+os_sha_crypt_max_rounds: "640000"
