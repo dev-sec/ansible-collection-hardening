@@ -6,7 +6,9 @@
 
 **Implemented enhancements:**
 
+- SHA\_CRYPT\_MIN\_ROUNDS should be increased in login.defs [\#365](https://github.com/dev-sec/ansible-collection-hardening/issues/365) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
 - Add support for Rocky Linux 8 [\#454](https://github.com/dev-sec/ansible-collection-hardening/pull/454) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([sherwind](https://github.com/sherwind))
+- make sha rounds configurable and increase no of rounds [\#452](https://github.com/dev-sec/ansible-collection-hardening/pull/452) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Fixed bugs:**
 
