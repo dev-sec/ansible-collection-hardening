@@ -21,6 +21,8 @@
 
 **Merged pull requests:**
 
+- Cleanup old OS-support and simplify vars [\#458](https://github.com/dev-sec/ansible-collection-hardening/pull/458) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- add rocky linux 8 tests and make sure that all relevant tasks are execd [\#457](https://github.com/dev-sec/ansible-collection-hardening/pull/457) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - enable ipv6 globally [\#450](https://github.com/dev-sec/ansible-collection-hardening/pull/450) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.0) (2021-05-24)
