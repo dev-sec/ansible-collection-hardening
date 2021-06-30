@@ -1,8 +1,12 @@
 # Changelog
 
-## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-29)
+## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.8.0)
+
+**Implemented enhancements:**
+
+- Add support for Rocky Linux 8 [\#454](https://github.com/dev-sec/ansible-collection-hardening/pull/454) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([sherwind](https://github.com/sherwind))
 
 **Fixed bugs:**
 
