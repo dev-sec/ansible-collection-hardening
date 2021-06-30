@@ -170,7 +170,7 @@ MD5_CRYPT_ENAB    no
 ENCRYPT_METHOD    SHA512
 
 # Only used if `ENCRYPT_METHOD` is set to `SHA256` or `SHA512`: Define the number of SHA rounds.
-# With a lot of rounds, it is more difficult to brute forcing the password. But note also that it more CPU resources will be needed to authenticate users.
+# With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users.
 # If not specified, the libc will choose the default number of rounds (5000). The values must be inside the 1000-999999999 range. If only one of the MIN or MAX values is set, then this value will be used.
 # If MIN > MAX, the highest value will be used.
 SHA_CRYPT_MIN_ROUNDS    {{ os_sha_crypt_min_rounds }}

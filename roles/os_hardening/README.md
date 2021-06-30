@@ -195,10 +195,10 @@ We know that this is the case on Raspberry Pi.
   - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
 - `os_sha_crypt_min_rounds`
   - Default: `640000`
-  - Description: Define the number of minimum SHA rounds. With a lot of rounds, it is more difficult to brute forcing the password. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+  - Description: Define the number of minimum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
 - `os_sha_crypt_max_rounds`
   - Default: `640000`
-  - Description: Define the number of maximum SHA rounds. With a lot of rounds, it is more difficult to brute forcing the password. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+  - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
 
 ## Packages
 
