@@ -24,6 +24,7 @@ jobs:
         molecule_distro:
           - centos7
           - centos8
+          - rocky8
           - fedora
           - ubuntu1804
           - ubuntu2004

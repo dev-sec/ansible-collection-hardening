@@ -16,7 +16,7 @@
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_facts.distribution in ['Amazon', 'CentOS', 'Fedora', 'RedHat']
+  when: ansible_facts.os_family == 'RedHat'
 
 - name: Install initramfs-tools
   apt:
