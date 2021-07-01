@@ -19,8 +19,6 @@
 - name: Remove used filesystems from fs-list
   set_fact:
     os_unused_filesystems: "{{ os_unused_filesystems | difference(ansible_mounts | map(attribute='fstype') | list) }}"
-  # we cannot do this on el6 and below, because these systems don't support the map function
-  when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
 
 - name: Disable unused filesystems | os-10
   template:

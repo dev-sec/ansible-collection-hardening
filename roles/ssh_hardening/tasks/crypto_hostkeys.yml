@@ -16,7 +16,7 @@
     owner: "{{ ssh_host_keys_owner }}"
     group: "{{ ssh_host_keys_group }}"
     mode: "0640"
-  when: "ansible_facts.distribution in ['CentOS', 'OracleLinux', 'RedHat']"
+  when: "ansible_facts.os_family == 'RedHat'"
 
 - name: Set hostkeys according to openssh-version if openssh >= 5.3
   set_fact:

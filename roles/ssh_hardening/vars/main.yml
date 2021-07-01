@@ -3,10 +3,6 @@ ssh_macs_53_default:
   - hmac-ripemd160
   - hmac-sha1
 
-ssh_macs_53_el_6_5_default:
-  - hmac-sha2-512
-  - hmac-sha2-256
-
 ssh_macs_59_default:
   - hmac-sha2-512
   - hmac-sha2-256

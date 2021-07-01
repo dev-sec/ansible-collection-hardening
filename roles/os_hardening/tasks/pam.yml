@@ -19,7 +19,7 @@
 
 - import_tasks: pam_debian.yml
   when:
-    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - ansible_facts.os_family == 'Debian'
 
 - import_tasks: pam_rhel.yml
   when:

@@ -16,7 +16,7 @@
     owner: 'root'
     group: 'root'
     mode: '0544'
-  when: ansible_facts.distribution in ['Amazon', 'CentOS', 'Fedora', 'RedHat']
+  when: ansible_facts.os_family == 'RedHat'
 
 - name: Install initramfs-tools
   apt:
@@ -58,7 +58,7 @@
         ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
 
-    - name: Change various sysctl-settings on rhel6-hosts or older, look at the sysctl-vars file for documentation
+    - name: Change various sysctl-settings on Amazon Linux, look at the sysctl-vars file for documentation
       sysctl:
         name: '{{ item.key }}'
         value: '{{ item.value }}'
@@ -66,8 +66,7 @@
         reload: true
         ignoreerrors: true
       with_dict: '{{ sysctl_rhel_config }}'
-      when: ((ansible_facts.distribution in ['CentOS', 'Fedora', 'RedHat']) and
-            ansible_distribution_version|int is version('7', '<')) or ansible_facts.distribution == 'Amazon'
+      when: ansible_facts.distribution == 'Amazon'
 
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
@@ -78,5 +77,5 @@
     mode: '0644'
   when:
     - ufw_manage_defaults
-    - ansible_facts.distribution in ['Debian', 'Ubuntu']
+    - ansible_facts.os_family == 'Debian'
   tags: ufw
