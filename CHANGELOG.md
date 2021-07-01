@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-06-30)
+## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-07-01)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.8.0)
 
@@ -17,12 +17,14 @@
 
 **Closed issues:**
 
+- add "when" statements for every import\_tasks in hardening.yml [\#453](https://github.com/dev-sec/ansible-collection-hardening/issues/453)
 - Disable IPv6 | sysctl-18   net.ipv6.conf.all.disable\_ipv6: 1 [\#406](https://github.com/dev-sec/ansible-collection-hardening/issues/406) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
 
 **Merged pull requests:**
 
 - Cleanup old OS-support and simplify vars [\#458](https://github.com/dev-sec/ansible-collection-hardening/pull/458) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - add rocky linux 8 tests and make sure that all relevant tasks are execd [\#457](https://github.com/dev-sec/ansible-collection-hardening/pull/457) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- add "when" statements in hardening.yml\(\#453\) [\#455](https://github.com/dev-sec/ansible-collection-hardening/pull/455) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([jqiuyin](https://github.com/jqiuyin))
 - enable ipv6 globally [\#450](https://github.com/dev-sec/ansible-collection-hardening/pull/450) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.7.0) (2021-05-24)
