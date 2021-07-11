@@ -26,6 +26,12 @@ os_auth_sys_uid_min: 100
 os_auth_sys_uid_max: 999
 os_auth_sys_gid_min: 100
 os_auth_sys_gid_max: 999
+os_auth_sub_uid_min: 100000
+os_auth_sub_uid_max: 600100000
+os_auth_sub_uid_count: 65536
+os_auth_sub_gid_min: 100000
+os_auth_sub_gid_max: 600100000
+os_auth_sub_gid_count: 65536
 
 # defaults for useradd
 os_useradd_mail_dir: /var/mail
