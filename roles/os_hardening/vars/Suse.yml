@@ -19,7 +19,9 @@ os_passwd_perms:
 os_env_umask: '027'
 
 os_auth_uid_min: 1000
+os_auth_uid_max: 60000
 os_auth_gid_min: 1000
+os_auth_gid_max: 60000
 os_auth_sys_uid_min: 100
 os_auth_sys_uid_max: 499
 os_auth_sys_gid_min: 100
