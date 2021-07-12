@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-12)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.8.0...7.9.0)
+
+**Implemented enhancements:**
+
+- Add os\_auth\_uid\_max, os\_auth\_gid\_max [\#461](https://github.com/dev-sec/ansible-collection-hardening/pull/461) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([elgalu](https://github.com/elgalu))
+
+**Closed issues:**
+
+- add "when" statements for every import\_tasks in hardening.yml [\#453](https://github.com/dev-sec/ansible-collection-hardening/issues/453)
+
 ## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-07-01)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.7.0...7.8.0)
@@ -17,7 +29,6 @@
 
 **Closed issues:**
 
-- add "when" statements for every import\_tasks in hardening.yml [\#453](https://github.com/dev-sec/ansible-collection-hardening/issues/453)
 - Disable IPv6 | sysctl-18   net.ipv6.conf.all.disable\_ipv6: 1 [\#406](https://github.com/dev-sec/ansible-collection-hardening/issues/406) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
 
 **Merged pull requests:**
