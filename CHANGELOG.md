@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-12)
+## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-13)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.8.0...7.9.0)
 
@@ -10,7 +10,14 @@
 
 **Closed issues:**
 
+- MySQL hardening fails because of missing attribute [\#464](https://github.com/dev-sec/ansible-collection-hardening/issues/464)
+- Playbook won't run for hardening  [\#462](https://github.com/dev-sec/ansible-collection-hardening/issues/462)
+- devsec.hardenting.os\_hardening breaks pmlogger\_daily on Oracle Linux 8 \(maybe RHEL 8 too\) [\#460](https://github.com/dev-sec/ansible-collection-hardening/issues/460)
 - add "when" statements for every import\_tasks in hardening.yml [\#453](https://github.com/dev-sec/ansible-collection-hardening/issues/453)
+
+**Merged pull requests:**
+
+- update metadata to include community.mysql deps [\#465](https://github.com/dev-sec/ansible-collection-hardening/pull/465) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.8.0) (2021-07-01)
 
