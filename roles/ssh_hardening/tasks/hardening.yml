@@ -5,9 +5,9 @@
     name: 'os_vars'
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version | default(ansible_facts.distribution_version) }}.yml'
         - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version | default(ansible_facts.distribution_version) }}.yml'
         - '{{ ansible_facts.os_family }}.yml'
       skip: true
   tags: always
