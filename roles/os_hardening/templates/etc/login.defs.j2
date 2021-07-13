@@ -126,6 +126,16 @@ GID_MAX           {{ os_auth_gid_max }}
 SYS_GID_MIN       {{ os_auth_sys_gid_min }}
 SYS_GID_MAX       {{ os_auth_sys_gid_max }}
 
+# If /etc/subuid exists, the commands useradd and newusers (unless the user already have subordinate user IDs)
+# allocate SUB_UID_COUNT unused user IDs from the range SUB_UID_MIN to SUB_UID_MAX for each new user.
+# The default values for SUB_UID_MIN, SUB_UID_MAX, SUB_UID_COUNT are respectively 100000, 600100000 and 65536.
+SUB_UID_MIN       {{ os_auth_sub_uid_min }}
+SUB_UID_MAX       {{ os_auth_sub_uid_max }}
+SUB_UID_COUNT     {{ os_auth_sub_uid_count }}
+SUB_GID_MIN       {{ os_auth_sub_gid_min }}
+SUB_GID_MAX       {{ os_auth_sub_gid_max }}
+SUB_GID_COUNT     {{ os_auth_sub_gid_count }}
+
 # Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
 LOGIN_RETRIES     {{ os_auth_retries }}
 

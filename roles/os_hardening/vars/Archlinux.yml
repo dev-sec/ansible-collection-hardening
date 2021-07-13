@@ -22,6 +22,12 @@ os_auth_sys_uid_min: 500
 os_auth_sys_uid_max: 999
 os_auth_sys_gid_min: 500
 os_auth_sys_gid_max: 999
+os_auth_sub_uid_min: 100000
+os_auth_sub_uid_max: 600100000
+os_auth_sub_uid_count: 65536
+os_auth_sub_gid_min: 100000
+os_auth_sub_gid_max: 600100000
+os_auth_sub_gid_count: 65536
 
 modprobe_package: 'kmod'
 auditd_package: 'audit'
