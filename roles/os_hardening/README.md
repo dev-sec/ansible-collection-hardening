@@ -148,6 +148,36 @@ We know that this is the case on Raspberry Pi.
 - `os_security_suid_sgid_remove_from_unknown`
   - Default: `false`
   - Description: true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
+- `os_auth_uid_min`
+  - Default: `1000`
+  - Description: minimum number for automatic uid selection in useradd.
+- `os_auth_uid_max`
+  - Default: `60000`
+  - Description: maximum number for automatic uid selection in useradd.
+- `os_auth_gid_min`
+  - Default: `1000`
+  - Description: minimum number for automatic gid selection in groupadd.
+- `os_auth_gid_max`
+  - Default: `60000`
+  - Description: maximum number for automatic gid selection in groupadd.
+- `os_auth_sub_uid_count`
+  - Default: `65536`
+  - Description: If /etc/subuid exists, the commands useradd and newusers (unless the user already have subordinate user IDs) allocate SUB_UID_COUNT unused user IDs from the range SUB_UID_MIN to SUB_UID_MAX for each new user. See also `os_auth_sub_uid_min` and `os_auth_sub_uid_max`.
+- `os_auth_sub_uid_min`.
+  - Default: `100000`
+  - Description: minimum number for automatic subordinate uid selection in useradd and newusers.
+- `os_auth_sub_uid_max`
+  - Default: `600100000`
+  - Description: maximum number for automatic subordinate uid selection in useradd and newusers.
+- `os_auth_sub_gid_count`
+  - Default: `65536`
+  - Description: If /etc/subuid exists, the commands useradd and newusers (unless the user already have subordinate group IDs) allocate SUB_GID_COUNT unused group IDs from the range SUB_GID_MIN to SUB_GID_MAX for each new user. See also `os_auth_sub_gid_min` and `os_auth_sub_gid_max`.
+- `os_auth_sub_gid_min`
+  - Default: `100000`
+  - Description: minimum number for automatic subordinate gid selection in useradd and newusers.
+- `os_auth_sub_gid_max`
+  - Default: `600100000`
+  - Description: maximum number for automatic subordinate gid selection in useradd and newusers.
 - `os_security_packages_clean`
   - Default: `true`
   - Description: removes packages with known issues. See section packages.
