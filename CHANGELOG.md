@@ -1,17 +1,17 @@
 # Changelog
 
-## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-13)
+## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.8.0...7.9.0)
 
 **Implemented enhancements:**
 
+- Add SUB\_UID\_MIN/MAX/COUNT, SUB\_GID\_MIN/MAX/COUNT [\#463](https://github.com/dev-sec/ansible-collection-hardening/pull/463) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([elgalu](https://github.com/elgalu))
 - Add os\_auth\_uid\_max, os\_auth\_gid\_max [\#461](https://github.com/dev-sec/ansible-collection-hardening/pull/461) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([elgalu](https://github.com/elgalu))
 
 **Closed issues:**
 
 - MySQL hardening fails because of missing attribute [\#464](https://github.com/dev-sec/ansible-collection-hardening/issues/464)
-- Playbook won't run for hardening  [\#462](https://github.com/dev-sec/ansible-collection-hardening/issues/462)
 - devsec.hardenting.os\_hardening breaks pmlogger\_daily on Oracle Linux 8 \(maybe RHEL 8 too\) [\#460](https://github.com/dev-sec/ansible-collection-hardening/issues/460)
 - add "when" statements for every import\_tasks in hardening.yml [\#453](https://github.com/dev-sec/ansible-collection-hardening/issues/453)
 
