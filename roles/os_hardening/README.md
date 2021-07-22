@@ -107,7 +107,7 @@ We know that this is the case on Raspberry Pi.
   - Default: `7`
   - Description: minimum password age (before allowing any other password change).
 - `os_auth_pw_remember`
-  - Default: `60`
+  - Default: `5`
   - Description: how many used passwords are record.
 - `os_auth_retries`
   - Default: `5`
