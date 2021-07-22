@@ -3,7 +3,7 @@ os_desktop_enable: false
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
 os_auth_pw_min_age: 7  # Discourage password cycling
-os_auth_pw_remember: 60  # Specify how many used passwords are record
+os_auth_pw_remember: 5  # Specify how many used passwords are record
 os_auth_retries: 5
 os_auth_lockout_time: 600  # Seconds (600 = 10min)
 os_auth_timeout: 60
