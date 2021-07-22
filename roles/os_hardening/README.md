@@ -217,6 +217,15 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_max_log_file`
   - Default: `6`
   - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action. The value given must be numeric.
+- `os_auditd_rules_enabled`
+  - Default: `true`
+  - Description: Set to false to disable configuring auditd rules.
+- `os_auditd_rules_failure_mode`
+  - Default: `1`
+  - Description: Set failure mode of auditd 0=silent 1=printk 2=panic. This option lets you determine how you want the kernel to handle critical errors. The value given must be numeric.
+- `os_auditd_rules_events_extra`
+  - Default: `[]`
+  - Description: Add additional event rules for auditd. You can also delete predefined rules with `-d list,action` or `-W path`.
 - `hidepid_option`
   - Default: `2` (on RHEL/CentOS7 `0`, see known limitations)
   - Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.

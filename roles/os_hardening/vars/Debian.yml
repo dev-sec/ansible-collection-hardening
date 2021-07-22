@@ -38,6 +38,26 @@ os_useradd_mail_dir: /var/mail
 
 modprobe_package: 'kmod'
 auditd_package: 'auditd'
+os_auditd_rules_events_os:
+  # System events must be logged. Telekom SoC 3.65 ReqID 32213164
+  #   (Un)Installation of software
+  - "-w /usr/bin/dpkg -p x -k software_mgmt"
+  - "-w /usr/bin/apt-add-repository -p x -k software_mgmt"
+  - "-w /usr/bin/apt-get -p x -k software_mgmt"
+  - "-w /usr/bin/aptitude -p x -k software_mgmt"
+  # Access and Authentication events must be logged. Telekom SoC 3.65 ReqID f081ec34
+  #   Logon and Logoff
+  - "-w /var/log/faillog -p wa -k logins"
+  - "-w /var/log/tallylog -p wa -k logins"
+  # Configuration Change events must be logged. Telekom SoC 3.65 ReqID 5a090110
+  #   Deletion and unauthorized modification of logs
+  - "-w /var/log/auth.log"
+  - "-w /var/log/system.log"
+  #   Change of network configuration
+  - "-w /etc/network/interfaces -p wa -k system-locale"
+  #   Change of AppArmor configuration
+  - "-w /etc/apparmor/ -p wa -k MAC-policy"
+  - "-w /etc/apparmor.d/ -p wa -k MAC-policy"
 
 tally2_path: '/usr/share/pam-configs/tally2'
 passwdqc_path: '/usr/share/pam-configs/passwdqc'

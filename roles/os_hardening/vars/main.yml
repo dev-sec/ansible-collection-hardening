@@ -110,3 +110,83 @@ os_security_suid_sgid_system_whitelist:
 
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
+
+# path to audit.rules file
+os_auditd_rules_path: "/etc/audit/rules.d/audit.rules"
+os_auditd_rules_events:
+  # Syscalls "execve" (execute program) must be logged. Telekom SoC 3.65 ReqID 31d021a2
+  - "-a exit,always -F arch=b64 -S execve"
+  # System events must be logged. Telekom SoC 3.65 ReqID 32213164
+  #   Change of system time
+  - "-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change"
+  - "-a always,exit -F arch=b64 -S clock_settime -k time-change"
+  - "-w /etc/localtime -p wa -k time-change"
+  #   Connection of external device (storage)
+  - "-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts"
+  - "-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k export"
+  #   Loading/unloading of kernel modules
+  - "-w /sbin/insmod -p x -k modules"
+  - "-w /sbin/rmmod -p x -k modules"
+  - "-w /sbin/modprobe -p x -k modules"
+  - "-a always,exit -F arch=b64 -S init_module -S delete_module -k modules"
+  #   Change of scheduled jobs
+  - "-w /etc/at.allow"
+  - "-w /etc/at.deny"
+  - "-w /var/spool/at/"
+  - "-w /etc/crontab"
+  - "-w /etc/anacrontab"
+  - "-w /etc/cron.allow"
+  - "-w /etc/cron.deny"
+  - "-w /etc/cron.d/"
+  - "-w /etc/cron.hourly/"
+  - "-w /etc/cron.daily"
+  - "-w /etc/cron.weekly/"
+  - "-w /etc/cron.monthly/"
+  # Access and Authentication events must be logged. Telekom SoC 3.65 ReqID f081ec34
+  #   Logon and Logoff
+  - "-w /var/log/lastlog -p wa -k logins"
+  #   Password Change
+  - "-w /etc/shadow -p wa -k identity"
+  - "-w /etc/gshadow -p wa -k identity"
+  - "-w /etc/security/opasswd -p wa -k identity"
+  #   Escalation of privileges (sudo/sudoers)
+  - "-w /etc/sudoers -p wa -k scope"
+  - "-w /etc/sudoers.d -p wa -k scope"
+  - "-w /var/log/sudo.log -p wa -k actions"
+  #   Modification of DAC permissions
+  - "-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+  - "-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+  - "-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod"
+  # Account and Group Management events must be logged. Telekom SoC 3.65 ReqID 101afb5f
+  #   Creation, modification and deletion of users
+  - "-w /etc/passwd -p wa -k identity"
+  #   Creation, modification and deletion of groups
+  - "-w /etc/group -p wa -k identity"
+  # Configuration Change events must be logged. Telekom SoC 3.65 ReqID 5a090110
+  #   Deletion and unauthorized modification of logs
+  - "-w /var/log/audit/audit.log"
+  - "-w /var/log/audit/audit[1-9].log"
+  #   Change of logging configuration
+  - "-w /etc/syslog."
+  - "-w /etc/rsyslog.conf"
+  - "-w /etc/rsyslog.d/conf"
+  - "-w /etc/audit/auditd.conf -p wa"
+  - "-w /etc/audit/audit.rules -p wa"
+  #   Change of network configuration
+  - "-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale"
+  - "-w /etc/issue -p wa -k system-locale"
+  - "-w /etc/issue.net -p wa -k system-locale"
+  - "-w /etc/hosts -p wa -k system-locale"
+  - "-w /etc/network -p wa -k system-locale"
+  - "-w /etc/networks -p wa -k system-locale"
+  #   Authentication Subsystem changes
+  - "-w /etc/pam.d/"
+  - "-w /etc/nsswitch.conf"
+  #   Critical File changes
+  - "-w /etc/ssh/sshd_config"
+  - "-w /etc/sysctl.conf"
+  - "-w /etc/modprobe.conf"
+  - "-w /etc/profile.d/"
+  - "-w /etc/profile"
+  - "-w /etc/shells"
+  

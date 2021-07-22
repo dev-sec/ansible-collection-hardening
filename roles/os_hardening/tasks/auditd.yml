@@ -14,3 +14,14 @@
     mode: '0640'
   notify: 'restart-auditd'
   tags: auditd
+
+- name: Configure auditd rules
+  template:
+    src: 'etc/audit/rules.d/audit.rules.j2'
+    dest: "{{ os_auditd_rules_path }}"
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+  notify: 'restart-auditd'
+  tags: auditd
+  when: os_auditd_rules_enabled | bool
