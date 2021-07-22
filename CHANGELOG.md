@@ -7,6 +7,7 @@
 **Implemented enhancements:**
 
 - Allow configuration of password remember in pam [\#467](https://github.com/dev-sec/ansible-collection-hardening/pull/467) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([m41kc0d3](https://github.com/m41kc0d3))
+- Add CVE-2021-33909 mitigations [\#466](https://github.com/dev-sec/ansible-collection-hardening/pull/466) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([kravietz](https://github.com/kravietz))
 - Add SUB\_UID\_MIN/MAX/COUNT, SUB\_GID\_MIN/MAX/COUNT [\#463](https://github.com/dev-sec/ansible-collection-hardening/pull/463) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([elgalu](https://github.com/elgalu))
 - Add os\_auth\_uid\_max, os\_auth\_gid\_max [\#461](https://github.com/dev-sec/ansible-collection-hardening/pull/461) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([elgalu](https://github.com/elgalu))
 
