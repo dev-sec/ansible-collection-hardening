@@ -113,9 +113,10 @@ os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
 
 # path to audit.rules file
 os_auditd_rules_path: "/etc/audit/rules.d/audit.rules"
+# Huge parts of the rules are from https://github.com/telekom/tel-it-security-automation
 os_auditd_rules_events:
   # Syscalls "execve" (execute program) must be logged. Telekom SoC 3.65 ReqID 31d021a2
-  - "-a exit,always -F arch=b64 -S execve"
+  - "-a always,exit -F arch=b64 -S execve"
   # System events must be logged. Telekom SoC 3.65 ReqID 32213164
   #   Change of system time
   - "-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change"
@@ -189,4 +190,3 @@ os_auditd_rules_events:
   - "-w /etc/profile.d/"
   - "-w /etc/profile"
   - "-w /etc/shells"
-  
