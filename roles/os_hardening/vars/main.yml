@@ -133,16 +133,16 @@ os_auditd_rules_events:
   #   Change of scheduled jobs
   - "-w /etc/at.allow"
   - "-w /etc/at.deny"
-  - "-w /var/spool/at/"
+  - "-w /var/spool/at"
   - "-w /etc/crontab"
   - "-w /etc/anacrontab"
   - "-w /etc/cron.allow"
   - "-w /etc/cron.deny"
-  - "-w /etc/cron.d/"
-  - "-w /etc/cron.hourly/"
+  - "-w /etc/cron.d"
+  - "-w /etc/cron.hourly"
   - "-w /etc/cron.daily"
-  - "-w /etc/cron.weekly/"
-  - "-w /etc/cron.monthly/"
+  - "-w /etc/cron.weekly"
+  - "-w /etc/cron.monthly"
   # Access and Authentication events must be logged. Telekom SoC 3.65 ReqID f081ec34
   #   Logon and Logoff
   - "-w /var/log/lastlog -p wa -k logins"
@@ -168,7 +168,7 @@ os_auditd_rules_events:
   - "-w /var/log/audit/audit.log"
   - "-w /var/log/audit/audit[1-9].log"
   #   Change of logging configuration
-  - "-w /etc/syslog."
+  - "-w /etc/syslog"
   - "-w /etc/rsyslog.conf"
   - "-w /etc/rsyslog.d/conf"
   - "-w /etc/audit/auditd.conf -p wa"
@@ -181,12 +181,12 @@ os_auditd_rules_events:
   - "-w /etc/network -p wa -k system-locale"
   - "-w /etc/networks -p wa -k system-locale"
   #   Authentication Subsystem changes
-  - "-w /etc/pam.d/"
+  - "-w /etc/pam.d"
   - "-w /etc/nsswitch.conf"
   #   Critical File changes
   - "-w /etc/ssh/sshd_config"
   - "-w /etc/sysctl.conf"
   - "-w /etc/modprobe.conf"
-  - "-w /etc/profile.d/"
+  - "-w /etc/profile.d"
   - "-w /etc/profile"
   - "-w /etc/shells"

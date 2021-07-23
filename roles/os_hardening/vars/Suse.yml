@@ -51,9 +51,9 @@ os_auditd_rules_events_os:
   - "-w /var/log/messages"
   #   Change of network configuration
   - "-w /etc/sysconfig/network -p wa -k system-locale"
-  - "-w /etc/sysconfig/network-scripts/ -p wa -k system-locale"
+  - "-w /etc/sysconfig/network-scripts -p wa -k system-locale"
   #   Change of AppArmor configuration
-  - "-w /etc/apparmor/ -p wa -k MAC-policy"
-  - "-w /etc/apparmor.d/ -p wa -k MAC-policy"
+  - "-w /etc/apparmor -p wa -k MAC-policy"
+  - "-w /etc/apparmor.d -p wa -k MAC-policy"
 
 hidepid_option: '2'  # allowed values: 0, 1, 2

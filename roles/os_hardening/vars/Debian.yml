@@ -56,8 +56,8 @@ os_auditd_rules_events_os:
   #   Change of network configuration
   - "-w /etc/network/interfaces -p wa -k system-locale"
   #   Change of AppArmor configuration
-  - "-w /etc/apparmor/ -p wa -k MAC-policy"
-  - "-w /etc/apparmor.d/ -p wa -k MAC-policy"
+  - "-w /etc/apparmor -p wa -k MAC-policy"
+  - "-w /etc/apparmor.d -p wa -k MAC-policy"
 
 tally2_path: '/usr/share/pam-configs/tally2'
 passwdqc_path: '/usr/share/pam-configs/passwdqc'

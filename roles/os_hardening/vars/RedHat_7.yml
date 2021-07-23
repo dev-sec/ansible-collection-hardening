@@ -48,14 +48,14 @@ os_auditd_rules_events_os:
   - "-w /usr/bin/yum -p x -k software_mgmt"
   # Access and Authentication events must be logged. Telekom SoC 3.65 ReqID f081ec34
   #   Logon and Logoff
-  - "-w /var/run/faillock/ -p wa -k logins"
+  - "-w /var/run/faillock -p wa -k logins"
   # Configuration Change events must be logged. Telekom SoC 3.65 ReqID 5a090110
   #   Deletion and unauthorized modification of logs
   - "-w /var/log/messages"
   #   Change of network configuration
   - "-w /etc/sysconfig/network -p wa -k system-locale"
-  - "-w /etc/sysconfig/network-scripts/ -p wa -k system-locale"
+  - "-w /etc/sysconfig/network-scripts -p wa -k system-locale"
   #   Change of SELinux configuration
-  - "-w /etc/selinux/ -p wa -k MAC-policy"
+  - "-w /etc/selinux -p wa -k MAC-policy"
 
 hidepid_option: '0'  # allowed values: 0, 1, 2
