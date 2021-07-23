@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.9.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.1) (2021-07-23)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.9.0...7.9.1)
+
+**Merged pull requests:**
+
+- fix license in galaxy [\#469](https://github.com/dev-sec/ansible-collection-hardening/pull/469) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.8.0...7.9.0)
