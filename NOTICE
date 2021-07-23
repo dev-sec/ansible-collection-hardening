@@ -1,0 +1,5 @@
+Ansible Collection - devsec.hardening
+
+Huge parts of the audit rules in roles/os_hardening/vars/*.yml
+was created by Deutsche Telekom AG. (https://github.com/telekom/tel-it-security-automation/blob/21dacf83ab1245bf7c42c12d1d25292562599b79/hardening-linux-server/vars/main.yml & https://github.com/telekom/tel-it-security-automation)
+Copyright (c) 2020 Maximilian Hertstein [...] Deutsche Telekom AG
