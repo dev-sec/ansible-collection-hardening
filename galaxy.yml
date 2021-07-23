@@ -6,7 +6,7 @@ authors:
   - dev-sec <hello@dev-sec.io>
 description: 'This collection provides battle tested hardening for Linux, SSH, nginx, MySQL'
 license:
-  - GPL-2.0-or-later
+  - Apache-2.0
 license_file: ''
 tags:
   - devsec
