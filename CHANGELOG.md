@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- SSH Hardening: backtick typo [\#471](https://github.com/dev-sec/ansible-collection-hardening/pull/471) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Slamdunk](https://github.com/Slamdunk))
 - fix license in galaxy [\#469](https://github.com/dev-sec/ansible-collection-hardening/pull/469) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.0) (2021-07-22)
