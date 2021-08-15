@@ -5,9 +5,6 @@ dependency:
     role-file: molecule/nginx_hardening/requirements.yml
 driver:
   name: docker
-lint: |
-  yamllint roles/nginx_hardening/ molecule/nginx_hardening/ .github/workflows/nginx_hardening.yml
-  ansible-lint roles/nginx_hardening/
 platforms:
   - name: instance
     image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
@@ -57,7 +54,6 @@ scenario:
     - destroy
   test_sequence:
     - dependency
-    - lint
     - destroy
     - syntax
     - create
