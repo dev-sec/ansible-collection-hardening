@@ -6,9 +6,6 @@ dependency:
     requirements-file: molecule/mysql_hardening/requirements.yml
 driver:
   name: docker
-lint: |
-  yamllint roles/mysql_hardening/ molecule/mysql_hardening/ .github/workflows/mysql_hardening.yml
-  ansible-lint roles/mysql_hardening/
 platforms:
   - name: instance
     image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
@@ -57,7 +54,6 @@ scenario:
     - destroy
   test_sequence:
     - dependency
-    - lint
     - destroy
     - syntax
     - create
