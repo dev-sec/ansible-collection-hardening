@@ -1,11 +1,16 @@
 # Changelog
 
-## [7.9.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.9.1) (2021-08-06)
+## [7.10.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.10.0) (2021-08-15)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.9.0...7.9.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.9.0...7.10.0)
+
+**Fixed bugs:**
+
+- mysql\_hardening cannot work with mysql on freebsd [\#472](https://github.com/dev-sec/ansible-collection-hardening/issues/472)
 
 **Merged pull requests:**
 
+- \[mysql\_hardening\] Allow setting the mysql\_distribution [\#473](https://github.com/dev-sec/ansible-collection-hardening/pull/473) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
 - SSH Hardening: backtick typo [\#471](https://github.com/dev-sec/ansible-collection-hardening/pull/471) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Slamdunk](https://github.com/Slamdunk))
 - fix license in galaxy [\#469](https://github.com/dev-sec/ansible-collection-hardening/pull/469) ([rndmh3ro](https://github.com/rndmh3ro))
 
