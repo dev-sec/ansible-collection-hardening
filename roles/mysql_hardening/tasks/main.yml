@@ -22,13 +22,21 @@
   with_dict: '{{ os_vars }}'
   tags: always
 
+- name: Check that the variable mysql_distribution is set correctly
+  ansible.builtin.assert:
+    that: mysql_distribution == 'mysql' or mysql_distribution == 'mariadb'
+    fail_msg: 'mysql_distribution must be set to either mysql or mariadb!'
+  when: mysql_distribution is defined
+
 - name: Gather package facts to check for mysql/mariadb version
   ansible.builtin.package_facts:
     manager: auto
+  when: not mysql_distribution is defined
 
 - name: Check if MySQL or MariaDB is used
   set_fact:
     mysql_distribution: "{{ ansible_facts.packages['mysql-server'] is defined | ternary('mysql', 'mariadb') }}"
+  when: not mysql_distribution is defined
 
 - name: Check which MySQL/MariaDB version is used
   community.mysql.mysql_info:
