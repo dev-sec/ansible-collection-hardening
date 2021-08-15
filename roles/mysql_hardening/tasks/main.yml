@@ -22,7 +22,8 @@
   with_dict: '{{ os_vars }}'
   tags: always
 
-- ansible.builtin.assert:
+- name: Check that the variable mysql_distribution is set correctly
+  ansible.builtin.assert:
     that: mysql_distribution == 'mysql' or mysql_distribution == 'mariadb'
     fail_msg: 'mysql_distribution must be set to either mysql or mariadb!'
   when: mysql_distribution is defined
