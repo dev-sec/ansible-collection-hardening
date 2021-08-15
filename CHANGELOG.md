@@ -8,8 +8,13 @@
 
 - mysql\_hardening cannot work with mysql on freebsd [\#472](https://github.com/dev-sec/ansible-collection-hardening/issues/472)
 
+**Closed issues:**
+
+- run ansible-lint only once in Github Actions [\#398](https://github.com/dev-sec/ansible-collection-hardening/issues/398)
+
 **Merged pull requests:**
 
+- use Ansible lint in separate task [\#475](https://github.com/dev-sec/ansible-collection-hardening/pull/475) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - \[mysql\_hardening\] Allow setting the mysql\_distribution [\#473](https://github.com/dev-sec/ansible-collection-hardening/pull/473) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
 - SSH Hardening: backtick typo [\#471](https://github.com/dev-sec/ansible-collection-hardening/pull/471) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Slamdunk](https://github.com/Slamdunk))
 - fix license in galaxy [\#469](https://github.com/dev-sec/ansible-collection-hardening/pull/469) ([rndmh3ro](https://github.com/rndmh3ro))
