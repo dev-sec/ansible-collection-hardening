@@ -1,8 +1,21 @@
 # Changelog
 
+## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-20)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.10.0...7.11.0)
+
+**Implemented enhancements:**
+
+- \[mysql\_hardening\] Setup defaults for MySQL on FreeBSD [\#474](https://github.com/dev-sec/ansible-collection-hardening/pull/474) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
+
 ## [7.10.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.10.0) (2021-08-15)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.9.0...7.10.0)
+
+**Implemented enhancements:**
+
+- use Ansible lint in separate task [\#475](https://github.com/dev-sec/ansible-collection-hardening/pull/475) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- \[mysql\_hardening\] Allow setting the mysql\_distribution [\#473](https://github.com/dev-sec/ansible-collection-hardening/pull/473) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
 
 **Fixed bugs:**
 
@@ -14,8 +27,6 @@
 
 **Merged pull requests:**
 
-- use Ansible lint in separate task [\#475](https://github.com/dev-sec/ansible-collection-hardening/pull/475) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- \[mysql\_hardening\] Allow setting the mysql\_distribution [\#473](https://github.com/dev-sec/ansible-collection-hardening/pull/473) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
 - SSH Hardening: backtick typo [\#471](https://github.com/dev-sec/ansible-collection-hardening/pull/471) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Slamdunk](https://github.com/Slamdunk))
 - fix license in galaxy [\#469](https://github.com/dev-sec/ansible-collection-hardening/pull/469) ([rndmh3ro](https://github.com/rndmh3ro))
 
