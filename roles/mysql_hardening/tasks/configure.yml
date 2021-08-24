@@ -23,6 +23,7 @@
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_group }}'
     mode: '0640'
+  when: mysql_settings.settings.log_error != ""
 
 - name: Check mysql configuration-directory exists and has right permissions
   file:
