@@ -10,20 +10,27 @@
 
 - name: Ensure permissions on mysql-datadir are correct
   file:
-    path: '{{ mysql_datadir }}'
+    path: '{{ item }}'
     state: directory
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_user }}'
     mode: '0750'
+  when: item is defined and item != ""
+  loop:
+    - '{{ mysql_settings.settings.datadir }}'
+    - '{{ mysql_datadir|default("") }}'
 
 - name: Ensure permissions on mysql-logfile are correct
   file:
-    path: '{{ mysql_hardening_log_file }}'
+    path: '{{ item }}'
     state: file
     owner: '{{ mysql_hardening_user }}'
     group: '{{ mysql_hardening_group }}'
     mode: '0640'
-  when: mysql_settings.settings.log_error != ""
+  when: item is defined and item != ""
+  loop:
+    - '{{ mysql_settings.settings.log_error }}'
+    - '{{ mysql_hardening_log_file|default("") }}'
 
 - name: Check mysql configuration-directory exists and has right permissions
   file:
