@@ -27,7 +27,7 @@ It configures:
     - mysql_hardening
 ```
 
-This role expects an existing installation of MySQL or MariaDB.  Changes of options `log_error` or `datadir` in `mysql_hardening_options` will not be checked for correct permissions. Please change/set `log_error` or `datadir` with the installation role of MySQL before running this role, or you can run this role twice.  
+This role expects an existing installation of MySQL or MariaDB. Changes of options `log_error` or `datadir` in `mysql_hardening_options` will not be checked for correct permissions. Please change/set `log_error` or `datadir` with the installation role of MySQL before running this role, or you can run this role twice.  
 Please ensure that the following variables are set accordingly:
 
 - `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
