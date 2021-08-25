@@ -27,12 +27,14 @@ It configures:
     - mysql_hardening
 ```
 
-This role expects an existing installation of MySQL or MariaDB. Please ensure that the following variables are set accordingly:
+This role expects an existing installation of MySQL or MariaDB.  Changes of options `log_error` or `datadir` in `mysql_hardening_options` will not be checked for correct permissions. Please change/set `log_error` or `datadir` with the installation role of MySQL before running this role, or you can run this role twice.  
+Please ensure that the following variables are set accordingly:
 
 - `mysql_hardening_enabled: yes` role is enabled by default and can be disabled without removing it from a playbook. You can use conditional variable, for example: `mysql_hardening_enabled: "{{ true if mysql_enabled else false }}"`
 - `mysql_hardening_user: 'mysql'` The user that mysql runs as.
-- `mysql_datadir: '/var/lib/mysql'` The MySQL data directory
 - `mysql_hardening_mysql_hardening_conf_file: '/etc/mysql/conf.d/hardening.cnf'` The path to the configuration file where the hardening will be performed
+- _deprecated: `mysql_datadir: '/var/lib/mysql'` The MySQL data directory_
+  - `mysql_datadir` is no longer necessary, as MySQL data directory is automatically taken from `mysql_info`. But it can still be defined and will also be checked for correct permissions.
 
 ## Role Variables
 

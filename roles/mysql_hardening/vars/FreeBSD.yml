@@ -4,8 +4,6 @@ mysql_daemon: mysql-server
 mysql_hardening_mysql_conf_file: '/usr/local/etc/mysql/my.cnf'
 mysql_hardening_mysql_confd_dir: '/usr/local/etc/mysql/conf.d'
 
-mysql_hardening_log_file: '/var/db/mysql/mysql.err'
-
 mysql_hardening_group: 'mysql'
 
 mysql_cnf_owner: 'root'  # owner of /usr/local/etc/mysql/*.cnf files

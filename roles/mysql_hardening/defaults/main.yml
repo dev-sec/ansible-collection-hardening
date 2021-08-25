@@ -7,7 +7,6 @@ mysql_daemon_enabled: true
 mysql_hardening_restart_mysql: true
 
 # general configuration
-mysql_datadir: '/var/lib/mysql'
 mysql_hardening_mysql_hardening_conf_file: '{{mysql_hardening_mysql_confd_dir}}/hardening.cnf'
 # You have to change this to your own strong enough mysql root password
 mysql_root_password: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
