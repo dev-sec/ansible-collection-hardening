@@ -1,17 +1,22 @@
 # Changelog
 
-## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-24)
+## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.10.0...7.11.0)
 
 **Implemented enhancements:**
 
+- Use `log_error` file and `datadir` from mysql\_info settings instead of variables `mysql_datadir` and `mysql_hardening_log_file` [\#478](https://github.com/dev-sec/ansible-collection-hardening/pull/478) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([123quhiwiwk](https://github.com/123quhiwiwk))
 - Execute check of MySQL error logfile permissions on Debian 11 only when log\_error is defined [\#477](https://github.com/dev-sec/ansible-collection-hardening/pull/477) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([123quhiwiwk](https://github.com/123quhiwiwk))
 - \[mysql\_hardening\] Setup defaults for MySQL on FreeBSD [\#474](https://github.com/dev-sec/ansible-collection-hardening/pull/474) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([sdwilsh](https://github.com/sdwilsh))
 
 **Closed issues:**
 
 - MariaDB hardening fails, because log\_error file is missing \[Debian 11\] [\#476](https://github.com/dev-sec/ansible-collection-hardening/issues/476)
+
+**Merged pull requests:**
+
+- chore\(ssh\_hardening\): set min\_ansible\_version to \>=2.9.10 [\#479](https://github.com/dev-sec/ansible-collection-hardening/pull/479) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([bufferoverflow](https://github.com/bufferoverflow))
 
 ## [7.10.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.10.0) (2021-08-15)
 
