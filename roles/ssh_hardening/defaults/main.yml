@@ -75,7 +75,7 @@ ssh_remote_hosts: []
 # Set this to "without-password" or "yes" to allow root to login
 ssh_permit_root_login: 'no'         # sshd
 
-# false to disable TCP Forwarding. Set to true to allow TCP Forwarding.
+# false to disable TCP Forwarding. Set to 'yes', 'no', 'local', 'all' or 'remote' to allow TCP Forwarding.
 ssh_allow_tcp_forwarding: 'no'      # sshd
 
 # false to disable binding forwarded ports to non-loopback addresses. Set to true to force binding on wildcard address.
