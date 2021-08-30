@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-28)
+## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.10.0...7.11.0)
 
@@ -16,6 +16,7 @@
 
 **Merged pull requests:**
 
+- ssh\_allow\_tcp\_forwarding is not a boolean [\#480](https://github.com/dev-sec/ansible-collection-hardening/pull/480) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([ReinerNippes](https://github.com/ReinerNippes))
 - chore\(ssh\_hardening\): set min\_ansible\_version to \>=2.9.10 [\#479](https://github.com/dev-sec/ansible-collection-hardening/pull/479) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([bufferoverflow](https://github.com/bufferoverflow))
 
 ## [7.10.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.10.0) (2021-08-15)
