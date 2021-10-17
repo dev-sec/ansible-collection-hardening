@@ -43,7 +43,6 @@
 
     - name: Execute cinc-auditor tests
       command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
-"
       register: test_results
       changed_when: false
       ignore_errors: true
