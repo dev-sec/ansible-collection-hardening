@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.11.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.1) (2021-10-18)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.11.0...7.11.1)
+
+**Fixed bugs:**
+
+- fix filter error in ansible.builtin.file mode parameter [\#486](https://github.com/dev-sec/ansible-collection-hardening/pull/486) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([ssttehrani](https://github.com/ssttehrani))
+
+**Closed issues:**
+
+- os\_hardening fails on "Create a combined sysctl-dict if overwrites are defined" task [\#482](https://github.com/dev-sec/ansible-collection-hardening/issues/482)
+- Improve changelog generation [\#381](https://github.com/dev-sec/ansible-collection-hardening/issues/381)
+
 ## [7.11.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.0) (2021-08-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.10.0...7.11.0)
