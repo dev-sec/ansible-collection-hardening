@@ -1,5 +1,3 @@
 ---
 # this file inherits molecule.yml from the ssh_hardening scenario when used like this:
-```
-molecule --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
-```
+# molecule --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
