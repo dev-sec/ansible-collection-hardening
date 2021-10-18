@@ -6,6 +6,7 @@
 
 **Fixed bugs:**
 
+- change baseline urls to full zip-url [\#490](https://github.com/dev-sec/ansible-collection-hardening/pull/490) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix filter error in ansible.builtin.file mode parameter [\#486](https://github.com/dev-sec/ansible-collection-hardening/pull/486) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([ssttehrani](https://github.com/ssttehrani))
 
 **Closed issues:**
