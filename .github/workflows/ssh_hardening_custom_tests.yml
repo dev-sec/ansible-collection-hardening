@@ -1,17 +1,17 @@
 ---
-name: "devsec.ssh_hardening"
+name: "devsec.ssh_hardening with custom tests"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening/**'
-      - '.github/workflows/ssh_hardening.yml'
+      - 'molecule/ssh_hardening_custom_tests/**'
+      - '.github/workflows/ssh_hardening_custom_tests.yml'
   pull_request:
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening/**'
-      - '.github/workflows/ssh_hardening.yml'
+      - 'molecule/ssh_hardening_custom_tests/**'
+      - '.github/workflows/ssh_hardening_custom_tests.yml'
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -63,7 +63,7 @@ jobs:
             export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
           fi
           molecule --version
-          molecule test -s ssh_hardening
+           mol --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
