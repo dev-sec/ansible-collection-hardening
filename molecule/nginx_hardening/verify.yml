@@ -47,7 +47,7 @@
       shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
 
     - name: Execute cinc-auditor tests
-      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit supermarket://dev-sec/nginx-baseline"
+      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/nginx-baseline/archive/refs/heads/master.zip"
       register: test_results
       changed_when: false
       ignore_errors: true
