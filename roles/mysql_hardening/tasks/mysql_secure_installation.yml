@@ -27,10 +27,9 @@
   when: mysql_remove_test_database
 
 - name: ensure that anonymous users are absent
-  community.mysql.mysql_user:
-    name: ''
-    state: absent
-    host_all: true
+  community.mysql.mysql_query:
+    query:
+      - "DELETE FROM mysql.user WHERE USER='';"
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_anonymous_users
 
