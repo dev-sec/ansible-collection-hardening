@@ -4,7 +4,7 @@ galaxy_info:
   description: 'This Ansible playbook provides security configuration for mysql.'
   company: Hardening Framework Team
   license: Apache License 2.0
-  min_ansible_version: '1.9'
+  min_ansible_version: '2.9.10'
   platforms:
     - name: EL
       versions:
