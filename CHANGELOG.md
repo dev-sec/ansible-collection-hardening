@@ -1,16 +1,23 @@
 # Changelog
 
-## [7.11.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.11.1) (2021-10-18)
+## [7.12.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.12.0) (2021-10-21)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.11.0...7.11.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.11.0...7.12.0)
+
+**Implemented enhancements:**
+
+- feat\(os\_hardening\): extend file permission tasks to cover more files [\#489](https://github.com/dev-sec/ansible-collection-hardening/pull/489) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([cmhe](https://github.com/cmhe))
 
 **Fixed bugs:**
 
+- mysql remove deprecated 'secure\_auth' parameter in mysql [\#346](https://github.com/dev-sec/ansible-collection-hardening/issues/346)
 - change baseline urls to full zip-url [\#490](https://github.com/dev-sec/ansible-collection-hardening/pull/490) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix filter error in ansible.builtin.file mode parameter [\#486](https://github.com/dev-sec/ansible-collection-hardening/pull/486) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([ssttehrani](https://github.com/ssttehrani))
 
 **Closed issues:**
 
+- Extend os\_hardening minimize\_access task to cover additional passwd/group/shadow/gshadow paths [\#488](https://github.com/dev-sec/ansible-collection-hardening/issues/488)
+- postgresql\_hardening role [\#484](https://github.com/dev-sec/ansible-collection-hardening/issues/484)
 - os\_hardening fails on "Create a combined sysctl-dict if overwrites are defined" task [\#482](https://github.com/dev-sec/ansible-collection-hardening/issues/482)
 - Improve changelog generation [\#381](https://github.com/dev-sec/ansible-collection-hardening/issues/381)
 
