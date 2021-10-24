@@ -296,7 +296,7 @@ sysctl_config:
   # Restrict hardlink creation behavior
   fs.protected_hardlinks: 1
   # Restrict regular files creation behavior
-  fs.protected_regular: 1
+  fs.protected_regular: 2
   # Restrict symlink following behavior
   fs.protected_symlinks: 1
 
