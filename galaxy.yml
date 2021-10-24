@@ -17,6 +17,11 @@ tags:
   - nginx
   - mysql
   - openssh
+  - ansible-apache-hardening
+  - mysql-hardening
+  - nginx-hardening
+  - os-hardening
+  - ssh-hardening
 dependencies:
   ansible.posix: '>=1.0.0'
   community.crypto: '>=1.0.0'
