@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- add old role names to tags in Galaxy [\#495](https://github.com/dev-sec/ansible-collection-hardening/pull/495) ([schurzi](https://github.com/schurzi))
 - update minimum ansible version for roles [\#493](https://github.com/dev-sec/ansible-collection-hardening/pull/493) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.12.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.12.0) (2021-10-21)
