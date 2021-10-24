@@ -1,5 +1,21 @@
 # Changelog
 
+## [7.13.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.0) (2021-10-24)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.12.0...7.13.0)
+
+**Implemented enhancements:**
+
+- implement sysctl-34 - link protection settings [\#494](https://github.com/dev-sec/ansible-collection-hardening/pull/494) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Please create the collection in ansible-galaxy [\#407](https://github.com/dev-sec/ansible-collection-hardening/issues/407)
+
+**Merged pull requests:**
+
+- update minimum ansible version for roles [\#493](https://github.com/dev-sec/ansible-collection-hardening/pull/493) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [7.12.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.12.0) (2021-10-21)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.11.0...7.12.0)
