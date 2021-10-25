@@ -12,7 +12,9 @@ os_hardening:
 ssh_hardening:
   - 'roles/ssh_hardening/**'
   - 'molecule/ssh_hardening/**'
+  - 'molecule/ssh_hardening_custom_tests/**'
   - '.github/workflows/ssh_hardening.yml'
+  - '.github/workflows/ssh_hardening_custom_tests.yml'
 
 nginx_hardening:
   - 'roles/nginx_hardening/**'

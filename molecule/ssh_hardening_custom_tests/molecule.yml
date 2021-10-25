@@ -1,0 +1,64 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/ssh_hardening/requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+    tty: true
+    env:
+      http_proxy: "${http_proxy}"
+      https_proxy: "${https_proxy}"
+      no_proxy: "${no_proxy}"
+      container: docker
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      callback_whitelist: profile_tasks, timer, yaml
+verifier:
+  name: ansible
+
+scenario:
+  create_sequence:
+    - dependency
+    - create
+    - prepare
+  check_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - check
+    - destroy
+  converge_sequence:
+    - dependency
+    - create
+    - prepare
+    - converge
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - dependency
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - verify
+    - destroy
