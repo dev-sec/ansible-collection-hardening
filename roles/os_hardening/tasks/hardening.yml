@@ -30,6 +30,10 @@
   tags: cron
   when: os_cron_enabled | bool
 
+- import_tasks: ctrlaltdel.yml
+  tags: ctrlaltdel
+  when: os_ctrlaltdel_disabled | bool
+
 - import_tasks: limits.yml
   tags: limits
   when: os_limits_enabled | bool
