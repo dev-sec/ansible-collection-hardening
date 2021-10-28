@@ -229,6 +229,9 @@ We know that this is the case on Raspberry Pi.
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
+- `os_ctrlaltdel_disabled`
+  - Default: `false`
+  - Description: Set to true to disable ctrl-alt-delete key combination.
 - `os_limits_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring limits.

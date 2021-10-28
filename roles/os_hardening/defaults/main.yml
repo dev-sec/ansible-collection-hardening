@@ -344,6 +344,9 @@ proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
 # Set to false to disable installing and configuring cron.
 os_cron_enabled: true
 
+# Set to true to disable ctrl-alt-del key combination.
+os_ctrlaltdel_disabled: false
+
 # Set to false to disable installing and configuring limits.
 os_limits_enabled: true
 
