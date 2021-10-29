@@ -26,6 +26,10 @@
   tags: auditd
   when: os_auditd_enabled | bool
 
+- import_tasks: coredumps.yml
+  tags: coredumps
+  when: os_coredumps_disabled | bool
+
 - import_tasks: cron.yml
   tags: cron
   when: os_cron_enabled | bool
