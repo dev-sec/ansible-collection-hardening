@@ -5,7 +5,7 @@
   when: ansible_service_mgr == "systemd"
 
 - name: create custom.conf for disabling coredumps
-  template: src='coredumps.conf.j2' dest='/etc/systemd/coredump.conf.d/custom.conf' owner=root group=root mode=0644
+  template: src='etc/systemd/coredump.conf.d/coredumps.conf.j2' dest='/etc/systemd/coredump.conf.d/custom.conf' owner=root group=root mode=0644
   when: ansible_service_mgr == "systemd"
 
 - name: Reload daemon
