@@ -12,6 +12,8 @@ os_auth_pam_passwdqc_enable: true
 os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'  # Used in RHEL6
 os_auth_pam_pwquality_options: 'try_first_pass retry=3 authtok_type='  # Used in RHEL7 and RHEL8
 os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
+os_security_histsize: 10000
+
 
 os_chfn_restrict: ''
 
@@ -364,6 +366,9 @@ os_modprobe_enabled: true
 
 # Set to false to disable installing and configuring profile.
 os_profile_enabled: true
+
+# Set to false to disable installing and configuring profile security.
+os_profile_security_enabled: false
 
 # Set to false to disable installing and configuring securetty.
 os_securetty_enabled: true

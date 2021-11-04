@@ -1,0 +1,13 @@
+# Logout Timeout
+export TMOUT={{ os_auth_lockout_time }}
+readonly TMOUT
+
+# History Sizes
+export HISTSIZE={{ os_security_histsize }}
+export HISTTIMEFORMAT="%F-%T "
+readonly HISTSIZE
+readonly HISTTIMEFORMAT
+
+# Log history after logout
+shopt -s histappend
+

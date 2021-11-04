@@ -250,6 +250,9 @@ We know that this is the case on Raspberry Pi.
 - `os_profile_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring profile.
+- `os_profile_security_enabled`
+  - Default: `false`
+  - Description: Set to true to enable installing and configuring profile security.
 - `os_securetty_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring securetty.
@@ -277,6 +280,9 @@ We know that this is the case on Raspberry Pi.
 - `os_sha_crypt_max_rounds`
   - Default: `640000`
   - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+- `os_security_histsize`
+  - Default: `10000`
+  - Description: Define the number of maximum lines written into history file.
 
 ## Packages
 
