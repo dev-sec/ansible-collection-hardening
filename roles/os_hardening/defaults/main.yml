@@ -383,6 +383,9 @@ os_rhosts_enabled: true
 # Set to false to disable installing and configuring yum.
 os_yum_enabled: true
 
+# List of yum repository files under /etc/yum.repos.d/ which should not be altered.
+os_yum_repo_file_whitelist: []
+
 # Set to false to disable installing and configuring apt.
 os_apt_enabled: true
 

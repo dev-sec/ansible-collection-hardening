@@ -41,6 +41,10 @@
       include: verify_pam.yml
       when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
+    - name: include YUM tests
+      include: verify_yum.yml
+      when: ansible_facts.os_family == 'RedHat'
+
     - name: download cinc-auditor
       get_url:
         url: https://omnitruck.cinc.sh/install.sh
