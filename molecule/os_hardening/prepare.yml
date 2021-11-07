@@ -34,13 +34,13 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: install packages
+    - name: install required tools on Arch
       pacman:
         name:
-          - "awk"
+          - awk
         state: present
         update_cache: true
-      ignore_errors: true
+      when: ansible_facts.os_family == 'Archlinux'
 
     - name: install required tools on RHEL
       yum:
