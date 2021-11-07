@@ -1,0 +1,16 @@
+---
+- name: create 'foo' repository
+  yum_repository:
+    name: foo
+    description: mandatory description
+    baseurl: file:///mandatory-url
+    enabled: false
+    gpgcheck: false
+
+- name: create 'bar' repository
+  yum_repository:
+    name: bar
+    description: mandatory description
+    baseurl: file:///mandatory-url
+    enabled: false
+    gpgcheck: false

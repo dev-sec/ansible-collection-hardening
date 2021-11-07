@@ -265,6 +265,9 @@ We know that this is the case on Raspberry Pi.
 - `os_yum_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring yum.
+- `os_yum_repo_file_whitelist`
+  - Default: `[]`
+  - Description: List of yum repository files under /etc/yum.repos.d/ which should not be altered.
 - `os_apt_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring apt.
