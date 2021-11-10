@@ -21,10 +21,10 @@
     owner: 'root'
     group: 'root'
     mode: '0750'
-  when: not os_profile_security_enabled | bool
+  when: os_profile_security_enabled | bool
 
 - name: Remove env os security to profile.d
   file:
     path: /etc/profile.d/os-security.sh
     state: absent
-  when: os_profile_security_enabled | bool
+  when: not os_profile_security_enabled | bool
