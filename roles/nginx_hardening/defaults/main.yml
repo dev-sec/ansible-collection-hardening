@@ -23,7 +23,7 @@ nginx_add_header: [
 
 nginx_set_cookie_flag: "* HttpOnly secure"
 nginx_ssl_prefer_server_ciphers: "on"
-nginx_ssl_protocols: "TLSv1.2"
+nginx_ssl_protocols: "TLSv1.2 TLSv1.3"
 nginx_ssl_ciphers: "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256"
 nginx_ssl_session_tickets: "off"
 nginx_dh_size: "2048"
