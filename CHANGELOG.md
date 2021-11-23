@@ -1,14 +1,15 @@
 # Changelog
 
-## [7.13.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.0) (2021-11-15)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.12.0...7.13.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.12.0...HEAD)
 
 **Implemented enhancements:**
 
 - os\_hardening: Provide a whitelist for yum repositories with non-signed RPMs [\#485](https://github.com/dev-sec/ansible-collection-hardening/issues/485)
 - Disable ctrl-alt-del key combination [\#496](https://github.com/dev-sec/ansible-collection-hardening/pull/496) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
 - implement sysctl-34 - link protection settings [\#494](https://github.com/dev-sec/ansible-collection-hardening/pull/494) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Add whitelist option for yum repository files [\#487](https://github.com/dev-sec/ansible-collection-hardening/pull/487) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([darxriggs](https://github.com/darxriggs))
 - Add TLSv1.3 to nginx default configuration [\#470](https://github.com/dev-sec/ansible-collection-hardening/pull/470) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([ksaadDE](https://github.com/ksaadDE))
 
 **Closed issues:**
@@ -21,7 +22,6 @@
 - add old role names to tags in Galaxy [\#495](https://github.com/dev-sec/ansible-collection-hardening/pull/495) ([schurzi](https://github.com/schurzi))
 - update minimum ansible version for roles [\#493](https://github.com/dev-sec/ansible-collection-hardening/pull/493) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - revive old tests with custom ssh settings [\#491](https://github.com/dev-sec/ansible-collection-hardening/pull/491) ([rndmh3ro](https://github.com/rndmh3ro))
-- Add whitelist option for yum repository files [\#487](https://github.com/dev-sec/ansible-collection-hardening/pull/487) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([darxriggs](https://github.com/darxriggs))
 
 ## [7.12.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.12.0) (2021-10-21)
 
