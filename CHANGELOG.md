@@ -1,8 +1,16 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
+## [7.13.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.1) (2021-11-23)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.12.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.0...7.13.1)
+
+**Closed issues:**
+
+- Unable to use 7.13.0 Release [\#503](https://github.com/dev-sec/ansible-collection-hardening/issues/503)
+
+## [7.13.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.0) (2021-11-15)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.12.0...7.13.0)
 
 **Implemented enhancements:**
 
