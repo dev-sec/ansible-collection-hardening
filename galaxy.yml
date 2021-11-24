@@ -1,6 +1,6 @@
 namespace: devsec
 name: hardening
-version: 7.12.0
+version: 7.13.2
 readme: README.md
 authors:
   - dev-sec <hello@dev-sec.io>
@@ -17,11 +17,11 @@ tags:
   - nginx
   - mysql
   - openssh
-  - ansible-apache-hardening
-  - mysql-hardening
-  - nginx-hardening
-  - os-hardening
-  - ssh-hardening
+  - apache_hardening
+  - mysql_hardening
+  - nginx_hardening
+  - os_hardening
+  - ssh_hardening
 dependencies:
   ansible.posix: '>=1.0.0'
   community.crypto: '>=1.0.0'

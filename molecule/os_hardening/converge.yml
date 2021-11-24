@@ -28,6 +28,7 @@
     os_filesystem_whitelist: []
     os_ctrlaltdel_disabled: true
     os_profile_security_enabled: false
+    os_yum_repo_file_whitelist: ['foo.repo']
     sysctl_config:
       net.ipv4.ip_forward: 0
       net.ipv6.conf.all.forwarding: 0

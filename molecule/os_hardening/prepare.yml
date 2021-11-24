@@ -34,13 +34,13 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: install packages
+    - name: install required tools on Arch
       pacman:
         name:
-          - "awk"
+          - awk
         state: present
         update_cache: true
-      ignore_errors: true
+      when: ansible_facts.os_family == 'Archlinux'
 
     - name: install required tools on RHEL
       yum:
@@ -54,3 +54,7 @@
     - name: create recursing symlink to test minimize access
       shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
       changed_when: false
+
+    - name: include YUM prepare tasks
+      include: prepare_yum.yml
+      when: ansible_facts.os_family == 'RedHat'

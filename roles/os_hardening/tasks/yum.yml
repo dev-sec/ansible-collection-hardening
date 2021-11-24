@@ -9,7 +9,7 @@
     - 'CentOS-Vault'
   when: os_security_packages_clean | bool
 
-- name: Get yum-repository-files
+- name: Get yum repository files
   find:
     paths: '/etc/yum.repos.d'
     patterns: '*.repo'
@@ -18,14 +18,14 @@
 # for the 'default([])' see here:
 # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
 # https://stackoverflow.com/questions/37067827/ansible-deprecation-warning-for-undefined-variable-despite-when-clause
-- name: Activate gpg-check for yum-repository-files
+- name: Activate gpg-check for yum repository files
   replace:
-    path: '{{ item.path }}'
+    path: '{{ item }}'
     regexp: '^\s*gpgcheck.*'
     replace: 'gpgcheck=1'
     mode: '0644'
   with_items:
-    - '{{ yum_repos.files | default([]) }}'
+    - "{{ yum_repos.files | default([]) | map(attribute='path') | difference(os_yum_repo_file_whitelist | map('regex_replace', '^', '/etc/yum.repos.d/') | list) }}"
 
 # failed_when is needed because by default replace module will fail if the file doesn't exists.
 # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.

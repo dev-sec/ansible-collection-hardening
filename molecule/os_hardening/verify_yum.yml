@@ -1,0 +1,8 @@
+---
+- name: verify 'gpgcheck' was not enabled for 'foo' repository (in whitelist)
+  command: grep -e 'gpgcheck\s*=\s*0' /etc/yum.repos.d/foo.repo
+  changed_when: false
+
+- name: verify 'gpgcheck' was enabled for 'bar' repository (not in whitelist)
+  command: grep -e 'gpgcheck\s*=\s*1' /etc/yum.repos.d/bar.repo
+  changed_when: false
