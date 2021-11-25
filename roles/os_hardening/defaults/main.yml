@@ -69,6 +69,12 @@ sysctl_config:
   # filenames (generally seen as "/tmp file race" vulnerabilities).
   fs.protected_hardlinks: 1
   fs.protected_symlinks: 1
+  
+  # For more info on the following settings see: https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html
+  # Restrict FIFO special device creation behavior
+  fs.protected_fifos: 1
+  # Restrict regular files creation behavior
+  fs.protected_regular: 2
 
   # Prevent core dumps with SUID. These are usually only
   # needed by developers and may contain sensitive information. | sysctl-31
@@ -289,16 +295,6 @@ sysctl_config:
   # Reduce attack surface by disabling unprivileged user namespaces.
   # Mitigates CVE-2021-33909 and other exploits.
   kernel.unprivileged_userns_clone: 0
-
-  # For more info on the following settings see: https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html
-  # Restrict FIFO special device creation behavior
-  fs.protected_fifos: 1
-  # Restrict hardlink creation behavior
-  fs.protected_hardlinks: 1
-  # Restrict regular files creation behavior
-  fs.protected_regular: 2
-  # Restrict symlink following behavior
-  fs.protected_symlinks: 1
 
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
