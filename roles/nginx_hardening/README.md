@@ -61,8 +61,8 @@ It works with the following nginx-roles, including, but not limited to:
   - Default: `default 5`
   - Description: Sets the shared memory zone and the maximum allowed number of connections for a given key value.
 - [nginx_add_header][]
-  - Default: `[ "X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"" ]`
-  - Description:Adds the specified field to a response header provided that the response code equals 200, 201, 204, 206, 301, 302, 303, 304, or 307.
+  - Default: `[ "X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"", Content-Security-Policy \"script-src 'self'; object-src 'self'\" ]`
+  - Description: Adds the specified field to a response header provided that the response code equals 200, 201, 204, 206, 301, 302, 303, 304, or 307.
 - [nginx_ssl_protocols][]
   - Default: `TLSv1.2`
   - Description: Specifies the SSL protocol which should be used.
