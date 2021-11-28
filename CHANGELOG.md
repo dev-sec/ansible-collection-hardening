@@ -1,8 +1,12 @@
 # Changelog
 
-## [7.13.3](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.3) (2021-11-26)
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-28)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.13.3)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
+
+**Implemented enhancements:**
+
+- Updated dh\_params to 4096 [\#501](https://github.com/dev-sec/ansible-collection-hardening/pull/501) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([ksaadDE](https://github.com/ksaadDE))
 
 **Fixed bugs:**
 
