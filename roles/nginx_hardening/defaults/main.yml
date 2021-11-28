@@ -11,15 +11,15 @@ nginx_client_header_timeout: "10"
 nginx_send_timeout: "10"
 nginx_limit_conn_zone: "$binary_remote_addr zone=default:10m"
 nginx_limit_conn: "default 5"
-nginx_add_header: [
-# vvoid clickjacking
-"X-Frame-Options SAMEORIGIN",
-# disable content-type sniffing
-"X-Content-Type-Options nosniff",
-# XSS filter
-"X-XSS-Protection \"1; mode=block\"",
-"Strict-Transport-Security max-age=15768000",
-"Content-Security-Policy \"script-src 'self'; object-src 'self'\"" ]
+nginx_add_header:
+  # avoid clickjacking
+  - X-Frame-Options SAMEORIGIN
+  # disable content-type sniffing
+  - X-Content-Type-Options nosniff
+  # XSS filter
+  - X-XSS-Protection "1; mode=block"
+  - Strict-Transport-Security max-age=15768000
+  - Content-Security-Policy "script-src 'self'; object-src 'self'"
 
 nginx_set_cookie_flag: "* HttpOnly secure"
 nginx_ssl_prefer_server_ciphers: "on"
