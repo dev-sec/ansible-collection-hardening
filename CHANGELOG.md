@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-28)
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-29)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
 
@@ -14,10 +14,12 @@
 
 **Closed issues:**
 
+- Installing collection at tag 7.13.2 is defaulting to 7.12.0 each time [\#508](https://github.com/dev-sec/ansible-collection-hardening/issues/508)
 - Duplication of sysctl default parameter fs.protected\_hardlinks and fs.protected\_symlinks [\#502](https://github.com/dev-sec/ansible-collection-hardening/issues/502)
 
 **Merged pull requests:**
 
+- prettify nginx options [\#509](https://github.com/dev-sec/ansible-collection-hardening/pull/509) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update nginx\_add\_header README to match default [\#506](https://github.com/dev-sec/ansible-collection-hardening/pull/506) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([duffn](https://github.com/duffn))
 
 ## [7.13.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.2) (2021-11-23)
