@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-29)
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
 
@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- change hidepid mount task state to mounted [\#510](https://github.com/dev-sec/ansible-collection-hardening/pull/510) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([alegrey91](https://github.com/alegrey91))
 - prettify nginx options [\#509](https://github.com/dev-sec/ansible-collection-hardening/pull/509) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update nginx\_add\_header README to match default [\#506](https://github.com/dev-sec/ansible-collection-hardening/pull/506) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([duffn](https://github.com/duffn))
 
