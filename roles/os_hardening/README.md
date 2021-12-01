@@ -226,9 +226,6 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_home_folder_users`
   - Default: `lost+found`
   - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
-- `os_coredumps_disabled`
-  - Default: `false`
-  - Description: Set to true to disable coredumps.
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.

@@ -341,9 +341,6 @@ os_selinux_policy: targeted
 # Mount options for proc in /etc/fstab.
 proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
 
-# Set to true to disable coredumps.
-os_coredumps_disabled: false
-
 # Set to false to disable installing and configuring cron.
 os_cron_enabled: true
 
