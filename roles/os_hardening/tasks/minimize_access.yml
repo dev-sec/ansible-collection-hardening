@@ -79,4 +79,4 @@
     src: proc
     fstype: proc
     opts: '{{ proc_mnt_options }}'
-    state: present
+    state: mounted

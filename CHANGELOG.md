@@ -1,5 +1,33 @@
 # Changelog
 
+=======
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-11-30)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
+
+**Implemented enhancements:**
+
+- Updated dh\_params to 4096 [\#501](https://github.com/dev-sec/ansible-collection-hardening/pull/501) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([ksaadDE](https://github.com/ksaadDE))
+
+**Fixed bugs:**
+
+- Fix duplicate sysctl config in fs [\#505](https://github.com/dev-sec/ansible-collection-hardening/pull/505) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([tekicat](https://github.com/tekicat))
+
+**Closed issues:**
+
+- Installing collection at tag 7.13.2 is defaulting to 7.12.0 each time [\#508](https://github.com/dev-sec/ansible-collection-hardening/issues/508)
+- Duplication of sysctl default parameter fs.protected\_hardlinks and fs.protected\_symlinks [\#502](https://github.com/dev-sec/ansible-collection-hardening/issues/502)
+
+**Merged pull requests:**
+
+- change hidepid mount task state to mounted [\#510](https://github.com/dev-sec/ansible-collection-hardening/pull/510) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([alegrey91](https://github.com/alegrey91))
+- prettify nginx options [\#509](https://github.com/dev-sec/ansible-collection-hardening/pull/509) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- Update nginx\_add\_header README to match default [\#506](https://github.com/dev-sec/ansible-collection-hardening/pull/506) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([duffn](https://github.com/duffn))
+
+## [7.13.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.2) (2021-11-23)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.1...7.13.2)
+
 ## [7.13.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.1) (2021-11-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.0...7.13.1)
