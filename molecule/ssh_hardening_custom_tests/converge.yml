@@ -2,6 +2,9 @@
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
   hosts: all
   become: true
+  tags:
+    - custom_tests
+    - never
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
@@ -55,7 +58,7 @@
       - 22
       - 222
     ssh_server_match_address:
-      - address: '192.168.1.0/24'
+      - address: '192.168.1.1/24'
         rules:
           - 'AllowTcpForwarding yes'
           - 'AllowAgentForwarding no'
