@@ -52,7 +52,6 @@
           - "openssh"
       when: ansible_facts.os_family == 'Suse'
 
-<<<<<<< HEAD
     - name: install required tools on Arch
       pacman:
         name:
@@ -61,16 +60,6 @@
         state: present
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
-=======
-    - name: install packages
-      pacman:
-        name:
-          - "openssh"
-          - "awk"
-        state: present
-        update_cache: true
-      ignore_errors: true
->>>>>>> 3877a9b (fix comment)
 
     - name: created needed directory
       file:
