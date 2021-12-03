@@ -63,7 +63,6 @@ jobs:
             export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
           fi
           molecule --version
-          molecule test -s ssh_hardening_custom_tests
           molecule test -s ssh_hardening
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
