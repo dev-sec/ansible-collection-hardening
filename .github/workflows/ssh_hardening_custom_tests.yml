@@ -65,6 +65,7 @@ jobs:
           molecule --version
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           molecule converge -s ssh_hardening_custom_tests
 =======
            mol --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
@@ -72,6 +73,9 @@ jobs:
 =======
           mol --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
 >>>>>>> 3877a9b (fix comment)
+=======
+          molecule converge -s ssh_hardening_custom_tests
+>>>>>>> f09b2b6 (fix molecule call)
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
