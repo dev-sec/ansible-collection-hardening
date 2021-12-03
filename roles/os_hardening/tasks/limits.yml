@@ -27,7 +27,7 @@
       modification_time: preserve
       access_time: preserve
 
-  when: ansible_service_mgr != "systemd" and not os_security_kernel_enable_core_dump | bool
+  when: not os_security_kernel_enable_core_dump | bool
 
 - name: Remove 10.hardcore.conf config file
   file:
