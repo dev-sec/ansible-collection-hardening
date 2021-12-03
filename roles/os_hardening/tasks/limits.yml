@@ -33,7 +33,7 @@
   file:
     path: /etc/security/limits.d/10.hardcore.conf
     state: absent
-  when: ansible_service_mgr != "systemd" and os_security_kernel_enable_core_dump | bool
+  when: not os_security_kernel_enable_core_dump | bool
 
 - block:
   - name: create coredump.conf.d-directory if it does not exist
