@@ -13,3 +13,29 @@
     path: /etc/profile.d/pinerolo_profile.sh
     state: absent
   when: os_security_kernel_enable_core_dump | bool
+
+
+- name: Add env security to profile
+  template:
+    src: 'etc/profile.d/os-security.j2'
+    dest: '/etc/profile.d/os-security.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+  when: os_profile_security_enabled | bool
+
+
+- name: Add env security to profile
+  template:
+    src: 'etc/profile.d/os-security.sh.j2'
+    dest: '/etc/profile.d/os-security.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+  when: os_security_auto_logout > "0"
+
+- name: Remove env os security to profile.d
+  file:
+    path: /etc/profile.d/os-security.sh
+    state: absent
+  when: os_security_auto_logout == 0

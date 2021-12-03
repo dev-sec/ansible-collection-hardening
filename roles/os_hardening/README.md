@@ -250,6 +250,9 @@ We know that this is the case on Raspberry Pi.
 - `os_profile_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring profile.
+- `os_security_auto_logout`
+  - Default: `0`
+  - Description: Set timeout in seconds for logout users automatically after time.
 - `os_securetty_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring securetty.
