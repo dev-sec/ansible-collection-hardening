@@ -1,5 +1,6 @@
 ---
-- block:
+- name: disable coredumps
+  block:
   - name: Create limits.d-directory if it does not exist | sysctl-31a, sysctl-31b
     file:
       path: '/etc/security/limits.d'
@@ -27,15 +28,6 @@
       modification_time: preserve
       access_time: preserve
 
-  when: not os_security_kernel_enable_core_dump | bool
-
-- name: Remove 10.hardcore.conf config file
-  file:
-    path: /etc/security/limits.d/10.hardcore.conf
-    state: absent
-  when: os_security_kernel_enable_core_dump | bool
-
-- block:
   - name: create coredump.conf.d-directory if it does not exist
     file:
       path: '/etc/systemd/coredump.conf.d'
@@ -43,6 +35,7 @@
       group: root
       mode: 0755
       state: directory
+    when: ansible_service_mgr == "systemd"
 
   - name: create custom.conf for disabling coredumps
     template:
@@ -51,21 +44,29 @@
       owner: root
       group: root
       mode: 0644
+    when: ansible_service_mgr == "systemd"
 
   - name: Reload daemon
     systemd:
       daemon_reload: yes
+    when: ansible_service_mgr == "systemd"
 
   when: not os_security_kernel_enable_core_dump | bool
 
-- block:
+- name: enable coredumps
+  block:
   - name: Remove coredump.conf.d directory with files
     file:
       path: /etc/systemd/coredump.conf.d
       state: absent
+    when: ansible_service_mgr == "systemd"
 
   - name: Reload daemon
     systemd:
       daemon_reload: yes
 
+  - name: Remove 10.hardcore.conf config file
+    file:
+      path: /etc/security/limits.d/10.hardcore.conf
+      state: absent
   when: os_security_kernel_enable_core_dump | bool
