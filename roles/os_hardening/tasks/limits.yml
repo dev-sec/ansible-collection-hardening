@@ -56,7 +56,7 @@
     systemd:
       daemon_reload: yes
 
-  when: ansible_service_mgr == "systemd" and os_security_kernel_enable_core_dump | bool
+  when: os_security_kernel_enable_core_dump | bool
 
 - block:
   - name: Remove coredump.conf.d directory with files
