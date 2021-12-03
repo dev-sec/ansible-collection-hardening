@@ -63,11 +63,7 @@ jobs:
             export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
           fi
           molecule --version
-<<<<<<< HEAD
-          molecule converge -s ssh_hardening_custom_tests
-=======
-           mol --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
->>>>>>> 55c83ac (use second molecule scenario for custom ssh tests)
+          mol --base-config molecule/ssh_hardening/molecule.yml converge -s ssh_hardening_custom_tests
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
