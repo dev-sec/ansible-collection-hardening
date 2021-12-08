@@ -45,11 +45,7 @@
       group: root
       mode: 0644
     when: ansible_service_mgr == "systemd"
-
-  - name: Reload daemon
-    systemd:
-      daemon_reload: yes
-    when: ansible_service_mgr == "systemd"
+    notify: Reload daemon
 
   when: not os_security_kernel_enable_core_dump | bool
 
