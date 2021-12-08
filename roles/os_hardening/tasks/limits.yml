@@ -34,3 +34,38 @@
     path: /etc/security/limits.d/10.hardcore.conf
     state: absent
   when: os_security_kernel_enable_core_dump | bool
+
+- block:
+  - name: create coredump.conf.d-directory if it does not exist
+    file:
+      path: '/etc/systemd/coredump.conf.d'
+      owner: root
+      group: root
+      mode: 0755
+      state: directory
+
+  - name: create custom.conf for disabling coredumps
+    template:
+      src: 'etc/systemd/coredump.conf.d/coredumps.conf.j2'
+      dest: '/etc/systemd/coredump.conf.d/custom.conf'
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Reload daemon
+    systemd:
+      daemon_reload: yes
+
+  when: not os_security_kernel_enable_core_dump | bool
+
+- block:
+  - name: Remove coredump.conf.d directory with files
+    file:
+      path: /etc/systemd/coredump.conf.d
+      state: absent
+
+  - name: Reload daemon
+    systemd:
+      daemon_reload: yes
+
+  when: os_security_kernel_enable_core_dump | bool
