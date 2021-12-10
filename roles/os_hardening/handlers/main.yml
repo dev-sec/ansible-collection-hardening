@@ -8,6 +8,6 @@
     warn: false  # sadly 'service' module fails in that case also by using 'use: service'
   when: molecule_yml is not defined  # restarting auditd in a container does not work
 
-- name: Reload daemon
+- name: Reload systemd
   systemd:
     daemon_reload: yes
