@@ -7,3 +7,7 @@
     cmd: 'service auditd restart'  # rhel: see: https://access.redhat.com/solutions/2664811
     warn: false  # sadly 'service' module fails in that case also by using 'use: service'
   when: molecule_yml is not defined  # restarting auditd in a container does not work
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
