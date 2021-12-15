@@ -14,28 +14,17 @@
     state: absent
   when: os_security_kernel_enable_core_dump | bool
 
-
-- name: Add env security to profile
+- name: Add autologout to profile env
   template:
-    src: 'etc/profile.d/os-security.j2'
-    dest: '/etc/profile.d/os-security.sh'
-    owner: 'root'
-    group: 'root'
-    mode: '0750'
-  when: os_profile_security_enabled | bool
-
-
-- name: Add env security to profile
-  template:
-    src: 'etc/profile.d/os-security.sh.j2'
-    dest: '/etc/profile.d/os-security.sh'
+    src: 'etc/profile.d/tmout.sh.j2'
+    dest: '/etc/profile.d/tmout.sh'
     owner: 'root'
     group: 'root'
     mode: '0750'
   when: os_security_auto_logout > "0"
 
-- name: Remove env os security to profile.d
+- name: Remove tmout script from profile.d
   file:
-    path: /etc/profile.d/os-security.sh
+    path: /etc/profile.d/tmout.sh
     state: absent
   when: os_security_auto_logout == 0
