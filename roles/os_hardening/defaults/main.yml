@@ -364,6 +364,9 @@ os_profile_enabled: true
 # Set to false to disable installing and configuring securetty.
 os_securetty_enabled: true
 
+# Set timeout in seconds for logout users automatically after time. Setting this to `0` disables the timeout.
+os_security_auto_logout: 0
+
 # Set to false to disable installing and configuring sysctl.
 os_sysctl_enabled: true
 
