@@ -1,31 +1,26 @@
 # Changelog
 
-## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-12-16)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...HEAD)
 
 **Implemented enhancements:**
 
 - Add option to set timeout in seconds to logout users [\#516](https://github.com/dev-sec/ansible-collection-hardening/pull/516) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
 - add feature to disable coredump to limit task [\#511](https://github.com/dev-sec/ansible-collection-hardening/pull/511) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
+- change hidepid mount task state to mounted [\#510](https://github.com/dev-sec/ansible-collection-hardening/pull/510) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([alegrey91](https://github.com/alegrey91))
+- prettify nginx options [\#509](https://github.com/dev-sec/ansible-collection-hardening/pull/509) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- Update nginx\_add\_header README to match default [\#506](https://github.com/dev-sec/ansible-collection-hardening/pull/506) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([duffn](https://github.com/duffn))
 - Updated dh\_params to 4096 [\#501](https://github.com/dev-sec/ansible-collection-hardening/pull/501) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([ksaadDE](https://github.com/ksaadDE))
 
 **Fixed bugs:**
 
-- Fix duplicate sysctl config in fs [\#505](https://github.com/dev-sec/ansible-collection-hardening/pull/505) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([tekicat](https://github.com/tekicat))
-
-**Closed issues:**
-
-- Roll back the changes [\#512](https://github.com/dev-sec/ansible-collection-hardening/issues/512)
-- Installing collection at tag 7.13.2 is defaulting to 7.12.0 each time [\#508](https://github.com/dev-sec/ansible-collection-hardening/issues/508)
 - Duplication of sysctl default parameter fs.protected\_hardlinks and fs.protected\_symlinks [\#502](https://github.com/dev-sec/ansible-collection-hardening/issues/502)
+- Fix duplicate sysctl config in fs [\#505](https://github.com/dev-sec/ansible-collection-hardening/pull/505) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([tekicat](https://github.com/tekicat))
 
 **Merged pull requests:**
 
 - Feature coredump [\#513](https://github.com/dev-sec/ansible-collection-hardening/pull/513) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- change hidepid mount task state to mounted [\#510](https://github.com/dev-sec/ansible-collection-hardening/pull/510) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([alegrey91](https://github.com/alegrey91))
-- prettify nginx options [\#509](https://github.com/dev-sec/ansible-collection-hardening/pull/509) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
-- Update nginx\_add\_header README to match default [\#506](https://github.com/dev-sec/ansible-collection-hardening/pull/506) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([duffn](https://github.com/duffn))
 
 ## [7.13.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.13.2) (2021-11-23)
 
