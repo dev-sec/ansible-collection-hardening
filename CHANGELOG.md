@@ -1,11 +1,12 @@
 # Changelog
 
-## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-12-10)
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-12-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
 
 **Implemented enhancements:**
 
+- Add option to set timeout in seconds to logout users [\#516](https://github.com/dev-sec/ansible-collection-hardening/pull/516) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
 - add feature to disable coredump to limit task [\#511](https://github.com/dev-sec/ansible-collection-hardening/pull/511) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
 - Updated dh\_params to 4096 [\#501](https://github.com/dev-sec/ansible-collection-hardening/pull/501) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([ksaadDE](https://github.com/ksaadDE))
 
