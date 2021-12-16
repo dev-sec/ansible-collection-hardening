@@ -13,3 +13,11 @@
     path: /etc/profile.d/pinerolo_profile.sh
     state: absent
   when: os_security_kernel_enable_core_dump | bool
+
+- name: Add autologout to profile env
+  template:
+    src: 'etc/profile.d/tmout.sh.j2'
+    dest: '/etc/profile.d/tmout.sh'
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
