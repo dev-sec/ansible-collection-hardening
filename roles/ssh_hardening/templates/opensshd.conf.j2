@@ -169,6 +169,11 @@ AllowGroups {{ ssh_allow_groups }}
 AuthorizedKeysFile {{ ssh_authorized_keys_file }}
 
 {% endif %}
+{% if ssh_authorized_keys_command %}
+AuthorizedKeysCommand {{ ssh_authorized_keys_command }}
+AuthorizedKeysCommandUser {{ ssh_authorized_keys_command_user }}
+
+{% endif %}
 {% if ssh_trusted_user_ca_keys_file %}
 TrustedUserCAKeys {{ ssh_trusted_user_ca_keys_file }}
 {% if ssh_authorized_principals_file %}

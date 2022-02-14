@@ -115,6 +115,12 @@ ssh_allow_groups: ''                # sshd
 # change default file that contains the public keys that can be used for user authentication.
 ssh_authorized_keys_file: ''        # sshd
 
+# if specified, this program will be used to look up the user's public keys that can be used for user authentication.
+ssh_authorized_keys_command: ''
+
+# specifies the user under whose account the AuthorizedKeysCommand is run.
+ssh_authorized_keys_command_user: 'nobody'
+
 # specifies the file containing trusted certificate authorities public keys used to sign user certificates.
 ssh_trusted_user_ca_keys_file: ''   # sshd
 
