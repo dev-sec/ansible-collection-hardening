@@ -393,15 +393,15 @@ os_sha_crypt_max_rounds: "640000"
 
 # Define /tmp is a mountpoint.
 # If it is not, harden /tmp folder permissions
-tmp_mount_enabled: false
+tmp_mnt_enabled: false
 
 # Define source mountpoint for folder /tmp
 # example: /dev/vg_system/lv_tmp
-tmp_mount_source: ""
+tmp_mnt_source: ""
 
 # Define filesystem for tmp mount
 # default: ext4
-tmp_mount_filesystem: "ext4"
+tmp_mnt_filesystem: "ext4"
 
 # Mount options for /tmp in /etc/fstab.
 tmp_mnt_options: 'rw,nosuid,nodev,noexec,relatime'

@@ -88,7 +88,7 @@
     fstype: proc
     opts: '{{ tmp_mnt_options }}'
     state: mounted
-  when: tmp_mount_enabled | bool
+  when: tmp_mnt_enabled | bool
 
 - name: Optimize permissions for /tmp directory
   file:
@@ -96,4 +96,4 @@
     owner: 'root'
     group: 'root'
     mode: '1777'
-  when: not tmp_mount_enabled | bool
+  when: not tmp_mnt_enabled | bool
