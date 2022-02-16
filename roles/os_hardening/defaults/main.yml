@@ -390,3 +390,19 @@ os_selinux_enabled: true
 # The values must be inside the 1000-999999999 range.
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
+
+# Define /tmp is a mountpoint.
+# If it is not, harden /tmp folder permissions
+tmp_mount_enabled: false
+
+# Define source mountpoint for folder /tmp
+# example: /dev/vg_system/lv_tmp
+tmp_mount_source: ""
+
+# Define filesystem for tmp mount
+# default: ext4
+tmp_mount_filesystem: "ext4"
+
+# Mount options for /tmp in /etc/fstab.
+tmp_mnt_options: 'rw,nosuid,nodev,noexec,relatime'
+
