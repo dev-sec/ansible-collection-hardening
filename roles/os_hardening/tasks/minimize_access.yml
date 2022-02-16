@@ -96,4 +96,3 @@
     owner: 'root'
     group: 'root'
     mode: '{{ tmp_dir_mode }}'
-  when: not tmp_mnt_enabled | bool
