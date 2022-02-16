@@ -95,5 +95,5 @@
     dest: /tmp
     owner: 'root'
     group: 'root'
-    mode: '1777'
+    mode: '{{ tmp_dir_mode }}'
   when: not tmp_mnt_enabled | bool

@@ -111,6 +111,9 @@ os_security_suid_sgid_system_whitelist:
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
 
+# Define /tmp permissions
+tmp_dir_mode: '1777'
+
 # Define /tmp is a mountpoint.
 # If it is not, harden /tmp folder permissions
 tmp_mnt_enabled: false

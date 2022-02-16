@@ -391,6 +391,9 @@ os_selinux_enabled: true
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
 
+# Define /tmp permissions
+tmp_dir_mode: '1777'
+
 # Define /tmp is a mountpoint.
 # If it is not, harden /tmp folder permissions
 tmp_mnt_enabled: false
