@@ -280,6 +280,21 @@ We know that this is the case on Raspberry Pi.
 - `os_sha_crypt_max_rounds`
   - Default: `640000`
   - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+- `tmp_dir_mode`
+  - Default: '1777'
+  - Description: Define directory permissions of /tmp.
+- `tmp_mnt_enabled`
+  - Default: 'false'
+  - Description: Set to true to mount local disks to /tmp. You have to configure variable tmp_mnt_src to work.
+- `tmp_mnt_src`
+  - Default: ""
+  - Description: Source to mount /tmp. Manages /etc/fstab and does automatically remount with tmp_mnt_options.
+- `tmp_mnt_filesystem`
+  - Default: "ext4"
+  - Description: Filesystem information for /etc/fstab entry.
+- `tmp_mnt_options`
+  - Default: 'rw,nosuid,nodev,noexec,relatime'
+  - Description: Options for /etc/fstab entry to mount to /tmp.
 
 ## Packages
 
