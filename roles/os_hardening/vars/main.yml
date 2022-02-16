@@ -117,7 +117,7 @@ tmp_mnt_enabled: false
 
 # Define source mountpoint for folder /tmp
 # example: /dev/vg_system/lv_tmp
-tmp_mnt_source: ""
+tmp_mnt_src: ""
 
 # Define filesystem for tmp mount
 # default: ext4

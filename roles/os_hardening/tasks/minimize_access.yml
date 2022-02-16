@@ -85,7 +85,7 @@
   mount:
     path: /tmp
     src: '{{ tmp_mnt_src }}'
-    fstype: proc
+    fstype: '{{ tmp_mnt_filesystem }}'
     opts: '{{ tmp_mnt_options }}'
     state: mounted
   when: tmp_mnt_enabled | bool
