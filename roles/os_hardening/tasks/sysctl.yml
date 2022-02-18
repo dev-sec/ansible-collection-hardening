@@ -48,6 +48,17 @@
         sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
       when: sysctl_overwrite | default()
 
+    - name: Create a combined sysctl-dict if os-dependenct sysctls are defined
+      set_fact:
+        sysctl_config: '{{ sysctl_config | combine(sysctl_custom_config) }}'
+      when: sysctl_custom_config | default()
+
+    # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
+    - name: Create a combined sysctl-dict if os-dependent are defined
+      set_fact:
+        sysctl_config: '{{ sysctl_config | combine(sysctl_rhel_config) }}'
+      when: sysctl_rhel_config | default()
+
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
       sysctl:
         name: '{{ item.key }}'
@@ -57,37 +68,6 @@
         reload: true
         ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
-
-    - name: Change various sysctl-settings on Amazon Linux, look at the sysctl-vars file for documentation
-      sysctl:
-        name: '{{ item.key }}'
-        value: '{{ item.value }}'
-        state: present
-        reload: true
-        ignoreerrors: true
-      with_dict: '{{ sysctl_rhel_config }}'
-      when: ansible_facts.distribution == 'Amazon'
-
-    - name: Change various sysctl-settings on Debian, look at the sysctl-vars file for documentation
-      sysctl:
-        name: '{{ item.key }}'
-        value: '{{ item.value }}'
-        state: present
-        reload: true
-        ignoreerrors: true
-      with_dict: '{{ sysctl_debian_config }}'
-      when: ansible_facts.os_family == 'Debian'
-
-    - name: Change various sysctl-settings on Arch Linux, look at the sysctl-vars file for documentation
-      sysctl:
-        name: '{{ item.key }}'
-        value: '{{ item.value }}'
-        state: present
-        reload: true
-        ignoreerrors: true
-      with_dict: '{{ sysctl_arch_config }}'
-      when: ansible_facts.os_family == 'Archlinux'
-
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
 - name: Apply ufw defaults
