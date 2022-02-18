@@ -78,6 +78,16 @@
       with_dict: '{{ sysctl_debian_config }}'
       when: ansible_facts.os_family == 'Debian'
 
+    - name: Change various sysctl-settings on Arch Linux, look at the sysctl-vars file for documentation
+      sysctl:
+        name: '{{ item.key }}'
+        value: '{{ item.value }}'
+        state: present
+        reload: true
+        ignoreerrors: true
+      with_dict: '{{ sysctl_arch_config }}'
+      when: ansible_facts.os_family == 'Archlinux'
+
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
 - name: Apply ufw defaults
