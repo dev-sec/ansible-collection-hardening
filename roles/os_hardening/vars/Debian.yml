@@ -43,3 +43,9 @@ tally2_path: '/usr/share/pam-configs/tally2'
 passwdqc_path: '/usr/share/pam-configs/passwdqc'
 
 hidepid_option: '2'  # allowed values: 0, 1, 2
+
+sysctl_custom_config:
+  # Mitigation of vulnerability CVE-2021-33909
+  kernel.unprivileged_userns_clone: 0
+  # Mitigation of vulnerability CVE-2021-33910
+  kernel.unprivileged_bpf_disabled: 1

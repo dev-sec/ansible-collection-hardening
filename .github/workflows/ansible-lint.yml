@@ -30,6 +30,8 @@ jobs:
         # override-deps: |
         #   ansible==2.9
         #   ansible-lint==4.2.0
+        override-deps: |
+           rich>=9.5.1,<11.0.0
         # [optional]
         # Arguments to be passed to the ansible-lint
 

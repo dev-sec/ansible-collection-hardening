@@ -69,7 +69,7 @@ sysctl_config:
   # filenames (generally seen as "/tmp file race" vulnerabilities).
   fs.protected_hardlinks: 1
   fs.protected_symlinks: 1
-  
+
   # For more info on the following settings see: https://www.kernel.org/doc/html/latest/admin-guide/sysctl/fs.html
   # Restrict FIFO special device creation behavior
   fs.protected_fifos: 1
@@ -287,14 +287,6 @@ sysctl_config:
   # address-space fragmentation. | Tail-1
   vm.mmap_rnd_bits: 32
   vm.mmap_rnd_compat_bits: 16
-
-  # Disable unprivileged users from loading eBPF programs into the kernel.
-  # One of mitigations against CVE-2021-33909. | Tail-2
-  kernel.unprivileged_bpf_disabled: 1
-
-  # Reduce attack surface by disabling unprivileged user namespaces.
-  # Mitigates CVE-2021-33909 and other exploits.
-  kernel.unprivileged_userns_clone: 0
 
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
