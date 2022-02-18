@@ -43,13 +43,13 @@
 
 - name: Change sysctls
   block:
-    - name: Create a combined sysctl-dict if os-dependenct sysctls are defined
+    - name: Create a combined sysctl-dict if os-dependent sysctls are defined
       set_fact:
         sysctl_config: '{{ sysctl_config | combine(sysctl_custom_config) }}'
       when: sysctl_custom_config | default()
 
     # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
-    - name: Create a combined sysctl-dict if os-dependent are defined
+    - name: Create a combined sysctl-dict if os-dependent sysctls are defined
       set_fact:
         sysctl_config: '{{ sysctl_config | combine(sysctl_rhel_config) }}'
       when: sysctl_rhel_config | default()
