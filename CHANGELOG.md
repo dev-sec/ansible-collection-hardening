@@ -1,8 +1,21 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
+## [7.14.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.1) (2022-02-18)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.0...7.14.1)
+
+**Fixed bugs:**
+
+- move sysctls to debian specific vars [\#524](https://github.com/dev-sec/ansible-collection-hardening/pull/524) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Error when using the ssh\_hardening role [\#519](https://github.com/dev-sec/ansible-collection-hardening/issues/519)
+- No such file directory error triggered by the  kernel.unpriviliged\_userns\_clone configuration. [\#514](https://github.com/dev-sec/ansible-collection-hardening/issues/514)
+
+## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-12-16)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.13.2...7.14.0)
 
 **Implemented enhancements:**
 
