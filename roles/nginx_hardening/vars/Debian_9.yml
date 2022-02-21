@@ -1,0 +1,2 @@
+---
+nginx_ssl_protocols: "TLSv1.2"
