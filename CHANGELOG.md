@@ -7,6 +7,7 @@
 **Fixed bugs:**
 
 - debian 9's nginx doesn't support tls1.3 [\#526](https://github.com/dev-sec/ansible-collection-hardening/pull/526) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Change permissions of the tmout.sh file [\#520](https://github.com/dev-sec/ansible-collection-hardening/pull/520) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([abejotaR](https://github.com/abejotaR))
 
 **Closed issues:**
 
