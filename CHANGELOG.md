@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.14.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.2) (2022-02-21)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.1...7.14.2)
+
+**Closed issues:**
+
+- No such file directory error triggered by the  kernel.unpriviliged\_userns\_clone configuration. [\#514](https://github.com/dev-sec/ansible-collection-hardening/issues/514)
+
+**Merged pull requests:**
+
+- remove centos8 tests [\#525](https://github.com/dev-sec/ansible-collection-hardening/pull/525) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [7.14.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.1) (2022-02-18)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.0...7.14.1)
@@ -11,7 +23,6 @@
 **Closed issues:**
 
 - Error when using the ssh\_hardening role [\#519](https://github.com/dev-sec/ansible-collection-hardening/issues/519)
-- No such file directory error triggered by the  kernel.unpriviliged\_userns\_clone configuration. [\#514](https://github.com/dev-sec/ansible-collection-hardening/issues/514)
 
 ## [7.14.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.0) (2021-12-16)
 
