@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.1...7.14.2)
 
+**Fixed bugs:**
+
+- debian 9's nginx doesn't support tls1.3 [\#526](https://github.com/dev-sec/ansible-collection-hardening/pull/526) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Closed issues:**
 
 - No such file directory error triggered by the  kernel.unpriviliged\_userns\_clone configuration. [\#514](https://github.com/dev-sec/ansible-collection-hardening/issues/514)
