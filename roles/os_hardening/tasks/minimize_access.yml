@@ -96,7 +96,7 @@
     src: '{{ os_tmp_mnt_src }}'
     fstype: '{{ os_tmp_mnt_filesystem }}'
     opts: '{{ os_tmp_mnt_options }}'
-    state: remount
+    state: remounted
   when: os_tmp_mnt_enabled | bool
 
 - name: Harden permissions for /tmp directory
