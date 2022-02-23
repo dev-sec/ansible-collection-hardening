@@ -110,20 +110,3 @@ os_security_suid_sgid_system_whitelist:
 
 # system accounts that do not get their login disabled and pasword changed
 os_always_ignore_users: ['root', 'sync', 'shutdown', 'halt']
-# Define /tmp permissions
-os_tmp_dir_mode: '1777'
-
-# Define /tmp is a mountpoint.
-# If it is not, harden /tmp folder permissions
-os_tmp_mnt_enabled: false
-
-# Define source mountpoint for folder /tmp
-# example: /dev/vg_system/lv_tmp
-os_tmp_mnt_src: ""
-
-# Define filesystem for tmp mount
-# default: ext4
-os_tmp_mnt_filesystem: "ext4"
-
-# Mount options for /tmp in /etc/fstab.
-os_tmp_mnt_options: 'rw,nosuid,nodev,noexec,relatime'
