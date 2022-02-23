@@ -285,7 +285,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Define directory permissions of /tmp.
 - `tmp_mnt_enabled`
   - Default: 'false'
-  - Description: Set to true to mount local disks to /tmp. You have to configure variable tmp_mnt_src to work.
+  - Description: Set to true to mount /tmp as a separate filesystem. You have to configure variable `tmp_mnt_src` or the mount will fail.
 - `tmp_mnt_src`
   - Default: ""
   - Description: Source to mount /tmp. Manages /etc/fstab and does automatically remount with `tmp_mnt_options`.
