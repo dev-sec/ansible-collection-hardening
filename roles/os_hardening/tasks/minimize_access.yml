@@ -81,7 +81,7 @@
     opts: '{{ proc_mnt_options }}'
     state: mounted
 
-- name: Optimize mount options for tmp
+- name: Harden mount options for tmp
   mount:
     path: /tmp
     src: '{{ tmp_mnt_src }}'
