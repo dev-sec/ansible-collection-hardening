@@ -90,7 +90,7 @@
     state: mounted
   when: tmp_mnt_enabled | bool
 
-- name: Optimize permissions for /tmp directory
+- name: Harden permissions for /tmp directory
   file:
     dest: /tmp
     owner: 'root'
