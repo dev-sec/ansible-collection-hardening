@@ -288,7 +288,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to mount local disks to /tmp. You have to configure variable tmp_mnt_src to work.
 - `tmp_mnt_src`
   - Default: ""
-  - Description: Source to mount /tmp. Manages /etc/fstab and does automatically remount with tmp_mnt_options.
+  - Description: Source to mount /tmp. Manages /etc/fstab and does automatically remount with `tmp_mnt_options`.
 - `tmp_mnt_filesystem`
   - Default: "ext4"
   - Description: Filesystem information for /etc/fstab entry.
