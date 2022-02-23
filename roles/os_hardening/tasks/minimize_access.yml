@@ -87,7 +87,16 @@
     src: '{{ tmp_mnt_src }}'
     fstype: '{{ tmp_mnt_filesystem }}'
     opts: '{{ tmp_mnt_options }}'
-    state: mounted
+    state: present
+  when: tmp_mnt_enabled | bool
+
+- name: Harden mount options for tmp
+  mount:
+    path: /tmp
+    src: '{{ tmp_mnt_src }}'
+    fstype: '{{ tmp_mnt_filesystem }}'
+    opts: '{{ tmp_mnt_options }}'
+    state: remount
   when: tmp_mnt_enabled | bool
 
 - name: Harden permissions for /tmp directory
