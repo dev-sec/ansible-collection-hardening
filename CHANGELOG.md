@@ -1,6 +1,6 @@
 # Changelog
 
-## [7.14.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.2) (2022-02-21)
+## [7.14.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.2) (2022-02-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.1...7.14.2)
 
@@ -15,6 +15,7 @@
 
 **Merged pull requests:**
 
+- delete obsolete release drafts [\#530](https://github.com/dev-sec/ansible-collection-hardening/pull/530) ([schurzi](https://github.com/schurzi))
 - add waivers to skip controls [\#529](https://github.com/dev-sec/ansible-collection-hardening/pull/529) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - remove centos8 tests [\#525](https://github.com/dev-sec/ansible-collection-hardening/pull/525) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
