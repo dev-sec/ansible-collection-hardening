@@ -80,3 +80,228 @@
     fstype: proc
     opts: '{{ proc_mnt_options }}'
     state: mounted
+
+- name: Harden mount options for boot
+  mount:
+    path: /boot
+    src: '{{ os_mnt_boot_src }}'
+    fstype: '{{ os_mnt_boot_filesystem }}'
+    opts: '{{ os_mnt_boot_options }}'
+    state: present
+  when: os_mnt_boot_enabled | bool
+
+- name: Mount boot with hardened options
+  mount:
+    path: /boot
+    src: '{{ os_mnt_boot_src }}'
+    fstype: '{{ os_mnt_boot_filesystem }}'
+    opts: '{{ os_mnt_boot_options }}'
+    state: remounted
+  when: os_mnt_boot_enabled | bool
+
+- name: Harden permissions for /boot directory
+  file:
+    dest: /boot
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_boot_dir_mode }}'
+
+- name: Harden mount options for dev
+  mount:
+    path: /dev
+    src: '{{ os_mnt_dev_src }}'
+    fstype: '{{ os_mnt_dev_filesystem }}'
+    opts: '{{ os_mnt_dev_options }}'
+    state: present
+  when: os_mnt_dev_enabled | bool
+
+- name: Mount dev with hardened options
+  mount:
+    path: /dev
+    src: '{{ os_mnt_dev_src }}'
+    fstype: '{{ os_mnt_dev_filesystem }}'
+    opts: '{{ os_mnt_dev_options }}'
+    state: remounted
+  when: os_mnt_dev_enabled | bool
+
+- name: Harden permissions for /dev directory
+  file:
+    dest: /dev
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_dev_dir_mode }}'
+
+- name: Harden mount options for /dev/shm
+  mount:
+    path: /dev/shm
+    src: '{{ os_mnt_dev-shm_src }}'
+    fstype: '{{ os_mnt_dev-shm_filesystem }}'
+    opts: '{{ os_mnt_dev-shm_options }}'
+    state: present
+  when: os_mnt_dev-shm_enabled | bool
+
+- name: Mount dev with hardened options
+  mount:
+    path: /dev/shm
+    src: '{{ os_mnt_dev-shm_src }}'
+    fstype: '{{ os_mnt_dev-shm_filesystem }}'
+    opts: '{{ os_mnt_dev-shm_options }}'
+    state: remounted
+  when: os_mnt_dev-shm_enabled | bool
+
+- name: Harden permissions for /dev/shm directory
+  file:
+    dest: /dev/shm
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_dev-shm_dir_mode }}'
+
+- name: Harden mount options for home
+  mount:
+    path: /home
+    src: '{{ os_mnt_home_src }}'
+    fstype: '{{ os_mnt_home_filesystem }}'
+    opts: '{{ os_mnt_home_options }}'
+    state: present
+  when: os_mnt_home_enabled | bool
+
+- name: Mount home with hardened options
+  mount:
+    path: /home
+    src: '{{ os_mnt_home_src }}'
+    fstype: '{{ os_mnt_home_filesystem }}'
+    opts: '{{ os_mnt_home_options }}'
+    state: remounted
+  when: os_mnt_home_enabled | bool
+
+- name: Harden permissions for /home directory
+  file:
+    dest: /home
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_home_dir_mode }}'
+
+- name: Harden mount options for run
+  mount:
+    path: /run
+    src: '{{ os_mnt_run_src }}'
+    fstype: '{{ os_mnt_run_filesystem }}'
+    opts: '{{ os_mnt_run_options }}'
+    state: present
+  when: os_mnt_run_enabled | bool
+
+- name: Mount run with hardened options
+  mount:
+    path: /run
+    src: '{{ os_mnt_run_src }}'
+    fstype: '{{ os_mnt_run_filesystem }}'
+    opts: '{{ os_mnt_run_options }}'
+    state: remounted
+  when: os_mnt_run_enabled | bool
+
+- name: Harden permissions for /run directory
+  file:
+    dest: /run
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_run_dir_mode }}'
+
+- name: Harden mount options for var
+  mount:
+    path: /var
+    src: '{{ os_mnt_var_src }}'
+    fstype: '{{ os_mnt_var_filesystem }}'
+    opts: '{{ os_mnt_var_options }}'
+    state: present
+  when: os_mnt_var_enabled | bool
+
+- name: Mount var with hardened options
+  mount:
+    path: /var
+    src: '{{ os_mnt_var_src }}'
+    fstype: '{{ os_mnt_var_filesystem }}'
+    opts: '{{ os_mnt_var_options }}'
+    state: remounted
+  when: os_mnt_var_enabled | bool
+
+- name: Harden permissions for /var directory
+  file:
+    dest: /var
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_var_dir_mode }}'
+
+- name: Harden mount options for /var/log
+  mount:
+    path: /var/log
+    src: '{{ os_mnt_var-log_src }}'
+    fstype: '{{ os_mnt_var-log_filesystem }}'
+    opts: '{{ os_mnt_var-log_options }}'
+    state: present
+  when: os_mnt_var-log_enabled | bool
+
+- name: Mount /var/log with hardened options
+  mount:
+    path: /var/log
+    src: '{{ os_mnt_var-log_src }}'
+    fstype: '{{ os_mnt_var-log_filesystem }}'
+    opts: '{{ os_mnt_var-log_options }}'
+    state: remounted
+  when: os_mnt_var-log_enabled | bool
+
+- name: Harden permissions for /var/log directory
+  file:
+    dest: /var/log
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_var-log_dir_mode }}'
+
+- name: Harden mount options for /var/log/audit
+  mount:
+    path: /var/log/audit
+    src: '{{ os_mnt_var-log-audit_src }}'
+    fstype: '{{ os_mnt_var-log-audit_filesystem }}'
+    opts: '{{ os_mnt_var-log-audit_options }}'
+    state: present
+  when: os_mnt_var-log-audit_enabled | bool
+
+- name: Mount /var/log/audit with hardened options
+  mount:
+    path: /var/log/audit
+    src: '{{ os_mnt_var-log-audit_src }}'
+    fstype: '{{ os_mnt_var-log-audit_filesystem }}'
+    opts: '{{ os_mnt_var-log-audit_options }}'
+    state: remounted
+  when: os_mnt_var-log-audit_enabled | bool
+
+- name: Harden permissions for /var/log/audit directory
+  file:
+    dest: /var/log/audit
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_var-log-audit_dir_mode }}'
+
+- name: Harden mount options for /var/tmp
+  mount:
+    path: /var/tmp
+    src: '{{ os_mnt_var-tmp_src }}'
+    fstype: '{{ os_mnt_var-tmp_filesystem }}'
+    opts: '{{ os_mnt_var-tmp_options }}'
+    state: present
+  when: os_mnt_var-tmp_enabled | bool
+
+- name: Mount /var/tmp with hardened options
+  mount:
+    path: /var/tmp
+    src: '{{ os_mnt_var-tmp_src }}'
+    fstype: '{{ os_mnt_var-tmp_filesystem }}'
+    opts: '{{ os_mnt_var-tmp_options }}'
+    state: remounted
+  when: os_mnt_var-tmp_enabled | bool
+
+- name: Harden permissions for /var/tmp directory
+  file:
+    dest: /var/tmp
+    owner: 'root'
+    group: 'root'
+    mode: '{{ os_var-tmp_dir_mode }}'
