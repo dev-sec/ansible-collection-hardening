@@ -90,7 +90,7 @@
     state: present
   when: os_tmp_mnt_enabled | bool
 
-- name: Harden mount options for tmp
+- name: Mount tmp with hardened options
   mount:
     path: /tmp
     src: '{{ os_tmp_mnt_src }}'
