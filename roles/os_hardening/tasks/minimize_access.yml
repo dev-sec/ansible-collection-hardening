@@ -104,7 +104,7 @@
     dest: /boot
     owner: 'root'
     group: 'root'
-    mode: '{{ os_boot_dir_mode }}'
+    mode: '{{ os_mnt_boot_dir_mode }}'
 
 - name: Harden mount options for dev
   mount:
@@ -129,7 +129,7 @@
     dest: /dev
     owner: 'root'
     group: 'root'
-    mode: '{{ os_dev_dir_mode }}'
+    mode: '{{ os_mnt_dev_dir_mode }}'
 
 - name: Harden mount options for /dev/shm
   mount:
@@ -154,7 +154,7 @@
     dest: /dev/shm
     owner: 'root'
     group: 'root'
-    mode: '{{ os_dev-shm_dir_mode }}'
+    mode: '{{ os_mnt_dev-shm_dir_mode }}'
 
 - name: Harden mount options for home
   mount:
@@ -179,7 +179,7 @@
     dest: /home
     owner: 'root'
     group: 'root'
-    mode: '{{ os_home_dir_mode }}'
+    mode: '{{ os_mnt_home_dir_mode }}'
 
 - name: Harden mount options for run
   mount:
@@ -204,7 +204,7 @@
     dest: /run
     owner: 'root'
     group: 'root'
-    mode: '{{ os_run_dir_mode }}'
+    mode: '{{ os_mnt_run_dir_mode }}'
 
 - name: Harden mount options for var
   mount:
@@ -229,7 +229,7 @@
     dest: /var
     owner: 'root'
     group: 'root'
-    mode: '{{ os_var_dir_mode }}'
+    mode: '{{ os_mnt_var_dir_mode }}'
 
 - name: Harden mount options for /var/log
   mount:
@@ -254,7 +254,7 @@
     dest: /var/log
     owner: 'root'
     group: 'root'
-    mode: '{{ os_var-log_dir_mode }}'
+    mode: '{{ os_mnt_var-log_dir_mode }}'
 
 - name: Harden mount options for /var/log/audit
   mount:
@@ -279,7 +279,7 @@
     dest: /var/log/audit
     owner: 'root'
     group: 'root'
-    mode: '{{ os_var-log-audit_dir_mode }}'
+    mode: '{{ os_mnt_var-log-audit_dir_mode }}'
 
 - name: Harden mount options for /var/tmp
   mount:
@@ -304,4 +304,4 @@
     dest: /var/tmp
     owner: 'root'
     group: 'root'
-    mode: '{{ os_var-tmp_dir_mode }}'
+    mode: '{{ os_mnt_var-tmp_dir_mode }}'
