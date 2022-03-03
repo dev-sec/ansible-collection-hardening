@@ -105,3 +105,12 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_tmp_dir_mode }}'
+
+- name: Harden mount options for tmp
+  mount:
+    path: /tmp
+    src: '{{ os_tmp_mnt_src }}'
+    fstype: '{{ os_tmp_mnt_filesystem }}'
+    opts: '{{ os_tmp_mnt_options }}'
+    state: present
+  when: os_tmp_mnt_enabled | bool
