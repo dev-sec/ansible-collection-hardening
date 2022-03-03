@@ -404,7 +404,7 @@ os_mnt_dev_shm_src: "tmpfs"
 os_mnt_dev_shm_options: 'rw,nosuid,nodev,noexec'
 os_mnt_dev_shm_filesystem: "ext4"
 
-os_mnt_home_dir_mode: '0750'
+os_mnt_home_dir_mode: '0755'
 os_mnt_home_enabled: false
 os_mnt_home_src: ""
 os_mnt_home_options: 'rw,nosuid,nodev'
