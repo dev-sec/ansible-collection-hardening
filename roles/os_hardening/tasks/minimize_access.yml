@@ -81,15 +81,6 @@
     opts: '{{ proc_mnt_options }}'
     state: mounted
 
-- name: Harden mount options for tmp
-  mount:
-    path: /tmp
-    src: '{{ os_tmp_mnt_src }}'
-    fstype: '{{ os_tmp_mnt_filesystem }}'
-    opts: '{{ os_tmp_mnt_options }}'
-    state: present
-  when: os_tmp_mnt_enabled | bool
-
 - name: Mount tmp with hardened options
   mount:
     path: /tmp
