@@ -130,6 +130,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auth_pam_sssd_enable`
   - Default: `false` (on RHEL8/CentOS8/Fedora `true`)
   - Description: activate PAM auth support for sssd
+- `os_auth_pam_winbind_enable`
+  - Default: `false`
+  - Description: activate PAM auth support for winbind
 - `os_security_users_allow`
   - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
