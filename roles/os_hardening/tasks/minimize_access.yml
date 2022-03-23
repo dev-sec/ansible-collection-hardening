@@ -89,7 +89,7 @@
     opts: '{{ os_mnt_boot_options }}'
     state: '{{ item }}'
   when: os_mnt_boot_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
