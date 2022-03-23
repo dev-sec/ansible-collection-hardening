@@ -106,7 +106,7 @@
     src: '{{ os_mnt_dev_src }}'
     fstype: '{{ os_mnt_dev_filesystem }}'
     opts: '{{ os_mnt_dev_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_dev_enabled | bool
   list:
     - remounted
@@ -125,7 +125,7 @@
     src: '{{ os_mnt_dev_shm_src }}'
     fstype: '{{ os_mnt_dev_shm_filesystem }}'
     opts: '{{ os_mnt_dev_shm_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_dev_shm_enabled | bool
   list:
     - remounted
@@ -144,7 +144,7 @@
     src: '{{ os_mnt_home_src }}'
     fstype: '{{ os_mnt_home_filesystem }}'
     opts: '{{ os_mnt_home_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_home_enabled | bool
   list:
     - remounted
@@ -163,7 +163,7 @@
     src: '{{ os_mnt_run_src }}'
     fstype: '{{ os_mnt_run_filesystem }}'
     opts: '{{ os_mnt_run_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_run_enabled | bool
   list:
     - remounted
@@ -182,7 +182,7 @@
     src: '{{ os_mnt_var_src }}'
     fstype: '{{ os_mnt_var_filesystem }}'
     opts: '{{ os_mnt_var_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_var_enabled | bool
   list:
     - remounted
@@ -201,7 +201,7 @@
     src: '{{ os_mnt_var_log_src }}'
     fstype: '{{ os_mnt_var_log_filesystem }}'
     opts: '{{ os_mnt_var_log_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_var_log_enabled | bool
   list:
     - remounted
@@ -220,7 +220,7 @@
     src: '{{ os_mnt_var_log_audit_src }}'
     fstype: '{{ os_mnt_var_log_audit_filesystem }}'
     opts: '{{ os_mnt_var_log_audit_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_var_log_audit_enabled | bool
   list:
     - remounted
@@ -239,7 +239,7 @@
     src: '{{ os_mnt_var_tmp_src }}'
     fstype: '{{ os_mnt_var_tmp_filesystem }}'
     opts: '{{ os_mnt_var_tmp_options }}'
-    state: remounted
+    state: '{{ item }}'
   when: os_mnt_var_tmp_enabled | bool
   list:
     - remounted
