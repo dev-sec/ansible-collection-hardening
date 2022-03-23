@@ -108,7 +108,7 @@
     opts: '{{ os_mnt_dev_options }}'
     state: '{{ item }}'
   when: os_mnt_dev_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -127,7 +127,7 @@
     opts: '{{ os_mnt_dev_shm_options }}'
     state: '{{ item }}'
   when: os_mnt_dev_shm_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -146,7 +146,7 @@
     opts: '{{ os_mnt_home_options }}'
     state: '{{ item }}'
   when: os_mnt_home_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -165,7 +165,7 @@
     opts: '{{ os_mnt_run_options }}'
     state: '{{ item }}'
   when: os_mnt_run_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -184,7 +184,7 @@
     opts: '{{ os_mnt_var_options }}'
     state: '{{ item }}'
   when: os_mnt_var_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -203,7 +203,7 @@
     opts: '{{ os_mnt_var_log_options }}'
     state: '{{ item }}'
   when: os_mnt_var_log_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -222,7 +222,7 @@
     opts: '{{ os_mnt_var_log_audit_options }}'
     state: '{{ item }}'
   when: os_mnt_var_log_audit_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
@@ -241,7 +241,7 @@
     opts: '{{ os_mnt_var_tmp_options }}'
     state: '{{ item }}'
   when: os_mnt_var_tmp_enabled | bool
-  list:
+  loop:
     - remounted
     - present
 
