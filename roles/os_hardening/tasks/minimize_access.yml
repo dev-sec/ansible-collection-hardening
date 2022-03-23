@@ -89,15 +89,9 @@
     opts: '{{ os_mnt_boot_options }}'
     state: remounted
   when: os_mnt_boot_enabled | bool
-
-- name: Harden mount options for /boot
-  mount:
-    path: /boot
-    src: '{{ os_mnt_boot_src }}'
-    fstype: '{{ os_mnt_boot_filesystem }}'
-    opts: '{{ os_mnt_boot_options }}'
-    state: present
-  when: os_mnt_boot_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /boot directory
   file:
@@ -114,15 +108,9 @@
     opts: '{{ os_mnt_dev_options }}'
     state: remounted
   when: os_mnt_dev_enabled | bool
-
-- name: Harden mount options for /dev
-  mount:
-    path: /dev
-    src: '{{ os_mnt_dev_src }}'
-    fstype: '{{ os_mnt_dev_filesystem }}'
-    opts: '{{ os_mnt_dev_options }}'
-    state: present
-  when: os_mnt_dev_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /dev directory
   file:
@@ -139,15 +127,9 @@
     opts: '{{ os_mnt_dev_shm_options }}'
     state: remounted
   when: os_mnt_dev_shm_enabled | bool
-
-- name: Harden mount options for /dev/shm
-  mount:
-    path: /dev/shm
-    src: '{{ os_mnt_dev_shm_src }}'
-    fstype: '{{ os_mnt_dev_shm_filesystem }}'
-    opts: '{{ os_mnt_dev_shm_options }}'
-    state: present
-  when: os_mnt_dev_shm_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /dev/shm directory
   file:
@@ -164,15 +146,9 @@
     opts: '{{ os_mnt_home_options }}'
     state: remounted
   when: os_mnt_home_enabled | bool
-
-- name: Harden mount options for /home
-  mount:
-    path: /home
-    src: '{{ os_mnt_home_src }}'
-    fstype: '{{ os_mnt_home_filesystem }}'
-    opts: '{{ os_mnt_home_options }}'
-    state: present
-  when: os_mnt_home_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /home directory
   file:
@@ -189,15 +165,9 @@
     opts: '{{ os_mnt_run_options }}'
     state: remounted
   when: os_mnt_run_enabled | bool
-
-- name: Harden mount options for /run
-  mount:
-    path: /run
-    src: '{{ os_mnt_run_src }}'
-    fstype: '{{ os_mnt_run_filesystem }}'
-    opts: '{{ os_mnt_run_options }}'
-    state: present
-  when: os_mnt_run_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /run directory
   file:
@@ -214,15 +184,9 @@
     opts: '{{ os_mnt_var_options }}'
     state: remounted
   when: os_mnt_var_enabled | bool
-
-- name: Harden mount options for /var
-  mount:
-    path: /var
-    src: '{{ os_mnt_var_src }}'
-    fstype: '{{ os_mnt_var_filesystem }}'
-    opts: '{{ os_mnt_var_options }}'
-    state: present
-  when: os_mnt_var_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /var directory
   file:
@@ -239,15 +203,9 @@
     opts: '{{ os_mnt_var_log_options }}'
     state: remounted
   when: os_mnt_var_log_enabled | bool
-
-- name: Harden mount options for /var/log
-  mount:
-    path: /var/log
-    src: '{{ os_mnt_var_log_src }}'
-    fstype: '{{ os_mnt_var_log_filesystem }}'
-    opts: '{{ os_mnt_var_log_options }}'
-    state: present
-  when: os_mnt_var_log_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /var/log directory
   file:
@@ -264,15 +222,9 @@
     opts: '{{ os_mnt_var_log_audit_options }}'
     state: remounted
   when: os_mnt_var_log_audit_enabled | bool
-
-- name: Harden mount options for /var/log/audit
-  mount:
-    path: /var/log/audit
-    src: '{{ os_mnt_var_log_audit_src }}'
-    fstype: '{{ os_mnt_var_log_audit_filesystem }}'
-    opts: '{{ os_mnt_var_log_audit_options }}'
-    state: present
-  when: os_mnt_var_log_audit_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /var/log/audit directory
   file:
@@ -289,15 +241,9 @@
     opts: '{{ os_mnt_var_tmp_options }}'
     state: remounted
   when: os_mnt_var_tmp_enabled | bool
-
-- name: Harden mount options for /var/tmp
-  mount:
-    path: /var/tmp
-    src: '{{ os_mnt_var_tmp_src }}'
-    fstype: '{{ os_mnt_var_tmp_filesystem }}'
-    opts: '{{ os_mnt_var_tmp_options }}'
-    state: present
-  when: os_mnt_var_tmp_enabled | bool
+  list:
+    - remounted
+    - present
 
 - name: Harden permissions for /var/tmp directory
   file:
