@@ -387,8 +387,8 @@ os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
 
 os_mnt_boot_dir_mode: '0700'
-os_mnt_boot_enabled: true
-os_mnt_boot_src: '/dev/sda1'
+os_mnt_boot_enabled: false
+os_mnt_boot_src: ''
 os_mnt_boot_options: 'rw,nosuid,nodev,noexec'
 os_mnt_boot_filesystem: 'ext4'
 
