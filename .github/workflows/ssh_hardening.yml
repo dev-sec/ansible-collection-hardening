@@ -29,6 +29,7 @@ jobs:
           - ubuntu2004
           - debian9
           - debian10
+          - debian11
           - amazon
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # baseline is not compatible with suse
