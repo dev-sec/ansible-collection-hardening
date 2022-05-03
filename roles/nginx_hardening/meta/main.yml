@@ -18,6 +18,7 @@ galaxy_info:
       versions:
         - stretch
         - buster
+        - bullseye
   galaxy_tags:
     - system
     - security

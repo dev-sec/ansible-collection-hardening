@@ -13,6 +13,7 @@ This collection provides battle tested hardening for:
   - CentOS 7/8
   - Rocky Linux 8
   - Debian 9/10
+  - Debian 11 (some roles supported)
   - Ubuntu 16.04/18.04/20.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
