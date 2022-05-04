@@ -87,11 +87,9 @@
     src: '{{ os_mnt_boot_src }}'
     fstype: '{{ os_mnt_boot_filesystem }}'
     opts: '{{ os_mnt_boot_options }}'
-    state: '{{ item }}'
+    state: present
+  register: bootmount
   when: os_mnt_boot_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /boot directory
   file:
@@ -106,11 +104,9 @@
     src: '{{ os_mnt_dev_src }}'
     fstype: '{{ os_mnt_dev_filesystem }}'
     opts: '{{ os_mnt_dev_options }}'
-    state: '{{ item }}'
+    state: present
+  register: devmount
   when: os_mnt_dev_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /dev directory
   file:
@@ -125,11 +121,9 @@
     src: '{{ os_mnt_dev_shm_src }}'
     fstype: '{{ os_mnt_dev_shm_filesystem }}'
     opts: '{{ os_mnt_dev_shm_options }}'
-    state: '{{ item }}'
+    state: present
+  register: devshmmount
   when: os_mnt_dev_shm_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /dev/shm directory
   file:
@@ -144,11 +138,9 @@
     src: '{{ os_mnt_home_src }}'
     fstype: '{{ os_mnt_home_filesystem }}'
     opts: '{{ os_mnt_home_options }}'
-    state: '{{ item }}'
+    state: present
+  register: homemount
   when: os_mnt_home_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /home directory
   file:
@@ -163,11 +155,9 @@
     src: '{{ os_mnt_run_src }}'
     fstype: '{{ os_mnt_run_filesystem }}'
     opts: '{{ os_mnt_run_options }}'
-    state: '{{ item }}'
+    state: present
+  register: runmount
   when: os_mnt_run_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /run directory
   file:
@@ -182,11 +172,9 @@
     src: '{{ os_mnt_var_src }}'
     fstype: '{{ os_mnt_var_filesystem }}'
     opts: '{{ os_mnt_var_options }}'
-    state: '{{ item }}'
+    state: present
+  register: varmount
   when: os_mnt_var_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /var directory
   file:
@@ -201,11 +189,9 @@
     src: '{{ os_mnt_var_log_src }}'
     fstype: '{{ os_mnt_var_log_filesystem }}'
     opts: '{{ os_mnt_var_log_options }}'
-    state: '{{ item }}'
+    state: present
+  register: varlogmount
   when: os_mnt_var_log_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /var/log directory
   file:
@@ -220,11 +206,9 @@
     src: '{{ os_mnt_var_log_audit_src }}'
     fstype: '{{ os_mnt_var_log_audit_filesystem }}'
     opts: '{{ os_mnt_var_log_audit_options }}'
-    state: '{{ item }}'
+    state: present
+  register: varlogauditmount
   when: os_mnt_var_log_audit_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /var/log/audit directory
   file:
@@ -239,11 +223,9 @@
     src: '{{ os_mnt_var_tmp_src }}'
     fstype: '{{ os_mnt_var_tmp_filesystem }}'
     opts: '{{ os_mnt_var_tmp_options }}'
-    state: '{{ item }}'
+    state: present
+  register: vartmpmount
   when: os_mnt_var_tmp_enabled | bool
-  loop:
-    - remounted
-    - present
 
 - name: Harden permissions for /var/tmp directory
   file:
@@ -251,3 +233,22 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_mnt_var_tmp_dir_mode }}'
+
+- name: remount all changed mountpoints
+  mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    opts: "{{ item.opts }}"
+    state: "{{ item.state }}"
+  when: "{{ item.when }}"
+  loop:
+    - { path: '/boot', src: '{{ os_mnt_boot_src }}', fstype: '{{ os_mnt_boot_filesystem }}', opts: '{{ os_mnt_boot_options }}', state: remounted, when: bootmount.changed }
+    - { path: '/dev', src: '{{ os_mnt_dev_src }}', fstype: '{{ os_mnt_dev_filesystem }}', opts: '{{ os_mnt_dev_options }}', state: remounted, when: devmount.changed }
+    - { path: '/dev/shm', src: '{{ os_mnt_dev-shm_src }}', fstype: '{{ os_mnt_dev-shm_filesystem }}', opts: '{{ os_mnt_dev-shm_options }}', state: remounted, when: devshmmount.changed }
+    - { path: '/home', src: '{{ os_mnt_home_src }}', fstype: '{{ os_mnt_home_filesystem }}', opts: '{{ os_mnt_home_options }}', state: remounted, when: homemount.changed }
+    - { path: '/run', src: '{{ os_mnt_run_src }}', fstype: '{{ os_mnt_run_filesystem }}', opts: '{{ os_mnt_run_options }}', state: remounted, when: runmount.changed }
+    - { path: '/var', src: '{{ os_mnt_var_src }}', fstype: '{{ os_mnt_var_filesystem }}', opts: '{{ os_mnt_var_options }}', state: remounted, when: varmount.changed }
+    - { path: '/var/log', src: '{{ os_mnt_var-log_src }}', fstype: '{{ os_mnt_var-log_filesystem }}', opts: '{{ os_mnt_var-log_options }}', state: remounted, when: varlogmount.changed }
+    - { path: '/var/log/audit', src: '{{ os_mnt_var-log-audit_src }}', fstype: '{{ os_mnt_var-log-audit_filesystem }}', opts: '{{ os_mnt_var-log-audit_options }}', state: remounted, when: varlogauditmount.changed }
+    - { path: '/var/tmp', src: '{{ os_mnt_var-tmp_src }}', fstype: '{{ os_mnt_var-tmp_filesystem }}', opts: '{{ os_mnt_var-tmp_options }}', state: remounted, when: vartmpmount.changed }
