@@ -1,0 +1,11 @@
+
+- name: remount "{{ item.path }}"
+  mount:
+    path: "{{ item.path }}"
+    src: "{{ item.src }}"
+    fstype: "{{ item.fstype }}"
+    opts: "{{ item.opts }}"
+    state: remounted
+  when: item.when
+    
+

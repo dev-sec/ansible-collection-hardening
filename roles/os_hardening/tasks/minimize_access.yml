@@ -235,20 +235,16 @@
     mode: '{{ os_mnt_var_tmp_dir_mode }}'
 
 - name: remount all changed mountpoints
-  mount:
-    path: "{{ item.path }}"
-    src: "{{ item.src }}"
-    fstype: "{{ item.fstype }}"
-    opts: "{{ item.opts }}"
-    state: "{{ item.state }}"
-  when: "{{ item.when }}"
+  include_tasks: minimize_access_mountpoints.yml
   loop:
-    - { path: '/boot', src: '{{ os_mnt_boot_src }}', fstype: '{{ os_mnt_boot_filesystem }}', opts: '{{ os_mnt_boot_options }}', state: remounted, when: bootmount.changed }
-    - { path: '/dev', src: '{{ os_mnt_dev_src }}', fstype: '{{ os_mnt_dev_filesystem }}', opts: '{{ os_mnt_dev_options }}', state: remounted, when: devmount.changed }
-    - { path: '/dev/shm', src: '{{ os_mnt_dev-shm_src }}', fstype: '{{ os_mnt_dev-shm_filesystem }}', opts: '{{ os_mnt_dev-shm_options }}', state: remounted, when: devshmmount.changed }
-    - { path: '/home', src: '{{ os_mnt_home_src }}', fstype: '{{ os_mnt_home_filesystem }}', opts: '{{ os_mnt_home_options }}', state: remounted, when: homemount.changed }
-    - { path: '/run', src: '{{ os_mnt_run_src }}', fstype: '{{ os_mnt_run_filesystem }}', opts: '{{ os_mnt_run_options }}', state: remounted, when: runmount.changed }
-    - { path: '/var', src: '{{ os_mnt_var_src }}', fstype: '{{ os_mnt_var_filesystem }}', opts: '{{ os_mnt_var_options }}', state: remounted, when: varmount.changed }
-    - { path: '/var/log', src: '{{ os_mnt_var-log_src }}', fstype: '{{ os_mnt_var-log_filesystem }}', opts: '{{ os_mnt_var-log_options }}', state: remounted, when: varlogmount.changed }
-    - { path: '/var/log/audit', src: '{{ os_mnt_var-log-audit_src }}', fstype: '{{ os_mnt_var-log-audit_filesystem }}', opts: '{{ os_mnt_var-log-audit_options }}', state: remounted, when: varlogauditmount.changed }
-    - { path: '/var/tmp', src: '{{ os_mnt_var-tmp_src }}', fstype: '{{ os_mnt_var-tmp_filesystem }}', opts: '{{ os_mnt_var-tmp_options }}', state: remounted, when: vartmpmount.changed }
+    - { path: '/boot', src: '{{ os_mnt_boot_src }}', fstype: '{{ os_mnt_boot_filesystem }}', opts: '{{ os_mnt_boot_options }}', when: "{{ bootmount.changed }}" }
+    - { path: '/dev', src: '{{ os_mnt_dev_src }}', fstype: '{{ os_mnt_dev_filesystem }}', opts: '{{ os_mnt_dev_options }}', when: "{{ devmount.changed }}" }
+    - { path: '/dev/shm', src: '{{ os_mnt_dev-shm_src }}', fstype: '{{ os_mnt_dev-shm_filesystem }}', opts: '{{ os_mnt_dev-shm_options }}', when: "{{ devshmmount.changed }}" }
+    - { path: '/home', src: '{{ os_mnt_home_src }}', fstype: '{{ os_mnt_home_filesystem }}', opts: '{{ os_mnt_home_options }}', when: "{{ homemount.changed }}" }
+    - { path: '/run', src: '{{ os_mnt_run_src }}', fstype: '{{ os_mnt_run_filesystem }}', opts: '{{ os_mnt_run_options }}', when: "{{ runmount.changed }}" }
+    - { path: '/var', src: '{{ os_mnt_var_src }}', fstype: '{{ os_mnt_var_filesystem }}', opts: '{{ os_mnt_var_options }}', when: "{{ varmount.changed }}" }
+    - { path: '/var/log', src: '{{ os_mnt_var-log_src }}', fstype: '{{ os_mnt_var-log_filesystem }}', opts: '{{ os_mnt_var-log_options }}', when: "{{ varlogmount.changed }}" }
+    - { path: '/var/log/audit', src: '{{ os_mnt_var-log-audit_src }}', fstype: '{{ os_mnt_var-log-audit_filesystem }}', opts: '{{ os_mnt_var-log-audit_options }}', when: "{{ varlogauditmount.changed }}" }
+    - { path: '/var/tmp', src: '{{ os_mnt_var-tmp_src }}', fstype: '{{ os_mnt_var-tmp_filesystem }}', opts: '{{ os_mnt_var-tmp_options }}', when: "{{ vartmpmount.changed }}" }
+
+
