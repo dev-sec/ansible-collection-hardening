@@ -2,7 +2,7 @@
 # https://github.com/creyD/prettier_action
 name: Prettier markdown files
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     paths:
       - '**.md'
