@@ -27,7 +27,7 @@ rules:
   key-duplicates: enable
   line-length: disable
   # new-line-at-end-of-file: disable
-  new-lines:
-    type: unix
   # trailing-spaces: disable
   # truthy: disable
+  new-lines:
+    type: unix
