@@ -4,5 +4,5 @@
 # and not relative to the CWD of execution. CLI arguments passed to the --exclude
 # option will be parsed relative to the CWD of execution.
 exclude_paths:
-  - .cache/ # implicit unless exclude_paths is defined in config
+  - .cache/  # implicit unless exclude_paths is defined in config
   - .yamllint
