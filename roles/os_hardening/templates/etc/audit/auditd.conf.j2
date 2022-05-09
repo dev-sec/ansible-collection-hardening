@@ -3,7 +3,7 @@
 
 log_file = /var/log/audit/audit.log
 log_format = {{ os_auditd_log_format }}
-log_group = root
+log_group = {{ os_auditd_log_group }}
 priority_boost = 4
 flush = {{ os_auditd_flush }}
 freq = 20
