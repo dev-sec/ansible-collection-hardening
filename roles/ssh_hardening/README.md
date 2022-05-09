@@ -49,7 +49,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: specifies an interval for sending keepalive messages.
 - `ssh_client_alive_count`
   - Default: `3`
-  - Description: defines how often keep-alive messages are sent.
+  - Description: Defines the number of acceptable unanswered client alive messages before disconnecting clients.
 - `ssh_permit_tunnel`
   - Default: `false`
   - Description: true if SSH Port Tunneling is required.
