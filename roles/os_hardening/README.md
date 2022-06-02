@@ -389,7 +389,7 @@ We know that this is the case on Raspberry Pi.
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var/log
 - `os_mnt_var_log_audit_dir_mode` 
-  - Default: `1777`
+  - Default: `0640`
   - Description: Set default perimissions for /var/log/audit
 - `os_mnt_var_log_audit_enabled` 
   - Default: `false`
