@@ -428,7 +428,7 @@ os_mnt_var_log_src: ""
 os_mnt_var_log_options: 'rw,nosuid,nodev,noexec'
 os_mnt_var_log_filesystem: "ext4"
 
-os_mnt_var_log_audit_dir_mode: '1777'
+os_mnt_var_log_audit_dir_mode: '0600'
 os_mnt_var_log_audit_enabled: false
 os_mnt_var_log_audit_src: ""
 os_mnt_var_log_audit_options: 'rw,nosuid,nodev,noexec'
