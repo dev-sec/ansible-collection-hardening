@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # deploy the collection first, because if it fails, we don't want
       # to update the galaxy.yml
@@ -21,7 +21,7 @@ jobs:
           galaxy_version: ${{ github.event.release.tag_name }}
 
       # checkout master instead of the release-tag so we can push the galaxy.yml
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: master
 

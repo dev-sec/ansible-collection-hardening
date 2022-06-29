@@ -33,7 +33,7 @@ jobs:
           # - arch  # needs to be fixed
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
