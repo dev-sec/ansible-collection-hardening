@@ -40,7 +40,7 @@ jobs:
           issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
       - name: push changelog
-        uses: github-actions-x/commit@v6
+        uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'

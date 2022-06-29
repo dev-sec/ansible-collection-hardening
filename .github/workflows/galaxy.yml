@@ -33,7 +33,7 @@ jobs:
           version: "${{ github.event.release.tag_name }}"
 
       - name: push galaxy.yml
-        uses: github-actions-x/commit@6
+        uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
