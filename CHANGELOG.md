@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.14.3](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.3) (2022-06-29)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.2...7.14.3)
+
+**Closed issues:**
+
+- Version 7.14.2 not released to Ansible Galaxy [\#544](https://github.com/dev-sec/ansible-collection-hardening/issues/544)
+- os\_hardening role: os\_ignore\_users not described in the Readme's variable topic [\#542](https://github.com/dev-sec/ansible-collection-hardening/issues/542)
+- doc: incorrect description for ssh\_client\_alive\_count [\#540](https://github.com/dev-sec/ansible-collection-hardening/issues/540)
+- 'legacy' branch is mentioned in README, but apparently doesn't exist [\#539](https://github.com/dev-sec/ansible-collection-hardening/issues/539)
+- ansible\_role\_name is undefined [\#532](https://github.com/dev-sec/ansible-collection-hardening/issues/532)
+- Can't sudo anymore after hardening [\#518](https://github.com/dev-sec/ansible-collection-hardening/issues/518)
+- Any planned official support for RHEL/CentOS Stream 9? [\#517](https://github.com/dev-sec/ansible-collection-hardening/issues/517)
+
+**Merged pull requests:**
+
+- Improve documentation [\#541](https://github.com/dev-sec/ansible-collection-hardening/pull/541) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+
 ## [7.14.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.2) (2022-02-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.1...7.14.2)
