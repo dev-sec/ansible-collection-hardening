@@ -81,6 +81,11 @@
     opts: '{{ proc_mnt_options }}'
     state: mounted
 
+- name: Check if boot exists
+  stat:
+    path: /boot
+  register: boot_exists
+
 - name: Mount /boot with hardened options
   mount:
     path: /boot
@@ -89,7 +94,9 @@
     opts: '{{ os_mnt_boot_options }}'
     state: present
   register: bootmount
-  when: os_mnt_boot_enabled | bool
+  when: 
+    - os_mnt_boot_enabled | bool
+    - boot_exists | bool
 
 - name: Harden permissions for /boot directory
   file:
@@ -97,6 +104,7 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_mnt_boot_dir_mode }}'
+  when:  boot_exists | bool
 
 - name: Mount /dev with hardened options
   mount:
