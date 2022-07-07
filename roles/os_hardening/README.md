@@ -286,139 +286,139 @@ We know that this is the case on Raspberry Pi.
 - `os_sha_crypt_max_rounds`
   - Default: `640000`
   - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
-- `os_mnt_boot_dir_mode` 
+- `os_mnt_boot_dir_mode`
   - Default: `0700`
   - Description: Set default perimissions for /boot
-- `os_mnt_boot_enabled` 
+- `os_mnt_boot_enabled`
   - Default: `false`
   - Description: Set to true to configure /boot mountpoint
-- `os_mnt_boot_src` 
+- `os_mnt_boot_src`
   - Default: `''`
   - Description: Set mount source for /boot
-- `os_mnt_boot_options` 
+- `os_mnt_boot_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /boot
-- `os_mnt_boot_filesystem` 
+- `os_mnt_boot_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /boot
 - `os_mnt_dev_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /dev
-- `os_mnt_dev_enabled` 
+- `os_mnt_dev_enabled`
   - Default: `true`
   - Description: Set to false to ignore /dev mountpoint
-- `os_mnt_dev_src` 
+- `os_mnt_dev_src`
   - Default: `devtmpfs`
   - Description: Set mount source for /dev
-- `os_mnt_dev_options` 
+- `os_mnt_dev_options`
   - Default: `'rw,nosuid,noexec'`
   - Description: Configure mount options for /dev
-- `os_mnt_dev_filesystem` 
+- `os_mnt_dev_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /dev
-- `os_mnt_dev_shm_dir_mode` 
+- `os_mnt_dev_shm_dir_mode`
   - Default: `1777`
   - Description: Set default perimissions for /dev/shm
-- `os_mnt_dev_shm_enabled` 
+- `os_mnt_dev_shm_enabled`
   - Default: `true`
   - Description: Set to false to ignore /dev/shm mountpoint
-- `os_mnt_dev_shm_src` 
+- `os_mnt_dev_shm_src`
   - Default: `tmpfs`
   - Description: Set mount source for /dev/shm
-- `os_mnt_dev_shm_options` 
+- `os_mnt_dev_shm_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /dev/shm
-- `os_mnt_dev_shm_filesystem` 
+- `os_mnt_dev_shm_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /dev/shm
-- `os_mnt_home_dir_mode` 
+- `os_mnt_home_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /home
-- `os_mnt_home_enabled` 
+- `os_mnt_home_enabled`
   - Default: `false`
   - Description: Set to true to configure /home mountpoint
-- `os_mnt_home_src` 
+- `os_mnt_home_src`
   - Default: `""`
   - Description: Set mount source for /home
-- `os_mnt_home_options` 
+- `os_mnt_home_options`
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /home
-- `os_mnt_home_filesystem` 
+- `os_mnt_home_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /home
-- `os_mnt_run_dir_mode` 
+- `os_mnt_run_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /run
-- `os_mnt_run_enabled` 
+- `os_mnt_run_enabled`
   - Default: `true`
   - Description: Set to false to ignore /run mountpoint
-- `os_mnt_run_src` 
+- `os_mnt_run_src`
   - Default: `tmpfs`
   - Description: Set mount source for /run
-- `os_mnt_run_options` 
+- `os_mnt_run_options`
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /run
-- `os_mnt_run_filesystem` 
+- `os_mnt_run_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /run
-- `os_mnt_var_dir_mode` 
+- `os_mnt_var_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /var
-- `os_mnt_var_enabled` 
+- `os_mnt_var_enabled`
   - Default: `false`
   - Description: Set to true to configure /var mountpoint
-- `os_mnt_var_src` 
+- `os_mnt_var_src`
   - Default: `""`
   - Description: Set mount source for /var
-- `os_mnt_var_options` 
+- `os_mnt_var_options`
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /var
-- `os_mnt_var_filesystem` 
+- `os_mnt_var_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var
-- `os_mnt_var_log_dir_mode` 
+- `os_mnt_var_log_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /var/log
-- `os_mnt_var_log_enabled` 
+- `os_mnt_var_log_enabled`
   - Default: `false`
   - Description: Set to true to configure /var/log mountpoint
-- `os_mnt_var_log_src` 
+- `os_mnt_var_log_src`
   - Default: `""`
   - Description: Set mount source for /var/log
-- `os_mnt_var_log_options` 
+- `os_mnt_var_log_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/log
-- `os_mnt_var_log_filesystem` 
+- `os_mnt_var_log_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var/log
-- `os_mnt_var_log_audit_dir_mode` 
+- `os_mnt_var_log_audit_dir_mode`
   - Default: `0640`
   - Description: Set default perimissions for /var/log/audit
-- `os_mnt_var_log_audit_enabled` 
+- `os_mnt_var_log_audit_enabled`
   - Default: `false`
   - Description: Set to true to configure /var/log/audit mountpoint
-- `os_mnt_var_log_audit_src` 
+- `os_mnt_var_log_audit_src`
   - Default: `""`
   - Description: Set mount source for /var/log/audit
-- `os_mnt_var_log_audit_options` 
+- `os_mnt_var_log_audit_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/log/audit
-- `os_mnt_var_log_audit_filesystem` 
+- `os_mnt_var_log_audit_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var/log/audit
-- `os_mnt_var_tmp_dir_mode` 
+- `os_mnt_var_tmp_dir_mode`
   - Default: `1777`
   - Description: Set default perimissions for /var/tmp
-- `os_mnt_var_tmp_enabled` 
+- `os_mnt_var_tmp_enabled`
   - Default: `false`
   - Description: Set to true to configure /var/tmp mountpoint
-- `os_mnt_var_tmp_src` 
+- `os_mnt_var_tmp_src`
   - Default: `""`
   - Description: Set mount source for /var/tmp
-- `os_mnt_var_tmp_options` 
+- `os_mnt_var_tmp_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/tmp
-- `os_mnt_var_tmp_filesystem` 
+- `os_mnt_var_tmp_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var/tmp
 
