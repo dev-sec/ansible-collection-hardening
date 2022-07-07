@@ -22,6 +22,6 @@
     src: 'authorized_principals.j2'
     dest: '{{ item.path }}'
     mode: '{{ item.filemode | default("600") }}'
-    owner: '{{ item.owner| default(ssh_owner) }}'
+    owner: '{{ item.owner | default(ssh_owner) }}'
     group: '{{ item.group | default(ssh_group) }}'
   loop: '{{ ssh_authorized_principals }}'

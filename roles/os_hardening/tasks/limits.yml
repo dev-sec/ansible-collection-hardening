@@ -51,15 +51,15 @@
 
 - name: enable coredumps
   block:
-  - name: Remove coredump.conf.d directory with files
-    file:
-      path: /etc/systemd/coredump.conf.d
-      state: absent
-    when: ansible_service_mgr == "systemd"
-    notify: Reload systemd
+    - name: Remove coredump.conf.d directory with files
+      file:
+        path: /etc/systemd/coredump.conf.d
+        state: absent
+        when: ansible_service_mgr == "systemd"
+        notify: Reload systemd
 
-  - name: Remove 10.hardcore.conf config file
-    file:
-      path: /etc/security/limits.d/10.hardcore.conf
-      state: absent
+    - name: Remove 10.hardcore.conf config file
+      file:
+        path: /etc/security/limits.d/10.hardcore.conf
+        state: absent
   when: os_security_kernel_enable_core_dump | bool

@@ -54,7 +54,7 @@
     - name: install cinc-auditor
       shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
 
-    - name: Execute cinc-auditor tests
+    - name: Execute cinc-auditor tests  # noqa ignore-errors
       command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit  --waiver-file waivers.yaml https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip"
       register: test_results
       changed_when: false

@@ -17,7 +17,7 @@
       package:
         name: "python3-apt"
         update_cache: true
-      ignore_errors: true
+      ignore_errors: true  # noqa ignore-errors
 
     - name: Set correct distribution Version for Amazon Linux
       set_fact:

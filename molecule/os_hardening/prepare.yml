@@ -42,7 +42,7 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: install required tools on RHEL
+    - name: install required tools on RHEL  # noqa ignore-errors
       yum:
         name:
           - openssh-clients
