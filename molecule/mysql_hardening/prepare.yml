@@ -16,7 +16,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: install required tools on SuSE
-      zypper:
+      community.general.zypper:
         name: "python-xml"
         state: present
       when: ansible_facts.os_family == 'Suse'

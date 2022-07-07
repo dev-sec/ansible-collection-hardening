@@ -35,7 +35,7 @@
       when: ansible_facts.distribution == 'Fedora'
 
     - name: install required tools on Arch
-      pacman:
+      community.general.pacman:
         name:
           - awk
         state: present
@@ -56,5 +56,5 @@
       changed_when: false
 
     - name: include YUM prepare tasks
-      include: prepare_yum.yml
+      include_tasks: tasks/prepare_yum.yml
       when: ansible_facts.os_family == 'RedHat'

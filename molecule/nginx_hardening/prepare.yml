@@ -8,7 +8,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: install required tools on SuSE
-      zypper:
+      community.general.zypper:
         name: "python-xml"
         state: present
       when: ansible_facts.os_family == 'Suse'

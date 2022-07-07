@@ -5,7 +5,8 @@
 # option will be parsed relative to the CWD of execution.
 exclude_paths:
   - .cache/  # implicit unless exclude_paths is defined in config
-  - .yamllint
+#  - .yamllint
+#  - ../molecule/os_hardening/waivers.yaml
 
 skip_list:
   - fqcn-builtins
@@ -13,4 +14,3 @@ skip_list:
 mock_roles:
   - geerlingguy.git
   - nginxinc.nginx
-
