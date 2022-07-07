@@ -39,6 +39,12 @@ jobs:
           exclude_tags_regex: '[0-6]\.\d\.\d'
           issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
+      # do a second checkout to prevent race situation
+      # changelog gets updated but action works on old commit id
+      - uses: actions/checkout@v3
+        with:
+          ref: master
+
       - name: push changelog
         uses: github-actions-x/commit@v2.9
         with:
@@ -49,12 +55,6 @@ jobs:
           files: CHANGELOG.md
           name: dev-sec CI
           email: hello@dev-sec.io
-
-      # do a second checkout to prevent race situation
-      # changelog gets updated but action works on old commit id
-      - uses: actions/checkout@v3
-        with:
-          ref: master
 
       - name: Generate changelog for the release
         run: |
