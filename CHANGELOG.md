@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.15.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.0) (2022-07-07)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.3...7.15.0)
+
+**Implemented enhancements:**
+
+- Harden mountpoints [\#531](https://github.com/dev-sec/ansible-collection-hardening/pull/531) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
+
 ## [7.14.3](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.3) (2022-06-29)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.2...7.14.3)
