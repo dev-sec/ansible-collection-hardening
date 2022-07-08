@@ -24,7 +24,8 @@
 # The following tasks only get executed when selinux is in state enforcing,
 # UsePam is 'no' and the ssh_password module is not installed. See this issue for
 # more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
-- when:
+- name: run selinux tasks
+  when:
     - not (ssh_use_pam | bool)
     - ('ssh_password' not in ssh_password_module.stdout)
   block:
@@ -44,13 +45,13 @@
         group: 'root'
         mode: '0600'
 
-    - name: Check and compile policy
+    - name: Check and compile policy  # noqa no-changed-when
       command: checkmodule -M -m -o {{ ssh_custom_selinux_dir }}/ssh_password.mod {{ ssh_custom_selinux_dir }}/ssh_password
 
-    - name: Create selinux policy module package
+    - name: Create selinux policy module package  # noqa no-changed-when
       command: semodule_package -o {{ ssh_custom_selinux_dir }}/ssh_password.pp  -m {{ ssh_custom_selinux_dir }}/ssh_password.mod
 
-    - name: Install selinux policy
+    - name: Install selinux policy  # noqa no-changed-when
       command: semodule -i {{ ssh_custom_selinux_dir }}/ssh_password.pp
 
 

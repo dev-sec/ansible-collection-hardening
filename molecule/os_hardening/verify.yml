@@ -38,11 +38,11 @@
       when: ansible_facts.os_family == 'Debian'
 
     - name: include PAM tests
-      include: verify_pam.yml
+      include_tasks: verify_tasks/pam.yml
       when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: include YUM tests
-      include: verify_yum.yml
+      include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
     - name: download cinc-auditor
@@ -54,7 +54,7 @@
     - name: install cinc-auditor
       shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
 
-    - name: Execute cinc-auditor tests
+    - name: Execute cinc-auditor tests  # noqa ignore-errors
       command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit  --waiver-file waivers.yaml https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip"
       register: test_results
       changed_when: false

@@ -94,7 +94,7 @@
     opts: '{{ os_mnt_boot_options }}'
     state: present
   register: bootmount
-  when: 
+  when:
     - os_mnt_boot_enabled | bool
     - boot_exists | bool
 
