@@ -1,5 +1,5 @@
 ---
-name: "devsec.os_hardening"
+name: "devsec.os_hardening VM"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
@@ -38,7 +38,7 @@ jobs:
       - name: Test with molecule
         run: |
           molecule --version
-          molecule test -s os_hardening
+          molecule test -s os_hardening_vm
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
