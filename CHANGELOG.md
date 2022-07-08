@@ -1,12 +1,16 @@
 # Changelog
 
-## [7.15.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.0) (2022-07-07)
+## [7.15.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.0) (2022-07-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.3...7.15.0)
 
 **Implemented enhancements:**
 
 - Harden mountpoints [\#531](https://github.com/dev-sec/ansible-collection-hardening/pull/531) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
+
+**Fixed bugs:**
+
+- Linting [\#546](https://github.com/dev-sec/ansible-collection-hardening/pull/546) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [7.14.3](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.3) (2022-06-29)
 
