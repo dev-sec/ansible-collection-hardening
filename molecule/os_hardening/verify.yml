@@ -38,11 +38,11 @@
       when: ansible_facts.os_family == 'Debian'
 
     - name: include PAM tests
-      include_tasks: verify_tasks/verify_pam.yml
+      include_tasks: verify_tasks/pam.yml
       when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: include YUM tests
-      include_tasks: verify_tasks/verify_yum.yml
+      include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
     - name: download cinc-auditor
