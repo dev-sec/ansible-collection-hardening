@@ -55,8 +55,8 @@
       file:
         path: /etc/systemd/coredump.conf.d
         state: absent
-        when: ansible_service_mgr == "systemd"
-        notify: Reload systemd
+      when: ansible_service_mgr == "systemd"
+      notify: Reload systemd
 
     - name: Remove 10.hardcore.conf config file
       file:
