@@ -33,7 +33,7 @@ jobs:
       - name: Create default collection path symlink
         run: |
           mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
+          ln -fs /opt/actions-runner/_work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections /home/runner/.ansible/collections
 
       - name: Test with molecule
         run: |
