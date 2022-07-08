@@ -9,7 +9,7 @@ driver:
     name: libvirt
 platforms:
   - name: instance
-    image: "generic/${MOLECULE_DISTRO}"
+    box: "generic/${MOLECULE_DISTRO}"
 provisioner:
   name: ansible
   config_options:

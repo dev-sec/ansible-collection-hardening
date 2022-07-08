@@ -22,18 +22,18 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
+          # - centos7
+          # - rocky8
           - ubuntu1804
+          # - ubuntu2004
+          # - debian9
+          # - debian10
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
-
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
 
       - name: Create default collection path symlink
         run: |
