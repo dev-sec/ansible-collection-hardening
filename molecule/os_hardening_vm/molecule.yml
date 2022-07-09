@@ -10,6 +10,8 @@ driver:
 platforms:
   - name: instance
     box: "generic/${MOLECULE_DISTRO}"
+    memory: 1024
+    cpus: 2
 provisioner:
   name: ansible
   config_options:
