@@ -14,12 +14,16 @@ platforms:
     cpus: 2
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_PIPELINING: "True"
   config_options:
     defaults:
       interpreter_python: auto_silent
       callback_whitelist: profile_tasks, timer, yaml
 verifier:
   name: ansible
+  env:
+    ANSIBLE_PIPELINING: "True"
 
 scenario:
   create_sequence:
