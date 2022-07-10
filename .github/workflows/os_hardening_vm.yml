@@ -28,6 +28,8 @@ jobs:
           - ubuntu2004
           - debian9
           - debian10
+          - opensuse42
+          - arch
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
