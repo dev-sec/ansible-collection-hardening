@@ -96,7 +96,7 @@
   register: bootmount
   when:
     - os_mnt_boot_enabled | bool
-    - boot_exists | bool
+    - boot_exists.stat.exists | bool
 
 - name: Harden permissions for /boot directory
   file:
@@ -104,7 +104,7 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_mnt_boot_dir_mode }}'
-  when:  boot_exists | bool
+  when:  boot_exists.stat.exists | bool
 
 - name: Mount /dev with hardened options
   mount:
