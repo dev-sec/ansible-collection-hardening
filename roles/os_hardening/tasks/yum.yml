@@ -37,7 +37,7 @@
     replace: 'gpgcheck=1'
     mode: '0644'
   register: status
-  failed_when: status.rc is defined and status.rc != 257
+  failed_when: status.rc is defined and status.rc not in (257, 0)
   loop:
     - '/etc/yum.conf'
     - '/etc/dnf/dnf.conf'
