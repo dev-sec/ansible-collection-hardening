@@ -28,7 +28,7 @@ jobs:
           - ubuntu2004
           - debian9
           - debian10
-          - opensuse42
+          # - opensuse42  # opensuse currently cannot get an ip address
           - arch
     steps:
       - name: Checkout repo
