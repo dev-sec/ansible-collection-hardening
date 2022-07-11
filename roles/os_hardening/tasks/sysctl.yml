@@ -48,11 +48,6 @@
         sysctl_config: '{{ sysctl_config | combine(sysctl_custom_config) }}'
       when: sysctl_custom_config | default()
 
-    - name: Remove entries sysctl-dict if os does not support these
-      set_fact:
-        sysctl_config: '{{ sysctl_config | difference(sysctl_unsupported_entries) }}'
-      when: sysctl_unsupported_entries | default()
-
     # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
     - name: Create a combined sysctl-dict if os-dependent sysctls are defined
       set_fact:
@@ -73,6 +68,7 @@
         reload: true
         ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
+      when: item.key not in sysctl_unsupported_entries
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
 - name: Apply ufw defaults
