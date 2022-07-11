@@ -50,7 +50,7 @@
 
     - name: Remove entries sysctl-dict if os does not support these
       set_fact:
-        sysctl_config: '{{ sysctl_config | combine(sysctl_unsupported_entries) }}'
+        sysctl_config: '{{ sysctl_config | difference(sysctl_unsupported_entries) }}'
       when: sysctl_unsupported_entries | default()
 
     # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
