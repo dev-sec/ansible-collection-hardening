@@ -68,6 +68,7 @@
         reload: true
         ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
+      when: item.key not in sysctl_unsupported_entries | default()
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
 
 - name: Apply ufw defaults
