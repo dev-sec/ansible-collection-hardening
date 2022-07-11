@@ -1,6 +1,7 @@
 # devsec.os_hardening
 
 ![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+![devsec.os_hardening VM](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening%20VM/badge.svg)
 
 ## Looking for the old ansible-os-hardening role?
 
