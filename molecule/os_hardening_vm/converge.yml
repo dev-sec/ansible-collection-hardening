@@ -19,5 +19,6 @@
     os_auth_pam_passwdqc_enable: false
     os_auth_lockout_time: 15
     os_yum_repo_file_whitelist: ['foo.repo']
+    os_ctrlaltdel_disabled: true
     os_mnt_boot_enabled: true
     os_mnt_boot_src: "/dev/vda1"
