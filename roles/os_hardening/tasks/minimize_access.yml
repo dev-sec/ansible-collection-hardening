@@ -229,7 +229,9 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_mnt_var_log_audit_dir_mode }}'
-  when: var_log_audit_exists.stat.exists | bool
+  when:
+    - var_log_audit_exists.stat.exists | bool
+    - os_auditd_enabled | bool
 
 - name: Mount /var/tmp with hardened options
   mount:
