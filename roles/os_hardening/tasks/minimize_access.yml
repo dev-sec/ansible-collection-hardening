@@ -208,6 +208,11 @@
     group: 'root'
     mode: '{{ os_mnt_var_log_dir_mode }}'
 
+- name: Check if /var/log/audit exists
+  stat:
+    path: /var/log/audit
+  register: var_log_audit_exists
+
 - name: Mount /var/log/audit with hardened options
   mount:
     path: /var/log/audit
@@ -216,7 +221,10 @@
     opts: '{{ os_mnt_var_log_audit_options }}'
     state: present
   register: varlogauditmount
-  when: os_mnt_var_log_audit_enabled | bool
+  when:
+    - os_mnt_var_log_audit_enabled | bool
+    - var_log_audit_exists.stat.exists | bool
+    - os_auditd_enabled | bool
 
 - name: Harden permissions for /var/log/audit directory
   file:
@@ -224,6 +232,10 @@
     owner: 'root'
     group: 'root'
     mode: '{{ os_mnt_var_log_audit_dir_mode }}'
+  when:
+    - os_mnt_var_log_audit_enabled | bool
+    - var_log_audit_exists.stat.exists | bool
+    - os_auditd_enabled | bool
 
 - name: Mount /var/tmp with hardened options
   mount:
