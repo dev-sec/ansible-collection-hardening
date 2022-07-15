@@ -10,7 +10,7 @@
     - devsec.hardening
   tasks:
     - name: override for arch
-      set_fact:
+      set_fact: 
         os_mnt_boot_enabled: false
       when: ansible_facts.os_family == 'Archlinux'
     - include_role:
@@ -21,14 +21,3 @@
     os_yum_repo_file_whitelist: ['foo.repo']
     os_mnt_boot_enabled: true
     os_mnt_boot_src: "/dev/vda1"
-    os_mnt_var_log_audit_enabled: true
-    os_auditd_enabled: true
-    os_mnt_boot_enabled: true
-    os_mnt_dev_enabled: true
-    os_mnt_dev_shm_enabled: true
-    os_mnt_home_enabled: true
-    os_mnt_run_enabled: true
-    os_mnt_var_enabled: true
-    os_mnt_var_log_enabled: true
-    os_mnt_var_log_audit_enabled: true
-    os_mnt_var_tmp_enabled: true
