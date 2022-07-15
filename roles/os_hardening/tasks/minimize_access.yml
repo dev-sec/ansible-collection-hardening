@@ -7,14 +7,14 @@
 
 - name: Find files with write-permissions for group
   shell: "find -L {{ item }} -perm /go+w -type f"  # noqa command-instead-of-shell
-  community.general.with_flattened:
+  loop:
     - '/usr/local/sbin'
     - '/usr/local/bin'
     - '/usr/sbin'
     - '/usr/bin'
     - '/sbin'
     - '/bin'
-    - "{{ os_env_extra_user_paths }}"  # noqa deprecated-bare-vars
+    - "{{ os_env_extra_user_paths | flatten }}"  # noqa deprecated-bare-vars
   register: minimize_access_directories
   ignore_errors: true
   changed_when: false
