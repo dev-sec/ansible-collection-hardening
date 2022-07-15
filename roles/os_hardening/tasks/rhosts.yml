@@ -9,7 +9,7 @@
   file:
     dest: '~{{ item }}/.rhosts'
     state: 'absent'
-  with_flattened: '{{ users_accounts.stdout_lines | default([]) }}'
+  community.general.with_flattened: '{{ users_accounts.stdout_lines | default([]) }}'
 
 - name: Delete hosts.equiv from system | os-01
   file:
@@ -20,4 +20,4 @@
   file:
     dest: '~{{ item }}/.netrc'
     state: 'absent'
-  with_flattened: '{{ users_accounts.stdout_lines | default([]) }}'
+  community.general.with_flattened: '{{ users_accounts.stdout_lines | default([]) }}'

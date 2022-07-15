@@ -6,7 +6,7 @@
     state: 'file'
     follow: 'yes'
   failed_when: false
-  with_flattened:
+  community.general.with_flattened:
     - '{{ os_security_suid_sgid_system_blacklist }}'
     - '{{ os_security_suid_sgid_blacklist }}'
 
@@ -27,6 +27,6 @@
     mode: 'a-s'
     state: 'file'
     follow: 'yes'
-  with_flattened:
+  community.general.with_flattened:
     - '{{ suid | default([]) | difference(os_security_suid_sgid_whitelist) }}'
   when: os_security_suid_sgid_remove_from_unknown | bool

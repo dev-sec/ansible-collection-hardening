@@ -4,9 +4,10 @@
 # still getting found and the permissions minimized in the next task.
 # This is also the reason why there's ignore_errors: true on the task.
 # also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
+
 - name: Find files with write-permissions for group
   shell: "find -L {{ item }} -perm /go+w -type f"  # noqa command-instead-of-shell
-  with_flattened:
+  community.general.with_flattened:
     - '/usr/local/sbin'
     - '/usr/local/bin'
     - '/usr/sbin'
