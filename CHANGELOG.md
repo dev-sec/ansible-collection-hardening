@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-15)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.0...7.15.1)
+
+**Merged pull requests:**
+
+- Only run hardening if /var/log/audit exists [\#550](https://github.com/dev-sec/ansible-collection-hardening/pull/550) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([mego22](https://github.com/mego22))
+
 ## [7.15.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.0) (2022-07-11)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.3...7.15.0)
