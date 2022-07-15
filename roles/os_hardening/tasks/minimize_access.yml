@@ -221,7 +221,10 @@
     opts: '{{ os_mnt_var_log_audit_options }}'
     state: present
   register: varlogauditmount
-  when: os_mnt_var_log_audit_enabled | bool
+  when:
+    - os_mnt_var_log_audit_enabled | bool
+    - var_log_audit_exists.stat.exists | bool
+    - os_auditd_enabled | bool
 
 - name: Harden permissions for /var/log/audit directory
   file:
@@ -230,6 +233,7 @@
     group: 'root'
     mode: '{{ os_mnt_var_log_audit_dir_mode }}'
   when:
+    - os_mnt_var_log_audit_enabled | bool
     - var_log_audit_exists.stat.exists | bool
     - os_auditd_enabled | bool
 
