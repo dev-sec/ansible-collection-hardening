@@ -1,8 +1,12 @@
 # Changelog
 
-## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-15)
+## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-26)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.0...7.15.1)
+
+**Fixed bugs:**
+
+- Fix broken mode for /var/log/audit [\#552](https://github.com/dev-sec/ansible-collection-hardening/pull/552) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([hollow](https://github.com/hollow))
 
 **Merged pull requests:**
 
