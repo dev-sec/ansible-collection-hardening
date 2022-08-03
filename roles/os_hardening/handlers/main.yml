@@ -11,3 +11,9 @@
 - name: Reload systemd
   systemd:
     daemon_reload: true
+
+- name: remount fs
+  mount:
+    path: "{{ item }}"
+    state: remounted
+  loop: "{{ mountpoints_changed }}"

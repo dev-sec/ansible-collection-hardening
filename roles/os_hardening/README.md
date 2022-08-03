@@ -300,8 +300,14 @@ We know that this is the case on Raspberry Pi.
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /boot
 - `os_mnt_boot_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /boot
+  - Default: `""`
+  - Description: Configure file system for fstab entry /boot. If empty, the current file system type will be used.
+- `os_mnt_boot_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_boot_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_dev_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /dev
@@ -315,8 +321,14 @@ We know that this is the case on Raspberry Pi.
   - Default: `'rw,nosuid,noexec'`
   - Description: Configure mount options for /dev
 - `os_mnt_dev_filesystem`
-  - Default: `ext4`
+  - Default: `devtmpfs`
   - Description: Configure file system for fstab entry /dev
+- `os_mnt_dev_dump`
+  - Default: `0`
+  - Description: Configure dump for fstab entry /var/tmp.
+- `os_mnt_dev_passno`
+  - Default: `0`
+  - Description: Configure passno for fstab entry /var/tmp.
 - `os_mnt_dev_shm_dir_mode`
   - Default: `1777`
   - Description: Set default perimissions for /dev/shm
@@ -330,8 +342,14 @@ We know that this is the case on Raspberry Pi.
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /dev/shm
 - `os_mnt_dev_shm_filesystem`
-  - Default: `ext4`
+  - Default: `tmpfs`
   - Description: Configure file system for fstab entry /dev/shm
+- `os_mnt_dev_shm_dump`
+  - Default: `0`
+  - Description: Configure dump for fstab entry /var/tmp.
+- `os_mnt_dev_shm_passno`
+  - Default: `0`
+  - Description: Configure passno for fstab entry /var/tmp.
 - `os_mnt_home_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /home
@@ -340,13 +358,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to configure /home mountpoint
 - `os_mnt_home_src`
   - Default: `""`
-  - Description: Set mount source for /home
+  - Description: Set mount source for /home. If empty, the current file system source device will be used.
 - `os_mnt_home_options`
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /home
 - `os_mnt_home_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /home
+  - Default: `""`
+  - Description: Configure file system for fstab entry /home. If empty, the current file system type will be used.
+- `os_mnt_home_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_home_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_run_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /run
@@ -360,8 +384,35 @@ We know that this is the case on Raspberry Pi.
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /run
 - `os_mnt_run_filesystem`
-  - Default: `ext4`
+  - Default: `tmpfs`
   - Description: Configure file system for fstab entry /run
+- `os_mnt_run_dump`
+  - Default: `0`
+  - Description: Configure dump for fstab entry /var/tmp.
+- `os_mnt_run_passno`
+  - Default: `0`
+  - Description: Configure passno for fstab entry /var/tmp.
+- `os_mnt_tmp_dir_mode`
+  - Default: `1777`
+  - Description: Set default perimissions for /tmp
+- `os_mnt_tmp_enabled`
+  - Default: `false`
+  - Description: Set to true to configure /tmp mountpoint
+- `os_mnt_tmp_src`
+  - Default: `""`
+  - Description: Set mount source for /tmp. If empty, the current file system source device will be used.
+- `os_mnt_tmp_options`
+  - Default: `rw,nosuid,nodev,noexec`
+  - Description: Configure mount options for /tmp
+- `os_mnt_tmp_filesystem`
+  - Default: `""`
+  - Description: Configure file system for fstab entry /tmp. If empty, the current file system type will be used.
+- `os_mnt_tmp_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_tmp_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_var_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /var
@@ -370,13 +421,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to configure /var mountpoint
 - `os_mnt_var_src`
   - Default: `""`
-  - Description: Set mount source for /var
+  - Description: Set mount source for /var. If empty, the current file system source device will be used.
 - `os_mnt_var_options`
   - Default: `rw,nosuid,nodev`
   - Description: Configure mount options for /var
 - `os_mnt_var_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /var
+  - Default: `""`
+  - Description: Configure file system for fstab entry /var. If empty, the current file system type will be used.
+- `os_mnt_var_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_var_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_var_log_dir_mode`
   - Default: `0755`
   - Description: Set default perimissions for /var/log
@@ -385,13 +442,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to configure /var/log mountpoint
 - `os_mnt_var_log_src`
   - Default: `""`
-  - Description: Set mount source for /var/log
+  - Description: Set mount source for /var/log. If empty, the current file system source device will be used.
 - `os_mnt_var_log_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/log
 - `os_mnt_var_log_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /var/log
+  - Default: `""`
+  - Description: Configure file system for fstab entry /var/log. If empty, the current file system type will be used.
+- `os_mnt_var_log_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_var_log_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_var_log_audit_dir_mode`
   - Default: `0640`
   - Description: Set default perimissions for /var/log/audit
@@ -400,13 +463,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to configure /var/log/audit mountpoint
 - `os_mnt_var_log_audit_src`
   - Default: `""`
-  - Description: Set mount source for /var/log/audit
+  - Description: Set mount source for /var/log/audit. If empty, the current file system source device will be used.
 - `os_mnt_var_log_audit_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/log/audit
 - `os_mnt_var_log_audit_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /var/log/audit
+  - Default: `""`
+  - Description: Configure file system for fstab entry /var/log/audit. If empty, the current file system type will be used.
+- `os_mnt_var_log_audit_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_var_log_audit_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_mnt_var_tmp_dir_mode`
   - Default: `1777`
   - Description: Set default perimissions for /var/tmp
@@ -415,13 +484,19 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to true to configure /var/tmp mountpoint
 - `os_mnt_var_tmp_src`
   - Default: `""`
-  - Description: Set mount source for /var/tmp
+  - Description: Set mount source for /var/tmp. If empty, the current file system source device will be used.
 - `os_mnt_var_tmp_options`
   - Default: `rw,nosuid,nodev,noexec`
   - Description: Configure mount options for /var/tmp
 - `os_mnt_var_tmp_filesystem`
-  - Default: `ext4`
-  - Description: Configure file system for fstab entry /var/tmp
+  - Default: `""`
+  - Description: Configure file system for fstab entry /var/tmp. If empty, the current file system type will be used.
+- `os_mnt_var_tmp_dump`
+  - Default: ext3 + ext4 `1` / other `0`
+  - Description: Configure dump for fstab entry /var/tmp. If empty, the default depends on fstype.
+- `os_mnt_var_tmp_passno`
+  - Default: ext3 + ext4 `2` / other `0`
+  - Description: Configure passno for fstab entry /var/tmp. If empty, the default depends on fstype.
 - `os_netrc_enabled`
   - Default: `True`
   - Description: Configure filesystem for existence of .netrc file in homedir
