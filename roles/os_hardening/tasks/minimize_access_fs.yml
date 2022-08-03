@@ -33,4 +33,4 @@
 - name: "Register changed mountpoints"
   set_fact:
     mountpoints_changed: "{{ mountpoints_changed | default([]) + [mount.path] }}"
-  when: mountpoint.changed
+  when: mountpoint.changed # noqa no-handler

@@ -83,7 +83,7 @@
 
 - name: generate list of current available mounted filesystems on the system
   set_fact:
-    mountpoints_list: "{{ ansible_mounts | map(attribute='mount') | list}}"
+    mountpoints_list: "{{ ansible_mounts | map(attribute='mount') | list }}"
 
 - name: append special devices list to valid mountpoint list
   set_fact:
