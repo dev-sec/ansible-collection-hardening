@@ -439,3 +439,9 @@ os_mnt_var_tmp_enabled: false
 os_mnt_var_tmp_src: ""
 os_mnt_var_tmp_options: 'rw,nosuid,nodev,noexec'
 os_mnt_var_tmp_filesystem: "ext4"
+
+#
+# .netrc User whitelist
+# keep .netrc file for users in whitelist
+os_netrc_enabled: true
+os_netrc_whitelist_user: []

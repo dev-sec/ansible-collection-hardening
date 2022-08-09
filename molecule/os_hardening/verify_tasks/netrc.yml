@@ -1,0 +1,19 @@
+---
+- name: test that .netrc in root homedir exists
+  ansible.builtin.file:
+    path: '/root/.netrc'
+    state: file
+  register: result_test_netrc
+
+- name: output result if .netrc for user root exists
+  ansible.builtin.assert:
+    that:
+      - "result_test_netrc.state == 'file'"
+    fail_msg: ".netrc in /root/ not present"
+    success_msg: ".netrc exists in /root/"
+
+- name: delete '.netrc' in /root
+  ansible.builtin.file:
+    path: '/root/.netrc'
+    state: absent
+  when: result_test_netrc.state == 'file'

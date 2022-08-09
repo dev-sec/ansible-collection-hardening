@@ -78,6 +78,10 @@
   tags: rhosts
   when: os_rhosts_enabled | bool
 
+- import_tasks: netrc.yml
+  tags: netrc
+  when: os_netrc_enabled | bool
+
 - import_tasks: yum.yml
   tags: yum
   when:
