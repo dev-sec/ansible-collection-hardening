@@ -1,4 +1,6 @@
 ---
 - include_tasks: hardening.yml
-    become: true
+  args:
+    apply:
+      become: yes
   when: ssh_hardening_enabled | bool
