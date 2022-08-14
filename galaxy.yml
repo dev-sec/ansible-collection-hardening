@@ -1,3 +1,4 @@
+---
 namespace: devsec
 name: hardening
 version: 7.15.1
