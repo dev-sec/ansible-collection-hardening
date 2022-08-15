@@ -11,6 +11,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
 ## Requirements
 
 - Ansible >= 2.9
+- root-privileges on the target system
+
+As this role requires root-privileges, we added `become: true` to all tasks. So please make sure you run the role as root or as a user with become-privileges.
 
 ## Role Variables
 
