@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-15)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...7.16.0)
+
+**Implemented enhancements:**
+
+- add basic support for ubuntu22.04 [\#554](https://github.com/dev-sec/ansible-collection-hardening/pull/554) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+
+**Closed issues:**
+
+- os-hardening: yum gpg-check fails if gpg-check already set [\#556](https://github.com/dev-sec/ansible-collection-hardening/issues/556)
+- Ubuntu 22.04 LTS [\#553](https://github.com/dev-sec/ansible-collection-hardening/issues/553)
+
 ## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-26)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.0...7.15.1)
