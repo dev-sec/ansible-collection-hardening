@@ -8,10 +8,18 @@
 
 - add basic support for ubuntu22.04 [\#554](https://github.com/dev-sec/ansible-collection-hardening/pull/554) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
+**Fixed bugs:**
+
+- Replace default 2048 bits RSA keypair fails on Ubuntu 20.04 [\#459](https://github.com/dev-sec/ansible-collection-hardening/issues/459)
+
 **Closed issues:**
 
 - os-hardening: yum gpg-check fails if gpg-check already set [\#556](https://github.com/dev-sec/ansible-collection-hardening/issues/556)
 - Ubuntu 22.04 LTS [\#553](https://github.com/dev-sec/ansible-collection-hardening/issues/553)
+
+**Merged pull requests:**
+
+- add posibility to run ssh\_hardening as unprivileged user [\#561](https://github.com/dev-sec/ansible-collection-hardening/pull/561) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 
 ## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-26)
 
