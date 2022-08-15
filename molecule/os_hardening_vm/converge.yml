@@ -1,0 +1,23 @@
+---
+- name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
+  hosts: all
+  become: true
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  collections:
+    - devsec.hardening
+  tasks:
+    - name: override for arch
+      set_fact: 
+        os_mnt_boot_enabled: false
+      when: ansible_facts.os_family == 'Archlinux'
+    - include_role:
+        name: os_hardening
+  vars:
+    os_auth_pam_passwdqc_enable: false
+    os_auth_lockout_time: 15
+    os_yum_repo_file_whitelist: ['foo.repo']
+    os_mnt_boot_enabled: true
+    os_mnt_boot_src: "/dev/vda1"

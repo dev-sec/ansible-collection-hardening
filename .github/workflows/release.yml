@@ -12,9 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     name: create release draft
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: master
 
       - name: 'Get Previous tag'
         id: previoustag
@@ -40,7 +41,7 @@ jobs:
           issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
       - name: push changelog
-        uses: github-actions-x/commit@v2.6
+        uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
@@ -49,12 +50,6 @@ jobs:
           files: CHANGELOG.md
           name: dev-sec CI
           email: hello@dev-sec.io
-
-      # do a second checkout to prevent race situation
-      # changelog gets updated but action works on old commit id
-      - uses: actions/checkout@v2.3.4
-        with:
-          ref: master
 
       - name: Generate changelog for the release
         run: |

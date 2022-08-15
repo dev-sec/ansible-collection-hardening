@@ -1,5 +1,62 @@
 # Changelog
 
+## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-15)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...7.16.0)
+
+**Implemented enhancements:**
+
+- add basic support for ubuntu22.04 [\#554](https://github.com/dev-sec/ansible-collection-hardening/pull/554) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+
+**Closed issues:**
+
+- os-hardening: yum gpg-check fails if gpg-check already set [\#556](https://github.com/dev-sec/ansible-collection-hardening/issues/556)
+- Ubuntu 22.04 LTS [\#553](https://github.com/dev-sec/ansible-collection-hardening/issues/553)
+
+## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-26)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.0...7.15.1)
+
+**Fixed bugs:**
+
+- Fix broken mode for /var/log/audit [\#552](https://github.com/dev-sec/ansible-collection-hardening/pull/552) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([hollow](https://github.com/hollow))
+
+**Merged pull requests:**
+
+- Only run hardening if /var/log/audit exists [\#550](https://github.com/dev-sec/ansible-collection-hardening/pull/550) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([mego22](https://github.com/mego22))
+
+## [7.15.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.0) (2022-07-11)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.3...7.15.0)
+
+**Implemented enhancements:**
+
+- Harden mountpoints [\#531](https://github.com/dev-sec/ansible-collection-hardening/pull/531) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([lbayerlein](https://github.com/lbayerlein))
+
+**Fixed bugs:**
+
+- os\_hardening gpg-check enabled fails on success [\#549](https://github.com/dev-sec/ansible-collection-hardening/issues/549) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
+- add VM tests for os\_hardening  [\#547](https://github.com/dev-sec/ansible-collection-hardening/pull/547) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
+- Linting [\#546](https://github.com/dev-sec/ansible-collection-hardening/pull/546) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [7.14.3](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.3) (2022-06-29)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.2...7.14.3)
+
+**Closed issues:**
+
+- Version 7.14.2 not released to Ansible Galaxy [\#544](https://github.com/dev-sec/ansible-collection-hardening/issues/544)
+- os\_hardening role: os\_ignore\_users not described in the Readme's variable topic [\#542](https://github.com/dev-sec/ansible-collection-hardening/issues/542)
+- doc: incorrect description for ssh\_client\_alive\_count [\#540](https://github.com/dev-sec/ansible-collection-hardening/issues/540)
+- 'legacy' branch is mentioned in README, but apparently doesn't exist [\#539](https://github.com/dev-sec/ansible-collection-hardening/issues/539)
+- ansible\_role\_name is undefined [\#532](https://github.com/dev-sec/ansible-collection-hardening/issues/532)
+- Can't sudo anymore after hardening [\#518](https://github.com/dev-sec/ansible-collection-hardening/issues/518)
+- Any planned official support for RHEL/CentOS Stream 9? [\#517](https://github.com/dev-sec/ansible-collection-hardening/issues/517)
+
+**Merged pull requests:**
+
+- Improve documentation [\#541](https://github.com/dev-sec/ansible-collection-hardening/pull/541) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+
 ## [7.14.2](https://github.com/dev-sec/ansible-collection-hardening/tree/7.14.2) (2022-02-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.14.1...7.14.2)

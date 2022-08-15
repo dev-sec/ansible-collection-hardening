@@ -385,3 +385,57 @@ os_selinux_enabled: true
 # The values must be inside the 1000-999999999 range.
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
+
+os_mnt_boot_dir_mode: '0700'
+os_mnt_boot_enabled: false
+os_mnt_boot_src: ""
+os_mnt_boot_options: 'rw,nosuid,nodev,noexec'
+os_mnt_boot_filesystem: 'ext4'
+
+os_mnt_dev_dir_mode: '0755'
+os_mnt_dev_enabled: true
+os_mnt_dev_src: "devtmpfs"
+os_mnt_dev_options: 'rw,nosuid,noexec'
+os_mnt_dev_filesystem: "devtmpfs"
+
+os_mnt_dev_shm_dir_mode: '1777'
+os_mnt_dev_shm_enabled: true
+os_mnt_dev_shm_src: "tmpfs"
+os_mnt_dev_shm_options: 'rw,nosuid,nodev,noexec'
+os_mnt_dev_shm_filesystem: "tmpfs"
+
+os_mnt_home_dir_mode: '0755'
+os_mnt_home_enabled: false
+os_mnt_home_src: ""
+os_mnt_home_options: 'rw,nosuid,nodev'
+os_mnt_home_filesystem: "ext4"
+
+os_mnt_run_dir_mode: '0755'
+os_mnt_run_enabled: true
+os_mnt_run_src: "tmpfs"
+os_mnt_run_options: 'rw,nosuid,nodev'
+os_mnt_run_filesystem: "tmpfs"
+
+os_mnt_var_dir_mode: '0755'
+os_mnt_var_enabled: false
+os_mnt_var_src: ""
+os_mnt_var_options: 'rw,nosuid,nodev'
+os_mnt_var_filesystem: "ext4"
+
+os_mnt_var_log_dir_mode: '0755'
+os_mnt_var_log_enabled: false
+os_mnt_var_log_src: ""
+os_mnt_var_log_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_log_filesystem: "ext4"
+
+os_mnt_var_log_audit_dir_mode: '0700'
+os_mnt_var_log_audit_enabled: false
+os_mnt_var_log_audit_src: ""
+os_mnt_var_log_audit_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_log_audit_filesystem: "ext4"
+
+os_mnt_var_tmp_dir_mode: '1777'
+os_mnt_var_tmp_enabled: false
+os_mnt_var_tmp_src: ""
+os_mnt_var_tmp_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_tmp_filesystem: "ext4"

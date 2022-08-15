@@ -8,7 +8,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: install required tools on SuSE
-      zypper:
+      community.general.zypper:
         name: "python-xml"
         state: present
       when: ansible_facts.os_family == 'Suse'
@@ -17,7 +17,7 @@
       package:
         name: "python3-apt"
         update_cache: true
-      ignore_errors: true
+      ignore_errors: true  # noqa ignore-errors
 
     - name: Set correct distribution Version for Amazon Linux
       set_fact:

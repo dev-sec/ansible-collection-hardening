@@ -1,6 +1,7 @@
 # Ansible Collection - devsec.hardening
 
 ![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+![devsec.os_hardening VM](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening%20VM/badge.svg)
 ![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
 ![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
 ![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
@@ -14,7 +15,7 @@ This collection provides battle tested hardening for:
   - Rocky Linux 8
   - Debian 9/10
   - Debian 11 (some roles supported)
-  - Ubuntu 16.04/18.04/20.04
+  - Ubuntu 16.04/18.04/20.04/22.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
   - Fedora (some roles supported)

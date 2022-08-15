@@ -6,3 +6,12 @@
 exclude_paths:
   - .cache/  # implicit unless exclude_paths is defined in config
   - .yamllint
+  - ../molecule/
+  - ../.github/
+
+skip_list:
+  - fqcn-builtins
+
+mock_roles:
+  - geerlingguy.git
+  - nginxinc.nginx

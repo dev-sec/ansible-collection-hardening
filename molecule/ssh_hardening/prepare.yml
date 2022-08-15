@@ -12,7 +12,7 @@
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: install packages
+    - name: install packages  # noqa ignore-errors
       yum:
         name:
           - openssh-clients
@@ -22,7 +22,7 @@
         update_cache: true
       ignore_errors: true
 
-    - name: install packages
+    - name: install packages  # noqa ignore-errors
       dnf:
         name:
           - openssh-clients
@@ -32,7 +32,7 @@
         update_cache: true
       ignore_errors: true
 
-    - name: install packages
+    - name: install packages  # noqa ignore-errors
       apt:
         name:
           - openssh-client
@@ -66,7 +66,7 @@
         path: "/var/run/sshd"
         state: directory
 
-    - name: create ssh host keys
+    - name: create ssh host keys  # noqa ignore-errors
       command: "ssh-keygen -A"
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
             ansible_facts.distribution == "Fedora" or

@@ -26,6 +26,7 @@ jobs:
           - rocky8
           - ubuntu1804
           - ubuntu2004
+          - ubuntu2204
           - debian9
           - debian10
           - debian11
@@ -35,7 +36,7 @@ jobs:
           # - fedora  # no support from geerlingguy role
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
