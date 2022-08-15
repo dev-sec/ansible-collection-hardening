@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- revert debian 9 change, only one tls variable now [\#562](https://github.com/dev-sec/ansible-collection-hardening/pull/562) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - add basic support for ubuntu22.04 [\#554](https://github.com/dev-sec/ansible-collection-hardening/pull/554) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
@@ -16,6 +17,7 @@
 
 - os-hardening: yum gpg-check fails if gpg-check already set [\#556](https://github.com/dev-sec/ansible-collection-hardening/issues/556)
 - Ubuntu 22.04 LTS [\#553](https://github.com/dev-sec/ansible-collection-hardening/issues/553)
+- Revert nginx ssl-protocol after deprecation of debian9 [\#528](https://github.com/dev-sec/ansible-collection-hardening/issues/528)
 
 **Merged pull requests:**
 
