@@ -27,8 +27,8 @@ jobs:
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
-          - debian9
           - debian10
+          - debian11
           - amazon
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # needs to be fixed

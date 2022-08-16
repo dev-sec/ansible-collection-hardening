@@ -5,7 +5,6 @@ on: [push, pull_request]   # yamllint disable-line rule:truthy
 
 jobs:
   ansible-lint:
-
     runs-on: ubuntu-latest
 
     steps:
