@@ -27,7 +27,6 @@ jobs:
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
-          - debian9
           - debian10
           - debian11
           # - amazon  # geerlingguy.mysql does not support fedora

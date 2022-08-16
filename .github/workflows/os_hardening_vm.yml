@@ -27,8 +27,8 @@ jobs:
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
-          - debian9
           - debian10
+          - debian11
           # - opensuse42  # opensuse currently cannot get an ip address
           # - arch  - arch is currently not supported by cinc-auditor
     steps:
