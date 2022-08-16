@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
+## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-16)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...7.16.0)
 
 **Implemented enhancements:**
 
