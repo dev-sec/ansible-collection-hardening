@@ -15,6 +15,13 @@
         - ansible_distribution == 'Debian'
         - ansible_distribution_major_version|int >= 11
 
+    - name: Use Python 2 on Debian 10
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python
+      when:
+        - ansible_distribution == 'Debian'
+        - ansible_distribution_major_version|int == 10
+
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       apt:
         name: "*"
@@ -48,6 +55,7 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
+
 
     - include_role:
         name: dev-sec.mysql
