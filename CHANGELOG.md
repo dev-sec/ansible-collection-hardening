@@ -1,13 +1,15 @@
 # Changelog
 
-## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-16)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...7.16.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...HEAD)
 
 **Implemented enhancements:**
 
 - revert debian 9 change, only one tls variable now [\#562](https://github.com/dev-sec/ansible-collection-hardening/pull/562) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- add posibility to run ssh\_hardening as unprivileged user [\#561](https://github.com/dev-sec/ansible-collection-hardening/pull/561) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - add basic support for ubuntu22.04 [\#554](https://github.com/dev-sec/ansible-collection-hardening/pull/554) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- Add full support for Debian 11 [\#538](https://github.com/dev-sec/ansible-collection-hardening/pull/538) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([addianto](https://github.com/addianto))
 
 **Fixed bugs:**
 
@@ -20,11 +22,6 @@
 - Revert nginx ssl-protocol after deprecation of debian9 [\#528](https://github.com/dev-sec/ansible-collection-hardening/issues/528)
 - Support for Debian 11 [\#527](https://github.com/dev-sec/ansible-collection-hardening/issues/527)
 - Support baseline-control os-14 [\#507](https://github.com/dev-sec/ansible-collection-hardening/issues/507)
-
-**Merged pull requests:**
-
-- add posibility to run ssh\_hardening as unprivileged user [\#561](https://github.com/dev-sec/ansible-collection-hardening/pull/561) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
-- Add full support for Debian 11 [\#538](https://github.com/dev-sec/ansible-collection-hardening/pull/538) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([addianto](https://github.com/addianto))
 
 ## [7.15.1](https://github.com/dev-sec/ansible-collection-hardening/tree/7.15.1) (2022-07-26)
 
