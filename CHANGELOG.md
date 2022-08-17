@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.17.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.17.0) (2022-08-17)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.16.0...7.17.0)
+
+**Implemented enhancements:**
+
+- add possibility to keep .netrc files in users homedir [\#563](https://github.com/dev-sec/ansible-collection-hardening/pull/563) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([PhilippFunk](https://github.com/PhilippFunk))
+
 ## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.15.1...7.16.0)
