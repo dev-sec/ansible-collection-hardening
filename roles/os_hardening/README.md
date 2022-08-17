@@ -422,6 +422,12 @@ We know that this is the case on Raspberry Pi.
 - `os_mnt_var_tmp_filesystem`
   - Default: `ext4`
   - Description: Configure file system for fstab entry /var/tmp
+- `os_netrc_enabled`
+  - Default: `True`
+  - Description: Configure filesystem for existence of .netrc file in homedir
+- `os_netrc_whitelist_user`
+  - Default: ``
+  - Description: Add list of user to allow creation of .netrc in users homedir
 
 ## Packages
 

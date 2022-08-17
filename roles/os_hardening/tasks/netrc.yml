@@ -5,14 +5,9 @@
   check_mode: false
   register: users_accounts
 
-- name: Delete rhosts-files from system | os-09
+- name: Delete .netrc-files from system | os-09
   file:
-    dest: '~{{ item }}/.rhosts'
+    dest: '~{{ item }}/.netrc'
     state: 'absent'
   loop: '{{ users_accounts.stdout_lines | flatten | default([]) }}'
-
-- name: Delete hosts.equiv from system | os-01
-  file:
-    dest: '/etc/hosts.equiv'
-    state: 'absent'
-
+  when: item not in os_netrc_whitelist_user
