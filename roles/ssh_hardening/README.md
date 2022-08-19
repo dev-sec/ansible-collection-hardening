@@ -272,6 +272,10 @@ Example playbook:
       - "AcceptEnv LANG"
 ```
 
+## After using the role Ansibles template/copy/file module does not work anymore
+
+If you use this role to disable SFTP (`stfp_enabled: false`) you will get errors. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files.
+
 ## Changing the default port and idempotency
 
 This role uses the default port 22 or the port configured in the inventory to connect to the server. If the default `ssh` port is changed via `ssh_server_ports`, once the ssh server is restarted, it will still try to connect using the previous port. In order to run this role again on the same server the inventory will have to be updated to use the new ssh port.
