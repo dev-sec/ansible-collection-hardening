@@ -10,3 +10,5 @@
   tasks:
     - include_role:
         name: ssh_hardening
+  vars:
+    sftp_enabled: false
