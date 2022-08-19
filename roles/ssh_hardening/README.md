@@ -126,8 +126,8 @@ As this role requires root-privileges, we added `become: true` to all tasks. So 
   - Default: `false`
   - Description: false to disable display of last login information.
 - `sftp_enabled`
-  - Default: `false`
-  - Description: true to enable sftp configuration.
+  - Default: `true`
+  - Description: false to disable sftp configuration.
 - `sftp_umask`
   - Default: `'0027'`
   - Description: Specifies the umask for sftp.
