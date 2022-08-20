@@ -14,7 +14,7 @@
     - mount.path in mountpoints_list
   vars:
     mountinfo: "{{ ansible_mounts | selectattr('mount', 'equalto', mount.path) | list | first | default(None) }}"
-  notify: remount fs
+  notify: Remount filesystems
 
 - name: "Check if {{ mount.path }} exists"
   stat:
@@ -33,4 +33,4 @@
 - name: "Register changed mountpoints"
   set_fact:
     mountpoints_changed: "{{ mountpoints_changed | default([]) + [mount.path] }}"
-  when: mountpoint.changed # noqa no-handler
+  when: mountpoint.changed  # noqa no-handler

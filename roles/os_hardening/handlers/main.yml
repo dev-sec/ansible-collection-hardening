@@ -12,7 +12,7 @@
   systemd:
     daemon_reload: true
 
-- name: remount fs
+- name: Remount filesystems
   mount:
     path: "{{ item }}"
     state: remounted
