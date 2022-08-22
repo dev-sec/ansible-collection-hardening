@@ -1,8 +1,8 @@
 # Changelog
 
-## [7.17.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.17.0) (2022-08-22)
+## [8.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.0) (2022-08-22)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.16.0...7.17.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.16.0...8.0.0)
 
 **Breaking changes:**
 
