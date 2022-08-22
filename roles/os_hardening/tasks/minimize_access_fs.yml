@@ -1,0 +1,36 @@
+---
+- name: "Configure mount {{ mount.path }} with hardened options"
+  mount:
+    path: "{{ mount.path }}"
+    src: "{{ mount.src | default(mountinfo.device, true) }}"
+    fstype: "{{ mount.fstype | default(mountinfo.fstype, true) }}"
+    opts: "{{ mount.opts }}"
+    dump: "{{ mount.dump | default('1' if mount.fstype | default(mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
+    passno: "{{ mount.passno | default('2' if mount.fstype | default(mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
+    state: present
+  register: mountpoint
+  when:
+    - mount.enabled | bool
+    - mount.path in mountpoints_list
+  vars:
+    mountinfo: "{{ ansible_mounts | selectattr('mount', 'equalto', mount.path) | list | first | default(None) }}"
+  notify: Remount filesystems
+
+- name: "Check if {{ mount.path }} exists"
+  stat:
+    path: "{{ mount.path }}"
+  register: mountpoint_exists
+
+- name: "Harden permissions for {{ mount.path }} directory"
+  file:
+    dest: "{{ mount.path }}"
+    owner: 'root'
+    group: 'root'
+    mode: "{{ mount.mode }}"
+  when:
+    - mountpoint_exists.stat.exists | bool
+
+- name: "Register changed mountpoints"
+  set_fact:
+    mountpoints_changed: "{{ mountpoints_changed | default([]) + [mount.path] }}"
+  when: mountpoint.changed  # noqa no-handler
