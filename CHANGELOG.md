@@ -1,12 +1,22 @@
 # Changelog
 
-## [7.17.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.17.0) (2022-08-17)
+## [7.17.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.17.0) (2022-08-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.16.0...7.17.0)
+
+**Breaking changes:**
+
+- change default to allow SFTP [\#564](https://github.com/dev-sec/ansible-collection-hardening/pull/564) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Implemented enhancements:**
 
 - add possibility to keep .netrc files in users homedir [\#563](https://github.com/dev-sec/ansible-collection-hardening/pull/563) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([PhilippFunk](https://github.com/PhilippFunk))
+
+**Closed issues:**
+
+- Error in Task 'Create sshd\_config and set permissions to root/600' [\#565](https://github.com/dev-sec/ansible-collection-hardening/issues/565) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
+- \[ssh\_hardening\] Debian 11 - Ansible cannot transfer files [\#557](https://github.com/dev-sec/ansible-collection-hardening/issues/557)
+- Add the old SFTP-Reminder to the stable ssh\_hardening role for ansible [\#521](https://github.com/dev-sec/ansible-collection-hardening/issues/521)
 
 ## [7.16.0](https://github.com/dev-sec/ansible-collection-hardening/tree/7.16.0) (2022-08-16)
 
