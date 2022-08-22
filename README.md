@@ -38,7 +38,7 @@ The roles are now part of the hardening-collection.
 We have kept the old releases of the `os-hardening` role in this repository, so you can find the them by exploring older tags.
 The last release of the standalone role was [6.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/6.2.0).
 
-The other roles are in separate archives repositories
+The other roles are in separate archives repositories:
 
 - [apache_hardening](https://github.com/dev-sec/ansible-apache-hardening)
 - [mysql_hardening](https://github.com/dev-sec/ansible-mysql-hardening)
