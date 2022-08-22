@@ -86,8 +86,8 @@ See the [changelog](https://github.com/dev-sec/ansible-os-hardening/tree/master/
 
 Todos:
 
-- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/).
-- Add support for more operating systems,
+- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/)
+- Add support for more operating systems
 
 ## More information
 
