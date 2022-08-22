@@ -11,6 +11,7 @@
 **Implemented enhancements:**
 
 - add possibility to keep .netrc files in users homedir [\#563](https://github.com/dev-sec/ansible-collection-hardening/pull/563) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([PhilippFunk](https://github.com/PhilippFunk))
+- rework filesystem hardening [\#555](https://github.com/dev-sec/ansible-collection-hardening/pull/555) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([divialth](https://github.com/divialth))
 
 **Closed issues:**
 
