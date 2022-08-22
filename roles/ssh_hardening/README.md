@@ -126,8 +126,8 @@ As this role requires root-privileges, we added `become: true` to all tasks. So 
   - Default: `false`
   - Description: false to disable display of last login information.
 - `sftp_enabled`
-  - Default: `false`
-  - Description: true to enable sftp configuration.
+  - Default: `true`
+  - Description: false to disable sftp configuration.
 - `sftp_umask`
   - Default: `'0027'`
   - Description: Specifies the umask for sftp.
@@ -271,6 +271,10 @@ Example playbook:
     sshd_custom_options:
       - "AcceptEnv LANG"
 ```
+
+## After using the role Ansibles template/copy/file module does not work anymore
+
+If you use this role to disable SFTP (`sftp_enabled: false`) you will get errors. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. If your control node uses OpenSSH version 9.0 or above, you also need to set `scp_extra_args = "-O"`, since starting with that version the `scp` utility also defaults to using SFTP.
 
 ## Changing the default port and idempotency
 

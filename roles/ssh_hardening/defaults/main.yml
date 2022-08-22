@@ -158,8 +158,8 @@ ssh_banner_path: '/etc/ssh/banner.txt'
 # false to disable distribution version leakage during initial protocol handshake
 ssh_print_debian_banner: false      # sshd (Debian OS family only)
 
-# true to enable sftp configuration
-sftp_enabled: false
+# false to disable sftp configuration
+sftp_enabled: true
 
 # false to disable sftp chroot
 sftp_chroot: true
