@@ -6,6 +6,7 @@ on:  # yamllint disable-line rule:truthy
     types: [labeled, unlabeled, opened, edited, synchronize]
 jobs:
   enforce-label:
+    if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@main
