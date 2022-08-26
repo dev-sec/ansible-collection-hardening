@@ -1,12 +1,23 @@
 # Changelog
 
-## [8.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.1) (2022-08-26)
+## [8.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.1.0) (2022-08-26)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.0.0...8.0.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.0.0...8.1.0)
+
+**Implemented enhancements:**
+
+- add always-tag to include so other tags can be used [\#569](https://github.com/dev-sec/ansible-collection-hardening/pull/569) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
+**Closed issues:**
+
+- Bug using os\_hardening "tags" [\#567](https://github.com/dev-sec/ansible-collection-hardening/issues/567)
+- dev-sec CI bot should not update CHANGELOG.md in fork repository [\#566](https://github.com/dev-sec/ansible-collection-hardening/issues/566)
 
 **Merged pull requests:**
 
+- update supported OS in meta and fix linting [\#572](https://github.com/dev-sec/ansible-collection-hardening/pull/572) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
+- only run release actions on upstream-repo [\#568](https://github.com/dev-sec/ansible-collection-hardening/pull/568) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [8.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.0) (2022-08-22)
 
