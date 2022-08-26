@@ -9,6 +9,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   prettier-md:
+    if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     timeout-minutes: 1
 
