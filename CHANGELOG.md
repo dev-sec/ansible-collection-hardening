@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.1) (2022-08-26)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.0.0...8.0.1)
+
+**Merged pull requests:**
+
+- fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
+
 ## [8.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.0) (2022-08-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/7.16.0...8.0.0)
