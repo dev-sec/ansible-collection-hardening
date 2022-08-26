@@ -6,7 +6,7 @@
 # also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
 - name: Find files with write-permissions for group
   shell: "find -L {{ item }} -perm /go+w -type f"  # noqa command-instead-of-shell
-  with_flattened:
+  with_community.general.flattened:
     - '/usr/local/sbin'
     - '/usr/local/bin'
     - '/usr/sbin'
