@@ -43,7 +43,7 @@
     shell: '{{ os_nologin_shell_path }}'
     password: '*'
     createhome: false
-  with_flattened:
+  with_community.general.flattened:
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'
 
 - name: get all home directories in /home, but skip ignored users

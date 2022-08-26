@@ -15,4 +15,3 @@
   file:
     dest: '/etc/hosts.equiv'
     state: 'absent'
-
