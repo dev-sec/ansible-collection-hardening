@@ -1,11 +1,13 @@
 ---
-- name: Get UID_MIN from login.defs
-  shell: awk '/^\s*UID_MIN\s*([0-9]*).*?$/ {print $2}' /etc/login.defs
-  args:
-    removes: /etc/login.defs
-  register: uid_min
-  check_mode: false
-  changed_when: false
+- name: Create login.defs | os-05, os-05b
+  template:
+    src: 'etc/login.defs.j2'
+    dest: '/etc/login.defs'
+    owner: 'root'
+    group: 'root'
+    mode: '0444'
+  when: os_login_defs_enabled | bool
+  tags: login_defs
 
 - name: Calculate UID_MAX from UID_MIN by substracting 1
   set_fact:

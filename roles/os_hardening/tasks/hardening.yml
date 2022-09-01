@@ -38,10 +38,6 @@
   tags: limits
   when: os_limits_enabled | bool
 
-- import_tasks: login_defs.yml
-  tags: login_defs
-  when: os_login_defs_enabled | bool
-
 - import_tasks: minimize_access.yml
   tags: minimize_access
   when: os_minimize_access_enabled | bool
