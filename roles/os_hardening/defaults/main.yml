@@ -15,13 +15,16 @@ os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 
 os_chfn_restrict: ''
 
-# Set to false to disable chmod /home folders to 700
+# Set to false to disable chmod userhome folders to 700
+os_chmod_rootuser_home: true
 os_chmod_home_folders: true
+
+# Specify names of user, where home folders shouldn't be chmodded to 700
+os_ignore_home_folder_users: []
 
 # May contain: change_user
 os_security_users_allow: []
-# Specify user home folders in /home that shouldn't be chmodded to 700
-os_ignore_home_folder_users: ['lost+found']
+
 # Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: ['vagrant', 'kitchen']
 os_security_kernel_enable_module_loading: true

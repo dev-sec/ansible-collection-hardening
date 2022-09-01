@@ -17,7 +17,7 @@
 
 - name: extract system accounts from local user database
   loop: "{{ getent_passwd.keys()|list }}"
-  when:
+  when:  
     - getent_passwd[item][1]|int > 0
     - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
@@ -33,19 +33,23 @@
     createhome: false
   loop: "{{ system_users }}"
 
-- name: get all home directories in /home, but skip ignored users
-  find:
-    paths: /home/
-    recurse: false
-    file_type: directory
-    excludes: "{{ os_ignore_home_folder_users | join(',') }}"
-  register: home_directories
-  when: os_chmod_home_folders | bool
+- name: extract regular (non-system) accounts from local user database
+  loop: "{{ getent_passwd.keys()|list }}"
+  when:  
+    - getent_passwd[item][1]|int >= os_auth_uid_min|int
+    - getent_passwd[item][1]|int <= os_auth_uid_max|int
+    - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
+    - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
+  set_fact:
+    regular_users: "{{ regular_users|default([]) + [item] }}"
 
-- name: set ownership of /home directories to 0700
+- name: set ownership of user home directories to 0700
   file:
     mode: 0700
-    path: "{{ item.path }}"
+    owner: "{{ item }}"
+    path: "{{ getent_passwd[item][4] }}"
     state: directory
-  loop: "{{ home_directories.files }}"
-  when: os_chmod_home_folders | bool
+  loop: "{{ regular_users }}"
+  when: 
+    - os_chmod_home_folders | bool
+    - item not in os_ignore_home_folder_users|default([])
