@@ -341,8 +341,13 @@ os_ctrlaltdel_disabled: false
 # Set to false to disable installing and configuring limits.
 os_limits_enabled: true
 
-# Set to false to disable installing and configuring login_defs.
+# Set to false to disable installing and configuring login_defs for newly created users.
 os_login_defs_enabled: true
+
+# Set to false to disable password age enforcement on existing users
+os_user_pw_ageing: true
+#List of users, where password ageing should not enforced
+users_without_password_ageing: []
 
 # Set to false to disable installing and configuring minimize_access.
 os_minimize_access_enabled: true

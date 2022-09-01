@@ -53,3 +53,13 @@
   when: 
     - os_chmod_home_folders | bool
     - item not in os_ignore_home_folder_users|default([])
+
+- name: Set password ageing for exisiting regular user accounts (system users have no password)
+  user:
+    name: "{{ item }}"
+    password_expire_min: "{{ os_auth_pw_min_age }}"
+    password_expire_max: "{{ os_auth_pw_max_age }}"
+  loop: "{{ regular_users }}"
+  when: 
+    - os_user_pw_ageing
+    - item not in users_without_password_ageing

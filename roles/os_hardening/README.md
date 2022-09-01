@@ -247,7 +247,10 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to false to disable installing and configuring limits.
 - `os_login_defs_enabled`
   - Default: `true`
-  - Description: Set to false to disable installing and configuring login_defs.
+  - Description: Set to false to disable installing and configuring login_defs for newly created users.
+- `os_user_pw_ageing`
+  - Default: `true`
+  - Description: Set to false to disable password age enforcement on existing users
 - `os_minimize_access_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring minimize_access.
