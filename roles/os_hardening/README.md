@@ -230,6 +230,9 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_home_folder_users`
   - Default: `[]`
   - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700. 
+- `os_chmod_rootuser_home`
+  - Default: `true`
+  - Description: Set to `false` to disable "chmod 700" of root's home folder
 - `os_chmod_home_folders`
   - Default: `true`
   - Description: Set to `false` to disable "chmod 700" of home folders for regular users
@@ -251,6 +254,12 @@ We know that this is the case on Raspberry Pi.
 - `os_user_pw_ageing`
   - Default: `true`
   - Description: Set to false to disable password age enforcement on existing users
+- `os_rootuser_pw_ageing`
+  - Default: `false`
+  - Description: Set to true to enforce password age settings for root user(s)
+- `os_remove_additional_root_users`
+  - Default: `false`
+  - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
 - `os_minimize_access_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring minimize_access.

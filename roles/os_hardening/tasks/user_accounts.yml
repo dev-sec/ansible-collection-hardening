@@ -63,3 +63,38 @@
   when: 
     - os_user_pw_ageing
     - item not in users_without_password_ageing
+
+- name: extract root account(s) from local user database
+  loop: "{{ getent_passwd.keys()|list }}"
+  when:  
+    - getent_passwd[item][1]|int == 0
+  set_fact:
+    root_users: "{{ root_users|default([]) + [item] }}"
+
+- name: Remove non-root users with UID=0
+  user:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ root_users }}"
+  when: 
+    - os_remove_additional_root_users|bool
+    - root_users|length > 1
+    - item != "root"
+
+- name: set ownership of root user home directory(s) to 0700
+  file:
+    mode: 0700
+    owner: "{{ item }}"
+    path: "{{ getent_passwd[item][4] }}"
+    state: directory
+  loop: "{{ root_users }}"
+  when: 
+    - os_chmod_rootuser_home | bool
+
+- name: Set password ageing for root user(s)
+  user:
+    name: "{{ item }}"
+    password_expire_min: "{{ os_auth_pw_min_age }}"
+    password_expire_max: "{{ os_auth_pw_max_age }}"
+  loop: "{{ root_users }}"
+  when: os_rootuser_pw_ageing|bool

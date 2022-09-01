@@ -346,6 +346,11 @@ os_login_defs_enabled: true
 
 # Set to false to disable password age enforcement on existing users
 os_user_pw_ageing: true
+os_rootuser_pw_ageing: false
+
+# When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+os_remove_additional_root_users: false
+
 #List of users, where password ageing should not enforced
 users_without_password_ageing: []
 
