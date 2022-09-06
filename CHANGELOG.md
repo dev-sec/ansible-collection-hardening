@@ -1,16 +1,24 @@
 # Changelog
 
-## [8.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.1.0) (2022-08-26)
+## [8.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.0) (2022-09-06)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.0.0...8.1.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.1.0...8.2.0)
 
 **Implemented enhancements:**
 
+- add centos \>8 Support [\#573](https://github.com/dev-sec/ansible-collection-hardening/pull/573) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([sbaerlocher](https://github.com/sbaerlocher))
 - add always-tag to include so other tags can be used [\#569](https://github.com/dev-sec/ansible-collection-hardening/pull/569) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
 - Bug using os\_hardening "tags" [\#567](https://github.com/dev-sec/ansible-collection-hardening/issues/567)
+
+## [8.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.1.0) (2022-08-26)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.0.0...8.1.0)
+
+**Closed issues:**
+
 - dev-sec CI bot should not update CHANGELOG.md in fork repository [\#566](https://github.com/dev-sec/ansible-collection-hardening/issues/566)
 
 **Merged pull requests:**
