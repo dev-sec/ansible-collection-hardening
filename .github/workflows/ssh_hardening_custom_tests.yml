@@ -25,7 +25,10 @@ jobs:
       matrix:
         molecule_distro:
           - centos7
+          - centosstream8
+          - centosstream9
           - rocky8
+          - rocky9
           - fedora
           - ubuntu1804
           - ubuntu2004
