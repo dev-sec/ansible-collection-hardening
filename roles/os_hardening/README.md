@@ -229,16 +229,13 @@ We know that this is the case on Raspberry Pi.
   - Description: Specify system accounts whose login should not be disabled and password not changed
 - `os_ignore_home_folder_users`
   - Default: `[]`
-  - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700. 
-- `os_chmod_rootuser_home`
+  - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled. 
+- `os_chmod_rootuser_home_folder`
   - Default: `true`
   - Description: Set to `false` to disable "chmod 700" of root's home folder
 - `os_chmod_home_folders`
   - Default: `true`
   - Description: Set to `false` to disable "chmod 700" of home folders for regular users
-- `os_ignore_home_folder_users`
-  - Default: `[]`
-  - Description: Specify user accounts, whose home folders are ignored when "os_chmod_home_folders" is enabled. 
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
@@ -260,6 +257,9 @@ We know that this is the case on Raspberry Pi.
 - `os_remove_additional_root_users`
   - Default: `false`
   - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+- `os_users_without_password_ageing`
+  - Default: `[]`
+  - Description: List of users, where password ageing should not enforced
 - `os_minimize_access_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring minimize_access.

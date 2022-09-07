@@ -16,7 +16,7 @@ os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 os_chfn_restrict: ''
 
 # Set to false to disable chmod userhome folders to 700
-os_chmod_rootuser_home: true
+os_chmod_rootuser_home_folder: true
 os_chmod_home_folders: true
 
 # Specify names of user, where home folders shouldn't be chmodded to 700
@@ -352,7 +352,7 @@ os_rootuser_pw_ageing: false
 os_remove_additional_root_users: false
 
 #List of users, where password ageing should not enforced
-users_without_password_ageing: []
+os_users_without_password_ageing: []
 
 # Set to false to disable installing and configuring minimize_access.
 os_minimize_access_enabled: true

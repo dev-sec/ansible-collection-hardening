@@ -62,7 +62,7 @@
   loop: "{{ regular_users }}"
   when: 
     - os_user_pw_ageing
-    - item not in users_without_password_ageing
+    - item not in os_users_without_password_ageing
 
 - name: extract root account(s) from local user database
   loop: "{{ getent_passwd.keys()|list }}"
@@ -89,7 +89,7 @@
     state: directory
   loop: "{{ root_users }}"
   when: 
-    - os_chmod_rootuser_home | bool
+    - os_chmod_rootuser_home_folder | bool
 
 - name: Set password ageing for root user(s)
   user:
