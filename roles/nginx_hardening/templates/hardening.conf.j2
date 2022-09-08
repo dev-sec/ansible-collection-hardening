@@ -11,7 +11,7 @@ limit_conn_zone             {{ nginx_limit_conn_zone }};
 limit_conn                  {{ nginx_limit_conn }};
 ssl_ciphers                 '{{ nginx_ssl_ciphers }}';
 ssl_session_tickets         {{ nginx_ssl_session_tickets }};
-ssl_dhparam                 /etc/nginx/dh{{ nginx_dh_size }}.pem;
+ssl_dhparam                 {{ nginx_configuration_hardening_dir }}/dh{{ nginx_dh_size }}.pem;
 {% for header in nginx_add_header %}
 add_header                  {{ header }};
 {% endfor %}
