@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.0) (2022-09-06)
+## [8.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.0) (2022-09-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.1.0...8.2.0)
 
 **Implemented enhancements:**
 
+- Add nginx variables for config-path and owner/group [\#578](https://github.com/dev-sec/ansible-collection-hardening/pull/578) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([hagenbauer](https://github.com/hagenbauer))
 - add centos \>8 Support [\#573](https://github.com/dev-sec/ansible-collection-hardening/pull/573) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([sbaerlocher](https://github.com/sbaerlocher))
 - add always-tag to include so other tags can be used [\#569](https://github.com/dev-sec/ansible-collection-hardening/pull/569) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
