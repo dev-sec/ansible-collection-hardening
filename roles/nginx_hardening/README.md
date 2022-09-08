@@ -75,6 +75,18 @@ It works with the following nginx-roles, including, but not limited to:
 - [nginx_dh_size][]
   - Default: `2048`
   - Description: Specifies the length of DH parameters for EDH ciphers.
+- [nginx_configuration_dir][]
+  - default: "/etc/nginx"
+  - Description: The main location for all nginx configuration files
+- [nginx_configuration_hardening_dir][]
+  - default: "/etc/nginx"
+  - Description: The location for the nginx hardening configuration file (Could be different e.g. when used in jails)
+- [nginx_owner_user][]
+  - default: "root"
+  - Description: The owner user of the nginx configuration files
+- [nginx_owner_group][]
+  - default: "root"
+  - Description: The owner group of the nginx configuration files
 
 ## Example Playbook
 

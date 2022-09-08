@@ -11,6 +11,10 @@ nginx_client_header_timeout: "10"
 nginx_send_timeout: "10"
 nginx_limit_conn_zone: "$binary_remote_addr zone=default:10m"
 nginx_limit_conn: "default 5"
+nginx_configuration_dir: "/etc/nginx"
+nginx_configuration_hardening_dir: "/etc/nginx"
+nginx_owner_user: "root"
+nginx_owner_group: "root"
 nginx_add_header:
   # avoid clickjacking
   - X-Frame-Options SAMEORIGIN
