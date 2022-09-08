@@ -16,6 +16,10 @@ auth        sufficient    pam_unix.so nullok try_first_pass
 auth        [default=1 ignore=ignore success=ok] pam_succeed_if.so uid >= 1000 quiet
 auth        sufficient    pam_sss.so forward_pass
 {% endif %}
+{% if (os_auth_pam_winbind_enable | bool) %}
+auth        [default=1 ignore=ignore success=ok] pam_succeed_if.so uid >= 1000 quiet
+auth        sufficient    pam_winbind.so use_first_pass
+{% endif %}
 {% if os_auth_retries > 0 %}
 auth        required      pam_faillock.so authfail audit even_deny_root deny={{ os_auth_retries }} unlock_time={{ os_auth_lockout_time }}
 {% endif %}
@@ -30,6 +34,9 @@ account     sufficient    pam_succeed_if.so uid < 1000 quiet
 {% if (os_auth_pam_sssd_enable | bool) %}
 account     [default=bad success=ok user_unknown=ignore] pam_sss.so
 {% endif %}
+{% if (os_auth_pam_winbind_enable | bool) %}
+account     [default=bad success=ok user_unknown=ignore] pam_winbind.so
+{% endif %}
 account     required      pam_permit.so
 
 {% if (os_auth_pam_passwdqc_enable | bool) %}
@@ -42,6 +49,9 @@ password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_au
 {% if (os_auth_pam_sssd_enable | bool) %}
 password    sufficient    pam_sss.so use_authtok
 {% endif %}
+{% if (os_auth_pam_winbind_enable | bool) %}
+password    sufficient    pam_winbind.so use_authtok
+{% endif %}
 password    required      pam_deny.so
 
 session     optional      pam_keyinit.so revoke
@@ -51,4 +61,7 @@ session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet 
 session     required      pam_unix.so
 {% if (os_auth_pam_sssd_enable | bool) %}
 session     optional      pam_sss.so
+{% endif %}
+{% if (os_auth_pam_winbind_enable | bool) %}
+session     optional      pam_winbind.so
 {% endif %}
