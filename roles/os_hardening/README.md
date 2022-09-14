@@ -227,9 +227,12 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_users`
   - Default: `['vagrant', 'kitchen']`
   - Description: Specify system accounts whose login should not be disabled and password not changed
+- `os_chmod_home_folders`
+  - Default: `true`
+  - Description: Set to `false` to disable "chmod 700" of home folders for regular users
 - `os_ignore_home_folder_users`
-  - Default: `lost+found`
-  - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
+  - Default: `[]`
+  - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled. 
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
