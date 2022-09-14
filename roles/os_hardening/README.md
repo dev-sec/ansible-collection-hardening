@@ -230,6 +230,15 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_home_folder_users`
   - Default: `lost+found`
   - Description: specify user home folders in `/home` that shouldn't be chmodded to 700
+- `os_chmod_rootuser_home_folder`
+  - Default: `true`
+  - Description: Set to `false` to disable "chmod 700" of root's home folder
+- `os_rootuser_pw_ageing`
+  - Default: `false`
+  - Description: Set to true to enforce password age settings for root user(s)
+- `os_remove_additional_root_users`
+  - Default: `false`
+  - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
@@ -241,7 +250,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to false to disable installing and configuring limits.
 - `os_login_defs_enabled`
   - Default: `true`
-  - Description: Set to false to disable installing and configuring login_defs.
+  - Description: Set to false to disable installing and configuring login_defs for newly created users.
 - `os_minimize_access_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring minimize_access.
