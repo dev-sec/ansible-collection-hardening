@@ -1,50 +1,27 @@
 ---
-- name: Get UID_MIN from login.defs
-  shell: awk '/^\s*UID_MIN\s*([0-9]*).*?$/ {print $2}' /etc/login.defs
-  args:
-    removes: /etc/login.defs
-  register: uid_min
-  check_mode: false
-  changed_when: false
+- name: Read local linux user database
+  getent:
+    database: passwd
+    #creates a dict for each user containing UID/HOMEDIR etc...
+  when: getent_passwd is undefined # skip this task if "getent" has run before
 
-- name: Calculate UID_MAX from UID_MIN by substracting 1
-  set_fact:
-    uid_max: '{{ uid_min.stdout | int - 1 }}'
-  when: uid_min.stdout|int > 0
-
-- name: Set UID_MAX on Debian-systems if no login.defs exist
-  set_fact:
-    uid_max: '999'
+- name: extract system accounts from local user database
+  loop: "{{ getent_passwd.keys()|list }}"
   when:
-    - ansible_facts.os_family == 'Debian'
-    - uid_max is not defined
-
-- name: Set UID_MAX on other systems if no login.defs exist
+    - getent_passwd[item][1]|int > 0
+    - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
+    - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
+    - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
   set_fact:
-    uid_max: '499'
-  when: uid_max is not defined
+    system_users: "{{ system_users|default([]) + [item] }}"
 
-- name: Get all system accounts
-  command: awk -F'':'' '{ if ( $3 <= {{ uid_max|quote }} ) print $1}' /etc/passwd
-  args:
-    removes: /etc/passwd
-  changed_when: false
-  check_mode: false
-  register: sys_accs
-
-- name: Remove always ignored system accounts from list
-  set_fact:
-    sys_accs_cond: '{{ sys_accs.stdout_lines | difference(os_always_ignore_users) }}'
-  check_mode: false
-
-- name: Change system accounts not on the user provided ignore-list
+- name: remove shell+password for linux system accounts
   user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     password: '*'
     createhome: false
-  with_community.general.flattened:
-    - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'
+  loop: "{{ system_users }}"
 
 - name: get all home directories in /home, but skip ignored users
   find:
