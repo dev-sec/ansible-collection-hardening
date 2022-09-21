@@ -30,6 +30,12 @@ os_rootuser_pw_ageing: false
 # When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
 os_remove_additional_root_users: false
 
+# Set to false to disable password age enforcement on existing users
+os_user_pw_ageing: true
+
+# List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
+os_users_without_password_ageing: []
+
 # Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: ['vagrant', 'kitchen']
 os_security_kernel_enable_module_loading: true
