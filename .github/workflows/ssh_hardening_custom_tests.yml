@@ -3,11 +3,13 @@ name: "devsec.ssh_hardening with custom tests"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
+    branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
       - '.github/workflows/ssh_hardening_custom_tests.yml'
   pull_request:
+    branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
