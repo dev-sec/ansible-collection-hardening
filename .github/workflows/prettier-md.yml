@@ -4,6 +4,7 @@ name: Prettier markdown files
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches: [master]
     paths:
       - '**.md'
 
