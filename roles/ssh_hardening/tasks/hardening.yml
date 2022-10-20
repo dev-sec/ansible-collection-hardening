@@ -110,7 +110,9 @@
 
 - name: Include tasks to setup ca keys and principals
   include_tasks: ca_keys_and_principals.yml
-  when: ssh_trusted_user_ca_keys_file | length > 0
+  when:
+    - ssh_trusted_user_ca_keys_file | length > 0
+    - ssh_trusted_user_ca_keys | length > 0
 
 - name: Include selinux specific tasks
   include_tasks: selinux.yml
