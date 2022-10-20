@@ -1,8 +1,18 @@
 # Changelog
 
-## [8.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.1) (2022-09-28)
+## [8.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.1) (2022-10-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.2.0...8.2.1)
+
+**Fixed bugs:**
+
+- do not manage trusted user ca keys if none exist [\#580](https://github.com/dev-sec/ansible-collection-hardening/pull/580) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([hollow](https://github.com/hollow))
+
+**Closed issues:**
+
+- Trying to run the os\_hardening on Debian 11, but fails on privilege escalation [\#587](https://github.com/dev-sec/ansible-collection-hardening/issues/587)
+- auditd increasing logfiles [\#586](https://github.com/dev-sec/ansible-collection-hardening/issues/586)
+- Path to nginx.conf should be configurable in a variable  [\#577](https://github.com/dev-sec/ansible-collection-hardening/issues/577)
 
 **Merged pull requests:**
 
