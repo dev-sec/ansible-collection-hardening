@@ -1,8 +1,12 @@
 # Changelog
 
-## [8.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.1) (2022-10-20)
+## [8.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.1) (2022-10-21)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.2.0...8.2.1)
+
+**Implemented enhancements:**
+
+- add hardening of root user account\(s\) [\#579](https://github.com/dev-sec/ansible-collection-hardening/pull/579) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
 
 **Fixed bugs:**
 
