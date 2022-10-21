@@ -16,8 +16,6 @@
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       apt:
-        name: "*"
-        state: latest
         update_cache: true
       when: ansible_os_family == 'Debian'
 
