@@ -136,7 +136,7 @@ We know that this is the case on Raspberry Pi.
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
 - `os_security_kernel_enable_module_loading`
   - Default: `true`
-  - Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`).
+  - Description: true if you want to be allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`).
 - `os_security_kernel_enable_core_dump`
   - Default: `false`
   - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created.

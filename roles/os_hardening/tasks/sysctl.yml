@@ -27,7 +27,7 @@
     - ansible_facts.os_family == 'Debian'
     - os_security_kernel_enable_module_loading
 
-- name: Rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
+- name: Rebuild initramfs with starting pack of modules, if module loading at runtime is enabled
   template:
     src: 'etc/initramfs-tools/modules.j2'
     dest: '/etc/initramfs-tools/modules'
@@ -39,7 +39,6 @@
   when:
     - ansible_facts.os_family == 'Debian'
     - os_security_kernel_enable_module_loading
-  register: initramfs
 
 - name: Change sysctls
   block:
