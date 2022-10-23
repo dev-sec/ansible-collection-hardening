@@ -12,5 +12,5 @@
     owner: 'root'
     group: 'root'
     mode: '0640'
-  notify: 'restart-auditd'
+  notify: Restart auditd
   tags: auditd
