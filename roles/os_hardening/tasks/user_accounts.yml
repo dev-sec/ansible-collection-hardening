@@ -2,17 +2,17 @@
 - name: Read local linux user database
   getent:
     database: passwd
-    #creates a dict for each user containing UID/HOMEDIR etc...
-  when: getent_passwd is undefined # skip this task if "getent" has run before
+    # creates a dict for each user containing UID/HOMEDIR etc...
+  when: getent_passwd is undefined  # skip this task if "getent" has run before
 
-- name: extract root account(s) from local user database
-  loop: "{{ getent_passwd.keys()|list }}"
+- name: Extract root account(s) from local user database
+  loop: "{{ getent_passwd.keys() | list }}"
   when:
     - getent_passwd[item][1]|int == 0
   set_fact:
-    root_users: "{{ root_users|default([]) + [item] }}"
+    root_users: "{{ root_users | default([]) + [item] }}"
 
-- name: set ownership of root user home directory(s) to 0700
+- name: Set ownership of root user home directory(s) to 0700
   file:
     mode: 0700
     owner: "{{ item }}"
@@ -22,7 +22,7 @@
   when:
     - os_chmod_rootuser_home_folder | bool
 
-- name: set password ageing for root user(s)
+- name: Set password ageing for root user(s)
   user:
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
@@ -30,7 +30,7 @@
   loop: "{{ root_users }}"
   when: os_rootuser_pw_ageing|bool
 
-- name: remove additional users with UID=0 ("root" user is not touched)
+- name: Remove additional users with UID=0 ("root" user is not touched)
   user:
     name: "{{ item }}"
     state: absent
@@ -66,7 +66,7 @@
   when: uid_max is not defined
 
 - name: Get all system accounts
-  command: awk -F'':'' '{ if ( $3 <= {{ uid_max|quote }} ) print $1}' /etc/passwd
+  command: awk -F'':'' '{ if ( $3 <= {{ uid_max | quote }} ) print $1}' /etc/passwd
   args:
     removes: /etc/passwd
   changed_when: false
@@ -87,7 +87,7 @@
   with_community.general.flattened:
     - '{{ sys_accs_cond | default([]) | difference(os_ignore_users) | list }}'
 
-- name: get all home directories in /home, but skip ignored users
+- name: Get all home directories in /home, but skip ignored users
   find:
     paths: /home/
     recurse: false
@@ -96,7 +96,7 @@
   register: home_directories
   when: os_chmod_home_folders | bool
 
-- name: set ownership of /home directories to 0700
+- name: Set ownership of /home directories to 0700
   file:
     mode: 0700
     path: "{{ item.path }}"
