@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-24)
+## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-26)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.2.0...8.3.0)
 
@@ -21,6 +21,7 @@
 **Merged pull requests:**
 
 - adopt all current suggestions from ansible-lint [\#592](https://github.com/dev-sec/ansible-collection-hardening/pull/592) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+- Support more os [\#588](https://github.com/dev-sec/ansible-collection-hardening/pull/588) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - run tests only on pushes to master or to PRs [\#581](https://github.com/dev-sec/ansible-collection-hardening/pull/581) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [8.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.0) (2022-09-08)
