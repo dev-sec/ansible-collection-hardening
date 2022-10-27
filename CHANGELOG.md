@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-26)
+## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-27)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.2.0...8.3.0)
 
@@ -10,6 +10,8 @@
 
 **Fixed bugs:**
 
+- os\_auth\_retries variable causes a comparison type error on pam tasks [\#593](https://github.com/dev-sec/ansible-collection-hardening/issues/593)
+- cast expected int types in pam tasks [\#594](https://github.com/dev-sec/ansible-collection-hardening/pull/594) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([dlouzan](https://github.com/dlouzan))
 - do not manage trusted user ca keys if none exist [\#580](https://github.com/dev-sec/ansible-collection-hardening/pull/580) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([hollow](https://github.com/hollow))
 
 **Closed issues:**
