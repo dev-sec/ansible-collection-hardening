@@ -22,7 +22,7 @@
     name: 'libpam-modules'
     state: 'present'
   when:
-    - os_auth_retries > 0
+    - os_auth_retries|int > 0
 
 - name: Manage tally on Debian stable
   when:
@@ -37,14 +37,14 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Delete tally2 when retries is 0
       file:
         path: '{{ tally2_path }}'
         state: 'absent'
       when:
-        - os_auth_retries == 0
+        - os_auth_retries|int == 0
 
 - name: Manage tally/faillock on Debian unstable
   when:
@@ -80,7 +80,7 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Configure faillock pam authfail
       template:
@@ -90,21 +90,21 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Delete faillock when retries is 0
       file:
         path: '/usr/share/pam-configs/faillock'
         state: 'absent'
       when:
-        - os_auth_retries == 0
+        - os_auth_retries|int == 0
 
     - name: Delete faillock authfail when retries is 0
       file:
         path: '/usr/share/pam-configs/faillock_authfail'
         state: 'absent'
       when:
-        - os_auth_retries == 0
+        - os_auth_retries|int == 0
 
 - name: Update pam on Debian systems
   command: 'pam-auth-update --package'

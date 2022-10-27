@@ -4,7 +4,7 @@
 #%PAM-1.0
 auth        required      pam_env.so
 auth        required      pam_faildelay.so delay=2000000
-{% if os_auth_retries > 0 %}
+{% if os_auth_retries|int > 0 %}
 auth        required      pam_faillock.so preauth silent audit even_deny_root deny={{ os_auth_retries }} unlock_time={{ os_auth_lockout_time }}
 {% endif %}
 {% if (os_auth_pam_sssd_enable | bool) %}
@@ -16,12 +16,12 @@ auth        sufficient    pam_unix.so nullok try_first_pass
 auth        [default=1 ignore=ignore success=ok] pam_succeed_if.so uid >= 1000 quiet
 auth        sufficient    pam_sss.so forward_pass
 {% endif %}
-{% if os_auth_retries > 0 %}
+{% if os_auth_retries|int > 0 %}
 auth        required      pam_faillock.so authfail audit even_deny_root deny={{ os_auth_retries }} unlock_time={{ os_auth_lockout_time }}
 {% endif %}
 auth        required      pam_deny.so
 
-{% if os_auth_retries > 0 %}
+{% if os_auth_retries|int > 0 %}
 account     required      pam_faillock.so
 {% endif %}
 account     required      pam_unix.so
