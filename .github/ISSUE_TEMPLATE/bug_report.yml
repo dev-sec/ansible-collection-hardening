@@ -1,0 +1,97 @@
+---
+# reference: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
+name: "Bug report"
+description: "Create a report to help us improve."
+labels: [
+  "bug"
+]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reporting Bugs ld follow some simple rules:
+
+        - **Check**, if you can find similar bugs
+        - **Describe** what is happening and what should happen
+        - **Explain** how to reproduce the problem
+        - **Add** more details and attachments
+        - **Follow up**, if somebody is having questions or needs more details
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Describe the bug
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Reproduction steps"
+      render: Shell
+      description: Paste an example playbook that can be used to reproduce the problem. This will be automatically formatted into code, so no need for backticks.
+      value: |
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: currentbehavior
+    attributes:
+      label: "Current Behavior"
+      description: Please describe the results you received
+      value: |
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expectedbehavior
+    attributes:
+      label: "Expected Behavior"
+      description: Please describe the results you expect
+      value: |
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: os
+    attributes:
+      label: "OS / Environment"
+      value: |
+        Provide all relevant information below, e.g. target OS versions, network device firmware, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: ansible
+    attributes:
+      label: "Ansible Version"
+      render: Shell
+      value: |
+        Paste verbatim output from "ansible --version" between quotes. This will be automatically formatted into code, so no need for backticks.
+    validations:
+      required: true
+
+  - type: textarea
+    id: collection
+    attributes:
+      label: "Collection Version"
+      render: Shell
+      value: |
+        Paste version of the collection. This will be automatically formatted into code, so no need for backticks.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Additional information"
+      description: Please add information like the used software versions, outputs of logs, OS information, screenshots, etc. to enhance the report
+      value: |
+        ...
+    validations:
+      required: false
