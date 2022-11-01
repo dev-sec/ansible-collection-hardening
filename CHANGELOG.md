@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-10-28)
+## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-01)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.3.1)
 
 **Implemented enhancements:**
 
+- add Ansible specific templates for issues [\#596](https://github.com/dev-sec/ansible-collection-hardening/pull/596) ([schurzi](https://github.com/schurzi))
 - use github templates for new issues [\#595](https://github.com/dev-sec/ansible-collection-hardening/pull/595) ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
@@ -18,7 +19,7 @@
 
 **Implemented enhancements:**
 
-- add hardening of root user account\(s\) [\#579](https://github.com/dev-sec/ansible-collection-hardening/pull/579) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
+- add hardening of root user account\(s\) [\#579](https://github.com/dev-sec/ansible-collection-hardening/pull/579) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 
 **Fixed bugs:**
 
@@ -62,7 +63,7 @@
 **Merged pull requests:**
 
 - update supported OS in meta and fix linting [\#572](https://github.com/dev-sec/ansible-collection-hardening/pull/572) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
+- fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 - only run release actions on upstream-repo [\#568](https://github.com/dev-sec/ansible-collection-hardening/pull/568) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [8.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.0) (2022-08-22)
