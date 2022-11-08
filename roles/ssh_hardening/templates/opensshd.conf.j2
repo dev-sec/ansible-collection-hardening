@@ -143,10 +143,13 @@ KerberosTicketCleanup yes
 #KerberosGetAFSToken no
 {% endif %}
 
+{# OpenBSD does not support GSSAPIAuthentication, so leave this out if on OpenBSD #}
+{% if ansible_facts.os_family != 'OpenBSD' -%}
 # Only enable GSSAPI authentication if it is configured.
 GSSAPIAuthentication {{ 'yes' if ssh_gssapi_support else 'no' }}
 GSSAPICleanupCredentials yes
 
+{% endif %}
 {% if ssh_deny_users %}
 # In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here.
 # For key-based authentication this is not necessary, since all keys must be explicitely enabled.

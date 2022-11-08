@@ -106,10 +106,13 @@ RSAAuthentication yes
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
 PasswordAuthentication {{ 'yes' if ssh_client_password_login else 'no' }}
 
+{# OpenBSD does not support GSSAPIAuthentication, so leave this out if on OpenBSD #}
+{% if ansible_facts.os_family != 'OpenBSD' %}
 # Only use GSSAPIAuthentication if implemented on the network.
 GSSAPIAuthentication {{ 'yes' if (ssh_gssapi_support|bool) else 'no' }}
 GSSAPIDelegateCredentials {{ 'yes' if (ssh_gssapi_delegation|bool) else 'no' }}
 
+{% endif %}
 # Disable tunneling
 Tunnel no
 
