@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-08)
+## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.3.1)
 
@@ -15,6 +15,10 @@
 - os\_auth\_retries variable causes a comparison type error on pam tasks [\#593](https://github.com/dev-sec/ansible-collection-hardening/issues/593)
 - ssh\_hardening: Install selinux dependencies fails on Oracle Linux \(RHEL\) 9 [\#585](https://github.com/dev-sec/ansible-collection-hardening/issues/585)
 - OpenBSD does not set distributiuon\_major\_version [\#597](https://github.com/dev-sec/ansible-collection-hardening/pull/597) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([dennisse](https://github.com/dennisse))
+
+**Merged pull requests:**
+
+- add notice to sign-off work to contributor guideline [\#601](https://github.com/dev-sec/ansible-collection-hardening/pull/601) ([schurzi](https://github.com/schurzi))
 
 ## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-27)
 
