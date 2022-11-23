@@ -64,7 +64,7 @@ As this role requires root-privileges, we added `become: true` to all tasks. So 
   - Description: Disable root-login. Set to `'without-password'` or `'yes'` to enable root-login - The quotes are required!
 - `ssh_allow_tcp_forwarding`
   - Default: `no`
-  - Description: `'no'` to disable TCP Forwarding. Set to `'yes'` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`. <br> _Note_: values passed to this variable must be strings, thus values `'yes'`and`'no'` should be passed with quotes.
+  - Description: `'no'` or `False` to disable TCP Forwarding. Set to `'yes'` or `True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
 - `ssh_gateway_ports`
   - Default: `false`
   - Description: `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
