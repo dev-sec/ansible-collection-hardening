@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-17)
+## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.3.1)
 
 **Implemented enhancements:**
 
+- Allow ssh\_allow\_tcp\_forwarding to be a boolean [\#600](https://github.com/dev-sec/ansible-collection-hardening/pull/600) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([crisbal](https://github.com/crisbal))
 - OpenBSD does not support GSSAPI Authentication [\#598](https://github.com/dev-sec/ansible-collection-hardening/pull/598) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([dennisse](https://github.com/dennisse))
 - add Ansible specific templates for issues [\#596](https://github.com/dev-sec/ansible-collection-hardening/pull/596) ([schurzi](https://github.com/schurzi))
 - use github templates for new issues [\#595](https://github.com/dev-sec/ansible-collection-hardening/pull/595) ([schurzi](https://github.com/schurzi))
