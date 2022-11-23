@@ -1,19 +1,18 @@
 ---
 - name: Update-initramfs
-  command: 'update-initramfs -u'
+  ansible.legacy.command: 'update-initramfs -u'
 
 - name: Restart auditd
-  command:
+  ansible.legacy.command:
     cmd: 'service auditd restart'  # rhel: see: https://access.redhat.com/solutions/2664811
-    warn: false  # sadly 'service' module fails in that case also by using 'use: service'
   when: molecule_yml is not defined  # restarting auditd in a container does not work
 
 - name: Reload systemd
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
 
 - name: Remount filesystems
-  mount:
+  ansible.posix.mount:
     path: "{{ item }}"
     state: remounted
   loop: "{{ mountpoints_changed }}"
