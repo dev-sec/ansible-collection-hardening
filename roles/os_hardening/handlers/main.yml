@@ -1,11 +1,11 @@
 ---
 - name: Update-initramfs
-  ansible.builtin.command: 'update-initramfs -u'
+  ansible.builtin.command: update-initramfs -u
 
-- name: Restart auditd
+- name: Restart auditd # noqa command-instead-of-module
   ansible.builtin.command:
-    cmd: 'service auditd restart'  # rhel: see: https://access.redhat.com/solutions/2664811
-  when: molecule_yml is not defined  # restarting auditd in a container does not work
+    cmd: service auditd restart # rhel: see: https://access.redhat.com/solutions/2664811
+  when: molecule_yml is not defined # restarting auditd in a container does not work
 
 - name: Reload systemd
   ansible.builtin.systemd:

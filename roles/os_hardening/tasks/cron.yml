@@ -6,7 +6,7 @@
 # CIS 5.1.2 - CIS 5.1.7
 #
 - name: Find cron files and directories
-  find:
+  ansible.builtin.find:
     paths:
       - /etc
     patterns:

@@ -1,8 +1,8 @@
 ---
 - name: Create securetty
-  template:
-    src: 'etc/securetty.j2'
-    dest: '/etc/securetty'
-    owner: 'root'
-    group: 'root'
-    mode: '0400'
+  ansible.builtin.template:
+    src: etc/securetty.j2
+    dest: /etc/securetty
+    owner: root
+    group: root
+    mode: "0400"

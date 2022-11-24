@@ -1,3 +1,2 @@
 ---
-
-mysql_hardening_user: 'mysql'  # owner of data
+mysql_hardening_user: mysql # owner of data

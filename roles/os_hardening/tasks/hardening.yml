@@ -1,118 +1,118 @@
 ---
 - name: Fetch OS dependent variables
-  include_vars:
-    file: '{{ item }}'
-    name: 'os_vars'
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+    name: os_vars
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
-        - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
-        - '{{ ansible_facts.os_family }}.yml'
+        - "{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
       skip: true
   tags: always
 
 # we only override variables with our default, if they have not been specified already
 # by default the lookup functions finds all varnames containing the string, therefore
 # we add ^ and $ to denote start and end of string, so this returns only exact matches
-- name: Set OS dependent variables, if not already defined by user  # noqa var-naming
-  set_fact:
-    '{{ item.key }}': '{{ item.value }}'
-  when: "not lookup('varnames', '^' + item.key + '$')"
-  with_dict: '{{ os_vars }}'
+- name: Set OS dependent variables, if not already defined by user # noqa var-naming
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  when: not lookup('varnames', '^' + item.key + '$')
+  with_dict: "{{ os_vars }}"
   tags: always
 
 - name: Import tasks for auditd
-  import_tasks: auditd.yml
+  ansible.builtin.import_tasks: auditd.yml
   tags: auditd
   when: os_auditd_enabled | bool
 
 - name: Import tasks for cron
-  import_tasks: cron.yml
+  ansible.builtin.import_tasks: cron.yml
   tags: cron
   when: os_cron_enabled | bool
 
 - name: Import tasks to configure ctrl+alt+del
-  import_tasks: ctrlaltdel.yml
+  ansible.builtin.import_tasks: ctrlaltdel.yml
   tags: ctrlaltdel
   when: os_ctrlaltdel_disabled | bool
 
 - name: Import tasks to configure limits
-  import_tasks: limits.yml
+  ansible.builtin.import_tasks: limits.yml
   tags: limits
   when: os_limits_enabled | bool
 
 - name: Import tasks to configure login_defs
-  import_tasks: login_defs.yml
+  ansible.builtin.import_tasks: login_defs.yml
   tags: login_defs
   when: os_login_defs_enabled | bool
 
 - name: Import tasks to minimize access permissions
-  import_tasks: minimize_access.yml
+  ansible.builtin.import_tasks: minimize_access.yml
   tags: minimize_access
   when: os_minimize_access_enabled | bool
 
 - name: Import tasks to configure PAM
-  import_tasks: pam.yml
+  ansible.builtin.import_tasks: pam.yml
   tags: pam
   when: os_pam_enabled | bool
 
 - name: Import tasks to configure modules
-  import_tasks: modprobe.yml
+  ansible.builtin.import_tasks: modprobe.yml
   tags: modprobe
   when: os_modprobe_enabled | bool
 
 - name: Import tasks to configure profile
-  import_tasks: profile.yml
+  ansible.builtin.import_tasks: profile.yml
   tags: profile
   when: os_profile_enabled | bool
 
 - name: Import tasks to configure securetty
-  import_tasks: securetty.yml
+  ansible.builtin.import_tasks: securetty.yml
   tags: securetty
   when: os_securetty_enabled | bool
 
 - name: Import tasks to set suid and sgid
-  import_tasks: suid_sgid.yml
+  ansible.builtin.import_tasks: suid_sgid.yml
   when: os_security_suid_sgid_enforce  | bool
   tags: suid_sgid
 
 - name: Import tasks to configure sysctl
-  import_tasks: sysctl.yml
+  ansible.builtin.import_tasks: sysctl.yml
   tags: sysctl
   when: os_sysctl_enabled | bool
 
 - name: Import tasks to harden user accounts
-  import_tasks: user_accounts.yml
+  ansible.builtin.import_tasks: user_accounts.yml
   tags: user_accounts
   when: os_user_accounts_enabled | bool
 
 - name: Import tasks to configure rhosts
-  import_tasks: rhosts.yml
+  ansible.builtin.import_tasks: rhosts.yml
   tags: rhosts
   when: os_rhosts_enabled | bool
 
 - name: Import tasks to configure netrc
-  import_tasks: netrc.yml
+  ansible.builtin.import_tasks: netrc.yml
   tags: netrc
   when: os_netrc_enabled | bool
 
 - name: Import tasks to configure yum
-  import_tasks: yum.yml
+  ansible.builtin.import_tasks: yum.yml
   tags: yum
   when:
     - ansible_facts.os_family == 'RedHat'
     - os_yum_enabled | bool
 
 - name: Import tasks to configure apt
-  import_tasks: apt.yml
+  ansible.builtin.import_tasks: apt.yml
   tags: apt
   when:
     - ansible_facts.os_family == 'Debian'
     - os_apt_enabled | bool
 
 - name: Import tasks to configure selinux
-  import_tasks: selinux.yml
+  ansible.builtin.import_tasks: selinux.yml
   tags: selinux
   when:
     - ansible_facts.selinux.status == 'enabled'

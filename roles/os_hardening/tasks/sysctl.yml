@@ -1,39 +1,39 @@
 ---
 - name: Protect sysctl.conf
-  file:
-    path: '/etc/sysctl.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0440'
+  ansible.builtin.file:
+    path: /etc/sysctl.conf
+    owner: root
+    group: root
+    mode: "0440"
     state: touch
     modification_time: preserve
     access_time: preserve
 
 - name: Set Daemon umask, do config for rhel-family | NSA 2.2.4.1
-  template:
-    src: 'etc/sysconfig/rhel_sysconfig_init.j2'
-    dest: '/etc/sysconfig/init'
-    owner: 'root'
-    group: 'root'
-    mode: '0544'
+  ansible.builtin.template:
+    src: etc/sysconfig/rhel_sysconfig_init.j2
+    dest: /etc/sysconfig/init
+    owner: root
+    group: root
+    mode: "0544"
   when: ansible_facts.os_family == 'RedHat'
 
 - name: Install initramfs-tools
-  apt:
-    name: 'initramfs-tools'
-    state: 'present'
+  ansible.builtin.apt:
+    name: initramfs-tools
+    state: present
     update_cache: true
   when:
     - ansible_facts.os_family == 'Debian'
     - os_security_kernel_enable_module_loading
 
 - name: Rebuild initramfs with starting pack of modules, if module loading at runtime is disabled
-  template:
-    src: 'etc/initramfs-tools/modules.j2'
-    dest: '/etc/initramfs-tools/modules'
-    owner: 'root'
-    group: 'root'
-    mode: '0440'
+  ansible.builtin.template:
+    src: etc/initramfs-tools/modules.j2
+    dest: /etc/initramfs-tools/modules
+    owner: root
+    group: root
+    mode: "0440"
   notify:
     - Update-initramfs
   when:
@@ -45,37 +45,37 @@
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
     - name: Create a combined sysctl-dict if os-dependent sysctls are defined
-      set_fact:
-        sysctl_config: '{{ sysctl_config | combine(sysctl_custom_config) }}'
+      ansible.builtin.set_fact:
+        sysctl_config: "{{ sysctl_config | combine(sysctl_custom_config) }}"
       when: sysctl_custom_config | default()
 
     # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
     - name: Create a combined sysctl-dict if os-dependent sysctls are defined
-      set_fact:
-        sysctl_config: '{{ sysctl_config | combine(sysctl_rhel_config) }}'
+      ansible.builtin.set_fact:
+        sysctl_config: "{{ sysctl_config | combine(sysctl_rhel_config) }}"
       when: sysctl_rhel_config | default()
 
     - name: Create a combined sysctl-dict if overwrites are defined
-      set_fact:
-        sysctl_config: '{{ sysctl_config | combine(sysctl_overwrite) }}'
+      ansible.builtin.set_fact:
+        sysctl_config: "{{ sysctl_config | combine(sysctl_overwrite) }}"
       when: sysctl_overwrite | default()
 
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
-      sysctl:
-        name: '{{ item.key }}'
-        value: '{{ item.value }}'
+      ansible.posix.sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
         sysctl_set: true
         state: present
         reload: true
         ignoreerrors: true
-      with_dict: '{{ sysctl_config }}'
+      with_dict: "{{ sysctl_config }}"
       when: item.key not in sysctl_unsupported_entries | default()
 
 - name: Apply ufw defaults
-  template:
-    src: 'etc/default/ufw.j2'
-    dest: '/etc/default/ufw'
-    mode: '0644'
+  ansible.builtin.template:
+    src: etc/default/ufw.j2
+    dest: /etc/default/ufw
+    mode: "0644"
   when:
     - ufw_manage_defaults
     - ansible_facts.os_family == 'Debian'
