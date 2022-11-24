@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-23)
+## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.3.1)
 
@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Updates handlers for new ansible syntax and deprecated options for legacy commands [\#602](https://github.com/dev-sec/ansible-collection-hardening/pull/602) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([jsievertde](https://github.com/jsievertde))
 - add notice to sign-off work to contributor guideline [\#601](https://github.com/dev-sec/ansible-collection-hardening/pull/601) ([schurzi](https://github.com/schurzi))
 
 ## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-27)
