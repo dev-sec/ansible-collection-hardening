@@ -16,6 +16,7 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version|int > 19
+
     - name: install python-rpm
       ansible.buitlin.shell: zypper install python3-rpm python-xml
       when:
