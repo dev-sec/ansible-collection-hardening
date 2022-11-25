@@ -16,6 +16,12 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version|int > 19
+    - name: install python-rpm
+      ansible.builtin.package:
+        name: python3-rpm
+        state: present
+      when:
+        - ansible_os_family == 'Suse'
 
     - name: Determine required MySQL Python libraries.
       set_fact:
