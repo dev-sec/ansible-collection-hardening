@@ -19,6 +19,7 @@
     - name: install python-rpm
       community.general.zypper:
         name: python3-rpm
+        name: python-xml
         state: present
       when:
         - ansible_os_family == 'Suse'
