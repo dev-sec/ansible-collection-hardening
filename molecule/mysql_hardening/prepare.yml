@@ -19,7 +19,7 @@
       set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
-        - ansible_distribution == 'Suse'
+        - ansible_os_family == 'Suse'
 
     - name: Use Python 2 on Debian 10
       set_fact:
