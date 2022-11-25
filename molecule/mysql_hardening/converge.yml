@@ -17,10 +17,7 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version|int > 19
     - name: install python-rpm
-      community.general.zypper:
-        name: python3-rpm
-        name: python-xml
-        state: present
+      ansible.buitlin.shell: zypper install python3-rpm python-xml
       when:
         - ansible_os_family == 'Suse'
 
