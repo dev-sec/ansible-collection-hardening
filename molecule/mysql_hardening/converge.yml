@@ -17,12 +17,8 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version|int > 19
 
-    - name: install python-rpm
-      ansible.builtin.package:
-        name: python-xml
-        use: "rpm"
-      when:
-        - ansible_os_family == 'Suse'
+    - name: install python-rpm on Suse
+      ansible.builtin.command: which zypper && zypper install python-xml python3-rpm
 
     - name: Determine required MySQL Python libraries.
       set_fact:
