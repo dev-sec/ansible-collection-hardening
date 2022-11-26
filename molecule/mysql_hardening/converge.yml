@@ -19,8 +19,8 @@
 
     - name: install python-rpm
       ansible.buitlin.package:
-      name: python-xml
-      use: "rpm"
+        name: python-xml
+        use: "rpm"
       when:
         - ansible_os_family == 'Suse'
 
