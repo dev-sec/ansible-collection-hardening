@@ -18,7 +18,9 @@
         - ansible_distribution_major_version|int > 19
 
     - name: install python-rpm
-      ansible.buitlin.command: zypper install python3-rpm python-xml
+      ansible.buitlin.package:
+      name: python-xml
+      use: "rpm"
       when:
         - ansible_os_family == 'Suse'
 
