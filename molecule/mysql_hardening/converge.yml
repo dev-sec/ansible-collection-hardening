@@ -19,6 +19,7 @@
 
     - name: install python-rpm on Suse
       ansible.builtin.shell: zypper install python-xml python3-rpm
+      args:
         removes: /usr/bin/zypper
 
     - name: Determine required MySQL Python libraries.
