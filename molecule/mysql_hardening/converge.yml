@@ -18,7 +18,7 @@
         - ansible_distribution_major_version|int > 19
 
     - name: install python-rpm on Suse
-      ansible.builtin.shell: zypper install python-xml python3-rpm
+      ansible.builtin.shell: zypper -n install python-xml python3-rpm
       args:
         removes: /usr/bin/zypper
 
