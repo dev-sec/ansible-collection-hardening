@@ -18,9 +18,8 @@
         - ansible_distribution_major_version|int > 19
 
     - name: install python-rpm on Suse
-      ansible.builtin.command: which zypper && zypper install python-xml python3-rpm
-      args:
-        executable: /bin/bash
+      ansible.builtin.shell: zypper install python-xml python3-rpm
+        removes: /usr/bin/zypper
 
     - name: Determine required MySQL Python libraries.
       set_fact:
