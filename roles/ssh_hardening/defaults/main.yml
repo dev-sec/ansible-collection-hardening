@@ -9,16 +9,16 @@ ssh_server_config_file: /etc/ssh/sshd_config # sshd
 # true if sshd should be started and enabled
 ssh_server_enabled: true # sshd
 
-# yamllint disable-line rule:line-length
-# true if DNS resolutions are needed, look up the remote host name, defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
+# true if DNS resolutions are needed, look up the remote host name,
+# defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
 ssh_use_dns: false # sshd
 
 # true or value if compression is needed
 ssh_client_compression: false # ssh
 ssh_compression: false # sshd
 
-# yamllint disable-line rule:line-length
-# For which components (client and server) to generate the configuration for. Can be useful when running against a client without an SSH server.
+# For which components (client and server) to generate the configuration for.
+# Can be useful when running against a client without an SSH server.
 ssh_client_hardening: true # ssh
 ssh_server_hardening: true # sshd
 
@@ -32,8 +32,8 @@ ssh_server_ports: ["22"] # sshd
 # port to which ssh-client should connect
 ssh_client_port: "22" # ssh
 
-# yamllint disable-line rule:line-length
-# one or more ip addresses, to which ssh-server should listen to. Default is empty, but should be configured for security reasons!
+# one or more ip addresses, to which ssh-server should listen to.
+# Default is empty, but should be configured for security reasons!
 ssh_listen_to: [0.0.0.0] # sshd
 
 # Host keys to look for when starting sshd.
@@ -54,11 +54,10 @@ ssh_client_host_key_algorithms: [] # ssh
 # specifies the time allowed for successful authentication to the SSH server
 ssh_login_grace_time: 30s
 
-# yamllint disable-line rule:line-length
-# Specifies  the  maximum  number  of authentication attempts permitted per connection.  Once the number of failures reaches half this value, additional failures are logged.
+# Specifies the maximum number of authentication attempts permitted per connection.
+# Once the number of failures reaches half this value, additional failures are logged.
 ssh_max_auth_retries: 2
 
-# yamllint disable-line rule:line-length
 # Specifies the maximum number of open sessions permitted from a given connection
 ssh_max_sessions: 10
 
@@ -79,13 +78,12 @@ ssh_remote_hosts: []
 # Set this to "without-password" or "yes" to allow root to login
 ssh_permit_root_login: "no" # sshd
 
-# yamllint disable-line rule:line-length
-# false to disable TCP Forwarding. Set to 'yes', 'no', 'local', 'all' or 'remote' to allow TCP Forwarding.
+# false to disable TCP Forwarding. Set to 'yes', 'no', 'local', 'all' or 'remote'
+# to allow TCP Forwarding.
 ssh_allow_tcp_forwarding: "no" # sshd
 
-# yamllint disable-line rule:line-length
-# false to disable binding forwarded ports to non-loopback addresses. Set to true to force binding on wildcard address.
-# yamllint disable-line rule:line-length
+# false to disable binding forwarded ports to non-loopback addresses.
+# Set to true to force binding on wildcard address.
 # Set to 'clientspecified' to allow the client to specify which address to bind to.
 ssh_gateway_ports: false # sshd
 
@@ -107,31 +105,24 @@ ssh_gssapi_support: false
 # Set to true to enable GSSAPI credential forwarding
 ssh_gssapi_delegation: false
 
-# yamllint disable-line rule:line-length
 # if specified, login is disallowed for user names that match one of the patterns.
 ssh_deny_users: "" # sshd
 
-# yamllint disable-line rule:line-length
 # if specified, login is allowed only for user names that match one of the patterns.
 ssh_allow_users: "" # sshd
 
-# yamllint disable-line rule:line-length
 # if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
 ssh_deny_groups: "" # sshd
 
-# yamllint disable-line rule:line-length
 # if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
 ssh_allow_groups: "" # sshd
 
-# yamllint disable-line rule:line-length
 # change default file that contains the public keys that can be used for user authentication.
 ssh_authorized_keys_file: "" # sshd
 
-# yamllint disable-line rule:line-length
 # specifies the file containing trusted certificate authorities public keys used to sign user certificates.
 ssh_trusted_user_ca_keys_file: "" # sshd
 
-# yamllint disable-line rule:line-length
 # set the trusted certificate authorities public keys used to sign user certificates.
 # Example:
 # ssh_trusted_user_ca_keys:
@@ -139,26 +130,21 @@ ssh_trusted_user_ca_keys_file: "" # sshd
 #   - 'ssh-rsa ... comment2'
 ssh_trusted_user_ca_keys: [] # sshd
 
-# yamllint disable-line rule:line-length
 # specifies the file containing principals that are allowed. Only used if ssh_trusted_user_ca_keys_file is set.
 # Example:
 # ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
 #
-# yamllint disable-line rule:line-length
 # %h is replaced by the home directory of the user being authenticated, and %u is
-# yamllint disable-line rule:line-length
 # replaced by the username of that user. After expansion, the path is taken to be
 # an absolute path or one relative to the user's home directory.
 #
 ssh_authorized_principals_file: "" # sshd
 
-# yamllint disable-line rule:line-length
 # list of hashes containing file paths and authorized principals. Only used if ssh_authorized_principals_file is set.
 # Example:
 # ssh_authorized_principals:
-# yamllint disable-line rule:line-length
-#   - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}", group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
-# yamllint disable-line rule:line-length
+#   - { path: '/etc/ssh/auth_principals/root', principals: [ 'root' ], owner: "{{ ssh_owner }}",
+#       group: "{{ ssh_group }}", directoryowner: "{{ ssh_owner }}", directorygroup: "{{ ssh_group}}" }
 #   - { path: '/etc/ssh/auth_principals/myuser', principals: [ 'masteradmin', 'webserver' ] }
 ssh_authorized_principals: [] # sshd
 
@@ -175,7 +161,6 @@ ssh_banner: false # sshd
 # path to file with ssh warning banner
 ssh_banner_path: /etc/ssh/banner.txt
 
-# yamllint disable-line rule:line-length
 # false to disable distribution version leakage during initial protocol handshake
 ssh_print_debian_banner: false # sshd (Debian OS family only)
 
@@ -200,11 +185,9 @@ ssh_server_match_user: false # sshd
 # list of hashes (containing group and rules) to generate Match Group blocks for
 ssh_server_match_group: false # sshd
 
-# yamllint disable-line rule:line-length
 # list of hashes (containing addresses/subnets and rules) to generate Match Address blocks for
 ssh_server_match_address: false # sshd
 
-# yamllint disable-line rule:line-length
 # list of hashes (containing port and rules) to generate Match LocalPort blocks for
 ssh_server_match_local_port: false # sshd
 

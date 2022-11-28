@@ -28,9 +28,7 @@
     # yamllint disable-line rule:line-length
     - "{{ yum_repos.files | default([]) | map(attribute='path') | difference(os_yum_repo_file_whitelist | map('regex_replace', '^', '/etc/yum.repos.d/') | list) }}"
 
-# yamllint disable-line rule:line-length
 # failed_when is needed because by default replace module will fail if the file doesn't exists.
-# yamllint disable-line rule:line-length
 # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
 # All other errors will still be raised.
 - name: Activate gpg-check for config files

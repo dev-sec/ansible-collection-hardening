@@ -37,51 +37,41 @@
 - name: Ensure that root can only login from localhost
   community.mysql.mysql_query:
     query:
-      # yamllint disable-line rule:line-length
       - DELETE FROM mysql.user WHERE USER='root' AND HOST NOT IN ('localhost', '127.0.0.1', '::1')
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
-# yamllint disable-line rule:line-length
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query:
-      # yamllint disable-line rule:line-length
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users FROM mysql.user WHERE (length(authentication_string)=0 OR authentication_string="")
         AND USER NOT IN ('mysql.sys', 'mysqlxsys', 'mariadb.sys');
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   when:
-    # yamllint disable-line rule:line-length
     - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or (mysql_distribution == "mariadb" and mysql_version.version.full
       is version('10.4.0', '>='))
 
-# yamllint disable-line rule:line-length
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query:
-      # yamllint disable-line rule:line-length
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users FROM mysql.user WHERE (length(password)=0 OR password="") AND (length(authentication_string)=0
         OR authentication_string="") AND USER NOT IN ('mysql.sys', 'mysqlxsys', 'mariadb.sys');
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   when:
-    # yamllint disable-line rule:line-length
     - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '<')) or (mysql_distribution == "mariadb" and mysql_version.version.full is
       version('10.4.0', '<'))
 
 - name: Create a fact for users without password or authentication_string
   ansible.builtin.set_fact:
-    # yamllint disable-line rule:line-length
     users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords_or_auth_string.query_result is defined
-    # yamllint disable-line rule:line-length
     - mysql_users_wo_passwords_or_auth_string.query_result != "" # noqa empty-string-compare
 
 - name: Create a fact for users without password
   ansible.builtin.set_fact:
-    # yamllint disable-line rule:line-length
     users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords.query_result is defined

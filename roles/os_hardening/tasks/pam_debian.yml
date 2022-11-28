@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     name: libpam-passwdqc
     state: present
-    update_cache: "yes"
+    update_cache: true
   when:
     - os_auth_pam_passwdqc_enable
 
