@@ -17,11 +17,6 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version|int > 19
 
-    - name: install required python packages on Suse
-      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
-      args:
-        removes: /usr/bin/zypper
-
     - name: Determine required MySQL Python libraries.
       set_fact:
         mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
@@ -29,6 +24,19 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
+
+    - name: Use Python 3 on Suse
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_os_family == 'Suse'
+
+    - name: install required python packages on Suse
+      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
+      args:
+        removes: /usr/bin/zypper
+
+
     - include_role:
         name: mysql_hardening
   vars:
