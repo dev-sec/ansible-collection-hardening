@@ -3,5 +3,5 @@
   ansible.builtin.apt:
     name: "{{ os_security_packages_list }}"
     state: absent
-    purge: "yes"
+    purge: true
   when: os_security_packages_clean | bool

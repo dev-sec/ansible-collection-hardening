@@ -4,7 +4,7 @@
     path: "{{ item }}"
     mode: a-s
     state: file
-    follow: "yes"
+    follow: true
   failed_when: false
   with_community.general.flattened:
     - "{{ os_security_suid_sgid_system_blacklist }}"
@@ -26,7 +26,7 @@
     path: "{{ item }}"
     mode: a-s
     state: file
-    follow: "yes"
+    follow: true
   with_community.general.flattened:
     - "{{ suid | default([]) | difference(os_security_suid_sgid_whitelist) }}"
   when: os_security_suid_sgid_remove_from_unknown | bool
