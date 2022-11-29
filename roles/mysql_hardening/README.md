@@ -16,6 +16,7 @@ It configures:
 
 - Ansible 2.9.0
 - An existing MySQL installation
+- python-jmespath on the ansible host
 
 ### Example playbook
 
