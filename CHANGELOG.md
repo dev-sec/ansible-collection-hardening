@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.1) (2022-11-24)
+## [8.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.4.0) (2022-11-29)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.3.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.4.0)
 
 **Implemented enhancements:**
 
+- Add OpenSUSE support  [\#605](https://github.com/dev-sec/ansible-collection-hardening/pull/605) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Allow ssh\_allow\_tcp\_forwarding to be a boolean [\#600](https://github.com/dev-sec/ansible-collection-hardening/pull/600) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([crisbal](https://github.com/crisbal))
 - OpenBSD does not support GSSAPI Authentication [\#598](https://github.com/dev-sec/ansible-collection-hardening/pull/598) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([dennisse](https://github.com/dennisse))
 - add Ansible specific templates for issues [\#596](https://github.com/dev-sec/ansible-collection-hardening/pull/596) ([schurzi](https://github.com/schurzi))
