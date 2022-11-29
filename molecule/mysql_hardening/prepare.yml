@@ -35,6 +35,10 @@
         update_cache: true
       when: ansible_os_family == 'Debian'
 
+    - name: Install required python packages on Suse
+      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
+      when: ansible_os_family == 'Suse'
+
     - name: create missing directory
       file:
         path: "/etc/mysql/conf.d"
@@ -55,7 +59,6 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
-
 
     - include_role:
         name: dev-sec.mysql

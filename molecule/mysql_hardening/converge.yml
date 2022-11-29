@@ -31,12 +31,6 @@
       when:
         - ansible_os_family == 'Suse'
 
-    - name: install required python packages on Suse
-      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
-      args:
-        removes: /usr/bin/zypper
-
-
     - include_role:
         name: mysql_hardening
   vars:
