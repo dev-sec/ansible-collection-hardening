@@ -261,6 +261,7 @@ sysctl_config:
 
   # Disable acceptance of IPv6 router solicitations messages | sysctl-21
   net.ipv6.conf.default.router_solicitations: 0
+  net.ipv6.conf.all.router_solicitations: 0
 
   # Disable Accept Router Preference from router advertisement | sysctl-22
   net.ipv6.conf.default.accept_ra_rtr_pref: 0
@@ -273,6 +274,7 @@ sysctl_config:
 
   # Disable IPv6 autoconfiguration | sysctl-26
   net.ipv6.conf.default.autoconf: 0
+  net.ipv6.conf.all.autoconf: 0
 
   # Disable neighbor solicitations to send out per address | sysctl-27
   net.ipv6.conf.default.dad_transmits: 0
