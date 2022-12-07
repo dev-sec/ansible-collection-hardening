@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.4.0) (2022-11-30)
+## [8.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.4.0) (2022-12-07)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.4.0)
 
 **Implemented enhancements:**
 
+- Implement Test for MySQL systemd service [\#606](https://github.com/dev-sec/ansible-collection-hardening/issues/606)
 - Extended net hardening [\#607](https://github.com/dev-sec/ansible-collection-hardening/pull/607) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 - Add OpenSUSE support  [\#605](https://github.com/dev-sec/ansible-collection-hardening/pull/605) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Allow ssh\_allow\_tcp\_forwarding to be a boolean [\#600](https://github.com/dev-sec/ansible-collection-hardening/pull/600) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([crisbal](https://github.com/crisbal))
@@ -21,6 +22,7 @@
 
 **Merged pull requests:**
 
+- add verify-task to check if mysql is running and enabled [\#608](https://github.com/dev-sec/ansible-collection-hardening/pull/608) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Updates handlers for new ansible syntax and deprecated options for legacy commands [\#602](https://github.com/dev-sec/ansible-collection-hardening/pull/602) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([jsievertde](https://github.com/jsievertde))
 - add notice to sign-off work to contributor guideline [\#601](https://github.com/dev-sec/ansible-collection-hardening/pull/601) ([schurzi](https://github.com/schurzi))
 
