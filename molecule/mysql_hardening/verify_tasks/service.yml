@@ -9,9 +9,6 @@
 - name: Populate service facts
   ansible.builtin.service_facts:
 
-- debug:
-    var: ansible_facts.services
-
 - name: Check if MySQL is running and enabled
   assert:
     that:
