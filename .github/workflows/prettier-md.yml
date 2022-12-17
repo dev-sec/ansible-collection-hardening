@@ -21,6 +21,6 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Prettify code
-        uses: creyD/prettier_action@v3.1
+        uses: creyD/prettier_action@v4.2
         with:
           prettier_options: --write {**/*,*}.md
