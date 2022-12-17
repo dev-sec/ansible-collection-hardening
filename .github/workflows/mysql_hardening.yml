@@ -47,7 +47,7 @@ jobs:
           submodules: true
 
       - name: Set up Python 3.7
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7
 
