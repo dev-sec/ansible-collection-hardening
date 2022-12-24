@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2022-12-24)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
+
+**Merged pull requests:**
+
+- Bump actions/setup-python from 1 to 4 [\#611](https://github.com/dev-sec/ansible-collection-hardening/pull/611) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump creyD/prettier\_action from 3.1 to 4.2 [\#610](https://github.com/dev-sec/ansible-collection-hardening/pull/610) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [8.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.4.0) (2022-12-17)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.4.0)
