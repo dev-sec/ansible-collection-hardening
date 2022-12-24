@@ -7,4 +7,7 @@
   selinux:
     policy: "{{ os_selinux_policy }}"
     state: "{{ os_selinux_state }}"
-  when: "'libselinux' in ansible_facts.packages"
+  when:
+    - "'libselinux' in ansible_facts.packages"
+    - "'libselinux-python' in ansible_facts.packages"
+    - "'policycoreutils-python' in ansible_facts.packages"
