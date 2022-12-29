@@ -1,4 +1,11 @@
 ---
+- name: Install python310-rpm | openSUSE
+  zypper:
+    name: python310-rpm
+    state: present
+    update_cache: true
+  when: ansible_facts.os_family == 'Suse'
+
 - name: Gather the package facts
   package_facts:
     manager: auto
