@@ -396,9 +396,9 @@ os_selinux_enabled: true
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
 
-os_mnt_boot_dir_mode: "{{ lookup('vars', 'os_mnt_boot_dir_mode_override'|lower, default='0700') }}"
-os_mnt_boot_group: "{{ lookup('vars', 'os_mnt_boot_group_override'|lower, default='root') }}"
-os_mnt_boot_owner: "{{ lookup('vars', 'os_mnt_boot_owner_override'|lower, default='root') }}"
+os_mnt_boot_dir_mode: "{{ lookup('vars', 'os_mnt_boot_dir_mode_override' | lower, default='0700') }}"
+os_mnt_boot_group: "{{ lookup('vars', 'os_mnt_boot_group_override' | lower, default='root') }}"
+os_mnt_boot_owner: "{{ lookup('vars', 'os_mnt_boot_owner_override' | lower, default='root') }}"
 os_mnt_boot_enabled: false
 os_mnt_boot_src: ""
 os_mnt_boot_options: 'rw,nosuid,nodev,noexec'
@@ -406,9 +406,9 @@ os_mnt_boot_filesystem: ""
 os_mnt_boot_dump: ""
 os_mnt_boot_passno: ""
 
-os_mnt_dev_dir_mode: "{{ lookup('vars', 'os_mnt_dev_dir_mode_override'|lower, default='0755') }}"
-os_mnt_dev_group: "{{ lookup('vars', 'os_mnt_dev_group_override'|lower, default='root') }}"
-os_mnt_dev_owner: "{{ lookup('vars', 'os_mnt_dev_owner_override'|lower, default='root') }}"
+os_mnt_dev_dir_mode: "{{ lookup('vars', 'os_mnt_dev_dir_mode_override' | lower, default='0755') }}"
+os_mnt_dev_group: "{{ lookup('vars', 'os_mnt_dev_group_override' | lower, default='root') }}"
+os_mnt_dev_owner: "{{ lookup('vars', 'os_mnt_dev_owner_override' | lower, default='root') }}"
 os_mnt_dev_enabled: true
 os_mnt_dev_src: "devtmpfs"
 os_mnt_dev_options: 'rw,nosuid,noexec'
@@ -416,9 +416,9 @@ os_mnt_dev_filesystem: "devtmpfs"
 os_mnt_dev_dump: ""
 os_mnt_dev_passno: ""
 
-os_mnt_dev_shm_dir_mode: "{{ lookup('vars', 'os_mnt_dev_shm_dir_mode_override'|lower, default='1777') }}"
-os_mnt_dev_shm_group: "{{ lookup('vars', 'os_mnt_dev_shm_group_override'|lower, default='root') }}"
-os_mnt_dev_shm_owner: "{{ lookup('vars', 'os_mnt_dev_shm_owner_override'|lower, default='root') }}"
+os_mnt_dev_shm_dir_mode: "{{ lookup('vars', 'os_mnt_dev_shm_dir_mode_override' | lower, default='1777') }}"
+os_mnt_dev_shm_group: "{{ lookup('vars', 'os_mnt_dev_shm_group_override' | lower, default='root') }}"
+os_mnt_dev_shm_owner: "{{ lookup('vars', 'os_mnt_dev_shm_owner_override' | lower, default='root') }}"
 os_mnt_dev_shm_enabled: true
 os_mnt_dev_shm_src: "tmpfs"
 os_mnt_dev_shm_options: 'rw,nosuid,nodev,noexec'
@@ -426,9 +426,9 @@ os_mnt_dev_shm_filesystem: "tmpfs"
 os_mnt_dev_shm_dump: ""
 os_mnt_dev_shm_passno: ""
 
-os_mnt_home_dir_mode: "{{ lookup('vars', 'os_mnt_home_dir_mode_override'|lower, default='0755') }}"
-os_mnt_home_group: "{{ lookup('vars', 'os_mnt_home_group_override'|lower, default='root') }}"
-os_mnt_home_owner: "{{ lookup('vars', 'os_mnt_home_owner_override'|lower, default='root') }}"
+os_mnt_home_dir_mode: "{{ lookup('vars', 'os_mnt_home_dir_mode_override' | lower, default='0755') }}"
+os_mnt_home_group: "{{ lookup('vars', 'os_mnt_home_group_override' | lower, default='root') }}"
+os_mnt_home_owner: "{{ lookup('vars', 'os_mnt_home_owner_override' | lower, default='root') }}"
 os_mnt_home_enabled: false
 os_mnt_home_src: ""
 os_mnt_home_options: 'rw,nosuid,nodev'
@@ -436,9 +436,9 @@ os_mnt_home_filesystem: ""
 os_mnt_home_dump: ""
 os_mnt_home_passno: ""
 
-os_mnt_run_dir_mode: "{{ lookup('vars', 'os_mnt_run_dir_mode_override'|lower, default='0755') }}"
-os_mnt_run_group: "{{ lookup('vars', 'os_mnt_run_group_override'|lower, default='root') }}"
-os_mnt_run_owner: "{{ lookup('vars', 'os_mnt_run_owner_override'|lower, default='root') }}"
+os_mnt_run_dir_mode: "{{ lookup('vars', 'os_mnt_run_dir_mode_override' | lower, default='0755') }}"
+os_mnt_run_group: "{{ lookup('vars', 'os_mnt_run_group_override' | lower, default='root') }}"
+os_mnt_run_owner: "{{ lookup('vars', 'os_mnt_run_owner_override' | lower, default='root') }}"
 os_mnt_run_enabled: true
 os_mnt_run_src: "tmpfs"
 os_mnt_run_options: 'rw,nosuid,nodev'
@@ -446,9 +446,9 @@ os_mnt_run_filesystem: "tmpfs"
 os_mnt_run_dump: ""
 os_mnt_run_passno: ""
 
-os_mnt_tmp_dir_mode: "{{ lookup('vars', 'os_mnt_tmp_dir_mode_override'|lower, default='1777') }}"
-os_mnt_tmp_group: "{{ lookup('vars', 'os_mnt_tmp_group_override'|lower, default='root') }}"
-os_mnt_tmp_owner: "{{ lookup('vars', 'os_mnt_tmp_owner_override'|lower, default='root') }}"
+os_mnt_tmp_dir_mode: "{{ lookup('vars', 'os_mnt_tmp_dir_mode_override' | lower, default='1777') }}"
+os_mnt_tmp_group: "{{ lookup('vars', 'os_mnt_tmp_group_override' | lower, default='root') }}"
+os_mnt_tmp_owner: "{{ lookup('vars', 'os_mnt_tmp_owner_override' | lower, default='root') }}"
 os_mnt_tmp_enabled: false
 os_mnt_tmp_src: ""
 os_mnt_tmp_options: 'rw,nosuid,nodev,noexec'
@@ -456,9 +456,9 @@ os_mnt_tmp_filesystem: ""
 os_mnt_tmp_dump: ""
 os_mnt_tmp_passno: ""
 
-os_mnt_var_dir_mode: "{{ lookup('vars', 'os_mnt_var_dir_mode_override'|lower, default='0755') }}"
-os_mnt_var_group: "{{ lookup('vars', 'os_mnt_var_group_override'|lower, default='root') }}"
-os_mnt_var_owner: "{{ lookup('vars', 'os_mnt_var_owner_override'|lower, default='root') }}"
+os_mnt_var_dir_mode: "{{ lookup('vars', 'os_mnt_var_dir_mode_override' | lower, default='0755') }}"
+os_mnt_var_group: "{{ lookup('vars', 'os_mnt_var_group_override' | lower, default='root') }}"
+os_mnt_var_owner: "{{ lookup('vars', 'os_mnt_var_owner_override' | lower, default='root') }}"
 os_mnt_var_enabled: false
 os_mnt_var_src: ""
 os_mnt_var_options: 'rw,nosuid,nodev'
@@ -466,9 +466,9 @@ os_mnt_var_filesystem: ""
 os_mnt_var_dump: ""
 os_mnt_var_passno: ""
 
-os_mnt_var_log_dir_mode: "{{ lookup('vars', 'os_mnt_var_log_dir_mode_override'|lower, default='0755') }}"
-os_mnt_var_log_group: "{{ lookup('vars', 'os_mnt_var_log_group_override'|lower, default='root') }}"
-os_mnt_var_log_owner: "{{ lookup('vars', 'os_mnt_var_log_owner_override'|lower, default='root') }}"
+os_mnt_var_log_dir_mode: "{{ lookup('vars', 'os_mnt_var_log_dir_mode_override' | lower, default='0755') }}"
+os_mnt_var_log_group: "{{ lookup('vars', 'os_mnt_var_log_group_override' | lower, default='root') }}"
+os_mnt_var_log_owner: "{{ lookup('vars', 'os_mnt_var_log_owner_override' | lower, default='root') }}"
 os_mnt_var_log_enabled: false
 os_mnt_var_log_src: ""
 os_mnt_var_log_options: 'rw,nosuid,nodev,noexec'
@@ -476,9 +476,9 @@ os_mnt_var_log_filesystem: ""
 os_mnt_var_log_dump: ""
 os_mnt_var_log_passno: ""
 
-os_mnt_var_log_audit_dir_mode: "{{ lookup('vars', 'os_mnt_var_log_audit_dir_mode_override'|lower, default='0700') }}"
-os_mnt_var_log_audit_group: "{{ lookup('vars', 'os_mnt_var_log_audit_group_override'|lower, default='root') }}"
-os_mnt_var_log_audit_owner: "{{ lookup('vars', 'os_mnt_var_log_audit_owner_override'|lower, default='root') }}"
+os_mnt_var_log_audit_dir_mode: "{{ lookup('vars', 'os_mnt_var_log_audit_dir_mode_override' | lower, default='0700') }}"
+os_mnt_var_log_audit_group: "{{ lookup('vars', 'os_mnt_var_log_audit_group_override' | lower, default='root') }}"
+os_mnt_var_log_audit_owner: "{{ lookup('vars', 'os_mnt_var_log_audit_owner_override' | lower, default='root') }}"
 os_mnt_var_log_audit_enabled: false
 os_mnt_var_log_audit_src: ""
 os_mnt_var_log_audit_options: 'rw,nosuid,nodev,noexec'
@@ -486,9 +486,9 @@ os_mnt_var_log_audit_filesystem: ""
 os_mnt_var_log_audit_dump: ""
 os_mnt_var_log_audit_passno: ""
 
-os_mnt_var_tmp_dir_mode: "{{ lookup('vars', 'os_mnt_var_tmp_dir_mode_override'|lower, default='1777') }}"
-os_mnt_var_tmp_group: "{{ lookup('vars', 'os_mnt_var_tmp_group_override'|lower, default='root') }}"
-os_mnt_var_tmp_owner: "{{ lookup('vars', 'os_mnt_var_tmp_owner_override'|lower, default='root') }}"
+os_mnt_var_tmp_dir_mode: "{{ lookup('vars', 'os_mnt_var_tmp_dir_mode_override' | lower, default='1777') }}"
+os_mnt_var_tmp_group: "{{ lookup('vars', 'os_mnt_var_tmp_group_override' | lower, default='root') }}"
+os_mnt_var_tmp_owner: "{{ lookup('vars', 'os_mnt_var_tmp_owner_override' | lower, default='root') }}"
 os_mnt_var_tmp_enabled: false
 os_mnt_var_tmp_src: ""
 os_mnt_var_tmp_options: 'rw,nosuid,nodev,noexec'
