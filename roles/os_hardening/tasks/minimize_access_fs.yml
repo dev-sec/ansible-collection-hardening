@@ -24,8 +24,8 @@
 - name: "Harden permissions for {{ mount.path }} directory"
   file:
     dest: "{{ mount.path }}"
-    owner: 'root'
-    group: 'root'
+    owner: "{{ mount.owner }}"
+    group: "{{ mount.group }}"
     mode: "{{ mount.mode }}"
   when:
     - mountpoint_exists.stat.exists | bool
