@@ -330,6 +330,7 @@ os_hardening_enabled: true
 os_auditd_enabled: true
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
+os_auditd_num_logs: 5
 
 # Set the SELinux state, which can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
