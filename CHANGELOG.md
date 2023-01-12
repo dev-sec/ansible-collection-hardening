@@ -1,8 +1,13 @@
 # Changelog
 
-## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2022-12-24)
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-12)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
+
+**Implemented enhancements:**
+
+- Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#616](https://github.com/dev-sec/ansible-collection-hardening/issues/616)
+- Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#617](https://github.com/dev-sec/ansible-collection-hardening/pull/617) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([richardlock](https://github.com/richardlock))
 
 **Merged pull requests:**
 
