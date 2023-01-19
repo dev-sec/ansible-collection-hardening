@@ -35,14 +35,14 @@
       when: ansible_facts.distribution == 'Fedora'
 
     - name: install required tools on Arch
-      pacman:
+      community.general.pacman:
         name:
           - awk
         state: present
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: install required tools on RHEL
+    - name: install required tools on RHEL  # noqa ignore-errors
       yum:
         name:
           - openssh-clients
@@ -56,5 +56,9 @@
       changed_when: false
 
     - name: include YUM prepare tasks
-      include: prepare_yum.yml
+      include_tasks: prepare_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
+
+    - name: include YUM prepare tasks
+      include_tasks: prepare_tasks/netrc.yml
+

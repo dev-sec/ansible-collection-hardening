@@ -8,21 +8,22 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 7
-        - 8
+        - "7"
+        - "8"
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
+        - focal
+        - jammy
     - name: Debian
       versions:
-        - stretch
         - buster
+        - bullseye
     - name: Amazon
     - name: Fedora
-    - name: Archlinux
+    - name: ArchLinux
     - name: SmartOS
-    - name: openSUSE
+    - name: opensuse
   galaxy_tags:
     - system
     - security

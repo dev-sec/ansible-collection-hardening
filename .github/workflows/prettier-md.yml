@@ -2,23 +2,25 @@
 # https://github.com/creyD/prettier_action
 name: Prettier markdown files
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
+    branches: [master]
     paths:
       - '**.md'
 
 jobs:
   prettier-md:
+    if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     timeout-minutes: 1
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
       - name: Prettify code
-        uses: creyD/prettier_action@v3.1
+        uses: creyD/prettier_action@v4.2
         with:
           prettier_options: --write {**/*,*}.md

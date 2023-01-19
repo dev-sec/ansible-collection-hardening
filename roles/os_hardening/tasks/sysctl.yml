@@ -42,6 +42,7 @@
   register: initramfs
 
 - name: Change sysctls
+  when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
     - name: Create a combined sysctl-dict if os-dependent sysctls are defined
       set_fact:
@@ -68,7 +69,7 @@
         reload: true
         ignoreerrors: true
       with_dict: '{{ sysctl_config }}'
-  when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
+      when: item.key not in sysctl_unsupported_entries | default()
 
 - name: Apply ufw defaults
   template:

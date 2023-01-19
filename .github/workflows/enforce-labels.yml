@@ -1,12 +1,14 @@
+---
 name: "Enforce PR labels"
 
-on:
+on:  # yamllint disable-line rule:truthy
   pull_request_target:
     types: [labeled, unlabeled, opened, edited, synchronize]
 jobs:
   enforce-label:
+    if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@main
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: actions/labeler@main
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

@@ -43,3 +43,7 @@ modprobe_package: 'module-init-tools'
 auditd_package: 'audit'
 
 hidepid_option: '0'  # allowed values: 0, 1, 2
+
+sysctl_unsupported_entries:
+  - 'fs.protected_fifos'
+  - 'fs.protected_regular'

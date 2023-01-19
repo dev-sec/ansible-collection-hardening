@@ -3,11 +3,13 @@ name: "devsec.ssh_hardening with custom tests"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
+    branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
       - '.github/workflows/ssh_hardening_custom_tests.yml'
   pull_request:
+    branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
@@ -23,24 +25,28 @@ jobs:
       matrix:
         molecule_distro:
           - centos7
+          - centosstream8
+          - centosstream9
           - rocky8
+          - rocky9
           - fedora
           - ubuntu1804
           - ubuntu2004
-          - debian9
+          - ubuntu2204
           - debian10
+          - debian11
           - amazon
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # baseline is not compatible with suse
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
 
       - name: Set up Python 3.7
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7
 

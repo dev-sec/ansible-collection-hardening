@@ -34,6 +34,9 @@
         update_cache: true
       when: ansible_distribution == 'Debian'
 
+    - name: include tests for the service
+      include_tasks: verify_tasks/service.yml
+
     - name: download cinc-auditor
       get_url:
         url: https://omnitruck.cinc.sh/install.sh

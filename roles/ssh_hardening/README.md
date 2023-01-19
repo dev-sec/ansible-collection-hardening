@@ -11,6 +11,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
 ## Requirements
 
 - Ansible >= 2.9
+- root-privileges on the target system
+
+As this role requires root-privileges, we added `become: true` to all tasks. So please make sure you run the role as root or as a user with become-privileges.
 
 ## Role Variables
 
@@ -49,7 +52,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: specifies an interval for sending keepalive messages.
 - `ssh_client_alive_count`
   - Default: `3`
-  - Description: defines how often keep-alive messages are sent.
+  - Description: Defines the number of acceptable unanswered client alive messages before disconnecting clients.
 - `ssh_permit_tunnel`
   - Default: `false`
   - Description: true if SSH Port Tunneling is required.
@@ -61,7 +64,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: Disable root-login. Set to `'without-password'` or `'yes'` to enable root-login - The quotes are required!
 - `ssh_allow_tcp_forwarding`
   - Default: `no`
-  - Description: `'no'` to disable TCP Forwarding. Set to `'yes'` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`. <br> _Note_: values passed to this variable must be strings, thus values `'yes'`and`'no'` should be passed with quotes.
+  - Description: `'no'` or `False` to disable TCP Forwarding. Set to `'yes'` or `True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version, you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
 - `ssh_gateway_ports`
   - Default: `false`
   - Description: `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
@@ -123,8 +126,8 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Default: `false`
   - Description: false to disable display of last login information.
 - `sftp_enabled`
-  - Default: `false`
-  - Description: true to enable sftp configuration.
+  - Default: `true`
+  - Description: false to disable sftp configuration.
 - `sftp_umask`
   - Default: `'0027'`
   - Description: Specifies the umask for sftp.
@@ -268,6 +271,10 @@ Example playbook:
     sshd_custom_options:
       - "AcceptEnv LANG"
 ```
+
+## After using the role Ansibles template/copy/file module does not work anymore
+
+If you use this role to disable SFTP (`sftp_enabled: false`) you will get errors. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. If your control node uses OpenSSH version 9.0 or above, you also need to set `scp_extra_args = "-O"`, since starting with that version the `scp` utility also defaults to using SFTP.
 
 ## Changing the default port and idempotency
 

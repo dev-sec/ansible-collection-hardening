@@ -1,3 +1,4 @@
 .kitchen
 hosts
 Gemfile.lock
+.venv

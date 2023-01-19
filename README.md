@@ -1,6 +1,7 @@
 # Ansible Collection - devsec.hardening
 
 ![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
+![devsec.os_hardening VM](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening%20VM/badge.svg)
 ![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
 ![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
 ![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
@@ -10,10 +11,10 @@
 This collection provides battle tested hardening for:
 
 - Linux operating systems:
-  - CentOS 7/8
+  - CentOS 7
   - Rocky Linux 8
-  - Debian 9/10
-  - Ubuntu 16.04/18.04/20.04
+  - Debian 10/11
+  - Ubuntu 18.04/20.04/22.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
   - Fedora (some roles supported)
@@ -26,14 +27,24 @@ This collection provides battle tested hardening for:
 
 The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
-- https://github.com/dev-sec/linux-baseline
-- https://github.com/dev-sec/mysql-baseline
-- https://github.com/dev-sec/nginx-baseline
-- https://github.com/dev-sec/ssh-baseline
+- <https://github.com/dev-sec/linux-baseline>
+- <https://github.com/dev-sec/mysql-baseline>
+- <https://github.com/dev-sec/nginx-baseline>
+- <https://github.com/dev-sec/ssh-baseline>
 
-## Looking for the old ansible-os-hardening role?
+## Looking for the old roles?
 
-This role is now part of the hardening-collection. You can find the old role in the branch `legacy`.
+The roles are now part of the hardening-collection.
+We have kept the old releases of the `os-hardening` role in this repository, so you can find the them by exploring older tags.
+The last release of the standalone role was [6.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/6.2.0).
+
+The other roles are in separate archives repositories:
+
+- [apache_hardening](https://github.com/dev-sec/ansible-apache-hardening)
+- [mysql_hardening](https://github.com/dev-sec/ansible-mysql-hardening)
+- [nginx_hardening](https://github.com/dev-sec/ansible-nginx-hardening)
+- [ssh_hardening](https://github.com/dev-sec/ansible-ssh-hardening)
+- [windows_hardening](https://github.com/dev-sec/ansible-windows-hardening)
 
 ## Minimum required Ansible-version
 
@@ -75,8 +86,8 @@ See the [changelog](https://github.com/dev-sec/ansible-os-hardening/tree/master/
 
 Todos:
 
-- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/).
-- Add support for more operating systems,
+- Work on [apache_hardening](roles/apache_hardening/) and [windows_hardening](roles/windows_hardening/)
+- Add support for more operating systems
 
 ## More information
 
@@ -94,6 +105,6 @@ General information:
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
+<http://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

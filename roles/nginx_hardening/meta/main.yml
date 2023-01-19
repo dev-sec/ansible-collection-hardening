@@ -8,16 +8,17 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 6
-        - 7
+        - "7"
+        - "8"
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
+        - focal
+        - jammy
     - name: Debian
       versions:
-        - stretch
         - buster
+        - bullseye
   galaxy_tags:
     - system
     - security

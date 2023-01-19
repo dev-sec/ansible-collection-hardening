@@ -1,0 +1,13 @@
+---
+- name: Get user accounts | os-09
+  command: "awk -F: '{print $1}' /etc/passwd"
+  changed_when: false
+  check_mode: false
+  register: users_accounts
+
+- name: Delete .netrc-files from system | os-09
+  file:
+    dest: '~{{ item }}/.netrc'
+    state: 'absent'
+  loop: '{{ users_accounts.stdout_lines | flatten | default([]) }}'
+  when: item not in os_netrc_whitelist_user

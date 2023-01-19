@@ -1,0 +1,9 @@
+---
+- name: create '.netrc' in /root
+  ansible.builtin.copy:
+    dest: '/root/.netrc'
+    mode: '0600'
+    content: |
+      machine localhost
+      login root
+      password ipsum

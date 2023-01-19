@@ -2,6 +2,6 @@
 - name: Disable CTRL-ALT-DEL
   systemd:
     name: ctrl-alt-del.target
-    masked: yes
-    daemon_reload: yes
+    masked: true
+    daemon_reload: true
   when: ansible_service_mgr == "systemd"

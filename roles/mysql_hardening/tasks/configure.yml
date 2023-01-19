@@ -18,7 +18,7 @@
   when: item is defined and item != ""
   loop:
     - '{{ mysql_settings.settings.datadir }}'
-    - '{{ mysql_datadir|default("") }}'
+    - '{{ mysql_datadir | default("") }}'
 
 - name: Ensure permissions on mysql-logfile are correct
   file:
@@ -30,7 +30,7 @@
   when: item is defined and item != ""
   loop:
     - '{{ mysql_settings.settings.log_error }}'
-    - '{{ mysql_hardening_log_file|default("") }}'
+    - '{{ mysql_hardening_log_file | default("") }}'
 
 - name: Check mysql configuration-directory exists and has right permissions
   file:

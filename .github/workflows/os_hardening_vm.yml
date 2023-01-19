@@ -1,0 +1,57 @@
+---
+name: "devsec.os_hardening VM"
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening_vm/**'
+      - '.github/workflows/os_hardening_vm.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening_vm/**'
+      - '.github/workflows/os_hardening_vm.yml'
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro:
+          - centos7
+          - centos8s
+          # - centos9s  # problems with vagrant
+          - rocky8
+          # - rocky9  # problems with vagrant
+          - ubuntu1804
+          - ubuntu2004
+          - ubuntu2204
+          - debian10
+          - debian11
+          # - opensuse42  # opensuse currently cannot get an ip address
+          # - arch  # arch is currently not supported by cinc-auditor
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/devsec/hardening
+          submodules: true
+
+      - name: Create default collection path symlink
+        run: |
+          mkdir -p /home/runner/.ansible
+          ln -fs /opt/actions-runner/_work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections /home/runner/.ansible/collections
+
+      - name: Test with molecule
+        run: |
+          molecule --version
+          molecule test -s os_hardening_vm
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+        working-directory: ansible_collections/devsec/hardening

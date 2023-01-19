@@ -17,11 +17,13 @@
   when:
     - ansible_facts.os_family != 'Archlinux'
 
-- import_tasks: pam_debian.yml
+- name: Import tasks for Debian PAM
+  import_tasks: pam_debian.yml
   when:
     - ansible_facts.os_family == 'Debian'
 
-- import_tasks: pam_rhel.yml
+- name: Import tasks for RedHat PAM
+  import_tasks: pam_rhel.yml
   when:
     - ansible_facts.os_family == 'RedHat'
 
