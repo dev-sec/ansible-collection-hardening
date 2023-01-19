@@ -304,25 +304,25 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to false to disable installing and configuring `auditd`.
 - `os_auditd_flush`
   - Default: `INCREMENTAL`
-  - Description:  Valid  values are none, incremental, incremental_async, data,  and sync.
+  - Description: Valid values are none, incremental, incremental_async, data, and sync.
 - `os_auditd_max_log_file`
   - Default: 6
   - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action.
 - `os_auditd_max_log_file_action`
   - Default: `keep_logs`
-  - Description: This parameter tells the system what action to take when the system has detected that the max file size limit has been reached. Valid values are ignore, syslog, suspend, rotate and  keep_logs.
+  - Description: This parameter tells the system what action to take when the system has detected that the max file size limit has been reached. Valid values are ignore, syslog, suspend, rotate and keep_logs.
 - `os_auditd_admin_space_left`
   - Default: 50
   - Description: This is a numeric value in megabytes that tells the audit daemon when to perform a configurable action because the system is running low on disk space.
 - `os_auditd_space_left`
   - Default: 75
-  - Description:  If  the free space in the filesystem containing log_file drops below this value, the audit daemon takes the action specified by space_left_action.
+  - Description: If the free space in the filesystem containing log_file drops below this value, the audit daemon takes the action specified by space_left_action.
 - `os_auditd_space_left_action`
   - Default: SYSLOG
-  - Description: This  parameter  tells the system what action to take when the system has detected that it is starting to get low on disk space.
+  - Description: This parameter tells the system what action to take when the system has detected that it is starting to get low on disk space.
 - `os_auditd_log_format`
   - Default: `RAW`
-  - Description: The  log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created  on  one system but reported/analyzed on another system. 
+  - Description: The log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created on one system but reported/analyzed on another system.
 - `os_mnt_boot_dir_mode`
   - Default: `0700`
   - Description: Set default perimissions for /boot
