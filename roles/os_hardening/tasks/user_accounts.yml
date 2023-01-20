@@ -2,30 +2,31 @@
 - name: Read local linux user database
   getent:
     database: passwd
-    #creates a dict for each user containing UID/HOMEDIR etc...
+    # creates a dict for each user containing UID/HOMEDIR etc...
   when: getent_passwd is undefined # skip this task if "getent" has run before
 
 - name: Read local linux shadow database
   getent:
     database: shadow
 
-- name: extract regular (non-system, non-root) accounts from local user database
-  loop: "{{ getent_passwd.keys()|list }}"
+- name: Extract regular (non-system, non-root) accounts from local user database
+  loop: "{{ getent_passwd.keys() | list }}"
   when:
     - getent_passwd[item][1]|int >= os_auth_uid_min|int
     - getent_passwd[item][1]|int <= os_auth_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
   set_fact:
-    regular_users: "{{ regular_users|default([]) + [item] }}"
+    regular_users: "{{ regular_users | default([]) + [item] }}"
 
-- name: set password ageing for exisiting regular (non-system, non-root) accounts
+- name: Set password ageing for exisiting regular (non-system, non-root) accounts
   user:
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
   loop: "{{ regular_users }}"
   when:
+    - regular_users
     - os_user_pw_ageing
     - item not in os_users_without_password_ageing
     - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age

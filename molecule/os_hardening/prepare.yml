@@ -62,3 +62,5 @@
     - name: include YUM prepare tasks
       include_tasks: prepare_tasks/netrc.yml
 
+    - name: include YUM prepare tasks
+      include_tasks: prepare_tasks/pw_ageing.yml
