@@ -63,8 +63,8 @@ os_mnt_var_dir_mode: '0755'
 os_mnt_var_group: 'root'
 os_mnt_var_owner: 'root'
 
-os_mnt_var_log_dir_mode: '0775'
-os_mnt_var_log_group: 'syslog'
+os_mnt_var_log_dir_mode: '0755'
+os_mnt_var_log_group: 'root'
 os_mnt_var_log_owner: 'root'
 
 os_mnt_var_log_audit_dir_mode: '0700'
