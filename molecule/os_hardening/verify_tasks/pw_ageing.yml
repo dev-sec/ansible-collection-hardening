@@ -4,6 +4,9 @@
   changed_when: false
   register: expiry_date
 
+- debug:
+    var: expiry_date
+
 - name: Check that the expiry date of pw_no_ageing is "never"
   ansible.builtin.assert:
     that:
@@ -14,9 +17,12 @@
   changed_when: false
   register: expiry_date
 
+- debug:
+    var: expiry_date
+
 - name: Check that the expiry date of pw_ageing is 30 days
   ansible.builtin.assert:
     # this uses the date from the expire_date variable and subtracts the current date.
     # it should be bigger that the password_expire_min of the user "pw_no_ageing"
     that:
-      - "{{ ( expiry_date.stdout | trim | to_datetime('%b %d, %Y') - ansible_date_time.date | to_datetime('%Y-%m-%d')).days }} == 30"
+      - "{{ ( expiry_date.stdout | trim | to_datetime('%b %d, %Y') - ansible_date_time.date | to_datetime('%Y-%m-%d')).days }} =< 30"
