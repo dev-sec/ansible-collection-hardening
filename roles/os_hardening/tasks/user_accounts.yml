@@ -16,6 +16,8 @@
     - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
+  set_fact:
+    system_users: "{{ system_users|default([]) + [item] }}"
     
 - name: Extract regular (non-system, non-root) accounts from local user database
   loop: "{{ getent_passwd.keys() | list }}"
@@ -111,11 +113,7 @@
   check_mode: false
   register: sys_accs
 
-- name: Remove always ignored system accounts from list
-  set_fact:
-    system_users: "{{ system_users|default([]) + [item] }}"
-
-- name: remove shell+password for linux system accounts
+- name: Remove shell+password for linux system accounts
   user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
