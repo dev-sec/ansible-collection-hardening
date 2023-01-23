@@ -12,6 +12,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
+    cgroupns_mode: host
     pre_build_image: true
     environment:
       container: docker
