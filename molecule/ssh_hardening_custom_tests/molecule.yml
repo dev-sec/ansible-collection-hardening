@@ -12,12 +12,11 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
-    tty: true
+    pre_build_image: true
+    environment:
+      container: docker
+    security_opts:
+      - apparmor=unconfined
     env:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
