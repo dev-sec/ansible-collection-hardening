@@ -27,7 +27,7 @@
   loop: "{{ regular_users }}"
   when:
     - os_user_pw_ageing
-    - regular_users
+    - regular_users is defined and (regular_users | length > 0)
     - item not in os_users_without_password_ageing
     - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
