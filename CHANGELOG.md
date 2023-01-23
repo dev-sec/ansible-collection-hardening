@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-19)
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
 
@@ -8,7 +8,12 @@
 
 - Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#616](https://github.com/dev-sec/ansible-collection-hardening/issues/616)
 - Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#617](https://github.com/dev-sec/ansible-collection-hardening/pull/617) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([richardlock](https://github.com/richardlock))
+- Preserve default ownership and dir mode for /var/log on Ubuntu [\#615](https://github.com/dev-sec/ansible-collection-hardening/pull/615) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([stdtom](https://github.com/stdtom))
 - Parametrize more auditd.conf options [\#535](https://github.com/dev-sec/ansible-collection-hardening/pull/535) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([kravietz](https://github.com/kravietz))
+
+**Fixed bugs:**
+
+- os\_hardening is setting wrong ownership for /var/log on Ubuntu [\#614](https://github.com/dev-sec/ansible-collection-hardening/issues/614)
 
 **Merged pull requests:**
 
