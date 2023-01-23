@@ -4,8 +4,8 @@
 # still getting found and the permissions minimized in the next task.
 # This is also the reason why there's ignore_errors: true on the task.
 # also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
-- name: Find files with write-permissions for group
-  ansible.builtin.shell: find -L {{ item }} -perm /go+w -type f # noqa command-instead-of-shell
+- name: Find files with write-permissions for group # noqa command-instead-of-shell
+  ansible.builtin.shell: find -L {{ item }} -perm /go+w -type f
   with_community.general.flattened:
     - /usr/local/sbin
     - /usr/local/bin
@@ -13,7 +13,7 @@
     - /usr/bin
     - /sbin
     - /bin
-    - "{{ os_env_extra_user_paths }}" # noqa deprecated-bare-vars
+    - "{{ os_env_extra_user_paths }}"
   register: minimize_access_directories
   ignore_errors: true
   changed_when: false
@@ -98,6 +98,8 @@
       opts: "{{ os_mnt_boot_options }}"
       enabled: "{{ os_mnt_boot_enabled }}"
       mode: "{{ os_mnt_boot_dir_mode }}"
+      group: "{{ os_mnt_boot_group }}"
+      owner: "{{ os_mnt_boot_owner }}"
       dump: "{{ os_mnt_boot_dump }}"
       passno: "{{ os_mnt_boot_passno }}"
     - path: /dev
@@ -106,6 +108,8 @@
       opts: "{{ os_mnt_dev_options }}"
       enabled: "{{ os_mnt_dev_enabled }}"
       mode: "{{ os_mnt_dev_dir_mode }}"
+      group: "{{ os_mnt_dev_group }}"
+      owner: "{{ os_mnt_dev_owner }}"
       dump: "{{ os_mnt_dev_dump }}"
       passno: "{{ os_mnt_dev_passno }}"
     - path: /dev/shm
@@ -114,6 +118,8 @@
       opts: "{{ os_mnt_dev_shm_options }}"
       enabled: "{{ os_mnt_dev_shm_enabled }}"
       mode: "{{ os_mnt_dev_shm_dir_mode }}"
+      group: "{{ os_mnt_dev_shm_group }}"
+      owner: "{{ os_mnt_dev_shm_owner }}"
       dump: "{{ os_mnt_dev_shm_dump }}"
       passno: "{{ os_mnt_dev_shm_passno }}"
     - path: /home
@@ -122,6 +128,8 @@
       opts: "{{ os_mnt_home_options }}"
       enabled: "{{ os_mnt_home_enabled }}"
       mode: "{{ os_mnt_home_dir_mode }}"
+      group: "{{ os_mnt_home_group }}"
+      owner: "{{ os_mnt_home_owner }}"
       dump: "{{ os_mnt_home_dump }}"
       passno: "{{ os_mnt_home_passno }}"
     - path: /run
@@ -130,6 +138,8 @@
       opts: "{{ os_mnt_run_options }}"
       enabled: "{{ os_mnt_run_enabled }}"
       mode: "{{ os_mnt_run_dir_mode }}"
+      group: "{{ os_mnt_run_group }}"
+      owner: "{{ os_mnt_run_owner }}"
       dump: "{{ os_mnt_run_dump }}"
       passno: "{{ os_mnt_run_passno }}"
     - path: /tmp
@@ -138,6 +148,8 @@
       opts: "{{ os_mnt_tmp_options }}"
       enabled: "{{ os_mnt_tmp_enabled }}"
       mode: "{{ os_mnt_tmp_dir_mode }}"
+      group: "{{ os_mnt_tmp_group }}"
+      owner: "{{ os_mnt_tmp_owner }}"
       dump: "{{ os_mnt_tmp_dump }}"
       passno: "{{ os_mnt_tmp_passno }}"
     - path: /var
@@ -146,6 +158,8 @@
       opts: "{{ os_mnt_var_options }}"
       enabled: "{{ os_mnt_var_enabled }}"
       mode: "{{ os_mnt_var_dir_mode }}"
+      group: "{{ os_mnt_var_group }}"
+      owner: "{{ os_mnt_var_owner }}"
       dump: "{{ os_mnt_var_dump }}"
       passno: "{{ os_mnt_var_passno }}"
     - path: /var/log
@@ -154,6 +168,8 @@
       opts: "{{ os_mnt_var_log_options }}"
       enabled: "{{ os_mnt_var_log_enabled }}"
       mode: "{{ os_mnt_var_log_dir_mode }}"
+      group: "{{ os_mnt_var_log_group }}"
+      owner: "{{ os_mnt_var_log_owner }}"
       dump: "{{ os_mnt_var_log_dump }}"
       passno: "{{ os_mnt_var_log_passno }}"
     - path: /var/log/audit
@@ -162,6 +178,8 @@
       opts: "{{ os_mnt_var_log_audit_options }}"
       enabled: "{{ os_mnt_var_log_audit_enabled }}"
       mode: "{{ os_mnt_var_log_audit_dir_mode }}"
+      group: "{{ os_mnt_var_log_audit_group }}"
+      owner: "{{ os_mnt_var_log_audit_owner }}"
       dump: "{{ os_mnt_var_log_audit_dump }}"
       passno: "{{ os_mnt_var_log_audit_passno }}"
     - path: /var/tmp
@@ -170,7 +188,7 @@
       opts: "{{ os_mnt_var_tmp_options }}"
       enabled: "{{ os_mnt_var_tmp_enabled }}"
       mode: "{{ os_mnt_var_tmp_dir_mode }}"
+      group: "{{ os_mnt_var_tmp_group }}"
+      owner: "{{ os_mnt_var_tmp_owner }}"
       dump: "{{ os_mnt_var_tmp_dump }}"
       passno: "{{ os_mnt_var_tmp_passno }}"
-  loop_control:
-    loop_var: mount
