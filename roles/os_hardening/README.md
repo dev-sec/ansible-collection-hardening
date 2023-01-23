@@ -242,6 +242,12 @@ We know that this is the case on Raspberry Pi.
 - `os_remove_additional_root_users`
   - Default: `false`
   - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+- `os_user_pw_ageing`
+  - Default: `true`
+  - Description: Set to false to disable password age enforcement on existing users
+- `os_users_without_password_ageing`
+  - Default: `[]`
+  - Description: List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
