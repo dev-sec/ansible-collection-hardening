@@ -1,0 +1,16 @@
+---
+- name: Load variables from role to use the "mysql_daemon" variable
+  ansible.builtin.include_role:
+    name: devsec.hardening.mysql_hardening
+    apply:
+      tags:
+        - never
+
+- name: Populate service facts
+  ansible.builtin.service_facts:
+
+- name: Check if MySQL is running and enabled
+  assert:
+    that:
+      - "ansible_facts.services[mysql_daemon + '.service'].state == 'running'"
+      - "ansible_facts.services[mysql_daemon + '.service'].status == 'enabled'"

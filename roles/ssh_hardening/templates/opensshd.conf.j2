@@ -143,10 +143,13 @@ KerberosTicketCleanup yes
 #KerberosGetAFSToken no
 {% endif %}
 
+{# OpenBSD does not support GSSAPIAuthentication, so leave this out if on OpenBSD #}
+{% if ansible_facts.os_family != 'OpenBSD' -%}
 # Only enable GSSAPI authentication if it is configured.
 GSSAPIAuthentication {{ 'yes' if ssh_gssapi_support else 'no' }}
 GSSAPICleanupCredentials yes
 
+{% endif %}
 {% if ssh_deny_users %}
 # In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here.
 # For key-based authentication this is not necessary, since all keys must be explicitely enabled.
@@ -194,9 +197,9 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
 {% if sshd_version is version('6.2', '>=') %}
-AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all', 'remote')) else 'no' }}
+AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all', 'remote')) else ('yes' if (ssh_allow_tcp_forwarding|bool) else 'no') }}
 {% else %}
-AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else 'no' }}
+AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else ('yes' if (ssh_allow_tcp_forwarding|bool) else 'no') }}
 {% endif %}
 
 # Disable agent forwarding, since local agent could be accessed through forwarded connection.

@@ -24,7 +24,7 @@
 # The following tasks only get executed when selinux is in state enforcing,
 # UsePam is 'no' and the ssh_password module is not installed. See this issue for
 # more info: https://github.com/hardening-io/ansible-ssh-hardening/issues/23
-- name: run selinux tasks
+- name: Run selinux tasks
   when:
     - not (ssh_use_pam | bool)
     - ('ssh_password' not in ssh_password_module.stdout)

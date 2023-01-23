@@ -15,6 +15,12 @@
         - ansible_distribution == 'Debian'
         - ansible_distribution_major_version|int >= 11
 
+    - name: Use Python 3 on Suse
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_os_family == 'Suse'
+
     - name: Use Python 2 on Debian 10
       set_fact:
         ansible_python_interpreter: /usr/bin/python
@@ -29,11 +35,9 @@
         update_cache: true
       when: ansible_os_family == 'Debian'
 
-    - name: install required tools on SuSE
-      community.general.zypper:
-        name: "python-xml"
-        state: present
-      when: ansible_facts.os_family == 'Suse'
+    - name: Install required python packages on Suse
+      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
+      when: ansible_os_family == 'Suse'
 
     - name: create missing directory
       file:
@@ -55,7 +59,6 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
-
 
     - include_role:
         name: dev-sec.mysql

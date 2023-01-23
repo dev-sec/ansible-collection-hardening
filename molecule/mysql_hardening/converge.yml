@@ -24,6 +24,13 @@
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"
         - ansible_distribution_major_version|int < 20
+
+    - name: Use Python 3 on Suse
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_os_family == 'Suse'
+
     - include_role:
         name: mysql_hardening
   vars:

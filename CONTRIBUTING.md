@@ -15,7 +15,7 @@ In order to contribute code please:
 1. Fork the project on GitHub
 2. Clone the project
 3. Add changes (and tests)
-4. Commit and push
+4. Commit, sign off and push your changes
 5. Create a merge-request
 
 To have your code merged, see the expectations listed below.
@@ -27,6 +27,24 @@ Please follow common commit best-practices. Be explicit, have a short summary, a
 Some great guidelines can be found [here](https://wiki.openstack.org/wiki/GitCommitMessages) and [here](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message).
 
 ## Expectations
+
+## Sign off Your Work
+
+The Developer Certificate of Origin (DCO) is a lightweight way for contributors to certify that they wrote or otherwise have the right to submit the code they are contributing to the project.
+[Here is the full text of the DCO](http://developercertificate.org/).
+Contributors must sign-off that they adhere to these requirements by adding a `Signed-off-by` line to commit messages.
+
+```text
+This is my commit message
+
+Signed-off-by: Random J Developer <random@developer.example.org>
+```
+
+Git even has a -s command line option to append this automatically to your commit message:
+
+```text
+git commit -s -m 'This is my commit message'
+```
 
 ### Don't reinvent the wheel
 

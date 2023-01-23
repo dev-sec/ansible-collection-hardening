@@ -1,0 +1,9 @@
+- name: Create user those password ageing should not be changed
+  user:
+    name: "pw_no_ageing"
+    password: "$6$mysecretsalt$qJbapG68nyRab3gxvKWPUcs2g3t0oMHSHMnSKecYNpSi3CuZm.GbBqXO8BE6EI6P1JUefhA0qvD7b5LSh./PU1"
+
+- name: Create user those password ageing should be changed
+  user:
+    name: "pw_ageing"
+    password: "$6$mysecretsalt$qJbapG68nyRab3gxvKWPUcs2g3t0oMHSHMnSKecYNpSi3CuZm.GbBqXO8BE6EI6P1JUefhA0qvD7b5LSh./PU1"

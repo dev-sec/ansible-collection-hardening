@@ -25,6 +25,8 @@ platforms:
       container: docker
 provisioner:
   name: ansible
+  options:
+    diff: true
   config_options:
     defaults:
       interpreter_python: auto_silent

@@ -5,9 +5,9 @@
     name: 'os_vars'
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version | default() }}.yml'
         - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
+        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version | default() }}.yml'
         - '{{ ansible_facts.os_family }}.yml'
       skip: true
   tags: always
@@ -110,7 +110,9 @@
 
 - name: Include tasks to setup ca keys and principals
   include_tasks: ca_keys_and_principals.yml
-  when: ssh_trusted_user_ca_keys_file | length > 0
+  when:
+    - ssh_trusted_user_ca_keys_file | length > 0
+    - ssh_trusted_user_ca_keys | length > 0
 
 - name: Include selinux specific tasks
   include_tasks: selinux.yml

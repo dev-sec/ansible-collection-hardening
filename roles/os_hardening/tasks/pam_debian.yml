@@ -22,9 +22,12 @@
     name: 'libpam-modules'
     state: 'present'
   when:
-    - os_auth_retries > 0
+    - os_auth_retries|int > 0
 
 - name: Manage tally on Debian stable
+  when:
+    - "'libpam-modules' in ansible_facts.packages"
+    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '<')"
   block:
     - name: Configure tally2
       template:
@@ -34,26 +37,26 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Delete tally2 when retries is 0
       file:
         path: '{{ tally2_path }}'
         state: 'absent'
       when:
-        - os_auth_retries == 0
-  when:
-    - "'libpam-modules' in ansible_facts.packages"
-    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '<')"
+        - os_auth_retries|int == 0
 
 - name: Manage tally/faillock on Debian unstable
+  when:
+    - "'libpam-modules' in ansible_facts.packages"
+    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '>=')"
   block:
     - name: Delete tally2
       file:
         path: '{{ tally2_path }}'
         state: 'absent'
 
-    - name:  create tally directory
+    - name: Create tally directory
       file:
         path: '/var/run/faillock'
         state: 'directory'
@@ -77,7 +80,7 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Configure faillock pam authfail
       template:
@@ -87,24 +90,21 @@
         owner: 'root'
         group: 'root'
       when:
-        - os_auth_retries > 0
+        - os_auth_retries|int > 0
 
     - name: Delete faillock when retries is 0
       file:
         path: '/usr/share/pam-configs/faillock'
         state: 'absent'
       when:
-        - os_auth_retries == 0
+        - os_auth_retries|int == 0
 
     - name: Delete faillock authfail when retries is 0
       file:
         path: '/usr/share/pam-configs/faillock_authfail'
         state: 'absent'
       when:
-        - os_auth_retries == 0
-  when:
-    - "'libpam-modules' in ansible_facts.packages"
-    - "ansible_facts.packages['libpam-modules'][0].version is version('1.4.0', '>=')"
+        - os_auth_retries|int == 0
 
 - name: Update pam on Debian systems
   command: 'pam-auth-update --package'

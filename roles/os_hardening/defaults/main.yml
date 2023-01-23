@@ -15,13 +15,27 @@ os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
 
 os_chfn_restrict: ''
 
-# Set to false to disable chmod /home folders to 700
+# Set to false to disable chmod userhome folders to 700
+os_chmod_rootuser_home_folder: true
 os_chmod_home_folders: true
 
 # May contain: change_user
 os_security_users_allow: []
 # Specify user home folders in /home that shouldn't be chmodded to 700
 os_ignore_home_folder_users: ['lost+found']
+
+# Set to false to disable password age enforcement on existing users
+os_rootuser_pw_ageing: false
+
+# When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+os_remove_additional_root_users: false
+
+# Set to false to disable password age enforcement on existing users
+os_user_pw_ageing: true
+
+# List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
+os_users_without_password_ageing: []
+
 # Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: ['vagrant', 'kitchen']
 os_security_kernel_enable_module_loading: true
@@ -253,6 +267,7 @@ sysctl_config:
 
   # Disable acceptance of IPv6 router solicitations messages | sysctl-21
   net.ipv6.conf.default.router_solicitations: 0
+  net.ipv6.conf.all.router_solicitations: 0
 
   # Disable Accept Router Preference from router advertisement | sysctl-22
   net.ipv6.conf.default.accept_ra_rtr_pref: 0
@@ -265,6 +280,7 @@ sysctl_config:
 
   # Disable IPv6 autoconfiguration | sysctl-26
   net.ipv6.conf.default.autoconf: 0
+  net.ipv6.conf.all.autoconf: 0
 
   # Disable neighbor solicitations to send out per address | sysctl-27
   net.ipv6.conf.default.dad_transmits: 0
@@ -318,8 +334,18 @@ os_hardening_enabled: true
 
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
+os_auditd_flush: INCREMENTAL
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
+os_auditd_log_format: RAW
+os_auditd_admin_space_left: 50
+os_auditd_space_left: 75
+os_auditd_space_left_action: SYSLOG
+os_auditd_admin_space_left_action: SUSPEND
+os_auditd_disk_full_action: SUSPEND
+os_auditd_disk_error_action: SUSPEND
+os_auditd_log_group: root
+os_auditd_num_logs: 5
 
 # Set the SELinux state, which can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
@@ -338,7 +364,7 @@ os_ctrlaltdel_disabled: false
 # Set to false to disable installing and configuring limits.
 os_limits_enabled: true
 
-# Set to false to disable installing and configuring login_defs.
+# Set to false to disable installing and configuring login_defs for newly created users.
 os_login_defs_enabled: true
 
 # Set to false to disable installing and configuring minimize_access.
@@ -386,7 +412,6 @@ os_selinux_enabled: true
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
 
-os_mnt_boot_dir_mode: '0700'
 os_mnt_boot_enabled: false
 os_mnt_boot_src: ""
 os_mnt_boot_options: 'rw,nosuid,nodev,noexec'
@@ -394,7 +419,6 @@ os_mnt_boot_filesystem: ""
 os_mnt_boot_dump: ""
 os_mnt_boot_passno: ""
 
-os_mnt_dev_dir_mode: '0755'
 os_mnt_dev_enabled: true
 os_mnt_dev_src: "devtmpfs"
 os_mnt_dev_options: 'rw,nosuid,noexec'
@@ -402,7 +426,6 @@ os_mnt_dev_filesystem: "devtmpfs"
 os_mnt_dev_dump: ""
 os_mnt_dev_passno: ""
 
-os_mnt_dev_shm_dir_mode: '1777'
 os_mnt_dev_shm_enabled: true
 os_mnt_dev_shm_src: "tmpfs"
 os_mnt_dev_shm_options: 'rw,nosuid,nodev,noexec'
@@ -410,7 +433,6 @@ os_mnt_dev_shm_filesystem: "tmpfs"
 os_mnt_dev_shm_dump: ""
 os_mnt_dev_shm_passno: ""
 
-os_mnt_home_dir_mode: '0755'
 os_mnt_home_enabled: false
 os_mnt_home_src: ""
 os_mnt_home_options: 'rw,nosuid,nodev'
@@ -418,7 +440,6 @@ os_mnt_home_filesystem: ""
 os_mnt_home_dump: ""
 os_mnt_home_passno: ""
 
-os_mnt_run_dir_mode: '0755'
 os_mnt_run_enabled: true
 os_mnt_run_src: "tmpfs"
 os_mnt_run_options: 'rw,nosuid,nodev'
@@ -426,7 +447,6 @@ os_mnt_run_filesystem: "tmpfs"
 os_mnt_run_dump: ""
 os_mnt_run_passno: ""
 
-os_mnt_tmp_dir_mode: '1777'
 os_mnt_tmp_enabled: false
 os_mnt_tmp_src: ""
 os_mnt_tmp_options: 'rw,nosuid,nodev,noexec'
@@ -434,7 +454,6 @@ os_mnt_tmp_filesystem: ""
 os_mnt_tmp_dump: ""
 os_mnt_tmp_passno: ""
 
-os_mnt_var_dir_mode: '0755'
 os_mnt_var_enabled: false
 os_mnt_var_src: ""
 os_mnt_var_options: 'rw,nosuid,nodev'
@@ -442,7 +461,6 @@ os_mnt_var_filesystem: ""
 os_mnt_var_dump: ""
 os_mnt_var_passno: ""
 
-os_mnt_var_log_dir_mode: '0755'
 os_mnt_var_log_enabled: false
 os_mnt_var_log_src: ""
 os_mnt_var_log_options: 'rw,nosuid,nodev,noexec'
@@ -450,7 +468,6 @@ os_mnt_var_log_filesystem: ""
 os_mnt_var_log_dump: ""
 os_mnt_var_log_passno: ""
 
-os_mnt_var_log_audit_dir_mode: '0700'
 os_mnt_var_log_audit_enabled: false
 os_mnt_var_log_audit_src: ""
 os_mnt_var_log_audit_options: 'rw,nosuid,nodev,noexec'
@@ -458,7 +475,6 @@ os_mnt_var_log_audit_filesystem: ""
 os_mnt_var_log_audit_dump: ""
 os_mnt_var_log_audit_passno: ""
 
-os_mnt_var_tmp_dir_mode: '1777'
 os_mnt_var_tmp_enabled: false
 os_mnt_var_tmp_src: ""
 os_mnt_var_tmp_options: 'rw,nosuid,nodev,noexec'

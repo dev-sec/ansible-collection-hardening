@@ -59,12 +59,14 @@
     - mysql_version.version.full is version('8.0.3', '>=')
     - mysql_distribution == "mysql"
 
-- include: configure.yml
+- name: Include tasks for configuration
+  import_tasks: configure.yml
   when: mysql_hardening_enabled | bool
   tags:
     - mysql_hardening
 
-- include: mysql_secure_installation.yml
+- name: Include tasks to secure mysql installation
+  import_tasks: mysql_secure_installation.yml
   when: mysql_hardening_enabled | bool
   tags:
     - mysql_hardening

@@ -4,7 +4,7 @@
     msg: 'ERROR - you have to change default mysql_root_password'
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
-- name: ensure that the root password is present
+- name: Ensure that the root password is present
   community.mysql.mysql_user:
     name: 'root'
     host_all: true
@@ -19,14 +19,14 @@
     mode: '0400'
   tags: my_cnf
 
-- name: ensure that the test database is absent
+- name: Ensure that the test database is absent
   community.mysql.mysql_db:
     name: test
     state: absent
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_test_database
 
-- name: ensure that anonymous users are absent
+- name: Ensure that anonymous users are absent
   community.mysql.mysql_user:
     name: ''
     state: absent
@@ -34,7 +34,7 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_anonymous_users
 
-- name: ensure that root can only login from localhost
+- name: Ensure that root can only login from localhost
   community.mysql.mysql_query:
     query:
       - DELETE
@@ -46,7 +46,7 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
-- name: get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
+- name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query:
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
@@ -62,7 +62,7 @@
     - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
       (mysql_distribution == "mariadb" and mysql_version.version.full is version('10.4.0', '>='))
 
-- name: get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
+- name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query:
       - SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
@@ -80,21 +80,21 @@
     - (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '<')) or
       (mysql_distribution == "mariadb" and mysql_version.version.full is version('10.4.0', '<'))
 
-- name: create a fact for users without password or authentication_string
+- name: Create a fact for users without password or authentication_string
   set_fact:
     users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords_or_auth_string.query_result is defined
     - mysql_users_wo_passwords_or_auth_string.query_result != ""  # noqa empty-string-compare
 
-- name: create a fact for users without password
+- name: Create a fact for users without password
   set_fact:
     users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords.query_result is defined
     - mysql_users_wo_passwords.query_result != ""  # noqa empty-string-compare
 
-- name: ensure that there are no users without password or authentication_string
+- name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
       - "DROP USER {{ users_wo_auth }}"

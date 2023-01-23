@@ -3,11 +3,13 @@ name: "devsec.os_hardening"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
+    branches: [master]
     paths:
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
       - '.github/workflows/os_hardening.yml'
   pull_request:
+    branches: [master]
     paths:
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
@@ -23,7 +25,10 @@ jobs:
       matrix:
         molecule_distro:
           - centos7
+          - centosstream8
+          - centosstream9
           - rocky8
+          - rocky9
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
@@ -40,7 +45,7 @@ jobs:
           submodules: true
 
       - name: Set up Python 3.7
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7
 
