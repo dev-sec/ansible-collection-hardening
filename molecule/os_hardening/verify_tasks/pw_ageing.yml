@@ -4,9 +4,6 @@
   changed_when: false
   register: expiry_date
 
-- debug:
-    var: expiry_date
-
 - name: Check that the expiry date of pw_no_ageing is "never"
   ansible.builtin.assert:
     that:
@@ -16,9 +13,6 @@
   ansible.builtin.shell: chage -l pw_ageing | grep "Password expires" | cut -d ":" -f 2
   changed_when: false
   register: expiry_date
-
-- debug:
-    var: expiry_date
 
 - name: Check that the expiry date of pw_ageing is 30 days
   ansible.builtin.assert:
