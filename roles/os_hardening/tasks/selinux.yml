@@ -2,4 +2,4 @@
 - name: Configure selinux | selinux-01
   ansible.posix.selinux:
     policy: "{{ os_selinux_policy }}"
-    state: "{{ os_selinux_state }}"
+    state: "{{ os_selinux_state }}"  # noqa args - see https://github.com/ansible/ansible-lint/issues/2930
