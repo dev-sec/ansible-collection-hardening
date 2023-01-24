@@ -1,6 +1,6 @@
 ---
 - name: Include hardening tasks
-  include_tasks: hardening.yml
+  ansible.builtin.include_tasks: hardening.yml
   args:
     apply:
       become: true

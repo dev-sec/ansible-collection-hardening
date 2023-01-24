@@ -1,32 +1,32 @@
 ---
 - name: Remove suid/sgid bit from binaries in blacklist | os-06
-  file:
-    path: '{{ item }}'
-    mode: 'a-s'
-    state: 'file'
-    follow: 'yes'
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: a-s
+    state: file
+    follow: true
   failed_when: false
   with_community.general.flattened:
-    - '{{ os_security_suid_sgid_system_blacklist }}'
-    - '{{ os_security_suid_sgid_blacklist }}'
+    - "{{ os_security_suid_sgid_system_blacklist }}"
+    - "{{ os_security_suid_sgid_blacklist }}"
 
 - name: Find binaries with suid/sgid set | os-06
-  shell: find / -xdev \( -perm -4000 -o -perm -2000 \) -type f ! -path '/proc/*' -print 2>/dev/null
+  ansible.builtin.shell: find / -xdev \( -perm -4000 -o -perm -2000 \) -type f ! -path '/proc/*' -print 2>/dev/null
   register: sbit_binaries
   when: os_security_suid_sgid_remove_from_unknown | bool
   changed_when: false
 
 - name: Gather files from which to remove suids/sgids and remove system white-listed files | os-06
-  set_fact:
-    suid: '{{ sbit_binaries.stdout_lines | difference(os_security_suid_sgid_system_whitelist) }}'
+  ansible.builtin.set_fact:
+    suid: "{{ sbit_binaries.stdout_lines | difference(os_security_suid_sgid_system_whitelist) }}"
   when: os_security_suid_sgid_remove_from_unknown | bool
 
 - name: Remove suid/sgid bit from all binaries except in system and user whitelist | os-06
-  file:
-    path: '{{ item }}'
-    mode: 'a-s'
-    state: 'file'
-    follow: 'yes'
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: a-s
+    state: file
+    follow: true
   with_community.general.flattened:
-    - '{{ suid | default([]) | difference(os_security_suid_sgid_whitelist) }}'
+    - "{{ suid | default([]) | difference(os_security_suid_sgid_whitelist) }}"
   when: os_security_suid_sgid_remove_from_unknown | bool

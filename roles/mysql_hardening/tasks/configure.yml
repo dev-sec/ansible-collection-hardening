@@ -1,64 +1,64 @@
 ---
 - name: Protect my.cnf
-  file:
-    path: '{{ mysql_hardening_mysql_conf_file }}'
-    mode: '0640'
-    owner: '{{ mysql_cnf_owner }}'
-    group: '{{ mysql_cnf_group }}'
+  ansible.builtin.file:
+    path: "{{ mysql_hardening_mysql_conf_file }}"
+    mode: "0640"
+    owner: "{{ mysql_cnf_owner }}"
+    group: "{{ mysql_cnf_group }}"
     follow: true
     state: file
 
 - name: Ensure permissions on mysql-datadir are correct
-  file:
-    path: '{{ item }}'
+  ansible.builtin.file:
+    path: "{{ item }}"
     state: directory
-    owner: '{{ mysql_hardening_user }}'
-    group: '{{ mysql_hardening_user }}'
-    mode: '0750'
+    owner: "{{ mysql_hardening_user }}"
+    group: "{{ mysql_hardening_user }}"
+    mode: "0750"
   when: item is defined and item != ""
   loop:
-    - '{{ mysql_settings.settings.datadir }}'
+    - "{{ mysql_settings.settings.datadir }}"
     - '{{ mysql_datadir | default("") }}'
 
 - name: Ensure permissions on mysql-logfile are correct
-  file:
-    path: '{{ item }}'
+  ansible.builtin.file:
+    path: "{{ item }}"
     state: file
-    owner: '{{ mysql_hardening_user }}'
-    group: '{{ mysql_hardening_group }}'
-    mode: '0640'
+    owner: "{{ mysql_hardening_user }}"
+    group: "{{ mysql_hardening_group }}"
+    mode: "0640"
   when: item is defined and item != ""
   loop:
-    - '{{ mysql_settings.settings.log_error }}'
+    - "{{ mysql_settings.settings.log_error }}"
     - '{{ mysql_hardening_log_file | default("") }}'
 
 - name: Check mysql configuration-directory exists and has right permissions
-  file:
-    path: '{{ mysql_hardening_mysql_confd_dir }}'
+  ansible.builtin.file:
+    path: "{{ mysql_hardening_mysql_confd_dir }}"
     state: directory
-    owner: '{{ mysql_hardening_user }}'
-    group: '{{ mysql_hardening_group }}'
-    mode: '0750'
+    owner: "{{ mysql_hardening_user }}"
+    group: "{{ mysql_hardening_group }}"
+    mode: "0750"
 
 - name: Check include-dir directive is present in my.cnf
-  lineinfile:
-    dest: '{{ mysql_hardening_mysql_conf_file }}'
-    line: '!includedir {{ mysql_hardening_mysql_confd_dir }}'
-    insertafter: 'EOF'
+  ansible.builtin.lineinfile:
+    dest: "{{ mysql_hardening_mysql_conf_file }}"
+    line: "!includedir {{ mysql_hardening_mysql_confd_dir }}"
+    insertafter: EOF
     state: present
     backup: true
   notify: Restart mysql
 
 - name: Apply hardening configuration
-  template:
-    src: 'hardening.cnf.j2'
-    dest: '{{ mysql_hardening_mysql_hardening_conf_file }}'
-    owner: '{{ mysql_cnf_owner }}'
-    group: '{{ mysql_cnf_group }}'
-    mode: '0640'
+  ansible.builtin.template:
+    src: hardening.cnf.j2
+    dest: "{{ mysql_hardening_mysql_hardening_conf_file }}"
+    owner: "{{ mysql_cnf_owner }}"
+    group: "{{ mysql_cnf_group }}"
+    mode: "0640"
   notify: Restart mysql
 
 - name: Enable mysql
-  service:
-    name: '{{ mysql_daemon }}'
-    enabled: '{{ mysql_daemon_enabled }}'
+  ansible.builtin.service:
+    name: "{{ mysql_daemon }}"
+    enabled: "{{ mysql_daemon_enabled }}"

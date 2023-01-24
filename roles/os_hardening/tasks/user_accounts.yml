@@ -1,12 +1,12 @@
 ---
 - name: Read local linux user database
-  getent:
+  ansible.builtin.getent:
     database: passwd
     # creates a dict for each user containing UID/HOMEDIR etc...
   when: getent_passwd is undefined # skip this task if "getent" has run before
 
 - name: Read local linux shadow database
-  getent:
+  ansible.builtin.getent:
     database: shadow
 
 - name: Extract system accounts from local user database
@@ -24,8 +24,8 @@
   when:
     - getent_passwd[item][1]|int >= os_auth_uid_min|int
     - getent_passwd[item][1]|int <= os_auth_uid_max|int
-    - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
-    - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
+    - item is not in os_always_ignore_users # skip users from "os_always_ignore_users" list (taken from role "vars")
+    - item is not in os_ignore_users # skip users from "os_ignore_users"        list (taken from role "defaults")
   set_fact:
     regular_users: "{{ regular_users | default([]) + [item] }}"
 
@@ -46,11 +46,11 @@
   loop: "{{ getent_passwd.keys() | list }}"
   when:
     - getent_passwd[item][1]|int == 0
-  set_fact:
+  ansible.builtin.set_fact:
     root_users: "{{ root_users | default([]) + [item] }}"
 
 - name: Set ownership of root user home directory(s) to 0700
-  file:
+  ansible.builtin.file:
     mode: 0700
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
@@ -60,7 +60,7 @@
     - os_chmod_rootuser_home_folder | bool
 
 - name: Set password ageing for root user(s)
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
@@ -71,7 +71,7 @@
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
 
 - name: Remove additional users with UID=0 ("root" user is not touched)
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     state: absent
   loop: "{{ root_users }}"
@@ -81,7 +81,7 @@
     - item != "root"
 
 - name: Remove shell+password for linux system accounts
-  user:
+  ansible.builtin.user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     password: '*'
@@ -89,7 +89,7 @@
   loop: "{{ system_users }}"
 
 - name: Get all home directories in /home, but skip ignored users
-  find:
+  ansible.builtin.find:
     paths: /home/
     recurse: false
     file_type: directory
@@ -98,7 +98,7 @@
   when: os_chmod_home_folders | bool
 
 - name: Set ownership of /home directories to 0700
-  file:
+  ansible.builtin.file:
     mode: 0700
     path: "{{ item.path }}"
     state: directory

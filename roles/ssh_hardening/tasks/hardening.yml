@@ -1,78 +1,78 @@
 ---
 - name: Fetch OS dependent variables
-  include_vars:
-    file: '{{ item }}'
-    name: 'os_vars'
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+    name: os_vars
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version | default() }}.yml'
-        - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version | default() }}.yml'
-        - '{{ ansible_facts.os_family }}.yml'
+        - "{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version | default() }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version | default() }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
       skip: true
   tags: always
 
 # we only override variables with our default, if they have not been specified already
 # by default the lookup functions finds all varnames containing the string, therefore
 # we add ^ and $ to denote start and end of string, so this returns only exact matches
-- name: Set OS dependent variables, if not already defined by user  # noqa var-naming
-  set_fact:
-    '{{ item.key }}': '{{ item.value }}'
-  when: "not lookup('varnames', '^' + item.key + '$')"
-  with_dict: '{{ os_vars }}'
+- name: Set OS dependent variables, if not already defined by user # noqa var-naming
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  when: not lookup('varnames', '^' + item.key + '$')
+  with_dict: "{{ os_vars }}"
   tags: always
 
 - name: Get openssh-version
-  command: ssh -V
+  ansible.builtin.command: ssh -V
   register: sshd_version_raw
   changed_when: false
   check_mode: false
 
 - name: Parse openssh-version
-  set_fact:
+  ansible.builtin.set_fact:
     sshd_version: "{{ sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
 
 - name: Set default for ssh_host_key_files if not supplied
-  include_tasks: crypto_hostkeys.yml
+  ansible.builtin.include_tasks: crypto_hostkeys.yml
   when:
     - ssh_server_hardening | bool
     - not ssh_host_key_files
 
 - name: Set default for ssh_macs if not supplied
-  include_tasks: crypto_macs.yml
+  ansible.builtin.include_tasks: crypto_macs.yml
   when: not ssh_macs
 
 - name: Set default for ssh_ciphers if not supplied
-  include_tasks: crypto_ciphers.yml
+  ansible.builtin.include_tasks: crypto_ciphers.yml
   when: not ssh_ciphers
 
 - name: Set default for ssh_kex if not supplied
-  include_tasks: crypto_kex.yml
+  ansible.builtin.include_tasks: crypto_kex.yml
   when: not ssh_kex
 
 - name: Create revoked_keys and set permissions to root/600
-  template:
-    src: 'revoked_keys.j2'
-    dest: '/etc/ssh/revoked_keys'
-    mode: '0600'
-    owner: '{{ ssh_owner }}'
-    group: '{{ ssh_group }}'
+  ansible.builtin.template:
+    src: revoked_keys.j2
+    dest: /etc/ssh/revoked_keys
+    mode: "0600"
+    owner: "{{ ssh_owner }}"
+    group: "{{ ssh_group }}"
   notify: Restart sshd
   when: ssh_server_hardening | bool
 
 - name: Create sshd_config and set permissions to root/600
-  template:
-    src: 'opensshd.conf.j2'
+  ansible.builtin.template:
+    src: opensshd.conf.j2
     dest: "{{ ssh_server_config_file }}"
-    mode: '0600'
-    owner: '{{ ssh_owner }}'
-    group: '{{ ssh_group }}'
-    validate: '{{ sshd_path }} -T -C user=root -C host=localhost -C addr=localhost -C lport=22 -f %s'
+    mode: "0600"
+    owner: "{{ ssh_owner }}"
+    group: "{{ ssh_group }}"
+    validate: "{{ sshd_path }} -T -C user=root -C host=localhost -C addr=localhost -C lport=22 -f %s"
   notify: Restart sshd
   when: ssh_server_hardening | bool
 
 - name: Disable dynamic MOTD
-  pamd:
+  community.general.pamd:
     name: sshd
     type: session
     control: optional
@@ -85,52 +85,53 @@
     - not (ssh_print_pam_motd | bool)
 
 - name: Create ssh_config and set permissions to root/644
-  template:
-    src: 'openssh.conf.j2'
+  ansible.builtin.template:
+    src: openssh.conf.j2
     dest: "{{ ssh_client_config_file }}"
-    mode: '0644'
-    owner: '{{ ssh_owner }}'
-    group: '{{ ssh_group }}'
+    mode: "0644"
+    owner: "{{ ssh_owner }}"
+    group: "{{ ssh_group }}"
   when: ssh_client_hardening | bool
 
 - name: Check if {{ sshd_moduli_file }} contains weak DH parameters
-  shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
+  ansible.builtin.shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
   register: sshd_register_moduli
   changed_when: false
   check_mode: false
   when: ssh_server_hardening | bool
 
 - name: Remove all small primes
-  shell: awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }} > {{ sshd_moduli_file }}.new ;
-         [ -r {{ sshd_moduli_file }}.new -a -s {{ sshd_moduli_file }}.new ] && mv {{ sshd_moduli_file }}.new {{ sshd_moduli_file }} || true
+  ansible.builtin.shell: >
+    awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }} > {{ sshd_moduli_file }}.new ; [ -r {{ sshd_moduli_file }}.new
+    -a -s {{ sshd_moduli_file }}.new ] && mv {{ sshd_moduli_file }}.new {{ sshd_moduli_file }} || true
   notify: Restart sshd
   when:
     - ssh_server_hardening | bool
     - sshd_register_moduli.stdout
 
 - name: Include tasks to setup ca keys and principals
-  include_tasks: ca_keys_and_principals.yml
+  ansible.builtin.include_tasks: ca_keys_and_principals.yml
   when:
     - ssh_trusted_user_ca_keys_file | length > 0
     - ssh_trusted_user_ca_keys | length > 0
 
 - name: Include selinux specific tasks
-  include_tasks: selinux.yml
+  ansible.builtin.include_tasks: selinux.yml
   when: ansible_facts.selinux and ansible_facts.selinux.status == "enabled"
 
 - name: Gather package facts
-  package_facts:
+  ansible.builtin.package_facts:
   check_mode: false
   when:
     - sshd_disable_crypto_policy | bool
 
 - name: Disable SSH server CRYPTO_POLICY
-  copy:
+  ansible.builtin.copy:
     src: sshd
     dest: /etc/sysconfig/sshd
-    owner: 'root'
-    group: 'root'
-    mode: '0640'
+    owner: root
+    group: root
+    mode: "0640"
   when:
     - sshd_disable_crypto_policy | bool
     - ('crypto-policies' in ansible_facts.packages)

@@ -7,9 +7,9 @@ mysql_daemon_enabled: true
 mysql_hardening_restart_mysql: true
 
 # general configuration
-mysql_hardening_mysql_hardening_conf_file: '{{ mysql_hardening_mysql_confd_dir }}/hardening.cnf'
+mysql_hardening_mysql_hardening_conf_file: "{{ mysql_hardening_mysql_confd_dir }}/hardening.cnf"
 # You have to change this to your own strong enough mysql root password
-mysql_root_password: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+mysql_root_password: "-----====>SetR00tPa$$wordH3r3!!!<====-----"
 # There .my.cnf with mysql root credentials will be installed
 mysql_user_home: "{{ ansible_env.HOME }}"
 
@@ -48,6 +48,6 @@ mysql_hardening_options:
   automatic-sp-privileges: 0
 
   # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option-mysqld-secure-file-priv
-  secure-file-priv: '/tmp'
+  secure-file-priv: /tmp
   # @see https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_user
-  user: '{{ mysql_hardening_user }}'
+  user: "{{ mysql_hardening_user }}"

@@ -1,81 +1,81 @@
 ---
 - name: Create additional configuration
-  template:
-    src: "hardening.conf.j2"
+  ansible.builtin.template:
+    src: hardening.conf.j2
     dest: "{{ nginx_configuration_dir }}/conf.d/90.hardening.conf"
-    mode: '0600'
+    mode: "0600"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change configuration in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*server_tokens'
+    regexp: ^\s*server_tokens
     line: "    server_tokens {{ nginx_server_tokens }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change ssl_protocols in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*ssl_protocols'
+    regexp: ^\s*ssl_protocols
     line: "    ssl_protocols {{ nginx_ssl_protocols }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change ssl_prefer_server_ciphers in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*ssl_prefer_server_ciphers'
+    regexp: ^\s*ssl_prefer_server_ciphers
     line: "    ssl_prefer_server_ciphers {{ nginx_ssl_prefer_server_ciphers }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change client_max_body_size in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*client_max_body_size'
+    regexp: ^\s*client_max_body_size
     line: "    client_max_body_size {{ nginx_client_max_body_size }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change client_body_buffer_size in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*client_body_buffer_size'
+    regexp: ^\s*client_body_buffer_size
     line: "    client_body_buffer_size {{ nginx_client_body_buffer_size }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Change keepalive_timeout in main nginx.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ nginx_configuration_dir }}/nginx.conf"
-    regexp: '^\s*keepalive_timeout'
+    regexp: ^\s*keepalive_timeout
     line: "    keepalive_timeout {{ nginx_keepalive_timeout }};"
-    insertafter: "http {"
-    mode: '0640'
+    insertafter: http {
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
 
 - name: Remove default.conf
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: absent
   when: nginx_remove_default_site
@@ -85,10 +85,10 @@
     - "{{ nginx_configuration_dir }}/sites-enabled/default"
 
 - name: Generate dh group
-  openssl_dhparam:
+  community.crypto.openssl_dhparam:
     path: "{{ nginx_configuration_dir }}/dh{{ nginx_dh_size }}.pem"
     size: "{{ nginx_dh_size }}"
-    mode: '0640'
+    mode: "0640"
     owner: "{{ nginx_owner_user }}"
     group: "{{ nginx_owner_group }}"
   notify: Restart nginx
