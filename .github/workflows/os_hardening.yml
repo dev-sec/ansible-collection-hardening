@@ -14,6 +14,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
       - '.github/workflows/os_hardening.yml'
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-18.04
