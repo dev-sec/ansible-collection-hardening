@@ -10,15 +10,15 @@
     database: shadow
 
 - name: Extract system accounts from local user database
-  loop: "{{ getent_passwd.keys()|list }}"
+  loop: "{{ getent_passwd.keys() | list }}"
   when:
     - getent_passwd[item][1]|int > 0
     - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
   set_fact:
-    system_users: "{{ system_users|default([]) + [item] }}"
-    
+    system_users: "{{ system_users | default([]) + [item] }}"
+
 - name: Extract regular (non-system, non-root) accounts from local user database
   loop: "{{ getent_passwd.keys() | list }}"
   when:
@@ -65,7 +65,7 @@
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
   loop: "{{ root_users }}"
-  when: 
+  when:
     - os_rootuser_pw_ageing | bool
     - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
@@ -79,39 +79,6 @@
     - os_remove_additional_root_users|bool
     - root_users|length > 1
     - item != "root"
-
-- name: Get UID_MIN from login.defs
-  shell: awk '/^\s*UID_MIN\s*([0-9]*).*?$/ {print $2}' /etc/login.defs
-  args:
-    removes: /etc/login.defs
-  register: uid_min
-  check_mode: false
-  changed_when: false
-
-- name: Calculate UID_MAX from UID_MIN by substracting 1
-  set_fact:
-    uid_max: '{{ uid_min.stdout | int - 1 }}'
-  when: uid_min.stdout|int > 0
-
-- name: Set UID_MAX on Debian-systems if no login.defs exist
-  set_fact:
-    uid_max: '999'
-  when:
-    - ansible_facts.os_family == 'Debian'
-    - uid_max is not defined
-
-- name: Set UID_MAX on other systems if no login.defs exist
-  set_fact:
-    uid_max: '499'
-  when: uid_max is not defined
-
-- name: Get all system accounts
-  command: awk -F'':'' '{ if ( $3 <= {{ uid_max | quote }} ) print $1}' /etc/passwd
-  args:
-    removes: /etc/passwd
-  changed_when: false
-  check_mode: false
-  register: sys_accs
 
 - name: Remove shell+password for linux system accounts
   user:
