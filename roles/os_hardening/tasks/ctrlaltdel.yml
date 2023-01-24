@@ -1,6 +1,6 @@
 ---
 - name: Disable CTRL-ALT-DEL
-  systemd:
+  ansible.builtin.systemd:
     name: ctrl-alt-del.target
     masked: true
     daemon_reload: true

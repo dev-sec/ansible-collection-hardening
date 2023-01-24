@@ -1,31 +1,31 @@
 ---
 - name: Fetch OS dependent variables
-  include_vars:
-    file: '{{ item }}'
-    name: 'os_vars'
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+    name: os_vars
   with_first_found:
     - files:
-        - '{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml'
-        - '{{ ansible_facts.distribution }}.yml'
-        - '{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml'
-        - '{{ ansible_facts.os_family }}.yml'
+        - "{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
       skip: true
   tags: always
 
 # we only override variables with our default if they have not been specified already.
 # by default the lookup functions finds all varnames containing the string, therefore
 # we add ^ and $ to denote start and end of string, so this returns only exact maches.
-- name: Set OS dependent variables, if not already defined by user  # noqa var-naming
-  set_fact:
-    '{{ item.key }}': '{{ item.value }}'
-  when: "not lookup('varnames', '^' + item.key + '$')"
-  with_dict: '{{ os_vars }}'
+- name: Set OS dependent variables, if not already defined by user # noqa var-naming
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  when: not lookup('varnames', '^' + item.key + '$')
+  with_dict: "{{ os_vars }}"
   tags: always
 
 - name: Check that the variable mysql_distribution is set correctly
   ansible.builtin.assert:
     that: mysql_distribution == 'mysql' or mysql_distribution == 'mariadb'
-    fail_msg: 'mysql_distribution must be set to either mysql or mariadb!'
+    fail_msg: mysql_distribution must be set to either mysql or mariadb!
   when: mysql_distribution is defined
 
 - name: Gather package facts to check for mysql/mariadb version
@@ -34,7 +34,7 @@
   when: not mysql_distribution is defined
 
 - name: Check if MySQL or MariaDB is used
-  set_fact:
+  ansible.builtin.set_fact:
     mysql_distribution: "{{ ansible_facts.packages['mysql-server'] is defined | ternary('mysql', 'mariadb') }}"
   when: not mysql_distribution is defined
 
@@ -53,20 +53,20 @@
 # see https://stackoverflow.com/a/59451077/2953919 for the
 # dict2items and vice versa magic
 - name: Drop the secure-auth parameter on MySQL >=8.0.3 (not mariadb)
-  set_fact:
+  ansible.builtin.set_fact:
     mysql_hardening_options: "{{ mysql_hardening_options | dict2items | rejectattr('key', 'search', 'secure-auth') | list | items2dict }}"
   when:
     - mysql_version.version.full is version('8.0.3', '>=')
     - mysql_distribution == "mysql"
 
 - name: Include tasks for configuration
-  import_tasks: configure.yml
+  ansible.builtin.import_tasks: configure.yml
   when: mysql_hardening_enabled | bool
   tags:
     - mysql_hardening
 
 - name: Include tasks to secure mysql installation
-  import_tasks: mysql_secure_installation.yml
+  ansible.builtin.import_tasks: mysql_secure_installation.yml
   when: mysql_hardening_enabled | bool
   tags:
     - mysql_hardening

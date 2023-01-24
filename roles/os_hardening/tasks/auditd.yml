@@ -1,16 +1,16 @@
 ---
 - name: Install auditd package | package-08
-  package:
-    name: '{{ auditd_package }}'
-    state: 'present'
+  ansible.builtin.package:
+    name: "{{ auditd_package }}"
+    state: present
   tags: auditd
 
 - name: Configure auditd | package-08
-  template:
-    src: 'etc/audit/auditd.conf.j2'
-    dest: '/etc/audit/auditd.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0640'
+  ansible.builtin.template:
+    src: etc/audit/auditd.conf.j2
+    dest: /etc/audit/auditd.conf
+    owner: root
+    group: root
+    mode: "0640"
   notify: Restart auditd
   tags: auditd
