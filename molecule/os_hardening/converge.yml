@@ -30,7 +30,6 @@
     os_yum_repo_file_whitelist: ['foo.repo']
     os_users_without_password_ageing: ['pw_no_ageing']
     os_netrc_enabled: false
-    os_mnt_tmp_enabled: true
     sysctl_config:
       net.ipv4.ip_forward: 0
       net.ipv6.conf.all.forwarding: 0
