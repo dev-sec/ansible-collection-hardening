@@ -15,6 +15,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/mysql_hardening/**'
       - 'molecule/mysql_hardening/**'
       - '.github/workflows/mysql_hardening.yml'
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-18.04
