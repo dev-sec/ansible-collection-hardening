@@ -91,6 +91,8 @@
 
 - name: Minimize access for filesystems
   ansible.builtin.include_tasks: minimize_access_fs.yml
+  loop_control:
+    loop_var: mount
   loop:
     - path: /boot
       src: "{{ os_mnt_boot_src }}"
