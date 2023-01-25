@@ -1,0 +1,9 @@
+os-14:
+  run: false
+  justification: "ansible does not gather all fact-mounts (e.g. mounts with tmpfs) so we cannot change these. see https://github.com/ansible/ansible/pull/79787"
+os-15:
+  run: false
+  justification: "ansible does not gather all fact-mounts (e.g. mounts with tmpfs) so we cannot change these. see https://github.com/ansible/ansible/pull/79787"
+os-16:
+  run: false
+  justification: "ansible does not gather all fact-mounts (e.g. mounts with tmpfs) so we cannot change these. see https://github.com/ansible/ansible/pull/79787"
