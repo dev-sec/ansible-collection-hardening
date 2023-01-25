@@ -137,6 +137,7 @@ We know that this is the case on Raspberry Pi.
 - `os_security_kernel_enable_module_loading`
   - Default: `true`
   - Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`).
+  - WARNING: Rebuilding initramfs is deprecated and will be removed in the next major release. For more information take a look at this issue: <https://github.com/dev-sec/ansible-collection-hardening/pull/591>
 - `os_security_kernel_enable_core_dump`
   - Default: `false`
   - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created.

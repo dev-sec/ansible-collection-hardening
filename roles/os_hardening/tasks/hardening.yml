@@ -120,7 +120,7 @@
 
 - name: Raise deprecation warning for initramfs tasks  # noqa ignore-errors
   fail:
-    msg: "WARNING: Rebuilding inittamfs is deprecated and will be removed
+    msg: "WARNING: Rebuilding initramfs is deprecated and will be removed
           in the next major release. For more information take a look at this issue:
           https://github.com/dev-sec/ansible-collection-hardening/pull/591"
   when:
