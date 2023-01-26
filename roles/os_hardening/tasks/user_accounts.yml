@@ -80,13 +80,21 @@
     - root_users|length > 1
     - item != "root"
 
-- name: Remove shell+password for linux system accounts
-  ansible.builtin.user:
+- name: remove shell for linux system accounts
+  user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
+    createhome: false
+  loop: "{{ system_users }}"
+
+- name: lock passwords from linux system accounts
+  user:
+    name: '{{ item }}'
     password: '*'
     createhome: false
   loop: "{{ system_users }}"
+  when:
+    - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
 
 - name: Get all home directories in /home, but skip ignored users
   ansible.builtin.find:
