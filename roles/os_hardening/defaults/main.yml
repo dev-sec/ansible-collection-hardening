@@ -23,8 +23,6 @@ os_ignore_home_folder_users: []
 # May contain: change_user
 os_security_users_allow: []
 
-# Specify user home folders in /home that shouldn't be chmodded to 700
-os_ignore_home_folder_users: [lost+found]
 # Set to false to disable password age enforcement on existing users
 os_rootuser_pw_ageing: false
 
