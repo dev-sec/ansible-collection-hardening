@@ -119,7 +119,7 @@
     - os_selinux_enabled | bool
 
 - name: Raise deprecation warning for initramfs tasks  # noqa ignore-errors
-  fail:
+  ansible.builtin.fail:
     msg: "WARNING: Rebuilding initramfs is deprecated and will be removed
           in the next major release. For more information take a look at this issue:
           https://github.com/dev-sec/ansible-collection-hardening/pull/591"
