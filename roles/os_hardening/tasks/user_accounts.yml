@@ -97,7 +97,7 @@
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
 
 - name: Limit access to home directories of regular (non-system, non-root) accounts
-  file:
+  ansible.builtin.file:
     mode: 0700
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
