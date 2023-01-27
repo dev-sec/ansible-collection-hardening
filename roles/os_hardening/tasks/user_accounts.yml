@@ -16,7 +16,7 @@
     - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
-  set_fact:
+  ansible.builtin.set_fact:
     system_users: "{{ system_users | default([]) + [item] }}"
 
 - name: Extract regular (non-system, non-root) accounts from local user database
@@ -26,11 +26,11 @@
     - getent_passwd[item][1]|int <= os_auth_uid_max|int
     - item is not in os_always_ignore_users # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users # skip users from "os_ignore_users"        list (taken from role "defaults")
-  set_fact:
+  ansible.builtin.set_fact:
     regular_users: "{{ regular_users | default([]) + [item] }}"
 
 - name: Set password ageing for existing regular (non-system, non-root) accounts
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
@@ -80,15 +80,15 @@
     - root_users|length > 1
     - item != "root"
 
-- name: remove shell for linux system accounts
-  user:
+- name: Remove shell for linux system accounts
+  ansible.builtin.user:
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     createhome: false
   loop: "{{ system_users }}"
 
-- name: lock passwords from linux system accounts
-  user:
+- name: Lock passwords from linux system accounts
+  ansible.builtin.user:
     name: '{{ item }}'
     password: '*'
     createhome: false

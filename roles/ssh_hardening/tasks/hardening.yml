@@ -93,7 +93,7 @@
     group: "{{ ssh_group }}"
   when: ssh_client_hardening | bool
 
-- name: Check if {{ sshd_moduli_file }} contains weak DH parameters
+- name: Check if for weak DH parameters in {{ sshd_moduli_file }}
   ansible.builtin.shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
   register: sshd_register_moduli
   changed_when: false
