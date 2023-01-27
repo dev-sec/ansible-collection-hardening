@@ -1,0 +1,5 @@
+---
+- name: Create system user with shell that should keep it
+  user:
+    name: "shell_sys_acc"
+    shell: "/bin/bash"

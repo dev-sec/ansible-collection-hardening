@@ -64,3 +64,6 @@
 
     - name: include password ageing prepare tasks
       include_tasks: prepare_tasks/pw_ageing.yml
+
+    - name: include system account shell prepare tasks
+      include_tasks: prepare_tasks/sys_account_shell.yml

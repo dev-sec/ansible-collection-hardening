@@ -4,7 +4,7 @@
     name: "{{ ssh_selinux_packages }}"
     state: present
 
-- name: Authorize {{ ssh_server_ports }} ports for selinux
+- name: Authorize the following ports for selinux - {{ ssh_server_ports }}
   community.general.seport:
     ports: "{{ item }}"
     proto: tcp
