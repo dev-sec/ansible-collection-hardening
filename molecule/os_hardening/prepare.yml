@@ -59,11 +59,11 @@
       include_tasks: prepare_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
-    - name: include netrc prepare tasks
-      include_tasks: prepare_tasks/netrc.yml
-
-    - name: include password ageing prepare tasks
-      include_tasks: prepare_tasks/pw_ageing.yml
-
-    - name: include system account shell prepare tasks
-      include_tasks: prepare_tasks/sys_account_shell.yml
+    - name: include preparation tasks
+      ansible.builtin.include_tasks:
+        file: "{{ item }}"
+      loop:
+        - prepare_tasks/netrc.yml
+        - prepare_tasks/pw_ageing.yml
+        - prepare_tasks/sys_account_shell.yml
+        - prepare_tasks/ignore_home_folders.yml

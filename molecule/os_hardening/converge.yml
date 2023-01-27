@@ -31,6 +31,7 @@
     os_users_without_password_ageing: ['pw_no_ageing']
     os_netrc_enabled: false
     os_ignore_users: ["shell_sys_acc"]
+    os_ignore_home_folder_users: ["user_with_777_home"]
     sysctl_config:
       net.ipv4.ip_forward: 0
       net.ipv6.conf.all.forwarding: 0

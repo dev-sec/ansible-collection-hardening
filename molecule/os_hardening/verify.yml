@@ -37,14 +37,14 @@
         name: procps
       when: ansible_facts.os_family == 'Debian'
 
-    - name: include system account shell tests
-      include_tasks: verify_tasks/sys_account_shell.yml
-
-    - name: include password ageing tests
-      include_tasks: verify_tasks/pw_ageing.yml
-
-    - name: include netrc tests
-      include_tasks: verify_tasks/netrc.yml
+    - name: include verification tasks
+      ansible.builtin.include_tasks:
+        file: "{{ item }}"
+      loop: 
+        - verify_tasks/sys_account_shell.yml
+        - verify_tasks/pw_ageing.yml
+        - verify_tasks/netrc.yml
+        - verify_tasks/ignore_home_folders.yml
 
     - name: include PAM tests
       include_tasks: verify_tasks/pam.yml
