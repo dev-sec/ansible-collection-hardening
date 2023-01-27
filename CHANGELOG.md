@@ -1,5 +1,89 @@
 # Changelog
 
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-27)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
+
+**Implemented enhancements:**
+
+- Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#616](https://github.com/dev-sec/ansible-collection-hardening/issues/616)
+- password ageing not enforced [\#570](https://github.com/dev-sec/ansible-collection-hardening/issues/570)
+- Rewrite system account detection and hardening and create tests [\#621](https://github.com/dev-sec/ansible-collection-hardening/pull/621) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#617](https://github.com/dev-sec/ansible-collection-hardening/pull/617) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([richardlock](https://github.com/richardlock))
+- Preserve default ownership and dir mode for /var/log on Ubuntu [\#615](https://github.com/dev-sec/ansible-collection-hardening/pull/615) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([stdtom](https://github.com/stdtom))
+- apply password age settings to exisiting regular users [\#582](https://github.com/dev-sec/ansible-collection-hardening/pull/582) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
+- Parametrize more auditd.conf options [\#535](https://github.com/dev-sec/ansible-collection-hardening/pull/535) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([kravietz](https://github.com/kravietz))
+
+**Fixed bugs:**
+
+- os\_hardening is setting wrong ownership for /var/log on Ubuntu [\#614](https://github.com/dev-sec/ansible-collection-hardening/issues/614)
+
+**Closed issues:**
+
+- Ubuntu 22.04 vars file missing? [\#619](https://github.com/dev-sec/ansible-collection-hardening/issues/619)
+
+**Merged pull requests:**
+
+- Support for Amazon Linux 2 [\#624](https://github.com/dev-sec/ansible-collection-hardening/pull/624) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([mmitnyan](https://github.com/mmitnyan))
+- cancel running tests if new commit to branch is made [\#622](https://github.com/dev-sec/ansible-collection-hardening/pull/622) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Fixed problems with running molecule locally with cgroup v2 [\#620](https://github.com/dev-sec/ansible-collection-hardening/pull/620) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- deprecate rebuilding of initramfs [\#618](https://github.com/dev-sec/ansible-collection-hardening/pull/618) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Bump actions/setup-python from 1 to 4 [\#611](https://github.com/dev-sec/ansible-collection-hardening/pull/611) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump creyD/prettier\_action from 3.1 to 4.2 [\#610](https://github.com/dev-sec/ansible-collection-hardening/pull/610) ([dependabot[bot]](https://github.com/apps/dependabot))
+- linting [\#603](https://github.com/dev-sec/ansible-collection-hardening/pull/603) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
+## [8.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.4.0) (2022-12-17)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.3.0...8.4.0)
+
+**Implemented enhancements:**
+
+- Implement Test for MySQL systemd service [\#606](https://github.com/dev-sec/ansible-collection-hardening/issues/606)
+- Extended net hardening [\#607](https://github.com/dev-sec/ansible-collection-hardening/pull/607) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
+- Add OpenSUSE support  [\#605](https://github.com/dev-sec/ansible-collection-hardening/pull/605) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Allow ssh\_allow\_tcp\_forwarding to be a boolean [\#600](https://github.com/dev-sec/ansible-collection-hardening/pull/600) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([crisbal](https://github.com/crisbal))
+- OpenBSD does not support GSSAPI Authentication [\#598](https://github.com/dev-sec/ansible-collection-hardening/pull/598) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([dennisse](https://github.com/dennisse))
+- add Ansible specific templates for issues [\#596](https://github.com/dev-sec/ansible-collection-hardening/pull/596) ([schurzi](https://github.com/schurzi))
+- use github templates for new issues [\#595](https://github.com/dev-sec/ansible-collection-hardening/pull/595) ([schurzi](https://github.com/schurzi))
+
+**Fixed bugs:**
+
+- os\_auth\_retries variable causes a comparison type error on pam tasks [\#593](https://github.com/dev-sec/ansible-collection-hardening/issues/593)
+- ssh\_hardening: Install selinux dependencies fails on Oracle Linux \(RHEL\) 9 [\#585](https://github.com/dev-sec/ansible-collection-hardening/issues/585)
+- OpenBSD does not set distributiuon\_major\_version [\#597](https://github.com/dev-sec/ansible-collection-hardening/pull/597) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([dennisse](https://github.com/dennisse))
+
+**Merged pull requests:**
+
+- Check for github action updates daily [\#609](https://github.com/dev-sec/ansible-collection-hardening/pull/609) ([jlosito](https://github.com/jlosito))
+- add verify-task to check if mysql is running and enabled [\#608](https://github.com/dev-sec/ansible-collection-hardening/pull/608) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Updates handlers for new ansible syntax and deprecated options for legacy commands [\#602](https://github.com/dev-sec/ansible-collection-hardening/pull/602) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([jsievertde](https://github.com/jsievertde))
+- add notice to sign-off work to contributor guideline [\#601](https://github.com/dev-sec/ansible-collection-hardening/pull/601) ([schurzi](https://github.com/schurzi))
+
+## [8.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.3.0) (2022-10-27)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.2.0...8.3.0)
+
+**Implemented enhancements:**
+
+- add hardening of root user account\(s\) [\#579](https://github.com/dev-sec/ansible-collection-hardening/pull/579) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
+
+**Fixed bugs:**
+
+- cast expected int types in pam tasks [\#594](https://github.com/dev-sec/ansible-collection-hardening/pull/594) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([dlouzan](https://github.com/dlouzan))
+- do not manage trusted user ca keys if none exist [\#580](https://github.com/dev-sec/ansible-collection-hardening/pull/580) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([hollow](https://github.com/hollow))
+
+**Closed issues:**
+
+- Trying to run the os\_hardening on Debian 11, but fails on privilege escalation [\#587](https://github.com/dev-sec/ansible-collection-hardening/issues/587)
+- auditd increasing logfiles [\#586](https://github.com/dev-sec/ansible-collection-hardening/issues/586)
+- Path to nginx.conf should be configurable in a variable  [\#577](https://github.com/dev-sec/ansible-collection-hardening/issues/577)
+
+**Merged pull requests:**
+
+- adopt all current suggestions from ansible-lint [\#592](https://github.com/dev-sec/ansible-collection-hardening/pull/592) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+- Support more os [\#588](https://github.com/dev-sec/ansible-collection-hardening/pull/588) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- run tests only on pushes to master or to PRs [\#581](https://github.com/dev-sec/ansible-collection-hardening/pull/581) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [8.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.2.0) (2022-09-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.1.0...8.2.0)
@@ -25,7 +109,7 @@
 **Merged pull requests:**
 
 - update supported OS in meta and fix linting [\#572](https://github.com/dev-sec/ansible-collection-hardening/pull/572) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([donestefan](https://github.com/donestefan))
+- fix misleading comment [\#571](https://github.com/dev-sec/ansible-collection-hardening/pull/571) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 - only run release actions on upstream-repo [\#568](https://github.com/dev-sec/ansible-collection-hardening/pull/568) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [8.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.0.0) (2022-08-22)

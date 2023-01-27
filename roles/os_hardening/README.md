@@ -137,6 +137,7 @@ We know that this is the case on Raspberry Pi.
 - `os_security_kernel_enable_module_loading`
   - Default: `true`
   - Description: true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`).
+  - WARNING: Rebuilding initramfs is deprecated and will be removed in the next major release. For more information take a look at this issue: <https://github.com/dev-sec/ansible-collection-hardening/pull/591>
 - `os_security_kernel_enable_core_dump`
   - Default: `false`
   - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created.
@@ -218,6 +219,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_max_log_file`
   - Default: `6`
   - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action. The value given must be numeric.
+- `os_auditd_num_logs`
+  - Default: `5`
+  - Description: This keyword specifies the number of log files to keep if `rotate` is given as the max_log_file_action. The value given must be numeric.
 - `hidepid_option`
   - Default: `2` (on RHEL/CentOS7 `0`, see known limitations)
   - Description: `0`: This is the default setting and gives you the default behaviour. `1`: With this option an normal user would not see other processes but their own about ps, top etc, but he is still able to see process IDs in /proc. `2`: Users are only able too see their own processes (like with hidepid=1), but also the other process IDs are hidden for them in /proc.
@@ -233,6 +237,21 @@ We know that this is the case on Raspberry Pi.
 - `os_ignore_home_folder_users`
   - Default: `[]`
   - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled. 
+- `os_chmod_rootuser_home_folder`
+  - Default: `true`
+  - Description: Set to `false` to disable "chmod 700" of root's home folder
+- `os_rootuser_pw_ageing`
+  - Default: `false`
+  - Description: Set to true to enforce password age settings for root user(s)
+- `os_remove_additional_root_users`
+  - Default: `false`
+  - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+- `os_user_pw_ageing`
+  - Default: `true`
+  - Description: Set to false to disable password age enforcement on existing users
+- `os_users_without_password_ageing`
+  - Default: `[]`
+  - Description: List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
 - `os_cron_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring cron.
@@ -244,7 +263,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to false to disable installing and configuring limits.
 - `os_login_defs_enabled`
   - Default: `true`
-  - Description: Set to false to disable installing and configuring login_defs.
+  - Description: Set to false to disable installing and configuring login_defs for newly created users.
 - `os_minimize_access_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring minimize_access.
@@ -290,6 +309,30 @@ We know that this is the case on Raspberry Pi.
 - `os_sha_crypt_max_rounds`
   - Default: `640000`
   - Description: Define the number of maximum SHA rounds. With a lot of rounds brute forcing the password is more difficult. But note also that it more CPU resources will be needed to authenticate users. The values must be inside the 1000-999999999 range.
+- `os_auditd_enabled`
+  - Default: `true`
+  - Description: Set to false to disable installing and configuring `auditd`.
+- `os_auditd_flush`
+  - Default: `INCREMENTAL`
+  - Description: Valid values are none, incremental, incremental_async, data, and sync.
+- `os_auditd_max_log_file`
+  - Default: 6
+  - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action.
+- `os_auditd_max_log_file_action`
+  - Default: `keep_logs`
+  - Description: This parameter tells the system what action to take when the system has detected that the max file size limit has been reached. Valid values are ignore, syslog, suspend, rotate and keep_logs.
+- `os_auditd_admin_space_left`
+  - Default: 50
+  - Description: This is a numeric value in megabytes that tells the audit daemon when to perform a configurable action because the system is running low on disk space.
+- `os_auditd_space_left`
+  - Default: 75
+  - Description: If the free space in the filesystem containing log_file drops below this value, the audit daemon takes the action specified by space_left_action.
+- `os_auditd_space_left_action`
+  - Default: SYSLOG
+  - Description: This parameter tells the system what action to take when the system has detected that it is starting to get low on disk space.
+- `os_auditd_log_format`
+  - Default: `RAW`
+  - Description: The log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created on one system but reported/analyzed on another system.
 - `os_mnt_boot_dir_mode`
   - Default: `0700`
   - Description: Set default perimissions for /boot

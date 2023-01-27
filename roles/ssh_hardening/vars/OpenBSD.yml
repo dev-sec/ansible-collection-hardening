@@ -1,11 +1,11 @@
 ---
 sshd_path: /usr/sbin/sshd
-ssh_host_keys_dir: '/etc/ssh'
+ssh_host_keys_dir: /etc/ssh
 sshd_service_name: sshd
 ssh_owner: root
 ssh_group: wheel
-ssh_host_keys_owner: 'root'
-ssh_host_keys_group: 'root'
+ssh_host_keys_owner: root
+ssh_host_keys_group: root
 
 # true if SSH support Kerberos
 ssh_kerberos_support: false
@@ -13,6 +13,6 @@ ssh_kerberos_support: false
 # true if SSH has PAM support
 ssh_pam_support: false
 
-sshd_moduli_file: '/etc/moduli'
+sshd_moduli_file: /etc/moduli
 
 sshd_disable_crypto_policy: false

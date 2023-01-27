@@ -1,0 +1,91 @@
+---
+
+os_packages_pam_ccreds: 'libpam-ccreds'
+os_nologin_shell_path: '/usr/sbin/nologin'
+
+# Different distros use different standards for /etc/shadow perms, e.g.
+# RHEL derivatives use root:root 0000, whereas Debian-based use root:shadow 0640.
+# You must provide key/value pairs for owner, group, and mode if overriding.
+os_shadow_perms:
+  owner: root
+  group: shadow
+  mode: '0640'
+
+os_passwd_perms:
+  owner: root
+  group: root
+  mode: '0644'
+
+os_env_umask: '027'
+
+os_auth_uid_min: 1000
+os_auth_uid_max: 60000
+os_auth_gid_min: 1000
+os_auth_gid_max: 60000
+os_auth_sys_uid_min: 100
+os_auth_sys_uid_max: 999
+os_auth_sys_gid_min: 100
+os_auth_sys_gid_max: 999
+os_auth_sub_uid_min: 100000
+os_auth_sub_uid_max: 600100000
+os_auth_sub_uid_count: 65536
+os_auth_sub_gid_min: 100000
+os_auth_sub_gid_max: 600100000
+os_auth_sub_gid_count: 65536
+
+os_mnt_boot_dir_mode: '0700'
+os_mnt_boot_group: 'root'
+os_mnt_boot_owner: 'root'
+
+os_mnt_dev_dir_mode: '0755'
+os_mnt_dev_group: 'root'
+os_mnt_dev_owner: 'root'
+
+os_mnt_dev_shm_dir_mode: '1777'
+os_mnt_dev_shm_group: 'root'
+os_mnt_dev_shm_owner: 'root'
+
+os_mnt_home_dir_mode: '0755'
+os_mnt_home_group: 'root'
+os_mnt_home_owner: 'root'
+
+os_mnt_run_dir_mode: '0755'
+os_mnt_run_group: 'root'
+os_mnt_run_owner: 'root'
+
+os_mnt_tmp_dir_mode: '1777'
+os_mnt_tmp_group: 'root'
+os_mnt_tmp_owner: 'root'
+
+os_mnt_var_dir_mode: '0755'
+os_mnt_var_group: 'root'
+os_mnt_var_owner: 'root'
+
+os_mnt_var_log_dir_mode: '0775'
+os_mnt_var_log_group: 'syslog'
+os_mnt_var_log_owner: 'root'
+
+os_mnt_var_log_audit_dir_mode: '0700'
+os_mnt_var_log_audit_group: 'root'
+os_mnt_var_log_audit_owner: 'root'
+
+os_mnt_var_tmp_dir_mode: '1777'
+os_mnt_var_tmp_group: 'root'
+os_mnt_var_tmp_owner: 'root'
+
+# defaults for useradd
+os_useradd_mail_dir: /var/mail
+
+modprobe_package: 'kmod'
+auditd_package: 'auditd'
+
+tally2_path: '/usr/share/pam-configs/tally2'
+passwdqc_path: '/usr/share/pam-configs/passwdqc'
+
+hidepid_option: '2'  # allowed values: 0, 1, 2
+
+sysctl_custom_config:
+  # Mitigation of vulnerability CVE-2021-33909
+  kernel.unprivileged_userns_clone: 0
+  # Mitigation of vulnerability CVE-2021-33910
+  kernel.unprivileged_bpf_disabled: 1

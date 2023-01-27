@@ -10,14 +10,14 @@ platforms:
     image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     privileged: true
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
-    tty: true
+    cgroupns_mode: host
+    pre_build_image: true
+    environment:
+      container: docker
+    security_opts:
+      - apparmor=unconfined
     env:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
@@ -25,6 +25,8 @@ platforms:
       container: docker
 provisioner:
   name: ansible
+  options:
+    diff: true
   config_options:
     defaults:
       interpreter_python: auto_silent

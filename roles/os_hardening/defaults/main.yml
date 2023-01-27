@@ -2,20 +2,20 @@
 os_desktop_enable: false
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
-os_auth_pw_min_age: 7  # Discourage password cycling
-os_auth_pw_remember: 5  # Specify how many used passwords are record
+os_auth_pw_min_age: 7 # Discourage password cycling
+os_auth_pw_remember: 5 # Specify how many used passwords are record
 os_auth_retries: 5
-os_auth_lockout_time: 600  # Seconds (600 = 10min)
+os_auth_lockout_time: 600 # Seconds (600 = 10min)
 os_auth_timeout: 60
 os_auth_allow_homeless: false
 os_auth_pam_passwdqc_enable: true
-os_auth_pam_passwdqc_options: 'min=disabled,disabled,16,12,8'  # Used in Debian
-os_auth_pam_pwquality_options: 'try_first_pass retry=3 authtok_type='  # Used in RHEL7 and RHEL8
+os_auth_pam_passwdqc_options: min=disabled,disabled,16,12,8 # Used in Debian
+os_auth_pam_pwquality_options: try_first_pass retry=3 authtok_type= # Used in RHEL7 and RHEL8
 os_auth_root_ttys: [console, tty1, tty2, tty3, tty4, tty5, tty6]
-
-os_chfn_restrict: ''
+os_chfn_restrict: ""
 
 # Set to `false` to disable "chmod 700" of home folders for regular users
+os_chmod_rootuser_home_folder: true
 os_chmod_home_folders: true
 # Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled.
 os_ignore_home_folder_users: []
@@ -23,8 +23,22 @@ os_ignore_home_folder_users: []
 # May contain: change_user
 os_security_users_allow: []
 
+# Specify user home folders in /home that shouldn't be chmodded to 700
+os_ignore_home_folder_users: [lost+found]
+# Set to false to disable password age enforcement on existing users
+os_rootuser_pw_ageing: false
+
+# When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
+os_remove_additional_root_users: false
+
+# Set to false to disable password age enforcement on existing users
+os_user_pw_ageing: true
+
+# List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
+os_users_without_password_ageing: []
+
 # Specify system accounts whose login should not be disabled and password not changed
-os_ignore_users: ['vagrant', 'kitchen']
+os_ignore_users: [vagrant, kitchen]
 os_security_kernel_enable_module_loading: true
 os_security_kernel_enable_core_dump: false
 os_security_suid_sgid_enforce: true
@@ -36,8 +50,7 @@ os_security_suid_sgid_remove_from_unknown: false
 
 # Remove packages with known security issues
 os_security_packages_clean: true
-os_security_packages_list: ['xinetd', 'inetd', 'ypserv', 'telnet-server', 'rsh-server', 'prelink']
-
+os_security_packages_list: [xinetd, inetd, ypserv, telnet-server, rsh-server, prelink]
 # Allow interactive startup (rhel, centos)
 os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
@@ -50,15 +63,15 @@ ufw_manage_defaults: true
 # By default in Ubuntu it is set to: /etc/ufw/sysctl.conf
 # CAUTION!
 # If you enable it - it overwrites /etc/sysctl.conf file, managed by hardening framework
-ufw_ipt_sysctl: ''
+ufw_ipt_sysctl: ""
 
 # Default ufw variables
-ufw_default_input_policy: 'DROP'
-ufw_default_output_policy: 'ACCEPT'
-ufw_default_forward_policy: 'DROP'
-ufw_default_application_policy: 'SKIP'
-ufw_manage_builtins: 'no'
-ufw_ipt_modules: 'nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns'
+ufw_default_input_policy: DROP
+ufw_default_output_policy: ACCEPT
+ufw_default_forward_policy: DROP
+ufw_default_application_policy: SKIP
+ufw_manage_builtins: "no"
+ufw_ipt_modules: nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns
 
 # Set to true to apply rules to support IPv6 (no means only IPv6 on loopback
 # accepted).
@@ -254,6 +267,7 @@ sysctl_config:
 
   # Disable acceptance of IPv6 router solicitations messages | sysctl-21
   net.ipv6.conf.default.router_solicitations: 0
+  net.ipv6.conf.all.router_solicitations: 0
 
   # Disable Accept Router Preference from router advertisement | sysctl-22
   net.ipv6.conf.default.accept_ra_rtr_pref: 0
@@ -266,6 +280,7 @@ sysctl_config:
 
   # Disable IPv6 autoconfiguration | sysctl-26
   net.ipv6.conf.default.autoconf: 0
+  net.ipv6.conf.all.autoconf: 0
 
   # Disable neighbor solicitations to send out per address | sysctl-27
   net.ipv6.conf.default.dad_transmits: 0
@@ -292,35 +307,43 @@ sysctl_config:
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
 sysctl_overwrite:
-
 # Disable unused filesystems
 os_unused_filesystems:
-  - "cramfs"
-  - "freevxfs"
-  - "jffs2"
-  - "hfs"
-  - "hfsplus"
-  - "squashfs"
-  - "udf"
-  - "vfat"
+  - cramfs
+  - freevxfs
+  - jffs2
+  - hfs
+  - hfsplus
+  - squashfs
+  - udf
+  - vfat
   # Obsolete network protocols that should be disabled
   # per CIS Oracle Linux 6 Benchmark (2016)
-  - "dccp"  # CIS 3.5.1
-  - "rds"   # CIS 3.5.3
-  - "sctp"  # CIS 3.5.2
-  - "tipc"  # CIS 3.5.4
+  - dccp # CIS 3.5.1
+  - rds # CIS 3.5.3
+  - sctp # CIS 3.5.2
+  - tipc # CIS 3.5.4
 
 # Whitelist for used filesystems
 os_filesystem_whitelist: []
-
 # Set to false to turn the role into a no-op. Useful when using
 # the Ansible role dependency mechanism.
 os_hardening_enabled: true
 
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
+os_auditd_flush: INCREMENTAL
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
+os_auditd_log_format: RAW
+os_auditd_admin_space_left: 50
+os_auditd_space_left: 75
+os_auditd_space_left_action: SYSLOG
+os_auditd_admin_space_left_action: SUSPEND
+os_auditd_disk_full_action: SUSPEND
+os_auditd_disk_error_action: SUSPEND
+os_auditd_log_group: root
+os_auditd_num_logs: 5
 
 # Set the SELinux state, which can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
@@ -328,7 +351,7 @@ os_selinux_state: enforcing
 os_selinux_policy: targeted
 
 # Mount options for proc in /etc/fstab.
-proc_mnt_options: 'rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}'
+proc_mnt_options: rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}
 
 # Set to false to disable installing and configuring cron.
 os_cron_enabled: true
@@ -339,7 +362,7 @@ os_ctrlaltdel_disabled: false
 # Set to false to disable installing and configuring limits.
 os_limits_enabled: true
 
-# Set to false to disable installing and configuring login_defs.
+# Set to false to disable installing and configuring login_defs for newly created users.
 os_login_defs_enabled: true
 
 # Set to false to disable installing and configuring minimize_access.
@@ -374,7 +397,6 @@ os_yum_enabled: true
 
 # List of yum repository files under /etc/yum.repos.d/ which should not be altered.
 os_yum_repo_file_whitelist: []
-
 # Set to false to disable installing and configuring apt.
 os_apt_enabled: true
 
@@ -387,82 +409,82 @@ os_selinux_enabled: true
 os_sha_crypt_min_rounds: "640000"
 os_sha_crypt_max_rounds: "640000"
 
-os_mnt_boot_dir_mode: '0700'
+os_mnt_boot_dir_mode: "0700"
 os_mnt_boot_enabled: false
 os_mnt_boot_src: ""
-os_mnt_boot_options: 'rw,nosuid,nodev,noexec'
+os_mnt_boot_options: rw,nosuid,nodev,noexec
 os_mnt_boot_filesystem: ""
 os_mnt_boot_dump: ""
 os_mnt_boot_passno: ""
 
-os_mnt_dev_dir_mode: '0755'
+os_mnt_dev_dir_mode: "0755"
 os_mnt_dev_enabled: true
-os_mnt_dev_src: "devtmpfs"
-os_mnt_dev_options: 'rw,nosuid,noexec'
-os_mnt_dev_filesystem: "devtmpfs"
+os_mnt_dev_src: devtmpfs
+os_mnt_dev_options: rw,nosuid,noexec
+os_mnt_dev_filesystem: devtmpfs
 os_mnt_dev_dump: ""
 os_mnt_dev_passno: ""
 
-os_mnt_dev_shm_dir_mode: '1777'
+os_mnt_dev_shm_dir_mode: "1777"
 os_mnt_dev_shm_enabled: true
-os_mnt_dev_shm_src: "tmpfs"
-os_mnt_dev_shm_options: 'rw,nosuid,nodev,noexec'
-os_mnt_dev_shm_filesystem: "tmpfs"
+os_mnt_dev_shm_src: tmpfs
+os_mnt_dev_shm_options: rw,nosuid,nodev,noexec
+os_mnt_dev_shm_filesystem: tmpfs
 os_mnt_dev_shm_dump: ""
 os_mnt_dev_shm_passno: ""
 
-os_mnt_home_dir_mode: '0755'
+os_mnt_home_dir_mode: "0755"
 os_mnt_home_enabled: false
 os_mnt_home_src: ""
-os_mnt_home_options: 'rw,nosuid,nodev'
+os_mnt_home_options: rw,nosuid,nodev
 os_mnt_home_filesystem: ""
 os_mnt_home_dump: ""
 os_mnt_home_passno: ""
 
-os_mnt_run_dir_mode: '0755'
+os_mnt_run_dir_mode: "0755"
 os_mnt_run_enabled: true
-os_mnt_run_src: "tmpfs"
-os_mnt_run_options: 'rw,nosuid,nodev'
-os_mnt_run_filesystem: "tmpfs"
+os_mnt_run_src: tmpfs
+os_mnt_run_options: rw,nosuid,nodev
+os_mnt_run_filesystem: tmpfs
 os_mnt_run_dump: ""
 os_mnt_run_passno: ""
 
-os_mnt_tmp_dir_mode: '1777'
+os_mnt_tmp_dir_mode: "1777"
 os_mnt_tmp_enabled: false
 os_mnt_tmp_src: ""
-os_mnt_tmp_options: 'rw,nosuid,nodev,noexec'
+os_mnt_tmp_options: rw,nosuid,nodev,noexec
 os_mnt_tmp_filesystem: ""
 os_mnt_tmp_dump: ""
 os_mnt_tmp_passno: ""
 
-os_mnt_var_dir_mode: '0755'
+os_mnt_var_dir_mode: "0755"
 os_mnt_var_enabled: false
 os_mnt_var_src: ""
-os_mnt_var_options: 'rw,nosuid,nodev'
+os_mnt_var_options: rw,nosuid,nodev
 os_mnt_var_filesystem: ""
 os_mnt_var_dump: ""
 os_mnt_var_passno: ""
 
-os_mnt_var_log_dir_mode: '0755'
+os_mnt_var_log_dir_mode: "0755"
 os_mnt_var_log_enabled: false
 os_mnt_var_log_src: ""
-os_mnt_var_log_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_log_options: rw,nosuid,nodev,noexec
 os_mnt_var_log_filesystem: ""
 os_mnt_var_log_dump: ""
 os_mnt_var_log_passno: ""
 
-os_mnt_var_log_audit_dir_mode: '0700'
+os_mnt_var_log_audit_dir_mode: "0700"
 os_mnt_var_log_audit_enabled: false
 os_mnt_var_log_audit_src: ""
-os_mnt_var_log_audit_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_log_audit_options: rw,nosuid,nodev,noexec
 os_mnt_var_log_audit_filesystem: ""
 os_mnt_var_log_audit_dump: ""
 os_mnt_var_log_audit_passno: ""
 
-os_mnt_var_tmp_dir_mode: '1777'
+os_mnt_var_tmp_dir_mode: "1777"
 os_mnt_var_tmp_enabled: false
 os_mnt_var_tmp_src: ""
-os_mnt_var_tmp_options: 'rw,nosuid,nodev,noexec'
+os_mnt_var_tmp_options: rw,nosuid,nodev,noexec
 os_mnt_var_tmp_filesystem: ""
 os_mnt_var_tmp_dump: ""
 os_mnt_var_tmp_passno: ""

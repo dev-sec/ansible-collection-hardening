@@ -1,7 +1,13 @@
 ---
 name: Ansible Lint  # feel free to pick your own name
 
-on: [push, pull_request]   # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
+  # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
+  push:
+    branches: [master]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [master]
 
 jobs:
   ansible-lint:
