@@ -1,0 +1,9 @@
+---
+- name: Create user whose home-folder should not be touched
+  ansible.builtin.user:
+    name: "user_with_777_home"
+
+- name: Change mode of home-folder for user to 777
+  ansible.builtin.file:
+    path: /home/user_with_777_home
+    mode: "0777"

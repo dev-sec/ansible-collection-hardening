@@ -1,0 +1,10 @@
+---
+- name: Get properties of user user_with_777_home's home-folder
+  ansible.builtin.stat:
+    path: /home/user_with_777_home
+  register: stats
+
+- name: Check that the home-folder has mode 777
+  ansible.builtin.assert:
+    that:
+      - stats.stat.mode == "0777"
