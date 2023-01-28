@@ -1,5 +1,5 @@
 ---
-- name: Get properties of user user_with_777_home's home folder
+- name: Get properties of user user_with_777_home's home-folder
   ansible.builtin.stat:
     path: /home/user_with_777_home
   register: stats
