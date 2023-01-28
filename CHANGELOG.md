@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-27)
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
 
@@ -11,6 +11,7 @@
 - Rewrite system account detection and hardening and create tests [\#621](https://github.com/dev-sec/ansible-collection-hardening/pull/621) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Add support for /etc/auditd.conf num\_logs to go with max\_log\_file\_action [\#617](https://github.com/dev-sec/ansible-collection-hardening/pull/617) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([richardlock](https://github.com/richardlock))
 - Preserve default ownership and dir mode for /var/log on Ubuntu [\#615](https://github.com/dev-sec/ansible-collection-hardening/pull/615) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([stdtom](https://github.com/stdtom))
+- rewrite user home dir hardening [\#584](https://github.com/dev-sec/ansible-collection-hardening/pull/584) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 - apply password age settings to exisiting regular users [\#582](https://github.com/dev-sec/ansible-collection-hardening/pull/582) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([DonEstefan](https://github.com/DonEstefan))
 - Parametrize more auditd.conf options [\#535](https://github.com/dev-sec/ansible-collection-hardening/pull/535) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([kravietz](https://github.com/kravietz))
 
