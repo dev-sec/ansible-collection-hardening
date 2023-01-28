@@ -236,7 +236,7 @@ We know that this is the case on Raspberry Pi.
   - Description: Set to `false` to disable "chmod 700" of home folders for regular users
 - `os_ignore_home_folder_users`
   - Default: `[]`
-  - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled. 
+  - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled.
 - `os_chmod_rootuser_home_folder`
   - Default: `true`
   - Description: Set to `false` to disable "chmod 700" of root's home folder
