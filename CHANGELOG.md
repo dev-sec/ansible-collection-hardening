@@ -1,8 +1,8 @@
 # Changelog
 
-## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-28)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...HEAD)
 
 **Implemented enhancements:**
 
@@ -18,6 +18,12 @@
 **Fixed bugs:**
 
 - os\_hardening is setting wrong ownership for /var/log on Ubuntu [\#614](https://github.com/dev-sec/ansible-collection-hardening/issues/614)
+- \[os\_hardening\] Task for setting `initramfs` modules does not match its condition [\#590](https://github.com/dev-sec/ansible-collection-hardening/issues/590) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
+- Support for Amazon Linux 2 [\#624](https://github.com/dev-sec/ansible-collection-hardening/pull/624) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([mmitnyan](https://github.com/mmitnyan))
+
+**Deprecated:**
+
+- deprecate rebuilding of initramfs [\#618](https://github.com/dev-sec/ansible-collection-hardening/pull/618) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -25,10 +31,8 @@
 
 **Merged pull requests:**
 
-- Support for Amazon Linux 2 [\#624](https://github.com/dev-sec/ansible-collection-hardening/pull/624) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([mmitnyan](https://github.com/mmitnyan))
 - cancel running tests if new commit to branch is made [\#622](https://github.com/dev-sec/ansible-collection-hardening/pull/622) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Fixed problems with running molecule locally with cgroup v2 [\#620](https://github.com/dev-sec/ansible-collection-hardening/pull/620) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
-- deprecate rebuilding of initramfs [\#618](https://github.com/dev-sec/ansible-collection-hardening/pull/618) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Bump actions/setup-python from 1 to 4 [\#611](https://github.com/dev-sec/ansible-collection-hardening/pull/611) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump creyD/prettier\_action from 3.1 to 4.2 [\#610](https://github.com/dev-sec/ansible-collection-hardening/pull/610) ([dependabot[bot]](https://github.com/apps/dependabot))
 - linting [\#603](https://github.com/dev-sec/ansible-collection-hardening/pull/603) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
