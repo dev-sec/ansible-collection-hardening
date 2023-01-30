@@ -5,9 +5,13 @@ on:  # yamllint disable-line rule:truthy
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
   push:
     branches: [master]
+    paths:
+      - 'roles/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
+    paths:
+      - 'roles/**'
 
 jobs:
   ansible-lint:
