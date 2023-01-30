@@ -10,8 +10,16 @@ updates:
     directory: "/"  # Location of package manifests
     schedule:
       interval: "daily"
+    # by default Dependabot creates labels like "major" or "minor" for version updates of our deps.
+    # however this interferes with the github changelog generator which uses these labels to define
+    # a new version for the collection
+    labels: [ ]
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+    # by default Dependabot creates labels like "major" or "minor" for version updates of our deps.
+    # however this interferes with the github changelog generator which uses these labels to define
+    # a new version for the collection
+    labels: [ ]
