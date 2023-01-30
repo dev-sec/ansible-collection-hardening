@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-30)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
 
 **Implemented enhancements:**
 
@@ -28,9 +28,12 @@
 **Closed issues:**
 
 - Ubuntu 22.04 vars file missing? [\#619](https://github.com/dev-sec/ansible-collection-hardening/issues/619)
+- SSH KexAlgorithms causes SSH daemon to fail [\#500](https://github.com/dev-sec/ansible-collection-hardening/issues/500)
+- Playbook won't run for hardening  [\#462](https://github.com/dev-sec/ansible-collection-hardening/issues/462)
 
 **Merged pull requests:**
 
+- run linting only when files inside roles change [\#625](https://github.com/dev-sec/ansible-collection-hardening/pull/625) ([rndmh3ro](https://github.com/rndmh3ro))
 - cancel running tests if new commit to branch is made [\#622](https://github.com/dev-sec/ansible-collection-hardening/pull/622) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Fixed problems with running molecule locally with cgroup v2 [\#620](https://github.com/dev-sec/ansible-collection-hardening/pull/620) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Bump actions/setup-python from 1 to 4 [\#611](https://github.com/dev-sec/ansible-collection-hardening/pull/611) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([dependabot[bot]](https://github.com/apps/dependabot))
