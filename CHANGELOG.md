@@ -1,8 +1,8 @@
 # Changelog
 
-## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-01-30)
+## [8.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.5.0) (2023-01-31)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...9.0.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...8.5.0)
 
 **Implemented enhancements:**
 
@@ -33,6 +33,7 @@
 
 **Merged pull requests:**
 
+- do not let dependabot label our prs [\#626](https://github.com/dev-sec/ansible-collection-hardening/pull/626) ([rndmh3ro](https://github.com/rndmh3ro))
 - run linting only when files inside roles change [\#625](https://github.com/dev-sec/ansible-collection-hardening/pull/625) ([rndmh3ro](https://github.com/rndmh3ro))
 - cancel running tests if new commit to branch is made [\#622](https://github.com/dev-sec/ansible-collection-hardening/pull/622) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Fixed problems with running molecule locally with cgroup v2 [\#620](https://github.com/dev-sec/ansible-collection-hardening/pull/620) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
