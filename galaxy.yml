@@ -1,14 +1,13 @@
----
 namespace: devsec
 name: hardening
-version: 8.4.0
+version: 8.5.0
 readme: README.md
 authors:
   - dev-sec <hello@dev-sec.io>
-description: This collection provides battle tested hardening for Linux, SSH, nginx, MySQL
+description: 'This collection provides battle tested hardening for Linux, SSH, nginx, MySQL'
 license:
   - Apache-2.0
-license_file: ""
+license_file: ''
 tags:
   - devsec
   - hardening
@@ -24,13 +23,13 @@ tags:
   - os_hardening
   - ssh_hardening
 dependencies:
-  ansible.posix: ">=1.0.0"
-  community.crypto: ">=1.0.0"
-  community.general: ">=1.0.0"
-  community.mysql: ">=1.3.0"
-repository: https://github.com/dev-sec/ansible-collection-hardening/
-homepage: https://dev-sec.io/
-issues: https://github.com/dev-sec/ansible-collection-hardening/issues
+  ansible.posix: '>=1.0.0'
+  community.crypto: '>=1.0.0'
+  community.general: '>=1.0.0'
+  community.mysql: '>=1.3.0'
+repository: 'https://github.com/dev-sec/ansible-collection-hardening/'
+homepage: 'https://dev-sec.io/'
+issues: 'https://github.com/dev-sec/ansible-collection-hardening/issues'
 build_ignore:
   - codecov.yml
   - .github
