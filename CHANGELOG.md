@@ -1,6 +1,14 @@
 # Changelog
 
-## [8.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.5.0) (2023-01-31)
+## [8.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.5.1) (2023-02-01)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.5.0...8.5.1)
+
+**Merged pull requests:**
+
+- Bump hugo19941994/delete-draft-releases from 1.0.0 to 1.0.1 [\#627](https://github.com/dev-sec/ansible-collection-hardening/pull/627) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [8.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.5.0) (2023-01-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.4.0...8.5.0)
 
