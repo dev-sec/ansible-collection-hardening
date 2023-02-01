@@ -107,6 +107,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auth_pw_min_age`
   - Default: `7`
   - Description: minimum password age (before allowing any other password change).
+- `os_auth_pw_warn_age`
+  - Default: `7`
+  - Description: number of days of warning before password expires.
 - `os_auth_pw_remember`
   - Default: `5`
   - Description: how many used passwords are record.
