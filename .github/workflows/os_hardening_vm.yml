@@ -42,7 +42,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
-          - opensuse42
+          - opensuse15
           # - arch  # arch is currently not supported by cinc-auditor
     steps:
       - name: Checkout repo
