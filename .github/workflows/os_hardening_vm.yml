@@ -51,11 +51,6 @@ jobs:
           path: ansible_collections/devsec/hardening
           submodules: true
 
-      - name: Create default collection path symlink
-        run: |
-          mkdir -p /home/runner/.ansible
-          ln -fs /opt/actions-runner/_work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections /home/runner/.ansible/collections
-
       - name: Test with molecule
         run: |
           molecule --version
