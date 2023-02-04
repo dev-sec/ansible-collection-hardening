@@ -34,15 +34,15 @@ jobs:
         molecule_distro:
           - centos7
           - centos8s
-          # - centos9s  # problems with vagrant
+          - centos9s
           - rocky8
-          # - rocky9  # problems with vagrant
+          - rocky9
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
           - debian10
           - debian11
-          # - opensuse42  # opensuse currently cannot get an ip address
+          - opensuse42
           # - arch  # arch is currently not supported by cinc-auditor
     steps:
       - name: Checkout repo
