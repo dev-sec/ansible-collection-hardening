@@ -29,6 +29,7 @@
     os_filesystem_whitelist: []
     os_yum_repo_file_whitelist: ['foo.repo']
     os_users_without_password_ageing: ['pw_no_ageing']
+    os_auth_pw_warn_age: 7
     os_netrc_enabled: false
     os_ignore_users: ["shell_sys_acc"]
     os_ignore_home_folder_users: ["user_with_777_home"]

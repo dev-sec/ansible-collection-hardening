@@ -110,7 +110,7 @@ PASS_MAX_DAYS     {{ os_auth_pw_max_age }}
 PASS_MIN_DAYS     {{ os_auth_pw_min_age }}
 
 # Number of days warning given before a password expires.
-PASS_WARN_AGE     7
+PASS_WARN_AGE     {{ os_auth_pw_warn_age }}
 
 # Min/max values for automatic uid selection in useradd
 UID_MIN           {{ os_auth_uid_min }}
