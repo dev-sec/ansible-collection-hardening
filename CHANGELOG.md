@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.6.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.6.1) (2023-02-06)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.6.1)
+
+**Merged pull requests:**
+
+- remove unneccessary tasks for VM based test [\#629](https://github.com/dev-sec/ansible-collection-hardening/pull/629) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
+
 ## [8.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.6.0) (2023-02-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.5.0...8.6.0)
