@@ -79,3 +79,6 @@ modprobe_package: kmod-compat
 auditd_package: audit
 
 hidepid_option: "2" # allowed values: 0, 1, 2
+
+sysctl_unsupported_entries:
+  - kernel.yama.ptrace_scope  # SuSE has disabled yama by default - https://bugzilla.suse.com/show_bug.cgi?id=1128245
