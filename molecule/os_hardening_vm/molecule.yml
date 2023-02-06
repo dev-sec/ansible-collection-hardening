@@ -8,7 +8,7 @@ driver:
   provider:
     name: libvirt
 platforms:
-  - name: "os_hardening_vm_${USER}"
+  - name: "${USER}"
     box: "generic/${MOLECULE_DISTRO}"
     memory: 1024
     cpus: 2
