@@ -14,6 +14,8 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
+  schedule:
+    - cron: '0 6 * * 2'
 
 concurrency:
   group: >-

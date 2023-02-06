@@ -14,6 +14,8 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/nginx_hardening/**'
       - 'molecule/nginx_hardening/**'
       - '.github/workflows/nginx_hardening.yml'
+  schedule:
+    - cron: '0 6 * * 1'
 
 concurrency:
   group: >-
