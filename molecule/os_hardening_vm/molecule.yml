@@ -28,6 +28,7 @@ verifier:
     ANSIBLE_PIPELINING: "True"
 
 scenario:
+  name: ${MOLECULE_DISTRO}
   create_sequence:
     - dependency
     - create
