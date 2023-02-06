@@ -341,6 +341,7 @@ os_auditd_space_left_action: SYSLOG
 os_auditd_admin_space_left_action: SUSPEND
 os_auditd_disk_full_action: SUSPEND
 os_auditd_disk_error_action: SUSPEND
+os_auditd_action_mail_acct: root
 os_auditd_log_group: root
 os_auditd_num_logs: 5
 

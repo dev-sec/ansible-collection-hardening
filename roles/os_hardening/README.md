@@ -333,6 +333,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_space_left_action`
   - Default: SYSLOG
   - Description: This parameter tells the system what action to take when the system has detected that it is starting to get low on disk space.
+- `os_auditd_action_mail_acct`
+  - Default: root
+  - Description: If `space_left_action` or `admin_space_left_action` are set to `email`, uses the address or alias to send the email using `/usr/lib/sendmail`. If the address or alias is not local, requires email properly configured on the machine and network.
 - `os_auditd_log_format`
   - Default: `RAW`
   - Description: The log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created on one system but reported/analyzed on another system.
