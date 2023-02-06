@@ -8,7 +8,7 @@ driver:
   provider:
     name: libvirt
 platforms:
-  - name: instance
+  - name: ${MOLECULE_DISTRO}
     box: "generic/${MOLECULE_DISTRO}"
     memory: 1024
     cpus: 2
