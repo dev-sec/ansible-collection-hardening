@@ -8,7 +8,7 @@ driver:
   provider:
     name: libvirt
 platforms:
-  - name: ${MOLECULE_DISTRO}
+  - name: "os_hardening_vm_${USER}"
     box: "generic/${MOLECULE_DISTRO}"
     memory: 1024
     cpus: 2
@@ -28,7 +28,6 @@ verifier:
     ANSIBLE_PIPELINING: "True"
 
 scenario:
-  name: "${MOLECULE_DISTRO}"
   create_sequence:
     - dependency
     - create
