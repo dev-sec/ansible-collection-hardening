@@ -59,4 +59,5 @@ jobs:
           molecule test -s os_hardening_vm
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+          MOLECULE_SCENARIO_NAME: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
