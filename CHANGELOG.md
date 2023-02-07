@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-02-06)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-02-07)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- run our CI tests periodically [\#634](https://github.com/dev-sec/ansible-collection-hardening/pull/634) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - try to fix molecule local tests [\#632](https://github.com/dev-sec/ansible-collection-hardening/pull/632) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - remove unneccessary tasks for VM based test [\#629](https://github.com/dev-sec/ansible-collection-hardening/pull/629) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
