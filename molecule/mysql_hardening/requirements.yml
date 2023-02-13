@@ -2,7 +2,7 @@
 roles:
   - name: geerlingguy.git
     version: 3.0.0
-  - name: dev-sec.mysql
+  - name: geerlingguy.mysql
     version: master
 
 collections:
