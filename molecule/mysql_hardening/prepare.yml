@@ -61,7 +61,7 @@
         - ansible_distribution_major_version|int < 20
 
     - include_role:
-        name: dev-sec.mysql
+        name: geerlingguy.mysql
 
     - name: create a user with an empty password
       community.mysql.mysql_query:
