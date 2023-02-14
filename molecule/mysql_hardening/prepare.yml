@@ -64,7 +64,7 @@
       yum:
         name: "{% if 'python3' in ansible_python_interpreter|default('') %}python36-PyMySQL{% else %}python2-PyMySQL{% endif %}"
       when:
-        - ansible_distribution == "RedHat"
+        - ansible_os_family == "RedHat"
           
     - include_role:
         name: dev-sec.mysql
