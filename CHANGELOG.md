@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-02-14)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-02-15)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
 **Implemented enhancements:**
 
+- Only skip audit restart handler in docker [\#637](https://github.com/dev-sec/ansible-collection-hardening/pull/637) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 - Make action\_mail\_acct configurable in auditd [\#631](https://github.com/dev-sec/ansible-collection-hardening/pull/631) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 
 **Merged pull requests:**
