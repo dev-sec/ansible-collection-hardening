@@ -86,14 +86,14 @@
 
 - name: Create a fact for users without password or authentication_string
   ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
+    users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0.users }}"
   when:
     - mysql_users_wo_passwords_or_auth_string.query_result is defined
     - mysql_users_wo_passwords_or_auth_string.rowcount.0 | int > 0
 
 - name: Create a fact for users without password
   ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
+    users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0.users }}"
   when:
     - mysql_users_wo_passwords.query_result is defined
     - mysql_users_wo_passwords.rowcount.0 | int > 0
