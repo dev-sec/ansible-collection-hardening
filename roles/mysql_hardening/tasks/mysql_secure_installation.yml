@@ -55,8 +55,8 @@
              OR authentication_string="")
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
-                         'mariadb.sys');
-
+                         'mariadb.sys')
+      HAVING users IS NOT NULL;
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   when: >
@@ -75,7 +75,8 @@
              OR authentication_string="")
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
-                         'mariadb.sys');
+                         'mariadb.sys')
+      HAVING users IS NOT NULL;
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   when: >
@@ -88,14 +89,14 @@
     users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords_or_auth_string.query_result is defined
-    - mysql_users_wo_passwords_or_auth_string.query_result != "" # noqa empty-string-compare
+    - mysql_users_wo_passwords_or_auth_string.rowcount > 0
 
 - name: Create a fact for users without password
   ansible.builtin.set_fact:
     users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
   when:
     - mysql_users_wo_passwords.query_result is defined
-    - mysql_users_wo_passwords.query_result != "" # noqa empty-string-compare
+    - mysql_users_wo_passwords.rowcount > 0
 
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
