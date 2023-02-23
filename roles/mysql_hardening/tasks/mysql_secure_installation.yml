@@ -92,3 +92,5 @@
   when:
     - mysql_users_wo_passwords_or_auth_string.query_result is defined OR
       mysql_users_wo_passwords.query_result is defined
+    - mysql_users_wo_passwords_or_auth_string.rowcount.0 | int > 0 OR
+      mysql_users_wo_passwords.rowcount.0 | int > 0
