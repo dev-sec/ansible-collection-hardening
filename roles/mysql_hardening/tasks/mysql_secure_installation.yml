@@ -84,25 +84,11 @@
     (mysql_distribution == "mariadb" and mysql_version.version.full is
     version('10.4.0', '<'))
 
-- name: Create a fact for users without password or authentication_string
-  ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0.users }}"
-  when:
-    - mysql_users_wo_passwords_or_auth_string.query_result is defined
-    - mysql_users_wo_passwords_or_auth_string.rowcount.0 | int > 0
-
-- name: Create a fact for users without password
-  ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0.users }}"
-  when:
-    - mysql_users_wo_passwords.query_result is defined
-    - mysql_users_wo_passwords.rowcount.0 | int > 0
-
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
-      - DROP USER {{ users_wo_auth }}
+      - DROP USER {{ (mysql_users_wo_passwords.query_result | default(mysql_users_wo_passwords_or_auth_string.query_result)).0.0.users }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when:
-    - users_wo_auth is defined
-    - users_wo_auth != "" # noqa empty-string-compare
+    - mysql_users_wo_passwords_or_auth_string.query_result is defined OR
+      mysql_users_wo_passwords.query_result is defined
