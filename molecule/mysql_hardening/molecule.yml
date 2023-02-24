@@ -53,6 +53,6 @@ scenario:
     - create
     - prepare
     - converge
-    # - idempotence  # not idempotent
+    - idempotence
     - verify
     - destroy
