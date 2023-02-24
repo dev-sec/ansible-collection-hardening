@@ -70,6 +70,9 @@
     - include_role:
         name: dev-sec.mysql
 
+    - name: include MySQL user prepare tasks
+      include_tasks: prepare_tasks/mysql_users.yml
+
     - name: create a user with an empty password
       community.mysql.mysql_query:
         query:
