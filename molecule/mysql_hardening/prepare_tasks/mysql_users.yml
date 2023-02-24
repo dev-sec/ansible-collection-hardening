@@ -1,5 +1,5 @@
 ---
-- name: create a user with an empty password
+- name: create users for test
   community.mysql.mysql_query:
     query:
       - "CREATE USER 'user'@'delete';"
