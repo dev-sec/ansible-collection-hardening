@@ -85,8 +85,8 @@
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
-      - DROP USER {{ item }}
+      - DROP USER {{ item.users }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   with_community.general.flattened:
-    - "{{ mysql_users_wo_passwords.query_result.0.0.users | default([]) }}"
-    - "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0.users | default([]) }}"
+    - "{{ mysql_users_wo_passwords.query_result.0 | default([]) }}"
+    - "{{ mysql_users_wo_passwords_or_auth_string.query_result.0 | default([]) }}"
