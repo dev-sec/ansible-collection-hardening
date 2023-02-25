@@ -1,5 +1,5 @@
 ---
-name: "devsec.ssh_hardening"
+name: "devsec.ssh_hardening non-Linux"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
