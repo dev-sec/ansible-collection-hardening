@@ -29,7 +29,7 @@
       changed_when: false
 
     - name: Execute cinc-auditor tests
-      command: "{{ bin_path.stdout }}/bin/cinc-auditor exec --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config -t ssh://runner --sudo --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
+      command: "{{ bin_path.stdout }}/bin/cinc-auditor exec --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config -t ssh://{{ lookup('env', 'USER') }} --sudo --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
       register: test_results
       changed_when: false
       ignore_errors: true
