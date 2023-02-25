@@ -1,0 +1,53 @@
+---
+name: "devsec.ssh_hardening"
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'roles/ssh_hardening/**'
+      - 'molecule/ssh_hardening/**'
+      - '.github/workflows/ssh_hardening_nonlinux.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/ssh_hardening/**'
+      - 'molecule/ssh_hardening/**'
+      - '.github/workflows/ssh_hardening_nonlinux.yml'
+  schedule:
+    - cron: '0 6 * * 5'
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro:
+          - openbsd6
+          - freebsd12
+          #- smartos
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/devsec/hardening
+          submodules: true
+
+      - name: Test with molecule
+        run: |
+          molecule --version
+          molecule test -s ssh_hardening_nonlinux
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+        working-directory: ansible_collections/devsec/hardening
