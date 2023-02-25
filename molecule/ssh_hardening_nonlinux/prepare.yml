@@ -4,9 +4,9 @@
   become: true
   gather_facts: false
   tasks:
-    - name: install python and sudo
+    - name: install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
-      raw: "pkg_add python%3.8 sudo"
+      raw: "pkg_add python%3.8"
       when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd6'"
 
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
