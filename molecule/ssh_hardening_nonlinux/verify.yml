@@ -1,48 +1,35 @@
 ---
 - name: Verify
-  hosts: all
+  hosts: localhost
   become: true
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  roles:
-    - geerlingguy.git
   tasks:
-    - name: install fake SuSE-release for cinc compatibility
-      copy:
-        content: |
-          openSUSE Faked Enterprise 2020 (x86_64)
-          VERSION = 2020
-          CODENAME = Faked Feature
-        dest: /etc/SuSE-release
-        owner: root
-        group: root
-        mode: '0444'
-      when: ansible_facts.os_family == 'Suse'
-
-    - name: install git for SuSE since geerlinguy.git does not support it
-      zypper:
-        name: git
-        state: present
-      when: ansible_facts.os_family == 'Suse'
-
-    - name: install crypto compat modules on fedora
-      dnf:
-        name: libxcrypt-compat
-      when: ansible_facts.distribution == 'Fedora'
-
-    - name: download cinc-auditor
-      get_url:
-        url: https://omnitruck.cinc.sh/install.sh
-        dest: /tmp/install.sh
-        mode: '0775'
-
     - name: install cinc-auditor
-      shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
+      # gem install is needed, because our vm host is Arch linux and there is no cinc-auditor package for Arch
+      shell: "gem install cinc-auditor-bin --clear-sources -s https://packagecloud.io/cinc-project/stable -s https://rubygems.org"
+
+    - name: get ruby bin path
+      command: "ruby -r rubygems -e 'puts Gem.user_dir'"
+      register: bin_path
+      changed_when: false
+
+    - name: get ssh-config
+      command: "vagrant ssh-config"
+        chdir: "{{ molecule_ephemeral_directory }}"
+      register: ssh_config
+      changed_when: false
+
+    - name: create ssh-config file
+      copy:
+        contents: {{ ssh_config.stdout_lines }}
+        dest: ./ssh-config
+      changed_when: false
 
     - name: Execute cinc-auditor tests
-      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
+      command: "{{ bin_path.stdout }}/bin/cinc-auditor exec --ssh-config-file=./ssh-config -t ssh://runner -- sudo --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
       register: test_results
       changed_when: false
       ignore_errors: true
