@@ -6,7 +6,7 @@
   tasks:
     - name: install python
       raw: "pkg_add python%3.8"
-      when: "{{ lookup('env', 'MOLECULE_DISTRO') }} == 'openbsd6'"
+      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd6'"
 
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
