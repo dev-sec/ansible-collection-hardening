@@ -11,6 +11,7 @@
       shell: "gem install cinc-auditor-bin --clear-sources -s https://packagecloud.io/cinc-project/stable -s https://rubygems.org"
 
     - name: get ruby bin path
+      # https://guides.rubygems.org/faqs/ - when using user install, we need to know the bin/ path
       command: "ruby -r rubygems -e 'puts Gem.user_dir'"
       register: bin_path
       changed_when: false
