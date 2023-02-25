@@ -25,7 +25,7 @@
 
     - name: create ssh-config file
       copy:
-        contents: {{ ssh_config.stdout_lines }}
+        contents: "{{ ssh_config.stdout_lines }}"
         dest: ./ssh-config
       changed_when: false
 
