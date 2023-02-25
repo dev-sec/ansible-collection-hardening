@@ -17,7 +17,8 @@
       changed_when: false
 
     - name: get ssh-config
-      command: "vagrant ssh-config"
+      command: 
+        cmd: "vagrant ssh-config"
         chdir: "{{ molecule_ephemeral_directory }}"
       register: ssh_config
       changed_when: false
