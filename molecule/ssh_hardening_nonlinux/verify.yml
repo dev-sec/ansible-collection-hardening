@@ -1,4 +1,15 @@
 ---
+- name: OpenBSD workaround - inspec detecty OpenSBD as unix and not linux compatible
+  hosts: all
+  become: true
+  tasks:
+    - name: use the type command instead of which to detect existing commands
+      file:
+        src: "/usr/bin/which"
+        dest: "/usr/bin/type"
+        state: hard
+      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd6'"
+
 - name: Verify
   hosts: localhost
   environment:
