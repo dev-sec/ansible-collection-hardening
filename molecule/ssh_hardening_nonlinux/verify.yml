@@ -19,7 +19,8 @@
   tasks:
     - name: install cinc-auditor
       # gem install is needed, because our vm host is Arch linux and there is no cinc-auditor package for Arch
-      shell: "gem install cinc-auditor-bin --clear-sources -s https://packagecloud.io/cinc-project/stable -s https://rubygems.org"
+      command: "gem install cinc-auditor-bin --clear-sources -s https://packagecloud.io/cinc-project/stable -s https://rubygems.org"
+      changed_when: false
 
     - name: get ruby bin path
       # https://guides.rubygems.org/faqs/ - when using user install, we need to know the bin/ path
