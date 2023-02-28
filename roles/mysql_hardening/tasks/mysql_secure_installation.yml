@@ -49,7 +49,7 @@
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS users
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
       WHERE (length(authentication_string)=0
              OR authentication_string="")
@@ -66,7 +66,7 @@
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS users
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
       WHERE (length(password)=0
              OR password="")
@@ -85,8 +85,8 @@
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
-      - DROP USER {{ item.users }}
+      - DROP USER {{ item.user }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   with_community.general.flattened:
-    - "{{ mysql_users_wo_passwords.query_result.0 | default([]) }}"
-    - "{{ mysql_users_wo_passwords_or_auth_string.query_result.0 | default([]) }}"
+    - "{{ mysql_users_wo_passwords.query_result | default([]) }}"
+    - "{{ mysql_users_wo_passwords_or_auth_string.query_result | default([]) }}"
