@@ -34,8 +34,17 @@
         update_cache: true
       when: ansible_distribution == 'Debian'
 
+    - name: Use Python 3 on Suse
+      set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_os_family == 'Suse'
+
     - name: include tests for the service
       include_tasks: verify_tasks/service.yml
+
+    - name: include tests for MySQL user
+      include_tasks: verify_tasks/mysql_users.yml
 
     - name: download cinc-auditor
       get_url:

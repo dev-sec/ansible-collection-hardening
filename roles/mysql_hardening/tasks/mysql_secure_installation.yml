@@ -49,14 +49,13 @@
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
       WHERE (length(authentication_string)=0
              OR authentication_string="")
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
                          'mariadb.sys');
-
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   when: >
@@ -67,7 +66,7 @@
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT GROUP_CONCAT(QUOTE(USER), '@', QUOTE(HOST) SEPARATOR ', ') AS users
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
       WHERE (length(password)=0
              OR password="")
@@ -83,25 +82,11 @@
     (mysql_distribution == "mariadb" and mysql_version.version.full is
     version('10.4.0', '<'))
 
-- name: Create a fact for users without password or authentication_string
-  ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords_or_auth_string.query_result.0.0 | community.general.json_query('users') }}"
-  when:
-    - mysql_users_wo_passwords_or_auth_string.query_result is defined
-    - mysql_users_wo_passwords_or_auth_string.query_result != "" # noqa empty-string-compare
-
-- name: Create a fact for users without password
-  ansible.builtin.set_fact:
-    users_wo_auth: "{{ mysql_users_wo_passwords.query_result.0.0 | community.general.json_query('users') }}"
-  when:
-    - mysql_users_wo_passwords.query_result is defined
-    - mysql_users_wo_passwords.query_result != "" # noqa empty-string-compare
-
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
-      - DROP USER {{ users_wo_auth }}
+      - DROP USER {{ item.user }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-  when:
-    - users_wo_auth is defined
-    - users_wo_auth != "" # noqa empty-string-compare
+  with_community.general.flattened:
+    - "{{ mysql_users_wo_passwords.query_result | default([]) }}"
+    - "{{ mysql_users_wo_passwords_or_auth_string.query_result | default([]) }}"

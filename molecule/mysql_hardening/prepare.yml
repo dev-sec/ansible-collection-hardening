@@ -70,11 +70,8 @@
     - include_role:
         name: dev-sec.mysql
 
-    - name: create a user with an empty password
-      community.mysql.mysql_query:
-        query:
-          - "CREATE USER foo@bar;"
-        login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+    - name: include MySQL user prepare tasks
+      include_tasks: prepare_tasks/mysql_users.yml
   vars:
     overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo
