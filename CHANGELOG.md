@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-02-21)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-01)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
@@ -9,8 +9,18 @@
 - Only skip audit restart handler in docker [\#637](https://github.com/dev-sec/ansible-collection-hardening/pull/637) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 - Make action\_mail\_acct configurable in auditd [\#631](https://github.com/dev-sec/ansible-collection-hardening/pull/631) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 
+**Fixed bugs:**
+
+- devsec.hardening.mysql\_hardening - Get all users that have no authentication\_string - Hello world [\#640](https://github.com/dev-sec/ansible-collection-hardening/issues/640)
+
+**Closed issues:**
+
+- Deprecation warnings for os\_hardening [\#638](https://github.com/dev-sec/ansible-collection-hardening/issues/638)
+- Write tests for MySQL user-deletion [\#445](https://github.com/dev-sec/ansible-collection-hardening/issues/445)
+
 **Merged pull requests:**
 
+- simplify MySQL queries for user deletion [\#641](https://github.com/dev-sec/ansible-collection-hardening/pull/641) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([schurzi](https://github.com/schurzi))
 - Bump creyD/prettier\_action from 4.2 to 4.3 [\#639](https://github.com/dev-sec/ansible-collection-hardening/pull/639) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Fix molecule tests for EL7 [\#636](https://github.com/dev-sec/ansible-collection-hardening/pull/636) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - run our CI tests periodically [\#634](https://github.com/dev-sec/ansible-collection-hardening/pull/634) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
