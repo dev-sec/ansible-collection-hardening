@@ -82,6 +82,12 @@
     (mysql_distribution == "mariadb" and mysql_version.version.full is
     version('10.4.0', '<'))
 
+- name: 'Ensure queries for gathering user information were executed'
+  assert:
+    that:
+      - mysql_users_wo_passwords_or_auth_string is defined or
+        mysql_users_wo_passwords is defined
+
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
     query:
