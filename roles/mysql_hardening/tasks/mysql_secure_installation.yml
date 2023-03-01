@@ -85,8 +85,8 @@
 - name: 'Ensure queries for gathering user information were executed'
   assert:
     that:
-      - mysql_users_wo_passwords_or_auth_string is defined or
-        mysql_users_wo_passwords is defined
+      - mysql_users_wo_passwords_or_auth_string.query_result is defined or
+        mysql_users_wo_passwords.query_result is defined
 
 - name: Ensure that there are no users without password or authentication_string
   community.mysql.mysql_query:
