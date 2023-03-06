@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-01)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
@@ -11,7 +11,10 @@
 
 **Fixed bugs:**
 
+- getent task is skipped if user previously ran it with a key parameter [\#646](https://github.com/dev-sec/ansible-collection-hardening/issues/646)
+- Error running devsec.hardening.os\_hardening role [\#645](https://github.com/dev-sec/ansible-collection-hardening/issues/645)
 - devsec.hardening.mysql\_hardening - Get all users that have no authentication\_string - Hello world [\#640](https://github.com/dev-sec/ansible-collection-hardening/issues/640)
+- fixes \#646 - add another condition to getent task [\#647](https://github.com/dev-sec/ansible-collection-hardening/pull/647) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([gbolo](https://github.com/gbolo))
 
 **Closed issues:**
 
