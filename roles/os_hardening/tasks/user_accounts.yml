@@ -3,7 +3,9 @@
   ansible.builtin.getent:
     database: passwd
     # creates a dict for each user containing UID/HOMEDIR etc...
-  when: getent_passwd is undefined # skip this task if "getent" has run before
+  # skip this task if getent was run before without specifying a key (single entry)
+  when: getent_passwd is undefined or
+        getent_passwd | length <= 1
 
 - name: Read local linux shadow database
   ansible.builtin.getent:
