@@ -18,7 +18,7 @@
         limit_item: core
         value: "0"
         comment: Prevent core dumps for all users. These are usually not needed and may contain sensitive information
-      ignore_errors: "{{ ansible_check_mode }}"  # the directory needs to be created first, which does not happen in check_mode
+      when: not ansible_check_mode  # the directory needs to be created first, which does not happen in check_mode
 
     - name: Set 10.hardcore.conf perms to 0400 and root ownership
       ansible.builtin.file:
