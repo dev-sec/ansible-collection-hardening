@@ -12,4 +12,5 @@
       - "CREATE USER 'user'@'192.168.0.2' IDENTIFIED BY 'keep';"
       - "CREATE USER 'user'@'keep' IDENTIFIED BY 'keep';"
       - "CREATE USER 'user'@'192.168.%' IDENTIFIED BY 'keep';"
+      - "CREATE ROLE 'keep';"
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
