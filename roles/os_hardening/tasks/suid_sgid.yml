@@ -15,6 +15,7 @@
   register: sbit_binaries
   when: os_security_suid_sgid_remove_from_unknown | bool
   changed_when: false
+  check_mode: false
 
 - name: Gather files from which to remove suids/sgids and remove system white-listed files | os-06
   ansible.builtin.set_fact:
