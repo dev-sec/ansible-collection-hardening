@@ -1,5 +1,5 @@
 ---
-name: "devsec.ssh_hardening non-Linux"
+name: "devsec.ssh_hardening BSD"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
@@ -7,13 +7,13 @@ on:  # yamllint disable-line rule:truthy
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening/**'
-      - '.github/workflows/ssh_hardening_nonlinux.yml'
+      - '.github/workflows/ssh_hardening_bsd.yml'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening/**'
-      - '.github/workflows/ssh_hardening_nonlinux.yml'
+      - '.github/workflows/ssh_hardening_bsd.yml'
   schedule:
     - cron: '0 6 * * 5'
 
@@ -34,9 +34,8 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - openbsd6
+          - openbsd9
           - freebsd12
-          #- smartos
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -47,7 +46,7 @@ jobs:
       - name: Test with molecule
         run: |
           molecule --version
-          molecule test -s ssh_hardening_nonlinux
+          molecule test -s ssh_hardening_bsd
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
