@@ -1,0 +1,21 @@
+ssh-17:
+  run: false
+  justification: "GSSAPIAuthentication"
+ssh-18:
+  run: false
+  justification: "GSSAPIDelegateCredentials"
+sshd-30:
+  run: false
+  justification: "KerberosAuthentication"
+sshd-31:
+  run: false
+  justification: "KerberosOrLocalPasswd "
+sshd-32:
+  run: false
+  justification: "KerberosTicketCleanup"
+sshd-33:
+  run: false
+  justification: "GSSAPIAuthentication"
+sshd-34:
+  run: false
+  justification: "GSSAPICleanupCredentials"
