@@ -8,7 +8,7 @@
         src: "/usr/bin/which"
         dest: "/usr/bin/type"
         state: hard
-      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd6'"
+      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'"
 
 - name: Verify
   hosts: localhost

@@ -7,7 +7,7 @@
     - name: install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
       raw: "pkg_add python%3.8"
-      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd6'"
+      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'"
 
 - name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
