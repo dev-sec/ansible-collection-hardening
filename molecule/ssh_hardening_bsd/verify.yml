@@ -40,7 +40,7 @@
         -t ssh://{{ lookup('env', 'USER') }}
         --sudo --no-show-progress --no-color
         --waiver-file /waivers.yaml
-        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip
+        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/bsd.zip
       register: test_results
       changed_when: false
       ignore_errors: true
