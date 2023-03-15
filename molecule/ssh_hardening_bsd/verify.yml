@@ -31,7 +31,7 @@
       changed_when: false
 
     - name: Execute cinc-auditor tests
-      command: <
+      command: >
         docker run
         --volume {{ molecule_ephemeral_directory }}/ssh-config:/ssh-config
         --volume waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
