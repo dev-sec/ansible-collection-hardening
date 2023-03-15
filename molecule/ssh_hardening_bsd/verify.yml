@@ -33,10 +33,10 @@
     - name: Execute cinc-auditor tests
       command: >
         docker run
-        --volume {{ molecule_ephemeral_directory }}/ssh-config:/ssh-config
+        --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
         --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
         docker.io/cincproject/auditor exec
-        --ssh-config-file=/ssh-config
+        --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config
         -t ssh://{{ lookup('env', 'USER') }}
         --sudo --no-show-progress --no-color
         --waiver-file /waivers.yaml
