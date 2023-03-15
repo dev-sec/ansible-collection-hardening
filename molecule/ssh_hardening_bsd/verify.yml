@@ -34,7 +34,7 @@
       command: >
         docker run
         --volume {{ molecule_ephemeral_directory }}/ssh-config:/ssh-config
-        --volume waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
+        --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
         docker.io/cincproject/auditor exec
         --ssh-config-file=/ssh-config
         -t ssh://{{ lookup('env', 'USER') }}
