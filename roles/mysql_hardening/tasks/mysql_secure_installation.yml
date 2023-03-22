@@ -78,8 +78,7 @@
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
                          'mariadb.sys')
-        AND ('IS_ROLE' NOT IN (SELECT column_name FROM information_schema.columns WHERE table_name = 'user')
-        OR IFNULL(IS_ROLE, 'N') = 'N');
+        AND 'IS_ROLE' NOT IN (SELECT column_name FROM information_schema.columns WHERE table_name = 'user');
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   check_mode: false
