@@ -56,7 +56,7 @@
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
                          'mariadb.sys')
-        AND IS_ROLE='N';
+        AND IF(COLUMN_EXISTS('mysql.user', 'IS_ROLE'), IFNULL(IS_ROLE, 'N'), 'N') = 'N';
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   check_mode: false
@@ -77,7 +77,7 @@
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
                          'mariadb.sys')
-        AND IS_ROLE='N';
+        AND IF(COLUMN_EXISTS('mysql.user', 'IS_ROLE'), IFNULL(IS_ROLE, 'N'), 'N') = 'N';
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   check_mode: false
