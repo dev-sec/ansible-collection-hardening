@@ -49,7 +49,7 @@
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS USER
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user u
       LEFT JOIN INFORMATION_SCHEMA.COLUMNS c ON c.TABLE_SCHEMA = 'mysql'
       AND c.TABLE_NAME = 'user'
@@ -74,7 +74,7 @@
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
   community.mysql.mysql_query:
     query: >
-      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS USER
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
       WHERE (length(password)=0
              OR password="")
