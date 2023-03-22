@@ -56,8 +56,6 @@
       AND c.COLUMN_NAME = 'IS_ROLE'
       WHERE (u.authentication_string = ''
              OR u.authentication_string IS NULL)
-        AND (length(password)=0
-             OR password="")
         AND u.user NOT IN ('mysql.sys',
                            'mysqlxsys',
                            'mariadb.sys')
