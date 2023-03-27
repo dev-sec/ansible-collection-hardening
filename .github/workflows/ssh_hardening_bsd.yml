@@ -6,13 +6,13 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening/**'
+      - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening/**'
+      - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
   schedule:
     - cron: '0 6 * * 5'

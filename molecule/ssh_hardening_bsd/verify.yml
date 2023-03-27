@@ -1,5 +1,5 @@
 ---
-- name: OpenBSD workaround - inspec detecty OpenSBD as unix and not linux compatible
+- name: OpenBSD workaround - inspec detects OpenSBD as unix and not linux compatible
   hosts: all
   become: true
   tasks:
@@ -40,7 +40,7 @@
         -t ssh://{{ lookup('env', 'USER') }}
         --sudo --no-show-progress --no-color
         --waiver-file /waivers.yaml
-        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/bsd.zip
+        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
       ignore_errors: true
