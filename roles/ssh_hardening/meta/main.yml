@@ -24,6 +24,12 @@ galaxy_info:
     - name: ArchLinux
     - name: SmartOS
     - name: opensuse
+    - name: FreeBSD
+      versions:
+        - "12.2"
+    - name: OpenBSD
+      versions:
+        - "7.0"
   galaxy_tags:
     - system
     - security

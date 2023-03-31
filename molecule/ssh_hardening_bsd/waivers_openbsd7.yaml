@@ -1,0 +1,21 @@
+ssh-17:
+  run: false
+  justification: "GSSAPIAuthentication is disabled. see: https://github.com/dev-sec/ansible-collection-hardening/pull/598"
+ssh-18:
+  run: false
+  justification: "GSSAPIDelegateCredentials is disabled. see: https://github.com/dev-sec/ansible-collection-hardening/pull/598"
+sshd-30:
+  run: false
+  justification: "KerberosAuthentication is disabled. see: https://github.com/dev-sec/ansible-ssh-hardening/pull/171"
+sshd-31:
+  run: false
+  justification: "KerberosOrLocalPasswd is disabled. see: https://github.com/dev-sec/ansible-ssh-hardening/pull/171"
+sshd-32:
+  run: false
+  justification: "KerberosTicketCleanup is disabled. see: https://github.com/dev-sec/ansible-ssh-hardening/pull/171"
+sshd-33:
+  run: false
+  justification: "GSSAPIAuthentication is disabled. see: https://github.com/dev-sec/ansible-collection-hardening/pull/598"
+sshd-34:
+  run: false
+  justification: "GSSAPICleanupCredentials is disabled. see: https://github.com/dev-sec/ansible-collection-hardening/pull/598"

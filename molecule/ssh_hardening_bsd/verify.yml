@@ -1,0 +1,55 @@
+---
+- name: OpenBSD workaround - inspec detects OpenSBD as unix and not linux compatible
+  hosts: all
+  become: true
+  tasks:
+    - name: use the type command instead of which to detect existing commands
+      file:
+        src: "/usr/bin/which"
+        dest: "/usr/bin/type"
+        state: hard
+      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'"
+
+- name: Verify
+  hosts: localhost
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  tasks:
+    - name: get ssh-config
+      command: 
+        cmd: "vagrant ssh-config"
+        chdir: "{{ molecule_ephemeral_directory }}"
+      register: ssh_config
+      changed_when: false
+
+    - name: create ssh-config file
+      copy:
+        content: "{{ ssh_config.stdout_lines | join ('\n') }}"
+        dest: "{{ molecule_ephemeral_directory }}/ssh-config"
+      changed_when: false
+
+    - name: Execute cinc-auditor tests
+      command: >
+        docker run
+        --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
+        --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
+        docker.io/cincproject/auditor exec
+        --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config
+        -t ssh://{{ lookup('env', 'USER') }}
+        --sudo --no-show-progress --no-color
+        --waiver-file /waivers.yaml
+        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip
+      register: test_results
+      changed_when: false
+      ignore_errors: true
+
+    - name: Display details about the cinc-auditor results
+      debug:
+        msg: "{{ test_results.stdout_lines }}"
+
+    - name: Fail when tests fail
+      fail:
+        msg: "Inspec failed to validate"
+      when: test_results.rc != 0
