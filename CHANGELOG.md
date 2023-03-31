@@ -6,7 +6,9 @@
 
 **Implemented enhancements:**
 
+- Support BSD and other operating systems CI with VM based tests [\#599](https://github.com/dev-sec/ansible-collection-hardening/issues/599)
 - add check mode to molecule tests [\#644](https://github.com/dev-sec/ansible-collection-hardening/pull/644) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- add testing for OpenBSD and FreeBSD [\#642](https://github.com/dev-sec/ansible-collection-hardening/pull/642) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Only skip audit restart handler in docker [\#637](https://github.com/dev-sec/ansible-collection-hardening/pull/637) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 - Make action\_mail\_acct configurable in auditd [\#631](https://github.com/dev-sec/ansible-collection-hardening/pull/631) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 
@@ -19,12 +21,14 @@
 
 **Closed issues:**
 
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 - Invalid login.defs for RHEL6 [\#651](https://github.com/dev-sec/ansible-collection-hardening/issues/651)
 - Deprecation warnings for os\_hardening [\#638](https://github.com/dev-sec/ansible-collection-hardening/issues/638)
 - Write tests for MySQL user-deletion [\#445](https://github.com/dev-sec/ansible-collection-hardening/issues/445)
 
 **Merged pull requests:**
 
+- Update dependency geerlingguy.git to v3.0.1 [\#654](https://github.com/dev-sec/ansible-collection-hardening/pull/654) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Configure Renovate [\#653](https://github.com/dev-sec/ansible-collection-hardening/pull/653) ([renovate[bot]](https://github.com/apps/renovate))
 - simplify MySQL queries for user deletion [\#641](https://github.com/dev-sec/ansible-collection-hardening/pull/641) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([schurzi](https://github.com/schurzi))
 - Bump creyD/prettier\_action from 4.2 to 4.3 [\#639](https://github.com/dev-sec/ansible-collection-hardening/pull/639) ([dependabot[bot]](https://github.com/apps/dependabot))
