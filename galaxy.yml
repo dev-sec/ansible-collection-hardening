@@ -42,3 +42,4 @@ build_ignore:
   - .tox
   - tox.ini
   - .yamllint
+  - renovate.json
