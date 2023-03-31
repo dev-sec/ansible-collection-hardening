@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-09)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-31)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
@@ -19,11 +19,13 @@
 
 **Closed issues:**
 
+- Invalid login.defs for RHEL6 [\#651](https://github.com/dev-sec/ansible-collection-hardening/issues/651)
 - Deprecation warnings for os\_hardening [\#638](https://github.com/dev-sec/ansible-collection-hardening/issues/638)
 - Write tests for MySQL user-deletion [\#445](https://github.com/dev-sec/ansible-collection-hardening/issues/445)
 
 **Merged pull requests:**
 
+- Configure Renovate [\#653](https://github.com/dev-sec/ansible-collection-hardening/pull/653) ([renovate[bot]](https://github.com/apps/renovate))
 - simplify MySQL queries for user deletion [\#641](https://github.com/dev-sec/ansible-collection-hardening/pull/641) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([schurzi](https://github.com/schurzi))
 - Bump creyD/prettier\_action from 4.2 to 4.3 [\#639](https://github.com/dev-sec/ansible-collection-hardening/pull/639) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Fix molecule tests for EL7 [\#636](https://github.com/dev-sec/ansible-collection-hardening/pull/636) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
