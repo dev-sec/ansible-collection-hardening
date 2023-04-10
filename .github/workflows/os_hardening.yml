@@ -44,7 +44,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
-          - amazon
+          - amazon2
           - opensuse_tumbleweed
           # - arch  # needs to be fixed
     steps:

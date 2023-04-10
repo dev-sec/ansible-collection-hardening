@@ -45,7 +45,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
-          - amazon
+          - amazon2
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # baseline is not compatible with suse
     steps:
