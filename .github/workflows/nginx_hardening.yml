@@ -67,11 +67,6 @@ jobs:
           pip install -r requirements.txt
         working-directory: ansible_collections/devsec/hardening
 
-      - name: Create default collection path symlink
-        run: |
-          mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
-
       - name: Test with molecule
         run: |
           molecule --version

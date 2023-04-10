@@ -68,11 +68,6 @@ jobs:
           pip install -r requirements.txt
         working-directory: ansible_collections/devsec/hardening
 
-      - name: Create default collection path symlink
-        run: |
-          mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
-
       # that was a hard one to fix. robert did it thankfully
       # https://github.com/robertdebock/ansible-role-mysql/commit/7562e99099b06282391ab7ed102b393a0406d212
       - name: disable apparmor on debian systems
