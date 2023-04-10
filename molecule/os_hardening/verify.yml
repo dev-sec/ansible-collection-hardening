@@ -8,6 +8,8 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   roles:
     - geerlingguy.git
+  collections:
+    - devsec.hardening
   tasks:
     - name: install fake SuSE-release for cinc compatibility
       copy:
