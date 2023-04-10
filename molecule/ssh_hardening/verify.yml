@@ -32,17 +32,14 @@
         name: libxcrypt-compat
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: download cinc-auditor
-      get_url:
-        url: https://omnitruck.cinc.sh/install.sh
-        dest: /tmp/install.sh
-        mode: '0775'
-
-    - name: install cinc-auditor
-      shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
-
     - name: Execute cinc-auditor tests
-      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip"
+      command: >
+        docker run
+        --volume /run/docker.sock:/run/docker.sock
+        docker.io/cincproject/auditor exec
+        -t docker://instance
+        --sudo --no-show-progress --no-color
+        --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
       ignore_errors: true

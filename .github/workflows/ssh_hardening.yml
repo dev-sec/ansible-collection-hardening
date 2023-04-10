@@ -46,8 +46,8 @@ jobs:
           - debian10
           - debian11
           - amazon2023
-          # - arch  # needs to be fixed
-          # - opensuse_tumbleweed  # baseline is not compatible with suse
+          - arch
+          - opensuse_tumbleweed
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
