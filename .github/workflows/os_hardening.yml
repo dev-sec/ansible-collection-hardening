@@ -46,7 +46,7 @@ jobs:
           - debian11
           - amazon2023
           - opensuse_tumbleweed
-          # - arch  # needs to be fixed
+          - arch
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3

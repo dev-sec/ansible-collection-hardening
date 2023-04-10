@@ -1,8 +1,4 @@
 ---
-dependency:
-  name: galaxy
-  options:
-    role-file: molecule/os_hardening/requirements.yml
 driver:
   name: docker
 platforms:

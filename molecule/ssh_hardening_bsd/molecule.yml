@@ -1,8 +1,4 @@
 ---
-dependency:
-  name: galaxy
-  options:
-    role-file: molecule/ssh_hardening_bsd/requirements.yml
 driver:
   name: vagrant
   provider:
