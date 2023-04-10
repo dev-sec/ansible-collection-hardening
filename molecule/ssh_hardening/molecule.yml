@@ -21,7 +21,7 @@ provisioner:
   config_options:
     defaults:
       interpreter_python: auto_silent
-      callback_whitelist: profile_tasks, timer, yaml
+      callbacks_enabled: profile_tasks, timer, yaml
   inventory:
     host_vars:
       # https://molecule.readthedocs.io/en/latest/examples.html#docker-with-non-privileged-user
