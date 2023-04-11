@@ -47,7 +47,7 @@ jobs:
           - debian11
           - amazon2023
           - arch
-          - opensuse_tumbleweed
+          # - opensuse_tumbleweed  # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3

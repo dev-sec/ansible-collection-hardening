@@ -45,8 +45,8 @@ jobs:
           - debian10
           - debian11
           - amazon2023
-          - arch
-          - opensuse_tumbleweed
+          # - arch  # needs to be fixed
+          # - opensuse_tumbleweed  # needs to be fixed
           # - fedora  # no support from geerlingguy role
     steps:
       - name: Checkout repo

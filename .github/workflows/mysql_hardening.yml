@@ -46,7 +46,7 @@ jobs:
           - debian10
           - debian11
           # - amazon  # geerlingguy.mysql does not support fedora
-          - arch
+          # - arch  # geerlingguy.mysql does not support arch
           - opensuse_tumbleweed
           # - fedora  # geerlingguy.mysql does not support fedora
     steps:

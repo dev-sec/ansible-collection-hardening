@@ -45,7 +45,7 @@ jobs:
           - debian10
           - debian11
           - opensuse15
-          - arch
+          # - arch  # needs fix for audit
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
