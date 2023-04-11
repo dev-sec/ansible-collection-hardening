@@ -37,10 +37,11 @@
       command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
-        --volume /home/runner/work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections/devsec/hardening/molecule/os_hardening/waivers.yaml:/waivers.yaml
+        --volume {{ playbook_dir }}/waivers.yaml:/waivers.yaml
         docker.io/cincproject/auditor exec
         -t docker://instance
         --no-show-progress --no-color
+        --waiver-file /waivers.yaml
         --no-distinct-exit https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
