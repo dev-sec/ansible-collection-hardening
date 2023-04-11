@@ -13,6 +13,13 @@
       when:
         - ansible_os_family == 'Suse'
 
+    - name: install procps for debian systems
+      apt:
+        name: procps
+        state: present
+        update_cache: true
+      when: ansible_distribution == 'Debian'
+
     - name: include tests for the service
       include_tasks: verify_tasks/service.yml
 

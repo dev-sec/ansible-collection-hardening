@@ -1,3 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  tasks:
+    - name: install procps for debian systems
+      apt:
+        name: procps
+        state: present
+        update_cache: true
+      when: ansible_distribution == 'Debian'
+
 - name: Verify
   hosts: localhost
   environment:
