@@ -57,7 +57,7 @@
 # The following tasks only get executed when selinux is installed, UsePam is
 # 'yes' and the ssh_password module is installed. See
 # http://danwalsh.livejournal.com/12333.html for more info
-- name: Remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk
+- name: Remove selinux-policy when Pam is used, because Allowing sshd to read the shadow file directly is considered a potential security risk # noqa no-changed-when
   ansible.builtin.command: semodule -r ssh_password
   when:
     - ssh_use_pam | bool

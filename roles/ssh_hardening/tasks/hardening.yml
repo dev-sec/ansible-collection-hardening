@@ -100,7 +100,7 @@
   check_mode: false
   when: ssh_server_hardening | bool
 
-- name: Remove all small primes
+- name: Remove all small primes # noqa no-changed-when
   ansible.builtin.shell: >
     awk '$5 >= {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }} > {{ sshd_moduli_file }}.new ; [ -r {{ sshd_moduli_file }}.new
     -a -s {{ sshd_moduli_file }}.new ] && mv {{ sshd_moduli_file }}.new {{ sshd_moduli_file }} || true

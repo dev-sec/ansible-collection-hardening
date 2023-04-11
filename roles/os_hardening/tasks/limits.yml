@@ -35,7 +35,7 @@
         path: /etc/systemd/coredump.conf.d
         owner: root
         group: root
-        mode: 0755
+        mode: "0755"
         state: directory
       when: ansible_service_mgr == "systemd"
 
@@ -45,7 +45,7 @@
         dest: /etc/systemd/coredump.conf.d/custom.conf
         owner: root
         group: root
-        mode: 0644
+        mode: "0644"
       when: ansible_service_mgr == "systemd"
       notify: Reload systemd
 
