@@ -53,7 +53,7 @@
 
 - name: Set ownership of root user home directory(s) to 0700
   ansible.builtin.file:
-    mode: 0700
+    mode: "0700"
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
     state: directory
@@ -100,7 +100,7 @@
 
 - name: Limit access to home directories of regular (non-system, non-root) accounts
   ansible.builtin.file:
-    mode: 0700
+    mode: "0700"
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
     state: directory
