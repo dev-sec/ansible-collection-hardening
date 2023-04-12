@@ -39,6 +39,8 @@ jobs:
           - centos9s
           - rocky8
           - rocky9
+          - fedora36
+          - fedora37
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
