@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       PY_COLORS: 1
       ANSIBLE_FORCE_COLOR: 1
@@ -45,9 +45,9 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
-          - amazon
-          # - arch  # needs to be fixed
-          # - opensuse_tumbleweed  # baseline is not compatible with suse
+          - amazon2023
+          - arch
+          # - opensuse_tumbleweed  # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -55,10 +55,10 @@ jobs:
           path: ansible_collections/devsec/hardening
           submodules: true
 
-      - name: Set up Python 3.7
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
@@ -66,11 +66,6 @@ jobs:
           python -m pip install --no-cache-dir --upgrade pip
           pip install -r requirements.txt
         working-directory: ansible_collections/devsec/hardening
-
-      - name: Create default collection path symlink
-        run: |
-          mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/ansible-os-hardening/ansible-os-hardening /home/runner/.ansible/collections
 
       - name: Test with molecule
         run: |

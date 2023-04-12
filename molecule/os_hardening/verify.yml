@@ -6,37 +6,7 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  roles:
-    - geerlingguy.git
   tasks:
-    - name: install fake SuSE-release for cinc compatibility
-      copy:
-        content: |
-          openSUSE Faked Enterprise 2020 (x86_64)
-          VERSION = 2020
-          CODENAME = Faked Feature
-        dest: /etc/SuSE-release
-        owner: root
-        group: root
-        mode: '0444'
-      when: ansible_facts.os_family == 'Suse'
-
-    - name: install git for SuSE since geerlinguy.git does not support it
-      zypper:
-        name: git
-        state: present
-      when: ansible_facts.os_family == 'Suse'
-
-    - name: Run the equivalent of "apt-get update" as a separate step
-      apt:
-        update_cache: true
-      when: ansible_facts.os_family == 'Debian'
-
-    - name: install required tools on debian
-      apt:
-        name: procps
-      when: ansible_facts.os_family == 'Debian'
-
     - name: include verification tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
@@ -54,17 +24,23 @@
       include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
-    - name: download cinc-auditor
-      get_url:
-        url: https://omnitruck.cinc.sh/install.sh
-        dest: /tmp/install.sh
-        mode: '0775'
-
-    - name: install cinc-auditor
-      shell: "bash /tmp/install.sh -s -- -P cinc-auditor -v 4"
-
-    - name: Execute cinc-auditor tests  # noqa ignore-errors
-      command: "/opt/cinc-auditor/bin/cinc-auditor exec --no-show-progress --no-color --no-distinct-exit --waiver-file waivers.yaml https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip"
+- name: Verify
+  hosts: localhost
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  tasks:
+    - name: Execute cinc-auditor tests
+      command: >
+        docker run
+        --volume /run/docker.sock:/run/docker.sock
+        --volume {{ playbook_dir }}/waivers.yaml:/waivers.yaml
+        docker.io/cincproject/auditor exec
+        -t docker://instance
+        --no-show-progress --no-color
+        --waiver-file /waivers.yaml
+        --no-distinct-exit https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
       ignore_errors: true
@@ -78,6 +54,16 @@
         msg: "Inspec failed to validate"
       when: test_results.rc != 0
 
+- name: Verify
+  hosts: all
+  become: true
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  collections:
+    - devsec.hardening
+  tasks:
     # test if variable can be overridden
     - name: workaround for https://github.com/ansible/ansible/issues/66304
       set_fact:

@@ -39,13 +39,15 @@ jobs:
           - centos9s
           - rocky8
           - rocky9
+          - fedora36
+          - fedora37
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
           - debian10
           - debian11
           - opensuse15
-          # - arch  # arch is currently not supported by cinc-auditor
+          # - arch  # needs fix for audit
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3

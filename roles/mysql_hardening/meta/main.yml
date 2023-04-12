@@ -10,6 +10,7 @@ galaxy_info:
       versions:
         - "7"
         - "8"
+        - "9"
     - name: Ubuntu
       versions:
         - bionic
@@ -20,7 +21,7 @@ galaxy_info:
         - bullseye
         - buster
     - name: Amazon
-    - name: Fedora
+    - name: opensuse
   galaxy_tags:
     - system
     - security
