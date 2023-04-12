@@ -23,11 +23,13 @@
 
 - Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 - Invalid login.defs for RHEL6 [\#651](https://github.com/dev-sec/ansible-collection-hardening/issues/651)
+- Unsupported parameters for \(ansible.builtin.user\) module [\#650](https://github.com/dev-sec/ansible-collection-hardening/issues/650)
 - Deprecation warnings for os\_hardening [\#638](https://github.com/dev-sec/ansible-collection-hardening/issues/638)
 - Write tests for MySQL user-deletion [\#445](https://github.com/dev-sec/ansible-collection-hardening/issues/445)
 
 **Merged pull requests:**
 
+- Update minimum required Ansible version for os\_hardening [\#657](https://github.com/dev-sec/ansible-collection-hardening/pull/657) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Update test environment [\#656](https://github.com/dev-sec/ansible-collection-hardening/pull/656) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency geerlingguy.git to v3.0.1 [\#654](https://github.com/dev-sec/ansible-collection-hardening/pull/654) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Configure Renovate [\#653](https://github.com/dev-sec/ansible-collection-hardening/pull/653) ([renovate[bot]](https://github.com/apps/renovate))
