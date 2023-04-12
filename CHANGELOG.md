@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-03-31)
+## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-04-12)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.6.0...8.7.0)
 
@@ -28,6 +28,7 @@
 
 **Merged pull requests:**
 
+- Update test environment [\#656](https://github.com/dev-sec/ansible-collection-hardening/pull/656) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency geerlingguy.git to v3.0.1 [\#654](https://github.com/dev-sec/ansible-collection-hardening/pull/654) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Configure Renovate [\#653](https://github.com/dev-sec/ansible-collection-hardening/pull/653) ([renovate[bot]](https://github.com/apps/renovate))
 - simplify MySQL queries for user deletion [\#641](https://github.com/dev-sec/ansible-collection-hardening/pull/641) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([schurzi](https://github.com/schurzi))
