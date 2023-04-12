@@ -1,8 +1,4 @@
 ---
-dependency:
-  name: galaxy
-  options:
-    role-file: molecule/os_hardening/requirements.yml
 driver:
   name: docker
 platforms:
@@ -21,7 +17,7 @@ provisioner:
   config_options:
     defaults:
       interpreter_python: auto_silent
-      callback_whitelist: profile_tasks, timer, yaml
+      callbacks_enabled: profile_tasks, timer, yaml
 verifier:
   name: ansible
 

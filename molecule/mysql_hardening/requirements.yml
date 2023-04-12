@@ -1,7 +1,5 @@
 ---
 roles:
-  - name: geerlingguy.git
-    version: 3.0.1
   - name: dev-sec.mysql
     version: master
 
