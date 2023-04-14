@@ -58,7 +58,7 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 
 ### hidepid on RHEL/CentOS 7
 
-When having `polkit-0.112-18.el7` (and later) installed and `/proc` mounted with `hidepid=2`, everytime someone uses `systemctl` the following error is displayed, but systemctl runs successfully.
+When having `polkit-0.112-18.el7` (and later) installed and `/proc` mounted with `hidepid=2`, every time someone uses `systemctl` the following error is displayed, but systemctl runs successfully.
 
 ```
 Error registering authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject (polkit-error-quark, 0)

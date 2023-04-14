@@ -91,7 +91,7 @@
 
 **Implemented enhancements:**
 
-- add follow=yes to my.cnf protect task, incase its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
+- add follow=yes to my.cnf protect task, in case its a symlink. fixes \#20 [\#21](https://github.com/dev-sec/ansible-mysql-hardening/pull/21) ([rndmh3ro](https://github.com/rndmh3ro))
 - add changelog generator [\#7](https://github.com/dev-sec/ansible-mysql-hardening/pull/7) ([chris-rock](https://github.com/chris-rock))
 
 **Closed issues:**
