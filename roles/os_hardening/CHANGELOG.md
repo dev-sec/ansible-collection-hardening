@@ -54,7 +54,7 @@
 
 - fix fedora build [\#296](https://github.com/dev-sec/ansible-os-hardening/pull/296) ([rndmh3ro](https://github.com/rndmh3ro))
 - do not blacklist used filesystems [\#289](https://github.com/dev-sec/ansible-os-hardening/pull/289) ([schurzi](https://github.com/schurzi))
-- move hidepid vars into defaults so theyre overwritable [\#285](https://github.com/dev-sec/ansible-os-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
+- move hidepid vars into defaults so they're overwritable [\#285](https://github.com/dev-sec/ansible-os-hardening/pull/285) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [6.1.0](https://github.com/dev-sec/ansible-os-hardening/tree/6.1.0) (2020-07-21)
 
@@ -118,7 +118,7 @@
 - Add kernel parameter information to README [\#259](https://github.com/dev-sec/ansible-os-hardening/pull/259) ([jaredledvina](https://github.com/jaredledvina))
 - Remove trailing whitespaces \(ansible-lint 201\) [\#254](https://github.com/dev-sec/ansible-os-hardening/pull/254) ([kravietz](https://github.com/kravietz))
 - Standardize the var ordering [\#251](https://github.com/dev-sec/ansible-os-hardening/pull/251) ([dustinmiller1337](https://github.com/dustinmiller1337))
-- Add intial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-os-hardening/pull/250) ([dustinmiller1337](https://github.com/dustinmiller1337))
+- Add initial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-os-hardening/pull/250) ([dustinmiller1337](https://github.com/dustinmiller1337))
 - Make max_log_file_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-os-hardening/pull/246) ([jandd](https://github.com/jandd))
 - Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-os-hardening/pull/240) ([ghost](https://github.com/ghost))
 - Fedora - Use new auto ansible_python_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-os-hardening/pull/239) ([jaredledvina](https://github.com/jaredledvina))
@@ -193,7 +193,7 @@
 
 **Fixed bugs:**
 
-- auditd causing v5.0 to fail on unpriviledged LXC's [\#191](https://github.com/dev-sec/ansible-os-hardening/issues/191)
+- auditd causing v5.0 to fail on unprivileged LXC's [\#191](https://github.com/dev-sec/ansible-os-hardening/issues/191)
 - Setting os_security_users_allow has no effect [\#175](https://github.com/dev-sec/ansible-os-hardening/issues/175)
 - add /usr/bin/su to suid_guid whitelist [\#199](https://github.com/dev-sec/ansible-os-hardening/pull/199) ([ccolic](https://github.com/ccolic))
 - ensure that permissions to su-binary are not restricted to root user and group only, if os_security_users_allow contains the value change_user [\#197](https://github.com/dev-sec/ansible-os-hardening/pull/197) ([szEvEz](https://github.com/szEvEz))
@@ -374,7 +374,7 @@
 - Docker [\#90](https://github.com/dev-sec/ansible-os-hardening/pull/90) ([rndmh3ro](https://github.com/rndmh3ro))
 - debian 8 support [\#88](https://github.com/dev-sec/ansible-os-hardening/pull/88) ([rndmh3ro](https://github.com/rndmh3ro))
 - Ufw manage defaults [\#85](https://github.com/dev-sec/ansible-os-hardening/pull/85) ([fitz123](https://github.com/fitz123))
-- replace ignore_errors to failed_when to supress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) ([fitz123](https://github.com/fitz123))
+- replace ignore_errors to failed_when to suppress ugly error warnings [\#81](https://github.com/dev-sec/ansible-os-hardening/pull/81) ([fitz123](https://github.com/fitz123))
 - fix bare variables usage for loops [\#79](https://github.com/dev-sec/ansible-os-hardening/pull/79) ([fitz123](https://github.com/fitz123))
 
 **Fixed bugs:**
@@ -487,7 +487,7 @@
 - Repair debian install script [\#8](https://github.com/dev-sec/ansible-os-hardening/pull/8) ([rndmh3ro](https://github.com/rndmh3ro))
 - Separate tasks into multiple smaller files [\#7](https://github.com/dev-sec/ansible-os-hardening/pull/7) ([rndmh3ro](https://github.com/rndmh3ro))
 - Enable gpg-check on all yum-repositories [\#5](https://github.com/dev-sec/ansible-os-hardening/pull/5) ([rndmh3ro](https://github.com/rndmh3ro))
-- Change playbook-path to accomodate test-repo [\#4](https://github.com/dev-sec/ansible-os-hardening/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
+- Change playbook-path to accommodate test-repo [\#4](https://github.com/dev-sec/ansible-os-hardening/pull/4) ([rndmh3ro](https://github.com/rndmh3ro))
 - treat securetty config as an array [\#3](https://github.com/dev-sec/ansible-os-hardening/pull/3) ([arlimus](https://github.com/arlimus))
 - Add Securetty-support [\#2](https://github.com/dev-sec/ansible-os-hardening/pull/2) ([rndmh3ro](https://github.com/rndmh3ro))
 - Add profile.conf configuration [\#1](https://github.com/dev-sec/ansible-os-hardening/pull/1) ([rndmh3ro](https://github.com/rndmh3ro))

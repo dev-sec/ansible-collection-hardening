@@ -108,5 +108,5 @@ os_security_suid_sgid_system_whitelist:
   - /usr/lib/libvte9/gnome-pty-helper # gnome
   - /usr/lib/libvte-2.90-9/gnome-pty-helper # gnome
 
-# system accounts that do not get their login disabled and pasword changed
+# system accounts that do not get their login disabled and password changed
 os_always_ignore_users: [root, sync, shutdown, halt]

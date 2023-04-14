@@ -21,7 +21,7 @@
     name: testuser
     password: "{{ test_pw | password_hash('sha512') }}"
 
-- name: check successfull login with correct password
+- name: check successful login with correct password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
   environment:
@@ -29,7 +29,7 @@
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
     LANG: "{{ locale | default('C.UTF-8') }}"
 
-- name: check unsuccessfull login with incorrect password
+- name: check unsuccessful login with incorrect password
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
   environment:
@@ -38,7 +38,7 @@
     LANG: "{{ locale | default('C.UTF-8') }}"
   with_sequence: count=6
 
-- name: check unsuccessfull login, with correct password (lockout)
+- name: check unsuccessful login, with correct password (lockout)
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
   environment:
@@ -50,7 +50,7 @@
   pause:
     seconds: 20
 
-- name: check successfull login
+- name: check successful login
   shell:
     cmd: "pam-tester --user testuser --password {{ test_pw }}"
   environment:

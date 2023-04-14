@@ -152,7 +152,7 @@ GSSAPICleanupCredentials yes
 {% endif %}
 {% if ssh_deny_users %}
 # In case you don't use PAM (`UsePAM no`), you can alternatively restrict users and groups here.
-# For key-based authentication this is not necessary, since all keys must be explicitely enabled.
+# For key-based authentication this is not necessary, since all keys must be explicitly enabled.
 DenyUsers {{ ssh_deny_users }}
 
 {% endif %}

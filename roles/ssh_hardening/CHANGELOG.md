@@ -195,7 +195,7 @@
 - SFTP: set default umask to 0027 [\#252](https://github.com/dev-sec/ansible-ssh-hardening/pull/252) ([Slamdunk](https://github.com/Slamdunk))
 - Separate PermitUserEnviroment from AcceptEnv [\#251](https://github.com/dev-sec/ansible-ssh-hardening/pull/251) ([szEvEz](https://github.com/szEvEz))
 - Feature: Debian 10 \(Buster\) support [\#249](https://github.com/dev-sec/ansible-ssh-hardening/pull/249) ([jaredledvina](https://github.com/jaredledvina))
-- fix broken packages, extend README with furhter development instructions [\#246](https://github.com/dev-sec/ansible-ssh-hardening/pull/246) ([szEvEz](https://github.com/szEvEz))
+- fix broken packages, extend README with further development instructions [\#246](https://github.com/dev-sec/ansible-ssh-hardening/pull/246) ([szEvEz](https://github.com/szEvEz))
 - refactor authenticationmethod settings, allow user to set authenticat… [\#245](https://github.com/dev-sec/ansible-ssh-hardening/pull/245) ([szEvEz](https://github.com/szEvEz))
 - RHEL/OL/CentOS 8 support [\#242](https://github.com/dev-sec/ansible-ssh-hardening/pull/242) ([Furragen](https://github.com/Furragen))
 - Added ssh_syslog_facility, ssh_log_level and ssh_strict_modes parameters [\#240](https://github.com/dev-sec/ansible-ssh-hardening/pull/240) ([bschonec](https://github.com/bschonec))

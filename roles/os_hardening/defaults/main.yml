@@ -157,8 +157,8 @@ sysctl_config:
   # https://wiki.ubuntu.com/SecurityTeam/Roadmap/KernelHardening#ptrace
   #
   # For applications launching crash handlers that need PTRACE, exceptions can
-  # be registered by the debugee by declaring in the segfault handler
-  # specifically which process will be using PTRACE on the debugee:
+  # be registered by the debuggee by declaring in the segfault handler
+  # specifically which process will be using PTRACE on the debuggee:
   #   prctl(PR_SET_PTRACER, debugger_pid, 0, 0, 0);
   #
   # In general, PTRACE is not needed for the average running Ubuntu system.
