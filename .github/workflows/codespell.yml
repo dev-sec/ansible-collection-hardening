@@ -8,7 +8,7 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
 
 jobs:
-  ansible-lint:
-    uses: "dev-sec/.github/.github/workflows/codespell.yml@codespell"
+  codespell:
+    uses: "dev-sec/.github/.github/workflows/codespell.yml@main"
     with:
       ignore_words_list: "chage"
