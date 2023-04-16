@@ -9,14 +9,4 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   ansible-lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Codespell
-        # replace "master" with any valid ref
-        uses: codespell-project/actions-codespell@v1
-        with:
-          check_filenames: true
-          ignore_words_list: "chage"
+    uses: dev-sec/.github/.github/workflows/codespell.yml@codespell
