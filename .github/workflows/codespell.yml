@@ -1,0 +1,14 @@
+---
+name: Codespell - Spellcheck
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  codespell:
+    uses: "dev-sec/.github/.github/workflows/codespell.yml@main"
+    with:
+      ignore_words_list: "chage"
