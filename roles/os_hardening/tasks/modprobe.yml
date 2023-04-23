@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name: "{{ modprobe_package }}"
     state: present
+  when: ansible_facts.pkg_mgr != 'atomic_container'
 
 - name: Check if efi is installed
   ansible.builtin.stat:
