@@ -28,7 +28,7 @@
     group: "{{ mount.group }}"
     mode: "{{ mount.mode }}"
   when:
-    - mountpoint_exists.stat.exists | bool
+    - mountpoint_exists.stat.exists and mountpoint_exists.stat.writeable | bool
 
 - name: "Register changed mountpoints"
   ansible.builtin.set_fact:
