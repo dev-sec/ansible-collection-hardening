@@ -21,3 +21,4 @@
     os_yum_repo_file_whitelist: ['foo.repo']
     os_mnt_boot_enabled: true
     os_mnt_boot_src: "/dev/vda1"
+    os_ctrlaltdel_disabled: true
