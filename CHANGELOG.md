@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.1) (2023-04-17)
+## [8.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.1) (2023-04-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.7.1)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- use new molecule-plugins [\#667](https://github.com/dev-sec/ansible-collection-hardening/pull/667) ([schurzi](https://github.com/schurzi))
 - add spellchecking with codespell [\#662](https://github.com/dev-sec/ansible-collection-hardening/pull/662) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 
 ## [8.7.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.0) (2023-04-12)
