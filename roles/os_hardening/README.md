@@ -561,7 +561,7 @@ If you are using os_hardening with a filesystem that has immutable directories i
   - Description: Add list of user to allow creation of .netrc in users homedir
 - `os_immutable_fs`
   - Default: `ansible_facts.pkg_mgr == 'atomic_container'`
-  - Description: Specify that file system is immutable in accordance with ostree system ie coreos/silverblue 
+  - Description: Specify file system as immutable in accordance with ostree system ie coreos/silverblue 
 
 ## Packages
 
