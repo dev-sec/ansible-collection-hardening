@@ -90,6 +90,10 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 
 We know that this is the case on Raspberry Pi.
 
+### Using with ostree system, ie coreos/silverblue
+
+If you are using os_hardening with a filesystem that has immutable directories in accordance with the ostree specification, then you can set the variable `os_immutable_fs: true`.  It defaults to `ansible_facts.pkg_mgr == 'atomic_container'` and so should compensate for the immutable file system by default.
+
 ## Variables
 
 - `os_desktop_enable`
@@ -555,6 +559,9 @@ We know that this is the case on Raspberry Pi.
 - `os_netrc_whitelist_user`
   - Default: ``
   - Description: Add list of user to allow creation of .netrc in users homedir
+- `os_immutable_fs`
+  - Default: `ansible_facts.pkg_mgr == 'atomic_container'`
+  - Description: Specify file system as immutable in accordance with ostree system ie coreos/silverblue 
 
 ## Packages
 
