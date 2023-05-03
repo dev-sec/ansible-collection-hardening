@@ -5,6 +5,7 @@
     state: present
   when:
     - os_auth_pam_sssd_enable | bool
+    - not os_immutable_fs | bool
 
 - name: Configure passwdqc and faillock via central system-auth config
   ansible.builtin.template:

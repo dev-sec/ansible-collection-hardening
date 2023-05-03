@@ -54,6 +54,8 @@ os_security_packages_list: [xinetd, inetd, ypserv, telnet-server, rsh-server, pr
 os_security_init_prompt: true
 # Require root password for single user mode. (rhel, centos)
 os_security_init_single: false
+# Set to true if filesystem is immutable (ie ostree or similar)
+os_immutable_fs: ansible_facts.pkg_mgr == 'atomic_container'
 
 # Apply ufw defaults
 ufw_manage_defaults: true
