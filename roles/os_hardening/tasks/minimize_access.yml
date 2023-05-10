@@ -71,7 +71,9 @@
     owner: root
     group: root
     mode: "0750"
-  when: '"change_user" not in os_security_users_allow'
+  when: 
+    - '"change_user" not in os_security_users_allow'
+    - not os_immutable_fs | bool
 
 - name: Set option hidepid for proc filesystem
   ansible.posix.mount:
