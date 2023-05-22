@@ -1,15 +1,19 @@
 # Changelog
 
-## [8.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.1) (2023-04-28)
+## [8.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.1) (2023-05-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.7.1)
 
 **Closed issues:**
 
+-  `Ensure permissions on mysql-logfile are correct` chokes when `log_error` is set to `stderr` [\#673](https://github.com/dev-sec/ansible-collection-hardening/issues/673)
+- TASK TASK FAILED: \[devsec.hardening.os\_hardening : Set password ageing for existing regular \(non-system, non-root\) accounts\]  [\#670](https://github.com/dev-sec/ansible-collection-hardening/issues/670)
+- After os\_hardening ssh not working  [\#663](https://github.com/dev-sec/ansible-collection-hardening/issues/663)
 - Unsupported parameters for \(ansible.builtin.user\) module [\#650](https://github.com/dev-sec/ansible-collection-hardening/issues/650)
 
 **Merged pull requests:**
 
+- expand on check conditions for non-file locations of logs [\#674](https://github.com/dev-sec/ansible-collection-hardening/pull/674) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([whysthatso](https://github.com/whysthatso))
 - use new molecule-plugins [\#667](https://github.com/dev-sec/ansible-collection-hardening/pull/667) ([schurzi](https://github.com/schurzi))
 - add spellchecking with codespell [\#662](https://github.com/dev-sec/ansible-collection-hardening/pull/662) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 
