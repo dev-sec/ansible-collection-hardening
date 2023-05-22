@@ -47,7 +47,7 @@ password    required      pam_deny.so
 session     optional      pam_keyinit.so revoke
 session     required      pam_limits.so
 -session    optional      pam_systemd.so
-{% if (os_auth_pam_oddjob_mkhomedir ) %}
+{% if (os_auth_pam_oddjob_mkhomedir | bool) %}
 session     optional      pam_oddjob_mkhomedir.so umask=0077
 {% endif %}
 session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
