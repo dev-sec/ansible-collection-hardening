@@ -138,6 +138,9 @@ If you are using os_hardening with a filesystem that has immutable directories i
 - `os_auth_pam_sssd_enable`
   - Default: `false` (on RHEL8/CentOS8/Fedora `true`)
   - Description: activate PAM auth support for sssd
+- `os_auth_pam_oddjob_mkhomedir`
+  - Default: `false`
+  - Description: Enables automatic homedir e.g. in FreeIPA environments
 - `os_security_users_allow`
   - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
