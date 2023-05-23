@@ -1,8 +1,12 @@
 # Changelog
 
-## [8.7.1](https://github.com/dev-sec/ansible-collection-hardening/tree/8.7.1) (2023-05-22)
+## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-05-23)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.7.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.8.0)
+
+**Implemented enhancements:**
+
+- Add oddjob mkhomedir option rhel pam [\#675](https://github.com/dev-sec/ansible-collection-hardening/pull/675) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([imp1sh](https://github.com/imp1sh))
 
 **Closed issues:**
 
