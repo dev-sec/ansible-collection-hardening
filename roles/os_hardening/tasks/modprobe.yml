@@ -11,14 +11,14 @@
 
 - name: Remove vfat from fs-list if efi is used
   ansible.builtin.set_fact:
-    os_hardening_unused_filesystems: "{{ os_hardening_unused_filesystems | difference('vfat') }}"
+    os_hardening_unused_filesystems: "{{ os_unused_filesystems | difference('vfat') }}"
   when:
     - os_hardening_efi_installed.stat.isdir is defined
     - os_hardening_efi_installed.stat.isdir
 
 - name: Remove used filesystems from fs-list
   ansible.builtin.set_fact:
-    os_hardening_unused_filesystems: "{{ os_hardening_unused_filesystems | difference(ansible_mounts | map(attribute='fstype') | list) }}"
+    os_hardening_unused_filesystems: "{{ os_unused_filesystems | difference(ansible_mounts | map(attribute='fstype') | list) }}"
 
 - name: Disable unused filesystems | os-10
   ansible.builtin.template:

@@ -60,8 +60,8 @@
   register: mysql_hardening_mysql_users_wo_passwords_or_auth_string
   check_mode: false
   when: >
-    (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
-    (mysql_distribution == "mariadb" and mysql_version.version.full
+    (mysql_hardening_mysql_distribution == "mysql" and mysql_hardening_mysql_version.version.full is version('5.7.6', '>=')) or
+    (mysql_hardening_mysql_distribution == "mariadb" and mysql_hardening_mysql_version.version.full
     is version('10.4.0', '>='))
 
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
@@ -80,8 +80,8 @@
   register: mysql_hardening_mysql_users_wo_passwords
   check_mode: false
   when: >
-    (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '<')) or
-    (mysql_distribution == "mariadb" and mysql_version.version.full is
+    (mysql_hardening_mysql_distribution == "mysql" and mysql_hardening_mysql_version.version.full is version('5.7.6', '<')) or
+    (mysql_hardening_mysql_distribution == "mariadb" and mysql_hardening_mysql_version.version.full is
     version('10.4.0', '<'))
 
 - name: Ensure that there are no users without password or authentication_string

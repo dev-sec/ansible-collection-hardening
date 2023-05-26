@@ -44,7 +44,7 @@ HostCertificate {{ certificate }}
 {% endfor %}
 
 # Host key algorithms that the server offers.
-{% if sshd_version is version('5.8', '>=') %}
+{% if ssh_hardening_sshd_version is version('5.8', '>=') %}
 {{ "HostKeyAlgorithms " ~ ssh_host_key_algorithms|join(',') if ssh_host_key_algorithms else "HostKeyAlgorithms"|comment }}
 {% endif %}
 
@@ -52,7 +52,7 @@ HostCertificate {{ certificate }}
 # ======================
 
 {# Support for legacy SSHv1 has been completely removed from OpenSSH in version 7.6 -#}
-{% if sshd_version is version('7.6', '<') %}
+{% if ssh_hardening_sshd_version is version('7.6', '<') %}
 # Set the protocol version explicitly to 2. Version 1 is obsolete and should not be used.
 Protocol 2
 
@@ -82,7 +82,7 @@ LogLevel {{ sshd_log_level }}
 {# This outputs 'MACs <list-of-macs>' if ssh_macs is defined or '#MACs' if ssh_macs is undefined -#}
 {{ 'MACs ' ~ ssh_macs|join(',') if ssh_macs else 'MACs'|comment }}
 
-{% if sshd_version is version('5.9', '<') %}
+{% if ssh_hardening_sshd_version is version('5.9', '<') %}
 # Alternative setting, if OpenSSH version is below v5.9
 #MACs hmac-ripemd160
 
@@ -99,10 +99,10 @@ LogLevel {{ sshd_log_level }}
 # --------------
 
 # Secure Login directives.
-{% if sshd_version is version('7.4', '<') %}
+{% if ssh_hardening_sshd_version is version('7.4', '<') %}
 UseLogin no
 {% endif %}
-{% if sshd_version is version('7.5', '<') %}
+{% if ssh_hardening_sshd_version is version('7.5', '<') %}
 UsePrivilegeSeparation {{ ssh_ps59 }}
 {% endif %}
 
@@ -126,7 +126,7 @@ UsePAM {{ 'yes' if (ssh_use_pam|bool) else 'no' }}
 {% endif %}
 {# Set AuthenticationMethods per default to publickey -#}
 {# AuthenticationMethods was introduced in OpenSSH 6.2 - https://www.openssh.com/txt/release-6.2 -#}
-{% if sshd_version is version('6.2', '>=') %}
+{% if ssh_hardening_sshd_version is version('6.2', '>=') %}
 AuthenticationMethods {{ sshd_authenticationmethods }}
 
 {% endif %}
@@ -196,7 +196,7 @@ PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
-{% if sshd_version is version('6.2', '>=') %}
+{% if ssh_hardening_sshd_version is version('6.2', '>=') %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no', 'local', 'all', 'remote')) else ('yes' if (ssh_allow_tcp_forwarding|bool) else 'no') }}
 {% else %}
 AllowTcpForwarding {{ ssh_allow_tcp_forwarding if (ssh_allow_tcp_forwarding in ('yes', 'no')) else ('yes' if (ssh_allow_tcp_forwarding|bool) else 'no') }}

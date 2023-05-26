@@ -44,7 +44,7 @@ Port {{ ssh_client_port }}
 # ======================
 
 {# Support for legacy SSHv1 has been completely removed from OpenSSH in version 7.6 -#}
-{% if sshd_version is version('7.6', '<') %}
+{% if ssh_hardening_sshd_version is version('7.6', '<') %}
 # Set the protocol version explicitly to 2. Version 1 is obsolete and should not be used.
 Protocol 2
 
@@ -84,7 +84,7 @@ StrictHostKeyChecking ask
 # Specifies the host key algorithms that the client wants to use in order of preference.
 {{ "HostKeyAlgorithms " ~ ssh_client_host_key_algorithms|join(',') if ssh_client_host_key_algorithms else "HostKeyAlgorithms"|comment }}
 
-{% if sshd_version is version('5.9', '<') %}
+{% if ssh_hardening_sshd_version is version('5.9', '<') %}
 # Alternative setting, if OpenSSH version is below v5.9
 #MACs hmac-ripemd160
 
@@ -97,7 +97,7 @@ ForwardX11 no
 
 # Never use host-based authentication. It can be exploited.
 HostbasedAuthentication no
-{% if sshd_version is version('7.6', '<') %}
+{% if ssh_hardening_sshd_version is version('7.6', '<') %}
 RhostsRSAAuthentication no
 # Enable RSA authentication via identity files.
 RSAAuthentication yes
@@ -128,7 +128,7 @@ Compression {{ 'yes' if (ssh_client_compression|bool) else 'no' }}
 #EscapeChar ~
 #VisualHostKey yes
 
-{% if sshd_version is version('7.1', '<=') %}
+{% if ssh_hardening_sshd_version is version('7.1', '<=') %}
 # Disable experimental client roaming.
 # This is known to cause potential issues with secrets being disclosed to malicious servers. Disabled by default.
 UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
