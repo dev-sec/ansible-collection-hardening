@@ -12,3 +12,6 @@ exclude_paths:
 mock_roles:
   - geerlingguy.git
   - nginxinc.nginx
+
+skip_list:
+  - var-naming[no-role-prefix]
