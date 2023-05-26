@@ -13,7 +13,7 @@
   ansible.builtin.find:
     paths: /etc/yum.repos.d
     patterns: "*.repo"
-  register: yum_repos
+  register: os_hardening_yum_repos
 
 # for the 'default([])' see here:
 # https://github.com/dev-sec/ansible-os-hardening/issues/99 and
@@ -26,7 +26,7 @@
     mode: "0644"
   with_items:
     # yamllint disable-line rule:line-length
-    - "{{ yum_repos.files | default([]) | map(attribute='path') | difference(os_yum_repo_file_whitelist | map('regex_replace', '^', '/etc/yum.repos.d/') | list) }}"
+    - "{{ os_hardening_yum_repos.files | default([]) | map(attribute='path') | difference(os_yum_repo_file_whitelist | map('regex_replace', '^', '/etc/yum.repos.d/') | list) }}"
 
 # failed_when is needed because by default replace module will fail if the file doesn't exists.
 # status.rc is only defined if an error accrued and only error code (rc) 257 will be ignored.
@@ -37,8 +37,8 @@
     regexp: ^\s*gpgcheck\W.*
     replace: gpgcheck=1
     mode: "0644"
-  register: status
-  failed_when: status.rc is defined and status.rc not in (257, 0)
+  register: os_hardening_gpgcheck_status
+  failed_when: os_hardening_gpgcheck_status.rc is defined and os_hardening_gpgcheck_status.rc not in (257, 0)
   loop:
     - /etc/yum.conf
     - /etc/dnf/dnf.conf

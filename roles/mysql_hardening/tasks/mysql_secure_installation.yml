@@ -57,7 +57,7 @@
                          'mysqlxsys',
                          'mariadb.sys');
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-  register: mysql_users_wo_passwords_or_auth_string
+  register: mysql_hardening_mysql_users_wo_passwords_or_auth_string
   check_mode: false
   when: >
     (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
@@ -77,7 +77,7 @@
                          'mysqlxsys',
                          'mariadb.sys');
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-  register: mysql_users_wo_passwords
+  register: mysql_hardening_mysql_users_wo_passwords
   check_mode: false
   when: >
     (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '<')) or
@@ -90,5 +90,5 @@
       - DROP USER {{ item.user }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   with_community.general.flattened:
-    - "{{ mysql_users_wo_passwords.query_result | default([]) }}"
-    - "{{ mysql_users_wo_passwords_or_auth_string.query_result | default([]) }}"
+    - "{{ mysql_hardening_mysql_users_wo_passwords.query_result | default([]) }}"
+    - "{{ mysql_hardening_mysql_users_wo_passwords_or_auth_string.query_result | default([]) }}"

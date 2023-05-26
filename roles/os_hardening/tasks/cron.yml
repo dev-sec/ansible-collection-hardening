@@ -17,7 +17,7 @@
       - cron.d
       - crontab
     file_type: any
-  register: cron_directories
+  register: os_hardening_cron_directories
 
 - name: Ensure permissions on cron files and directories are configured
   ansible.builtin.file:
@@ -25,4 +25,4 @@
     owner: root
     group: root
     mode: og-rwx
-  with_items: "{{ cron_directories.files }}"
+  with_items: "{{ os_hardening_cron_directories.files }}"

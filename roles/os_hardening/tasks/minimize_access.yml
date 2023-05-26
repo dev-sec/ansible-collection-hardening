@@ -14,7 +14,7 @@
     - /sbin
     - /bin
     - "{{ os_env_extra_user_paths }}"
-  register: minimize_access_directories
+  register: os_hardening_minimize_access_directories
   ignore_errors: true
   changed_when: false
 
@@ -24,7 +24,7 @@
     mode: go-w
     state: file
   with_subelements:
-    - "{{ minimize_access_directories.results }}"
+    - "{{ os_hardening_minimize_access_directories.results }}"
     - stdout_lines
 
 - name: Find shadow files
@@ -35,7 +35,7 @@
     - /etc/gshadow
     - /etc/shadow-
     - /etc/gshadow-
-  register: minimize_access_shadow_files
+  register: os_hardening_minimize_access_shadow_files
 
 - name: Change shadow ownership to root and mode to 0600 | os-02
   ansible.builtin.file:
@@ -44,7 +44,7 @@
     group: "{{ os_shadow_perms.group }}"
     mode: "{{ os_shadow_perms.mode }}"
   when: item.stat.exists
-  loop: "{{ minimize_access_shadow_files.results }}"
+  loop: "{{ os_hardening_minimize_access_shadow_files.results }}"
 
 - name: Find passwd files
   ansible.builtin.stat:
@@ -54,7 +54,7 @@
     - /etc/group
     - /etc/passwd-
     - /etc/group-
-  register: minimize_access_passwd_files
+  register: os_hardening_minimize_access_passwd_files
 
 - name: Change passwd ownership to root and mode to 0644 | os-03
   ansible.builtin.file:
@@ -63,7 +63,7 @@
     group: "{{ os_passwd_perms.group }}"
     mode: "{{ os_passwd_perms.mode }}"
   when: item.stat.exists
-  loop: "{{ minimize_access_passwd_files.results }}"
+  loop: "{{ os_hardening_minimize_access_passwd_files.results }}"
 
 - name: Change su-binary to only be accessible to user and group root
   ansible.builtin.file:
@@ -83,16 +83,16 @@
 
 - name: Generate list of current available mounted filesystems on the system
   ansible.builtin.set_fact:
-    mountpoints_list: "{{ ansible_mounts | map(attribute='mount') | list }}"
+    os_hardening_mountpoints_list: "{{ ansible_mounts | map(attribute='mount') | list }}"
 
 - name: Append special devices list to valid mountpoint list
   ansible.builtin.set_fact:
-    mountpoints_list: "{{ mountpoints_list + ['/dev', '/dev/shm', '/run'] }}"
+    os_hardening_mountpoints_list: "{{ os_hardening_mountpoints_list + ['/dev', '/dev/shm', '/run'] }}"
 
 - name: Minimize access for filesystems
   ansible.builtin.include_tasks: minimize_access_fs.yml
   loop_control:
-    loop_var: mount
+    loop_var: os_hardening_mount
   loop:
     - path: /boot
       src: "{{ os_mnt_boot_src }}"

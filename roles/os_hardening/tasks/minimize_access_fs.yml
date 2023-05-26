@@ -1,36 +1,36 @@
 ---
-- name: "Configure hardened options for mount {{ mount.path }}"
+- name: "Configure hardened options for mount {{ os_hardening_mount.path }}"
   ansible.posix.mount:
-    path: "{{ mount.path }}"
-    src: "{{ mount.src | default(mountinfo.device, true) }}"
-    fstype: "{{ mount.fstype | default(mountinfo.fstype, true) }}"
-    opts: "{{ mount.opts }}"
-    dump: "{{ mount.dump | default('1' if mount.fstype | default(mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
-    passno: "{{ mount.passno | default('2' if mount.fstype | default(mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
+    path: "{{ os_hardening_mount.path }}"
+    src: "{{ os_hardening_mount.src | default(os_hardening_mountinfo.device, true) }}"
+    fstype: "{{ os_hardening_mount.fstype | default(os_hardening_mountinfo.fstype, true) }}"
+    opts: "{{ os_hardening_mount.opts }}"
+    dump: "{{ os_hardening_mount.dump | default('1' if os_hardening_mount.fstype | default(os_hardening_mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
+    passno: "{{ os_hardening_mount.passno | default('2' if os_hardening_mount.fstype | default(os_hardening_mountinfo.fstype, true) in ['ext3', 'ext4'] else '0', true) }}"
     state: present
-  register: mountpoint
+  register: os_hardening_mountpoint
   when:
-    - mount.enabled | bool
-    - mount.path in mountpoints_list
+    - os_hardening_mount.enabled | bool
+    - os_hardening_mount.path in os_hardening_mountpoints_list
   vars:
-    mountinfo: "{{ ansible_mounts | selectattr('mount', 'equalto', mount.path) | list | first | default(None) }}"
+    os_hardening_mountinfo: "{{ ansible_mounts | selectattr('mount', 'equalto', os_hardening_mount.path) | list | first | default(None) }}"
   notify: Remount filesystems
 
-- name: "Check for existence of mount {{ mount.path }}"
+- name: "Check for existence of mount {{ os_hardening_mount.path }}"
   ansible.builtin.stat:
-    path: "{{ mount.path }}"
-  register: mountpoint_exists
+    path: "{{ os_hardening_mount.path }}"
+  register: os_hardening_mountpoint_exists
 
-- name: "Harden permissions for directory of mount {{ mount.path }}"
+- name: "Harden permissions for directory of mount {{ os_hardening_mount.path }}"
   ansible.builtin.file:
-    dest: "{{ mount.path }}"
-    owner: "{{ mount.owner }}"
-    group: "{{ mount.group }}"
-    mode: "{{ mount.mode }}"
+    dest: "{{ os_hardening_mount.path }}"
+    owner: "{{ os_hardening_mount.owner }}"
+    group: "{{ os_hardening_mount.group }}"
+    mode: "{{ os_hardening_mount.mode }}"
   when:
-    - mountpoint_exists.stat.exists | bool
+    - os_hardening_mountpoint_exists.stat.exists | bool
 
 - name: "Register changed mountpoints"
   ansible.builtin.set_fact:
-    mountpoints_changed: "{{ mountpoints_changed | default([]) + [mount.path] }}"
-  when: mountpoint.changed  # noqa no-handler
+    os_hardening_mountpoints_changed: "{{ os_hardening_mountpoints_changed | default([]) + [os_hardening_mount.path] }}"
+  when: os_hardening_mountpoint.changed  # noqa no-handler

@@ -19,7 +19,7 @@
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
   ansible.builtin.set_fact:
-    system_users: "{{ system_users | default([]) + [item] }}"
+    os_hardening_system_users: "{{ os_hardening_system_users | default([]) + [item] }}"
 
 - name: Extract regular (non-system, non-root) accounts from local user database
   loop: "{{ getent_passwd.keys() | list }}"
@@ -29,17 +29,17 @@
     - item is not in os_always_ignore_users # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users # skip users from "os_ignore_users"        list (taken from role "defaults")
   ansible.builtin.set_fact:
-    regular_users: "{{ regular_users | default([]) + [item] }}"
+    os_hardening_regular_users: "{{ os_hardening_regular_users | default([]) + [item] }}"
 
 - name: Set password ageing for existing regular (non-system, non-root) accounts
   ansible.builtin.user:
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
-  loop: "{{ regular_users }}"
+  loop: "{{ os_hardening_regular_users }}"
   when:
     - os_user_pw_ageing
-    - regular_users is defined and (regular_users | length > 0)
+    - os_hardening_regular_users is defined and (os_hardening_regular_users | length > 0)
     - item not in os_users_without_password_ageing
     - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
@@ -49,7 +49,7 @@
   when:
     - getent_passwd[item][1]|int == 0
   ansible.builtin.set_fact:
-    root_users: "{{ root_users | default([]) + [item] }}"
+    os_hardening_root_users: "{{ os_hardening_root_users | default([]) + [item] }}"
 
 - name: Set ownership of root user home directory(s) to 0700
   ansible.builtin.file:
@@ -57,7 +57,7 @@
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
     state: directory
-  loop: "{{ root_users }}"
+  loop: "{{ os_hardening_root_users }}"
   when:
     - os_chmod_rootuser_home_folder | bool
 
@@ -66,7 +66,7 @@
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
-  loop: "{{ root_users }}"
+  loop: "{{ os_hardening_root_users }}"
   when:
     - os_rootuser_pw_ageing | bool
     - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
@@ -76,10 +76,10 @@
   ansible.builtin.user:
     name: "{{ item }}"
     state: absent
-  loop: "{{ root_users }}"
+  loop: "{{ os_hardening_root_users }}"
   when:
     - os_remove_additional_root_users|bool
-    - root_users|length > 1
+    - os_hardening_root_users|length > 1
     - item != "root"
 
 - name: Remove shell for linux system accounts
@@ -87,14 +87,14 @@
     name: '{{ item }}'
     shell: '{{ os_nologin_shell_path }}'
     createhome: false
-  loop: "{{ system_users }}"
+  loop: "{{ os_hardening_system_users }}"
 
 - name: Lock passwords from linux system accounts
   ansible.builtin.user:
     name: '{{ item }}'
     password: '*'
     createhome: false
-  loop: "{{ system_users }}"
+  loop: "{{ os_hardening_system_users }}"
   when:
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
 
@@ -104,8 +104,8 @@
     owner: "{{ item }}"
     path: "{{ getent_passwd[item][4] }}"
     state: directory
-  loop: "{{ regular_users }}"
+  loop: "{{ os_hardening_regular_users }}"
   when:
     - os_chmod_home_folders | bool
-    - regular_users is defined and (regular_users | length > 0)
+    - os_hardening_regular_users is defined and (os_hardening_regular_users | length > 0)
     - item not in os_ignore_home_folder_users | default([])

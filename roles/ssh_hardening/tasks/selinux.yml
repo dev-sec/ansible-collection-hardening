@@ -16,7 +16,7 @@
   ansible.builtin.shell: set -o pipefail && semodule -l | grep ssh_password
   args:
     executable: /bin/bash
-  register: ssh_password_module
+  register: ssh_hardening_ssh_password_module
   failed_when: false
   changed_when: false
   check_mode: false
@@ -27,7 +27,7 @@
 - name: Run selinux tasks
   when:
     - not (ssh_use_pam | bool)
-    - ('ssh_password' not in ssh_password_module.stdout)
+    - ('ssh_password' not in ssh_hardening_ssh_password_module.stdout)
   block:
     - name: Create selinux custom policy drop folder
       ansible.builtin.file:
@@ -61,4 +61,4 @@
   ansible.builtin.command: semodule -r ssh_password
   when:
     - ssh_use_pam | bool
-    - ('ssh_password' in ssh_password_module.stdout)
+    - ('ssh_password' in ssh_hardening_ssh_password_module.stdout)

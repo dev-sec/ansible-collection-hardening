@@ -3,13 +3,13 @@
   ansible.builtin.command: "awk -F: '{print $1}' /etc/passwd"
   changed_when: false
   check_mode: false
-  register: users_accounts
+  register: os_hardening_users_accounts
 
 - name: Delete rhosts-files from system | os-09
   ansible.builtin.file:
     dest: ~{{ item }}/.rhosts
     state: absent
-  loop: "{{ users_accounts.stdout_lines | flatten | default([]) }}"
+  loop: "{{ os_hardening_users_accounts.stdout_lines | flatten | default([]) }}"
 
 - name: Delete hosts.equiv from system | os-01
   ansible.builtin.file:

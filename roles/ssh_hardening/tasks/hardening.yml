@@ -24,13 +24,13 @@
 
 - name: Get openssh-version
   ansible.builtin.command: ssh -V
-  register: sshd_version_raw
+  register: ssh_hardening_sshd_version_raw
   changed_when: false
   check_mode: false
 
 - name: Parse openssh-version
   ansible.builtin.set_fact:
-    sshd_version: "{{ sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
+    ssh_hardening_sshd_version: "{{ ssh_hardening_sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
 
 - name: Set default for ssh_host_key_files if not supplied
   ansible.builtin.include_tasks: crypto_hostkeys.yml
@@ -95,7 +95,7 @@
 
 - name: Check if for weak DH parameters in {{ sshd_moduli_file }}
   ansible.builtin.shell: awk '$5 < {{ sshd_moduli_minimum }}' {{ sshd_moduli_file }}
-  register: sshd_register_moduli
+  register: ssh_hardening_sshd_register_moduli
   changed_when: false
   check_mode: false
   when: ssh_server_hardening | bool
@@ -107,7 +107,7 @@
   notify: Restart sshd
   when:
     - ssh_server_hardening | bool
-    - sshd_register_moduli.stdout
+    - ssh_hardening_sshd_register_moduli.stdout
 
 - name: Include tasks to setup ca keys and principals
   ansible.builtin.include_tasks: ca_keys_and_principals.yml
