@@ -6,6 +6,7 @@ ssh_owner: root
 ssh_group: root
 ssh_host_keys_owner: root
 ssh_host_keys_group: ssh_keys
+ssh_host_keys_mode: "0640"
 ssh_selinux_packages:
   - policycoreutils-python-utils
   - checkpolicy

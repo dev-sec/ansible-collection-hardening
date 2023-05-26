@@ -15,7 +15,7 @@
     path: "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
     owner: "{{ ssh_host_keys_owner }}"
     group: "{{ ssh_host_keys_group }}"
-    mode: "0640"
+    mode: "{{ ssh_host_keys_mode }}"
   when: ansible_facts.os_family == 'RedHat'
 
 - name: Set hostkeys according to openssh-version if openssh >= 5.3
