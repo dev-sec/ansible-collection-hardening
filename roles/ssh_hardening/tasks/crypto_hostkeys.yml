@@ -8,16 +8,6 @@
     force: false
     regenerate: partial_idempotence
 
-# In RHEL and Fedora, the 'ssh_keys' group is the group owner of the host private SSH keys.
-# Since the openssh_keypair module needs to read the key to provide idempotency, we need to set ownership and group based on specific OS vars.
-- name: Change host private key ownership, group and permissions
-  ansible.builtin.file:
-    path: "{{ ssh_host_keys_dir }}/ssh_host_rsa_key"
-    owner: "{{ ssh_host_keys_owner }}"
-    group: "{{ ssh_host_keys_group }}"
-    mode: "{{ ssh_host_keys_mode }}"
-  when: ansible_facts.os_family == 'RedHat'
-
 - name: Set hostkeys according to openssh-version if openssh >= 5.3
   ansible.builtin.set_fact:
     ssh_host_key_files:
@@ -38,3 +28,11 @@
       - "{{ ssh_host_keys_dir }}/ssh_host_ecdsa_key"
       - "{{ ssh_host_keys_dir }}/ssh_host_ed25519_key"
   when: sshd_version is version('6.3', '>=')
+
+- name: Change host private key ownership, group and permissions
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ssh_host_keys_owner }}"
+    group: "{{ ssh_host_keys_group }}"
+    mode: "{{ ssh_host_keys_mode }}"
+  loop: "{{ ssh_host_key_files }}"
