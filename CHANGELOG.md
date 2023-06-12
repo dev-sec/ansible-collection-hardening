@@ -1,12 +1,14 @@
 # Changelog
 
-## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-06-10)
+## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-06-12)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.8.0)
 
 **Implemented enhancements:**
 
-- Replace ssh\_keys group in Fedora with root [\#677](https://github.com/dev-sec/ansible-collection-hardening/pull/677) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- Add support for Fedora 38 [\#671](https://github.com/dev-sec/ansible-collection-hardening/issues/671)
+- feat: explicitly support Fedora 37 and 38 [\#682](https://github.com/dev-sec/ansible-collection-hardening/pull/682) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([nejch](https://github.com/nejch))
+- Replace ssh\_keys group with root, where applicable and use less permissive file mode [\#677](https://github.com/dev-sec/ansible-collection-hardening/pull/677) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Add oddjob mkhomedir option rhel pam [\#675](https://github.com/dev-sec/ansible-collection-hardening/pull/675) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([imp1sh](https://github.com/imp1sh))
 
 **Fixed bugs:**
