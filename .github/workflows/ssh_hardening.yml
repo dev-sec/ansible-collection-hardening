@@ -46,6 +46,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
+          - debian12
           - amazon2023
           - arch
           # - opensuse_tumbleweed  # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)

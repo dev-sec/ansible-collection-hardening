@@ -46,6 +46,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
+          - debian12
           - opensuse15
           # - arch  # needs fix for audit
     steps:
