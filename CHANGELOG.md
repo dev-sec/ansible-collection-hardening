@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-06-12)
+## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-06-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.8.0)
 
@@ -25,6 +25,7 @@
 **Merged pull requests:**
 
 - setting gets ignored [\#680](https://github.com/dev-sec/ansible-collection-hardening/pull/680) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- add var-naming\[no-role-prefix\] to skip-list [\#679](https://github.com/dev-sec/ansible-collection-hardening/pull/679) ([rndmh3ro](https://github.com/rndmh3ro))
 - expand on check conditions for non-file locations of logs [\#674](https://github.com/dev-sec/ansible-collection-hardening/pull/674) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([whysthatso](https://github.com/whysthatso))
 - use new molecule-plugins [\#667](https://github.com/dev-sec/ansible-collection-hardening/pull/667) ([schurzi](https://github.com/schurzi))
 - add spellchecking with codespell [\#662](https://github.com/dev-sec/ansible-collection-hardening/pull/662) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
