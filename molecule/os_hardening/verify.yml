@@ -16,9 +16,10 @@
         - verify_tasks/netrc.yml
         - verify_tasks/ignore_home_folders.yml
 
-    - name: include PAM tests
-      include_tasks: verify_tasks/pam.yml
-      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+# temporarily excluded until pam-tester is fixed
+#    - name: include PAM tests
+#      include_tasks: verify_tasks/pam.yml
+#      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: include YUM tests
       include_tasks: verify_tasks/yum.yml
