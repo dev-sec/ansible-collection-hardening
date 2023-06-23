@@ -71,7 +71,7 @@
     owner: root
     group: root
     mode: "0750"
-  when: 
+  when:
     - '"change_user" not in os_security_users_allow'
     - not os_immutable_fs | bool
 
