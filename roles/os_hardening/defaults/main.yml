@@ -334,8 +334,11 @@ os_hardening_enabled: true
 os_auditd_enabled: true
 os_auditd_template: etc/audit/auditd.conf.j2
 os_auditd_flush: INCREMENTAL
+os_auditd_freq: 20
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
+os_auditd_write_logs: true
+os_auditd_log_file: /var/log/audit/audit.log
 os_auditd_log_format: RAW
 os_auditd_admin_space_left: 50
 os_auditd_space_left: 75
