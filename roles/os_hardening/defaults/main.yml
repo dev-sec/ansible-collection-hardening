@@ -332,6 +332,7 @@ os_hardening_enabled: true
 
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
+os_auditd_template: etc/audit/auditd.conf.j2
 os_auditd_flush: INCREMENTAL
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
