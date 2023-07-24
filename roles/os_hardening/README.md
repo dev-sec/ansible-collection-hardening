@@ -219,6 +219,9 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_enabled`
   - Default: `true`
   - Description: Set to false to disable installing and configuring auditd.
+- `os_auditd_template`
+  - Default: `etc/audit/auditd.conf.j2`
+  - Description: Template file to use for auditd.conf. By overwriting this value, a custom auditd.conf template can be provided. Put a `templates` directory next to your playbook with a custom template in it (e.q. `myauditd.conf.j2`) and set this variable to your template.
 - `os_auditd_max_log_file_action`
   - Default: `keep_logs`
   - Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
@@ -321,12 +324,24 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_flush`
   - Default: `INCREMENTAL`
   - Description: Valid values are none, incremental, incremental_async, data, and sync.
+- `os_auditd_freq`
+  - Default: `20`
+  - Description: Specify number of records to write before issuing an explicit flush to disk command. This value is only valid when the flush keyword is set to incremental or incremental_async.
 - `os_auditd_max_log_file`
   - Default: 6
   - Description: This keyword specifies the maximum file size in megabytes. When this limit is reached, it will trigger a configurable action.
 - `os_auditd_max_log_file_action`
   - Default: `keep_logs`
   - Description: This parameter tells the system what action to take when the system has detected that the max file size limit has been reached. Valid values are ignore, syslog, suspend, rotate and keep_logs.
+- `os_auditd_write_logs`
+  - Default: `true`
+  - Description: Set to false in order to disable writing logs to disk.
+- `os_auditd_log_file`
+  - Default: `/var/log/audit/audit.log`
+  - Description: Specify the full path name to the log file where audit records will be stored. It must be a regular file.
+- `os_auditd_log_format`
+  - Default: `RAW`
+  - Description: The log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created on one system but reported/analyzed on another system.
 - `os_auditd_admin_space_left`
   - Default: 50
   - Description: This is a numeric value in megabytes that tells the audit daemon when to perform a configurable action because the system is running low on disk space.
@@ -339,9 +354,6 @@ We know that this is the case on Raspberry Pi.
 - `os_auditd_action_mail_acct`
   - Default: root
   - Description: If `space_left_action` or `admin_space_left_action` are set to `email`, uses the address or alias to send the email using `/usr/lib/sendmail`. If the address or alias is not local, requires email properly configured on the machine and network.
-- `os_auditd_log_format`
-  - Default: `RAW`
-  - Description: The log format describes how the information should be stored on disk. There are 2 options: raw and enriched. If set to `RAW`, the audit records will be stored in a format exactly as the kernel sends it. The `ENRICHED` option will resolve all uid, gid, syscall, architecture, and socket address information before writing the event to disk. This aids in making sense of events created on one system but reported/analyzed on another system.
 - `os_mnt_boot_dir_mode`
   - Default: `0700`
   - Description: Set default perimissions for /boot
