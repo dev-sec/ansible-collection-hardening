@@ -306,7 +306,7 @@ sysctl_config:
 
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
-sysctl_overwrite:
+sysctl_overwrite: {}
 # Disable unused filesystems
 os_unused_filesystems:
   - cramfs
