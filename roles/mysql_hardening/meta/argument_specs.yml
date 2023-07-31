@@ -64,10 +64,6 @@ argument_specs:
         default: true
         type: bool
         description: "Wether to run the hardening"
-      mysql_hardening_mysql_hardening_conf_file:
-        default: "{{ mysql_hardening_mysql_confd_dir }}/hardening.cnf"
-        type: str
-        description: "The path to the configuration file for hardening-related options"
       mysql_root_password:
         default: "-----====>SetR00tPa$$wordH3r3!!!<====-----"
         type: str

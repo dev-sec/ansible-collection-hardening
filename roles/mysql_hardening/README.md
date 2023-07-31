@@ -108,11 +108,6 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   * Description: Wether to run the hardening
   * Type: bool
   * Required: no
-* `mysql_hardening_mysql_hardening_conf_file`
-  * Default: `{{ mysql_hardening_mysql_confd_dir }}/hardening.cnf`
-  * Description: The path to the configuration file for hardening-related options
-  * Type: str
-  * Required: no
 * `mysql_root_password`
   * Default: `-----====>SetR00tPa$$wordH3r3!!!<====-----`
   * Description: The default password. Please change or overwrite it
