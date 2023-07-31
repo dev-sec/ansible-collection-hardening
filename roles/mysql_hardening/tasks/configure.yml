@@ -56,7 +56,7 @@
 - name: Apply hardening configuration
   ansible.builtin.template:
     src: hardening.cnf.j2
-    dest: "{{ mysql_hardening_mysql_confd_dir + /hardening.cnf }}"
+    dest: "{{ mysql_hardening_mysql_confd_dir + '/hardening.cnf' }}"
     owner: "{{ mysql_cnf_owner }}"
     group: "{{ mysql_cnf_group }}"
     mode: "0640"
