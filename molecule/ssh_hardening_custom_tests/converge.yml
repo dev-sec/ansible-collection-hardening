@@ -20,10 +20,6 @@
       - path: "/etc/ssh/auth_principals/root"
         principals:
           - "root"
-        owner: "{{ ssh_owner }}"
-        group: "{{ ssh_group }}"
-        directoryowner: "{{ ssh_owner }}"
-        directorygroup: "{{ ssh_group }}"
         directorymode: "0700"
     network_ipv6_enable: true
     ssh_allow_tcp_forwarding: 'yes'
