@@ -843,5 +843,5 @@ argument_specs:
           chains are flushed. If it is set to 'no', on stop and reload the ufw secondary
           chains are removed and the ufw primary chains are flushed
       hidepid_option:
-        default: ""
+        default: ''
         type: str
