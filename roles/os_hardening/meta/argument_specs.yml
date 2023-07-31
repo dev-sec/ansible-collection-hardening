@@ -276,7 +276,7 @@ argument_specs:
         default: rw,nosuid,nodev,noexec,relatime
         type: str
         description: Mount proc with hardenized options. Note that the hidepid option
-          is set separatly in vars/.
+          is set separately in vars/.
       os_ignore_users:
         default: [vagrant, kitchen]
         type: list
@@ -800,7 +800,7 @@ argument_specs:
       os_hardening_enabled:
         default: true
         type: bool
-        description: Wether to run the hardening
+        description: Whether to run the hardening
       os_auth_root_ttys:
         default: [console, tty1, tty2, tty3, tty4, tty5, tty6]
         type: list

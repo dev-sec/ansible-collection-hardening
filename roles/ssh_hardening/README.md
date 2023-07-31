@@ -10,7 +10,6 @@ Warning: This role disables root-login on the target server! Please make sure yo
 
 <!-- BEGIN_ANSIBLE_DOCS -->
 ## Supported Operating Systems
-
 | Platform | Versions |
 | -------- | -------- |
 | EL | 7, 8, 9 |
@@ -167,7 +166,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   * Required: no
 * `ssh_authorized_keys_file`
   * Default: ``
-  * Description: change default fle that contains the public keys that can be used for user authentication
+  * Description: change default file that contains the public keys that can be used for user authentication
   * Type: str
   * Required: no
 * `ssh_trusted_user_ca_keys_file`
@@ -407,7 +406,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   * Required: no
 * `ssh_hardening_enabled`
   * Default: `true`
-  * Description: Wether to run the hardening or not
+  * Description: Whether to run the hardening
   * Type: bool
   * Required: no
 * `ssh_host_certificates`

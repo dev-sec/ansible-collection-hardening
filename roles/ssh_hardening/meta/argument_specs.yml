@@ -131,7 +131,7 @@ argument_specs:
           or supplementary group list matches one of the patterns.
       ssh_authorized_keys_file:
         default: ''
-        description: change default fle that contains the public keys that can be
+        description: change default file that contains the public keys that can be
           used for user authentication
       ssh_trusted_user_ca_keys_file:
         default: ''
@@ -340,7 +340,7 @@ argument_specs:
       ssh_hardening_enabled:
         default: true
         type: bool
-        description: Wether to run the hardening
+        description: Whether to run the hardening
       ssh_host_certificates:
         default: []
         type: list

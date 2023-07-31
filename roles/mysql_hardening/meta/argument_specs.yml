@@ -59,11 +59,11 @@ argument_specs:
       mysql_hardening_enabled:
         default: true
         type: bool
-        description: Wether to run the hardening
+        description: Whether to run the hardening
       mysql_daemon_enabled:
         default: true
         type: bool
-        description: "Wether to run the hardening"
+        description: "Whether to run the hardening"
       mysql_root_password:
         default: "-----====>SetR00tPa$$wordH3r3!!!<====-----"
         type: str

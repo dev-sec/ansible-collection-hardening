@@ -845,7 +845,7 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
   * Required: no
 * `os_hardening_enabled`
   * Default: `true`
-  * Description: Wether to run the hardening
+  * Description: Whether to run the hardening
   * Type: bool
   * Required: no
 

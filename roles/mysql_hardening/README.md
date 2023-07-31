@@ -100,12 +100,12 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   * Required: no
 * `mysql_hardening_enabled`
   * Default: `true`
-  * Description: Wether to run the hardening
+  * Description: Whether to run the hardening
   * Type: bool
   * Required: no
 * `mysql_daemon_enabled`
   * Default: `true`
-  * Description: Wether to run the hardening
+  * Description: Whether to run the hardening
   * Type: bool
   * Required: no
 * `mysql_root_password`
