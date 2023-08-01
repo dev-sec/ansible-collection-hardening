@@ -1,7 +1,9 @@
 ---
 - name: install qpam-tester
   ansible.builtin.pip:
-    name: pam-tester
+    name:
+      - pam-tester
+      - setuptools
     state: present
 
 - name: set password for test
