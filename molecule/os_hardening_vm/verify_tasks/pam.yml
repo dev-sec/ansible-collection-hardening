@@ -1,9 +1,10 @@
 ---
-- name: download pam-tester
-  get_url:
-    url: https://github.com/schurzi/pam-tester/releases/download/latest/pam-tester
-    dest: /bin/pam-tester
-    mode: 0555
+- name: install pam-tester
+  ansible.builtin.pip:
+    name:
+      - pam-tester
+      - setuptools
+    state: present
 
 - name: set password for test
   set_fact:

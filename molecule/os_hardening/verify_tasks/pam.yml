@@ -1,5 +1,5 @@
 ---
-- name: install qpam-tester
+- name: install pam-tester
   ansible.builtin.pip:
     name:
       - pam-tester
