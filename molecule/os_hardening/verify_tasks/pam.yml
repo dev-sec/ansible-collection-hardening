@@ -1,9 +1,13 @@
 ---
+
+- name: install pip
+  package:
+    name: python3-pip
+    state: present
+
 - name: install pam-tester
   ansible.builtin.pip:
-    name:
-      - pam-tester
-      - setuptools
+    name: pam-tester
     state: present
 
 - name: set password for test
