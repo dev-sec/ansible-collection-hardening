@@ -79,11 +79,11 @@ argument_specs:
         type: str
         description: Specifies the SSL protocol which should be used.
       nginx_ssl_ciphers:
-        default: _see defaults.yml_
+        default: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
         type: str
         description: Specifies the TLS ciphers which should be used.
       nginx_ssl_prefer_server_ciphers:
-        default: true
+        default: "on"
         type: str
         description: Specifies that server ciphers should be preferred over client
           ciphers when using the TLS protocols. Set to false to disable it.
