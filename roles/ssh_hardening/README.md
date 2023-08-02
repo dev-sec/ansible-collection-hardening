@@ -461,11 +461,3 @@ If you use this role to disable SFTP (`sftp_enabled: false`) you will get errors
 This role uses the default port 22 or the port configured in the inventory to connect to the server. If the default `ssh` port is changed via `ssh_server_ports`, once the ssh server is restarted, it will still try to connect using the previous port. In order to run this role again on the same server the inventory will have to be updated to use the new ssh port.
 
 If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.
-
-
-## License
-Apache License 2.0
-
-## Author and Project Information
-Sebastian Gumprich @ Hardening Framework Team
-

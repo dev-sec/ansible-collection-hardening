@@ -7,8 +7,8 @@ argument_specs:
       network_ipv6_enable:
         default: true
         type: bool
-        description: false if IPv6 is not needed. `ssh_listen_to` must also be set
-          to listen to IPv6 addresses (for example `[::]`).
+        description: '`false` if IPv6 is not needed. `ssh_listen_to` must also be
+          set to listen to IPv6 addresses (for example `[::]`).'
       ssh_client_config_file:
         default: /etc/ssh/ssh_config
         description: path of the ssh client configuration file, e.g. `/etc/ssh/ssh_config.d/custom.conf`.
@@ -26,7 +26,7 @@ argument_specs:
         default: [0.0.0.0]
         type: list
         description: one or more ip addresses, to which ssh-server should listen to.
-          Default i all IPv4 addresses, but should be configured to specific addresses
+          Default is all IPv4 addresses, but should be configured to specific addresses
           for security reasons
       ssh_host_key_files:
         default: []
@@ -41,14 +41,14 @@ argument_specs:
         default: []
         type: list
         description: Host key algorithms that the server offers. If empty the default
-          lst will be used. Otherwise overrides the setting with specified list of
+          list will be used. Otherwise overrides the setting with specified list of
           algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other
           sources for supported algorithms - make sure you check the correct version
       ssh_client_host_key_algorithms:
         default: []
         type: list
         description: Specifies the host key algorithms that the client wants to use
-          in order of preference. If empty the default lst will be used. Otherwise
+          in order of preference. If empty the default list will be used. Otherwise
           overrides the setting with specified list of algorithms. Check `man ssh_config`,
           `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make
           sure you check the correct version!
