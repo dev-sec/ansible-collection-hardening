@@ -62,21 +62,21 @@ argument_specs:
       ssh_permit_tunnel:
         default: false
         type: bool
-        description: true if SSH Port Tunneling is required.
+        description: '`true` if SSH Port Tunneling is required.'
       ssh_remote_hosts:
         default: []
         type: list
         description: one or more hosts and their custom options for the ssh-client.
-          Default i empty. See examples in `defaults/ain.yml`
+          Default is empty. See examples in `defaults/main.yml`
       ssh_permit_root_login:
         default: 'no'
         description: Disable root-login. Set to `'without-password'` or `'yes'` to
           enable root-login - The quotes are required!
       ssh_allow_tcp_forwarding:
         default: 'no'
-        description: "'no' or `False` to disable TCP Forwarding. Set to `'yes'` or\
-          \ `True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version,\
-          \ you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`."
+        description: Set to `'no'` or `False` to disable TCP Forwarding. Set to `'yes'`
+          or`True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version,
+          you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
       ssh_gateway_ports:
         default: false
         type: bool
