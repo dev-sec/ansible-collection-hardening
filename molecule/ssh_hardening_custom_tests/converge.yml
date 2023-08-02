@@ -20,7 +20,6 @@
       - path: "/etc/ssh/auth_principals/root"
         principals:
           - "root"
-        directorymode: "0700"
     network_ipv6_enable: true
     ssh_allow_tcp_forwarding: 'yes'
     ssh_gateway_ports: true
