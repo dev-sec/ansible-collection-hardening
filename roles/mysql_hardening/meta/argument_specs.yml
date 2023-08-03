@@ -47,11 +47,11 @@ argument_specs:
       mysql_remove_anonymous_users:
         default: true
         type: bool
-        description: remove users without authentication
+        description: Set to `false` to keep users without authentication
       mysql_remove_test_database:
         default: true
         type: bool
-        description: remove test database
+        description: Set to `false` to keep the test database
       mysql_hardening_restart_mysql:
         default: true
         type: bool

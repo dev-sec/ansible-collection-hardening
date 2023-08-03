@@ -33,10 +33,35 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 
 ## Role Variables
 
+* `mysql_daemon_enabled`
+  * Default: `true`
+  * Description: Whether to enable the MySQL-service so it starts on boot
+  * Type: bool
+  * Required: no
 * `mysql_hardening_chroot`
   * Default: ``
   * Description: [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
   * Type: str
+  * Required: no
+* `mysql_hardening_chroot.automatic-sp-privileges`
+  * Default: `0`
+  * Description: [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
+  * Type: int
+  * Required: no
+* `mysql_hardening_enabled`
+  * Default: `true`
+  * Description: Whether to run the hardening
+  * Type: bool
+  * Required: no
+* `mysql_hardening_options.allow-suspicious-udfs`
+  * Default: `0`
+  * Description: [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
+  * Type: int
+  * Required: no
+* `mysql_hardening_options.local-infile`
+  * Default: `0`
+  * Description: [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
+  * Type: int
   * Required: no
 * `mysql_hardening_options.safe-user-create`
   * Default: `1`
@@ -48,10 +73,20 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   * Description: [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)
   * Type: int
   * Required: no
+* `mysql_hardening_options.secure-file-priv`
+  * Default: `/tmp`
+  * Description: [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
+  * Type: str
+  * Required: no
 * `mysql_hardening_options.skip-symbolic-links`
   * Default: `1`
   * Description: [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links)
   * Type: int
+  * Required: no
+* `mysql_hardening_restart_mysql`
+  * Default: `true`
+  * Description: Restart mysql after running this role
+  * Type: bool
   * Required: no
 * `mysql_hardening_skip_grant_tables:`
   * Default: `false`
@@ -63,49 +98,19 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   * Description: [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)
   * Type: int
   * Required: no
-* `mysql_hardening_options.local-infile`
-  * Default: `0`
-  * Description: [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
-  * Type: int
-  * Required: no
-* `mysql_hardening_options.allow-suspicious-udfs`
-  * Default: `0`
-  * Description: [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
-  * Type: int
-  * Required: no
-* `mysql_hardening_chroot.automatic-sp-privileges`
-  * Default: `0`
-  * Description: [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
-  * Type: int
-  * Required: no
-* `mysql_hardening_options.secure-file-priv`
-  * Default: `/tmp`
-  * Description: [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
-  * Type: str
-  * Required: no
 * `mysql_remove_anonymous_users`
   * Default: `true`
-  * Description: remove users without authentication
+  * Description: Set to `false` to keep users without authentication
+  * Type: bool
+  * Required: no
+* `mysql_remove_remote_root`
+  * Default: `true`
+  * Description: If `true`, root can only connect from localhost. Set to `false` to not remove remote root users.
   * Type: bool
   * Required: no
 * `mysql_remove_test_database`
   * Default: `true`
-  * Description: remove test database
-  * Type: bool
-  * Required: no
-* `mysql_hardening_restart_mysql`
-  * Default: `true`
-  * Description: Restart mysql after running this role
-  * Type: bool
-  * Required: no
-* `mysql_hardening_enabled`
-  * Default: `true`
-  * Description: Whether to run the hardening
-  * Type: bool
-  * Required: no
-* `mysql_daemon_enabled`
-  * Default: `true`
-  * Description: Whether to run the hardening
+  * Description: Set to `false` to keep the test database
   * Type: bool
   * Required: no
 * `mysql_root_password`
@@ -117,11 +122,6 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   * Default: `{{ ansible_env.HOME }}`
   * Description: The path where the `.my.cnf` will be stored
   * Type: str
-  * Required: no
-* `mysql_remove_remote_root`
-  * Default: `true`
-  * Description: Set to false to not remove remote root users. If true, root can only connect from localhost
-  * Type: bool
   * Required: no
 
 ## Dependencies

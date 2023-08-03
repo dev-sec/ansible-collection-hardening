@@ -74,45 +74,45 @@ argument_specs:
           enable root-login - The quotes are required!
       ssh_allow_tcp_forwarding:
         default: 'no'
-        description: Set to `'no'` or `False` to disable TCP Forwarding. Set to `'yes'`
+        description: Set to `'no'` or `false` to disable TCP Forwarding. Set to `'yes'`
           or`True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version,
           you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
       ssh_gateway_ports:
         default: false
         type: bool
-        description: '`false` to disable binding forwarded ports to non-loopback addresses.
+        description: Set to `false` to disable binding forwarded ports to non-loopback addresses.
           Set to `true` to force binding on wildcard address. Set to `clientspecified`
-          to allow the client to specify which address to bind to.'
+          to allow the client to specify which address to bind to.
       ssh_allow_agent_forwarding:
         default: false
         type: bool
-        description: false to disable Agent Forwarding. Set to true to allow Agent
+        description: Set to `false` to disable Agent Forwarding. Set to `true` to allow Agent
           Forwarding.
       ssh_x11_forwarding:
         default: false
         type: bool
-        description: false to disable X11 Forwarding. Set to true to allow X11 Forwarding.
+        description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
       ssh_pam_support:
         default: true
         type: bool
-        description: true if SSH has PAM support.
+        description: Set to `true` if SSH has PAM support.
       ssh_use_pam:
         default: true
         type: bool
-        description: false to disable pam authentication.
+        description: Set to `false` to disable pam authentication.
       ssh_gssapi_support:
         default: false
         type: bool
-        description: Set to true to enable GSSAPI authentication (both client and
+        description: Set to `true` to enable GSSAPI authentication (both client and
           server).
       ssh_gssapi_delegation:
         default: false
         type: bool
-        description: Set to true to enable GSSAPI credential forwarding.
+        description: Set to `true` to enable GSSAPI credential forwarding.
       ssh_kerberos_support:
         default: true
         type: bool
-        description: true if SSH has Kerberos support.
+        description: Set to `true` if SSH has Kerberos support.
       ssh_deny_users:
         default: ''
         description: if specified, login is disallowed for user names that match one
@@ -155,26 +155,26 @@ argument_specs:
       ssh_print_motd:
         default: false
         type: bool
-        description: false to disable printing of the MOTD.
+        description: Set to `false` to disable printing of the MOTD.
       ssh_print_pam_motd:
         default: false
         type: bool
-        description: false to disable printing of the MOTD via pam (Debian and Ubuntu).
+        description: Set to `false` to disable printing of the MOTD via pam (Debian and Ubuntu).
       ssh_print_last_log:
         default: false
         type: bool
-        description: false to disable display of last login information.
+        description: Set to `false` to disable display of last login information.
       sftp_enabled:
         default: true
         type: bool
-        description: false to disable sftp configuration.
+        description: Set to `false` to disable sftp configuration.
       sftp_umask:
         default: '0027'
         description: Specifies the umask for sftp.
       sftp_chroot:
         default: true
         type: bool
-        description: false to disable chroot for sftp.
+        description: Set to `false` to disable chroot for sftp.
       sftp_chroot_dir:
         default: /home/%u
         description: change default stp chroot location
@@ -197,17 +197,17 @@ argument_specs:
       ssh_client_password_login:
         default: false
         type: bool
-        description: '`true` to allow password-based authentication with the ssh client.'
+        description: Set to `true` to allow password-based authentication with the ssh client.
       ssh_server_password_login:
         default: false
         type: bool
-        description: '`true` to allow password-based authentication to the ssh server.
+        description: 'Set to `true` to allow password-based authentication to the ssh server.
           You probably also need to change `sshd_authenticationmethods` to include
           `password` if you set `ssh_server_password_login`: `true`.'
       ssh_banner:
         default: false
         type: bool
-        description: '`true` to print a banner on login.'
+        description: 'Set to `true` to print a banner on login.'
       ssh_banner_path:
         default: /etc/sshd/banner.txt
         description: path to the SSH banner file.
@@ -239,11 +239,11 @@ argument_specs:
       ssh_print_debian_banner:
         default: false
         type: bool
-        description: '`true` to print debian specific banner.'
+        description: Set to `true` to print debian specific banner.
       ssh_server_enabled:
         default: true
         type: bool
-        description: '`false` to disable the opensshd server.'
+        description: Set to `false` to disable the opensshd server.
       ssh_server_hardening:
         default: true
         type: bool
