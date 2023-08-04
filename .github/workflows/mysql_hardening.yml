@@ -45,6 +45,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
+          - debian12
           # - amazon  # geerlingguy.mysql does not support fedora
           # - arch  # geerlingguy.mysql does not support arch
           - opensuse_tumbleweed

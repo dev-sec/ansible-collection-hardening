@@ -7,6 +7,10 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
+    - name: set ansible_python_interpreter to "/usr/bin/python3"
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/python3"
+
     - name: include verification tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
