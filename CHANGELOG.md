@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-07-24)
+## [8.8.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.8.0) (2023-08-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.7.0...8.8.0)
 
@@ -8,12 +8,14 @@
 
 - Add support for Fedora 38 [\#671](https://github.com/dev-sec/ansible-collection-hardening/issues/671)
 - auditd: add possibility to override config template [\#685](https://github.com/dev-sec/ansible-collection-hardening/pull/685) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([Meecr0b](https://github.com/Meecr0b))
+- add debian 12 support [\#684](https://github.com/dev-sec/ansible-collection-hardening/pull/684) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - feat: explicitly support Fedora 37 and 38 [\#682](https://github.com/dev-sec/ansible-collection-hardening/pull/682) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([nejch](https://github.com/nejch))
 - Replace ssh\_keys group with root, where applicable and use less permissive file mode [\#677](https://github.com/dev-sec/ansible-collection-hardening/pull/677) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Add oddjob mkhomedir option rhel pam [\#675](https://github.com/dev-sec/ansible-collection-hardening/pull/675) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([imp1sh](https://github.com/imp1sh))
 
 **Fixed bugs:**
 
+- How does one set `sshd_authenticationmethods`  to include password authentication? [\#686](https://github.com/dev-sec/ansible-collection-hardening/issues/686)
 - Error: No file was found when using first\_found on Ubuntu 20.04 [\#676](https://github.com/dev-sec/ansible-collection-hardening/issues/676)
 - FreeIPA environment mkhomedir fails [\#664](https://github.com/dev-sec/ansible-collection-hardening/issues/664)
 
