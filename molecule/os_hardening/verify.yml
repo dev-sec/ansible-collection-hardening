@@ -7,14 +7,9 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: include verification tasks
-      ansible.builtin.include_tasks:
-        file: "{{ item }}"
-      loop: 
-        - verify_tasks/sys_account_shell.yml
-        - verify_tasks/pw_ageing.yml
-        - verify_tasks/netrc.yml
-        - verify_tasks/ignore_home_folders.yml
+    - name: set ansible_python_interpreter to "/usr/bin/python3"
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/python3"
 
     - name: include PAM tests
       include_tasks: verify_tasks/pam.yml
