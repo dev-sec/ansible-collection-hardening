@@ -28,7 +28,7 @@ argument_specs:
         description: The first parameter sets a timeout during which a keep-alive
           client connection will stay open on the server side. The zero value disables
           keep-alive client connections. The optional second parameter sets a value
-          in the "Keep-Alive timeout=time" response header field. See [nginx_keepalive_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout)
+          in the "Keep-Alive timeout=time" response header field. See [nginx_keepalive_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout)  # noqa yaml[line-length]
       nginx_server_tokens:
         default: false
         type: str
@@ -44,15 +44,15 @@ argument_specs:
         default: 2 1k
         type: str
         description: Sets the maximum number and size of buffers used for reading
-          large client request header. See [nginx_large_client_header_buffers](http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers)
+          large client request header. See [nginx_large_client_header_buffers](http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers)  # noqa yaml[line-length]
       nginx_client_body_timeout:
         default: 10
         type: int
-        description: Defines a timeout for reading client request body. See [nginx_client_body_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_timeout)
+        description: Defines a timeout for reading client request body. See [nginx_client_body_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_timeout)  # noqa yaml[line-length]
       nginx_client_header_timeout:
         default: 10
         type: int
-        description: Defines a timeout for reading client request header. See [nginx_client_header_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout)
+        description: Defines a timeout for reading client request header. See [nginx_client_header_timeout](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout)  # noqa yaml[line-length]
       nginx_send_timeout:
         default: 10
         type: int
@@ -79,20 +79,20 @@ argument_specs:
       nginx_ssl_protocols:
         default: TLSv1.2
         type: str
-        description: Specifies the SSL protocol which should be used. See [nginx_ssl_protocols](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
+        description: Specifies the SSL protocol which should be used. See [nginx_ssl_protocols](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)  # noqa yaml[line-length]
       nginx_ssl_ciphers:
-        default: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
+        default: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256  # noqa yaml[line-length]
         type: str
         description: Specifies the TLS ciphers which should be used. See [nginx_ssl_ciphers](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers)
       nginx_ssl_prefer_server_ciphers:
         default: 'on'
         type: str
         description: Specifies that server ciphers should be preferred over client
-          ciphers when using the TLS protocols. Set to false to disable it. See [nginx_ssl_prefer_server_ciphers](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers)
+          ciphers when using the TLS protocols. Set to false to disable it. See [nginx_ssl_prefer_server_ciphers](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers)  # noqa yaml[line-length]
       nginx_dh_size:
         default: 2048
         type: str
-        description: Specifies the length of DH parameters for EDH ciphers. See [nginx_dh_size](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam)
+        description: Specifies the length of DH parameters for EDH ciphers. See [nginx_dh_size](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam)  # noqa yaml[line-length]
       nginx_configuration_dir:
         default: /etc/nginx
         type: str

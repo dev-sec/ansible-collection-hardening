@@ -75,4 +75,5 @@ argument_specs:
       mysql_remove_remote_root:
         default: true
         type: bool
-        description: If `true`, root can only connect from localhost. Set to `false` to not remove remote root users.
+        description: If `true`, root can only connect from localhost. Set to `false`
+          to not remove remote root users.

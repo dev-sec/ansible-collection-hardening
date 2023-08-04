@@ -80,18 +80,19 @@ argument_specs:
       ssh_gateway_ports:
         default: false
         type: bool
-        description: Set to `false` to disable binding forwarded ports to non-loopback addresses.
-          Set to `true` to force binding on wildcard address. Set to `clientspecified`
+        description: Set to `false` to disable binding forwarded ports to non-loopback
+          addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified`
           to allow the client to specify which address to bind to.
       ssh_allow_agent_forwarding:
         default: false
         type: bool
-        description: Set to `false` to disable Agent Forwarding. Set to `true` to allow Agent
-          Forwarding.
+        description: Set to `false` to disable Agent Forwarding. Set to `true` to
+          allow Agent Forwarding.
       ssh_x11_forwarding:
         default: false
         type: bool
-        description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
+        description: Set to `false` to disable X11 Forwarding. Set to `true` to allow
+          X11 Forwarding.
       ssh_pam_support:
         default: true
         type: bool
@@ -159,7 +160,8 @@ argument_specs:
       ssh_print_pam_motd:
         default: false
         type: bool
-        description: Set to `false` to disable printing of the MOTD via pam (Debian and Ubuntu).
+        description: Set to `false` to disable printing of the MOTD via pam (Debian
+          and Ubuntu).
       ssh_print_last_log:
         default: false
         type: bool
@@ -197,17 +199,18 @@ argument_specs:
       ssh_client_password_login:
         default: false
         type: bool
-        description: Set to `true` to allow password-based authentication with the ssh client.
+        description: Set to `true` to allow password-based authentication with the
+          ssh client.
       ssh_server_password_login:
         default: false
         type: bool
-        description: 'Set to `true` to allow password-based authentication to the ssh server.
-          You probably also need to change `sshd_authenticationmethods` to include
-          `password` if you set `ssh_server_password_login`: `true`.'
+        description: 'Set to `true` to allow password-based authentication to the
+          ssh server. You probably also need to change `sshd_authenticationmethods`
+          to include `password` if you set `ssh_server_password_login`: `true`.'
       ssh_banner:
         default: false
         type: bool
-        description: 'Set to `true` to print a banner on login.'
+        description: Set to `true` to print a banner on login.
       ssh_banner_path:
         default: /etc/sshd/banner.txt
         description: path to the SSH banner file.
