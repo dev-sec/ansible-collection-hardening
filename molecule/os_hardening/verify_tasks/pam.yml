@@ -1,9 +1,17 @@
 ---
-- name: download pam-tester
-  get_url:
-    url: https://github.com/schurzi/pam-tester/releases/download/latest/pam-tester
-    dest: /bin/pam-tester
-    mode: 0555
+
+- name: install pip
+  package:
+    name:
+      - python3-pip
+      - python3-setuptools
+    state: present
+
+- name: install pam-tester
+  ansible.builtin.pip:
+    name: pam-tester
+    state: present
+    executable: /usr/bin/pip3
 
 - name: set password for test
   set_fact:
@@ -23,7 +31,7 @@
 
 - name: check successful login with correct password
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -31,7 +39,7 @@
 
 - name: check unsuccessful login with incorrect password
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -40,7 +48,7 @@
 
 - name: check unsuccessful login, with correct password (lockout)
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }} --expectfail"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -52,7 +60,7 @@
 
 - name: check successful login
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"

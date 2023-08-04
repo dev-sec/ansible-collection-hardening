@@ -44,6 +44,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
+          - debian12
           - amazon2023
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # needs to be fixed

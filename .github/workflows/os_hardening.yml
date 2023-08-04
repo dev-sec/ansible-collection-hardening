@@ -46,6 +46,7 @@ jobs:
           - ubuntu2204
           - debian10
           - debian11
+          - debian12
           - amazon2023
           - opensuse_tumbleweed
           - arch
