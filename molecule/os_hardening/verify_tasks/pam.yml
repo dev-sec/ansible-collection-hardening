@@ -9,6 +9,7 @@
   ansible.builtin.pip:
     name: pam-tester
     state: present
+    executable: /usr/bin/pip3
 
 - name: set password for test
   set_fact:
@@ -28,7 +29,7 @@
 
 - name: check successful login with correct password
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
