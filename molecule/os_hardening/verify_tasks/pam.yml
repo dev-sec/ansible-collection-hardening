@@ -2,7 +2,9 @@
 
 - name: install pip
   package:
-    name: python3-pip
+    name:
+      - python3-pip
+      - python3-setuptools
     state: present
 
 - name: install pam-tester
