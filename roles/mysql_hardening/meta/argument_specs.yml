@@ -1,0 +1,79 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the mysql hardening role.
+    version_added: 8.8.0
+    options:
+      mysql_hardening_chroot:
+        default: ''
+        type: str
+        description: '[chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)'
+      mysql_hardening_options.safe-user-create:
+        default: 1
+        type: int
+        description: '[safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)'
+      mysql_hardening_options.secure-auth:
+        default: 1
+        type: int
+        description: '[secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)'
+      mysql_hardening_options.skip-symbolic-links:
+        default: 1
+        type: int
+        description: '[skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links)'
+      'mysql_hardening_skip_grant_tables:':
+        default: false
+        type: bool
+        description: '[skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables)'
+      mysql_hardening_skip_show_database:
+        default: 1
+        type: int
+        description: '[skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)'
+      mysql_hardening_options.local-infile:
+        default: 0
+        type: int
+        description: '[local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)'
+      mysql_hardening_options.allow-suspicious-udfs:
+        default: 0
+        type: int
+        description: '[allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)'
+      mysql_hardening_chroot.automatic-sp-privileges:
+        default: 0
+        type: int
+        description: '[automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)'
+      mysql_hardening_options.secure-file-priv:
+        default: /tmp
+        type: str
+        description: '[secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)'
+      mysql_remove_anonymous_users:
+        default: true
+        type: bool
+        description: Set to `false` to keep users without authentication
+      mysql_remove_test_database:
+        default: true
+        type: bool
+        description: Set to `false` to keep the test database
+      mysql_hardening_restart_mysql:
+        default: true
+        type: bool
+        description: Restart mysql after running this role
+      mysql_hardening_enabled:
+        default: true
+        type: bool
+        description: Whether to run the hardening
+      mysql_daemon_enabled:
+        default: true
+        type: bool
+        description: Whether to enable the MySQL-service so it starts on boot
+      mysql_root_password:
+        default: '-----====>SetR00tPa$$wordH3r3!!!<====-----'
+        type: str
+        description: The default password. Please change or overwrite it
+      mysql_user_home:
+        default: '{{ ansible_env.HOME }}'
+        type: str
+        description: The path where the `.my.cnf` will be stored
+      mysql_remove_remote_root:
+        default: true
+        type: bool
+        description: If `true`, root can only connect from localhost. Set to `false`
+          to not remove remote root users.

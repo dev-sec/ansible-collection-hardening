@@ -75,12 +75,23 @@
     - '"change_user" not in os_security_users_allow'
     - not os_immutable_fs | bool
 
+# we have to define this combined variable here, because when defining it
+# in the defaults like this:
+# proc_mnt_options: rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}
+# the role argument validator complains about the missing hidepid_option-variable.
+# If we define the hidepid_option-variable in the defaults, we cannot
+# overwrite it anymore in the vars (for some reason).
+
+- name: Define proc_mnt_options including hidepid_option
+  ansible.builtin.set_fact:
+    _proc_mnt_options: "{{ proc_mnt_options }},hidepid={{ hidepid_option }}"
+
 - name: Set option hidepid for proc filesystem
   ansible.posix.mount:
     path: /proc
     src: proc
     fstype: proc
-    opts: "{{ proc_mnt_options }}"
+    opts: "{{ _proc_mnt_options }}"
     state: mounted
 
 - name: Generate list of current available mounted filesystems on the system
