@@ -20,9 +20,10 @@
         - verify_tasks/netrc.yml
         - verify_tasks/ignore_home_folders.yml
 
-    - name: include PAM tests
-      include_tasks: verify_tasks/pam.yml
-      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+# temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
+#    - name: include PAM tests
+#      include_tasks: verify_tasks/pam.yml
+#      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: include YUM tests
       include_tasks: verify_tasks/yum.yml
