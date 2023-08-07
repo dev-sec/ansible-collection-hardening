@@ -7,12 +7,7 @@
 - name: Find files with write-permissions for group # noqa command-instead-of-shell
   ansible.builtin.shell: find -L {{ item }} -perm /go+w -type f
   with_community.general.flattened:
-    - /usr/local/sbin
-    - /usr/local/bin
-    - /usr/sbin
-    - /usr/bin
-    - /sbin
-    - /bin
+    - "{{ os_env_user_paths }}"
     - "{{ os_env_extra_user_paths }}"
   register: minimize_access_directories
   ignore_errors: true
