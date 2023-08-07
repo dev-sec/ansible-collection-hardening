@@ -306,7 +306,7 @@ sysctl_config:
 
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
-sysctl_overwrite:
+sysctl_overwrite: {}
 # Disable unused filesystems
 os_unused_filesystems:
   - cramfs
@@ -356,7 +356,7 @@ os_selinux_state: enforcing
 os_selinux_policy: targeted
 
 # Mount options for proc in /etc/fstab.
-proc_mnt_options: rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}
+proc_mnt_options: rw,nosuid,nodev,noexec,relatime
 
 # Set to false to disable installing and configuring cron.
 os_cron_enabled: true
