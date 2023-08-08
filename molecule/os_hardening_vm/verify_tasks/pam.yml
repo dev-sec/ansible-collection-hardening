@@ -1,4 +1,5 @@
 ---
+
 - name: install pip
   package:
     name:
@@ -30,7 +31,7 @@
 
 - name: check successful login with correct password
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -38,7 +39,7 @@
 
 - name: check unsuccessful login with incorrect password
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -47,7 +48,7 @@
 
 - name: check unsuccessful login, with correct password (lockout)
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }} --expectfail"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -59,7 +60,7 @@
 
 - name: check successful login
   shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: "/usr/local/bin/pam-tester --user testuser --password {{ test_pw }}"
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
