@@ -2,7 +2,7 @@
 driver:
   name: docker
 platforms:
-  - name: instance-${MOLECULE_DISTRO}
+  - name: instance
     image: "ghcr.io/dev-sec/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
