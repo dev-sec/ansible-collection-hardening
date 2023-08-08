@@ -10,6 +10,7 @@
   ansible.builtin.pip:
     name: pam-tester
     state: present
+    executable: /usr/bin/pip3
 
 - name: set password for test
   set_fact:
