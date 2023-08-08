@@ -7,19 +7,18 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
-      set_fact:
-        ansible_python_interpreter: "/usr/bin/python3"
-      when: ansible_facts.distribution == 'Fedora'
-
-    - name: Run the equivalent of "apt-get update && apt-get upgrade"
-      apt:
-        name: "*"
-        state: latest
+    - name: Install Python3 on Debian 10
+      ansible.builtin.apt:
+        name: python3
+        state: present
         update_cache: true
       when: ansible_os_family == 'Debian'
 
-    - name: install required tools on SuSE
+    - name: Set ansible_python_interpreter to "/usr/bin/python3"
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+
+    - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
       ansible.builtin.shell: zypper -n install python-xml
       when: ansible_facts.os_family == 'Suse'

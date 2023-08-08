@@ -12,9 +12,9 @@
     state: present
     executable: /usr/bin/pip3
 
-- name: set password for test
-  set_fact:
-    test_pw: "myTest!pw"
+- name: Set password for test
+  ansible.builtin.set_fact:
+    test_pw: myTestpwSage
 
 - name: Set locale for test
   ansible.builtin.set_fact:
