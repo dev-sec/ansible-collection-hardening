@@ -8,11 +8,14 @@ argument_specs:
         default: false
         type: bool
         description: true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc.
+      os_env_user_paths:
+        default: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
+        type: list
+        description: Specify paths that should be checked for binaries where access will be minimized
       os_env_extra_user_paths:
         default: '[]'
         type: list
-        description: add additional paths to the user's `PATH` variable (default is
-          empty).
+        description: Specify additional paths that should be checked for binaries where access will be minimized
       os_auth_pw_max_age:
         default: 60
         type: int
@@ -235,7 +238,7 @@ argument_specs:
         default: SUSPEND
         type: str
         description: This parameter tells the system what action to take when the
-          system has detected  that  it is low on disk space. Valid values are ignore,
+          system has detected that it is low on disk space. Valid values are ignore,
           syslog, rotate, email, exec, suspend, single, and halt.
       os_auditd_space_left:
         default: 75
@@ -451,11 +454,11 @@ argument_specs:
         type: str
         description: Configure file system for fstab entry /dev
       os_mnt_dev_dump:
-        default: 0
+        default: '0'
         type: str
         description: Configure dump for fstab entry /var/tmp.
       os_mnt_dev_passno:
-        default: 0
+        default: '0'
         type: str
         description: Configure passno for fstab entry /var/tmp.
       os_mnt_dev_shm_dir_mode:
@@ -479,11 +482,11 @@ argument_specs:
         type: str
         description: Configure file system for fstab entry /dev/shm
       os_mnt_dev_shm_dump:
-        default: 0
+        default: '0'
         type: str
         description: Configure dump for fstab entry /var/tmp.
       os_mnt_dev_shm_passno:
-        default: 0
+        default: '0'
         type: str
         description: Configure passno for fstab entry /var/tmp.
       os_mnt_home_dir_mode:
@@ -539,11 +542,11 @@ argument_specs:
         type: str
         description: Configure file system for fstab entry /run
       os_mnt_run_dump:
-        default: 0
+        default: '0'
         type: str
         description: Configure dump for fstab entry /var/tmp.
       os_mnt_run_passno:
-        default: 0
+        default: '0'
         type: str
         description: Configure passno for fstab entry /var/tmp.
       os_mnt_tmp_dir_mode:
