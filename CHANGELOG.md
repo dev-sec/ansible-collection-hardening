@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- fix descriptions in readme [\#693](https://github.com/dev-sec/ansible-collection-hardening/pull/693) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - feat: customize user paths default [\#692](https://github.com/dev-sec/ansible-collection-hardening/pull/692) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([S0obi](https://github.com/S0obi))
 - disable PAM tests [\#691](https://github.com/dev-sec/ansible-collection-hardening/pull/691) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
