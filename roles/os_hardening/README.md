@@ -290,6 +290,11 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
   - Description: true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc.
   - Type: bool
   - Required: no
+- `os_env_user_paths`
+  - Default: `[/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]`
+  - Description: Specify paths to the user's `PATH` variable.
+  - Type: list
+  - Required: no
 - `os_env_extra_user_paths`
   - Default: `"[]"`
   - Description: add additional paths to the user's `PATH` variable (default is empty).
