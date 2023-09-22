@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-08-24)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-09-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -11,9 +11,19 @@
 **Implemented enhancements:**
 
 - Minimize access user paths should be fully configurable [\#689](https://github.com/dev-sec/ansible-collection-hardening/issues/689)
+- Add support for Debian 12 [\#672](https://github.com/dev-sec/ansible-collection-hardening/issues/672)
+
+**Fixed bugs:**
+
+- Error deploying the playbook [\#630](https://github.com/dev-sec/ansible-collection-hardening/issues/630)
+
+**Closed issues:**
+
+- Add send-to-mailinglist to github release action [\#434](https://github.com/dev-sec/ansible-collection-hardening/issues/434)
 
 **Merged pull requests:**
 
+- test debian12 on VM [\#695](https://github.com/dev-sec/ansible-collection-hardening/pull/695) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix descriptions in readme [\#693](https://github.com/dev-sec/ansible-collection-hardening/pull/693) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - feat: customize user paths default [\#692](https://github.com/dev-sec/ansible-collection-hardening/pull/692) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([S0obi](https://github.com/S0obi))
 - disable PAM tests [\#691](https://github.com/dev-sec/ansible-collection-hardening/pull/691) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
@@ -74,7 +84,6 @@
 
 **Closed issues:**
 
-- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 - Invalid login.defs for RHEL6 [\#651](https://github.com/dev-sec/ansible-collection-hardening/issues/651)
 - Deprecation warnings for os\_hardening [\#638](https://github.com/dev-sec/ansible-collection-hardening/issues/638)
 - Write tests for MySQL user-deletion [\#445](https://github.com/dev-sec/ansible-collection-hardening/issues/445)
