@@ -50,6 +50,26 @@
   ansible.builtin.include_tasks: crypto_kex.yml
   when: not ssh_kex
 
+- name: "Find host public key files"
+  ansible.builtin.find:
+    depth: 1
+    file_type: file
+    paths:
+      - "{{ ssh_host_keys_dir }}"
+    patterns:
+      - "ssh_host_*.pub"
+  when: ssh_server_hardening | bool
+  register: ssh_host_pub_keys
+
+- name: "Change host public key ownership, group and permissions"
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: "{{ ssh_host_keys_owner }}"
+    group: "{{ ssh_host_keys_group }}"
+    mode: "{{ ssh_host_pub_keys_mode }}"
+  when: ssh_server_hardening | bool
+  loop: "{{ ssh_host_pub_keys.files }}"
+
 - name: Create revoked_keys and set permissions to root/600
   ansible.builtin.template:
     src: revoked_keys.j2

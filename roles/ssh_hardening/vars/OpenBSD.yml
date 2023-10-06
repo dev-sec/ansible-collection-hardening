@@ -7,6 +7,7 @@ ssh_group: wheel
 ssh_host_keys_owner: root
 ssh_host_keys_group: wheel
 ssh_host_keys_mode: "0600"
+ssh_host_pub_keys_mode: "0644"
 
 # true if SSH support Kerberos
 ssh_kerberos_support: false
