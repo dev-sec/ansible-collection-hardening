@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-09-22)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -15,6 +15,7 @@
 
 **Fixed bugs:**
 
+- \[devsec.hardening.os\_hardening : restart-auditd\] fails [\#698](https://github.com/dev-sec/ansible-collection-hardening/issues/698)
 - Error deploying the playbook [\#630](https://github.com/dev-sec/ansible-collection-hardening/issues/630)
 
 **Closed issues:**
@@ -23,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Fix typo in login.defs.j2 [\#700](https://github.com/dev-sec/ansible-collection-hardening/pull/700) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 - test debian12 on VM [\#695](https://github.com/dev-sec/ansible-collection-hardening/pull/695) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix descriptions in readme [\#693](https://github.com/dev-sec/ansible-collection-hardening/pull/693) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - feat: customize user paths default [\#692](https://github.com/dev-sec/ansible-collection-hardening/pull/692) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([S0obi](https://github.com/S0obi))
