@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-08)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -24,6 +24,7 @@
 
 **Merged pull requests:**
 
+- update links to new Ansible Galaxy [\#702](https://github.com/dev-sec/ansible-collection-hardening/pull/702) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Fix typo in login.defs.j2 [\#700](https://github.com/dev-sec/ansible-collection-hardening/pull/700) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
 - test debian12 on VM [\#695](https://github.com/dev-sec/ansible-collection-hardening/pull/695) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix descriptions in readme [\#693](https://github.com/dev-sec/ansible-collection-hardening/pull/693) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
