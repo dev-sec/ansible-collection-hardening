@@ -8,10 +8,9 @@ This role provides secure nginx configuration. It is intended to be compliant wi
 
 It works with the following nginx-roles, including, but not limited to:
 
-- [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx/)
-- [nginxinc.nginx](https://galaxy.ansible.com/nginxinc/nginx)
-- [jdauphant.nginx](https://galaxy.ansible.com/jdauphant/nginx/)
-- [franklinkim.nginx](https://galaxy.ansible.com/franklinkim/nginx/)
+- [nginxinc.nginx](https://galaxy.ansible.com/ui/standalone/roles/nginxinc/nginx/)
+- [geerlinggux.nginx](https://galaxy.ansible.com/ui/standalone/roles/geerlingguy/nginx/)
+- [jdauphant.nginx](https://galaxy.ansible.com/ui/standalone/roles/jdauphant/nginx/)
 
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 
