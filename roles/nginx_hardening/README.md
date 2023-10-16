@@ -11,7 +11,6 @@ It works with the following nginx-roles, including, but not limited to:
 - [nginxinc.nginx](https://galaxy.ansible.com/ui/standalone/roles/nginxinc/nginx/)
 - [geerlinggux.nginx](https://galaxy.ansible.com/ui/standalone/roles/geerlingguy/nginx/)
 - [jdauphant.nginx](https://galaxy.ansible.com/ui/standalone/roles/jdauphant/nginx/)
-- [franklinkim.nginx](https://galaxy.ansible.com/ui/standalone/roles/franklinkim/nginx/)
 
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 
