@@ -38,7 +38,7 @@ jobs:
           - freebsd12
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
