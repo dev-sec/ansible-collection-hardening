@@ -52,7 +52,7 @@ jobs:
           # - fedora  # geerlingguy.mysql does not support fedora
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true

@@ -51,7 +51,7 @@ jobs:
           # - fedora  # no support from geerlingguy role
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
