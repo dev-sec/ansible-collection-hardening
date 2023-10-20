@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-16)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -20,12 +20,14 @@
 
 **Closed issues:**
 
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 - Add send-to-mailinglist to github release action [\#434](https://github.com/dev-sec/ansible-collection-hardening/issues/434)
 
 **Merged pull requests:**
 
 - update links to new Ansible Galaxy [\#702](https://github.com/dev-sec/ansible-collection-hardening/pull/702) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Fix typo in login.defs.j2 [\#700](https://github.com/dev-sec/ansible-collection-hardening/pull/700) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
+- chore\(deps\): update actions/checkout action to v4 [\#696](https://github.com/dev-sec/ansible-collection-hardening/pull/696) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - test debian12 on VM [\#695](https://github.com/dev-sec/ansible-collection-hardening/pull/695) ([rndmh3ro](https://github.com/rndmh3ro))
 - fix descriptions in readme [\#693](https://github.com/dev-sec/ansible-collection-hardening/pull/693) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - feat: customize user paths default [\#692](https://github.com/dev-sec/ansible-collection-hardening/pull/692) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([S0obi](https://github.com/S0obi))
