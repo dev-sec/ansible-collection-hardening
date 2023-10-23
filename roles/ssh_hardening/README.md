@@ -9,20 +9,21 @@ This role provides secure ssh-client and ssh-server configurations. It is intend
 Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
 
 <!-- BEGIN_ANSIBLE_DOCS -->
-
 ## Supported Operating Systems
-
-| Platform  | Versions             |
-| --------- | -------------------- |
-| EL        | 7, 8, 9              |
-| Ubuntu    | bionic, focal, jammy |
-| Debian    | buster, bullseye     |
-| Amazon    |                      |
-| Fedora    |                      |
-| ArchLinux |                      |
-| SmartOS   |                      |
-| FreeBSD   | 12.2                 |
-| OpenBSD   | 7.0                  |
+- EL
+  - 7, 8, 9
+- Ubuntu
+  - bionic, focal, jammy
+- Debian
+  - buster, bullseye
+- Amazon
+- Fedora
+- ArchLinux
+- SmartOS
+- FreeBSD
+  - 12.2
+- OpenBSD
+  - 7.0
 
 ## Role Variables
 
@@ -109,12 +110,12 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_client_alive_count`
   - Default: `3`
   - Description: Defines the number of acceptable unanswered client alive messages before disconnecting clients.
-  - Type: str
+  - Type: int
   - Required: no
 - `ssh_client_alive_interval`
-  - Default: `600`
+  - Default: `300`
   - Description: specifies an interval for sending keepalive messages.
-  - Type: str
+  - Type: int
   - Required: no
 - `ssh_client_compression`
   - Default: `false`
@@ -157,9 +158,9 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Type: bool
   - Required: no
 - `ssh_custom_options`
-  - Default: `[]`
+  - Default: ``
   - Description: Custom lines for SSH client configuration.
-  - Type: str
+  - Type: list
   - Required: no
 - `ssh_custom_selinux_dir`
   - Default: `/etc/selinux/local-policies`
@@ -214,7 +215,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_host_rsa_key_size`
   - Default: `4096`
   - Description: Specifies the number of bits in the private host RSA key to create.
-  - Type: str
+  - Type: int
   - Required: no
 - `ssh_kerberos_support`
   - Default: `true`
@@ -244,12 +245,12 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `ssh_max_auth_retries`
   - Default: `2`
   - Description: Specifies the maximum number of authentication attempts permitted per connection.
-  - Type: str
+  - Type: int
   - Required: no
 - `ssh_max_sessions`
   - Default: `10`
   - Description: Specifies the maximum number of open sessions permitted from a given connection.
-  - Type: str
+  - Type: int
   - Required: no
 - `ssh_max_startups`
   - Default: `10:30:60`
@@ -409,7 +410,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
 - `sshd_moduli_minimum`
   - Default: `2048`
   - Description: remove Diffie-Hellman parameters smaller than the defined size to mitigate logjam.
-  - Type: str
+  - Type: int
   - Required: no
 - `sshd_strict_modes`
   - Default: `true`

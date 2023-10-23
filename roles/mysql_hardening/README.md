@@ -22,16 +22,15 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 - python-jmespath on the ansible host
 
 <!-- BEGIN_ANSIBLE_DOCS -->
-
 ## Supported Operating Systems
-
-| Platform | Versions             |
-| -------- | -------------------- |
-| EL       | 7, 8, 9              |
-| Ubuntu   | bionic, focal, jammy |
-| Debian   | bullseye, buster     |
-| Amazon   |                      |
-| opensuse |                      |
+- EL
+  - 7, 8, 9
+- Ubuntu
+  - bionic, focal, jammy
+- Debian
+  - bullseye, buster
+- Amazon
+- opensuse
 
 ## Role Variables
 
