@@ -15,7 +15,9 @@ It works with the following nginx-roles, including, but not limited to:
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 
 <!-- BEGIN_ANSIBLE_DOCS -->
+
 ## Supported Operating Systems
+
 - EL
   - 7, 8, 9
 - Ubuntu

@@ -54,7 +54,9 @@ We disable the following filesystems, because they're most likely not used:
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
 <!-- BEGIN_ANSIBLE_DOCS -->
+
 ## Supported Operating Systems
+
 - EL
   - 7, 8, 9
 - Ubuntu
