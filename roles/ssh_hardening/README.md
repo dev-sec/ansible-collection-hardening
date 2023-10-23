@@ -9,7 +9,9 @@ This role provides secure ssh-client and ssh-server configurations. It is intend
 Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
 
 <!-- BEGIN_ANSIBLE_DOCS -->
+
 ## Supported Operating Systems
+
 - EL
   - 7, 8, 9
 - Ubuntu
