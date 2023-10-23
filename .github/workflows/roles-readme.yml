@@ -1,14 +1,14 @@
 ---
-name: Generate Ansible Roles README with aar-doc
+name: create roles readme
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     paths:
       - '.github/workflows/**'
 
 jobs:
   readme:
-    name: Create Ansible Role README
+    name: create roles readme
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,3 +42,14 @@ jobs:
       - name: Run Python Script
         run: poetry run python3 aar_doc/cli.py ../roles/${{ matrix.roles }} markdown
         working-directory: aar-doc/
+
+      - name: Push README
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'workflow/roles-readme'
+          commit-message: 'update ${{ matrix.roles }} readme'
+          rebase: true
+          files: roles/${{ matrix.roles }}/README.md
+          name: dev-sec CI
+          email: hello@dev-sec.io
