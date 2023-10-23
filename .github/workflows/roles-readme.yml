@@ -40,4 +40,5 @@ jobs:
         working-directory: aar-doc/
 
       - name: Run Python Script
-        run: poetry run python3 aar-doc/aar_doc/cli.py roles/ssh_hardening/${{ matrix.roles }} markdown
+        run: poetry run python3 aar-doc/aar_doc/cli.py ../roles/ssh_hardening/${{ matrix.roles }} markdown
+        working-directory: aar-doc/
