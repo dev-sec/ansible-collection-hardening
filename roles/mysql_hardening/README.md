@@ -36,96 +36,25 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 
 ## Role Variables
 
-- `mysql_daemon_enabled`
-  - Default: `true`
-  - Description: Whether to enable the MySQL-service so it starts on boot
-  - Type: bool
-  - Required: no
-- `mysql_hardening_chroot`
-  - Default: ``
-  - Description: [chroot](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_chroot)
-  - Type: str
-  - Required: no
-- `mysql_hardening_chroot.automatic-sp-privileges`
-  - Default: `0`
-  - Description: [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges)
-  - Type: int
-  - Required: no
-- `mysql_hardening_enabled`
-  - Default: `true`
-  - Description: Whether to run the hardening
-  - Type: bool
-  - Required: no
-- `mysql_hardening_options.allow-suspicious-udfs`
-  - Default: `0`
-  - Description: [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs)
-  - Type: int
-  - Required: no
-- `mysql_hardening_options.local-infile`
-  - Default: `0`
-  - Description: [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile)
-  - Type: int
-  - Required: no
-- `mysql_hardening_options.safe-user-create`
-  - Default: `1`
-  - Description: [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create)
-  - Type: int
-  - Required: no
-- `mysql_hardening_options.secure-auth`
-  - Default: `1`
-  - Description: [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth)
-  - Type: int
-  - Required: no
-- `mysql_hardening_options.secure-file-priv`
-  - Default: `/tmp`
-  - Description: [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv)
-  - Type: str
-  - Required: no
-- `mysql_hardening_options.skip-symbolic-links`
-  - Default: `1`
-  - Description: [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links)
-  - Type: int
-  - Required: no
-- `mysql_hardening_restart_mysql`
-  - Default: `true`
-  - Description: Restart mysql after running this role
-  - Type: bool
-  - Required: no
-- `mysql_hardening_skip_grant_tables:`
-  - Default: `false`
-  - Description: [skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables)
-  - Type: bool
-  - Required: no
-- `mysql_hardening_skip_show_database`
-  - Default: `1`
-  - Description: [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database)
-  - Type: int
-  - Required: no
-- `mysql_remove_anonymous_users`
-  - Default: `true`
-  - Description: Set to `false` to keep users without authentication
-  - Type: bool
-  - Required: no
-- `mysql_remove_remote_root`
-  - Default: `true`
-  - Description: If `true`, root can only connect from localhost. Set to `false` to not remove remote root users.
-  - Type: bool
-  - Required: no
-- `mysql_remove_test_database`
-  - Default: `true`
-  - Description: Set to `false` to keep the test database
-  - Type: bool
-  - Required: no
-- `mysql_root_password`
-  - Default: `-----====>SetR00tPa$$wordH3r3!!!<====-----`
-  - Description: The default password. Please change or overwrite it
-  - Type: str
-  - Required: no
-- `mysql_user_home`
-  - Default: `{{ ansible_env.HOME }}`
-  - Description: The path where the `.my.cnf` will be stored
-  - Type: str
-  - Required: no
+| Variable | Default | Description | Type | Required |
+| -------- | ------- | ----------- | ---- | -------- |
+| `mysql_daemon_enabled` | true | Whether to enable the MySQL-service so it starts on boot | bool | n |
+| `mysql_hardening_chroot.automatic-sp-privileges` | 0 | [automatic_sp_privileges](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_automatic_sp_privileges) | int | n |
+| `mysql_hardening_enabled` | true | Whether to run the hardening | bool | n |
+| `mysql_hardening_options.allow-suspicious-udfs` | 0 | [allow-suspicious-udfs](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_allow-suspicious-udfs) | int | n |
+| `mysql_hardening_options.local-infile` | 0 | [local-infile](http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_local_infile) | int | n |
+| `mysql_hardening_options.safe-user-create` | 1 | [safe-user-create](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_safe-user-create) | int | n |
+| `mysql_hardening_options.secure-auth` | 1 | [secure-auth](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-auth) | int | n |
+| `mysql_hardening_options.secure-file-priv` | /tmp | [secure-file-priv](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_secure-file-priv) | str | n |
+| `mysql_hardening_options.skip-symbolic-links` | 1 | [skip-symbolic-links](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_symbolic-links) | int | n |
+| `mysql_hardening_restart_mysql` | true | Restart mysql after running this role | bool | n |
+| `mysql_hardening_skip_grant_tables:` | false | [skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables) | bool | n |
+| `mysql_hardening_skip_show_database` | 1 | [skip-show-database](http://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-show-database) | int | n |
+| `mysql_remove_anonymous_users` | true | Set to `false` to keep users without authentication | bool | n |
+| `mysql_remove_remote_root` | true | If `true`, root can only connect from localhost. Set to `false` to not remove remote root users. | bool | n |
+| `mysql_remove_test_database` | true | Set to `false` to keep the test database | bool | n |
+| `mysql_root_password` | -----====>SetR00tPa$$wordH3r3!!!<====----- | The default password. Please change or overwrite it | str | n |
+| `mysql_user_home` | {{ ansible_env.HOME }} | The path where the `.my.cnf` will be stored | str | n |
 
 ## Dependencies
 
