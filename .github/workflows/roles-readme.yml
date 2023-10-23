@@ -1,0 +1,30 @@
+---
+name: Generate Ansible Roles README
+
+on:
+  push:
+    paths:
+      - '.github/workflows/**'
+
+jobs:
+  build:
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          repository: telekom-mms/Automated-Ansible-Role-Documentation
+          path: aar-doc/
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run Python Script
+        run: python3 aar-doc/cli.py roles/ssh_hardening/ markdown
