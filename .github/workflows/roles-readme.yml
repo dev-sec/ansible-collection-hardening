@@ -37,6 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: poetry install
+        working-directory: aar-doc/
 
       - name: Run Python Script
         run: python3 aar-doc/cli.py roles/ssh_hardening/${{ matrix.roles }} markdown
