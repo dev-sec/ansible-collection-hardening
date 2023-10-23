@@ -1,5 +1,5 @@
 ---
-name: Generate Ansible Roles README
+name: Generate Ansible Roles README with aar-doc
 
 on:
   push:
@@ -8,7 +8,15 @@ on:
 
 jobs:
   readme:
+    name: Create Ansible Role README
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        roles:
+          - "mysql_hardening"
+          - "nginx_hardening"
+          - "os_hardening"
+          - "ssh_hardening"
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -31,4 +39,4 @@ jobs:
         run: poetry install
 
       - name: Run Python Script
-        run: python3 aar-doc/cli.py roles/ssh_hardening/ markdown
+        run: python3 aar-doc/cli.py roles/ssh_hardening/${{ matrix.roles }} markdown
