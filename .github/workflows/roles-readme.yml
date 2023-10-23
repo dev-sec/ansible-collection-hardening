@@ -40,4 +40,4 @@ jobs:
         working-directory: aar-doc/
 
       - name: Run Python Script
-        run: python3 aar-doc/cli.py roles/ssh_hardening/${{ matrix.roles }} markdown
+        run: python3 aar-doc/aar_doc/cli.py roles/ssh_hardening/${{ matrix.roles }} markdown
