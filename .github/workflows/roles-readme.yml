@@ -3,8 +3,8 @@ name: create roles readme
 
 on:  # yamllint disable-line rule:truthy
   push:
-    paths:
-      - '.github/workflows/**'
+    branches:
+      - master
 
 jobs:
   readme:
