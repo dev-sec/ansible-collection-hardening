@@ -36,6 +36,7 @@ argument_specs:
           installed sshd version.
       ssh_host_rsa_key_size:
         default: 4096
+        type: int
         description: Specifies the number of bits in the private host RSA key to create.
       ssh_host_key_algorithms:
         default: []
@@ -53,12 +54,14 @@ argument_specs:
           `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make
           sure you check the correct version!
       ssh_client_alive_interval:
-        default: 600
+        default: 300
         description: specifies an interval for sending keepalive messages.
+        type: int
       ssh_client_alive_count:
         default: 3
         description: Defines the number of acceptable unanswered client alive messages
           before disconnecting clients.
+        type: int
       ssh_permit_tunnel:
         default: false
         type: bool
@@ -191,6 +194,7 @@ argument_specs:
         default: 2048
         description: remove Diffie-Hellman parameters smaller than the defined size
           to mitigate logjam.
+        type: int
       ssh_challengeresponseauthentication:
         default: false
         type: bool
@@ -235,10 +239,12 @@ argument_specs:
         default: 2
         description: Specifies the maximum number of authentication attempts permitted
           per connection.
+        type: int
       ssh_max_sessions:
         default: 10
         description: Specifies the maximum number of open sessions permitted from
           a given connection.
+        type: int
       ssh_print_debian_banner:
         default: false
         type: bool
@@ -315,6 +321,7 @@ argument_specs:
         description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
       ssh_custom_options:
         default: []
+        type: list
         description: Custom lines for SSH client configuration.
       sshd_custom_options:
         default: []

@@ -15,22 +15,21 @@ It works with the following nginx-roles, including, but not limited to:
 **NOTE: This role does not work with nginx 1.0.15 or older! Please use the latest version from the official nginx repositories!**
 
 <!-- BEGIN_ANSIBLE_DOCS -->
-
 ## Supported Operating Systems
-
-| Platform | Versions             |
-| -------- | -------------------- |
-| EL       | 7, 8, 9              |
-| Ubuntu   | bionic, focal, jammy |
-| Debian   | buster, bullseye     |
-| Amazon   |                      |
+- EL
+  - 7, 8, 9
+- Ubuntu
+  - bionic, focal, jammy
+- Debian
+  - buster, bullseye
+- Amazon
 
 ## Role Variables
 
 - `nginx_add_header`
-  - Default: `['X-Frame-Options SAMEORIGIN', 'X-Content-Type-Options nosniff', 'X-XSS-Protection "1; mode=block"', 'Content-Security-Policy \\"script-src \'self\'; object-src \'self\'\\"']`
+  - Default: `["X-Frame-Options SAMEORIGIN", "X-Content-Type-Options nosniff", "X-XSS-Protection \"1; mode=block\"", "Content-Security-Policy \\\"script-src 'self'; object-src 'self'\\\""]`
   - Description: Adds the specified field to a response header provided that the response code equals 200, 201, 204, 206, 301, 302, 303, 304, or 307. See [nginx_add_header](http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header)
-  - Type: str
+  - Type: list
   - Required: no
 - `nginx_client_body_buffer_size`
   - Default: `1k`
@@ -70,7 +69,7 @@ It works with the following nginx-roles, including, but not limited to:
 - `nginx_dh_size`
   - Default: `2048`
   - Description: Specifies the length of DH parameters for EDH ciphers. See [nginx_dh_size](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam)
-  - Type: str
+  - Type: int
   - Required: no
 - `nginx_keepalive_timeout`
   - Default: `5 5`
@@ -113,7 +112,7 @@ It works with the following nginx-roles, including, but not limited to:
   - Type: int
   - Required: no
 - `nginx_server_tokens`
-  - Default: `False`
+  - Default: `off`
   - Description: Disables emitting nginx version in error messages and in the "Server" response header field. Set to on to enable the nginx version in error messages and "Server" response header. See [nginx_server_tokens](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens)
   - Type: str
   - Required: no
