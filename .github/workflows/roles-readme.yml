@@ -14,9 +14,9 @@ jobs:
       matrix:
         roles:
           - "mysql_hardening"
-          - "nginx_hardening"
-          - "os_hardening"
-          - "ssh_hardening"
+          # - "nginx_hardening"
+          # - "os_hardening"
+          # - "ssh_hardening"
     steps:
       - name: Check out code
         uses: actions/checkout@v4
