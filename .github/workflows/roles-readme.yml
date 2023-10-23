@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Install poetry
+        run: pip3 install poetry
+
       - name: Install dependencies
         run: poetry install
 
