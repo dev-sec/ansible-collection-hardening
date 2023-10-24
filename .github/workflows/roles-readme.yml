@@ -3,13 +3,11 @@ name: create roles readme
 
 on:  # yamllint disable-line rule:truthy
   push:
-    branches:
-      - master
+    branches: [master]
     paths:
       - 'roles/**/meta/argument_specs.yml'
   pull_request:
-    branches:
-      - master
+    branches: [master]
     paths:
       - 'roles/**/meta/argument_specs.yml'
 
@@ -41,6 +39,7 @@ jobs:
         working-directory: aar-doc/
 
       - name: Push README
+        if: github.ref == 'refs/heads/master'
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
