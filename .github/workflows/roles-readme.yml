@@ -5,6 +5,9 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master
+      paths:
+      - ''roles/**/meta/argument_specs.yml''
+
 
 jobs:
   readme:
