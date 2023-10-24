@@ -38,6 +38,9 @@ jobs:
         run: aar_doc ../roles/${{ matrix.roles }} markdown
         working-directory: aar-doc/
 
+      - name: Output diff
+        run: git diff master roles/${{ matrix.roles }}/README.md
+
       - name: Push README
         if: github.ref == 'refs/heads/master'
         uses: github-actions-x/commit@v2.9
