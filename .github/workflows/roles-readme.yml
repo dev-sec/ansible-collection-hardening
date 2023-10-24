@@ -24,26 +24,16 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          repository: telekom-mms/Automated-Ansible-Role-Documentation
-          path: aar-doc/
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      - name: Install poetry
-        run: pip3 install poetry
-
-      - name: Install dependencies
-        run: poetry install
-        working-directory: aar-doc/
-
-      - name: Run Python Script
-        run: poetry run python3 aar_doc/cli.py ../roles/${{ matrix.roles }} markdown
+      - name: Install aar_doc
+        run: pip3 install aar_doc
+        
+      - name: Run aar_doc
+        run:  aar_doc ../roles/${{ matrix.roles }} markdown
         working-directory: aar-doc/
 
       - name: Push README
