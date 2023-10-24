@@ -50,7 +50,7 @@ jobs:
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'workflow/roles-readme'
+          push-branch: 'master'
           commit-message: 'update ${{ matrix.roles }} readme'
           rebase: true
           files: roles/${{ matrix.roles }}/README.md
