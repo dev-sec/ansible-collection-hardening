@@ -7,6 +7,11 @@ on:  # yamllint disable-line rule:truthy
       - master
     paths:
       - 'roles/**/meta/argument_specs.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
 
 jobs:
   readme:
@@ -15,10 +20,10 @@ jobs:
     strategy:
       matrix:
         roles:
-          - 'mysql_hardening'
-          - 'nginx_hardening'
-          - 'os_hardening'
-          - 'ssh_hardening'
+          - mysql_hardening
+          - nginx_hardening
+          - os_hardening
+          - ssh_hardening
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -39,7 +44,7 @@ jobs:
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
+          push-branch: master
           commit-message: 'update ${{ matrix.roles }} readme'
           rebase: true
           files: roles/${{ matrix.roles }}/README.md
