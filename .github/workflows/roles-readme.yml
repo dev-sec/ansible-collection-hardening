@@ -5,9 +5,8 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master
-      paths:
-      - ''roles/**/meta/argument_specs.yml''
-
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
 
 jobs:
   readme:
@@ -16,10 +15,10 @@ jobs:
     strategy:
       matrix:
         roles:
-          - "mysql_hardening"
-          - "nginx_hardening"
-          - "os_hardening"
-          - "ssh_hardening"
+          - 'mysql_hardening'
+          - 'nginx_hardening'
+          - 'os_hardening'
+          - 'ssh_hardening'
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -31,9 +30,9 @@ jobs:
 
       - name: Install aar_doc
         run: pip3 install aar_doc
-        
+
       - name: Run aar_doc
-        run:  aar_doc ../roles/${{ matrix.roles }} markdown
+        run: aar_doc ../roles/${{ matrix.roles }} markdown
         working-directory: aar-doc/
 
       - name: Push README
