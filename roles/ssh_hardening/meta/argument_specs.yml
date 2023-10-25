@@ -65,7 +65,7 @@ argument_specs:
       ssh_permit_tunnel:
         default: false
         type: bool
-        description: '`true` if SSH Port Tunneling is required.'
+        description: Set to `true` if SSH Port Tunneling is required.
       ssh_remote_hosts:
         default: []
         type: list
