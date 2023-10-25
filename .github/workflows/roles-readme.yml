@@ -35,8 +35,7 @@ jobs:
         run: pip3 install aar_doc
 
       - name: Run aar_doc
-        run: aar_doc ../roles/${{ matrix.roles }} markdown
-        working-directory: aar-doc/
+        run: aar_doc roles/${{ matrix.roles }} markdown
 
       - name: Output diff
         run: git diff master roles/${{ matrix.roles }}/README.md
