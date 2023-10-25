@@ -38,7 +38,7 @@ jobs:
         run: aar_doc roles/${{ matrix.roles }} markdown
 
       - name: Output diff
-        run: git diff master roles/${{ matrix.roles }}/README.md
+        run: git diff origin/master -- roles/${{ matrix.roles }}/README.md
 
       - name: Push README
         uses: github-actions-x/commit@v2.9
