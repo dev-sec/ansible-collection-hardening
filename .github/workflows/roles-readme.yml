@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -38,7 +40,7 @@ jobs:
         run: aar_doc roles/${{ matrix.roles }} markdown
 
       - name: Output diff
-        run: git diff origin/master -- roles/${{ matrix.roles }}/README.md
+        run: git diff ${{ github.event.pull_request.base.ref }} -- roles/${{ matrix.roles }}/README.md
 
       - name: Push README
         uses: github-actions-x/commit@v2.9
