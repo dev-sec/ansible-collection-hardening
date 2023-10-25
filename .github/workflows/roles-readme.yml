@@ -42,13 +42,9 @@ jobs:
         run: git diff master roles/${{ matrix.roles }}/README.md
 
       - name: Push README
-        if: github.ref == 'refs/heads/master'
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: master
           commit-message: 'update ${{ matrix.roles }} readme'
-          rebase: true
           files: roles/${{ matrix.roles }}/README.md
-          name: dev-sec CI
-          email: hello@dev-sec.io
+          rebase: true
