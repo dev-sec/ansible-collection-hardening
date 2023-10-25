@@ -1,0 +1,47 @@
+---
+name: create roles readme
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+
+jobs:
+  readme:
+    name: create roles readme
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        roles:
+          - mysql_hardening
+          - nginx_hardening
+          - os_hardening
+          - ssh_hardening
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install aar_doc
+        run: pip3 install aar_doc
+
+      - name: Run aar_doc
+        run: aar_doc roles/${{ matrix.roles }} markdown
+
+      - name: Push README
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: ${{ github.head_ref ?? github.ref_name }}
+          commit-message: 'update ${{ matrix.roles }} readme'
+          files: roles/${{ matrix.roles }}/README.md
+          rebase: true

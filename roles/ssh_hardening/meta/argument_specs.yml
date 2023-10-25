@@ -221,7 +221,7 @@ argument_specs:
       ssh_client_hardening:
         default: true
         type: bool
-        description: '`false` to stop harden the client.'
+        description: Set to `false` to stop harden the client.
       ssh_client_compression:
         default: false
         type: bool
@@ -256,7 +256,7 @@ argument_specs:
       ssh_server_hardening:
         default: true
         type: bool
-        description: '`false` to stop harden the server.'
+        description: Set to `false` to stop harden the server.
       ssh_server_match_address:
         default: ''
         description: Introduces a conditional block. If all of the criteria on the
