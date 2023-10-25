@@ -41,7 +41,7 @@ jobs:
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: ${{ github.ref_name }}
+          push-branch: ${{ github.head_ref ?? github.ref_name }}
           commit-message: 'update ${{ matrix.roles }} readme'
           files: roles/${{ matrix.roles }}/README.md
           rebase: true
