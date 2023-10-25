@@ -23,7 +23,16 @@ jobs:
           - os_hardening
           - ssh_hardening
     steps:
+      - name: Check out code (fork)
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
       - name: Check out code
+        if: github.event_name != 'pull_request'
         uses: actions/checkout@v4
 
       - name: Set up Python
