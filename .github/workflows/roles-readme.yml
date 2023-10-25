@@ -40,6 +40,7 @@ jobs:
         run: aar_doc roles/${{ matrix.roles }} markdown
 
       - name: Output diff
+        if: github.event_name == 'pull_request'
         run: git diff ${{ github.event.pull_request.base.ref }} -- roles/${{ matrix.roles }}/README.md
 
       - name: Push README
