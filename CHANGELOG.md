@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-25)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-26)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -28,6 +28,7 @@
 
 **Merged pull requests:**
 
+- fix: roles-readme action default value [\#706](https://github.com/dev-sec/ansible-collection-hardening/pull/706) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Nemental](https://github.com/Nemental))
 - fix some wrong defaults and types in the readmes [\#703](https://github.com/dev-sec/ansible-collection-hardening/pull/703) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - update links to new Ansible Galaxy [\#702](https://github.com/dev-sec/ansible-collection-hardening/pull/702) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Fix typo in login.defs.j2 [\#700](https://github.com/dev-sec/ansible-collection-hardening/pull/700) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([nejch](https://github.com/nejch))
