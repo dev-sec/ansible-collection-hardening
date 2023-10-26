@@ -11,7 +11,6 @@ Warning: This role disables root-login on the target server! Please make sure yo
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 7, 8, 9
 - Ubuntu
@@ -131,7 +130,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Required: no
 - `ssh_client_hardening`
   - Default: `true`
-  - Description: `false` to stop harden the client.
+  - Description: Set to `false` to stop harden the client.
   - Type: bool
   - Required: no
 - `ssh_client_host_key_algorithms`
@@ -271,7 +270,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Required: no
 - `ssh_permit_tunnel`
   - Default: `false`
-  - Description: `true` if SSH Port Tunneling is required.
+  - Description: Set to `true` if SSH Port Tunneling is required.
   - Type: bool
   - Required: no
 - `ssh_print_debian_banner`
@@ -321,7 +320,7 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Required: no
 - `ssh_server_hardening`
   - Default: `true`
-  - Description: `false` to stop harden the server.
+  - Description: Set to `false` to stop harden the server.
   - Type: bool
   - Required: no
 - `ssh_server_match_address`
