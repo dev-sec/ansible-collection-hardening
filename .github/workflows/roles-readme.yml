@@ -37,11 +37,16 @@ jobs:
       - name: Run aar_doc
         run: aar_doc roles/${{ matrix.roles }} markdown
 
+      - name: Output diff
+        run: git diff roles/${{ matrix.roles }}/README.md
+
       - name: Push README
+        if: github.event_name != 'pull_request'
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: ${{ github.head_ref ?? github.ref_name }}
           commit-message: 'update ${{ matrix.roles }} readme'
           files: roles/${{ matrix.roles }}/README.md
           rebase: true
+          name: dev-sec CI
+          email: hello@dev-sec.io
