@@ -1,7 +1,7 @@
 ---
 - name: Gather facts, if not present
   ansible.builtin.setup:
-  when: ansible_facts == {}
+  when: not ansible_facts
   tags:
     - always
 
