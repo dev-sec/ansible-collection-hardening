@@ -1,4 +1,10 @@
 ---
+- name: Gather facts, if not present
+  ansible.builtin.setup:
+  when: not ansible_facts
+  tags:
+    - always
+
 - name: Fetch OS dependent variables
   ansible.builtin.include_vars:
     file: "{{ item }}"
