@@ -1,6 +1,6 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-10-26)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-11-01)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
@@ -17,9 +17,12 @@
 
 **Fixed bugs:**
 
+- nginx conf.d directory is missing on Rocky Linux 8 [\#707](https://github.com/dev-sec/ansible-collection-hardening/issues/707)
 - Default value of `ssh_client_alive_interval` is inconsistent with what documentation says [\#701](https://github.com/dev-sec/ansible-collection-hardening/issues/701)
 - \[devsec.hardening.os\_hardening : restart-auditd\] fails [\#698](https://github.com/dev-sec/ansible-collection-hardening/issues/698)
+- Error: No file was found when using first\_found on Ubuntu 20.04 [\#676](https://github.com/dev-sec/ansible-collection-hardening/issues/676)
 - Error deploying the playbook [\#630](https://github.com/dev-sec/ansible-collection-hardening/issues/630)
+- Gather facts when os\_hardening role is executed with tags [\#708](https://github.com/dev-sec/ansible-collection-hardening/pull/708) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
 
@@ -54,7 +57,6 @@
 **Fixed bugs:**
 
 - How does one set `sshd_authenticationmethods`  to include password authentication? [\#686](https://github.com/dev-sec/ansible-collection-hardening/issues/686)
-- Error: No file was found when using first\_found on Ubuntu 20.04 [\#676](https://github.com/dev-sec/ansible-collection-hardening/issues/676)
 - FreeIPA environment mkhomedir fails [\#664](https://github.com/dev-sec/ansible-collection-hardening/issues/664)
 
 **Closed issues:**
