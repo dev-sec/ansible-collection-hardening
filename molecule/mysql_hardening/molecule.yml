@@ -8,7 +8,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    image: "ghcr.io/dev-sec/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
