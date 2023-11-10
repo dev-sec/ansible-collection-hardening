@@ -46,29 +46,31 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
+- name: detect role support on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
+  community.mysql.mysql_query:
+    query: >
+      SELECT 1 FROM information_schema.COLUMNS
+                WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
+                AND COLUMN_NAME = 'is_role')
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_role_support
+  when: >
+    (mysql_distribution == "mysql" and mysql_version.version.full is version('5.7.6', '>=')) or
+    (mysql_distribution == "mariadb" and mysql_version.version.full
+    is version('10.4.0', '>='))
+
+
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
-      IF (EXISTS (SELECT 1 FROM information_schema.COLUMNS
-          WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
-          AND COLUMN_NAME = 'is_role')) THEN
-        SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
-        FROM mysql.user
-        WHERE (length(authentication_string)=0
-              OR authentication_string="")
-          AND USER NOT IN ('mysql.sys',
-                          'mysqlxsys',
-                          'mariadb.sys')
-          AND is_role="N";
-      ELSE
-        SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
-        FROM mysql.user
-        WHERE (length(authentication_string)=0
-              OR authentication_string="")
-          AND USER NOT IN ('mysql.sys',
-                          'mysqlxsys',
-                          'mariadb.sys');
-      END IF;
+      SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
+      FROM mysql.user
+      WHERE (length(authentication_string)=0
+             OR authentication_string="")
+        AND USER NOT IN ('mysql.sys',
+                         'mysqlxsys',
+                         'mariadb.sys')
+      {{ 'AND is_role="N"' if mysql_role_support.rowcount[0] > 0 }};
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   check_mode: false
