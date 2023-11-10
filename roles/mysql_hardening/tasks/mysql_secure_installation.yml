@@ -46,7 +46,7 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
-- name: detect role support on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
+- name: Detect role support on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
       SELECT 1 FROM information_schema.COLUMNS
