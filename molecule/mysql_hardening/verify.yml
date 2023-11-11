@@ -40,7 +40,7 @@
         docker.io/cincproject/auditor exec
         -t docker://instance
         --no-show-progress --no-color
-        --no-distinct-exit https://github.com/dev-sec/mysql-baseline/archive/refs/heads/roles.zip
+        --no-distinct-exit https://github.com/dev-sec/mysql-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
       ignore_errors: true
