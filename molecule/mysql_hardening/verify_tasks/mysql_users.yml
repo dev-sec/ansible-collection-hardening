@@ -39,11 +39,3 @@
        - '"role_keep@" in mysql_users_list'
   when:
     - mysql_role_support.rowcount[0] > 0
-
-- name: drop roles for test
-  community.mysql.mysql_query:
-    query:
-       - "DROP ROLE 'role_keep';"
-    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-  when:
-    - mysql_role_support.rowcount[0] > 0
