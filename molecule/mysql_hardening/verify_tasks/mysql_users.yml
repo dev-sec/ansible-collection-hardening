@@ -36,7 +36,7 @@
 - name: assert that roles remain
   ansible.builtin.assert:
     that:
-       - '"role_keep@%" in mysql_users_list'
+       - '"role_keep@" in mysql_users_list'
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when:
     - mysql_role_support.rowcount[0] > 0
