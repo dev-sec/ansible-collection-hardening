@@ -59,7 +59,6 @@
     (mysql_distribution == "mariadb" and mysql_version.version.full
     is version('10.4.0', '>='))
 
-
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
