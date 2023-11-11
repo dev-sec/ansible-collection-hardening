@@ -54,7 +54,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          path: ansible_collections/devsec/hardening
           submodules: true
 
       - name: Set up Python 3.11
@@ -85,4 +84,3 @@ jobs:
           molecule test -s mysql_hardening
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
-        working-directory: ansible_collections/devsec/hardening
