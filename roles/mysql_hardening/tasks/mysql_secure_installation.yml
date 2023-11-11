@@ -51,7 +51,7 @@
     query: >
       SELECT 1 FROM information_schema.COLUMNS
                 WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
-                AND COLUMN_NAME = 'is_role')
+                AND COLUMN_NAME = 'is_role';
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_role_support
   check_mode: false
