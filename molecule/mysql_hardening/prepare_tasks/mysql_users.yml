@@ -29,5 +29,5 @@
     query:
        - "CREATE ROLE 'role_keep';"
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-    when:
-      - mysql_role_support.rowcount[0] > 0
+  when:
+    - mysql_role_support.rowcount[0] > 0
