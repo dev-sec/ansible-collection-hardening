@@ -66,7 +66,7 @@
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
                          'mariadb.sys')
-        {{ 'AND is_role COLLATE utf8mb4_general_ci = "N"' if mysql_role_support.rowcount[0] > 0 }};
+        {{ 'AND convert(is_role USING utf8) = "N"' if mysql_role_support.rowcount[0] > 0 }};
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   check_mode: false
