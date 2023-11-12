@@ -46,6 +46,16 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_remote_root
 
+- name: Detect role support on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
+  community.mysql.mysql_query:
+    query: >
+      SELECT 1 FROM information_schema.COLUMNS
+                WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
+                AND COLUMN_NAME = 'is_role';
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_role_support
+  check_mode: false
+
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
   community.mysql.mysql_query:
     query: >
@@ -55,7 +65,8 @@
              OR authentication_string="")
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
-                         'mariadb.sys');
+                         'mariadb.sys')
+        {{ 'AND CONVERT(is_role USING utf8) = "N"' if mysql_role_support.rowcount[0] > 0 }};
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords_or_auth_string
   check_mode: false
@@ -75,7 +86,8 @@
              OR authentication_string="")
         AND USER NOT IN ('mysql.sys',
                          'mysqlxsys',
-                         'mariadb.sys');
+                         'mariadb.sys')
+        {{ 'AND is_role = "N"' if mysql_role_support.rowcount[0] > 0 }};
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_users_wo_passwords
   check_mode: false

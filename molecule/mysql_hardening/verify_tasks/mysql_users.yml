@@ -23,3 +23,19 @@
       - '"user@192.168.0.2" in mysql_users_list'
       - '"user@keep" in mysql_users_list'
       - '"user@192.168.%" in mysql_users_list'
+
+- name: Detect role support on MySQL
+  community.mysql.mysql_query:
+    query: >
+      SELECT 1 FROM information_schema.COLUMNS
+                WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
+                AND COLUMN_NAME = 'is_role';
+    login_unix_socket: "{{ login_unix_socket | default(omit) }}"
+  register: mysql_role_support
+
+- name: assert that roles remain
+  ansible.builtin.assert:
+    that:
+       - '"role_keep@" in mysql_users_list'
+  when:
+    - mysql_role_support.rowcount[0] > 0

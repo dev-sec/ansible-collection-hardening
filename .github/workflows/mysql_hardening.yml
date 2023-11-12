@@ -79,6 +79,16 @@ jobs:
             sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
         if: ${{ startsWith(matrix.molecule_distro, 'Debian') }}
 
+      # Molecule has problems detecting the proper location for installing roles
+      # https://github.com/ansible/molecule/issues/3806
+      # we do not set a custom role path, but the automatically determined install path used is not compatible with the location molecule expects the role
+      # see CI logs of this action "INFO     Set ANSIBLE_ROLES_PATH" should not be present, since we do not set a custom path
+      # we have to find a proper way to configure this
+      - name: Temporary fix for roles
+        run: |
+          mkdir -p /home/runner/.ansible
+          ln -s /home/runner/work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections/devsec/hardening/roles /home/runner/.ansible/roles
+
       - name: Test with molecule
         run: |
           molecule --version
