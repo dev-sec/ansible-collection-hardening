@@ -10,6 +10,7 @@
     - name: set ansible_python_interpreter to "/usr/bin/python3"
       set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
+      when: ansible_facts.distribution == 'Fedora'
 
     - name: include verification tasks
       ansible.builtin.include_tasks:

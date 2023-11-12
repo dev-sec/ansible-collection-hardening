@@ -21,7 +21,7 @@
 
     - name: install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
-      shell: "zypper -n install python-xml"
+      shell: "zypper -n install python-xml awk"
       when: ansible_facts.os_family == 'Suse'
 
     - name: install required tools on fedora
