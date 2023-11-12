@@ -32,6 +32,7 @@
 
 **Merged pull requests:**
 
+- fix nginx CI tests [\#710](https://github.com/dev-sec/ansible-collection-hardening/pull/710) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - fix: roles-readme action default value [\#706](https://github.com/dev-sec/ansible-collection-hardening/pull/706) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Nemental](https://github.com/Nemental))
 - fix some wrong defaults and types in the readmes [\#703](https://github.com/dev-sec/ansible-collection-hardening/pull/703) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - update links to new Ansible Galaxy [\#702](https://github.com/dev-sec/ansible-collection-hardening/pull/702) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
