@@ -1,8 +1,8 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-11-12)
+## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...HEAD)
 
 **Breaking changes:**
 
