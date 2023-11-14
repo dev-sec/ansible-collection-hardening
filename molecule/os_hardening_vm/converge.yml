@@ -21,4 +21,5 @@
     os_yum_repo_file_whitelist: ['foo.repo']
     os_mnt_boot_enabled: true
     os_mnt_home_enabled: true
+    os_mnt_tmp_enabled: true
     os_mnt_boot_src: "/dev/vda1"
