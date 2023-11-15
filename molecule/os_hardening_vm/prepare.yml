@@ -61,7 +61,7 @@
         path: /tmp
         src: tmpfs
         fstype: tmpfs
-        state: present
+        state: mounted
 
     - name: include YUM prepare tasks
       include_tasks: prepare_tasks/yum.yml
