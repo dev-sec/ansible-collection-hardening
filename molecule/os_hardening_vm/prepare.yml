@@ -55,13 +55,7 @@
       ansible.posix.mount:
         path: /boot/efi
         state: unmounted
-
-    - name: Mount /tmp to have same starting point for all images
-      ansible.posix.mount:
-        path: /tmp
-        src: tmpfs
-        fstype: tmpfs
-        state: mounted
+      when: ansible_facts.distribution == 'Fedora'
 
     - name: include YUM prepare tasks
       include_tasks: prepare_tasks/yum.yml
