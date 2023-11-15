@@ -56,6 +56,13 @@
         path: /boot/efi
         state: unmounted
 
+    - name: Mount /tmp to have same starting point for all images
+      ansible.posix.mount:
+        path: /tmp
+        src: tmpfs
+        fstype: tmpfs
+        state: present
+
     - name: include YUM prepare tasks
       include_tasks: prepare_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
