@@ -18,7 +18,7 @@
         os_mnt_tmp_enabled: true
         os_mnt_tmp_src: "tmpfs"
         os_mnt_tmp_filesystem: "tmpfs"
-      when: ansible_facts.os_family == 'Fedora'
+      when: ansible_facts.distribution == 'Fedora'
     - include_role:
         name: os_hardening
   vars:
