@@ -56,7 +56,6 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 7, 8, 9
 - Ubuntu
