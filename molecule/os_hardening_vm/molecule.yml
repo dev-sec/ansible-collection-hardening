@@ -12,7 +12,7 @@ platforms:
   # since we also need to use different OS users to run the tests because of how molecule operates,
   # the VM names must be predictable by OS user (to clean up canceled runs)
   - name: "${USER}"
-    box: "generic/${MOLECULE_DISTRO}"
+    box: "${MOLECULE_DISTRO}"
     memory: 1024
     cpus: 2
 provisioner:
