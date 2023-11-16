@@ -19,6 +19,12 @@ output_template: |
     - Description: {{ details.display_description }}
     - Type: {{ details.display_type }}
     - Required: {{ details.display_required }}
+    {%- if details.choices %}
+    - Choices:
+      {%- for choice in details.choices %}
+      - {{ choice }}
+      {%- endfor %}
+    {%- endif %}
   {%- endfor %}
   {%- endfor %}
 
