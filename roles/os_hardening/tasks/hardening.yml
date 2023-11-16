@@ -15,6 +15,8 @@
         - "{{ ansible_facts.distribution }}.yml"
         - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml"
         - "{{ ansible_facts.os_family }}.yml"
+        - "{{ ansible_facts.ansible_distribution_file_variety }}_{{ ansible_facts.ansible_distribution_major_version }}.yml"
+        - "{{ ansible_facts.ansible_distribution_file_variety }}.yml"
       skip: true
   tags: always
 
