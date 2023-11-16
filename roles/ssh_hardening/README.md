@@ -1,6 +1,8 @@
 # dev-sec.ssh_hardening
 
-![devsec.ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/workflows/devsec.ssh_hardening/badge.svg)
+[![devsec.ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening.yml)
+[![devsec.ssh_hardening BSD](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_bsd.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_bsd.yml)
+[![devsec.ssh_hardening with custom tests](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_custom_tests.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_custom_tests.yml)
 
 ## Description
 
