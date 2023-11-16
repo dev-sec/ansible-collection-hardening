@@ -24,7 +24,6 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 7, 8, 9
 - Ubuntu
