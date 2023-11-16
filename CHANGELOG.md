@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/ansible-collection-hardening/tree/HEAD)
+## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-11-16)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
 
 **Breaking changes:**
 
@@ -13,6 +13,7 @@
 - Create role documentation with Automated-Ansible-Role-Documentation [\#694](https://github.com/dev-sec/ansible-collection-hardening/issues/694)
 - Minimize access user paths should be fully configurable [\#689](https://github.com/dev-sec/ansible-collection-hardening/issues/689)
 - Add support for Debian 12 [\#672](https://github.com/dev-sec/ansible-collection-hardening/issues/672)
+- add testing and support for current versions of Fedora and FreeBSD [\#709](https://github.com/dev-sec/ansible-collection-hardening/pull/709) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - feat: workflow for roles readme [\#705](https://github.com/dev-sec/ansible-collection-hardening/pull/705) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Nemental](https://github.com/Nemental))
 - do not try to drop roles in mysql hardening [\#649](https://github.com/dev-sec/ansible-collection-hardening/pull/649) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
