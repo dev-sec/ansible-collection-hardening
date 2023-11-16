@@ -1,6 +1,6 @@
 # devsec.nginx_hardening
 
-![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
+[![devsec.nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/nginx_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/nginx_hardening.yml)
 
 ## Description
 
