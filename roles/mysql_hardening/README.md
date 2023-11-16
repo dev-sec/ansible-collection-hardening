@@ -1,6 +1,6 @@
 # devsec.mysql_hardening
 
-![devsec.mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/workflows/devsec.mysql_hardening/badge.svg)
+[![devsec.mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/mysql_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/mysql_hardening.yml)
 
 ## Description
 
