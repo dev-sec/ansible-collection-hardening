@@ -22,7 +22,9 @@
 - nginx conf.d directory is missing on Rocky Linux 8 [\#707](https://github.com/dev-sec/ansible-collection-hardening/issues/707)
 - Default value of `ssh_client_alive_interval` is inconsistent with what documentation says [\#701](https://github.com/dev-sec/ansible-collection-hardening/issues/701)
 - \[devsec.hardening.os\_hardening : restart-auditd\] fails [\#698](https://github.com/dev-sec/ansible-collection-hardening/issues/698)
+- sshd\_hardening role cannot be used to build system images [\#697](https://github.com/dev-sec/ansible-collection-hardening/issues/697)
 - Error: No file was found when using first\_found on Ubuntu 20.04 [\#676](https://github.com/dev-sec/ansible-collection-hardening/issues/676)
+- PUBLIC-role breaks mysql-hardening [\#648](https://github.com/dev-sec/ansible-collection-hardening/issues/648)
 - Error deploying the playbook [\#630](https://github.com/dev-sec/ansible-collection-hardening/issues/630)
 - Gather facts when os\_hardening role is executed with tags [\#708](https://github.com/dev-sec/ansible-collection-hardening/pull/708) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
@@ -33,6 +35,7 @@
 
 **Merged pull requests:**
 
+- update status badges in README [\#714](https://github.com/dev-sec/ansible-collection-hardening/pull/714) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - fix CI test for os\_hardening [\#711](https://github.com/dev-sec/ansible-collection-hardening/pull/711) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - fix nginx CI tests [\#710](https://github.com/dev-sec/ansible-collection-hardening/pull/710) [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - fix: roles-readme action default value [\#706](https://github.com/dev-sec/ansible-collection-hardening/pull/706) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Nemental](https://github.com/Nemental))
