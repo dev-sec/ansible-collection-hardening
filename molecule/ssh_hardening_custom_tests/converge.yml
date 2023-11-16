@@ -38,7 +38,7 @@
     ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
     ssh_max_auth_retries: 10
     ssh_permit_root_login: "without-password"
-    ssh_permit_tunnel: true
+    ssh_permit_tunnel: 'yes'
     ssh_print_motd: true
     ssh_print_last_log: true
     ssh_banner: true

@@ -65,7 +65,7 @@ ssh_client_alive_interval: 300 # sshd
 ssh_client_alive_count: 3 # sshd
 
 # Allow SSH Tunnels
-ssh_permit_tunnel: false
+ssh_permit_tunnel: "no"
 
 # Hosts with custom options.        # ssh
 # Example:

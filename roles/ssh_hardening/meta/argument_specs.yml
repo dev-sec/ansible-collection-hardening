@@ -63,9 +63,15 @@ argument_specs:
           before disconnecting clients.
         type: int
       ssh_permit_tunnel:
-        default: false
-        type: bool
-        description: Set to `true` if SSH Port Tunneling is required.
+        default: 'no'
+        description: Specifies whether tun(4) device forwarding is allowed. The argument
+          must be yes, point-to-point (layer 3), ethernet (layer 2), or no. Specifying
+          yes permits both point-to-point and ethernet.
+        choices:
+          - 'no'
+          - 'yes'
+          - point-to-point
+          - ethernet
       ssh_remote_hosts:
         default: []
         type: list
