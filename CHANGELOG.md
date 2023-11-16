@@ -1,11 +1,12 @@
 # Changelog
 
-## [8.9.0](https://github.com/dev-sec/ansible-collection-hardening/tree/8.9.0) (2023-11-16)
+## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-11-16)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...8.9.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/8.8.0...9.0.0)
 
 **Breaking changes:**
 
+- make it possible to configure more then yes and no for PermitTunnel [\#715](https://github.com/dev-sec/ansible-collection-hardening/pull/715) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - add role argument spec for os, ssh, mysql [\#687](https://github.com/dev-sec/ansible-collection-hardening/pull/687) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Implemented enhancements:**
@@ -26,6 +27,7 @@
 - Error: No file was found when using first\_found on Ubuntu 20.04 [\#676](https://github.com/dev-sec/ansible-collection-hardening/issues/676)
 - PUBLIC-role breaks mysql-hardening [\#648](https://github.com/dev-sec/ansible-collection-hardening/issues/648)
 - Error deploying the playbook [\#630](https://github.com/dev-sec/ansible-collection-hardening/issues/630)
+- boolean variable inconcistency ? [\#330](https://github.com/dev-sec/ansible-collection-hardening/issues/330)
 - Gather facts when os\_hardening role is executed with tags [\#708](https://github.com/dev-sec/ansible-collection-hardening/pull/708) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
