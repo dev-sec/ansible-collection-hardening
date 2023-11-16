@@ -272,10 +272,15 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Type: str
   - Required: no
 - `ssh_permit_tunnel`
-  - Default: `false`
-  - Description: Set to `true` if SSH Port Tunneling is required.
-  - Type: bool
+  - Default: `no`
+  - Description: Specifies whether tun(4) device forwarding is allowed. The argument must be yes, point-to-point (layer 3), ethernet (layer 2), or no. Specifying yes permits both point-to-point and ethernet.
+  - Type: str
   - Required: no
+  - Choices:
+    - no
+    - yes
+    - point-to-point
+    - ethernet
 - `ssh_print_debian_banner`
   - Default: `false`
   - Description: Set to `true` to print debian specific banner.
