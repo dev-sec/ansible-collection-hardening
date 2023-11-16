@@ -34,21 +34,21 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - centos7
-          - centos8s
-          - centos9s
-          - rocky8
-          - rocky9
-          - fedora37
-          - fedora38
-          - ubuntu1804
-          - ubuntu2004
-          - ubuntu2204
-          - debian10
-          - debian11
-          - debian12
-          - opensuse15
-          # - arch  # needs fix for audit
+          - generic/centos7
+          - generic/centos8s
+          - generic/centos9s
+          - generic/rocky8
+          - generic/rocky9
+          - fedora/38-cloud-base
+          - fedora/39-cloud-base
+          - generic/ubuntu1804
+          - generic/ubuntu2004
+          - generic/ubuntu2204
+          - generic/debian10
+          - generic/debian11
+          - generic/debian12
+          - generic/opensuse15
+          # - generic/arch  # needs fix for audit
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

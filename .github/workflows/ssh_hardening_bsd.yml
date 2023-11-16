@@ -36,6 +36,8 @@ jobs:
         molecule_distro:
           - openbsd7
           - freebsd12
+          - freebsd13
+          - freebsd14
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

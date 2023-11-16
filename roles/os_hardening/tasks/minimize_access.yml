@@ -95,7 +95,7 @@
 
 - name: Append special devices list to valid mountpoint list
   ansible.builtin.set_fact:
-    mountpoints_list: "{{ mountpoints_list + ['/dev', '/dev/shm', '/run'] }}"
+    mountpoints_list: "{{ mountpoints_list + ['/dev', '/dev/shm', '/run', '/tmp'] }}"
 
 - name: Minimize access for filesystems
   ansible.builtin.include_tasks: minimize_access_fs.yml
