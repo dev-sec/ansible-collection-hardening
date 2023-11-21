@@ -4,7 +4,7 @@
 
 - name: Restart auditd via systemd
   ansible.builtin.systemd:
-    name: auditd
+    name: auditd.service
     state: restarted
   when:
     - molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
