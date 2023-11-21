@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
       - '.github/workflows/ssh_hardening_custom_tests.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_custom_tests/**'
       - '.github/workflows/ssh_hardening_custom_tests.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 4'
 
