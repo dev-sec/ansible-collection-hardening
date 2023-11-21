@@ -12,5 +12,7 @@
     owner: root
     group: root
     mode: "0640"
-  notify: Restart auditd
+  notify:
+    - Restart auditd via service
+    - Restart auditd via systemd
   tags: auditd
