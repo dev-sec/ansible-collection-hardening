@@ -1,7 +1,8 @@
 molecule
 molecule-plugins[docker]
 yamllint
-ansible==2.16.0
+ansible
+ansible-core==2.16.0
 ansible-lint
 docker
 flake8
