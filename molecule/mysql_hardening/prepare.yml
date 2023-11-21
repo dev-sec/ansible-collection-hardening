@@ -7,8 +7,6 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  vars:
-    mysql_replication_master: localhost
   tasks:
     - name: Use Python 3 on Debian 11
       set_fact:
