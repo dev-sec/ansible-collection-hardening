@@ -10,6 +10,7 @@
   ansible.builtin.systemd:
     name: auditd.service
     state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"
   when:
     - molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
     - not ansible_facts.os_family == 'RedHat'
