@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/nginx_hardening/**'
       - 'molecule/nginx_hardening/**'
       - '.github/workflows/nginx_hardening.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/nginx_hardening/**'
       - 'molecule/nginx_hardening/**'
       - '.github/workflows/nginx_hardening.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 1'
 
@@ -56,10 +58,10 @@ jobs:
           path: ansible_collections/devsec/hardening
           submodules: true
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install dependencies
         run: |

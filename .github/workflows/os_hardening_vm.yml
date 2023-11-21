@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 2'
 
