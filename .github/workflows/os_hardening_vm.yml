@@ -50,7 +50,7 @@ jobs:
           - generic/debian11
           - generic/debian12
           - generic/opensuse15
-          # - generic/arch  # needs fix for audit
+          - generic/arch
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4

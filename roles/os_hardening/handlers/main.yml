@@ -2,14 +2,25 @@
 - name: Update-initramfs # noqa no-changed-when
   ansible.builtin.command: update-initramfs -u
 
-- name: Restart auditd # noqa command-instead-of-module no-changed-when
-  ansible.builtin.command:
-    cmd: service auditd restart # rhel: see: https://access.redhat.com/solutions/2664811
-  when: molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
-
 - name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: true
+
+- name: Restart auditd via systemd
+  ansible.builtin.systemd:
+    name: auditd.service
+    state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"
+  when:
+    - molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
+    - not ansible_facts.os_family == 'RedHat'
+
+- name: Restart auditd via service # noqa command-instead-of-module no-changed-when
+  ansible.builtin.command:
+    cmd: service auditd restart # rhel: see: https://access.redhat.com/solutions/2664811
+  when:
+    - molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
+    - ansible_facts.os_family == 'RedHat'
 
 - name: Remount filesystems
   ansible.posix.mount:
