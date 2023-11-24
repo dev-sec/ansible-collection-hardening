@@ -1,11 +1,17 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-11-21)
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-11-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
+**Implemented enhancements:**
+
+-  Complete tests for OS hardening [\#660](https://github.com/dev-sec/ansible-collection-hardening/issues/660)
+- support restarts of audit service on Arch linux [\#722](https://github.com/dev-sec/ansible-collection-hardening/pull/722) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
+
 **Fixed bugs:**
 
+- ssh\_hardening ipv6 [\#719](https://github.com/dev-sec/ansible-collection-hardening/issues/719)
 - boolean variable inconsistency? [\#330](https://github.com/dev-sec/ansible-collection-hardening/issues/330)
 - Restore idempotency for disabling unused filesystems with Ansible 2.16.0 [\#718](https://github.com/dev-sec/ansible-collection-hardening/pull/718) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([akikanellis](https://github.com/akikanellis))
 
