@@ -31,3 +31,4 @@
     os_mnt_boot_enabled: true
     os_mnt_home_enabled: true
     os_mnt_boot_src: "/dev/vda1"
+    os_ctrlaltdel_disabled: true
