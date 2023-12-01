@@ -1,0 +1,33 @@
+---
+- name: Fetch OS dependent variables
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+    name: os_vars
+  with_first_found:
+    - files:
+        - "{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
+      skip: true
+  tags: always
+
+# we only override variables with our default if they have not been specified already.
+# by default the lookup functions finds all varnames containing the string, therefore
+# we add ^ and $ to denote start and end of string, so this returns only exact matches.
+- name: Set OS dependent variables, if not already defined by user # noqa var-naming
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  when: not lookup('varnames', '^' + item.key + '$')
+  with_dict: "{{ os_vars }}"
+  tags: always
+
+- name: Get postgres
+  ansible.builtin.command: psql -V
+  register: postgres_version_raw
+  changed_when: false
+  check_mode: false
+
+- name: Parse postgres-version
+  ansible.builtin.set_fact:
+    postgres_version: "{{ postgres_version_raw.stderr | regex_replace('^psql\\s\\(PostgreSQL)\\s(9.[3-6]|10.5).*', '\\2') }}"

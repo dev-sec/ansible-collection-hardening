@@ -1,0 +1,7 @@
+---
+# switcher to enable/disable role
+postgres_hardening_enabled: true
+
+postgres_daemon_enabled: true
+
+postgres_hardening_restart_postgres: true

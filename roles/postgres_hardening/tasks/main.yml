@@ -1,0 +1,7 @@
+---
+- name: Include hardening tasks
+  ansible.builtin.include_tasks: hardening.yml
+  args:
+    apply:
+      become: true
+  when: postgres_hardening_enabled | bool
