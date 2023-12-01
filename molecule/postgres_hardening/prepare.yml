@@ -14,4 +14,4 @@
       ignore_errors: true # noqa ignore-errors
 
     - include_role:
-        name: geerlingguy.postgres
+        name: geerlingguy.postgresql
