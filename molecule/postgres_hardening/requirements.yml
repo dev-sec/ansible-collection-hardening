@@ -1,3 +1,4 @@
 ---
 roles:
-  - geerlingguy.postgresql
+  - galaxyproject.postgresql
+

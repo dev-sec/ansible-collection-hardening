@@ -21,13 +21,3 @@
   when: not lookup('varnames', '^' + item.key + '$')
   with_dict: "{{ os_vars }}"
   tags: always
-
-- name: Get postgres
-  ansible.builtin.command: psql -V
-  register: postgres_version_raw
-  changed_when: false
-  check_mode: false
-
-- name: Parse postgres-version
-  ansible.builtin.set_fact:
-    postgres_version: "{{ postgres_version_raw.stderr | regex_replace('^psql\\s\\(PostgreSQL)\\s(9.[3-6]|10.5).*', '\\2') }}"
