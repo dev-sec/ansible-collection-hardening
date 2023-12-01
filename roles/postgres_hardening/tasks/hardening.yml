@@ -21,3 +21,49 @@
   when: not lookup('varnames', '^' + item.key + '$')
   with_dict: "{{ os_vars }}"
   tags: always
+
+#################################
+# Check Compatibility ###########
+#################################
+- name: Print the OS
+  debug:
+    var: ansible_facts.os_family
+
+- name: Only compatible OS versions
+  ansible.builtin.fail:
+    msg: "Only Ubuntu/Debian are supported"
+  when: ansible_facts.os_family not in ["Ubuntu", "Debian"]
+
+#################################
+# POSTGRES-01 ###################
+#################################
+- name: Check postgres service status
+  service:
+    name: "{{ postgres_daemon }}"
+    state: started
+
+#################################
+# POSTGRES-02 ###################
+#################################
+- name: Get postgres version
+  ansible.builtin.command: psql -V
+  register: postgres_version_raw
+  changed_when: false
+  check_mode: false
+
+- name: Print the postgres version
+  debug:
+    var: postgres_version_raw
+
+- name: Parse postgres-version
+  ansible.builtin.set_fact:
+    postgres_version: "{{ postgres_version_raw.stdout | regex_search('psql\\s\\(PostgreSQL\\)\\s(12|13|14|15|16).*', '\\1') | first }}"
+
+- name: Print the postgres version
+  debug:
+    var: postgres_version
+
+- name: Only compatible postgres versions allowed
+  ansible.builtin.fail:
+    msg: "Postgres Version is not secure or supported!"
+  when: not postgres_version or 'RC' in postgres_version_raw or 'DEVEL' in postgres_version_raw or 'BETA' in postgres_version_raw
