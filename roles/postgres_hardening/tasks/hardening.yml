@@ -26,7 +26,7 @@
 # Check Compatibility ###########
 #################################
 - name: Print the OS
-  debug:
+  ansible.builtin.debug:
     var: ansible_facts.os_family
 
 - name: Only compatible OS versions
@@ -38,7 +38,7 @@
 # POSTGRES-01 ###################
 #################################
 - name: Check postgres service status
-  service:
+  ansible.builtin.service:
     name: "{{ postgres_daemon }}"
     state: started
 
@@ -52,7 +52,7 @@
   check_mode: false
 
 - name: Print the postgres version
-  debug:
+  ansible.builtin.debug:
     var: postgres_version_raw
 
 - name: Parse postgres-version
@@ -60,7 +60,7 @@
     postgres_version: "{{ postgres_version_raw.stdout | regex_search('psql\\s\\(PostgreSQL\\)\\s(12|13|14|15|16).*', '\\1') | first }}"
 
 - name: Print the postgres version
-  debug:
+  ansible.builtin.debug:
     var: postgres_version
 
 - name: Only compatible postgres versions allowed
