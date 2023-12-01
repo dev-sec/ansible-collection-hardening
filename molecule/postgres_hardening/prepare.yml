@@ -12,6 +12,3 @@
         name: "python3-apt"
         update_cache: true
       ignore_errors: true # noqa ignore-errors
-
-    - include_role:
-        name: geerlingguy.postgresql

@@ -1,4 +1,8 @@
 ---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/postgres_hardening/requirements.yml
 driver:
   name: docker
 platforms:
