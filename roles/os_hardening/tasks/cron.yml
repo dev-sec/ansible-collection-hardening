@@ -18,6 +18,7 @@
       - crontab
     file_type: any
   register: cron_directories
+  tags: cron
 
 - name: Ensure permissions on cron files and directories are configured
   ansible.builtin.file:
@@ -26,3 +27,4 @@
     group: root
     mode: og-rwx
   with_items: "{{ cron_directories.files }}"
+  tags: cron
