@@ -9,6 +9,6 @@ jobs:
     if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/labeler@5.0.0
+      - uses: actions/labeler@v5.0.0
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
