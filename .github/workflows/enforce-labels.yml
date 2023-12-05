@@ -2,7 +2,7 @@
 name: "Enforce PR labels"
 
 on:  # yamllint disable-line rule:truthy
-  pull_request:
+  pull_request_target:
     types: [labeled, unlabeled, opened, edited, synchronize]
 jobs:
   enforce-label:
