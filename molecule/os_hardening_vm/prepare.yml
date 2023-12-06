@@ -12,6 +12,12 @@
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
+    - name: Block update of Grub, because of error
+      ansible.builtin.dpkg_selections:
+        name: grub-pc
+        selection: hold
+      when: ansible_os_family == 'Debian'
+
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
         upgrade: safe
