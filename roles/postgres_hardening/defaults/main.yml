@@ -13,3 +13,12 @@ postgres_group: postgres
 # SSL
 ssl_enabled: "on"
 ssl_ciphers: ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH
+
+# Logging
+logging_collector: "on"
+log_connections: "on"
+log_disconnections: "on"
+log_duration: "on"
+log_hostname: "on"
+log_directory: pg_log
+log_line_prefix: "%t %u %d %h"

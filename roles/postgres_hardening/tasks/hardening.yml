@@ -96,7 +96,7 @@
     mode: u=rw,g=,o=
 
 #################################
-# POSTGRES-11/12 ################
+# POSTGRES-11/12/16 #############
 #################################
 - name: Secure postgresql.conf Configuration
   ansible.builtin.lineinfile:
@@ -106,7 +106,21 @@
     state: present
   with_items:
     - line: "ssl = {{ ssl_enabled }}"
-      regexp: "#?ssl\\s?="
+      regexp: "#?ssl\\s?="    
     - line: "ssl_ciphers = '{{ ssl_ciphers }}'"
       regexp: "#?ssl_ciphers\\s?="
+    - line : "logging_collector = {{ logging_collector }}"
+      regexp: "#?logging_collector\\s?="
+    - line: "log_connections = {{ log_connections }}"
+      regexp: "#?log_connections\\s?="
+    - line: "log_disconnections = {{ log_disconnections }}"
+      regexp: "#?log_disconnections\\s?="
+    - line: "log_duration = {{ log_duration }}"
+      regexp: "#?log_duration\\s?="
+    - line: "log_hostname = {{ log_hostname }}"
+      regexp: "#?log_hostname\\s?="
+    - line: "log_directory = '{{ log_directory }}'"
+      regexp: "#?log_directory\\s?="
+    - line: "log_line_prefix = '{{ log_line_prefix }}'"
+      regexp: "#?log_line_prefix\\s?="
   notify: Restart postgres
