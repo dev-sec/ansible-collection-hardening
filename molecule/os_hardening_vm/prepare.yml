@@ -48,7 +48,7 @@
       ignore_errors: true
 
     - name: create recursing symlink to test minimize access
-      sheansible.builtin.shellll: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
+      ansible.builtin.shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
       changed_when: false
 
     - name: Unmount EFI partition to get rid of vfat filesystem (qemu has no firmware image that inspec can detect)
