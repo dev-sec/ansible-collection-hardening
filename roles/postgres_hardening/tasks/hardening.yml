@@ -68,30 +68,45 @@
     msg: "Postgres Version is not secure or supported!"
   when: not postgres_version or 'RC' in postgres_version_raw or 'DEVEL' in postgres_version_raw or 'BETA' in postgres_version_raw
 
-
 #################################
 # POSTGRES-10 ###################
 #################################
-- name: Manage permissions on /etc/postgresql/14/main
+- name: Manage permissions on /etc/postgresql/<version>/main
   ansible.builtin.file:
-    path: /etc/postgresql/14/main
+    path: "/etc/postgresql/{{ postgres_version }}/main"
     state: directory
     owner: "{{ postgres_user }}"
     group: "{{ postgres_group }}"
     mode: u=rwx,g=,o=
 
-- name: Manage permissions on /etc/postgresql/14/main/postgresql.conf
+- name: Manage permissions on /etc/postgresql/<version>/main/postgresql.conf
   ansible.builtin.file:
-    path: /etc/postgresql/14/main/postgresql.conf
+    path: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
     state: file
     owner: "{{ postgres_user }}"
     group: "{{ postgres_group }}"
     mode: u=rw,g=r,o=
 
-- name: Manage permissions on /etc/postgresql/14/main/pg_hba.conf
+- name: Manage permissions on /etc/postgresql/<version>/main/pg_hba.conf
   ansible.builtin.file:
-    path: /etc/postgresql/14/main/pg_hba.conf
+    path: "/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf"
     state: file
     owner: "{{ postgres_user }}"
     group: "{{ postgres_group }}"
     mode: u=rw,g=,o=
+
+#################################
+# POSTGRES-11/12 ################
+#################################
+- name: Secure postgresql.conf Configuration
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
+    line: "{{ item.line }}"
+    regexp: "{{ item.regexp }}"
+    state: present
+  with_items:
+    - line: "ssl = {{ ssl_enabled }}"
+      regexp: "#?ssl\\s?="
+    - line: "ssl_ciphers = '{{ ssl_ciphers }}'"
+      regexp: "#?ssl_ciphers\\s?="
+  notify: Restart postgres
