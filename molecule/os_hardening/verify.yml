@@ -67,8 +67,6 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
   tasks:
     # test if variable can be overridden
     - name: Workaround for https://github.com/ansible/ansible/issues/66304
@@ -76,8 +74,9 @@
         ansible_virtualization_type: docker
         os_env_umask: "027 #override"
 
-    - ansible.builtin.include_role:
-        name: os_hardening
+    - name: Include os_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.os_hardening
 
     - name: Verify os_env_umask
       ansible.builtin.command:

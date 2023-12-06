@@ -7,6 +7,7 @@
     - name: Install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
       ansible.builtin.raw: pkg_add python%3.10
+      changed_when: false
       when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
 
 - name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
@@ -21,10 +22,13 @@
       ansible.builtin.file:
         path: /var/run/sshd
         state: directory
+        mode: "0755"
 
     - name: Create ssh host keys # noqa ignore-errors
       ansible.builtin.command: ssh-keygen -A
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or ansible_facts.distribution == "Fedora"
-        or ansible_facts.distribution == "Amazon" or ansible_facts.os_family == "Suse"
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
+        or ansible_facts.distribution == "Fedora"
+        or ansible_facts.distribution == "Amazon"
+        or ansible_facts.os_family == "Suse"
       changed_when: false
       ignore_errors: true

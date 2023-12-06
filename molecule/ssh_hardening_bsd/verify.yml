@@ -8,6 +8,7 @@
         src: /usr/bin/which
         dest: /usr/bin/type
         state: hard
+        mode: "0770"
       when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
 
 - name: Verify
@@ -28,6 +29,7 @@
       ansible.builtin.copy:
         content: "{{ ssh_config.stdout_lines | join ('\n') }}"
         dest: "{{ molecule_ephemeral_directory }}/ssh-config"
+        mode: "0400"
       changed_when: false
 
     - name: Execute cinc-auditor tests

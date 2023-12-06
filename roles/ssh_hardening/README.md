@@ -453,10 +453,8 @@ Example playbook:
 
 ```yml
 - hosts: localhost
-  collections:
-    - devsec.hardening
   roles:
-    - ssh_hardening
+    - devsec.hardening.ssh_hardening
   vars:
     ssh_custom_options:
       - "Include /etc/ssh/ssh_config.d/*"

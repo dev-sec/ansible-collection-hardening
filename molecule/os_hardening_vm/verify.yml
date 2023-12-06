@@ -34,6 +34,7 @@
       ansible.builtin.copy:
         content: "{{ ssh_config.stdout_lines | join ('\n') }}"
         dest: "{{ molecule_ephemeral_directory }}/ssh-config"
+        mode: "0400"
       changed_when: false
 
     - name: Execute cinc-auditor tests

@@ -6,14 +6,13 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
   tasks:
     - name: Workaround for https://github.com/ansible/ansible/issues/66304
       ansible.builtin.set_fact:
         ansible_virtualization_type: docker
-    - ansible.builtin.include_role:
-        name: os_hardening
+    - name: Include os_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.os_hardening
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
@@ -73,8 +72,6 @@
 # - name: wrapper playbook for kitchen testing "ansible-os-hardening"
 #  hosts: all
 #  become: true
-#  collections:
-#    - devsec.hardening
 #  vars:
 #    os_auditd_enabled: false
 #  tasks:
@@ -89,4 +86,4 @@
 #      when: ansible_facts.os_family == 'Debian'
 #
 #    - include_role:
-#        name: os_hardening
+#        name: devsec.hardening.os_hardening

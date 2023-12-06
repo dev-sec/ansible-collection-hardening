@@ -24,5 +24,6 @@
         ansible_distribution_major_version: 7
       when: ansible_distribution == 'Amazon'
 
-    - ansible.builtin.include_role:
+    - name: Install nginx with a generic Ansible role
+      ansible.builtin.include_role:
         name: geerlingguy.nginx
