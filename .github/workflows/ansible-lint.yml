@@ -7,13 +7,17 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
     paths:
       - 'roles/**'
+      - 'molecule/**'
       - 'requirements.txt'
+      - '.github/workflows/ansible-lint.yml'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
     paths:
       - 'roles/**'
+      - 'molecule/**'
       - 'requirements.txt'
+      - '.github/workflows/ansible-lint.yml'
 
 jobs:
   ansible-lint:
