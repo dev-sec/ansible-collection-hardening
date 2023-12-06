@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
     - name: Install python, since it's not installed by default
-      ansible.builtin.raw: pacman -Sy python
+      ansible.builtin.raw: pacman --noconfirm -Sy python
       changed_when: false
       when: lookup('env', 'MOLECULE_DISTRO') == 'generic/arch'
 
