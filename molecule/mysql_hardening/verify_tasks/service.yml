@@ -10,7 +10,7 @@
   ansible.builtin.service_facts:
 
 - name: Check if MySQL is running and enabled
-  assert:
+  ansible.builtin.assert:
     that:
       - "ansible_facts.services[mysql_daemon + '.service'].state == 'running'"
       - "ansible_facts.services[mysql_daemon + '.service'].status == 'enabled'"

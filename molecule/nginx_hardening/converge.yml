@@ -1,9 +1,7 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+- name: Wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
   become: true
   hosts: all
-  collections:
-    - devsec.hardening
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
@@ -13,4 +11,4 @@
     - nginx_ppa_version: stable
   tasks:
     - include_role:
-        name: nginx_hardening
+        name: devsec.hardening.nginx_hardening

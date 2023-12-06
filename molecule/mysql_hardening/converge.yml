@@ -1,16 +1,14 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
+- name: Wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: all
   become: true
-  collections:
-    - devsec.hardening
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
-      set_fact:
+      ansible.builtin.set_fact:
         mysql_python_package_debian: "python3-pymysql"
       when:
         - mysql_python_package_debian is not defined
@@ -18,7 +16,7 @@
         - ansible_distribution_major_version|int > 19
 
     - name: Determine required MySQL Python libraries.
-      set_fact:
+      ansible.builtin.set_fact:
         mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
       when:
         - mysql_python_package_debian is not defined
@@ -26,13 +24,14 @@
         - ansible_distribution_major_version|int < 20
 
     - name: Use Python 3 on Suse
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
         - ansible_os_family == 'Suse'
 
-    - include_role:
-        name: mysql_hardening
+    - name: Include mysql_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.mysql_hardening
   vars:
     overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo

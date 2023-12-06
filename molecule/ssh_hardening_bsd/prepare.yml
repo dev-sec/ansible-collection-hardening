@@ -1,15 +1,15 @@
 ---
-- name: prepare OpenBSD host
+- name: Prepare OpenBSD host
   hosts: all
   become: true
   gather_facts: false
   tasks:
-    - name: install python
+    - name: Install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
       raw: "pkg_add python%3.10"
       when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'"
 
-- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+- name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
   become: true
   environment:
@@ -17,13 +17,13 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: created needed directory
+    - name: Created needed directory
       file:
         path: "/var/run/sshd"
         state: directory
 
-    - name: create ssh host keys  # noqa ignore-errors
-      command: "ssh-keygen -A"
+    - name: Create ssh host keys  # noqa ignore-errors
+      ansible.builtin.command: "ssh-keygen -A"
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
             ansible_facts.distribution == "Fedora" or
             ansible_facts.distribution == "Amazon" or

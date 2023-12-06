@@ -10,7 +10,7 @@
     - devsec.hardening
   tasks:
     - name: workaround for https://github.com/ansible/ansible/issues/66304
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_virtualization_type: "docker"
     - include_role:
         name: os_hardening
@@ -84,7 +84,7 @@
 #      when: ansible_facts.distribution == 'Fedora'
 #
 #    - name: Run the equivalent of "apt-get update" as a separate step
-#      apt:
+#      ansible.builtin.apt:
 #        update_cache: yes
 #      when: ansible_facts.os_family == 'Debian'
 #

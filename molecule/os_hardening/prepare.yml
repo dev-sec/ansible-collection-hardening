@@ -8,12 +8,12 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
       when: ansible_facts.distribution == 'Fedora'
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
-      apt:
+      ansible.builtin.apt:
         name: "*"
         state: latest
         update_cache: true
@@ -21,11 +21,11 @@
 
     - name: install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
-      shell: "zypper -n install python-xml awk"
+      ansible.builtin.shell: "zypper -n install python-xml awk"
       when: ansible_facts.os_family == 'Suse'
 
     - name: install required tools on fedora
-      dnf:
+      ansible.builtin.dnf:
         name:
           - python
           - findutils
@@ -41,7 +41,7 @@
       when: ansible_facts.os_family == 'Archlinux'
 
     - name: install required tools on RHEL  # noqa ignore-errors
-      yum:
+      ansible.builtin.yum:
         name:
           - openssh-clients
           - openssh
@@ -50,11 +50,11 @@
       ignore_errors: true
 
     - name: create recursing symlink to test minimize access
-      shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
+      ansible.builtin.shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
       changed_when: false
 
     - name: include YUM prepare tasks
-      include_tasks: prepare_tasks/yum.yml
+      ansible.builtin.include_tasks: prepare_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
     - name: include preparation tasks

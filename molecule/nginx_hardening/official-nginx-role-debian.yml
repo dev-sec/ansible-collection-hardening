@@ -1,5 +1,5 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
+- name: Wrapper playbook for kitchen testing "ansible-nginx-hardening" with custom settings
   hosts: localhost
   vars:
     - nginx_main_template_enable: true
