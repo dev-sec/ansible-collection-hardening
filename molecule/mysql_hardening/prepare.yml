@@ -35,19 +35,20 @@
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
-        name: "*"
-        state: latest
+        upgrade: safe
         update_cache: true
       when: ansible_os_family == 'Debian'
 
     - name: Install required python packages on Suse
       ansible.builtin.command: zypper -n install python-xml python3-rpm python3-PyMySQL
+      changed_when: false
       when: ansible_os_family == 'Suse'
 
     - name: Create missing directory
       ansible.builtin.file:
         path: /etc/mysql/conf.d
         state: directory
+        mode: "0770"
 
     - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
       ansible.builtin.set_fact:
@@ -72,7 +73,8 @@
         - ansible_os_family == "RedHat"
         - ansible_distribution_major_version == "7"
 
-    - ansible.builtin.include_role:
+    - name: Install mysql with a generic Ansible role
+      ansible.builtin.include_role:
         name: dev-sec.mysql
 
     - name: Include MySQL user prepare tasks

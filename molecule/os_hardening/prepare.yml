@@ -14,14 +14,14 @@
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
-        name: "*"
-        state: latest
+        upgrade: safe
         update_cache: true
       when: ansible_os_family == 'Debian'
 
     - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
       ansible.builtin.command: zypper -n install python-xml awk
+      changed_when: false
       when: ansible_facts.os_family == 'Suse'
 
     - name: Install required tools on fedora

@@ -7,8 +7,9 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   vars:
-    - nginx_ppa_use: true
-    - nginx_ppa_version: stable
+    nginx_ppa_use: true
+    nginx_ppa_version: stable
   tasks:
-    - ansible.builtin.include_role:
+    - name: Include nginx_hardening role
+      ansible.builtin.include_role:
         name: devsec.hardening.nginx_hardening

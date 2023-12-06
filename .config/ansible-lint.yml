@@ -18,3 +18,4 @@ mock_roles:
 
 skip_list:
   - var-naming[no-role-prefix]
+  - meta-runtime[unsupported-version]

@@ -44,6 +44,7 @@
     - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
       ansible.builtin.command: zypper -n install python-xml
+      changed_when: false
       when: ansible_facts.os_family == 'Suse'
 
     - name: Install packages
@@ -65,10 +66,13 @@
       ansible.builtin.file:
         path: /var/run/sshd
         state: directory
+        mode: "0755"
 
     - name: Create ssh host keys # noqa ignore-errors
       ansible.builtin.command: ssh-keygen -A
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or ansible_facts.distribution == "Fedora"
-        or ansible_facts.distribution == "Amazon" or ansible_facts.os_family == "Suse"
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
+        or ansible_facts.distribution == "Fedora"
+        or ansible_facts.distribution == "Amazon"
+        or ansible_facts.os_family == "Suse"
       changed_when: false
       ignore_errors: true

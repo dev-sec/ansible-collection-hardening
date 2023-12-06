@@ -933,8 +933,6 @@ If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip f
 
 ```yaml
 - hosts: localhost
-  collections:
-    - devsec.hardening
   roles:
     - devsec.hardening.os_hardening
   vars:
@@ -961,8 +959,6 @@ We are setting this sysctl to a default of `32`, some systems only support small
 
 ```yaml
 - hosts: localhost
-  collections:
-    - devsec.hardening
   roles:
     - devsec.hardening.os_hardening
   vars:
@@ -984,10 +980,8 @@ So for example if you want to change the IPv4 traffic forwarding variable to `1`
 
 ```yaml
 - hosts: localhost
-  collections:
-    - devsec.hardening
   roles:
-    - os_hardening
+    - devsec.hardening.os_hardening
   vars:
     sysctl_overwrite:
       # Enable IPv4 traffic forwarding.
