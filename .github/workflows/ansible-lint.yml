@@ -24,5 +24,3 @@ jobs:
 
       - name: Lint Ansible Playbook
         uses: ansible/ansible-lint@v6
-        with:
-          path: "roles/"
