@@ -106,10 +106,10 @@
     state: present
   with_items:
     - line: "ssl = {{ ssl_enabled }}"
-      regexp: "#?ssl\\s?="    
+      regexp: "#?ssl\\s?="
     - line: "ssl_ciphers = '{{ ssl_ciphers }}'"
       regexp: "#?ssl_ciphers\\s?="
-    - line : "logging_collector = {{ logging_collector }}"
+    - line: "logging_collector = {{ logging_collector }}"
       regexp: "#?logging_collector\\s?="
     - line: "log_connections = {{ log_connections }}"
       regexp: "#?log_connections\\s?="
@@ -124,3 +124,22 @@
     - line: "log_line_prefix = '{{ log_line_prefix }}'"
       regexp: "#?log_line_prefix\\s?="
   notify: Restart postgres
+
+#################################
+# POSTGRES-20 ###################
+#################################
+- name: Manage permissions on /var/lib/postgresql/<version>/main
+  ansible.builtin.file:
+    path: "/var/lib/postgresql/{{ postgres_version }}/main"
+    state: directory
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rwx,g=,o=
+
+- name: Manage permissions on /var/log/postgresql
+  ansible.builtin.file:
+    path: /var/log/postgresql
+    state: directory
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rwx,g=,o=
