@@ -44,6 +44,12 @@
       changed_when: false
       when: ansible_os_family == 'Suse'
 
+    - name: Create missing directory
+      ansible.builtin.file:
+        path: /etc/mysql
+        state: directory
+        mode: "0755"
+
     - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
       ansible.builtin.set_fact:
         mysql_python_package_debian: python3-pymysql
