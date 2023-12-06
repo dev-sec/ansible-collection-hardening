@@ -87,14 +87,6 @@
     group: "{{ postgres_group }}"
     mode: u=rw,g=r,o=
 
-- name: Manage permissions on /etc/postgresql/<version>/main/pg_hba.conf
-  ansible.builtin.file:
-    path: "/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf"
-    state: file
-    owner: "{{ postgres_user }}"
-    group: "{{ postgres_group }}"
-    mode: u=rw,g=,o=
-
 #################################
 # POSTGRES-11/12/16 #############
 #################################
@@ -123,6 +115,18 @@
       regexp: "#?log_directory\\s?="
     - line: "log_line_prefix = '{{ log_line_prefix }}'"
       regexp: "#?log_line_prefix\\s?="
+  notify: Restart postgres
+
+#################################
+# POSTGRES-13/14/15 #############
+#################################
+- name: Secure pg_hba.conf Configuration
+  ansible.builtin.template:
+    src: templates/pg_hba.conf
+    dest: /etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rw,g=,o=
   notify: Restart postgres
 
 #################################
