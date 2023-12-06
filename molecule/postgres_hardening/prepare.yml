@@ -6,6 +6,8 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  vars_files:
+    - geerlingguy_postgresql_vars.yml
   tasks:
     - name: install required packages
       package:
@@ -14,4 +16,4 @@
       ignore_errors: true # noqa ignore-errors
 
     - include_role:
-        name: galaxyproject.postgresql
+        name: geerlingguy.postgresql

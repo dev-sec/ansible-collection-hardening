@@ -1,4 +1,7 @@
 ---
-roles:
-  - galaxyproject.postgresql
+collections:
+  - community.postgresql
+
+roles:  
+  - geerlingguy.postgresql
 

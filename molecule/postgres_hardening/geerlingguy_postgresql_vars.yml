@@ -1,0 +1,5 @@
+postgresql_databases:
+  - name: example_db
+postgresql_users:
+  - name: postgres
+    password: iloverandompasswordsbutthiswilldo
