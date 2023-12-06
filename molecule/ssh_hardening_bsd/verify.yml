@@ -3,7 +3,7 @@
   hosts: all
   become: true
   tasks:
-    - name: use the type command instead of which to detect existing commands
+    - name: Use the type command instead of which to detect existing commands
       file:
         src: "/usr/bin/which"
         dest: "/usr/bin/type"
@@ -17,21 +17,21 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: get ssh-config
-      command: 
+    - name: Get ssh-config
+      ansible.builtin.command: 
         cmd: "vagrant ssh-config"
         chdir: "{{ molecule_ephemeral_directory }}"
       register: ssh_config
       changed_when: false
 
-    - name: create ssh-config file
+    - name: Create ssh-config file
       copy:
         content: "{{ ssh_config.stdout_lines | join ('\n') }}"
         dest: "{{ molecule_ephemeral_directory }}/ssh-config"
       changed_when: false
 
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
         --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
@@ -46,10 +46,10 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
+      ansible.builtin.fail:
         msg: "Inspec failed to validate"
       when: test_results.rc != 0

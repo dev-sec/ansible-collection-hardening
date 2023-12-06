@@ -10,14 +10,14 @@
     - devsec.hardening
   tasks:
     - name: override for arch
-      set_fact: 
+      ansible.builtin.set_fact: 
         os_mnt_boot_enabled: false
         os_mnt_tmp_enabled: true
         os_mnt_tmp_src: "tmpfs"
         os_mnt_tmp_filesystem: "tmpfs"
       when: ansible_facts.os_family == 'Archlinux'
     - name: overrides for Fedora image
-      set_fact: 
+      ansible.builtin.set_fact: 
         os_mnt_tmp_enabled: true
         os_mnt_tmp_src: "tmpfs"
         os_mnt_tmp_filesystem: "tmpfs"

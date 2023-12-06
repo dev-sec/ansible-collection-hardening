@@ -20,7 +20,7 @@
       ignore_errors: true  # noqa ignore-errors
 
     - name: Set correct distribution Version for Amazon Linux
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_distribution_major_version: 7
       when: ansible_distribution == 'Amazon'
 

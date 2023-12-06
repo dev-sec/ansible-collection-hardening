@@ -1,5 +1,5 @@
 ---
-- name: create users for test
+- name: Create users for test
   community.mysql.mysql_query:
     query:
       - "CREATE USER 'user'@'delete';"
@@ -23,10 +23,10 @@
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_role_support
 
-- name: create roles for test
+- name: Create roles for test
   community.mysql.mysql_query:
     query:
-       - "CREATE ROLE 'role_keep';"
+      - "CREATE ROLE 'role_keep';"
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when:
     - mysql_role_support.rowcount[0] > 0

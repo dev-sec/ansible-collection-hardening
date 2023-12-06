@@ -3,6 +3,6 @@
     database: passwd
 
 - name: Check that shell_sys_acc's shell is still bash
-  assert:
+  asansible.builtin.assertsert:
     that:
       - getent_passwd['shell_sys_acc'][5] == "/bin/bash"

@@ -89,7 +89,8 @@ jobs:
       - name: Temporary fix for roles
         run: |
           mkdir -p /home/runner/.ansible
-          ln -s /home/runner/work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections/devsec/hardening/roles /home/runner/.ansible/roles
+          ln -s /home/runner/work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections/devsec/hardening/roles \
+            /home/runner/.ansible/roles
 
       - name: Test with molecule
         run: |

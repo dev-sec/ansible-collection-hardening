@@ -1,5 +1,5 @@
 ---
-- name: create 'foo' repository
+- name: Create 'foo' repository
   ansible.builtin.yum_repository:
     name: foo
     description: mandatory description
@@ -7,7 +7,7 @@
     enabled: false
     gpgcheck: false
 
-- name: create 'bar' repository
+- name: Create 'bar' repository
   ansible.builtin.yum_repository:
     name: bar
     description: mandatory description

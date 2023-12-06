@@ -7,12 +7,12 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: set ansible_python_interpreter to "/usr/bin/python3"
-      set_fact:
+    - name: Set ansible_python_interpreter to "/usr/bin/python3"
+      ansible.builtin.set_fact:
         ansible_python_interpreter: "/usr/bin/python3"
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: include verification tasks
+    - name: Include verification tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
       loop: 
@@ -22,12 +22,12 @@
         - verify_tasks/ignore_home_folders.yml
 
 # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
-#    - name: include PAM tests
-#      include_tasks: verify_tasks/pam.yml
+#    - name: Include PAM tests
+#      ansible.builtin.include_tasks: verify_tasks/pam.yml
 #      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
-    - name: include YUM tests
-      include_tasks: verify_tasks/yum.yml
+    - name: Include YUM tests
+      ansible.builtin.include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
 - name: Verify
@@ -38,7 +38,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
         --volume {{ playbook_dir }}/waivers.yaml:/waivers.yaml
@@ -52,11 +52,11 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
+      ansible.builtin.fail:
         msg: "Inspec failed to validate"
       when: test_results.rc != 0
 
@@ -72,7 +72,7 @@
   tasks:
     # test if variable can be overridden
     - name: workaround for https://github.com/ansible/ansible/issues/66304
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_virtualization_type: "docker"
         os_env_umask: "027 #override"
 
@@ -80,6 +80,6 @@
         name: os_hardening
 
     - name: verify os_env_umask
-      shell:
+      ansible.builtin.shell:
         cmd: "grep '027 #override' /etc/login.defs"
       changed_when: false

@@ -1,5 +1,5 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+- name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
   become: true
   environment:
@@ -7,13 +7,13 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: use python3
-      set_fact:
+    - name: Use python3
+      ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: install packages  # noqa ignore-errors
-      yum:
+    - name: Install packages  # noqa ignore-errors
+      ansible.builtin.yum:
         name:
           - openssh-clients
           - openssh-server
@@ -22,8 +22,8 @@
         update_cache: true
       ignore_errors: true
 
-    - name: install packages  # noqa ignore-errors
-      dnf:
+    - name: Install packages  # noqa ignore-errors
+      ansible.builtin.dnf:
         name:
           - openssh-clients
           - openssh-server
@@ -32,8 +32,8 @@
         update_cache: true
       ignore_errors: true
 
-    - name: install packages  # noqa ignore-errors
-      apt:
+    - name: Install packages  # noqa ignore-errors
+      ansible.builtin.apt:
         name:
           - openssh-client
           - openssh-server
@@ -41,18 +41,18 @@
         update_cache: true
       ignore_errors: true
 
-    - name: install required tools on SuSE
+    - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
-      shell: "zypper -n install python-xml"
+      ansible.builtin.shell: "zypper -n install python-xml"
       when: ansible_facts.os_family == 'Suse'
 
-    - name: install packages
+    - name: Install packages
       zypper:
         name:
           - "openssh"
       when: ansible_facts.os_family == 'Suse'
 
-    - name: install required tools on Arch
+    - name: Install required tools on Arch
       pacman:
         name:
           - openssh
@@ -61,13 +61,13 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: created needed directory
+    - name: Created needed directory
       file:
         path: "/var/run/sshd"
         state: directory
 
-    - name: create ssh host keys  # noqa ignore-errors
-      command: "ssh-keygen -A"
+    - name: Create ssh host keys  # noqa ignore-errors
+      ansible.builtin.command: "ssh-keygen -A"
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
             ansible_facts.distribution == "Fedora" or
             ansible_facts.distribution == "Amazon" or

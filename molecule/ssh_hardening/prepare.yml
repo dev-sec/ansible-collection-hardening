@@ -8,12 +8,12 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: use python3
-      set_fact:
+      ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
     - name: install packages  # noqa ignore-errors
-      yum:
+      ansible.builtin.yum:
         name:
           - openssh-clients
           - openssh-server
@@ -23,7 +23,7 @@
       ignore_errors: true
 
     - name: install packages  # noqa ignore-errors
-      dnf:
+      ansible.builtin.dnf:
         name:
           - openssh-clients
           - openssh-server
@@ -33,7 +33,7 @@
       ignore_errors: true
 
     - name: install packages  # noqa ignore-errors
-      apt:
+      ansible.builtin.apt:
         name:
           - openssh-client
           - openssh-server
@@ -43,7 +43,7 @@
 
     - name: install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
-      shell: "zypper -n install python-xml"
+      ansible.builtin.shell: "zypper -n install python-xml"
       when: ansible_facts.os_family == 'Suse'
 
     - name: install packages
@@ -67,7 +67,7 @@
         state: directory
 
     - name: create ssh host keys  # noqa ignore-errors
-      command: "ssh-keygen -A"
+      ansible.builtin.command: "ssh-keygen -A"
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
             ansible_facts.distribution == "Fedora" or
             ansible_facts.distribution == "Amazon" or
