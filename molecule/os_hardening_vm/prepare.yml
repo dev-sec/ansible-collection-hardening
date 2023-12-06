@@ -7,7 +7,7 @@
     - name: Install python, since it's not installed by default
       ansible.builtin.raw: pacman -Sy python
       changed_when: false
-      when: ansible_facts.os_family == 'Archlinux'
+      when: lookup('env', 'MOLECULE_DISTRO') == 'generic/arch'
 
 - name: Wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
   hosts: all
