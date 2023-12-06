@@ -20,11 +20,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Important: This sets up your GITHUB_WORKSPACE environment variable
       - uses: actions/checkout@v4
 
       - name: Lint Ansible Playbook
-        # replace "master" with any valid ref
-        uses: ansible/ansible-lint-action@main
+        uses: ansible/ansible-lint@v6
         with:
           path: "roles/"
