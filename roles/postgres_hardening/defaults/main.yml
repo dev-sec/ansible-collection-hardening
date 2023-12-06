@@ -5,3 +5,7 @@ postgres_hardening_enabled: true
 postgres_daemon_enabled: true
 
 postgres_hardening_restart_postgres: true
+
+# Postgres user/group
+postgres_user: postgres
+postgres_group: postgres

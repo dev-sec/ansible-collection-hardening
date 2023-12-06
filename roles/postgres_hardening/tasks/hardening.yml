@@ -76,22 +76,22 @@
   ansible.builtin.file:
     path: /etc/postgresql/14/main
     state: directory
-    owner: postgres
-    group: postgres
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
     mode: u=rwx,g=,o=
 
 - name: Manage permissions on /etc/postgresql/14/main/postgresql.conf
   ansible.builtin.file:
     path: /etc/postgresql/14/main/postgresql.conf
     state: file
-    owner: postgres
-    group: postgres
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
     mode: u=rw,g=r,o=
 
 - name: Manage permissions on /etc/postgresql/14/main/pg_hba.conf
   ansible.builtin.file:
     path: /etc/postgresql/14/main/pg_hba.conf
     state: file
-    owner: postgres
-    group: postgres
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
     mode: u=rw,g=,o=
