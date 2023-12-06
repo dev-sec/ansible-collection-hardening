@@ -1,5 +1,5 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
+- name: Wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
   hosts: all
   become: true
   environment:
@@ -7,9 +7,9 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: set ansible_python_interpreter to "/usr/bin/python3" on fedora
+    - name: Set ansible_python_interpreter to "/usr/bin/python3" on fedora
       ansible.builtin.set_fact:
-        ansible_python_interpreter: "/usr/bin/python3"
+        ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
@@ -19,12 +19,12 @@
         update_cache: true
       when: ansible_os_family == 'Debian'
 
-    - name: install required tools on SuSE
+    - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
-      ansible.builtin.shell: "zypper -n install python-xml awk"
+      ansible.builtin.command: zypper -n install python-xml awk
       when: ansible_facts.os_family == 'Suse'
 
-    - name: install required tools on fedora
+    - name: Install required tools on fedora
       ansible.builtin.dnf:
         name:
           - python
@@ -32,7 +32,7 @@
           - procps-ng
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: install required tools on Arch
+    - name: Install required tools on Arch
       community.general.pacman:
         name:
           - awk
@@ -40,7 +40,7 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: install required tools on RHEL  # noqa ignore-errors
+    - name: Install required tools on RHEL # noqa ignore-errors
       ansible.builtin.yum:
         name:
           - openssh-clients
@@ -49,15 +49,15 @@
         update_cache: true
       ignore_errors: true
 
-    - name: create recursing symlink to test minimize access
-      ansible.builtin.shell: "rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz"
+    - name: Create recursing symlink to test minimize access
+      ansible.builtin.shell: rm -f /usr/bin/zzz && ln -s /usr/bin /usr/bin/zzz
       changed_when: false
 
-    - name: include YUM prepare tasks
+    - name: Include YUM prepare tasks
       ansible.builtin.include_tasks: prepare_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
-    - name: include preparation tasks
+    - name: Include preparation tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
       loop:

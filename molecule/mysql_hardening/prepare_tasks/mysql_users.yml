@@ -2,16 +2,16 @@
 - name: Create users for test
   community.mysql.mysql_query:
     query:
-      - "CREATE USER 'user'@'delete';"
-      - "CREATE USER 'user'@'127.0.0.1';"
-      - "CREATE USER 'user'@'::1';"
-      - "CREATE USER 'user'@'%';"
-      - "CREATE USER 'user'@'192.168.0.%';"
-      - "CREATE USER 'user'@'192.168.0.1';"
-      - "CREATE USER    '%'@'192.168.0.1';"
-      - "CREATE USER 'user'@'192.168.0.2' IDENTIFIED BY 'keep';"
-      - "CREATE USER 'user'@'keep' IDENTIFIED BY 'keep';"
-      - "CREATE USER 'user'@'192.168.%' IDENTIFIED BY 'keep';"
+      - CREATE USER 'user'@'delete';
+      - CREATE USER 'user'@'127.0.0.1';
+      - CREATE USER 'user'@'::1';
+      - CREATE USER 'user'@'%';
+      - CREATE USER 'user'@'192.168.0.%';
+      - CREATE USER 'user'@'192.168.0.1';
+      - CREATE USER    '%'@'192.168.0.1';
+      - CREATE USER 'user'@'192.168.0.2' IDENTIFIED BY 'keep';
+      - CREATE USER 'user'@'keep' IDENTIFIED BY 'keep';
+      - CREATE USER 'user'@'192.168.%' IDENTIFIED BY 'keep';
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
 
 - name: Detect role support on MySQL
@@ -26,7 +26,7 @@
 - name: Create roles for test
   community.mysql.mysql_query:
     query:
-      - "CREATE ROLE 'role_keep';"
+      - CREATE ROLE 'role_keep';
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when:
     - mysql_role_support.rowcount[0] > 0

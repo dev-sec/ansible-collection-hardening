@@ -6,7 +6,7 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - include_role:
+    - ansible.builtin.include_role:
         name: devsec.hardening.ssh_hardening
   vars:
     sftp_enabled: false

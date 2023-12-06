@@ -9,22 +9,22 @@
   tasks:
     - name: Set ansible_python_interpreter to "/usr/bin/python3"
       ansible.builtin.set_fact:
-        ansible_python_interpreter: "/usr/bin/python3"
+        ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
     - name: Include verification tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
-      loop: 
+      loop:
         - verify_tasks/sys_account_shell.yml
         - verify_tasks/pw_ageing.yml
         - verify_tasks/netrc.yml
         - verify_tasks/ignore_home_folders.yml
 
-# temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
-#    - name: Include PAM tests
-#      ansible.builtin.include_tasks: verify_tasks/pam.yml
-#      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+    # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
+    #    - name: Include PAM tests
+    #      ansible.builtin.include_tasks: verify_tasks/pam.yml
+    #      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: Include YUM tests
       ansible.builtin.include_tasks: verify_tasks/yum.yml
@@ -57,7 +57,7 @@
 
     - name: Fail when tests fail
       ansible.builtin.fail:
-        msg: "Inspec failed to validate"
+        msg: Inspec failed to validate
       when: test_results.rc != 0
 
 - name: Verify
@@ -71,15 +71,15 @@
     - devsec.hardening
   tasks:
     # test if variable can be overridden
-    - name: workaround for https://github.com/ansible/ansible/issues/66304
+    - name: Workaround for https://github.com/ansible/ansible/issues/66304
       ansible.builtin.set_fact:
-        ansible_virtualization_type: "docker"
+        ansible_virtualization_type: docker
         os_env_umask: "027 #override"
 
-    - include_role:
+    - ansible.builtin.include_role:
         name: os_hardening
 
-    - name: verify os_env_umask
-      ansible.builtin.shell:
+    - name: Verify os_env_umask
+      ansible.builtin.command:
         cmd: "grep '027 #override' /etc/login.defs"
       changed_when: false

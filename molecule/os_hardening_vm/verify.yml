@@ -7,11 +7,10 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-
-# temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
-#    - name: Include PAM tests
-#      ansible.builtin.include_tasks: verify_tasks/pam.yml
-#      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+    # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
+    #    - name: Include PAM tests
+    #      ansible.builtin.include_tasks: verify_tasks/pam.yml
+    #      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
     - name: Include YUM tests
       ansible.builtin.include_tasks: verify_tasks/yum.yml
@@ -26,13 +25,13 @@
   tasks:
     - name: Get ssh-config
       ansible.builtin.command:
-        cmd: "vagrant ssh-config"
+        cmd: vagrant ssh-config
         chdir: "{{ molecule_ephemeral_directory }}"
       register: ssh_config
       changed_when: false
 
     - name: Create ssh-config file
-      copy:
+      ansible.builtin.copy:
         content: "{{ ssh_config.stdout_lines | join ('\n') }}"
         dest: "{{ molecule_ephemeral_directory }}/ssh-config"
       changed_when: false
@@ -56,5 +55,5 @@
 
     - name: Fail when tests fail
       ansible.builtin.fail:
-        msg: "Inspec failed to validate"
+        msg: Inspec failed to validate
       when: test_results.rc != 0
