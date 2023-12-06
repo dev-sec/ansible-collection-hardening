@@ -1,5 +1,5 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
+- name: Wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
   hosts: all
   become: true
   environment:
@@ -9,25 +9,25 @@
   collections:
     - devsec.hardening
   tasks:
-    - name: override for arch
-      ansible.builtin.set_fact: 
+    - name: Override for arch
+      ansible.builtin.set_fact:
         os_mnt_boot_enabled: false
         os_mnt_tmp_enabled: true
-        os_mnt_tmp_src: "tmpfs"
-        os_mnt_tmp_filesystem: "tmpfs"
+        os_mnt_tmp_src: tmpfs
+        os_mnt_tmp_filesystem: tmpfs
       when: ansible_facts.os_family == 'Archlinux'
-    - name: overrides for Fedora image
-      ansible.builtin.set_fact: 
+    - name: Overrides for Fedora image
+      ansible.builtin.set_fact:
         os_mnt_tmp_enabled: true
-        os_mnt_tmp_src: "tmpfs"
-        os_mnt_tmp_filesystem: "tmpfs"
+        os_mnt_tmp_src: tmpfs
+        os_mnt_tmp_filesystem: tmpfs
       when: ansible_facts.distribution == 'Fedora'
-    - include_role:
+    - ansible.builtin.include_role:
         name: os_hardening
   vars:
     os_auth_pam_passwdqc_enable: false
     os_auth_lockout_time: 15
-    os_yum_repo_file_whitelist: ['foo.repo']
+    os_yum_repo_file_whitelist: [foo.repo]
     os_mnt_boot_enabled: true
     os_mnt_home_enabled: true
-    os_mnt_boot_src: "/dev/vda1"
+    os_mnt_boot_src: /dev/vda1

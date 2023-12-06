@@ -10,5 +10,5 @@
     - nginx_ppa_use: true
     - nginx_ppa_version: stable
   tasks:
-    - include_role:
+    - ansible.builtin.include_role:
         name: devsec.hardening.nginx_hardening

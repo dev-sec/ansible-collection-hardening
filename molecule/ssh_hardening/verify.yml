@@ -24,5 +24,5 @@
 
     - name: Fail when tests fail
       ansible.builtin.fail:
-        msg: "Inspec failed to validate"
+        msg: Inspec failed to validate
       when: test_results.rc != 0

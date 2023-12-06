@@ -9,7 +9,7 @@
   tasks:
     - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
       ansible.builtin.set_fact:
-        mysql_python_package_debian: "python3-pymysql"
+        mysql_python_package_debian: python3-pymysql
       when:
         - mysql_python_package_debian is not defined
         - ansible_distribution == "Ubuntu"
@@ -17,7 +17,7 @@
 
     - name: Determine required MySQL Python libraries.
       ansible.builtin.set_fact:
-        mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
+        mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter | default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
       when:
         - mysql_python_package_debian is not defined
         - ansible_distribution != "Ubuntu"

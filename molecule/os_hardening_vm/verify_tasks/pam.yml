@@ -13,11 +13,11 @@
 
 - name: set password for test
   ansible.builtin.set_fact:
-    test_pw: "myTest!pw"
+    test_pw: myTest!pw
 
 - name: set locale for test
   ansible.builtin.set_fact:
-    locale: "en_US.UTF-8"
+    locale: en_US.UTF-8
   when:
     - ansible_facts.os_family == 'RedHat'
     - ansible_facts.distribution_major_version < '8'
@@ -29,7 +29,7 @@
 
 - name: check successful login with correct password
   ansible.builtin.shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: pam-tester --user testuser --password {{ test_pw }}
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -37,7 +37,7 @@
 
 - name: check unsuccessful login with incorrect password
   ansible.builtin.shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}fail --expectfail"
+    cmd: pam-tester --user testuser --password {{ test_pw }}fail --expectfail
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -46,7 +46,7 @@
 
 - name: check unsuccessful login, with correct password (lockout)
   ansible.builtin.shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }} --expectfail"
+    cmd: pam-tester --user testuser --password {{ test_pw }} --expectfail
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"
@@ -58,7 +58,7 @@
 
 - name: check successful login
   ansible.builtin.shell:
-    cmd: "pam-tester --user testuser --password {{ test_pw }}"
+    cmd: pam-tester --user testuser --password {{ test_pw }}
   environment:
     TMPDIR: /var/tmp
     LC_ALL: "{{ locale | default('C.UTF-8') }}"

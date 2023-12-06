@@ -6,8 +6,8 @@
   tasks:
     - name: Install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
-      raw: "pkg_add python%3.10"
-      when: "lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'"
+      ansible.builtin.raw: pkg_add python%3.10
+      when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
 
 - name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
@@ -18,15 +18,13 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Created needed directory
-      file:
-        path: "/var/run/sshd"
+      ansible.builtin.file:
+        path: /var/run/sshd
         state: directory
 
-    - name: Create ssh host keys  # noqa ignore-errors
-      ansible.builtin.command: "ssh-keygen -A"
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or
-            ansible_facts.distribution == "Fedora" or
-            ansible_facts.distribution == "Amazon" or
-            ansible_facts.os_family == "Suse"
+    - name: Create ssh host keys # noqa ignore-errors
+      ansible.builtin.command: ssh-keygen -A
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7') or ansible_facts.distribution == "Fedora"
+        or ansible_facts.distribution == "Amazon" or ansible_facts.os_family == "Suse"
       changed_when: false
       ignore_errors: true
