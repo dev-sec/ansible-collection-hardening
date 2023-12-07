@@ -1,11 +1,12 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-11-24)
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-07)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
 **Implemented enhancements:**
 
+- Extend ansible-lint testing to cover our test cases [\#731](https://github.com/dev-sec/ansible-collection-hardening/issues/731)
 -  Complete tests for OS hardening [\#660](https://github.com/dev-sec/ansible-collection-hardening/issues/660)
 - support restarts of audit service on Arch linux [\#722](https://github.com/dev-sec/ansible-collection-hardening/pull/722) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
@@ -17,6 +18,8 @@
 
 **Merged pull requests:**
 
+- Update ansible-lint action and revise configuration to scan all Ansible code [\#732](https://github.com/dev-sec/ansible-collection-hardening/pull/732) ([schurzi](https://github.com/schurzi))
+- update labeler to new config format [\#730](https://github.com/dev-sec/ansible-collection-hardening/pull/730) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - pin Ansible to always let Renovate update to the most current version in our tests [\#721](https://github.com/dev-sec/ansible-collection-hardening/pull/721) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 ## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-11-16)
@@ -50,7 +53,6 @@
 
 **Closed issues:**
 
-- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 - Add send-to-mailinglist to github release action [\#434](https://github.com/dev-sec/ansible-collection-hardening/issues/434)
 
 **Merged pull requests:**
