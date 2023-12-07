@@ -1,22 +1,30 @@
 ---
 mysql_hardening:
-  - 'roles/mysql_hardening/**'
-  - 'molecule/mysql_hardening/**'
-  - '.github/workflows/mysql_hardening.yml'
+- changed-files: 
+  - any-glob-to-any-file:
+    - 'roles/mysql_hardening/**'
+    - 'molecule/mysql_hardening/**'
+    - '.github/workflows/mysql_hardening.yml'
 
 os_hardening:
-  - 'roles/os_hardening/**'
-  - 'molecule/os_hardening/**'
-  - '.github/workflows/os_hardening.yml'
+- changed-files: 
+  - any-glob-to-any-file:
+    - 'roles/os_hardening/**'
+    - 'molecule/os_hardening/**'
+    - '.github/workflows/os_hardening.yml'
 
 ssh_hardening:
-  - 'roles/ssh_hardening/**'
-  - 'molecule/ssh_hardening/**'
-  - 'molecule/ssh_hardening_custom_tests/**'
-  - '.github/workflows/ssh_hardening.yml'
-  - '.github/workflows/ssh_hardening_custom_tests.yml'
+- changed-files: 
+  - any-glob-to-any-file:
+    - 'roles/ssh_hardening/**'
+    - 'molecule/ssh_hardening/**'
+    - 'molecule/ssh_hardening_custom_tests/**'
+    - '.github/workflows/ssh_hardening.yml'
+    - '.github/workflows/ssh_hardening_custom_tests.yml'
 
 nginx_hardening:
-  - 'roles/nginx_hardening/**'
-  - 'molecule/nginx_hardening/**'
-  - '.github/workflows/nginx_hardening.yml'
+- changed-files: 
+  - any-glob-to-any-file:
+    - 'roles/nginx_hardening/**'
+    - 'molecule/nginx_hardening/**'
+    - '.github/workflows/nginx_hardening.yml'
