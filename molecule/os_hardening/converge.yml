@@ -1,19 +1,18 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
+- name: Wrapper playbook for kitchen testing "ansible-os-hardening" with custom vars for testing
   hosts: all
   become: true
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
   tasks:
-    - name: workaround for https://github.com/ansible/ansible/issues/66304
-      set_fact:
-        ansible_virtualization_type: "docker"
-    - include_role:
-        name: os_hardening
+    - name: Workaround for https://github.com/ansible/ansible/issues/66304
+      ansible.builtin.set_fact:
+        ansible_virtualization_type: docker
+    - name: Include os_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.os_hardening
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
@@ -22,17 +21,17 @@
     os_auth_pam_passwdqc_enable: false
     os_auth_lockout_time: 15
     os_desktop_enable: true
-    os_env_extra_user_paths: ['/home']
+    os_env_extra_user_paths: [/home]
     os_auth_allow_homeless: true
-    os_security_suid_sgid_blacklist: ['/bin/umount']
-    os_security_suid_sgid_whitelist: ['/usr/bin/rlogin']
+    os_security_suid_sgid_blacklist: [/bin/umount]
+    os_security_suid_sgid_whitelist: [/usr/bin/rlogin]
     os_filesystem_whitelist: []
-    os_yum_repo_file_whitelist: ['foo.repo']
-    os_users_without_password_ageing: ['pw_no_ageing']
+    os_yum_repo_file_whitelist: [foo.repo]
+    os_users_without_password_ageing: [pw_no_ageing]
     os_auth_pw_warn_age: 7
     os_netrc_enabled: false
-    os_ignore_users: ["shell_sys_acc"]
-    os_ignore_home_folder_users: ["user_with_777_home"]
+    os_ignore_users: [shell_sys_acc]
+    os_ignore_home_folder_users: [user_with_777_home]
     sysctl_config:
       net.ipv4.ip_forward: 0
       net.ipv6.conf.all.forwarding: 0
@@ -73,8 +72,6 @@
 # - name: wrapper playbook for kitchen testing "ansible-os-hardening"
 #  hosts: all
 #  become: true
-#  collections:
-#    - devsec.hardening
 #  vars:
 #    os_auditd_enabled: false
 #  tasks:
@@ -84,9 +81,9 @@
 #      when: ansible_facts.distribution == 'Fedora'
 #
 #    - name: Run the equivalent of "apt-get update" as a separate step
-#      apt:
+#      ansible.builtin.apt:
 #        update_cache: yes
 #      when: ansible_facts.os_family == 'Debian'
 #
 #    - include_role:
-#        name: os_hardening
+#        name: devsec.hardening.os_hardening

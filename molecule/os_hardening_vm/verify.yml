@@ -7,14 +7,13 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
+    # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
+    #    - name: Include PAM tests
+    #      ansible.builtin.include_tasks: verify_tasks/pam.yml
+    #      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
-# temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
-#    - name: include PAM tests
-#      include_tasks: verify_tasks/pam.yml
-#      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
-
-    - name: include YUM tests
-      include_tasks: verify_tasks/yum.yml
+    - name: Include YUM tests
+      ansible.builtin.include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
 - name: Verify
@@ -24,21 +23,22 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: get ssh-config
-      command:
-        cmd: "vagrant ssh-config"
+    - name: Get ssh-config
+      ansible.builtin.command:
+        cmd: vagrant ssh-config
         chdir: "{{ molecule_ephemeral_directory }}"
       register: ssh_config
       changed_when: false
 
-    - name: create ssh-config file
-      copy:
+    - name: Create ssh-config file
+      ansible.builtin.copy:
         content: "{{ ssh_config.stdout_lines | join ('\n') }}"
         dest: "{{ molecule_ephemeral_directory }}/ssh-config"
+        mode: "0400"
       changed_when: false
 
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
         docker.io/cincproject/auditor exec
@@ -51,10 +51,10 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
-        msg: "Inspec failed to validate"
+      ansible.builtin.fail:
+        msg: Inspec failed to validate
       when: test_results.rc != 0

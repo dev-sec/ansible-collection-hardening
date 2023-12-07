@@ -1,14 +1,13 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
+- name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
   tasks:
-    - include_role:
-        name: ssh_hardening
+    - name: Include ssh_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.ssh_hardening
   vars:
     sftp_enabled: false

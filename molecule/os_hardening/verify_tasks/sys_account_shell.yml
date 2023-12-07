@@ -1,8 +1,9 @@
+---
 - name: Read local linux user database
   getent:
     database: passwd
 
 - name: Check that shell_sys_acc's shell is still bash
-  assert:
+  ansible.builtin.assert:
     that:
       - getent_passwd['shell_sys_acc'][5] == "/bin/bash"

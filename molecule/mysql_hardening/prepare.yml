@@ -1,80 +1,81 @@
 ---
-
-- name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
+- name: Wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: all
   become: true
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  tasks:
-    - name: Use Python 3 on Debian 11
-      set_fact:
-        ansible_python_interpreter: /usr/bin/python3
-      when:
-        - ansible_distribution == 'Debian'
-        - ansible_distribution_major_version|int >= 11
-
-    - name: Use Python 3 on Suse
-      set_fact:
-        ansible_python_interpreter: /usr/bin/python3
-      when:
-        - ansible_os_family == 'Suse'
-
-    - name: Use Python 2 on Debian 10
-      set_fact:
-        ansible_python_interpreter: /usr/bin/python
-      when:
-        - ansible_distribution == 'Debian'
-        - ansible_distribution_major_version|int == 10
-
-    - name: Run the equivalent of "apt-get update && apt-get upgrade"
-      apt:
-        name: "*"
-        state: latest
-        update_cache: true
-      when: ansible_os_family == 'Debian'
-
-    - name: Install required python packages on Suse
-      ansible.builtin.shell: zypper -n install python-xml python3-rpm python3-PyMySQL
-      when: ansible_os_family == 'Suse'
-
-    - name: create missing directory
-      file:
-        path: "/etc/mysql/conf.d"
-        state: directory
-
-    - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
-      set_fact:
-        mysql_python_package_debian: "python3-pymysql"
-      when:
-        - mysql_python_package_debian is not defined
-        - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version|int > 19
-
-    - name: Determine required MySQL Python libraries.
-      set_fact:
-        mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
-      when:
-        - mysql_python_package_debian is not defined
-        - ansible_distribution != "Ubuntu"
-        - ansible_distribution_major_version|int < 20
-
-    - name: Install required MySQL Python libraries on RHEL
-      yum:
-        name: "{% if 'python3' in ansible_python_interpreter|default('') %}python36-PyMySQL{% else %}python2-PyMySQL{% endif %}"
-      when:
-        - ansible_os_family == "RedHat"
-        - ansible_distribution_major_version == "7"
-          
-    - include_role:
-        name: dev-sec.mysql
-
-    - name: include MySQL user prepare tasks
-      include_tasks: prepare_tasks/mysql_users.yml
   vars:
     overwrite_global_mycnf: false
     mysql_root_password: iloverandompasswordsbutthiswilldo
     mysql_user_password: iloverandompasswordsbutthiswilldo
     mysql_config_file: /etc/mysql/mariadb.cnf
     mysql_root_password_update: true
+  tasks:
+    - name: Use Python 3 on Debian 11
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_distribution == 'Debian'
+        - ansible_distribution_major_version|int >= 11
+
+    - name: Use Python 3 on Suse
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when:
+        - ansible_os_family == 'Suse'
+
+    - name: Use Python 2 on Debian 10
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python
+      when:
+        - ansible_distribution == 'Debian'
+        - ansible_distribution_major_version|int == 10
+
+    - name: Run the equivalent of "apt-get update && apt-get upgrade"
+      ansible.builtin.apt:
+        upgrade: safe
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Install required python packages on Suse
+      ansible.builtin.command: zypper -n install python-xml python3-rpm python3-PyMySQL
+      changed_when: false
+      when: ansible_os_family == 'Suse'
+
+    - name: Create missing directory
+      ansible.builtin.file:
+        path: /etc/mysql
+        state: directory
+        mode: "0755"
+
+    - name: Determine required MySQL Python libraries (Ubuntu Focal Fossa ++)
+      ansible.builtin.set_fact:
+        mysql_python_package_debian: python3-pymysql
+      when:
+        - mysql_python_package_debian is not defined
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version|int > 19
+
+    - name: Determine required MySQL Python libraries.
+      ansible.builtin.set_fact:
+        mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter | default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
+      when:
+        - mysql_python_package_debian is not defined
+        - ansible_distribution != "Ubuntu"
+        - ansible_distribution_major_version|int < 20
+
+    - name: Install required MySQL Python libraries on RHEL
+      ansible.builtin.yum:
+        name: "{% if 'python3' in ansible_python_interpreter | default('') %}python36-PyMySQL{% else %}python2-PyMySQL{% endif %}"
+      when:
+        - ansible_os_family == "RedHat"
+        - ansible_distribution_major_version == "7"
+
+    - name: Install mysql with a generic Ansible role
+      ansible.builtin.include_role:
+        name: dev-sec.mysql
+
+    - name: Include MySQL user prepare tasks
+      ansible.builtin.include_tasks: prepare_tasks/mysql_users.yml
