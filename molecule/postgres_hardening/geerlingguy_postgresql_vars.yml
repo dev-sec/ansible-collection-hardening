@@ -3,3 +3,4 @@ postgresql_databases:
 postgresql_users:
   - name: postgres
     password: iloverandompasswordsbutthiswilldo
+postgresql_auth_method: scram-sha-256

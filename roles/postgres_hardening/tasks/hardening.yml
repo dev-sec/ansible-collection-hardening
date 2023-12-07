@@ -88,7 +88,7 @@
     mode: u=rw,g=r,o=
 
 #################################
-# POSTGRES-11/12/16 #############
+# POSTGRES-07/11/12/16 ##########
 #################################
 - name: Secure postgresql.conf Configuration
   ansible.builtin.lineinfile:
@@ -97,6 +97,8 @@
     regexp: "{{ item.regexp }}"
     state: present
   with_items:
+    - line: "password_encryption = {{ password_encryption }}"
+      regexp: "#?password_encryption\\s?="
     - line: "ssl = {{ ssl_enabled }}"
       regexp: "#?ssl\\s?="
     - line: "ssl_ciphers = '{{ ssl_ciphers }}'"

@@ -10,6 +10,9 @@ postgres_hardening_restart_postgres: true
 postgres_user: postgres
 postgres_group: postgres
 
+# Password Authentication
+password_encryption: scram-sha-256
+
 # SSL
 ssl_enabled: "on"
 ssl_ciphers: ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH
