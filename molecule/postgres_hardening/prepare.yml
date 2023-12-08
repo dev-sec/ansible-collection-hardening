@@ -1,5 +1,5 @@
 ---
-- name: prepare playbook for kitchen testing "ansible-postgres-hardening" with custom settings
+- name: Prepare playbook for kitchen testing "ansible-postgres-hardening" with custom settings
   become: true
   hosts: all
   environment:
@@ -9,11 +9,12 @@
   vars_files:
     - geerlingguy_postgresql_vars.yml
   tasks:
-    - name: install required packages
-      package:
+    - name: Install required packages
+      ansible.builtin.package:
         name: "python3-apt"
         update_cache: true
       ignore_errors: true # noqa ignore-errors
 
-    - include_role:
+    - name: Installing PostgreSQL
+      ansible.builtin.include_role:
         name: geerlingguy.postgresql

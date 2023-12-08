@@ -15,7 +15,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
         docker.io/cincproject/auditor exec
@@ -27,10 +27,10 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
+      ansible.builtin.fail:
         msg: "Inspec failed to validate"
       when: test_results.rc != 0
