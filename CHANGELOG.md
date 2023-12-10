@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-09)
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-10)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
@@ -18,9 +18,14 @@
 - boolean variable inconsistency? [\#330](https://github.com/dev-sec/ansible-collection-hardening/issues/330)
 - Restore idempotency for disabling unused filesystems with Ansible 2.16.0 [\#718](https://github.com/dev-sec/ansible-collection-hardening/pull/718) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([akikanellis](https://github.com/akikanellis))
 
+**Closed issues:**
+
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
+
 **Merged pull requests:**
 
 - fix linting for github config [\#736](https://github.com/dev-sec/ansible-collection-hardening/pull/736) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update actions/setup-python action to v5 [\#733](https://github.com/dev-sec/ansible-collection-hardening/pull/733) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible-lint action and revise configuration to scan all Ansible code [\#732](https://github.com/dev-sec/ansible-collection-hardening/pull/732) ([schurzi](https://github.com/schurzi))
 - update labeler to new config format [\#730](https://github.com/dev-sec/ansible-collection-hardening/pull/730) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency ansible-core to v2.16.1 [\#728](https://github.com/dev-sec/ansible-collection-hardening/pull/728) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
