@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-12)
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
@@ -24,6 +24,7 @@
 
 **Merged pull requests:**
 
+- release only on releases, not pre-releases [\#738](https://github.com/dev-sec/ansible-collection-hardening/pull/738) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update dependency ansible-core to v2.16.2 [\#737](https://github.com/dev-sec/ansible-collection-hardening/pull/737) ([renovate[bot]](https://github.com/apps/renovate))
 - fix linting for github config [\#736](https://github.com/dev-sec/ansible-collection-hardening/pull/736) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/setup-python action to v5 [\#733](https://github.com/dev-sec/ansible-collection-hardening/pull/733) ([renovate[bot]](https://github.com/apps/renovate))
