@@ -53,6 +53,96 @@ We disable the following filesystems, because they're most likely not used:
 
 To prevent some of the filesystems from being disabled, add them to the `os_filesystem_whitelist` variable.
 
+## Known Limitations
+
+### Docker support
+
+If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.
+
+```yaml
+- hosts: localhost
+  roles:
+    - devsec.hardening.os_hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
+```
+
+### hidepid on RHEL/CentOS 7
+
+When having `polkit-0.112-18.el7` (and later) installed and `/proc` mounted with `hidepid=2`, every time someone uses `systemctl` the following error is displayed, but systemctl runs successfully.
+
+```
+Error registering authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject (polkit-error-quark, 0)
+```
+
+We decided to set `hidepid=0` to remove the error message, if you want to use the other proposed workaround, you have to setup the user yourself and set our option to `hidepid_option: 2` via Ansible vars.
+
+For further details see [RedHat: "GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Cannot determine user of subject" seen when executing systemctl command](https://access.redhat.com/solutions/5005111) or [#364: hidepid=2 gives error when running systemctl on EL7](https://github.com/dev-sec/ansible-collection-hardening/issues/364)
+
+### sysctl - vm.mmap_rnd_bits
+
+We are setting this sysctl to a default of `32`, some systems only support smaller values and this will generate an error. Unfortunately we cannot determine the correct applicable maximum. If you encounter this error you have to override this sysctl in your playbook.
+
+```yaml
+- hosts: localhost
+  roles:
+    - devsec.hardening.os_hardening
+  vars:
+    sysctl_overwrite:
+      vm.mmap_rnd_bits: 16
+```
+
+## Testing with inspec
+
+If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
+Otherwise inspec will fail. For more information, see [issue #124](https://github.com/dev-sec/ansible-os-hardening/issues/124).
+
+We know that this is the case on Raspberry Pi.
+
+## Changing sysctl variables
+
+If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
+So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
+
+```yaml
+- hosts: localhost
+  roles:
+    - devsec.hardening.os_hardening
+  vars:
+    sysctl_overwrite:
+      # Enable IPv4 traffic forwarding.
+      net.ipv4.ip_forward: 1
+```
+
+Alternatively you can change Ansible's [hash-behaviour](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-hash-behaviour) to `merge`, then you only have to overwrite the single hash you need to. But please be aware that changing the hash-behaviour changes it for all your playbooks and is not recommended by Ansible.
+
+## Improving Kernel Audit logging
+
+By default, any process that starts before the `auditd` daemon will have an AUID of `4294967295`. To improve this and provide more accurate logging, it's recommended to add the kernel boot parameter `audit=1` to you configuration. Without doing this, you will find that your `auditd` logs fail to properly audit all processes.
+
+For more information, please see this [upstream documentation](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) and your system's boot loader documentation for how to configure additional kernel parameters.
+
+## PAM configuration
+
+We use specific PAM configuration for every linux distribution. This is a very diverse area, since every vendor seems to push their own system for managing PAM. We used following guides and sources for our configuration.
+
+- on Debian/Ubuntu we use [pam-config-framework](https://wiki.ubuntu.com/PAMConfigFrameworkSpec)
+- RHEL8 and compatible use information from [authselect](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_authentication_and_authorization_in_rhel/configuring-user-authentication-using-authselect_configuring-authentication-and-authorization-in-rhel), but our setup disables the configuration from authselect
+- RHEL 6/7 and compatible use [authconfig](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/authconfig-install), but our setup disables the configuration from authconfig
+- for RHEL 6/7 we also use information from [Desktop Security](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services#sec-Desktop_Security)
+
+
+## Acknowledgements
+
+This role is mostly based on guides by:
+
+- [Arch Linux wiki, Sysctl hardening](https://wiki.archlinux.org/index.php/Sysctl)
+- [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
+- [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
+- [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
+
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
@@ -924,6 +1014,7 @@ None.
 ```
 
 <!-- END_ANSIBLE_DOCS -->
+<<<<<<< HEAD
 
 ## Known Limitations
 
@@ -1539,3 +1630,5 @@ This role is mostly based on guides by:
 - [NSA: Guide to the Secure Configuration of Red Hat Enterprise Linux 5](http://www.nsa.gov/ia/_files/os/redhat/rhel5-guide-i731.pdf)
 - [Ubuntu Security/Features](https://wiki.ubuntu.com/Security/Features)
 - [Deutsche Telekom, Group IT Security, Security Requirements (German)](https://www.telekom.com/psa)
+=======
+>>>>>>> e5cc9bb (restructure readme to move known problems up top)
