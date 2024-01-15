@@ -1,12 +1,13 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-22)
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2024-01-15)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
 **Implemented enhancements:**
 
 - Extend ansible-lint testing to cover our test cases [\#731](https://github.com/dev-sec/ansible-collection-hardening/issues/731)
+- Make value of kernel.unprivileged\_userns\_clone depending on kernel version [\#727](https://github.com/dev-sec/ansible-collection-hardening/issues/727)
 -  Complete tests for OS hardening [\#660](https://github.com/dev-sec/ansible-collection-hardening/issues/660)
 - support restarts of audit service on Arch linux [\#722](https://github.com/dev-sec/ansible-collection-hardening/pull/722) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
@@ -20,10 +21,12 @@
 
 **Closed issues:**
 
+- 9.0.0 version number in galaxy.yml file is wrong [\#740](https://github.com/dev-sec/ansible-collection-hardening/issues/740)
 - Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
 
 **Merged pull requests:**
 
+- restructure readme to move known limitations up top [\#739](https://github.com/dev-sec/ansible-collection-hardening/pull/739) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - release only on releases, not pre-releases [\#738](https://github.com/dev-sec/ansible-collection-hardening/pull/738) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update dependency ansible-core to v2.16.2 [\#737](https://github.com/dev-sec/ansible-collection-hardening/pull/737) ([renovate[bot]](https://github.com/apps/renovate))
 - fix linting for github config [\#736](https://github.com/dev-sec/ansible-collection-hardening/pull/736) ([rndmh3ro](https://github.com/rndmh3ro))
