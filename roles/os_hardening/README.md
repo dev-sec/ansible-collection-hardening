@@ -133,7 +133,6 @@ We use specific PAM configuration for every linux distribution. This is a very d
 - RHEL 6/7 and compatible use [authconfig](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/authconfig-install), but our setup disables the configuration from authconfig
 - for RHEL 6/7 we also use information from [Desktop Security](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/chap-hardening_your_system_with_tools_and_services#sec-Desktop_Security)
 
-
 ## Acknowledgements
 
 This role is mostly based on guides by:
@@ -146,6 +145,7 @@ This role is mostly based on guides by:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
+
 - EL
   - 7, 8, 9
 - Ubuntu
