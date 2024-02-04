@@ -39,7 +39,7 @@
 
     - name: Execute cinc-auditor tests
       ansible.builtin.command: >
-        docker run
+        docker run --rm
         --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
         docker.io/cincproject/auditor exec
         --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config
