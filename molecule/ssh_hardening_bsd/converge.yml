@@ -1,4 +1,15 @@
 ---
+- name: Prepare OpenBSD host
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Use Python 3 on OpenBSD
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      changed_when: false
+      when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
+
 - name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with default settings
   hosts: all
   environment:

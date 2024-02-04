@@ -3,6 +3,12 @@
   hosts: all
   become: true
   tasks:
+    - name: Use Python 3 on OpenBSD
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      changed_when: false
+      when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
+      
     - name: Use the type command instead of which to detect existing commands
       ansible.builtin.file:
         src: /usr/bin/which
