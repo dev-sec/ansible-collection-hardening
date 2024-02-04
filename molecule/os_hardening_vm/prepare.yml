@@ -24,11 +24,12 @@
 
     - name: Block update of Grub and kernel, because of error
       ansible.builtin.dpkg_selections:
-        name: 
-          - grub-pc
-          - linux-image-generic
+        name: "{{ item  }}"
         selection: hold
       when: ansible_os_family == 'Debian'
+      loop:
+        - grub-pc
+        - linux-image-generic
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
