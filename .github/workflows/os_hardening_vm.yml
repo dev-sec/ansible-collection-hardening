@@ -60,7 +60,7 @@ jobs:
 
       - name: Update Vagrant Box
         run: |
-          vagrant box update --box ${{ matrix.molecule_distro }}
+          vagrant box update --box ${{ matrix.molecule_distro }} || true
 
       - name: Test with molecule
         run: |
