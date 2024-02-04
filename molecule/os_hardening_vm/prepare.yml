@@ -22,9 +22,11 @@
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: Block update of Grub, because of error
+    - name: Block update of Grub and kernel, because of error
       ansible.builtin.dpkg_selections:
-        name: grub-pc
+        name: 
+          - grub-pc
+          - linux-image-generic
         selection: hold
       when: ansible_os_family == 'Debian'
 
