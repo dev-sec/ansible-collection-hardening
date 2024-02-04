@@ -1,6 +1,6 @@
 # Changelog
 
-## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-01-30)
+## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-02-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...9.0.2)
 
@@ -18,6 +18,7 @@
 
 **Merged pull requests:**
 
+- Remove Docker containers on self-hosted runner after tests [\#743](https://github.com/dev-sec/ansible-collection-hardening/pull/743) ([schurzi](https://github.com/schurzi))
 - Update dependency ansible-core to v2.16.3 [\#742](https://github.com/dev-sec/ansible-collection-hardening/pull/742) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2024-01-15)
