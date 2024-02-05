@@ -28,6 +28,8 @@
         selection: hold
       when: ansible_os_family == 'Debian'
 
+    # we need to free up space, since the /boot partition in some Vagrant images is
+    # pretty small and system updates might fail
     - name: Find all initrd.img to delete them
       ansible.builtin.find:
         paths: /boot
