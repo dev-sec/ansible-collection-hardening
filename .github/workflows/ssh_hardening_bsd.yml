@@ -47,6 +47,10 @@ jobs:
           path: ansible_collections/devsec/hardening
           submodules: true
 
+      - name: Update Vagrant Box
+        run: |
+          vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+
       - name: Test with molecule
         run: |
           molecule --version
