@@ -1,11 +1,12 @@
 # Changelog
 
-## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-02-07)
+## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-02-27)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...9.0.2)
 
 **Implemented enhancements:**
 
+- Ansible Linting [\#747](https://github.com/dev-sec/ansible-collection-hardening/issues/747)
 - Make value of kernel.unprivileged\_userns\_clone depending on kernel version [\#727](https://github.com/dev-sec/ansible-collection-hardening/issues/727)
 
 **Fixed bugs:**
@@ -18,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Update dependency ansible-core to v2.16.4 [\#751](https://github.com/dev-sec/ansible-collection-hardening/pull/751) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint action to v24 [\#745](https://github.com/dev-sec/ansible-collection-hardening/pull/745) ([renovate[bot]](https://github.com/apps/renovate))
 - Always update Vagrant Boxes before using [\#744](https://github.com/dev-sec/ansible-collection-hardening/pull/744) ([schurzi](https://github.com/schurzi))
 - Remove Docker containers on self-hosted runner after tests [\#743](https://github.com/dev-sec/ansible-collection-hardening/pull/743) ([schurzi](https://github.com/schurzi))
