@@ -423,6 +423,11 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
   - Description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
   - Type: bool
   - Required: no
+- `ssh_pubkey_authentication`
+  - Default: `true`
+  - Description: Set to `false` to disable publickey authentication.
+  - Type: bool
+  - Required: no
 - `sshd_authenticationmethods`
   - Default: `publickey`
   - Description: Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`

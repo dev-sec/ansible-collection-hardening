@@ -96,6 +96,9 @@ ssh_x11_forwarding: false # sshd
 # false to disable pam authentication.
 ssh_use_pam: true # sshd
 
+# false to disable publickey authentication
+ssh_pubkey_authentication: true
+
 # specify AuthenticationMethods
 sshd_authenticationmethods: publickey
 
