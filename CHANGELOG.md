@@ -1,6 +1,35 @@
 # Changelog
 
-## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2023-12-08)
+## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-03-25)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...9.0.2)
+
+**Implemented enhancements:**
+
+- Make Publickey authentication configurable  [\#750](https://github.com/dev-sec/ansible-collection-hardening/issues/750)
+- Ansible Linting [\#747](https://github.com/dev-sec/ansible-collection-hardening/issues/747)
+- Make value of kernel.unprivileged\_userns\_clone depending on kernel version [\#727](https://github.com/dev-sec/ansible-collection-hardening/issues/727)
+- Add ssh\_pubkey\_authentication variable to ssh hardening [\#749](https://github.com/dev-sec/ansible-collection-hardening/pull/749) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([debbabi](https://github.com/debbabi))
+
+**Fixed bugs:**
+
+- Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
+- harden permissions for directory mount /var/log fails for minimized Ubuntu 22.04  [\#741](https://github.com/dev-sec/ansible-collection-hardening/issues/741)
+
+**Closed issues:**
+
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
+
+**Merged pull requests:**
+
+- Update dependency ansible-core to v2.16.5 [\#754](https://github.com/dev-sec/ansible-collection-hardening/pull/754) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency ansible-core to v2.16.4 [\#751](https://github.com/dev-sec/ansible-collection-hardening/pull/751) ([renovate[bot]](https://github.com/apps/renovate))
+- Update ansible/ansible-lint action to v24 [\#745](https://github.com/dev-sec/ansible-collection-hardening/pull/745) ([renovate[bot]](https://github.com/apps/renovate))
+- Always update Vagrant Boxes before using [\#744](https://github.com/dev-sec/ansible-collection-hardening/pull/744) ([schurzi](https://github.com/schurzi))
+- Remove Docker containers on self-hosted runner after tests [\#743](https://github.com/dev-sec/ansible-collection-hardening/pull/743) ([schurzi](https://github.com/schurzi))
+- Update dependency ansible-core to v2.16.3 [\#742](https://github.com/dev-sec/ansible-collection-hardening/pull/742) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [9.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.1) (2024-01-15)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.0...9.0.1)
 
@@ -18,11 +47,20 @@
 - boolean variable inconsistency? [\#330](https://github.com/dev-sec/ansible-collection-hardening/issues/330)
 - Restore idempotency for disabling unused filesystems with Ansible 2.16.0 [\#718](https://github.com/dev-sec/ansible-collection-hardening/pull/718) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([akikanellis](https://github.com/akikanellis))
 
+**Closed issues:**
+
+- 9.0.0 version number in galaxy.yml file is wrong [\#740](https://github.com/dev-sec/ansible-collection-hardening/issues/740)
+
 **Merged pull requests:**
 
+- restructure readme to move known limitations up top [\#739](https://github.com/dev-sec/ansible-collection-hardening/pull/739) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- release only on releases, not pre-releases [\#738](https://github.com/dev-sec/ansible-collection-hardening/pull/738) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update dependency ansible-core to v2.16.2 [\#737](https://github.com/dev-sec/ansible-collection-hardening/pull/737) ([renovate[bot]](https://github.com/apps/renovate))
 - fix linting for github config [\#736](https://github.com/dev-sec/ansible-collection-hardening/pull/736) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update actions/setup-python action to v5 [\#733](https://github.com/dev-sec/ansible-collection-hardening/pull/733) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible-lint action and revise configuration to scan all Ansible code [\#732](https://github.com/dev-sec/ansible-collection-hardening/pull/732) ([schurzi](https://github.com/schurzi))
 - update labeler to new config format [\#730](https://github.com/dev-sec/ansible-collection-hardening/pull/730) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+- Update dependency ansible-core to v2.16.1 [\#728](https://github.com/dev-sec/ansible-collection-hardening/pull/728) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - pin Ansible to always let Renovate update to the most current version in our tests [\#721](https://github.com/dev-sec/ansible-collection-hardening/pull/721) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 ## [9.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.0) (2023-11-16)

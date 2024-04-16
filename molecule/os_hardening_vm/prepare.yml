@@ -28,6 +28,22 @@
         selection: hold
       when: ansible_os_family == 'Debian'
 
+    # we need to free up space, since the /boot partition in some Vagrant images is
+    # pretty small and system updates might fail
+    - name: Find all initrd.img to delete them
+      ansible.builtin.find:
+        paths: /boot
+        patterns: "initrd.img*"
+      register: find_results
+      when: ansible_os_family == 'Debian'
+
+    - name: Delete all initrd.img to free space on /boot
+      ansible.builtin.file:
+        path: "{{ item['path'] }}"
+        state: absent
+      with_items: "{{ find_results['files'] }}"
+      when: ansible_os_family == 'Debian'
+
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
         upgrade: safe

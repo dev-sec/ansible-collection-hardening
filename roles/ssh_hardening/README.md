@@ -10,9 +10,37 @@ This role provides secure ssh-client and ssh-server configurations. It is intend
 
 Warning: This role disables root-login on the target server! Please make sure you have another user with su or sudo permissions that can login into the server.
 
+## Configuring settings not listed in role-variables
+
+If you want to configure ssh options that are not listed above, you can use `ssh_custom_options` (for `/etc/ssh/ssh_config`) or `sshd_custom_options` (for `/etc/ssh/sshd_config`) to set them. These options will be set on the **beginning** of the file so you can override options further down in the file.
+
+Example playbook:
+
+```yml
+- hosts: localhost
+  roles:
+    - devsec.hardening.ssh_hardening
+  vars:
+    ssh_custom_options:
+      - "Include /etc/ssh/ssh_config.d/*"
+    sshd_custom_options:
+      - "AcceptEnv LANG"
+```
+
+## After using the role Ansibles template/copy/file module does not work anymore
+
+If you use this role to disable SFTP (`sftp_enabled: false`) you will get errors. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. If your control node uses OpenSSH version 9.0 or above, you also need to set `scp_extra_args = "-O"`, since starting with that version the `scp` utility also defaults to using SFTP.
+
+## Changing the default port and idempotency
+
+This role uses the default port 22 or the port configured in the inventory to connect to the server. If the default `ssh` port is changed via `ssh_server_ports`, once the ssh server is restarted, it will still try to connect using the previous port. In order to run this role again on the same server the inventory will have to be updated to use the new ssh port.
+
+If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.
+
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
+
 - EL
   - 7, 8, 9
 - Ubuntu
@@ -395,6 +423,11 @@ Warning: This role disables root-login on the target server! Please make sure yo
   - Description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
   - Type: bool
   - Required: no
+- `ssh_pubkey_authentication`
+  - Default: `true`
+  - Description: Set to `false` to disable publickey authentication.
+  - Type: bool
+  - Required: no
 - `sshd_authenticationmethods`
   - Default: `publickey`
   - Description: Specifies the authentication methods that must be successfully completed for a user to be granted access. Make sure to set all required variables for your selected authentication method. Defaults found in `defaults/main.yml`
@@ -444,30 +477,3 @@ None.
 ```
 
 <!-- END_ANSIBLE_DOCS -->
-
-## Configuring settings not listed in role-variables
-
-If you want to configure ssh options that are not listed above, you can use `ssh_custom_options` (for `/etc/ssh/ssh_config`) or `sshd_custom_options` (for `/etc/ssh/sshd_config`) to set them. These options will be set on the **beginning** of the file so you can override options further down in the file.
-
-Example playbook:
-
-```yml
-- hosts: localhost
-  roles:
-    - devsec.hardening.ssh_hardening
-  vars:
-    ssh_custom_options:
-      - "Include /etc/ssh/ssh_config.d/*"
-    sshd_custom_options:
-      - "AcceptEnv LANG"
-```
-
-## After using the role Ansibles template/copy/file module does not work anymore
-
-If you use this role to disable SFTP (`sftp_enabled: false`) you will get errors. Ansible uses by default SFTP to transfer files to the remote hosts. You have to set `scp_if_ssh = True` in your ansible.cfg. This way Ansible uses SCP to copy files. If your control node uses OpenSSH version 9.0 or above, you also need to set `scp_extra_args = "-O"`, since starting with that version the `scp` utility also defaults to using SFTP.
-
-## Changing the default port and idempotency
-
-This role uses the default port 22 or the port configured in the inventory to connect to the server. If the default `ssh` port is changed via `ssh_server_ports`, once the ssh server is restarted, it will still try to connect using the previous port. In order to run this role again on the same server the inventory will have to be updated to use the new ssh port.
-
-If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.

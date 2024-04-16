@@ -112,7 +112,7 @@ MaxSessions {{ ssh_max_sessions }}
 MaxStartups {{ ssh_max_startups }}
 
 # Enable public key authentication
-PubkeyAuthentication yes
+PubkeyAuthentication {{ 'yes' if (ssh_pubkey_authentication|bool) else 'no' }}
 
 # Never use host-based authentication. It can be exploited.
 IgnoreRhosts yes
