@@ -25,9 +25,6 @@
 #################################
 # Check Compatibility ###########
 #################################
-- name: Print the OS
-  ansible.builtin.debug:
-    var: ansible_facts.os_family
 
 - name: Only compatible OS versions
   ansible.builtin.fail:
