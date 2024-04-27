@@ -68,7 +68,7 @@
     state: directory
     owner: "{{ postgres_user }}"
     group: "{{ postgres_group }}"
-    mode: u=rwx,g=,o=
+    mode: "0700"
 
 - name: Manage permissions on /etc/postgresql/<version>/main/postgresql.conf
   ansible.builtin.file:
@@ -76,7 +76,7 @@
     state: file
     owner: "{{ postgres_user }}"
     group: "{{ postgres_group }}"
-    mode: u=rw,g=r,o=
+    mode: "0640"
 
 #################################
 # POSTGRES-07/11/12/16 ##########
