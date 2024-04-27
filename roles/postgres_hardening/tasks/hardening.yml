@@ -53,9 +53,6 @@
   ansible.builtin.set_fact:
     postgres_version: "{{ postgres_version_raw.stdout | regex_search('psql\\s\\(PostgreSQL\\)\\s(12|13|14|15|16).*', '\\1') | first }}"
 
-- name: Print the postgres version
-  ansible.builtin.debug:
-    var: postgres_version
 
 - name: Only compatible postgres versions allowed
   ansible.builtin.fail:
