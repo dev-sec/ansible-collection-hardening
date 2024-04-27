@@ -48,9 +48,6 @@
   changed_when: false
   check_mode: false
 
-- name: Print the postgres version
-  ansible.builtin.debug:
-    var: postgres_version_raw
 
 - name: Parse postgres-version
   ansible.builtin.set_fact:
