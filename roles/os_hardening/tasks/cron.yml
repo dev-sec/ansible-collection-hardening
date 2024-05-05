@@ -24,5 +24,5 @@
     path: "{{ item.path }}"
     owner: root
     group: root
-    mode: og-rwx
+    mode: o-rwx
   with_items: "{{ cron_directories.files }}"

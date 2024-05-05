@@ -31,6 +31,8 @@ os_auth_sub_uid_count: 65536
 os_auth_sub_gid_min: 100000
 os_auth_sub_gid_max: 600100000
 os_auth_sub_gid_count: 65536
+os_auth_pw_max_age: 60
+os_auth_pw_min_age:  7
 
 os_mnt_boot_dir_mode: '0700'
 os_mnt_boot_group: 'root'
