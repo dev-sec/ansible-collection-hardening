@@ -1,11 +1,12 @@
 # Changelog
 
-## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-03-25)
+## [9.0.2](https://github.com/dev-sec/ansible-collection-hardening/tree/9.0.2) (2024-05-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...9.0.2)
 
 **Implemented enhancements:**
 
+- Release 9.0.2 [\#758](https://github.com/dev-sec/ansible-collection-hardening/issues/758)
 - Make Publickey authentication configurable  [\#750](https://github.com/dev-sec/ansible-collection-hardening/issues/750)
 - Ansible Linting [\#747](https://github.com/dev-sec/ansible-collection-hardening/issues/747)
 - Make value of kernel.unprivileged\_userns\_clone depending on kernel version [\#727](https://github.com/dev-sec/ansible-collection-hardening/issues/727)
@@ -13,15 +14,13 @@
 
 **Fixed bugs:**
 
+- os\_hardening fails when setting vm.mmap\_rnd\_bits [\#757](https://github.com/dev-sec/ansible-collection-hardening/issues/757)
 - Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
 - harden permissions for directory mount /var/log fails for minimized Ubuntu 22.04  [\#741](https://github.com/dev-sec/ansible-collection-hardening/issues/741)
 
-**Closed issues:**
-
-- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
-
 **Merged pull requests:**
 
+- ci: define permissions for enforce-labels workflow  [\#760](https://github.com/dev-sec/ansible-collection-hardening/pull/760) ([fgreinacher](https://github.com/fgreinacher))
 - Update dependency ansible-core to v2.16.5 [\#754](https://github.com/dev-sec/ansible-collection-hardening/pull/754) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.16.4 [\#751](https://github.com/dev-sec/ansible-collection-hardening/pull/751) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint action to v24 [\#745](https://github.com/dev-sec/ansible-collection-hardening/pull/745) ([renovate[bot]](https://github.com/apps/renovate))
