@@ -88,7 +88,7 @@ argument_specs:
           you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
       ssh_gateway_ports:
         default: false
-        type: bool
+        type: raw
         description: Set to `false` to disable binding forwarded ports to non-loopback
           addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified`
           to allow the client to specify which address to bind to.

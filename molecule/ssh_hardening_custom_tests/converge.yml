@@ -21,7 +21,7 @@
           - root
     network_ipv6_enable: true
     ssh_allow_tcp_forwarding: "yes"
-    ssh_gateway_ports: true
+    ssh_gateway_ports: "clientspecified"
     ssh_allow_agent_forwarding: true
     ssh_server_permit_environment_vars: "yes"
     ssh_server_accept_env_vars: PWD HTTP_PROXY
