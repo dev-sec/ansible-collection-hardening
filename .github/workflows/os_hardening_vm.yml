@@ -36,7 +36,6 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - generic/centos7
           - generic/centos8s
           - generic/centos9s
           - generic/rocky8
