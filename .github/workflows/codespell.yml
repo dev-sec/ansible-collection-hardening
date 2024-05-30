@@ -11,4 +11,4 @@ jobs:
   codespell:
     uses: "dev-sec/.github/.github/workflows/codespell.yml@main"
     with:
-      ignore_words_list: "chage"
+      ignore_words_list: "chage,BOOTUP"
