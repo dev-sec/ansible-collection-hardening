@@ -145,9 +145,8 @@ This role is mostly based on guides by:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
-  - 7, 8, 9
+  - 8, 9
 - Ubuntu
   - bionic, focal, jammy
 - Debian
