@@ -40,9 +40,8 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
-  - 7, 8, 9
+  - 8, 9
 - Ubuntu
   - bionic, focal, jammy
 - Debian
@@ -421,11 +420,6 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
 - `ssh_x11_forwarding`
   - Default: `false`
   - Description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
-  - Type: bool
-  - Required: no
-- `ssh_pubkey_authentication`
-  - Default: `true`
-  - Description: Set to `false` to disable publickey authentication.
   - Type: bool
   - Required: no
 - `sshd_authenticationmethods`
