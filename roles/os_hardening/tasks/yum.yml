@@ -45,7 +45,7 @@
     - /etc/yum/pluginconf.d/rhnplugin.conf
 
 - name: Remove deprecated or insecure packages | package-01 - package-09
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ os_security_packages_list }}"
     state: absent
   when: os_security_packages_clean | bool

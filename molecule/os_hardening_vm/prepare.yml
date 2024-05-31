@@ -73,7 +73,7 @@
       when: ansible_facts.os_family == 'Archlinux'
 
     - name: Install required tools on RHEL # noqa ignore-errors
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name:
           - openssh-clients
           - openssh
