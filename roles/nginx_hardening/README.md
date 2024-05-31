@@ -17,9 +17,8 @@ It works with the following nginx-roles, including, but not limited to:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
-  - 7, 8, 9
+  - 8, 9
 - Ubuntu
   - bionic, focal, jammy
 - Debian
