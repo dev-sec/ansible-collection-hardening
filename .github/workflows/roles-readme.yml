@@ -6,10 +6,12 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
     paths:
       - 'roles/**/meta/argument_specs.yml'
+      - 'roles/**/meta/main.yml'
   pull_request:
     branches: [master]
     paths:
       - 'roles/**/meta/argument_specs.yml'
+      - 'roles/**/meta/main.yml'
 
 jobs:
   readme:
