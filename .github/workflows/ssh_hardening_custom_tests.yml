@@ -36,7 +36,6 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - centosstream8
           - centosstream9
           - rocky8
           - rocky9
