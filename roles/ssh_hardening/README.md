@@ -40,6 +40,7 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
+
 - EL
   - 8, 9
 - Ubuntu
