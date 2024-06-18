@@ -37,6 +37,12 @@ This role uses the default port 22 or the port configured in the inventory to co
 
 If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.
 
+## Disabling systemd-socket activation on Debian and Ubuntu systems
+
+Since Debian 12 and Ubuntu 22.04 the ssh-daemon is not running by default anymore but is instead activated via systemd.
+We revert this change to its traditional behaviour.
+For more information, see [this issue](https://github.com/dev-sec/ansible-collection-hardening/issues/763).
+
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
