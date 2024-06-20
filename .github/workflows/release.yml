@@ -13,7 +13,7 @@ jobs:
     if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0
           ref: master
@@ -26,12 +26,12 @@ jobs:
 
       - name: calculate next version
         id: version
-        uses: patrickjahns/version-drafter-action@v1
+        uses: patrickjahns/version-drafter-action@fda4b8e4017bee5dd5794f255a4d484e8e647561 # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@v1
+        uses: charmixer/auto-changelog-action@dc40535ee3847b9aa975481644d187761d2ebc53 # v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
@@ -42,7 +42,7 @@ jobs:
           issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
       - name: push changelog
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
@@ -58,18 +58,18 @@ jobs:
 
       - name: Read CHANGELOG.md
         id: package
-        uses: juliangruber/read-file-action@v1
+        uses: juliangruber/read-file-action@b549046febe0fe86f8cb4f93c24e284433f9ab58 # v1
         with:
           path: ./CHANGELOGRELEASE.md
 
       - name: Delete old drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.1
+        uses: hugo19941994/delete-draft-releases@1bdca1ea7ffb25ae7f468a7bdb40056dae98175e # v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release draft
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This token is provided by Actions, you do not need to create your own token
         with:
