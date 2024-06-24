@@ -144,3 +144,8 @@
   when:
     - sshd_disable_crypto_policy | bool
     - ('crypto-policies' in ansible_facts.packages)
+
+- name: Enable or disable sshd service
+  ansible.builtin.service:
+    name: "{{ sshd_service_name }}"
+    enabled: "{{ ssh_server_service_enabled }}"
