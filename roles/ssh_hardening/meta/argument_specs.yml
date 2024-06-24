@@ -259,6 +259,10 @@ argument_specs:
         default: true
         type: bool
         description: Set to `false` to disable the opensshd server.
+      ssh_server_service_enabled:
+        default: true
+        type: bool
+        description: Set to `false` to disable starting sshd at boot.
       ssh_server_hardening:
         default: true
         type: bool
