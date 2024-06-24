@@ -46,7 +46,6 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -215,9 +214,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_gateway_ports`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
-  - Type: bool
+  - Type: raw
   - Required: no
 - `ssh_gssapi_delegation`
   - Default: `false`
@@ -403,6 +402,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Default: ``
   - Description: a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.
   - Type: list
+  - Required: no
+- `ssh_server_service_enabled`
+  - Default: `true`
+  - Description: Set to `false` to disable starting sshd at boot.
+  - Type: bool
   - Required: no
 - `ssh_trusted_user_ca_keys`
   - Default: ``
