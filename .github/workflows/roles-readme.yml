@@ -26,10 +26,10 @@ jobs:
           - ssh_hardening
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5
         with:
           python-version: 3.12
 
@@ -44,7 +44,7 @@ jobs:
 
       - name: Push README
         if: github.event_name != 'pull_request'
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'update ${{ matrix.roles }} readme'
