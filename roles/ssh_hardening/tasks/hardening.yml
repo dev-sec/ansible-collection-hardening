@@ -22,6 +22,9 @@
   with_dict: "{{ os_vars }}"
   tags: always
 
+- name: Install openssh package and configure the service
+  ansible.builtin.include_tasks: install.yml
+
 - name: Get openssh-version
   ansible.builtin.command: ssh -V
   register: sshd_version_raw
@@ -31,15 +34,6 @@
 - name: Parse openssh-version
   ansible.builtin.set_fact:
     sshd_version: "{{ sshd_version_raw.stderr | regex_replace('.*_([0-9]*.[0-9]).*', '\\1') }}"
-
-# see https://github.com/dev-sec/ansible-collection-hardening/issues/763
-- name: Change Debian/Ubuntu systems so ssh starts traditionally instead of socket-activated
-  ansible.builtin.include_tasks: disable-systemd-socket.yml
-  when:
-    - ssh_server_hardening | bool
-    - ssh_server_enabled | bool
-    - (ansible_facts.distribution == 'Ubuntu' and ansible_facts.distribution_major_version is version('22.04', '>=')) or
-      (ansible_facts.os_family == 'Debian' and ansible_facts.distribution_major_version is version('12', '>='))
 
 - name: Set default for ssh_host_key_files if not supplied
   ansible.builtin.include_tasks: crypto_hostkeys.yml
