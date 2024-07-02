@@ -57,7 +57,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 - ArchLinux
 - SmartOS
 - FreeBSD
-  - 12.2, 13.2, 14.0
+  - 13.2, 14.0
 - OpenBSD
   - 7.0
 
