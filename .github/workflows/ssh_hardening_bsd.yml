@@ -37,7 +37,6 @@ jobs:
       matrix:
         molecule_distro:
           - openbsd7
-          - freebsd12
           - freebsd13
           - freebsd14
     steps:
