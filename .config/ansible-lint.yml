@@ -7,7 +7,6 @@ exclude_paths:
   - .cache/ # implicit unless exclude_paths is defined in config
   # add all waivers individually, since exclude_files does not support globs
   - molecule/os_hardening/waivers.yaml
-  - molecule/ssh_hardening_bsd/waivers_freebsd12.yaml
   - molecule/ssh_hardening_bsd/waivers_freebsd13.yaml
   - molecule/ssh_hardening_bsd/waivers_freebsd14.yaml
   - molecule/ssh_hardening_bsd/waivers_openbsd7.yaml
