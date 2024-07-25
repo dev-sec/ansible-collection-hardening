@@ -1,15 +1,19 @@
 # Changelog
 
-## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-06-04)
+## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-07-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.0)
 
 **Implemented enhancements:**
 
+- option to disable regeneration of ssh private key [\#772](https://github.com/dev-sec/ansible-collection-hardening/issues/772)
+- Support systemd socket activation for sshd [\#763](https://github.com/dev-sec/ansible-collection-hardening/issues/763) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
 - Release 9.0.2 [\#758](https://github.com/dev-sec/ansible-collection-hardening/issues/758)
 - Make Publickey authentication configurable  [\#750](https://github.com/dev-sec/ansible-collection-hardening/issues/750)
 - Ansible Linting [\#747](https://github.com/dev-sec/ansible-collection-hardening/issues/747)
 - Make value of kernel.unprivileged\_userns\_clone depending on kernel version [\#727](https://github.com/dev-sec/ansible-collection-hardening/issues/727)
+- Ensure that ssh is installed \(cf \#771\) [\#774](https://github.com/dev-sec/ansible-collection-hardening/pull/774) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Byh0ki](https://github.com/Byh0ki))
+- ssh: explicitly enable or disable the service at boot [\#771](https://github.com/dev-sec/ansible-collection-hardening/pull/771) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Byh0ki](https://github.com/Byh0ki))
 - Add ssh\_pubkey\_authentication variable to ssh hardening [\#749](https://github.com/dev-sec/ansible-collection-hardening/pull/749) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([debbabi](https://github.com/debbabi))
 
 **Fixed bugs:**
@@ -21,7 +25,11 @@
 
 **Merged pull requests:**
 
+- remove tests for FreeBSD12 since it's out of support [\#777](https://github.com/dev-sec/ansible-collection-hardening/pull/777) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
+- chore\(deps\): pin dependencies [\#776](https://github.com/dev-sec/ansible-collection-hardening/pull/776) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
+- Use best-practice preset for renovate [\#775](https://github.com/dev-sec/ansible-collection-hardening/pull/775) ([schurzi](https://github.com/schurzi))
 - Deprecate Centos Stream 8 [\#770](https://github.com/dev-sec/ansible-collection-hardening/pull/770) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
+- disable systemd socket activation [\#769](https://github.com/dev-sec/ansible-collection-hardening/pull/769) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - centos7 is eol, remove it [\#767](https://github.com/dev-sec/ansible-collection-hardening/pull/767) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix spelling [\#766](https://github.com/dev-sec/ansible-collection-hardening/pull/766) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - do not force type of ssh\_gateway\_ports [\#765](https://github.com/dev-sec/ansible-collection-hardening/pull/765) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
