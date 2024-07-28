@@ -39,8 +39,8 @@ jobs:
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9
-          - fedora/38-cloud-base
           - fedora/39-cloud-base
+          - fedora/40-cloud-base
           - generic/ubuntu1804
           - generic/ubuntu2004
           - generic/ubuntu2204
