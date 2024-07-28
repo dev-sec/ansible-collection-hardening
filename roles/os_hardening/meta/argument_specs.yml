@@ -73,13 +73,6 @@ argument_specs:
         default: '[]'
         type: list
         description: list of things, that a user is allowed to do. May contain `change_user`.
-      os_security_kernel_enable_module_loading:
-        default: true
-        type: bool
-        description: true if you want to allowed to change kernel modules once the
-          system is running (eg `modprobe`, `rmmod`). WARNING - Rebuilding initramfs
-          is deprecated and will be removed in the next major release. For more information
-          take a look at this issue <https://github.com/dev-sec/ansible-collection-hardening/pull/591>
       os_security_kernel_enable_core_dump:
         default: false
         type: bool

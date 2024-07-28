@@ -40,7 +40,6 @@ os_users_without_password_ageing: []
 
 # Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: [vagrant, kitchen]
-os_security_kernel_enable_module_loading: true
 os_security_kernel_enable_core_dump: false
 os_security_suid_sgid_enforce: true
 # User-defined blacklist and whitelist
