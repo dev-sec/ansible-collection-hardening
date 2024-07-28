@@ -39,8 +39,8 @@ jobs:
           - centosstream9
           - rocky8
           - rocky9
-          - fedora38
           - fedora39
+          - fedora40
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
