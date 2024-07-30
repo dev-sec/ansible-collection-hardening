@@ -14,12 +14,24 @@
         os_mnt_tmp_src: tmpfs
         os_mnt_tmp_filesystem: tmpfs
       when: ansible_facts.os_family == 'Archlinux'
+
     - name: Overrides for Fedora image
       ansible.builtin.set_fact:
         os_mnt_tmp_enabled: true
         os_mnt_tmp_src: tmpfs
         os_mnt_tmp_filesystem: tmpfs
       when: ansible_facts.distribution == 'Fedora'
+
+    - name: Overrides for Fedora 40 image
+      ansible.builtin.set_fact:
+        os_mnt_var_enabled: true
+        os_mnt_var_src: UUID=282c6d73-afc2-4113-9856-c7679ad51920
+        os_mnt_var_filesystem: btrfs
+        os_mnt_var_options: rw,nosuid,nodev,compress=zstd:1,subvol=var
+      when:
+        - ansible_facts.distribution == 'Fedora'
+        - ansible_distribution_major_version|int == 40
+
     - name: Include os_hardening role
       ansible.builtin.include_role:
         name: devsec.hardening.os_hardening

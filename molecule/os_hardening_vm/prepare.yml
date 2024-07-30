@@ -62,6 +62,7 @@
           - python
           - findutils
           - procps-ng
+          - python3-libselinux
       when: ansible_facts.distribution == 'Fedora'
 
     - name: Install required tools on Arch
