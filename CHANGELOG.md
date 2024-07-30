@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-07-28)
+## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-07-30)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.0)
 
@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Update to current Fedora releases [\#783](https://github.com/dev-sec/ansible-collection-hardening/pull/783) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Remove deprecated rebuild of initrd [\#782](https://github.com/dev-sec/ansible-collection-hardening/pull/782) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update patrickjahns/version-drafter-action digest to 2076fa4 [\#781](https://github.com/dev-sec/ansible-collection-hardening/pull/781) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 95382d3 [\#779](https://github.com/dev-sec/ansible-collection-hardening/pull/779) ([renovate[bot]](https://github.com/apps/renovate))
