@@ -10,3 +10,4 @@
     state: stopped
     enabled: false
     masked: true
+    daemon_reload: true
