@@ -1,4 +1,5 @@
 ---
+
 ssh_macs_53_default:
   - hmac-ripemd160
   - hmac-sha1

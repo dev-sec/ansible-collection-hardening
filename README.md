@@ -13,13 +13,13 @@
 This collection provides battle tested hardening for:
 
 - Linux operating systems:
-  - CentOS 7/8/9
+  - CentOS 9
   - Rocky Linux 8/9
   - Debian 10/11/12
   - Ubuntu 18.04/20.04/22.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
-  - Fedora 37/38 (some roles supported)
+  - Fedora 39/40 (some roles supported)
   - Suse Tumbleweed (some roles supported)
 - MySQL
   - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17

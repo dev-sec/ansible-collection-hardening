@@ -62,6 +62,7 @@
           - python
           - findutils
           - procps-ng
+          - python3-libselinux
       when: ansible_facts.distribution == 'Fedora'
 
     - name: Install required tools on Arch
@@ -73,7 +74,7 @@
       when: ansible_facts.os_family == 'Archlinux'
 
     - name: Install required tools on RHEL # noqa ignore-errors
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name:
           - openssh-clients
           - openssh

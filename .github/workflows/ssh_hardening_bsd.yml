@@ -37,12 +37,11 @@ jobs:
       matrix:
         molecule_distro:
           - openbsd7
-          - freebsd12
           - freebsd13
           - freebsd14
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true

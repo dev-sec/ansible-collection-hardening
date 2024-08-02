@@ -36,13 +36,11 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - centos7
-          - centosstream8
           - centosstream9
           - rocky8
           - rocky9
-          - fedora38
           - fedora39
+          - fedora40
           - ubuntu1804
           - ubuntu2004
           - ubuntu2204
@@ -54,13 +52,13 @@ jobs:
           # - opensuse_tumbleweed  # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5
         with:
           python-version: 3.12
 

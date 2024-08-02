@@ -8,7 +8,6 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - "7"
         - "8"
         - "9"
     - name: Ubuntu
@@ -26,7 +25,6 @@ galaxy_info:
     - name: SmartOS
     - name: FreeBSD
       versions:
-        - "12.2"
         - "13.2"
         - "14.0"
     - name: OpenBSD

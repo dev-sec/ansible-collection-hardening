@@ -1,4 +1,5 @@
 ---
+
 # true if IPv6 is needed
 network_ipv6_enable: true # sshd + ssh
 
@@ -6,8 +7,11 @@ network_ipv6_enable: true # sshd + ssh
 ssh_client_config_file: /etc/ssh/ssh_config # ssh
 ssh_server_config_file: /etc/ssh/sshd_config # sshd
 
-# true if sshd should be started and enabled
+# true if sshd should be started
 ssh_server_enabled: true # sshd
+
+# true if sshd should be enabled at boot
+ssh_server_service_enabled: true # sshd
 
 # true if DNS resolutions are needed, look up the remote host name,
 # defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8

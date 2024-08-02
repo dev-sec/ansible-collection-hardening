@@ -1,0 +1,12 @@
+---
+- name: Remove ssh service systemd-socket file
+  ansible.builtin.file:
+    path: /etc/systemd/system/ssh.service.d/00-socket.conf
+    state: absent
+
+- name: Disable systemd-socket activation
+  ansible.builtin.systemd:
+    name: ssh.socket
+    state: stopped
+    enabled: false
+    masked: true

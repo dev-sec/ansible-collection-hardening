@@ -26,7 +26,7 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 ## Supported Operating Systems
 
 - EL
-  - 7, 8, 9
+  - 8, 9
 - Ubuntu
   - bionic, focal, jammy
 - Debian

@@ -88,7 +88,7 @@ argument_specs:
           you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
       ssh_gateway_ports:
         default: false
-        type: bool
+        type: raw
         description: Set to `false` to disable binding forwarded ports to non-loopback
           addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified`
           to allow the client to specify which address to bind to.
@@ -259,6 +259,10 @@ argument_specs:
         default: true
         type: bool
         description: Set to `false` to disable the opensshd server.
+      ssh_server_service_enabled:
+        default: true
+        type: bool
+        description: Set to `false` to disable starting sshd at boot.
       ssh_server_hardening:
         default: true
         type: bool

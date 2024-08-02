@@ -36,13 +36,11 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - generic/centos7
-          - generic/centos8s
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9
-          - fedora/38-cloud-base
           - fedora/39-cloud-base
+          - fedora/40-cloud-base
           - generic/ubuntu1804
           - generic/ubuntu2004
           - generic/ubuntu2204
@@ -53,7 +51,7 @@ jobs:
           - generic/arch
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true

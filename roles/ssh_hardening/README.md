@@ -37,12 +37,18 @@ This role uses the default port 22 or the port configured in the inventory to co
 
 If idempotency is important, please consider using role [`ssh-hardening-fallback`](https://github.com/nununo/ansible-ssh-hardening-fallback), which is a wrapper around this role that falls back to port 22 if the configured port is unreachable.
 
+## Disabling systemd-socket activation on Debian and Ubuntu systems
+
+Since Debian 12 and Ubuntu 22.04 the ssh-daemon is not running by default anymore but is instead activated via systemd.
+We revert this change to its traditional behaviour.
+For more information, see [this issue](https://github.com/dev-sec/ansible-collection-hardening/issues/763).
+
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
 
 - EL
-  - 7, 8, 9
+  - 8, 9
 - Ubuntu
   - bionic, focal, jammy
 - Debian
@@ -52,7 +58,7 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
 - ArchLinux
 - SmartOS
 - FreeBSD
-  - 12.2, 13.2, 14.0
+  - 13.2, 14.0
 - OpenBSD
   - 7.0
 
@@ -209,9 +215,9 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
   - Type: str
   - Required: no
 - `ssh_gateway_ports`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
-  - Type: bool
+  - Type: raw
   - Required: no
 - `ssh_gssapi_delegation`
   - Default: `false`
@@ -398,6 +404,11 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
   - Description: a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.
   - Type: list
   - Required: no
+- `ssh_server_service_enabled`
+  - Default: `true`
+  - Description: Set to `false` to disable starting sshd at boot.
+  - Type: bool
+  - Required: no
 - `ssh_trusted_user_ca_keys`
   - Default: ``
   - Description: set the trusted certificate authorities public keys used to sign user certificates. Only used if `ssh_trusted_user_ca_keys_file` is set.
@@ -421,11 +432,6 @@ If idempotency is important, please consider using role [`ssh-hardening-fallback
 - `ssh_x11_forwarding`
   - Default: `false`
   - Description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
-  - Type: bool
-  - Required: no
-- `ssh_pubkey_authentication`
-  - Default: `true`
-  - Description: Set to `false` to disable publickey authentication.
   - Type: bool
   - Required: no
 - `sshd_authenticationmethods`

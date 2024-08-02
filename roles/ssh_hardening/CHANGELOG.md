@@ -669,7 +669,7 @@
 - Make MaxAuthTries configurable [\#31](https://github.com/dev-sec/ansible-ssh-hardening/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
 - Change oneliner if-statements to be more readable [\#30](https://github.com/dev-sec/ansible-ssh-hardening/pull/30) ([rndmh3ro](https://github.com/rndmh3ro))
 - Make ssh client password login configurable. [\#29](https://github.com/dev-sec/ansible-ssh-hardening/pull/29) ([ypid](https://github.com/ypid))
-- Fix join-filter, jinja-cases, intendation [\#27](https://github.com/dev-sec/ansible-ssh-hardening/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
+- Fix join-filter, jinja-cases, indentation [\#27](https://github.com/dev-sec/ansible-ssh-hardening/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
 - Short role review. Fixed role when ssh_client_weak_kex == true. [\#26](https://github.com/dev-sec/ansible-ssh-hardening/pull/26) ([ypid](https://github.com/ypid))
 - Make it configurable to only harden ssh client/server or both \(default\). [\#25](https://github.com/dev-sec/ansible-ssh-hardening/pull/25) ([ypid](https://github.com/ypid))
 - Separate system-vars from editable vars [\#24](https://github.com/dev-sec/ansible-ssh-hardening/pull/24) ([rndmh3ro](https://github.com/rndmh3ro))
