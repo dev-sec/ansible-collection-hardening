@@ -43,7 +43,7 @@ jobs:
           - fedora/40-cloud-base
           - generic/ubuntu2004
           - generic/ubuntu2204
-          - generic/ubuntu2404
+          - alvistack/ubuntu-24.04
           - generic/debian10
           - generic/debian11
           - generic/debian12
