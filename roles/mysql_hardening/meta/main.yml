@@ -18,7 +18,7 @@ galaxy_info:
     - name: Debian
       versions:
         - bullseye
-        - buster
+        - bookworm
     - name: Amazon
     - name: opensuse
   galaxy_tags:

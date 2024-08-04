@@ -17,7 +17,7 @@ galaxy_info:
         - noble
     - name: Debian
       versions:
-        - buster
+        - bookworm
         - bullseye
     - name: Amazon
   galaxy_tags:

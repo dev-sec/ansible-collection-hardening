@@ -44,7 +44,6 @@ jobs:
           - generic/ubuntu2004
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
-          - generic/debian10
           - generic/debian11
           - generic/debian12
           - generic/opensuse15
