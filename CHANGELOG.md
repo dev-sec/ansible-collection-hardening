@@ -1,12 +1,13 @@
 # Changelog
 
-## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-07-30)
+## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-08-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.0)
 
 **Implemented enhancements:**
 
 - option to disable regeneration of ssh private key [\#772](https://github.com/dev-sec/ansible-collection-hardening/issues/772)
+- Ubuntu 24.04 support [\#764](https://github.com/dev-sec/ansible-collection-hardening/issues/764)
 - Support systemd socket activation for sshd [\#763](https://github.com/dev-sec/ansible-collection-hardening/issues/763) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
 - Release 9.0.2 [\#758](https://github.com/dev-sec/ansible-collection-hardening/issues/758)
 - Make Publickey authentication configurable  [\#750](https://github.com/dev-sec/ansible-collection-hardening/issues/750)
@@ -21,7 +22,9 @@
 - ssh hardening role fails when `ssh_permit_root_login` var is set on ubuntu 24.04 [\#768](https://github.com/dev-sec/ansible-collection-hardening/issues/768)
 - os\_hardening fails when setting vm.mmap\_rnd\_bits [\#757](https://github.com/dev-sec/ansible-collection-hardening/issues/757)
 - `ssh_gateway_ports` is documented to accept 'clientspecified' string, but only accepts bools [\#755](https://github.com/dev-sec/ansible-collection-hardening/issues/755)
+- Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
 - harden permissions for directory mount /var/log fails for minimized Ubuntu 22.04  [\#741](https://github.com/dev-sec/ansible-collection-hardening/issues/741)
+- Update Debian compatibility [\#784](https://github.com/dev-sec/ansible-collection-hardening/pull/784) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Merged pull requests:**
 
