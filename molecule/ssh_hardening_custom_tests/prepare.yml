@@ -62,12 +62,6 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: Created needed directory
-      ansible.builtin.file:
-        path: /var/run/sshd
-        state: directory
-        mode: "0755"
-
     - name: Create ssh host keys # noqa ignore-errors
       ansible.builtin.command: ssh-keygen -A
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
