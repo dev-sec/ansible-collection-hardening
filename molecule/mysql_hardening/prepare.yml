@@ -26,13 +26,6 @@
       when:
         - ansible_os_family == 'Suse'
 
-    - name: Use Python 2 on Debian 10
-      ansible.builtin.set_fact:
-        ansible_python_interpreter: /usr/bin/python
-      when:
-        - ansible_distribution == 'Debian'
-        - ansible_distribution_major_version|int == 10
-
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
         upgrade: safe

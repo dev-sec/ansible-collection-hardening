@@ -39,10 +39,9 @@ jobs:
           - centosstream9
           - rocky8
           - rocky9
-          - ubuntu1804
           - ubuntu2004
           - ubuntu2204
-          - debian10
+          - ubuntu2404
           - debian11
           - debian12
           - amazon2023

@@ -12,12 +12,12 @@ galaxy_info:
         - "9"
     - name: Ubuntu
       versions:
-        - bionic
         - focal
         - jammy
+        - noble
     - name: Debian
       versions:
-        - buster
+        - bookworm
         - bullseye
     - name: Amazon
     - name: Fedora
