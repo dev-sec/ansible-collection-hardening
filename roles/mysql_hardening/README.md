@@ -24,13 +24,12 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
-  - bionic, focal, jammy
+  - focal, jammy, noble
 - Debian
-  - bullseye, buster
+  - bullseye, bookworm
 - Amazon
 - opensuse
 
