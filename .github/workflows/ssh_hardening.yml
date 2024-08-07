@@ -74,7 +74,6 @@ jobs:
         working-directory: ansible_collections/devsec/hardening
         if: matrix.molecule_distro == 'rocky8'
 
-
       - name: Test with molecule
         run: |
           if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
