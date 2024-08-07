@@ -1,8 +1,8 @@
 # Changelog
 
-## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-08-06)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-08-07)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.1)
 
 **Implemented enhancements:**
 
@@ -28,6 +28,10 @@
 - Update Debian compatibility [\#784](https://github.com/dev-sec/ansible-collection-hardening/pull/784) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - do not force type of ssh\_gateway\_ports [\#765](https://github.com/dev-sec/ansible-collection-hardening/pull/765) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Closed issues:**
+
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
+
 **Merged pull requests:**
 
 - Update to current Fedora releases [\#783](https://github.com/dev-sec/ansible-collection-hardening/pull/783) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
@@ -42,6 +46,7 @@
 - centos7 is eol, remove it [\#767](https://github.com/dev-sec/ansible-collection-hardening/pull/767) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - fix spelling [\#766](https://github.com/dev-sec/ansible-collection-hardening/pull/766) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - ci: define permissions for enforce-labels workflow  [\#760](https://github.com/dev-sec/ansible-collection-hardening/pull/760) ([fgreinacher](https://github.com/fgreinacher))
+- chore\(deps\): update dependency ansible-core to v2.17.2 [\#756](https://github.com/dev-sec/ansible-collection-hardening/pull/756) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.16.5 [\#754](https://github.com/dev-sec/ansible-collection-hardening/pull/754) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.16.4 [\#751](https://github.com/dev-sec/ansible-collection-hardening/pull/751) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint action to v24 [\#745](https://github.com/dev-sec/ansible-collection-hardening/pull/745) ([renovate[bot]](https://github.com/apps/renovate))
