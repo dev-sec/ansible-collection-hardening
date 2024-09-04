@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-08-13)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-09-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.1)
 
@@ -34,6 +34,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update actions/setup-python digest to f677139 [\#788](https://github.com/dev-sec/ansible-collection-hardening/pull/788) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.17.3 [\#786](https://github.com/dev-sec/ansible-collection-hardening/pull/786) ([renovate[bot]](https://github.com/apps/renovate))
 - Update to current Fedora releases [\#783](https://github.com/dev-sec/ansible-collection-hardening/pull/783) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 - Remove deprecated rebuild of initrd [\#782](https://github.com/dev-sec/ansible-collection-hardening/pull/782) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
