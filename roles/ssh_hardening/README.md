@@ -138,6 +138,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Specifies whether challenge-response authentication is allowed (e.g. via PAM).
   - Type: bool
   - Required: no
+- `ssh_ciphers_config`
+  - Default: `true`
+  - Description: Whether or not configuring the ciphers of the server.
+  - Type: bool
+  - Required: no
 - `ssh_ciphers`
   - Default: ``
   - Description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
@@ -238,6 +243,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Host certificates to look for when starting sshd
   - Type: list
   - Required: no
+- `ssh_host_key_config`
+  - Default: `true`
+  - Description: Whether or not configuring the host keys of that the server offers.
+  - Type: bool
+  - Required: no
 - `ssh_host_key_algorithms`
   - Default: ``
   - Description: Host key algorithms that the server offers. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version
@@ -258,6 +268,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Set to `true` if SSH has Kerberos support.
   - Type: bool
   - Required: no
+- `ssh_kex_config`
+  - Default: `true`
+  - Description: Whether or not configuring the kexs of the server.
+  - Type: bool
+  - Required: no
 - `ssh_kex`
   - Default: ``
   - Description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
@@ -272,6 +287,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Default: `30s`
   - Description: specifies the time allowed for successful authentication to the SSH server.
   - Type: str
+  - Required: no
+- `ssh_macs_config`
+  - Default: `true`
+  - Description: Whether or not configuring the macs of the server.
+  - Type: bool
   - Required: no
 - `ssh_macs`
   - Default: ``
