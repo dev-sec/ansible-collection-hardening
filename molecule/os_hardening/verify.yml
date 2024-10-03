@@ -67,12 +67,14 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  vars:
+    os_auditd_enabled: false
+    os_env_umask: "027 #override"
   tasks:
     # test if variable can be overridden
     - name: Workaround for https://github.com/ansible/ansible/issues/66304
       ansible.builtin.set_fact:
         ansible_virtualization_type: docker
-        os_env_umask: "027 #override"
 
     - name: Include os_hardening role
       ansible.builtin.include_role:
