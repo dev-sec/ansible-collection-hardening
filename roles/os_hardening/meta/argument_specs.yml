@@ -4,10 +4,6 @@ argument_specs:
     short_description: The main entry point for the os hardening role.
     version_added: 8.8.0
     options:
-      os_desktop_enable:
-        default: false
-        type: bool
-        description: true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc.
       os_env_user_paths:
         default: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
         type: list
