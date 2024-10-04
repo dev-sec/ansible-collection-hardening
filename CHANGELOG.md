@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-09-15)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-04)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.1)
 
@@ -28,12 +28,9 @@
 - Update Debian compatibility [\#784](https://github.com/dev-sec/ansible-collection-hardening/pull/784) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - do not force type of ssh\_gateway\_ports [\#765](https://github.com/dev-sec/ansible-collection-hardening/pull/765) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
-**Closed issues:**
-
-- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
-
 **Merged pull requests:**
 
+- Use Python venv for VM tests [\#798](https://github.com/dev-sec/ansible-collection-hardening/pull/798) ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update ansible/ansible-lint digest to 25f783c [\#792](https://github.com/dev-sec/ansible-collection-hardening/pull/792) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.17.4 [\#791](https://github.com/dev-sec/ansible-collection-hardening/pull/791) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to f677139 [\#788](https://github.com/dev-sec/ansible-collection-hardening/pull/788) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
