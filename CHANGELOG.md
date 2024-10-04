@@ -31,6 +31,7 @@
 **Merged pull requests:**
 
 - Use Python venv for VM tests [\#798](https://github.com/dev-sec/ansible-collection-hardening/pull/798) ([schurzi](https://github.com/schurzi))
+- Remove unused files and variables [\#797](https://github.com/dev-sec/ansible-collection-hardening/pull/797) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update ansible/ansible-lint digest to 25f783c [\#792](https://github.com/dev-sec/ansible-collection-hardening/pull/792) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.17.4 [\#791](https://github.com/dev-sec/ansible-collection-hardening/pull/791) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to f677139 [\#788](https://github.com/dev-sec/ansible-collection-hardening/pull/788) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
