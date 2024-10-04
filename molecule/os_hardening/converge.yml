@@ -16,11 +16,10 @@
   vars:
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
-    os_auditd_num_logs: 10
+    os_auditd_enabled: false
     os_security_suid_sgid_remove_from_unknown: true
     os_auth_pam_passwdqc_enable: false
     os_auth_lockout_time: 15
-    os_desktop_enable: true
     os_env_extra_user_paths: [/home]
     os_auth_allow_homeless: true
     os_security_suid_sgid_blacklist: [/bin/umount]
