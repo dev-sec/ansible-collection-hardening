@@ -1,8 +1,8 @@
 # Changelog
 
-## [10.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.0) (2024-08-06)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-05)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.0)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/9.0.1...10.0.1)
 
 **Implemented enhancements:**
 
