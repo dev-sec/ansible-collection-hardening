@@ -38,7 +38,7 @@ jobs:
           # this excludes all versions prior to the collection-release
           # since they break the changelog generation with the error:
           # "No common ancestor between ... and $version"
-          exclude_tags_regex: '[0-6]\.\d\.\d'
+          exclude_tags_regex: '^[0-6]\.\d\.\d'
           issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
       - name: push changelog
