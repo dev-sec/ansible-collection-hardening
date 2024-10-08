@@ -183,6 +183,9 @@ sftp_umask: "0027"
 # change default sftp chroot location
 sftp_chroot_dir: /home/%u
 
+# If true, password login for sftp is allowed
+sftp_password_login: "{{ ssh_server_password_login }}"
+
 # enable experimental client roaming
 ssh_client_roaming: false
 

@@ -269,7 +269,7 @@ Match Group sftponly
 {% endif %}
     AllowTcpForwarding no
     AllowAgentForwarding no
-    PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
+    PasswordAuthentication {{ 'yes' if (sftp_password_login|bool) else 'no' }}
     PermitRootLogin no
     X11Forwarding no
 {% endif %}
