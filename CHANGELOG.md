@@ -13,8 +13,13 @@
 - molecule scenario ssh\_hardening if failing due to missing docker image [\#790](https://github.com/dev-sec/ansible-collection-hardening/issues/790)
 - Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
 
+**Closed issues:**
+
+- Dependency Dashboard [\#655](https://github.com/dev-sec/ansible-collection-hardening/issues/655)
+
 **Merged pull requests:**
 
+- chore\(deps\): update dependency ansible-core to v2.17.5 [\#802](https://github.com/dev-sec/ansible-collection-hardening/pull/802) ([renovate[bot]](https://github.com/apps/renovate))
 - Don't run tests if the environment is not correct [\#801](https://github.com/dev-sec/ansible-collection-hardening/pull/801) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update actions/checkout digest to eef6144 [\#800](https://github.com/dev-sec/ansible-collection-hardening/pull/800) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - feat: Corrected package name [\#799](https://github.com/dev-sec/ansible-collection-hardening/pull/799) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([PapaPeskwo](https://github.com/PapaPeskwo))
