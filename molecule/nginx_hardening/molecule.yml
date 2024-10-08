@@ -32,6 +32,7 @@ scenario:
     - prepare
   check_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - create
     - prepare
@@ -47,6 +48,7 @@ scenario:
     - destroy
   test_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - syntax
     - create

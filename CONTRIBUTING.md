@@ -93,6 +93,21 @@ We generally include test for coding guidelines:
 
 Remember: Code is generally read much more often than written.
 
+### Local testing of roles in this collection
+
+We are using Molecule to test our roles.
+If you want to execute the tests on your machine you need Docker and Molecule.
+You will also need to set the `MOLECULE_DISTRO` environment variable to execute the tests.
+To find valid values for the variable you can take a look at our GitHub Action workflows in `.github/workflows/`.
+
+Example for executing tests locally:
+
+```bash
+pip install -r requirements.txt
+export MOLECULE_DISTRO="debian12"
+molecule test -s os_hardening
+```
+
 ### Use Markdown
 
 Wherever possible, please refrain from any other formats and stick to simple markdown.
