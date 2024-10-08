@@ -11,7 +11,7 @@ ssh_host_keys_owner: root
 ssh_host_keys_group: root
 ssh_host_keys_mode: "0600"
 ssh_selinux_packages:
-  - policycoreutils-python
+  - policycoreutils-python-utils
   - checkpolicy
 
 # true if SSH support Kerberos
