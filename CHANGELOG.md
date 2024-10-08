@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-05)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.0.1)
 
@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- feat: Corrected package name [\#799](https://github.com/dev-sec/ansible-collection-hardening/pull/799) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([PapaPeskwo](https://github.com/PapaPeskwo))
 - Use Python venv for VM tests [\#798](https://github.com/dev-sec/ansible-collection-hardening/pull/798) ([schurzi](https://github.com/schurzi))
 - Remove unused files and variables [\#797](https://github.com/dev-sec/ansible-collection-hardening/pull/797) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update ansible/ansible-lint digest to 25f783c [\#792](https://github.com/dev-sec/ansible-collection-hardening/pull/792) ([renovate[bot]](https://github.com/apps/renovate))
