@@ -10,10 +10,12 @@
 
 **Fixed bugs:**
 
+- molecule scenario ssh\_hardening if failing due to missing docker image [\#790](https://github.com/dev-sec/ansible-collection-hardening/issues/790)
 - Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
 
 **Merged pull requests:**
 
+- Don't run tests if the environment is not correct [\#801](https://github.com/dev-sec/ansible-collection-hardening/pull/801) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - feat: Corrected package name [\#799](https://github.com/dev-sec/ansible-collection-hardening/pull/799) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([PapaPeskwo](https://github.com/PapaPeskwo))
 - Use Python venv for VM tests [\#798](https://github.com/dev-sec/ansible-collection-hardening/pull/798) ([schurzi](https://github.com/schurzi))
 - Remove unused files and variables [\#797](https://github.com/dev-sec/ansible-collection-hardening/pull/797) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
