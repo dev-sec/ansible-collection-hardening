@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-08)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.0.1)
 
@@ -11,6 +11,7 @@
 **Fixed bugs:**
 
 - molecule scenario ssh\_hardening if failing due to missing docker image [\#790](https://github.com/dev-sec/ansible-collection-hardening/issues/790)
+- getent\_shadow empty [\#787](https://github.com/dev-sec/ansible-collection-hardening/issues/787)
 - Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
 
 **Closed issues:**
@@ -19,6 +20,7 @@
 
 **Merged pull requests:**
 
+- fix\(docs\): add 'become: true' to example playbooks. fix \#787 [\#804](https://github.com/dev-sec/ansible-collection-hardening/pull/804) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - chore\(deps\): update dependency ansible-core to v2.17.5 [\#802](https://github.com/dev-sec/ansible-collection-hardening/pull/802) ([renovate[bot]](https://github.com/apps/renovate))
 - Don't run tests if the environment is not correct [\#801](https://github.com/dev-sec/ansible-collection-hardening/pull/801) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update actions/checkout digest to eef6144 [\#800](https://github.com/dev-sec/ansible-collection-hardening/pull/800) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
