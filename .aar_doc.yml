@@ -43,6 +43,7 @@ output_template: |
 
   ```
   - hosts: all
+    become: true
     roles:
       - name: {{ role }}
   ```
