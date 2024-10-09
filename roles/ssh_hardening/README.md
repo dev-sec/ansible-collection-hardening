@@ -46,7 +46,6 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -478,6 +477,7 @@ None.
 
 ```
 - hosts: all
+  become: true
   roles:
     - name: devsec.hardening.ssh_hardening
 ```
