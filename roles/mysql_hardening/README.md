@@ -24,7 +24,6 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -135,6 +134,7 @@ None.
 
 ```
 - hosts: all
+  become: true
   roles:
     - name: devsec.hardening.mysql_hardening
 ```
