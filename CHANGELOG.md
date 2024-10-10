@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-09)
+## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-10)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.0.1)
 
@@ -20,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Document correct quotes for ssh\_permit\_tunnel parameter [\#806](https://github.com/dev-sec/ansible-collection-hardening/pull/806) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([vmpr](https://github.com/vmpr))
 - fix\(docs\): add 'become: true' to example playbooks. fix \#787 [\#804](https://github.com/dev-sec/ansible-collection-hardening/pull/804) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - chore\(deps\): update dependency ansible-core to v2.17.5 [\#802](https://github.com/dev-sec/ansible-collection-hardening/pull/802) ([renovate[bot]](https://github.com/apps/renovate))
 - Don't run tests if the environment is not correct [\#801](https://github.com/dev-sec/ansible-collection-hardening/pull/801) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
