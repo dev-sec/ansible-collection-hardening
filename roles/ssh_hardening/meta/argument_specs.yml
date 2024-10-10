@@ -65,8 +65,8 @@ argument_specs:
       ssh_permit_tunnel:
         default: 'no'
         description: Specifies whether tun(4) device forwarding is allowed. The argument
-          must be yes, point-to-point (layer 3), ethernet (layer 2), or no. Specifying
-          yes permits both point-to-point and ethernet.
+          must be "yes", point-to-point (layer 3), ethernet (layer 2), or "no". Specifying
+          yes permits both point-to-point and ethernet. - The quotes are required!
         choices:
           - 'no'
           - 'yes'
