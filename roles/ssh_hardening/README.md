@@ -306,7 +306,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Required: no
 - `ssh_permit_tunnel`
   - Default: `no`
-  - Description: Specifies whether tun(4) device forwarding is allowed. The argument must be yes, point-to-point (layer 3), ethernet (layer 2), or no. Specifying yes permits both point-to-point and ethernet.
+  - Description: Specifies whether tun(4) device forwarding is allowed. The argument must be "yes", "point-to-point" (layer 3), "ethernet" (layer 2), or "no". Specifying yes permits both point-to-point and ethernet. - The quotes are required!
   - Type: str
   - Required: no
   - Choices:
