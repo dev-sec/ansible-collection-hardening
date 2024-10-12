@@ -40,12 +40,6 @@ ssh_client_port: "22" # ssh
 # Default is empty, but should be configured for security reasons!
 ssh_listen_to: [0.0.0.0] # sshd
 
-# Whether or not configuring and generating the host keys files
-ssh_host_key_config: true # sshd
-
-# Host keys to look for when starting sshd.
-ssh_host_key_files: [] # sshd
-
 # Host RSA key size in bits
 ssh_host_rsa_key_size: 4096 # sshd
 
@@ -209,13 +203,6 @@ ssh_max_startups: 10:30:60 # sshd
 
 ssh_ps59: sandbox
 
-# Whether or not configuring the macs, cihers and kex algorithms
-ssh_macs_config: true      # sshd
-ssh_ciphers_config: true
-ssh_kex_config: true
-ssh_macs: []
-ssh_ciphers: []
-ssh_kex: []
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: /etc/selinux/local-policies
 

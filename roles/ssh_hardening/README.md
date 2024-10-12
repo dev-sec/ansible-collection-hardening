@@ -138,14 +138,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Specifies whether challenge-response authentication is allowed (e.g. via PAM).
   - Type: bool
   - Required: no
-- `ssh_ciphers_config`
-  - Default: `true`
-  - Description: Whether or not configuring the ciphers of the server.
-  - Type: bool
-  - Required: no
 - `ssh_ciphers`
-  - Default: ``
-  - Description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
+  - Default: undefined
+  - Description: Set a list of ciphers to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
   - Type: list
   - Required: no
 - `ssh_client_alive_count`
@@ -243,19 +238,14 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Host certificates to look for when starting sshd
   - Type: list
   - Required: no
-- `ssh_host_key_config`
-  - Default: `true`
-  - Description: Whether or not configuring the host keys of that the server offers.
-  - Type: bool
-  - Required: no
 - `ssh_host_key_algorithms`
   - Default: ``
   - Description: Host key algorithms that the server offers. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version
   - Type: list
   - Required: no
 - `ssh_host_key_files`
-  - Default: ``
-  - Description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version.
+  - Default: undefined
+  - Description: Host keys for sshd. If undefined ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version, and a new `ssh_host_rsa_key` may be generated according to `ssh_host_rsa_key_size`.  Set it to false to skip this configuration.
   - Type: list
   - Required: no
 - `ssh_host_rsa_key_size`
@@ -268,14 +258,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: Set to `true` if SSH has Kerberos support.
   - Type: bool
   - Required: no
-- `ssh_kex_config`
-  - Default: `true`
-  - Description: Whether or not configuring the kexs of the server.
-  - Type: bool
-  - Required: no
 - `ssh_kex`
-  - Default: ``
-  - Description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
+  - Default: undefined
+  - Description: Set a list of Key Exchange Algorithms to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
   - Type: list
   - Required: no
 - `ssh_listen_to`
@@ -288,14 +273,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: specifies the time allowed for successful authentication to the SSH server.
   - Type: str
   - Required: no
-- `ssh_macs_config`
-  - Default: `true`
-  - Description: Whether or not configuring the macs of the server.
-  - Type: bool
-  - Required: no
 - `ssh_macs`
-  - Default: ``
-  - Description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
+  - Default: undefined
+  - Description: Set a list of macs to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
   - Type: list
   - Required: no
 - `ssh_max_auth_retries`

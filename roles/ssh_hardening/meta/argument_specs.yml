@@ -28,12 +28,8 @@ argument_specs:
         description: one or more ip addresses, to which ssh-server should listen to.
           Default is all IPv4 addresses, but should be configured to specific addresses
           for security reasons
-      ssh_host_key_config:
-        default: true
-        type: bool
-        description: Whether or not configuring the host keys of that the server offers.
       ssh_host_key_files:
-        default: []
+        default: undefined
         type: list
         description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key',
           '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the
@@ -321,28 +317,16 @@ argument_specs:
         default: 10:30:60
         description: Specifies the maximum number of concurrent unauthenticated connections
           to the SSH daemon.
-      ssh_macs_config:
-        default: true
-        description: Whether or not configuring the macs of the server.
-        type: bool
       ssh_macs:
-        default: []
+        default: undefined
         type: list
         description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
-      ssh_kex_config:
-        default: true
-        description: Whether or not configuring the kexs of the server.
-        type: bool
       ssh_kex:
-        default: []
+        default: undefined
         type: list
         description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
-      ssh_ciphers_config:
-        default: true
-        description: Whether or not configuring the ciphers of the server.
-        type: bool
       ssh_ciphers:
-        default: []
+        default: undefined
         type: list
         description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
       ssh_custom_options:

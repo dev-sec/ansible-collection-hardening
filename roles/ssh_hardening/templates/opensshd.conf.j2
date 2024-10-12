@@ -34,9 +34,11 @@ ListenAddress {{ address }}
 {% endfor %}
 
 # HostKeys are listed here.
-{% for key in ssh_host_key_files if ssh_host_key_config%}
+{% if ssh_host_key_files is defined and ssh_host_key_files -%}
+{%    for key in ssh_host_key_files %}
 HostKey {{ key }}
-{% endfor %}
+{%    endfor %}
+{% endif %}
 
 # HostCertificates are listed here.
 {% for certificate in ssh_host_certificates -%}
@@ -73,14 +75,22 @@ LogLevel {{ sshd_log_level }}
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
 #
 {# This outputs 'Ciphers <list-of-ciphers>' if ssh_ciphers is defined or '#Ciphers' if ssh_ciphers is undefined -#}
-{{ 'Ciphers ' ~ ssh_ciphers|join(',') if ssh_ciphers and ssh_ciphers_config else 'Ciphers'|comment }}
+{% if ssh_ciphers is defined and ssh_ciphers -%}
+{{ 'Ciphers ' ~ ssh_ciphers|join(',') }}
+{% else -%}
+{{ 'Ciphers'|comment }}
+{% endif %}
 
 # **Hash algorithms** -- SHA-1 is formally deprecated by NIST in 2011 because of security issues.
 # Weak HMAC is sometimes required if older package versions are used
 # eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
 #
 {# This outputs 'MACs <list-of-macs>' if ssh_macs is defined or '#MACs' if ssh_macs is undefined -#}
-{{ 'MACs ' ~ ssh_macs|join(',') if ssh_macs and ssh_macs_config else 'MACs'|comment }}
+{% if ssh_macs is defined and ssh_macs -%}
+{{ 'MACs ' ~ ssh_macs|join(',') }}
+{% else -%}
+{{ 'MACs'|comment }}
+{% endif %}
 
 {% if sshd_version is version('5.9', '<') %}
 # Alternative setting, if OpenSSH version is below v5.9
@@ -92,8 +102,12 @@ LogLevel {{ sshd_log_level }}
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 #
-{# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined or '#KexAlgorithms' if ssh_kex is undefined #}
-{{ 'KexAlgorithms ' ~ ssh_kex|join(',') if ssh_kex and ssh_kex_config else 'KexAlgorithms'|comment }}
+{# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined and ssh_kex or '#KexAlgorithms' if ssh_kex is undefined #}
+{% if ssh_kex is defined and ssh_kex -%}
+{{ 'KexAlgorithms ' ~ ssh_kex|join(',') }}
+{% else -%}
+{{ 'KexAlgorithms'|comment }}
+{% endif %}
 
 # Authentication
 # --------------
