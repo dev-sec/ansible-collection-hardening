@@ -62,6 +62,14 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
+    - name: Install required tools on Alpine
+      community.general.apk:
+        name:
+          - openssh
+        state: present
+        update_cache: true
+      when: ansible_facts.os_family == 'Alpine'
+
     - name: Create ssh host keys # noqa ignore-errors
       ansible.builtin.command: ssh-keygen -A
       when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
