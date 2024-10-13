@@ -35,6 +35,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        include:
+          # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)
+          # - molecule_distro: opensuse_tumbleweed
+          #   molecule_docker_command: "/usr/lib/systemd/systemd"
+          - molecule_distro: alpine
+            molecule_docker_command: "/sbin/init"
+        molecule_docker_command:
+          - "/lib/systemd/systemd"
         molecule_distro:
           - centosstream9
           - rocky8
@@ -48,7 +56,6 @@ jobs:
           - debian12
           - amazon2023
           - arch
-          # - opensuse_tumbleweed  # needs fix - opensuse has different file location for conf and pam (/usr/etc/ssh/?, /usr/lib/pam.d/?)
     steps:
       - name: Checkout repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
@@ -76,11 +83,9 @@ jobs:
 
       - name: Test with molecule
         run: |
-          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
-            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
-          fi
           molecule --version
           molecule test -s ssh_hardening_custom_tests
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_docker_command }}
         working-directory: ansible_collections/devsec/hardening

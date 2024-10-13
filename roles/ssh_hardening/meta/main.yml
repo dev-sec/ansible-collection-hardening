@@ -19,6 +19,7 @@ galaxy_info:
       versions:
         - bookworm
         - bullseye
+    - name: Alpine
     - name: Amazon
     - name: Fedora
     - name: ArchLinux

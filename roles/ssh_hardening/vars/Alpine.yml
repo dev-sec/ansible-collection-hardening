@@ -1,0 +1,23 @@
+---
+ssh_pkgs:
+  - openssh
+sshd_path: /usr/sbin/sshd
+ssh_host_keys_dir: /etc/ssh
+sshd_service_name: sshd
+ssh_owner: root
+ssh_group: root
+ssh_host_keys_owner: root
+ssh_host_keys_group: root
+ssh_host_keys_mode: "0600"
+
+# true if SSH support Kerberos
+ssh_kerberos_support: true
+
+# true if SSH has PAM support
+ssh_pam_support: true
+
+sshd_moduli_file: /etc/ssh/moduli
+
+# CRYPTO_POLICY is not supported on Archlinux
+# and the package check only works in Ansible >2.10
+sshd_disable_crypto_policy: false
