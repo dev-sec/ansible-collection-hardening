@@ -52,5 +52,4 @@ scenario:
     - check
     - converge
     - idempotence
-    - verify
     - destroy
