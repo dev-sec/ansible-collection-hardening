@@ -14,6 +14,7 @@
 - molecule scenario ssh\_hardening if failing due to missing docker image [\#790](https://github.com/dev-sec/ansible-collection-hardening/issues/790)
 - getent\_shadow empty [\#787](https://github.com/dev-sec/ansible-collection-hardening/issues/787)
 - Error: Missing privilege separation directory: /run/sshd [\#752](https://github.com/dev-sec/ansible-collection-hardening/issues/752)
+- fix\(ssh\_hardening\): test setting kex to false, remove wrong default [\#808](https://github.com/dev-sec/ansible-collection-hardening/pull/808) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
@@ -21,6 +22,7 @@
 
 **Merged pull requests:**
 
+- fix\(cicd\): test idempotence on ssh custom tests [\#807](https://github.com/dev-sec/ansible-collection-hardening/pull/807) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Document correct quotes for ssh\_permit\_tunnel parameter [\#806](https://github.com/dev-sec/ansible-collection-hardening/pull/806) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([vmpr](https://github.com/vmpr))
 - fix\(docs\): add 'become: true' to example playbooks. fix \#787 [\#804](https://github.com/dev-sec/ansible-collection-hardening/pull/804) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - chore\(deps\): update dependency ansible-core to v2.17.5 [\#802](https://github.com/dev-sec/ansible-collection-hardening/pull/802) ([renovate[bot]](https://github.com/apps/renovate))
