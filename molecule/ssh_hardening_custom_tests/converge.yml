@@ -88,9 +88,8 @@
       - aes192-ctr
       - aes128-ctr
       - aes256-cbc
-    ssh_kex:
-      - diffie-hellman-group-exchange-sha256
-      - diffie-hellman-group-exchange-sha1
+    # these should not be set in the final sshd_config
+    ssh_kex: false
     ssh_custom_options:
       - Include /etc/ssh/ssh_config.d/*
     sshd_custom_options:
