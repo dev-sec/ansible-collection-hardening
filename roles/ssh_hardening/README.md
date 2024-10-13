@@ -46,6 +46,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
+
 - EL
   - 8, 9
 - Ubuntu
@@ -245,7 +246,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Required: no
 - `ssh_host_key_files`
   - Default: undefined
-  - Description: Host keys for sshd. If undefined ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version, and a new `ssh_host_rsa_key` may be generated according to `ssh_host_rsa_key_size`.  Set it to false to skip this configuration.
+  - Description: Host keys for sshd. If undefined ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version, and a new `ssh_host_rsa_key` may be generated according to `ssh_host_rsa_key_size`. Set it to false to skip this configuration.
   - Type: list
   - Required: no
 - `ssh_host_rsa_key_size`
