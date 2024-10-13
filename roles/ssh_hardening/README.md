@@ -52,6 +52,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - focal, jammy, noble
 - Debian
   - bookworm, bullseye
+- Alpine
 - Amazon
 - Fedora
 - ArchLinux
