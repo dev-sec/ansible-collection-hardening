@@ -1,12 +1,13 @@
 # Changelog
 
-## [10.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.0.1) (2024-10-10)
+## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-13)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.0.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.1.0)
 
 **Implemented enhancements:**
 
 - Ubuntu 24.04 support [\#764](https://github.com/dev-sec/ansible-collection-hardening/issues/764)
+- Provide granular noop for ssh configuration [\#789](https://github.com/dev-sec/ansible-collection-hardening/pull/789) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([seven-beep](https://github.com/seven-beep))
 
 **Fixed bugs:**
 
