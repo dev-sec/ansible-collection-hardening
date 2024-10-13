@@ -46,7 +46,6 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -140,8 +139,8 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: bool
   - Required: no
 - `ssh_ciphers`
-  - Default: undefined
-  - Description: Set a list of ciphers to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
+  - Default: ``
+  - Description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
   - Type: list
   - Required: no
 - `ssh_client_alive_count`
@@ -245,8 +244,8 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: list
   - Required: no
 - `ssh_host_key_files`
-  - Default: undefined
-  - Description: Host keys for sshd. If undefined ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version, and a new `ssh_host_rsa_key` may be generated according to `ssh_host_rsa_key_size`. Set it to false to skip this configuration.
+  - Default: ``
+  - Description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version.
   - Type: list
   - Required: no
 - `ssh_host_rsa_key_size`
@@ -260,8 +259,8 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: bool
   - Required: no
 - `ssh_kex`
-  - Default: undefined
-  - Description: Set a list of Key Exchange Algorithms to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
+  - Default: ``
+  - Description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
   - Type: list
   - Required: no
 - `ssh_listen_to`
@@ -275,8 +274,8 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_macs`
-  - Default: undefined
-  - Description: Set a list of macs to override the one defined in `vars/main.yml`, or set it to false to skip this configuration.
+  - Default: ``
+  - Description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
   - Type: list
   - Required: no
 - `ssh_max_auth_retries`
