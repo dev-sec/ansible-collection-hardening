@@ -35,6 +35,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        include:
+          - molecule_distro: opensuse_tumbleweed
+            molecule_docker_command: "/usr/lib/systemd/systemd"
+        molecule_docker_command:
+          - "/lib/systemd/systemd"
         molecule_distro:
           - centosstream9
           - rocky8
@@ -47,7 +52,6 @@ jobs:
           - debian11
           - debian12
           - amazon2023
-          - opensuse_tumbleweed
           - arch
     steps:
       - name: Checkout repo
@@ -60,27 +64,20 @@ jobs:
         uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5
         with:
           python-version: 3.12
+          cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          sudo apt install git
-          python -m pip install --no-cache-dir --upgrade pip
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
         working-directory: ansible_collections/devsec/hardening
 
       - name: Downgrade Ansible for Rocky 8 tests
-        run: |
-          pip install "ansible-core<2.17"
+        run: pip install "ansible-core<2.17"
         working-directory: ansible_collections/devsec/hardening
         if: matrix.molecule_distro == 'rocky8'
 
       - name: Test with molecule
-        run: |
-          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
-            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
-          fi
-          molecule --version
-          molecule test -s os_hardening
+        run: molecule test -s os_hardening
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_docker_command }}
         working-directory: ansible_collections/devsec/hardening

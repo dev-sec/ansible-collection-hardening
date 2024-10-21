@@ -12,6 +12,7 @@ on:  # yamllint disable-line rule:truthy
     paths:
       - 'roles/**/meta/argument_specs.yml'
       - 'roles/**/meta/main.yml'
+      - 'requirements.txt'
 
 jobs:
   readme:
@@ -32,12 +33,14 @@ jobs:
         uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5
         with:
           python-version: 3.12
+          cache: 'pip'
 
-      - name: Install aar_doc
-        run: pip3 install aar_doc
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: ansible_collections/devsec/hardening
 
-      - name: Run aar_doc
-        run: aar_doc roles/${{ matrix.roles }} markdown
+      - name: Run aar-doc
+        run: aar-doc roles/${{ matrix.roles }} markdown
 
       - name: Output diff
         run: git diff roles/${{ matrix.roles }}/README.md

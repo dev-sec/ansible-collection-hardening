@@ -47,13 +47,10 @@ jobs:
           submodules: true
 
       - name: Update Vagrant Box
-        run: |
-          vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+        run: vagrant box update --box generic/${{ matrix.molecule_distro }} || true
 
       - name: Test with molecule
-        run: |
-          molecule --version
-          molecule test -s ssh_hardening_bsd
+        run: molecule test -s ssh_hardening_bsd
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
