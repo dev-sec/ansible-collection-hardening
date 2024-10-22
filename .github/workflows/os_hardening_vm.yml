@@ -77,7 +77,6 @@ jobs:
       - name: Test with molecule
         run: |
           source ~/.venv/ansible-collection-hardening/bin/activate
-          molecule --version
           molecule test -s os_hardening_vm
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
