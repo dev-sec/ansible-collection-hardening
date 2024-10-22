@@ -41,8 +41,6 @@ jobs:
           #   molecule_docker_command: "/usr/lib/systemd/systemd"
           - molecule_distro: alpine
             molecule_docker_command: "/sbin/init"
-        molecule_docker_command:
-          - "/lib/systemd/systemd"
         molecule_distro:
           - centosstream9
           - rocky8
@@ -56,6 +54,8 @@ jobs:
           - debian12
           - amazon2023
           - arch
+        molecule_docker_command:
+          - "/lib/systemd/systemd"
     steps:
       - name: Checkout repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
