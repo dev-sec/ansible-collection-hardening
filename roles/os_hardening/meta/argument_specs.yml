@@ -207,6 +207,16 @@ argument_specs:
         description: This keyword specifies the maximum file size in megabytes. When
           this limit is reached, it will trigger a configurable action. The value
           given must be numeric.
+      os_auditd_name_format:
+        default: NONE
+        type: str
+        description: This keyword specifies how computer node names are inserted
+              into the audit event stream.
+        choices:
+          - NONE
+          - hostname
+          - fqd
+          - numeric
       os_auditd_num_logs:
         default: 5
         type: int
