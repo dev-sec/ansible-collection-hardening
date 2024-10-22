@@ -145,7 +145,6 @@ This role is mostly based on guides by:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -161,7 +160,7 @@ This role is mostly based on guides by:
 ## Role Variables
 
 - `os_apt_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring apt.
   - Type: bool
   - Required: no
@@ -191,7 +190,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_auditd_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring auditd.
   - Type: bool
   - Required: no
@@ -220,6 +219,16 @@ This role is mostly based on guides by:
   - Description: Defines the behaviour of auditd when its log file is filled up. Possible other values are described in the auditd.conf man page. The most common alternative to the default may be `rotate`.
   - Type: str
   - Required: no
+- `os_auditd_name_format`
+  - Default: `NONE`
+  - Description: This keyword specifies how computer node names are inserted into the audit event stream.
+  - Type: str
+  - Required: no
+  - Choices:
+    - NONE
+    - hostname
+    - fqd
+    - numeric
 - `os_auditd_num_logs`
   - Default: `5`
   - Description: This keyword specifies the number of log files to keep if `rotate` is given as the max_log_file_action. The value given must be numeric.
@@ -236,7 +245,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_auth_allow_homeless`
-  - Default: `false`
+  - Default: `False`
   - Description: true if to allow users without home to login.
   - Type: bool
   - Required: no
@@ -256,12 +265,12 @@ This role is mostly based on guides by:
   - Type: int
   - Required: no
 - `os_auth_pam_oddjob_mkhomedir`
-  - Default: `false`
+  - Default: `False`
   - Description: Enables automatic homedir e.g. in FreeIPA environments
   - Type: bool
   - Required: no
 - `os_auth_pam_passwdqc_enable`
-  - Default: `true`
+  - Default: `True`
   - Description: true if you want to use strong password checking in PAM using passwdqc.
   - Type: bool
   - Required: no
@@ -301,9 +310,9 @@ This role is mostly based on guides by:
   - Type: int
   - Required: no
 - `os_auth_root_ttys`
-  - Default: `["console", "tty1", "tty2", "tty3", "tty4", "tty5", "tty6"]`
+  - Default: `['console', 'tty1', 'tty2', 'tty3', 'tty4', 'tty5', 'tty6']`
   - Description: A list of TTYs, from which root can log in, see `man securetty` for reference
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_auth_sub_gid_count`
   - Default: `65536`
@@ -356,67 +365,67 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_chmod_home_folders`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable "chmod 700" of home folders for regular users
   - Type: bool
   - Required: no
 - `os_chmod_rootuser_home_folder`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable "chmod 700" of root's home folder
   - Type: bool
   - Required: no
 - `os_cron_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring cron.
   - Type: bool
   - Required: no
 - `os_ctrlaltdel_disabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to disable ctrl-alt-delete key combination.
   - Type: bool
   - Required: no
 - `os_env_extra_user_paths`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: Specify additional paths that should be checked for binaries where access will be minimized
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_env_user_paths`
-  - Default: `["/usr/local/sbin", "/usr/local/bin", "/usr/sbin", "/usr/bin", "/sbin", "/bin"]`
+  - Default: `['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin']`
   - Description: Specify paths that should be checked for binaries where access will be minimized
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_filesystem_whitelist`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: A list of filesystems that should not be disabled
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_hardening_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Whether to run the hardening
   - Type: bool
   - Required: no
 - `os_ignore_home_folder_users`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: Specify user accounts, whose home folders shouldn't be chmodded to 700 when "os_chmod_home_folders" is enabled.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_ignore_users`
-  - Default: `["vagrant", "kitchen"]`
+  - Default: `['vagrant', 'kitchen']`
   - Description: Specify system accounts whose login should not be disabled and password not changed
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_limits_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring limits.
   - Type: bool
   - Required: no
 - `os_login_defs_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring login_defs for newly created users.
   - Type: bool
   - Required: no
 - `os_minimize_access_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring minimize_access.
   - Type: bool
   - Required: no
@@ -431,7 +440,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_boot_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /boot mountpoint
   - Type: bool
   - Required: no
@@ -466,7 +475,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_dev_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to ignore /dev mountpoint
   - Type: bool
   - Required: no
@@ -496,7 +505,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_dev_shm_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to ignore /dev/shm mountpoint
   - Type: bool
   - Required: no
@@ -536,7 +545,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_home_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /home mountpoint
   - Type: bool
   - Required: no
@@ -571,7 +580,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_run_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to ignore /run mountpoint
   - Type: bool
   - Required: no
@@ -606,7 +615,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_tmp_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /tmp mountpoint
   - Type: bool
   - Required: no
@@ -641,7 +650,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_var_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /var mountpoint
   - Type: bool
   - Required: no
@@ -661,7 +670,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_var_log_audit_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /var/log/audit mountpoint
   - Type: bool
   - Required: no
@@ -696,7 +705,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_var_log_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /var/log mountpoint
   - Type: bool
   - Required: no
@@ -746,7 +755,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_mnt_var_tmp_enabled`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to configure /var/tmp mountpoint
   - Type: bool
   - Required: no
@@ -771,47 +780,47 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `os_modprobe_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring modprobe.
   - Type: bool
   - Required: no
 - `os_netrc_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Configure filesystem for existence of .netrc file in homedir
   - Type: bool
   - Required: no
 - `os_netrc_whitelist_user`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: Add list of user to allow creation of .netrc in users homedir
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_pam_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring pam.
   - Type: bool
   - Required: no
 - `os_profile_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring profile.
   - Type: bool
   - Required: no
 - `os_remove_additional_root_users`
-  - Default: `false`
+  - Default: `False`
   - Description: When enabled and there are multiple users with UID=0, only "root" will be kept. Others will be deleted.
   - Type: bool
   - Required: no
 - `os_rhosts_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring rhosts.
   - Type: bool
   - Required: no
 - `os_rootuser_pw_ageing`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to true to enforce password age settings for root user(s)
   - Type: bool
   - Required: no
 - `os_securetty_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring securetty.
   - Type: bool
   - Required: no
@@ -821,57 +830,57 @@ This role is mostly based on guides by:
   - Type: int
   - Required: no
 - `os_security_init_prompt`
-  - Default: `true`
+  - Default: `True`
   - Description: The PROMPT option provides console users the ability to interactively boot the system and select which services to start on boot.
   - Type: bool
   - Required: no
 - `os_security_init_single`
-  - Default: `false`
+  - Default: `False`
   - Description: Single-user mode is intended as a system recovery method, providing a single user root access to the system by providing a boot option at startup. By default, no authentication is performed if single-user mode is selected. To require entry of the root password even if the system is started in single-user mode, set this to false
   - Type: bool
   - Required: no
 - `os_security_kernel_enable_core_dump`
-  - Default: `false`
+  - Default: `False`
   - Description: kernel is crashing or otherwise misbehaving and a kernel core dump is created.
   - Type: bool
   - Required: no
 - `os_security_packages_clean`
-  - Default: `true`
+  - Default: `True`
   - Description: removes packages with known issues. See section packages.
   - Type: bool
   - Required: no
 - `os_security_packages_list`
-  - Default: `["xinetd", "inetd", "ypserv", "telnet-server", "rsh-server", "prelink"]`
+  - Default: `['xinetd', 'inetd', 'ypserv', 'telnet-server', 'rsh-server', 'prelink']`
   - Description: List of deprecated or insecure packages to remove
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_security_suid_sgid_blacklist`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: a list of paths which should have their SUID/SGID bits removed.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_security_suid_sgid_enforce`
-  - Default: `true`
+  - Default: `True`
   - Description: true if you want to reduce SUID/SGID bits. There is already a list of items which are searched for configured, but you can also add your own.
   - Type: bool
   - Required: no
 - `os_security_suid_sgid_remove_from_unknown`
-  - Default: `false`
+  - Default: `False`
   - Description: true if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Ansible-run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
   - Type: bool
   - Required: no
 - `os_security_suid_sgid_whitelist`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: a list of paths which should not have their SUID/SGID bits altered.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_security_users_allow`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: list of things, that a user is allowed to do. May contain `change_user`.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_selinux_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring selinux.
   - Type: bool
   - Required: no
@@ -896,39 +905,39 @@ This role is mostly based on guides by:
   - Type: int
   - Required: no
 - `os_sysctl_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring sysctl.
   - Type: bool
   - Required: no
 - `os_unused_filesystems`
-  - Default: `["cramfs", "freevxfs", "jffs2", "hfs", "hfsplus", "squashfs", "udf", "vfat", "dccp", "rds", "sctp", "tipc"]`
+  - Default: `['cramfs', 'freevxfs', 'jffs2', 'hfs', 'hfsplus', 'squashfs', 'udf', 'vfat', 'dccp', 'rds', 'sctp', 'tipc']`
   - Description: Disable this list of unused filesystems
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_user_accounts_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring user_accounts.
   - Type: bool
   - Required: no
 - `os_user_pw_ageing`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable password age enforcement on existing users
   - Type: bool
   - Required: no
 - `os_users_without_password_ageing`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: List of users, where password ageing should not be enforced even if "os_user_pw_ageing" is enabled
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `os_yum_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to false to disable installing and configuring yum.
   - Type: bool
   - Required: no
 - `os_yum_repo_file_whitelist`
-  - Default: `"[]"`
+  - Default: `[]`
   - Description: List of yum repository files under /etc/yum.repos.d/ which should not be altered.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `proc_mnt_options`
   - Default: `rw,nosuid,nodev,noexec,relatime`
@@ -966,7 +975,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `ufw_enable_ipv6`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `true` to apply rules to support IPv6 (no means only IPv6 on loopback accepted).
   - Type: bool
   - Required: no
@@ -986,7 +995,7 @@ This role is mostly based on guides by:
   - Type: str
   - Required: no
 - `ufw_manage_defaults`
-  - Default: `true`
+  - Default: `True`
   - Description: true means apply all settings with `ufw_` prefix.
   - Type: bool
   - Required: no
