@@ -46,7 +46,6 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -66,12 +65,12 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 ## Role Variables
 
 - `network_ipv6_enable`
-  - Default: `true`
+  - Default: `True`
   - Description: `false` if IPv6 is not needed. `ssh_listen_to` must also be set to listen to IPv6 addresses (for example `[::]`).
   - Type: bool
   - Required: no
 - `sftp_chroot`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable chroot for sftp.
   - Type: bool
   - Required: no
@@ -81,7 +80,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `sftp_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable sftp configuration.
   - Type: bool
   - Required: no
@@ -91,7 +90,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_allow_agent_forwarding`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable Agent Forwarding. Set to `true` to allow Agent Forwarding.
   - Type: bool
   - Required: no
@@ -116,9 +115,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_authorized_principals`
-  - Default: ``
+  - Default: `[]`
   - Description: list of hashes containing file paths and authorized principals, see `default_cstom.yml` for all options. Only used if `ssh_authorized_principals_file` is set
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_authorized_principals_file`
   - Default: ``
@@ -126,7 +125,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_banner`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to print a banner on login.
   - Type: bool
   - Required: no
@@ -136,14 +135,14 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_challengeresponseauthentication`
-  - Default: `false`
+  - Default: `False`
   - Description: Specifies whether challenge-response authentication is allowed (e.g. via PAM).
   - Type: bool
   - Required: no
 - `ssh_ciphers`
   - Default: ``
   - Description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_client_alive_count`
   - Default: `3`
@@ -156,7 +155,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: int
   - Required: no
 - `ssh_client_compression`
-  - Default: `false`
+  - Default: `False`
   - Description: Specifies whether the client requests compression.
   - Type: bool
   - Required: no
@@ -166,17 +165,17 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_client_hardening`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to stop harden the client.
   - Type: bool
   - Required: no
 - `ssh_client_host_key_algorithms`
-  - Default: ``
+  - Default: `[]`
   - Description: Specifies the host key algorithms that the client wants to use in order of preference. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man ssh_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version!
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_client_password_login`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to allow password-based authentication with the ssh client.
   - Type: bool
   - Required: no
@@ -186,19 +185,19 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_client_roaming`
-  - Default: `false`
+  - Default: `False`
   - Description: enable experimental client roaming.
   - Type: bool
   - Required: no
 - `ssh_compression`
-  - Default: `false`
+  - Default: `False`
   - Description: Specifies whether server-side compression is enabled after the user has authenticated successfully.
   - Type: bool
   - Required: no
 - `ssh_custom_options`
-  - Default: ``
+  - Default: `[]`
   - Description: Custom lines for SSH client configuration.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_custom_selinux_dir`
   - Default: `/etc/selinux/local-policies`
@@ -221,34 +220,34 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: raw
   - Required: no
 - `ssh_gssapi_delegation`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to enable GSSAPI credential forwarding.
   - Type: bool
   - Required: no
 - `ssh_gssapi_support`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to enable GSSAPI authentication (both client and server).
   - Type: bool
   - Required: no
 - `ssh_hardening_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Whether to run the hardening
   - Type: bool
   - Required: no
 - `ssh_host_certificates`
-  - Default: ``
+  - Default: `[]`
   - Description: Host certificates to look for when starting sshd
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_host_key_algorithms`
-  - Default: ``
+  - Default: `[]`
   - Description: Host key algorithms that the server offers. If empty the default list will be used. Otherwise overrides the setting with specified list of algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make sure you check the correct version
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_host_key_files`
   - Default: ``
   - Description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key', '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the installed sshd version.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_host_rsa_key_size`
   - Default: `4096`
@@ -256,19 +255,19 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: int
   - Required: no
 - `ssh_kerberos_support`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `true` if SSH has Kerberos support.
   - Type: bool
   - Required: no
 - `ssh_kex`
   - Default: ``
   - Description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_listen_to`
-  - Default: `["0.0.0.0"]`
+  - Default: `['0.0.0.0']`
   - Description: one or more ip addresses, to which ssh-server should listen to. Default is all IPv4 addresses, but should be configured to specific addresses for security reasons
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_login_grace_time`
   - Default: `30s`
@@ -278,7 +277,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 - `ssh_macs`
   - Default: ``
   - Description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_max_auth_retries`
   - Default: `2`
@@ -296,7 +295,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_pam_support`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `true` if SSH has PAM support.
   - Type: bool
   - Required: no
@@ -316,22 +315,22 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
     - point-to-point
     - ethernet
 - `ssh_print_debian_banner`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to print debian specific banner.
   - Type: bool
   - Required: no
 - `ssh_print_last_log`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable display of last login information.
   - Type: bool
   - Required: no
 - `ssh_print_motd`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable printing of the MOTD.
   - Type: bool
   - Required: no
 - `ssh_print_pam_motd`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable printing of the MOTD via pam (Debian and Ubuntu).
   - Type: bool
   - Required: no
@@ -341,9 +340,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_remote_hosts`
-  - Default: ``
+  - Default: `[]`
   - Description: one or more hosts and their custom options for the ssh-client. Default is empty. See examples in `defaults/main.yml`
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_server_accept_env_vars`
   - Default: ``
@@ -356,12 +355,12 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_server_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable the opensshd server.
   - Type: bool
   - Required: no
 - `ssh_server_hardening`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to stop harden the server.
   - Type: bool
   - Required: no
@@ -386,7 +385,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_server_password_login`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `true` to allow password-based authentication to the ssh server. You probably also need to change `sshd_authenticationmethods` to include `password` if you set `ssh_server_password_login`: `true`.
   - Type: bool
   - Required: no
@@ -396,24 +395,24 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_server_ports`
-  - Default: `["22"]`
+  - Default: `['22']`
   - Description: ports on which ssh-server should listen.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_server_revoked_keys`
-  - Default: ``
+  - Default: `[]`
   - Description: a list of revoked public keys that the ssh server will always reject, useful to revoke known weak or compromised keys.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_server_service_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable starting sshd at boot.
   - Type: bool
   - Required: no
 - `ssh_trusted_user_ca_keys`
-  - Default: ``
+  - Default: `[]`
   - Description: set the trusted certificate authorities public keys used to sign user certificates. Only used if `ssh_trusted_user_ca_keys_file` is set.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `ssh_trusted_user_ca_keys_file`
   - Default: ``
@@ -421,17 +420,17 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `ssh_use_dns`
-  - Default: `false`
+  - Default: `False`
   - Description: Specifies whether sshd should look up the remote host name, and to check that the resolved host name for the remote IP address maps back to the very same IP address.
   - Type: bool
   - Required: no
 - `ssh_use_pam`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to disable pam authentication.
   - Type: bool
   - Required: no
 - `ssh_x11_forwarding`
-  - Default: `false`
+  - Default: `False`
   - Description: Set to `false` to disable X11 Forwarding. Set to `true` to allow X11 Forwarding.
   - Type: bool
   - Required: no
@@ -441,9 +440,9 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: str
   - Required: no
 - `sshd_custom_options`
-  - Default: ``
+  - Default: `[]`
   - Description: Custom lines for SSH daemon configuration.
-  - Type: list
+  - Type: list of ''
   - Required: no
 - `sshd_log_level`
   - Default: `VERBOSE`
@@ -461,7 +460,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Type: int
   - Required: no
 - `sshd_strict_modes`
-  - Default: `true`
+  - Default: `True`
   - Description: Check file modes and ownership of the user's files and home directory before accepting login.
   - Type: bool
   - Required: no
