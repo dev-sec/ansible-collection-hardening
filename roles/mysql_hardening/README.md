@@ -24,7 +24,6 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9
 - Ubuntu
@@ -37,7 +36,7 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 ## Role Variables
 
 - `mysql_daemon_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Whether to enable the MySQL-service so it starts on boot
   - Type: bool
   - Required: no
@@ -52,7 +51,7 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   - Type: int
   - Required: no
 - `mysql_hardening_enabled`
-  - Default: `true`
+  - Default: `True`
   - Description: Whether to run the hardening
   - Type: bool
   - Required: no
@@ -87,12 +86,12 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   - Type: int
   - Required: no
 - `mysql_hardening_restart_mysql`
-  - Default: `true`
+  - Default: `True`
   - Description: Restart mysql after running this role
   - Type: bool
   - Required: no
 - `mysql_hardening_skip_grant_tables:`
-  - Default: `false`
+  - Default: `False`
   - Description: [skip-grant-tables](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_skip-grant-tables)
   - Type: bool
   - Required: no
@@ -102,17 +101,17 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
   - Type: int
   - Required: no
 - `mysql_remove_anonymous_users`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to keep users without authentication
   - Type: bool
   - Required: no
 - `mysql_remove_remote_root`
-  - Default: `true`
+  - Default: `True`
   - Description: If `true`, root can only connect from localhost. Set to `false` to not remove remote root users.
   - Type: bool
   - Required: no
 - `mysql_remove_test_database`
-  - Default: `true`
+  - Default: `True`
   - Description: Set to `false` to keep the test database
   - Type: bool
   - Required: no
