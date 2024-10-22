@@ -1,11 +1,12 @@
 # Changelog
 
-## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-13)
+## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.1.0)
 
 **Implemented enhancements:**
 
+- Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796)
 - Ubuntu 24.04 support [\#764](https://github.com/dev-sec/ansible-collection-hardening/issues/764)
 - feat\(ssh\): add alpine support [\#809](https://github.com/dev-sec/ansible-collection-hardening/pull/809) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Provide granular noop for ssh configuration [\#789](https://github.com/dev-sec/ansible-collection-hardening/pull/789) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([seven-beep](https://github.com/seven-beep))
@@ -23,6 +24,8 @@
 
 **Merged pull requests:**
 
+- Pin python dependencies and optimize GitHub Actions [\#811](https://github.com/dev-sec/ansible-collection-hardening/pull/811) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- Add variable to set name\_format for auditd [\#810](https://github.com/dev-sec/ansible-collection-hardening/pull/810) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - fix\(cicd\): test idempotence on ssh custom tests [\#807](https://github.com/dev-sec/ansible-collection-hardening/pull/807) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
 - Document correct quotes for ssh\_permit\_tunnel parameter [\#806](https://github.com/dev-sec/ansible-collection-hardening/pull/806) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([vmpr](https://github.com/vmpr))
 - fix\(docs\): add 'become: true' to example playbooks. fix \#787 [\#804](https://github.com/dev-sec/ansible-collection-hardening/pull/804) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
