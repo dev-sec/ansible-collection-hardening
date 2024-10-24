@@ -1,0 +1,90 @@
+---
+name: "devsec.postgres_hardening"
+on: # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - "roles/postgres_hardening/**"
+      - "molecule/postgres_hardening/**"
+      - ".github/workflows/postgres_hardening.yml"
+      - "requirements.txt"
+  pull_request:
+    branches: [master]
+    paths:
+      - "roles/postgres_hardening/**"
+      - "molecule/postgres_hardening/**"
+      - ".github/workflows/postgres_hardening.yml"
+      - "requirements.txt"
+  schedule:
+    - cron: "0 6 * * 1"
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro:
+          # - centos7
+          # - centosstream8
+          # - centosstream9
+          # - rocky8
+          # - rocky9
+          # - ubuntu1804
+          - ubuntu2004
+          - ubuntu2204
+          # - debian10
+          # - debian11
+          # - debian12
+          # - amazon2023
+          # - arch  # needs to be fixed
+          # - opensuse_tumbleweed  # needs to be fixed
+          # - fedora  # no support from geerlingguy role
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          path: ansible_collections/devsec/hardening
+          submodules: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          sudo apt install git
+          python -m pip install --no-cache-dir --upgrade pip
+          pip install -r requirements.txt
+        working-directory: ansible_collections/devsec/hardening
+
+      # Molecule has problems detecting the proper location for installing roles
+      # https://github.com/ansible/molecule/issues/3806
+      # we do not set a custom role path, but the automatically determined install path used is not compatible with the location molecule expects the role
+      # see CI logs of this action "INFO     Set ANSIBLE_ROLES_PATH" should not be present, since we do not set a custom path
+      # we have to find a proper way to configure this
+      - name: Temporary fix for roles
+        run: |
+          mkdir -p /home/runner/.ansible
+          ln -s /home/runner/work/ansible-collection-hardening/ansible-collection-hardening/ansible_collections/devsec/hardening/roles \
+            /home/runner/.ansible/roles
+
+      - name: Test with molecule
+        run: |
+          molecule --version
+          molecule test -s postgres_hardening
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+        working-directory: ansible_collections/devsec/hardening
