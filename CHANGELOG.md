@@ -1,12 +1,28 @@
 # Changelog
 
+## [10.1.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.1) (2024-11-06)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.1.1)
+
+**Implemented enhancements:**
+
+- Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796)
+
+**Fixed bugs:**
+
+- File system loop detected; ‘/bin/X11’ is part of the same file system loop as ‘/bin’." [\#815](https://github.com/dev-sec/ansible-collection-hardening/issues/815)
+- Not working ssh\_hardening on Centos 7  [\#813](https://github.com/dev-sec/ansible-collection-hardening/issues/813)
+
+**Merged pull requests:**
+
+- Bump ansible-core from 2.17.5 to 2.17.6 [\#820](https://github.com/dev-sec/ansible-collection-hardening/pull/820) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.0.0...10.1.0)
 
 **Implemented enhancements:**
 
-- Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796)
 - Ubuntu 24.04 support [\#764](https://github.com/dev-sec/ansible-collection-hardening/issues/764)
 - Add variable to set name\_format for auditd [\#810](https://github.com/dev-sec/ansible-collection-hardening/pull/810) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - feat\(ssh\): add alpine support [\#809](https://github.com/dev-sec/ansible-collection-hardening/pull/809) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([rndmh3ro](https://github.com/rndmh3ro))
