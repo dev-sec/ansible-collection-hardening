@@ -88,3 +88,16 @@ sysctl_custom_config:
   kernel.unprivileged_userns_clone: 0
   # Mitigation of vulnerability CVE-2021-33910
   kernel.unprivileged_bpf_disabled: 1
+   # Restrict core dumps
+  fs.suid_dumpable: 0
+  # Enable ASLR (Address Space Layout Randomization)
+  kernel.randomize_va_space: 2
+  # Disable IP forwarding
+  net.ipv4.ip_forward: 0
+  # Disable packet forwarding
+  net.ipv4.conf.all.forwarding: 0
+  net.ipv6.conf.all.forwarding: 0
+  # Disable source packet routing
+  net.ipv4.conf.all.accept_source_route: 0
+  # Log suspicious packets
+  net.ipv4.conf.all.log_martians: 1
