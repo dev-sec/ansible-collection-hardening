@@ -365,3 +365,6 @@ argument_specs:
         default: sandbox
         description: Specifies whether sshd separates privileges by creating an unprivileged
           child process to deal with incoming network traffic.
+      ssh_forward_agent:
+        default: 'no'
+        description: Enables the ssh forward agent for the Cli if set to 'yes'
