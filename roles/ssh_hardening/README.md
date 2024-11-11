@@ -214,6 +214,11 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Description: if specified, login is disallowed for user names that match one of the patterns.
   - Type: str
   - Required: no
+- `ssh_forward_agent`
+  - Default: `no`
+  - Description: Enables the ssh forward agent for the Cli if set to 'yes'
+  - Type: str
+  - Required: no
 - `ssh_gateway_ports`
   - Default: `False`
   - Description: Set to `false` to disable binding forwarded ports to non-loopback addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified` to allow the client to specify which address to bind to.
