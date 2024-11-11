@@ -1,12 +1,13 @@
 # Changelog
 
-## [10.1.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.1) (2024-11-06)
+## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-11-11)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.1.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.2.0)
 
 **Implemented enhancements:**
 
 - Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796)
+- adding switch for ForwardAgent in ssh\_config [\#818](https://github.com/dev-sec/ansible-collection-hardening/pull/818) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Shizzlebix](https://github.com/Shizzlebix))
 
 **Fixed bugs:**
 
