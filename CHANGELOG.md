@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-11-11)
+## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-11-16)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.2.0)
 
@@ -17,6 +17,7 @@
 **Merged pull requests:**
 
 - Bump ansible-core from 2.17.5 to 2.17.6 [\#820](https://github.com/dev-sec/ansible-collection-hardening/pull/820) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Update actions/setup-python digest to 0b93645 [\#814](https://github.com/dev-sec/ansible-collection-hardening/pull/814) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-22)
 
