@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-11-16)
+## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-11-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.2.0)
 
@@ -21,6 +21,7 @@
 - chore\(deps\): update dependency ansible-core to v2.18.0 [\#819](https://github.com/dev-sec/ansible-collection-hardening/pull/819) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency aar-doc to v2.0.1 [\#817](https://github.com/dev-sec/ansible-collection-hardening/pull/817) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python digest to 0b93645 [\#814](https://github.com/dev-sec/ansible-collection-hardening/pull/814) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to 11bd719 [\#812](https://github.com/dev-sec/ansible-collection-hardening/pull/812) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.1.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.1.0) (2024-10-22)
 
