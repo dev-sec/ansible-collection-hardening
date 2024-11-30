@@ -28,3 +28,10 @@ nginx_hardening:
           - roles/nginx_hardening/**
           - molecule/nginx_hardening/**
           - .github/workflows/nginx_hardening.yml
+
+postgres_hardening:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "roles/postgres_hardening/**"
+          - "molecule/postgres_hardening/**"
+          - ".github/workflows/postgres_hardening.yml"
