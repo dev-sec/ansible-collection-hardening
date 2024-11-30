@@ -4,6 +4,12 @@
   become: true
   gather_facts: false
   tasks:
+    - name: Change installation source
+      # temporary fix for https://github.com/lavabit/robox/issues/305
+      ansible.builtin.raw: echo "https://ftp.eu.openbsd.org/pub/OpenBSD" > /etc/installurl
+      changed_when: false
+      when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
+
     - name: Install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
       ansible.builtin.raw: pkg_add python%3.10
