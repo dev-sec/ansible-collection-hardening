@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-03)
+## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-09)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.2.0)
 
@@ -12,11 +12,13 @@
 
 **Fixed bugs:**
 
+- ssh\_hardening error on 10.1.0. Probably... Missing privilege separation directory: /run/sshd [\#830](https://github.com/dev-sec/ansible-collection-hardening/issues/830)
 - File system loop detected; ‘/bin/X11’ is part of the same file system loop as ‘/bin’." [\#815](https://github.com/dev-sec/ansible-collection-hardening/issues/815)
 - Not working ssh\_hardening on Centos 7  [\#813](https://github.com/dev-sec/ansible-collection-hardening/issues/813)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency molecule to v24.12.0 [\#831](https://github.com/dev-sec/ansible-collection-hardening/pull/831) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.18.1 [\#829](https://github.com/dev-sec/ansible-collection-hardening/pull/829) ([renovate[bot]](https://github.com/apps/renovate))
 - Change installation source for OpenBSD tests [\#828](https://github.com/dev-sec/ansible-collection-hardening/pull/828) ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update ansible/ansible-lint digest to 44be233 [\#825](https://github.com/dev-sec/ansible-collection-hardening/pull/825) ([renovate[bot]](https://github.com/apps/renovate))
