@@ -1,0 +1,64 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/postgres_hardening/requirements.yml
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    privileged: true
+    cgroupns_mode: host
+    pre_build_image: true
+provisioner:
+  name: ansible
+  options:
+    diff: true
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      callbacks_enabled: profile_tasks, timer, yaml
+  inventory:
+    host_vars:
+      # https://molecule.readthedocs.io/en/latest/examples.html#docker-with-non-privileged-user
+      # setting for the platform instance named 'instance'
+      instance:
+        ansible_user: ansible
+verifier:
+  name: ansible
+
+scenario:
+  create_sequence:
+    - dependency
+    - create
+    - prepare
+  check_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - check
+    - destroy
+  converge_sequence:
+    - dependency
+    - create
+    - prepare
+    - converge
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - dependency
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - verify
+    - destroy
