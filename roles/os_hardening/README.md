@@ -94,6 +94,18 @@ We are setting this sysctl to a default of `32`, some systems only support small
       vm.mmap_rnd_bits: 16
 ```
 
+### password expiry and SSH key based logins
+
+With default PAM configuration setting a password expiry for users will also block SSH key logins after the password has expired.
+We have added a flag for PAM to ignore the expiry if SSH keys or other login mechanisms are used.
+If you choose to use your own PAM configuration please adjust it accordingly to contain `no_pass_expiry` in the `account` stage for the `pam_unix.so` module.
+
+A valid example would look like this:
+
+```text
+account     required      pam_unix.so no_pass_expiry
+```
+
 ## Testing with inspec
 
 If you're using inspec to test your machines after applying this role, please make sure to add the connecting user to the `os_ignore_users`-variable.
