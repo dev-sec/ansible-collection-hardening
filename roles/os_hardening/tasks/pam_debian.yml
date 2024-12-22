@@ -120,8 +120,8 @@
     - not os_auth_pam_passwdqc_enable
 
 - name: Allow Login with SSH Keys, when user password is expired
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pam.d/common-account
-    backrefs: yes
+    backrefs: true
     regexp: "^(account.*pam_unix.so(?!.*no_pass_expiry).*)$"
     line: '\1 no_pass_expiry'
