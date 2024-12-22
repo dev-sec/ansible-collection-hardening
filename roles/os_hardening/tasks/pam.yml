@@ -43,7 +43,7 @@
     regexp: "^(account.*pam_unix.so(?!.*no_pass_expiry).*)$"
     line: '\1 no_pass_expiry'
   when:
-    - ansible_facts.os_family == 'OpenSuse'
+    - ansible_facts.os_family == 'Suse'
 
 - name: NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
   ansible.builtin.template:

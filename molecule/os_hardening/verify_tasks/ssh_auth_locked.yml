@@ -74,7 +74,7 @@
       - "'WARNING: Your password has expired.' in output.stderr"
       - "'success' not in output.stdout"
   when:
-    - ansible_facts.os_family != "OpenSuse"
+    - ansible_facts.os_family != "Suse"
 
 - name: Assert check unsuccessful login
   ansible.builtin.assert:
@@ -83,7 +83,7 @@
       - output.stderr | length == 0
       - output.stdout | length == 0
   when:
-    - ansible_facts.os_family == "OpenSuse"
+    - ansible_facts.os_family == "Suse"
 
 - name: Check successful login with ssh key
   ansible.builtin.shell:
