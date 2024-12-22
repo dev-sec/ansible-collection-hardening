@@ -1,9 +1,31 @@
 ---
 - name: Install tools
   package:
-    name:
-      - sshpass
+    name: "{{ item }}"
     state: present
+  ignore_errors: true
+  loop:
+    - sshpass
+    - openssh
+    - openssh-clients
+    - openssh-server
+
+- name: Allow password Login for sshd
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    search_string: PasswordAuthentication no
+    line: PasswordAuthentication yes
+  when:
+    - ansible_facts.distribution == "Amazon"
+
+- name: Start sshd service
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+  ignore_errors: true
+  loop:
+    - sshd
+    - ssh
 
 - name: Set password for test
   ansible.builtin.set_fact:
@@ -16,7 +38,7 @@
 
 - name: Create ssh-client-keypair
   community.crypto.openssh_keypair:
-    path: /root/.ssh/locked_user_id
+    path: /root/locked_user_id
     type: ed25519
     state: present
   register: generated_key
@@ -29,11 +51,11 @@
 
 - name: Check successful login with password
   ansible.builtin.shell:
-    cmd: sshpass -p {{ test_pw }} ssh locked_user@localhost echo "success"
+    cmd: sshpass -p {{ test_pw }} ssh -o StrictHostKeyChecking=no locked_user@localhost echo "success"
 
 - name: Check successful login with ssh key
   ansible.builtin.shell:
-    cmd: ssh -i /root/.ssh/locked_user_id locked_user@localhost echo "success"
+    cmd: ssh -i /root/locked_user_id -o StrictHostKeyChecking=no locked_user@localhost echo "success"
 
 - name: Set password change date for locked_user
   ansible.builtin.shell:
@@ -41,7 +63,7 @@
 
 - name: Check unsuccessful login with password
   ansible.builtin.shell:
-    cmd: sshpass -p {{ test_pw }} ssh locked_user@localhost echo "success"
+    cmd: sshpass -p {{ test_pw }} ssh -o StrictHostKeyChecking=no locked_user@localhost echo "success"
   register: output
   ignore_errors: true
 
@@ -51,7 +73,18 @@
       - output.rc | int == 1
       - "'WARNING: Your password has expired.' in output.stderr"
       - "'success' not in output.stdout"
+  when:
+    - ansible_facts.os_family != "OpenSuse"
+
+- name: Assert check unsuccessful login
+  ansible.builtin.assert:
+    that:
+      - output.rc | int == 5
+      - output.stderr | length == 0
+      - output.stdout | length == 0
+  when:
+    - ansible_facts.os_family == "OpenSuse"
 
 - name: Check successful login with ssh key
   ansible.builtin.shell:
-    cmd: ssh -i /root/.ssh/locked_user_id locked_user@localhost echo "success"
+    cmd: ssh -i /root/locked_user_id -o StrictHostKeyChecking=no locked_user@localhost echo "success"
