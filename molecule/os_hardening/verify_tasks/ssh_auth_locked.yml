@@ -3,7 +3,6 @@
   package:
     name:
       - sshpass
-      - python3-passlib
     state: present
 
 - name: Set password for test
