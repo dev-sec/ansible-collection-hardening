@@ -24,7 +24,7 @@ auth        required      pam_deny.so
 {% if os_auth_retries|int > 0 %}
 account     required      pam_faillock.so
 {% endif %}
-account     required      pam_unix.so
+account     required      pam_unix.so no_pass_expiry
 account     sufficient    pam_localuser.so
 account     sufficient    pam_succeed_if.so uid < 1000 quiet
 {% if (os_auth_pam_sssd_enable | bool) %}
