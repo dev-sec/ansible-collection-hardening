@@ -6,15 +6,16 @@
 
 **Implemented enhancements:**
 
-- Re-enable OpenBSD tests [\#826](https://github.com/dev-sec/ansible-collection-hardening/issues/826)
-- Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796)
+- Re-enable OpenBSD tests [\#826](https://github.com/dev-sec/ansible-collection-hardening/issues/826) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
+- Allow configuring the name\_format variable in auditd config [\#796](https://github.com/dev-sec/ansible-collection-hardening/issues/796) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
+- Password expiry for users without password should not block SSH key based login [\#681](https://github.com/dev-sec/ansible-collection-hardening/issues/681)
+- Modify PAM to allow SSH key based logins with locked passwords [\#835](https://github.com/dev-sec/ansible-collection-hardening/pull/835) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - adding switch for ForwardAgent in ssh\_config [\#818](https://github.com/dev-sec/ansible-collection-hardening/pull/818) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Shizzlebix](https://github.com/Shizzlebix))
 
 **Fixed bugs:**
 
-- ssh\_hardening error on 10.1.0. Probably... Missing privilege separation directory: /run/sshd [\#830](https://github.com/dev-sec/ansible-collection-hardening/issues/830)
-- File system loop detected; ‘/bin/X11’ is part of the same file system loop as ‘/bin’." [\#815](https://github.com/dev-sec/ansible-collection-hardening/issues/815)
-- Not working ssh\_hardening on Centos 7  [\#813](https://github.com/dev-sec/ansible-collection-hardening/issues/813)
+- File system loop detected; ‘/bin/X11’ is part of the same file system loop as ‘/bin’." [\#815](https://github.com/dev-sec/ansible-collection-hardening/issues/815) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)]
+- Not working ssh\_hardening on Centos 7  [\#813](https://github.com/dev-sec/ansible-collection-hardening/issues/813) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
 
 **Merged pull requests:**
 
