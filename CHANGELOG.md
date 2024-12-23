@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-09)
+## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.1.0...10.2.0)
 
@@ -18,6 +18,8 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency molecule-plugins to v23.6.0 [\#834](https://github.com/dev-sec/ansible-collection-hardening/pull/834) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update ansible/ansible-lint digest to 4ce8e49 [\#832](https://github.com/dev-sec/ansible-collection-hardening/pull/832) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency molecule to v24.12.0 [\#831](https://github.com/dev-sec/ansible-collection-hardening/pull/831) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.18.1 [\#829](https://github.com/dev-sec/ansible-collection-hardening/pull/829) ([renovate[bot]](https://github.com/apps/renovate))
 - Change installation source for OpenBSD tests [\#828](https://github.com/dev-sec/ansible-collection-hardening/pull/828) ([schurzi](https://github.com/schurzi))
