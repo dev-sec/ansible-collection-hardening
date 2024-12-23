@@ -27,6 +27,24 @@
   when:
     - ansible_facts.os_family == 'RedHat'
 
+- name: Allow Login with SSH Keys, when user password is expired
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/system-auth
+    backrefs: true
+    regexp: "^(account.*pam_unix.so(?!.*no_pass_expiry).*)$"
+    line: '\1 no_pass_expiry'
+  when:
+    - ansible_facts.os_family == 'Archlinux'
+
+- name: Allow Login with SSH Keys, when user password is expired
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/common-account
+    backrefs: true
+    regexp: "^(account.*pam_unix.so(?!.*no_pass_expiry).*)$"
+    line: '\1 no_pass_expiry'
+  when:
+    - ansible_facts.os_family == 'Suse'
+
 - name: NSA 2.3.3.5 Upgrade Password Hashing Algorithm to SHA-512
   ansible.builtin.template:
     src: etc/libuser.conf.j2

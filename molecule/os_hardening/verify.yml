@@ -20,6 +20,7 @@
         - verify_tasks/pw_ageing.yml
         - verify_tasks/netrc.yml
         - verify_tasks/ignore_home_folders.yml
+        - verify_tasks/ssh_auth_locked.yml
 
     # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
     #    - name: Include PAM tests
