@@ -36,6 +36,7 @@
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
+    password_expire_warn: "{{ os_auth_pw_warn_age }}"
   loop: "{{ regular_users }}"
   when:
     - os_user_pw_ageing
@@ -66,6 +67,7 @@
     name: "{{ item }}"
     password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
+    password_expire_warn: "{{ os_auth_pw_warn_age }}"
   loop: "{{ root_users }}"
   when:
     - os_rootuser_pw_ageing | bool
