@@ -21,22 +21,6 @@
 - name: Change sysctls
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
-    - name: Create a combined sysctl-dict if os-dependent sysctls are defined
-      ansible.builtin.set_fact:
-        sysctl_config: "{{ sysctl_config | combine(sysctl_custom_config) }}"
-      when: sysctl_custom_config | default()
-
-    # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
-    - name: Create a combined sysctl-dict if os-dependent sysctls are defined
-      ansible.builtin.set_fact:
-        sysctl_config: "{{ sysctl_config | combine(sysctl_rhel_config) }}"
-      when: sysctl_rhel_config | default()
-
-    - name: Create a combined sysctl-dict if overwrites are defined
-      ansible.builtin.set_fact:
-        sysctl_config: "{{ sysctl_config | combine(sysctl_overwrite) }}"
-      when: sysctl_overwrite | default()
-
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
       ansible.posix.sysctl:
         name: "{{ item.key }}"
@@ -45,7 +29,12 @@
         state: present
         reload: true
         ignoreerrors: true
-      with_dict: "{{ sysctl_config }}"
+      # sysctl_rhel_config is kept for backwards-compatibility. use sysctl_custom_config instead
+      # combines all sysctl-dicts into one, adds empty dicts if they are not defined
+      with_dict: "{{ ((sysctl_config
+        | combine(sysctl_custom_config | default({})))
+        | combine(sysctl_rhel_config | default({})))
+        | combine(sysctl_overwrite | default({})) }}"
       when: item.key not in sysctl_unsupported_entries | default()
 
 - name: Apply ufw defaults
