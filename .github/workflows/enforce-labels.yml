@@ -12,7 +12,7 @@ permissions:
 jobs:
   enforce-label:
     if: github.repository == 'dev-sec/ansible-collection-hardening'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/labeler@8558fd74291d67161a8a78ce36a881fa63b766a9 # v5.0.0
         with:
