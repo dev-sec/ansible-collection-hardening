@@ -146,7 +146,7 @@ sysctl_config:
   # The PTRACE system is used for debugging.  With it, a single user process
   # can attach to any other dumpable process owned by the same user.  In the
   # case of malicious software, it is possible to use PTRACE to access
-  # credentials that exist in memory (re-using existing SSH connections,
+  # credentials that exist in memory (reusing existing SSH connections,
   # extracting GPG agent information, etc).
   #
   # A PTRACE scope of "0" is the more permissive mode.  A scope of "1" limits
