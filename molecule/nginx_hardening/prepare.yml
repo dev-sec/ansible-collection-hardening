@@ -7,12 +7,6 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: Install required tools on SuSE
-      community.general.zypper:
-        name: python-xml
-        state: present
-      when: ansible_facts.os_family == 'Suse'
-
     - name: Install required packages
       ansible.builtin.package:
         name: python3-apt
