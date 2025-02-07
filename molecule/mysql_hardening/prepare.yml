@@ -33,7 +33,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: Install required python packages on Suse
-      ansible.builtin.command: zypper -n install python-xml python3-rpm python3-PyMySQL
+      ansible.builtin.command: zypper -n install python311-rpm python311-PyMySQL
       changed_when: false
       when: ansible_os_family == 'Suse'
 
