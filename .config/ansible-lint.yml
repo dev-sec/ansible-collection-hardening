@@ -3,9 +3,9 @@
 # exclude_paths included in this file are parsed relative to this file's location
 # and not relative to the CWD of execution. CLI arguments passed to the --exclude
 # option will be parsed relative to the CWD of execution.
+# add all waivers individually, since exclude_files does not support globs
 exclude_paths:
   - .cache/ # implicit unless exclude_paths is defined in config
-  # add all waivers individually, since exclude_files does not support globs
   - molecule/os_hardening/waivers.yaml
   - molecule/ssh_hardening_bsd/waivers_freebsd13.yaml
   - molecule/ssh_hardening_bsd/waivers_freebsd14.yaml
