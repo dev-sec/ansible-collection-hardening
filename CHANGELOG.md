@@ -18,6 +18,7 @@
 - Refactor: combine multiple set\_fact into single jinja filter [\#846](https://github.com/dev-sec/ansible-collection-hardening/pull/846) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([Tinyblargon](https://github.com/Tinyblargon))
 - chore\(deps\): update actions/setup-python digest to 4237552 [\#844](https://github.com/dev-sec/ansible-collection-hardening/pull/844) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.18.2 [\#843](https://github.com/dev-sec/ansible-collection-hardening/pull/843) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency molecule to v25 [\#841](https://github.com/dev-sec/ansible-collection-hardening/pull/841) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint action to v25 [\#840](https://github.com/dev-sec/ansible-collection-hardening/pull/840) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-23)
