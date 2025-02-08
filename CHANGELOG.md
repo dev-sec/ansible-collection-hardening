@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.1) (2025-02-07)
+## [10.2.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.1) (2025-02-08)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.2.0...10.2.1)
 
@@ -15,6 +15,7 @@
 **Merged pull requests:**
 
 - Pin runner image to specific version to decouple from GitHub updates [\#847](https://github.com/dev-sec/ansible-collection-hardening/pull/847) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- chore\(deps\): update dependency ansible-core to v2.18.2 [\#843](https://github.com/dev-sec/ansible-collection-hardening/pull/843) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.2.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.2.0) (2024-12-23)
 
