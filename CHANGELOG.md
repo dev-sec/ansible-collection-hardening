@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-20)
+## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.2.0...10.3.0)
 
@@ -15,6 +15,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency ansible-core to v2.18.3 [\#852](https://github.com/dev-sec/ansible-collection-hardening/pull/852) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 49ded6a [\#851](https://github.com/dev-sec/ansible-collection-hardening/pull/851) ([renovate[bot]](https://github.com/apps/renovate))
 - Pin runner image to specific version to decouple from GitHub updates [\#847](https://github.com/dev-sec/ansible-collection-hardening/pull/847) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Refactor: combine multiple set\_fact into single jinja filter [\#846](https://github.com/dev-sec/ansible-collection-hardening/pull/846) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([Tinyblargon](https://github.com/Tinyblargon))
