@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-24)
+## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.2.0...10.3.0)
 
@@ -8,6 +8,7 @@
 
 - Password expiry for users without password should not block SSH key based login [\#681](https://github.com/dev-sec/ansible-collection-hardening/issues/681)
 - Set number of warning days before password expires for existing users [\#839](https://github.com/dev-sec/ansible-collection-hardening/pull/839) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([Normo](https://github.com/Normo))
+- Allow to override settings for sftponly users [\#794](https://github.com/dev-sec/ansible-collection-hardening/pull/794) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([mib1185](https://github.com/mib1185))
 
 **Closed issues:**
 
