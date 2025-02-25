@@ -274,18 +274,6 @@ RevokedKeys /etc/ssh/revoked_keys
 # Subsystem sftp /opt/app/openssh5/libexec/sftp-server
 
 Subsystem sftp internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
-
-# These lines must appear at the *end* of sshd_config
-Match Group sftponly
-    ForceCommand internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
-{% if sftp_chroot %}
-    ChrootDirectory {{ sftp_chroot_dir }}
-{% endif %}
-    AllowTcpForwarding no
-    AllowAgentForwarding no
-    PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
-    PermitRootLogin no
-    X11Forwarding no
 {% endif %}
 {% if ssh_server_match_address %}
 
@@ -334,4 +322,18 @@ Match LocalPort {{ item.port }}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}
+{% endif %}
+
+{% if sftp_enabled %}
+# These lines must appear at the *end* of sshd_config
+Match Group sftponly
+    ForceCommand internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
+{% if sftp_chroot %}
+    ChrootDirectory {{ sftp_chroot_dir }}
+{% endif %}
+    AllowTcpForwarding no
+    AllowAgentForwarding no
+    PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
+    PermitRootLogin no
+    X11Forwarding no
 {% endif %}
