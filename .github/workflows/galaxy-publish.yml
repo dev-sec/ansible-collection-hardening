@@ -16,7 +16,7 @@ jobs:
       # deploy the collection first, because if it fails, we don't want
       # to update the galaxy.yml
       - name: Deploy the collection
-        uses: artis3n/ansible_galaxy_collection@3368f56529a2ef47ef0ac1ecfcda039f90d0174a # v2
+        uses: artis3n/ansible_galaxy_collection@f6110aef877db4caaa7e9a192975fb006dea61fe # v2
         with:
           api_key: ${{ secrets.GALAXY_API_KEY }}
           galaxy_version: ${{ github.event.release.tag_name }}
