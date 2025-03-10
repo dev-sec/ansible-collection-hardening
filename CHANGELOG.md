@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-03-10)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.0...10.3.1)
+
+**Merged pull requests:**
+
+- chore\(deps\): update artis3n/ansible\_galaxy\_collection digest to f6110ae [\#853](https://github.com/dev-sec/ansible-collection-hardening/pull/853) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.2.0...10.3.0)
