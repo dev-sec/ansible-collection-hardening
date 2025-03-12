@@ -1,0 +1,51 @@
+output_template: |
+  <!-- BEGIN_ANSIBLE_DOCS -->
+
+  ## Supported Operating Systems
+
+  {%- for platform in metadata.galaxy_info.platforms %}
+  - {{ platform.name }}
+    {%- if "versions" in platform %}
+    - {{ platform.versions | default([]) | join(', ') }}
+    {%- endif %}
+  {%- endfor %}
+
+  ## Role Variables
+  {% for entrypoint in argument_specs.keys() %}
+  {%- set path, options=entrypoint_options[entrypoint][0] -%}
+  {%- for name, details in options.items() |sort() %}
+  - `{{ name }}`
+    - Default: `{{ details.display_default }}`
+    - Description: {{ details.display_description }}
+    - Type: {{ details.display_type }}
+    - Required: {{ details.display_required }}
+    {%- if details.choices %}
+    - Choices:
+      {%- for choice in details.choices %}
+      - {{ choice }}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+  {%- endfor %}
+
+  ## Dependencies
+
+  {%- if ("dependencies" in metadata) and (metadata.dependencies | length > 0) %}
+  {%- for dependency in metadata.dependencies %}
+  - {{ dependency }}
+  {%- endfor %}
+  {%- else %}
+
+  None.
+  {%- endif %}
+
+  ## Example Playbook
+
+  ```
+  - hosts: all
+    become: true
+    roles:
+      - name: {{ role }}
+  ```
+
+  <!-- END_ANSIBLE_DOCS -->

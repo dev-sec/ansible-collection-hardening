@@ -3,7 +3,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest"
+    image: rndmh3ro/docker-${MOLECULE_DISTRO}-ansible:latest
     command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
@@ -28,6 +28,7 @@ scenario:
     - prepare
   check_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - create
     - prepare
@@ -43,6 +44,7 @@ scenario:
     - destroy
   test_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - syntax
     - create
@@ -50,5 +52,4 @@ scenario:
     - check
     - converge
     - idempotence
-    - verify
     - destroy

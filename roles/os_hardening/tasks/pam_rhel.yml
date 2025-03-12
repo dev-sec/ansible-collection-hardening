@@ -1,6 +1,6 @@
 ---
 - name: Install sssd-clients
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: sssd-client
     state: present
   when:

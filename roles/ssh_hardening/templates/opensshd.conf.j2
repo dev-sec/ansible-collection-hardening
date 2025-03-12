@@ -34,9 +34,11 @@ ListenAddress {{ address }}
 {% endfor %}
 
 # HostKeys are listed here.
-{% for key in ssh_host_key_files %}
+{% if ssh_host_key_files is defined and ssh_host_key_files -%}
+{%    for key in ssh_host_key_files %}
 HostKey {{ key }}
-{% endfor %}
+{%    endfor %}
+{% endif %}
 
 # HostCertificates are listed here.
 {% for certificate in ssh_host_certificates -%}
@@ -73,14 +75,22 @@ LogLevel {{ sshd_log_level }}
 # -- see: (http://net-ssh.github.com/net-ssh/classes/Net/SSH/Transport/CipherFactory.html)
 #
 {# This outputs 'Ciphers <list-of-ciphers>' if ssh_ciphers is defined or '#Ciphers' if ssh_ciphers is undefined -#}
-{{ 'Ciphers ' ~ ssh_ciphers|join(',') if ssh_ciphers else 'Ciphers'|comment }}
+{% if ssh_ciphers is defined and ssh_ciphers -%}
+{{ 'Ciphers ' ~ ssh_ciphers|join(',') }}
+{% else -%}
+{{ 'Ciphers'|comment }}
+{% endif %}
 
 # **Hash algorithms** -- SHA-1 is formally deprecated by NIST in 2011 because of security issues.
 # Weak HMAC is sometimes required if older package versions are used
 # eg Ruby's Net::SSH at around 2.2.* doesn't support sha2 for hmac, so this will have to be set true in this case.
 #
 {# This outputs 'MACs <list-of-macs>' if ssh_macs is defined or '#MACs' if ssh_macs is undefined -#}
-{{ 'MACs ' ~ ssh_macs|join(',') if ssh_macs else 'MACs'|comment }}
+{% if ssh_macs is defined and ssh_macs -%}
+{{ 'MACs ' ~ ssh_macs|join(',') }}
+{% else -%}
+{{ 'MACs'|comment }}
+{% endif %}
 
 {% if sshd_version is version('5.9', '<') %}
 # Alternative setting, if OpenSSH version is below v5.9
@@ -92,8 +102,12 @@ LogLevel {{ sshd_log_level }}
 # eg ruby's Net::SSH at around 2.2.* doesn't support sha2 for kex, so this will have to be set true in this case.
 # based on: https://bettercrypto.org/static/applied-crypto-hardening.pdf
 #
-{# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined or '#KexAlgorithms' if ssh_kex is undefined #}
-{{ 'KexAlgorithms ' ~ ssh_kex|join(',') if ssh_kex else 'KexAlgorithms'|comment }}
+{# This outputs 'KexAlgorithms <list-of-algos>' if ssh_kex is defined and ssh_kex or '#KexAlgorithms' if ssh_kex is undefined #}
+{% if ssh_kex is defined and ssh_kex -%}
+{{ 'KexAlgorithms ' ~ ssh_kex|join(',') }}
+{% else -%}
+{{ 'KexAlgorithms'|comment }}
+{% endif %}
 
 # Authentication
 # --------------
@@ -112,7 +126,7 @@ MaxSessions {{ ssh_max_sessions }}
 MaxStartups {{ ssh_max_startups }}
 
 # Enable public key authentication
-PubkeyAuthentication yes
+PubkeyAuthentication {{ 'yes' if (ssh_pubkey_authentication|bool) else 'no' }}
 
 # Never use host-based authentication. It can be exploited.
 IgnoreRhosts yes
@@ -192,7 +206,7 @@ ClientAliveInterval {{ ssh_client_alive_interval }}
 ClientAliveCountMax {{ ssh_client_alive_count }}
 
 # Disable tunneling
-PermitTunnel {{ 'yes' if (ssh_permit_tunnel|bool) else 'no' }}
+PermitTunnel {{ ssh_permit_tunnel }}
 
 # Disable forwarding tcp connections.
 # no real advantage without denied shell access
@@ -260,18 +274,6 @@ RevokedKeys /etc/ssh/revoked_keys
 # Subsystem sftp /opt/app/openssh5/libexec/sftp-server
 
 Subsystem sftp internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
-
-# These lines must appear at the *end* of sshd_config
-Match Group sftponly
-    ForceCommand internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
-{% if sftp_chroot %}
-    ChrootDirectory {{ sftp_chroot_dir }}
-{% endif %}
-    AllowTcpForwarding no
-    AllowAgentForwarding no
-    PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
-    PermitRootLogin no
-    X11Forwarding no
 {% endif %}
 {% if ssh_server_match_address %}
 
@@ -320,4 +322,18 @@ Match LocalPort {{ item.port }}
     {{ rule | indent(4) }}
   {% endfor %}
 {% endfor %}
+{% endif %}
+
+{% if sftp_enabled %}
+# These lines must appear at the *end* of sshd_config
+Match Group sftponly
+    ForceCommand internal-sftp -l INFO -f LOCAL6 -u {{ sftp_umask }}
+{% if sftp_chroot %}
+    ChrootDirectory {{ sftp_chroot_dir }}
+{% endif %}
+    AllowTcpForwarding no
+    AllowAgentForwarding no
+    PasswordAuthentication {{ 'yes' if (ssh_server_password_login|bool) else 'no' }}
+    PermitRootLogin no
+    X11Forwarding no
 {% endif %}

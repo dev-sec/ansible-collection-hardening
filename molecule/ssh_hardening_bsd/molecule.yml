@@ -7,8 +7,8 @@ platforms:
   # we need to name every instance differently to start multiple VMs on the same host (parallelization)
   # since we also need to use different OS users to run the tests because of how molecule operates,
   # the VM names must be predictable by OS user (to clean up canceled runs)
-  - name: "${USER}"
-    box: "generic/${MOLECULE_DISTRO}"
+  - name: ${USER}
+    box: generic/${MOLECULE_DISTRO}
     memory: 1024
     cpus: 2
 provisioner:
@@ -33,6 +33,7 @@ scenario:
     - prepare
   check_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - create
     - prepare
@@ -48,6 +49,7 @@ scenario:
     - destroy
   test_sequence:
     - dependency
+    - verify ../shared/prerequisites.yml
     - destroy
     - syntax
     - create

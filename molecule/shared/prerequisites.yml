@@ -1,0 +1,9 @@
+---
+- name: Verify prerequisites
+  hosts: localhost
+  tasks:
+    - name: Make sure environment variable for MOLECULE_DISTRO is set
+      ansible.builtin.assert:
+        that:
+          - "lookup('env','MOLECULE_DISTRO')"
+        fail_msg: "You need to set MOLECULE_DISTRO to a supported image name. See CONTRIBUTING.md"

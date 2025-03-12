@@ -1,4 +1,6 @@
 ---
+ssh_pkgs:
+  - openssh
 sshd_path: /usr/lib/ssh/sshd
 ssh_host_keys_dir: /var/ssh
 sshd_service_name: ssh
@@ -6,6 +8,7 @@ ssh_owner: root
 ssh_group: root
 ssh_host_keys_owner: root
 ssh_host_keys_group: root
+ssh_host_keys_mode: "0600"
 
 # true if SSH support Kerberos
 ssh_kerberos_support: true

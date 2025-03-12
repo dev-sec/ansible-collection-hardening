@@ -1,0 +1,35 @@
+---
+
+- name: Install openssh package(s)
+  ansible.builtin.package:
+    name: "{{ pkg }}"
+    state: present
+  loop: "{{ ssh_pkgs }}"
+  loop_control:
+    loop_var: pkg
+
+# see https://github.com/dev-sec/ansible-collection-hardening/issues/763
+- name: Change Debian/Ubuntu systems so ssh starts traditionally instead of socket-activated
+  ansible.builtin.include_tasks: disable-systemd-socket.yml
+  when:
+    - ssh_server_hardening | bool
+    - ssh_server_enabled | bool
+    - (ansible_facts.distribution == 'Ubuntu' and ansible_facts.distribution_major_version is version('22.04', '>=')) or
+      (ansible_facts.os_family == 'Debian' and ansible_facts.distribution_major_version is version('12', '>='))
+
+- name: Ensure privilege separation directory exists
+  ansible.builtin.file:
+    path: /run/sshd
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when:
+    - ssh_server_hardening | bool
+    - ssh_server_enabled | bool
+    - ansible_facts.os_family == 'Debian'
+
+- name: Enable or disable sshd service
+  ansible.builtin.service:
+    name: "{{ sshd_service_name }}"
+    enabled: "{{ ssh_server_service_enabled }}"

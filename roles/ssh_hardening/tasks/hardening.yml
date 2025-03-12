@@ -22,6 +22,9 @@
   with_dict: "{{ os_vars }}"
   tags: always
 
+- name: Install openssh package and configure the service
+  ansible.builtin.include_tasks: install.yml
+
 - name: Get openssh-version
   ansible.builtin.command: ssh -V
   register: sshd_version_raw
@@ -36,19 +39,22 @@
   ansible.builtin.include_tasks: crypto_hostkeys.yml
   when:
     - ssh_server_hardening | bool
-    - not ssh_host_key_files
+    - ssh_host_key_files is undefined
 
 - name: Set default for ssh_macs if not supplied
   ansible.builtin.include_tasks: crypto_macs.yml
-  when: not ssh_macs
+  when:
+    - ssh_macs is undefined
 
 - name: Set default for ssh_ciphers if not supplied
   ansible.builtin.include_tasks: crypto_ciphers.yml
-  when: not ssh_ciphers
+  when:
+    - ssh_ciphers is undefined
 
 - name: Set default for ssh_kex if not supplied
   ansible.builtin.include_tasks: crypto_kex.yml
-  when: not ssh_kex
+  when:
+    - ssh_kex is undefined
 
 - name: Create revoked_keys and set permissions to root/600
   ansible.builtin.template:
@@ -135,3 +141,8 @@
   when:
     - sshd_disable_crypto_policy | bool
     - ('crypto-policies' in ansible_facts.packages)
+
+- name: Enable or disable sshd service
+  ansible.builtin.service:
+    name: "{{ sshd_service_name }}"
+    enabled: "{{ ssh_server_service_enabled }}"

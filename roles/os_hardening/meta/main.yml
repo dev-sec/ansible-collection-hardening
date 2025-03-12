@@ -4,21 +4,20 @@ galaxy_info:
   description: This Ansible role provides numerous security-related ssh configurations, providing all-round base protection.
   company: Hardening Framework Team
   license: Apache License 2.0
-  min_ansible_version: "2.11"
+  min_ansible_version: "2.16"
   platforms:
     - name: EL
       versions:
-        - "7"
         - "8"
         - "9"
     - name: Ubuntu
       versions:
-        - bionic
         - focal
         - jammy
+        - noble
     - name: Debian
       versions:
-        - buster
+        - bookworm
         - bullseye
     - name: Amazon
     - name: Fedora

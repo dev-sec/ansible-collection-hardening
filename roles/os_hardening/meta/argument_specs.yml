@@ -1,0 +1,846 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the os hardening role.
+    version_added: 8.8.0
+    options:
+      os_env_user_paths:
+        default: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
+        type: list
+        description: Specify paths that should be checked for binaries where access will be minimized
+      os_env_extra_user_paths:
+        default: '[]'
+        type: list
+        description: Specify additional paths that should be checked for binaries where access will be minimized
+      os_auth_pw_max_age:
+        default: 60
+        type: int
+        description: maximum password age (set to `99999` to effectively disable it).
+      os_auth_pw_min_age:
+        default: 7
+        type: int
+        description: minimum password age (before allowing any other password change).
+      os_auth_pw_warn_age:
+        default: 7
+        type: int
+        description: number of days of warning before password expires.
+      os_auth_pw_remember:
+        default: 5
+        type: int
+        description: how many used passwords are record.
+      os_auth_retries:
+        default: 5
+        type: int
+        description: the maximum number of authentication attempts, before the account
+          is locked for some time.
+      os_auth_lockout_time:
+        default: 600
+        type: int
+        description: time in seconds that needs to pass, if the account was locked
+          due to too many failed authentication attempts.
+      os_auth_timeout:
+        default: 60
+        type: int
+        description: authentication timeout in seconds, so login will exit if this
+          time passes.
+      os_auth_allow_homeless:
+        default: false
+        type: bool
+        description: true if to allow users without home to login.
+      os_auth_pam_passwdqc_enable:
+        default: true
+        type: bool
+        description: true if you want to use strong password checking in PAM using
+          passwdqc.
+      os_auth_pam_passwdqc_options:
+        default: min=disabled,disabled,16,12,8
+        type: str
+        description: set to any option line (as a string) that you want to pass to
+          passwdqc.
+      os_auth_pam_oddjob_mkhomedir:
+        default: false
+        type: bool
+        description: Enables automatic homedir e.g. in FreeIPA environments
+      os_auth_pam_pwquality_options:
+        default: try_first_pass retry=3 authtok_type=
+        type: str
+        description: Options to pass to the PAM module pwquality
+      os_security_users_allow:
+        default: '[]'
+        type: list
+        description: list of things, that a user is allowed to do. May contain `change_user`.
+      os_security_kernel_enable_core_dump:
+        default: false
+        type: bool
+        description: kernel is crashing or otherwise misbehaving and a kernel core
+          dump is created.
+      os_security_suid_sgid_enforce:
+        default: true
+        type: bool
+        description: true if you want to reduce SUID/SGID bits. There is already a
+          list of items which are searched for configured, but you can also add your
+          own.
+      os_security_suid_sgid_blacklist:
+        default: '[]'
+        type: list
+        description: a list of paths which should have their SUID/SGID bits removed.
+      os_security_suid_sgid_whitelist:
+        default: '[]'
+        type: list
+        description: a list of paths which should not have their SUID/SGID bits altered.
+      os_security_suid_sgid_remove_from_unknown:
+        default: false
+        type: bool
+        description: true if you want to remove SUID/SGID bits from any file, that
+          is not explicitly configured in a `blacklist`. This will make every Ansible-run
+          search through the mounted filesystems looking for SUID/SGID bits that are
+          not configured in the default and user blacklist. If it finds an SUID/SGID
+          bit, it will be removed, unless this file is in your `whitelist`.
+      os_auth_uid_min:
+        default: 1000
+        type: int
+        description: minimum number for automatic uid selection in useradd.
+      os_auth_uid_max:
+        default: 60000
+        type: int
+        description: maximum number for automatic uid selection in useradd.
+      os_auth_gid_min:
+        default: 1000
+        type: int
+        description: minimum number for automatic gid selection in groupadd.
+      os_auth_gid_max:
+        default: 60000
+        type: int
+        description: maximum number for automatic gid selection in groupadd.
+      os_auth_sub_uid_count:
+        default: 65536
+        type: int
+        description: If /etc/subuid exists, the commands useradd and newusers (unless
+          the user already have subordinate user IDs) allocate SUB_UID_COUNT unused
+          user IDs from the range SUB_UID_MIN to SUB_UID_MAX for each new user. See
+          also `os_auth_sub_uid_min` and `os_auth_sub_uid_max`.
+      os_auth_sub_uid_min:
+        default: 100000
+        type: int
+        description: minimum number for automatic subordinate uid selection in useradd
+          and newusers.
+      os_auth_sub_uid_max:
+        default: 600100000
+        type: int
+        description: maximum number for automatic subordinate uid selection in useradd
+          and newusers.
+      os_auth_sub_gid_count:
+        default: 65536
+        type: int
+        description: If /etc/subuid exists, the commands useradd and newusers (unless
+          the user already have subordinate group IDs) allocate SUB_GID_COUNT unused
+          group IDs from the range SUB_GID_MIN to SUB_GID_MAX for each new user. See
+          also `os_auth_sub_gid_min` and `os_auth_sub_gid_max`.
+      os_auth_sub_gid_min:
+        default: 100000
+        type: int
+        description: minimum number for automatic subordinate gid selection in useradd
+          and newusers.
+      os_auth_sub_gid_max:
+        default: 600100000
+        type: int
+        description: maximum number for automatic subordinate gid selection in useradd
+          and newusers.
+      os_security_packages_clean:
+        default: true
+        type: bool
+        description: removes packages with known issues. See section packages.
+      os_selinux_state:
+        default: enforcing
+        type: str
+        description: Set the SELinux state, can be either disabled, permissive, or
+          enforcing.
+      os_selinux_policy:
+        default: targeted
+        type: str
+        description: Set the SELinux polixy.
+      ufw_manage_defaults:
+        default: true
+        type: bool
+        description: true means apply all settings with `ufw_` prefix.
+      ufw_ipt_sysctl:
+        default: "''"
+        type: str
+        description: by default it disables IPT_SYSCTL in /etc/default/ufw. If you
+          want to overwrite /etc/sysctl.conf values using ufw - set it to your sysctl
+          dictionary, for example `/etc/ufw/sysctl.conf`.
+      ufw_default_input_policy:
+        default: DROP
+        type: str
+        description: set default input policy of ufw to `DROP`.
+      ufw_default_output_policy:
+        default: ACCEPT
+        type: str
+        description: set default output policy of ufw to `ACCEPT`.
+      ufw_default_forward_policy:
+        default: DROP
+        type: str
+        description: set default forward policy of ufw to `DROP`.
+      ufw_enable_ipv6:
+        default: true
+        type: bool
+        description: Set to `true` to apply rules to support IPv6 (no means only IPv6
+          on loopback accepted).
+      os_auditd_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring auditd.
+      os_auditd_log_format:
+        default: RAW
+        type: str
+        description: Describes how the information should be stored on disk. There
+          are 2 options - raw and enriched.
+      os_auditd_max_log_file_action:
+        default: keep_logs
+        type: str
+        description: Defines the behaviour of auditd when its log file is filled up.
+          Possible other values are described in the auditd.conf man page. The most
+          common alternative to the default may be `rotate`.
+      os_auditd_max_log_file:
+        default: 6
+        type: int
+        description: This keyword specifies the maximum file size in megabytes. When
+          this limit is reached, it will trigger a configurable action. The value
+          given must be numeric.
+      os_auditd_name_format:
+        default: NONE
+        type: str
+        description: This keyword specifies how computer node names are inserted
+              into the audit event stream.
+        choices:
+          - NONE
+          - hostname
+          - fqd
+          - numeric
+      os_auditd_num_logs:
+        default: 5
+        type: int
+        description: This keyword specifies the number of log files to keep if `rotate`
+          is given as the max_log_file_action. The value given must be numeric.
+      os_auditd_flush:
+        default: INCREMENTAL
+        type: str
+        description: Valid values are none, incremental, incremental_async, data,
+          and sync.
+      os_auditd_admin_space_left:
+        default: 50
+        type: int
+        description: This is a numeric value in megabytes that tells the audit daemon
+          when to perform a configurable action because the system is running low
+          on disk space.
+      os_auditd_admin_space_left_action:
+        default: SUSPEND
+        type: str
+        description: This parameter tells the system what action to take when the
+          system has detected that it is low on disk space. Valid values are ignore,
+          syslog, rotate, email, exec, suspend, single, and halt.
+      os_auditd_space_left:
+        default: 75
+        type: int
+        description: If the free space in the filesystem containing log_file drops
+          below this value, the audit daemon takes the action specified by space_left_action.
+      os_auditd_space_left_action:
+        default: SYSLOG
+        type: str
+        description: This parameter tells the system what action to take when the
+          system has detected that it is starting to get low on disk space. Valid
+          values are ignore, syslog, rotate, email, exec, suspend, single, and halt.
+      os_auditd_action_mail_acct:
+        default: root
+        type: str
+        description: If `space_left_action` or `admin_space_left_action` are set to
+          `email`, uses the address or alias to send the email using `/usr/lib/sendmail`.
+          of events created on one system but reported/analyzed on another system.
+      os_auditd_disk_error_action:
+        default: SUSPEND
+        type: str
+        description: This parameter tells the system what action to take whenever
+          there is an error detected when writing audit events to disk or rotating
+          logs. Valid values are ignore, syslog, exec, suspend, single, and halt.
+      os_auditd_disk_full_action:
+        default: SUSPEND
+        type: str
+        description: This parameter tells the system what action to take when the
+          system has detected that the partition to which log files are written has
+          become full. Valid values are ignore, syslog, rotate, exec, suspend, single,
+          and halt.
+      os_auditd_log_group:
+        default: root
+        type: str
+        description: specifies the group that is applied to the log file's permissions.
+          The group name can be either numeric or spelled out.
+      proc_mnt_options:
+        default: rw,nosuid,nodev,noexec,relatime
+        type: str
+        description: Mount proc with hardenized options. Note that the hidepid option
+          is set separately in vars/.
+      os_ignore_users:
+        default: [vagrant, kitchen]
+        type: list
+        description: Specify system accounts whose login should not be disabled and
+          password not changed
+      os_chmod_home_folders:
+        default: true
+        type: bool
+        description: Set to `false` to disable "chmod 700" of home folders for regular
+          users
+      os_ignore_home_folder_users:
+        default: '[]'
+        type: list
+        description: Specify user accounts, whose home folders shouldn't be chmodded
+          to 700 when "os_chmod_home_folders" is enabled.
+      os_chmod_rootuser_home_folder:
+        default: true
+        type: bool
+        description: Set to `false` to disable "chmod 700" of root's home folder
+      os_rootuser_pw_ageing:
+        default: false
+        type: bool
+        description: Set to true to enforce password age settings for root user(s)
+      os_remove_additional_root_users:
+        default: false
+        type: bool
+        description: When enabled and there are multiple users with UID=0, only "root"
+          will be kept. Others will be deleted.
+      os_user_pw_ageing:
+        default: true
+        type: bool
+        description: Set to false to disable password age enforcement on existing
+          users
+      os_users_without_password_ageing:
+        default: '[]'
+        type: list
+        description: List of users, where password ageing should not be enforced even
+          if "os_user_pw_ageing" is enabled
+      os_cron_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring cron.
+      os_ctrlaltdel_disabled:
+        default: false
+        type: bool
+        description: Set to true to disable ctrl-alt-delete key combination.
+      os_limits_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring limits.
+      os_login_defs_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring login_defs
+          for newly created users.
+      os_minimize_access_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring minimize_access.
+      os_pam_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring pam.
+      os_modprobe_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring modprobe.
+      os_profile_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring profile.
+      os_security_auto_logout:
+        default: 0
+        type: int
+        description: Set timeout in seconds for logout users automatically after time.
+          Setting this to `0` disables the timeout.
+      os_securetty_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring securetty.
+      os_sysctl_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring sysctl.
+      os_user_accounts_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring user_accounts.
+      os_rhosts_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring rhosts.
+      os_yum_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring yum.
+      os_yum_repo_file_whitelist:
+        default: '[]'
+        type: list
+        description: List of yum repository files under /etc/yum.repos.d/ which should
+          not be altered.
+      os_apt_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring apt.
+      os_selinux_enabled:
+        default: true
+        type: bool
+        description: Set to false to disable installing and configuring selinux.
+      os_sha_crypt_min_rounds:
+        default: 640000
+        type: int
+        description: Define the number of minimum SHA rounds. With a lot of rounds
+          brute forcing the password is more difficult. But note also that it more
+          CPU resources will be needed to authenticate users. The values must be inside
+          the 1000-999999999 range.
+      os_sha_crypt_max_rounds:
+        default: 640000
+        type: int
+        description: Define the number of maximum SHA rounds. With a lot of rounds
+          brute forcing the password is more difficult. But note also that it more
+          CPU resources will be needed to authenticate users. The values must be inside
+          the 1000-999999999 range.
+      os_mnt_boot_dir_mode:
+        default: '0700'
+        type: str
+        description: Set default perimissions for /boot
+      os_mnt_boot_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /boot mountpoint
+      os_mnt_boot_src:
+        default: "''"
+        type: str
+        description: Set mount source for /boot
+      os_mnt_boot_options:
+        default: rw,nosuid,nodev,noexec
+        description: Configure mount options for /boot
+      os_mnt_boot_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /boot. If empty, the current
+          file system type will be used.
+      os_mnt_boot_dump:
+        default: ext3 + ext4 = 1 / other = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_boot_passno:
+        default: ext3 + ext4 = 2 / other = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_dev_dir_mode:
+        default: '0755'
+        type: str
+        description: Set default perimissions for /dev
+      os_mnt_dev_enabled:
+        default: true
+        type: bool
+        description: Set to false to ignore /dev mountpoint
+      os_mnt_dev_src:
+        default: devtmpfs
+        type: str
+        description: Set mount source for /dev
+      os_mnt_dev_options:
+        default: rw,nosuid,noexec
+        type: str
+        description: Configure mount options for /dev
+      os_mnt_dev_filesystem:
+        default: devtmpfs
+        type: str
+        description: Configure file system for fstab entry /dev
+      os_mnt_dev_dump:
+        default: '0'
+        type: str
+        description: Configure dump for fstab entry /var/tmp.
+      os_mnt_dev_passno:
+        default: '0'
+        type: str
+        description: Configure passno for fstab entry /var/tmp.
+      os_mnt_dev_shm_dir_mode:
+        default: '1777'
+        type: str
+        description: Set default perimissions for /dev/shm
+      os_mnt_dev_shm_enabled:
+        default: true
+        type: bool
+        description: Set to false to ignore /dev/shm mountpoint
+      os_mnt_dev_shm_src:
+        default: tmpfs
+        type: str
+        description: Set mount source for /dev/shm
+      os_mnt_dev_shm_options:
+        default: rw,nosuid,nodev,noexec
+        type: str
+        description: Configure mount options for /dev/shm
+      os_mnt_dev_shm_filesystem:
+        default: tmpfs
+        type: str
+        description: Configure file system for fstab entry /dev/shm
+      os_mnt_dev_shm_dump:
+        default: '0'
+        type: str
+        description: Configure dump for fstab entry /var/tmp.
+      os_mnt_dev_shm_passno:
+        default: '0'
+        type: str
+        description: Configure passno for fstab entry /var/tmp.
+      os_mnt_home_dir_mode:
+        default: '0755'
+        type: str
+        description: Set default perimissions for /home
+      os_mnt_home_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /home mountpoint
+      os_mnt_home_src:
+        default: "''"
+        type: str
+        description: Set mount source for /home. If empty, the current file system
+          source device will be used.
+      os_mnt_home_options:
+        default: rw,nosuid,nodev
+        type: str
+        description: Configure mount options for /home
+      os_mnt_home_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /home. If empty, the current
+          file system type will be used.
+      os_mnt_home_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_home_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_run_dir_mode:
+        default: '0755'
+        type: str
+        description: Set default perimissions for /run
+      os_mnt_run_enabled:
+        default: true
+        type: bool
+        description: Set to false to ignore /run mountpoint
+      os_mnt_run_src:
+        default: tmpfs
+        type: str
+        description: Set mount source for /run
+      os_mnt_run_options:
+        default: rw,nosuid,nodev
+        type: str
+        description: Configure mount options for /run
+      os_mnt_run_filesystem:
+        default: tmpfs
+        type: str
+        description: Configure file system for fstab entry /run
+      os_mnt_run_dump:
+        default: '0'
+        type: str
+        description: Configure dump for fstab entry /var/tmp.
+      os_mnt_run_passno:
+        default: '0'
+        type: str
+        description: Configure passno for fstab entry /var/tmp.
+      os_mnt_tmp_dir_mode:
+        default: '1777'
+        type: str
+        description: Set default perimissions for /tmp
+      os_mnt_tmp_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /tmp mountpoint
+      os_mnt_tmp_src:
+        default: "''"
+        type: str
+        description: Set mount source for /tmp. If empty, the current file system
+          source device will be used.
+      os_mnt_tmp_options:
+        default: rw,nosuid,nodev,noexec
+        type: str
+        description: Configure mount options for /tmp
+      os_mnt_tmp_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /tmp. If empty, the current
+          file system type will be used.
+      os_mnt_tmp_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_tmp_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_dir_mode:
+        default: '0755'
+        type: str
+        description: Set default perimissions for /var
+      os_mnt_var_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /var mountpoint
+      os_mnt_var_src:
+        default: "''"
+        type: str
+        description: Set mount source for /var. If empty, the current file system
+          source device will be used.
+      os_mnt_var_options:
+        default: rw,nosuid,nodev
+        type: str
+        description: Configure mount options for /var
+      os_mnt_var_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /var. If empty, the current
+          file system type will be used.
+      os_mnt_var_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_log_dir_mode:
+        default: '0755'
+        type: str
+        description: Set default perimissions for /var/log
+      os_mnt_var_log_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /var/log mountpoint
+      os_mnt_var_log_src:
+        default: "''"
+        type: str
+        description: Set mount source for /var/log. If empty, the current file system
+          source device will be used.
+      os_mnt_var_log_options:
+        default: rw,nosuid,nodev,noexec
+        type: str
+        description: Configure mount options for /var/log
+      os_mnt_var_log_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /var/log. If empty, the
+          current file system type will be used.
+      os_mnt_var_log_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_log_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_log_audit_dir_mode:
+        default: '0640'
+        type: str
+        description: Set default perimissions for /var/log/audit
+      os_mnt_var_log_audit_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /var/log/audit mountpoint
+      os_mnt_var_log_audit_src:
+        default: "''"
+        type: str
+        description: Set mount source for /var/log/audit. If empty, the current file
+          system source device will be used.
+      os_mnt_var_log_audit_options:
+        default: rw,nosuid,nodev,noexec
+        type: str
+        description: Configure mount options for /var/log/audit
+      os_mnt_var_log_audit_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /var/log/audit. If empty,
+          the current file system type will be used.
+      os_mnt_var_log_audit_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_log_audit_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_tmp_dir_mode:
+        default: '1777'
+        type: str
+        description: Set default perimissions for /var/tmp
+      os_mnt_var_tmp_enabled:
+        default: false
+        type: bool
+        description: Set to true to configure /var/tmp mountpoint
+      os_mnt_var_tmp_src:
+        default: "''"
+        type: str
+        description: Set mount source for /var/tmp. If empty, the current file system
+          source device will be used.
+      os_mnt_var_tmp_options:
+        default: rw,nosuid,nodev,noexec
+        type: str
+        description: Configure mount options for /var/tmp
+      os_mnt_var_tmp_filesystem:
+        default: "''"
+        type: str
+        description: Configure file system for fstab entry /var/tmp. If empty, the
+          current file system type will be used.
+      os_mnt_var_tmp_dump:
+        default: ext3/4 = 1, others = 0
+        type: str
+        description: Configure dump for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_mnt_var_tmp_passno:
+        default: ext3/4 = 2, others = 0
+        type: str
+        description: Configure passno for fstab entry /var/tmp. If empty, the default
+          depends on fstype.
+      os_netrc_enabled:
+        default: true
+        type: bool
+        description: Configure filesystem for existence of .netrc file in homedir
+      os_netrc_whitelist_user:
+        default: '[]'
+        type: list
+        description: Add list of user to allow creation of .netrc in users homedir
+      sysctl_overwrite:
+        default: '{}'
+        type: dict
+        description: To overwrite options in the `sysctl_config`-dict, overwrite them
+          here.
+      sysctl_config:
+        type: dict
+        description: various sysctl-settings
+        default:
+          fs.protected_hardlinks: 1
+          fs.protected_symlinks: 1
+          fs.protected_fifos: 1
+          fs.protected_regular: 2
+          fs.suid_dumpable: 0
+          kernel.core_uses_pid: 1
+          kernel.kptr_restrict: 2
+          kernel.kexec_load_disabled: 1
+          kernel.sysrq: 0
+          kernel.randomize_va_space: 2
+          kernel.yama.ptrace_scope: 1
+          net.ipv4.ip_forward: 0
+          net.ipv6.conf.all.forwarding: 0
+          net.ipv4.conf.all.rp_filter: 1
+          net.ipv4.conf.default.rp_filter: 1
+          net.ipv4.icmp_echo_ignore_broadcasts: 1
+          net.ipv4.icmp_ignore_bogus_error_responses: 1
+          net.ipv4.icmp_ratelimit: 100
+          net.ipv4.icmp_ratemask: 88089
+          net.ipv4.tcp_timestamps: 0
+          net.ipv4.conf.all.arp_ignore: 1
+          net.ipv4.conf.all.arp_announce: 2
+          net.ipv4.tcp_rfc1337: 1
+          net.ipv4.tcp_syncookies: 1
+          net.ipv4.conf.all.shared_media: 1
+          net.ipv4.conf.default.shared_media: 1
+          net.ipv4.conf.all.accept_source_route: 0
+          net.ipv4.conf.default.accept_source_route: 0
+          net.ipv6.conf.all.accept_source_route: 0
+          net.ipv6.conf.default.accept_source_route: 0
+          net.ipv4.conf.all.send_redirects: 0
+          net.ipv4.conf.default.send_redirects: 0
+          net.ipv4.conf.all.log_martians: 1
+          net.ipv4.conf.default.log_martians: 1
+          net.ipv4.conf.default.accept_redirects: 0
+          net.ipv4.conf.all.accept_redirects: 0
+          net.ipv4.conf.all.secure_redirects: 0
+          net.ipv4.conf.default.secure_redirects: 0
+          net.ipv6.conf.default.accept_redirects: 0
+          net.ipv6.conf.all.accept_redirects: 0
+          net.ipv6.conf.all.accept_ra: 0
+          net.ipv6.conf.default.accept_ra: 0
+          net.ipv6.conf.default.router_solicitations: 0
+          net.ipv6.conf.all.router_solicitations: 0
+          net.ipv6.conf.default.accept_ra_rtr_pref: 0
+          net.ipv6.conf.default.accept_ra_pinfo: 0
+          net.ipv6.conf.default.accept_ra_defrtr: 0
+          net.ipv6.conf.default.autoconf: 0
+          net.ipv6.conf.all.autoconf: 0
+          net.ipv6.conf.default.dad_transmits: 0
+          net.ipv6.conf.default.max_addresses: 1
+          vm.mmap_min_addr: 65536
+          vm.mmap_rnd_bits: 32
+          vm.mmap_rnd_compat_bits: 16
+      os_unused_filesystems:
+        default:
+          - cramfs
+          - freevxfs
+          - jffs2
+          - hfs
+          - hfsplus
+          - squashfs
+          - udf
+          - vfat
+          - dccp
+          - rds
+          - sctp
+          - tipc
+        type: list
+        description: Disable this list of unused filesystems
+      os_filesystem_whitelist:
+        default: '[]'
+        type: list
+        description: A list of filesystems that should not be disabled
+      os_hardening_enabled:
+        default: true
+        type: bool
+        description: Whether to run the hardening
+      os_auth_root_ttys:
+        default: [console, tty1, tty2, tty3, tty4, tty5, tty6]
+        type: list
+        description: A list of TTYs, from which root can log in, see `man securetty`
+          for reference
+      os_chfn_restrict:
+        default: "''"
+        type: str
+        description: Indicate which fields are changeable by chfn.
+      os_security_init_prompt:
+        default: true
+        type: bool
+        description: The PROMPT option provides console users the ability to interactively
+          boot the system and select which services to start on boot.
+      os_security_init_single:
+        default: false
+        type: bool
+        description: Single-user mode is intended as a system recovery method, providing
+          a single user root access to the system by providing a boot option at startup.
+          By default, no authentication is performed if single-user mode is selected.
+          To require entry of the root password even if the system is started in single-user
+          mode, set this to false
+      os_security_packages_list:
+        default: [xinetd, inetd, ypserv, telnet-server, rsh-server, prelink]
+        type: list
+        description: List of deprecated or insecure packages to remove
+      ufw_default_application_policy:
+        default: SKIP
+        type: str
+        description: The default application policy is skip, which means that the
+          update --add-new command will do nothing
+      ufw_ipt_modules:
+        default: nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns
+        type: str
+        description: Define which netfilter modules to load
+      ufw_manage_builtins:
+        default: 'no'
+        type: str
+        description: If this variable is set to 'yes', on stop and reload the built-in
+          chains are flushed. If it is set to 'no', on stop and reload the ufw secondary
+          chains are removed and the ufw primary chains are flushed

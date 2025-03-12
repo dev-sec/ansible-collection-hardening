@@ -4,37 +4,37 @@ name: Publish collection to Ansible Galaxy
 on:  # yamllint disable-line rule:truthy
   release:
     types:
-      - published
+      - released
 
 jobs:
   deploy:
     if: github.repository == 'dev-sec/ansible-collection-hardening'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       # deploy the collection first, because if it fails, we don't want
       # to update the galaxy.yml
       - name: Deploy the collection
-        uses: artis3n/ansible_galaxy_collection@v2
+        uses: artis3n/ansible_galaxy_collection@f6110aef877db4caaa7e9a192975fb006dea61fe # v2
         with:
           api_key: ${{ secrets.GALAXY_API_KEY }}
           galaxy_version: ${{ github.event.release.tag_name }}
 
       # checkout master instead of the release-tag so we can push the galaxy.yml
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           ref: master
 
       - name: update galaxy.yml with new version
-        uses: microsoft/variable-substitution@v1
+        uses: microsoft/variable-substitution@6287962da9e5b6e68778dc51e840caa03ca84495 # v1
         with:
           files: 'galaxy.yml'
         env:
           version: "${{ github.event.release.tag_name }}"
 
       - name: push galaxy.yml
-        uses: github-actions-x/commit@v2.9
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'

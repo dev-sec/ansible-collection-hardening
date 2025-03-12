@@ -1,49 +1,43 @@
 ---
-- name: wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
+- name: Wrapper playbook for kitchen testing "ansible-ssh-hardening" with custom settings
   hosts: all
   become: true
   environment:
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
   tasks:
-    - include_role:
-        name: ssh_hardening
+    - name: Include ssh_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.ssh_hardening
   vars:
-    ssh_trusted_user_ca_keys_file: '/etc/ssh/ca.pub'
+    ssh_trusted_user_ca_keys_file: /etc/ssh/ca.pub
     ssh_trusted_user_ca_keys:
-      - '# ssh-rsa ...'
-    ssh_authorized_principals_file: '/etc/ssh/auth_principals/%u'
+      - "# ssh-rsa ..."
+    ssh_authorized_principals_file: /etc/ssh/auth_principals/%u
     ssh_authorized_principals:
-      - path: "/etc/ssh/auth_principals/root"
+      - path: /etc/ssh/auth_principals/root
         principals:
-          - "root"
-        owner: "{{ ssh_owner }}"
-        group: "{{ ssh_group }}"
-        directoryowner: "{{ ssh_owner }}"
-        directorygroup: "{{ ssh_group }}"
-        directorymode: "0700"
+          - root
     network_ipv6_enable: true
-    ssh_allow_tcp_forwarding: 'yes'
-    ssh_gateway_ports: true
+    ssh_allow_tcp_forwarding: "yes"
+    ssh_gateway_ports: "clientspecified"
     ssh_allow_agent_forwarding: true
-    ssh_server_permit_environment_vars: 'yes'
-    ssh_server_accept_env_vars: 'PWD HTTP_PROXY'
+    ssh_server_permit_environment_vars: "yes"
+    ssh_server_accept_env_vars: PWD HTTP_PROXY
     ssh_client_alive_interval: 100
     ssh_client_alive_count: 10
     ssh_client_password_login: true
     ssh_challengeresponseauthentication: true
     ssh_compression: true
-    ssh_allow_users: 'root kitchen vagrant'
-    ssh_allow_groups: 'root kitchen vagrant'
-    ssh_deny_users: 'foo bar'
-    ssh_deny_groups: 'foo bar'
-    ssh_authorized_keys_file: '/etc/ssh/authorized_keys/%u'
+    ssh_allow_users: root kitchen vagrant
+    ssh_allow_groups: root kitchen vagrant
+    ssh_deny_users: foo bar
+    ssh_deny_groups: foo bar
+    ssh_authorized_keys_file: /etc/ssh/authorized_keys/%u
     ssh_max_auth_retries: 10
-    ssh_permit_root_login: "without-password"
-    ssh_permit_tunnel: true
+    ssh_permit_root_login: without-password
+    ssh_permit_tunnel: "yes"
     ssh_print_motd: true
     ssh_print_last_log: true
     ssh_banner: true
@@ -54,33 +48,33 @@
       - 22
       - 222
     ssh_server_match_address:
-      - address: '192.168.1.0/24'
+      - address: 192.168.1.0/24
         rules:
-          - 'AllowTcpForwarding yes'
-          - 'AllowAgentForwarding no'
+          - AllowTcpForwarding yes
+          - AllowAgentForwarding no
     ssh_server_match_group:
-      - group: 'root'
+      - group: root
         rules:
-          - 'AllowTcpForwarding yes'
-          - 'AllowAgentForwarding no'
+          - AllowTcpForwarding yes
+          - AllowAgentForwarding no
     ssh_server_match_user:
-      - user: 'root'
+      - user: root
         rules:
-          - 'AllowTcpForwarding yes'
-          - 'AllowAgentForwarding no'
+          - AllowTcpForwarding yes
+          - AllowAgentForwarding no
     ssh_server_match_local_port:
       - port: 222
         rules:
-          - 'AllowTcpForwarding yes'
-          - 'AllowAgentForwarding no'
+          - AllowTcpForwarding yes
+          - AllowAgentForwarding no
     ssh_remote_hosts:
-      - names: ['example.com', 'example2.com']
-        options: ['Port 2222', 'ForwardAgent yes']
-      - names: ['example3.com']
-        options: ['StrictHostKeyChecking no']
+      - names: [example.com, example2.com]
+        options: [Port 2222, ForwardAgent yes]
+      - names: [example3.com]
+        options: [StrictHostKeyChecking no]
     ssh_use_dns: true
     ssh_use_pam: true
-    ssh_max_startups: '10:30:60'
+    ssh_max_startups: 10:30:60
     ssh_host_key_algorithms:
       - ssh-ed25519
       - rsa-sha2-512
@@ -94,10 +88,9 @@
       - aes192-ctr
       - aes128-ctr
       - aes256-cbc
-    ssh_kex:
-      - diffie-hellman-group-exchange-sha256
-      - diffie-hellman-group-exchange-sha1
+    # these should not be set in the final sshd_config
+    ssh_kex: false
     ssh_custom_options:
-      - "Include /etc/ssh/ssh_config.d/*"
+      - Include /etc/ssh/ssh_config.d/*
     sshd_custom_options:
-      - "AcceptEnv LANG"
+      - AcceptEnv LANG

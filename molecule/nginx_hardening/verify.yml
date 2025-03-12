@@ -7,8 +7,8 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: install procps for debian systems
-      apt:
+    - name: Install procps for debian systems
+      ansible.builtin.apt:
         name: procps
         state: present
         update_cache: true
@@ -22,7 +22,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
         docker.io/cincproject/auditor exec
@@ -34,10 +34,10 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
-        msg: "Inspec failed to validate"
+      ansible.builtin.fail:
+        msg: Inspec failed to validate
       when: test_results.rc != 0

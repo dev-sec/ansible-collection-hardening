@@ -1,11 +1,16 @@
 ---
+# It seems that OpenBSD comes with openssh in the base install so we can't
+# really install it as a separated package. Feel free to patch this if it's
+# not the expected way to handle that on OpenBSD
+ssh_pkgs: []
 sshd_path: /usr/sbin/sshd
 ssh_host_keys_dir: /etc/ssh
 sshd_service_name: sshd
 ssh_owner: root
 ssh_group: wheel
 ssh_host_keys_owner: root
-ssh_host_keys_group: root
+ssh_host_keys_group: wheel
+ssh_host_keys_mode: "0600"
 
 # true if SSH support Kerberos
 ssh_kerberos_support: false

@@ -7,22 +7,26 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
     paths:
       - 'roles/**'
+      - 'molecule/**'
+      - 'requirements.txt'
+      - '.github/workflows/ansible-lint.yml'
+      - '.config/ansible-lint.yml'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [master]
     paths:
       - 'roles/**'
+      - 'molecule/**'
+      - 'requirements.txt'
+      - '.github/workflows/ansible-lint.yml'
+      - '.config/ansible-lint.yml'
 
 jobs:
   ansible-lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      # Important: This sets up your GITHUB_WORKSPACE environment variable
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Lint Ansible Playbook
-        # replace "master" with any valid ref
-        uses: ansible/ansible-lint-action@main
-        with:
-          path: "roles/"
+        uses: ansible/ansible-lint@49ded6a7e4f3acf6b1eb4b3aa2796d84b5faa63a # v25

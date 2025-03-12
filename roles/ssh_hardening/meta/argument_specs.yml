@@ -1,0 +1,370 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the ssh hardening role.
+    version_added: 8.8.0
+    options:
+      network_ipv6_enable:
+        default: true
+        type: bool
+        description: '`false` if IPv6 is not needed. `ssh_listen_to` must also be
+          set to listen to IPv6 addresses (for example `[::]`).'
+      ssh_client_config_file:
+        default: /etc/ssh/ssh_config
+        description: path of the ssh client configuration file, e.g. `/etc/ssh/ssh_config.d/custom.conf`.
+      ssh_server_config_file:
+        default: /etc/ssh/sshd_config
+        description: path of the ssh server configuration file, e.g. `/etc/ssh/sshd_config.d/custom.conf`.
+      ssh_server_ports:
+        default: ['22']
+        type: list
+        description: ports on which ssh-server should listen.
+      ssh_client_port:
+        default: '22'
+        description: Specifies the port number to connect on the remote host.
+      ssh_listen_to:
+        default: [0.0.0.0]
+        type: list
+        description: one or more ip addresses, to which ssh-server should listen to.
+          Default is all IPv4 addresses, but should be configured to specific addresses
+          for security reasons
+      ssh_host_key_files:
+        type: list
+        description: Host keys for sshd. If empty ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ecdsa_key',
+          '/etc/ssh/ssh_host_ed25519_key'] will be used, as far as supported by the
+          installed sshd version.
+      ssh_host_rsa_key_size:
+        default: 4096
+        type: int
+        description: Specifies the number of bits in the private host RSA key to create.
+      ssh_host_key_algorithms:
+        default: []
+        type: list
+        description: Host key algorithms that the server offers. If empty the default
+          list will be used. Otherwise overrides the setting with specified list of
+          algorithms. Check `man sshd_config`, `ssh -Q HostKeyAlgorithms` or other
+          sources for supported algorithms - make sure you check the correct version
+      ssh_client_host_key_algorithms:
+        default: []
+        type: list
+        description: Specifies the host key algorithms that the client wants to use
+          in order of preference. If empty the default list will be used. Otherwise
+          overrides the setting with specified list of algorithms. Check `man ssh_config`,
+          `ssh -Q HostKeyAlgorithms` or other sources for supported algorithms - make
+          sure you check the correct version!
+      ssh_client_alive_interval:
+        default: 300
+        description: specifies an interval for sending keepalive messages.
+        type: int
+      ssh_client_alive_count:
+        default: 3
+        description: Defines the number of acceptable unanswered client alive messages
+          before disconnecting clients.
+        type: int
+      ssh_permit_tunnel:
+        default: 'no'
+        description: Specifies whether tun(4) device forwarding is allowed. The argument
+          must be "yes", point-to-point (layer 3), ethernet (layer 2), or "no". Specifying
+          yes permits both point-to-point and ethernet. - The quotes are required!
+        choices:
+          - 'no'
+          - 'yes'
+          - point-to-point
+          - ethernet
+      ssh_remote_hosts:
+        default: []
+        type: list
+        description: one or more hosts and their custom options for the ssh-client.
+          Default is empty. See examples in `defaults/main.yml`
+      ssh_permit_root_login:
+        default: 'no'
+        description: Disable root-login. Set to `'without-password'` or `'yes'` to
+          enable root-login - The quotes are required!
+      ssh_allow_tcp_forwarding:
+        default: 'no'
+        description: Set to `'no'` or `false` to disable TCP Forwarding. Set to `'yes'`
+          or`True` to allow TCP Forwarding. If you are using OpenSSH >= 6.2 version,
+          you can specify `'yes'`, `'no'`, `'all'`, `'local'`or`'remote'`.
+      ssh_gateway_ports:
+        default: false
+        type: raw
+        description: Set to `false` to disable binding forwarded ports to non-loopback
+          addresses. Set to `true` to force binding on wildcard address. Set to `clientspecified`
+          to allow the client to specify which address to bind to.
+      ssh_allow_agent_forwarding:
+        default: false
+        type: bool
+        description: Set to `false` to disable Agent Forwarding. Set to `true` to
+          allow Agent Forwarding.
+      ssh_x11_forwarding:
+        default: false
+        type: bool
+        description: Set to `false` to disable X11 Forwarding. Set to `true` to allow
+          X11 Forwarding.
+      ssh_pam_support:
+        default: true
+        type: bool
+        description: Set to `true` if SSH has PAM support.
+      ssh_use_pam:
+        default: true
+        type: bool
+        description: Set to `false` to disable pam authentication.
+      ssh_gssapi_support:
+        default: false
+        type: bool
+        description: Set to `true` to enable GSSAPI authentication (both client and
+          server).
+      ssh_gssapi_delegation:
+        default: false
+        type: bool
+        description: Set to `true` to enable GSSAPI credential forwarding.
+      ssh_kerberos_support:
+        default: true
+        type: bool
+        description: Set to `true` if SSH has Kerberos support.
+      ssh_deny_users:
+        default: ''
+        description: if specified, login is disallowed for user names that match one
+          of the patterns.
+      ssh_allow_users:
+        default: ''
+        description: if specified, login is allowed only for user names that match
+          one of the patterns.
+      ssh_deny_groups:
+        default: ''
+        description: if specified, login is disallowed for users whose primary group
+          or supplementary group list matches one of the patterns.
+      ssh_allow_groups:
+        default: ''
+        description: if specified, login is allowed only for users whose primary group
+          or supplementary group list matches one of the patterns.
+      ssh_authorized_keys_file:
+        default: ''
+        description: change default file that contains the public keys that can be
+          used for user authentication
+      ssh_trusted_user_ca_keys_file:
+        default: ''
+        description: specifies the file containing trusted certificate authorities
+          public keys used to sign user certificates.
+      ssh_trusted_user_ca_keys:
+        default: []
+        type: list
+        description: set the trusted certificate authorities public keys used to sign
+          user certificates. Only used if `ssh_trusted_user_ca_keys_file` is set.
+      ssh_authorized_principals_file:
+        default: ''
+        description: specifies the file containing principals that are allowed. Only
+          used if `ssh_trusted_user_ca_keys_file` is set.
+      ssh_authorized_principals:
+        default: []
+        type: list
+        description: list of hashes containing file paths and authorized principals,
+          see `default_cstom.yml` for all options. Only used if `ssh_authorized_principals_file`
+          is set
+      ssh_print_motd:
+        default: false
+        type: bool
+        description: Set to `false` to disable printing of the MOTD.
+      ssh_print_pam_motd:
+        default: false
+        type: bool
+        description: Set to `false` to disable printing of the MOTD via pam (Debian
+          and Ubuntu).
+      ssh_print_last_log:
+        default: false
+        type: bool
+        description: Set to `false` to disable display of last login information.
+      sftp_enabled:
+        default: true
+        type: bool
+        description: Set to `false` to disable sftp configuration.
+      sftp_umask:
+        default: '0027'
+        description: Specifies the umask for sftp.
+      sftp_chroot:
+        default: true
+        type: bool
+        description: Set to `false` to disable chroot for sftp.
+      sftp_chroot_dir:
+        default: /home/%u
+        description: change default stp chroot location
+      ssh_client_roaming:
+        default: false
+        type: bool
+        description: enable experimental client roaming.
+      sshd_moduli_file:
+        default: /etc/ssh/moduli
+        description: path to the SSH moduli file.
+      sshd_moduli_minimum:
+        default: 2048
+        description: remove Diffie-Hellman parameters smaller than the defined size
+          to mitigate logjam.
+        type: int
+      ssh_challengeresponseauthentication:
+        default: false
+        type: bool
+        description: Specifies whether challenge-response authentication is allowed
+          (e.g. via PAM).
+      ssh_client_password_login:
+        default: false
+        type: bool
+        description: Set to `true` to allow password-based authentication with the
+          ssh client.
+      ssh_server_password_login:
+        default: false
+        type: bool
+        description: 'Set to `true` to allow password-based authentication to the
+          ssh server. You probably also need to change `sshd_authenticationmethods`
+          to include `password` if you set `ssh_server_password_login`: `true`.'
+      ssh_banner:
+        default: false
+        type: bool
+        description: Set to `true` to print a banner on login.
+      ssh_banner_path:
+        default: /etc/sshd/banner.txt
+        description: path to the SSH banner file.
+      ssh_client_hardening:
+        default: true
+        type: bool
+        description: Set to `false` to stop harden the client.
+      ssh_client_compression:
+        default: false
+        type: bool
+        description: Specifies whether the client requests compression.
+      ssh_compression:
+        default: false
+        type: bool
+        description: Specifies whether server-side compression is enabled after the
+          user has authenticated successfully.
+      ssh_login_grace_time:
+        default: 30s
+        description: specifies the time allowed for successful authentication to the
+          SSH server.
+      ssh_max_auth_retries:
+        default: 2
+        description: Specifies the maximum number of authentication attempts permitted
+          per connection.
+        type: int
+      ssh_max_sessions:
+        default: 10
+        description: Specifies the maximum number of open sessions permitted from
+          a given connection.
+        type: int
+      ssh_print_debian_banner:
+        default: false
+        type: bool
+        description: Set to `true` to print debian specific banner.
+      ssh_server_enabled:
+        default: true
+        type: bool
+        description: Set to `false` to disable the opensshd server.
+      ssh_server_service_enabled:
+        default: true
+        type: bool
+        description: Set to `false` to disable starting sshd at boot.
+      ssh_server_hardening:
+        default: true
+        type: bool
+        description: Set to `false` to stop harden the server.
+      ssh_server_match_address:
+        default: ''
+        description: Introduces a conditional block. If all of the criteria on the
+          Match line are satisfied, the keywords on the following lines override those
+          set in the global section of the config file, until either another Match
+          line or the end of the file.
+      ssh_server_match_group:
+        default: ''
+        description: Introduces a conditional block. If all of the criteria on the
+          Match line are satisfied, the keywords on the following lines override those
+          set in the global section of the config file, until either another Match
+          line or the end of the file.
+      ssh_server_match_user:
+        default: ''
+        description: Introduces a conditional block. If all of the criteria on the
+          Match line are satisfied, the keywords on the following lines override those
+          set in the global section of the config file, until either another Match
+          line or the end of the file.
+      ssh_server_match_local_port:
+        default: ''
+        description: Introduces a conditional block. If all of the criteria on the
+          Match line are satisfied, the keywords on the following lines override those
+          set in the global section of the config file, until either another Match
+          line or the end of the file.
+      ssh_server_permit_environment_vars:
+        default: 'no'
+        description: "`yes` to specify that ~/.ssh/environment and environment= options\
+          \ in ~/.ssh/authorized_keys are processed by sshd. With openssh version\
+          \ 7.8 it is possible to specify a whitelist of environment variable names\
+          \ in addition to global 'yes' or 'no' settings."
+      ssh_server_accept_env_vars:
+        default: ''
+        description: Specifies what environment variables sent by the client will
+          be copied into the session's environment, multiple environment variables
+          may be separated by whitespace.
+      ssh_use_dns:
+        default: false
+        type: bool
+        description: Specifies whether sshd should look up the remote host name, and
+          to check that the resolved host name for the remote IP address maps back
+          to the very same IP address.
+      ssh_server_revoked_keys:
+        default: []
+        type: list
+        description: a list of revoked public keys that the ssh server will always
+          reject, useful to revoke known weak or compromised keys.
+      ssh_max_startups:
+        default: 10:30:60
+        description: Specifies the maximum number of concurrent unauthenticated connections
+          to the SSH daemon.
+      ssh_macs:
+        type: list
+        description: Change this list to overwrite macs. Defaults found in `defaults/main.yml`
+      ssh_kex:
+        type: list
+        description: Change this list to overwrite kexs. Defaults found in `defaults/main.yml`
+      ssh_ciphers:
+        type: list
+        description: Change this list to overwrite ciphers. Defaults found in `defaults/main.yml`
+      ssh_custom_options:
+        default: []
+        type: list
+        description: Custom lines for SSH client configuration.
+      sshd_custom_options:
+        default: []
+        type: list
+        description: Custom lines for SSH daemon configuration.
+      sshd_syslog_facility:
+        default: AUTH
+        description: The facility code that is used when logging messages from sshd.
+        type: str
+      sshd_log_level:
+        default: VERBOSE
+        description: the verbosity level that is used when logging messages from sshd.
+      sshd_strict_modes:
+        default: true
+        type: bool
+        description: Check file modes and ownership of the user's files and home directory
+          before accepting login.
+      sshd_authenticationmethods:
+        default: publickey
+        description: Specifies the authentication methods that must be successfully
+          completed for a user to be granted access. Make sure to set all required
+          variables for your selected authentication method. Defaults found in `defaults/main.yml`
+      ssh_custom_selinux_dir:
+        default: /etc/selinux/local-policies
+        description: directory where to store the ssh_password policy
+      ssh_hardening_enabled:
+        default: true
+        type: bool
+        description: Whether to run the hardening
+      ssh_host_certificates:
+        default: []
+        type: list
+        description: Host certificates to look for when starting sshd
+      ssh_ps59:
+        default: sandbox
+        description: Specifies whether sshd separates privileges by creating an unprivileged
+          child process to deal with incoming network traffic.
+      ssh_forward_agent:
+        default: 'no'
+        description: Enables the ssh forward agent for the Cli if set to 'yes'

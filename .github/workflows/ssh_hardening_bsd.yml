@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
       - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 5'
 
@@ -35,18 +37,20 @@ jobs:
       matrix:
         molecule_distro:
           - openbsd7
-          - freebsd12
+          - freebsd13
+          - freebsd14
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
 
+      - name: Update Vagrant Box
+        run: vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+
       - name: Test with molecule
-        run: |
-          molecule --version
-          molecule test -s ssh_hardening_bsd
+        run: molecule test -s ssh_hardening_bsd
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening

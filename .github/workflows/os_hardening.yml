@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
       - '.github/workflows/os_hardening.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening/**'
       - '.github/workflows/os_hardening.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 3'
 
@@ -26,54 +28,56 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       PY_COLORS: 1
       ANSIBLE_FORCE_COLOR: 1
     strategy:
       fail-fast: false
       matrix:
+        include:
+          - molecule_distro: opensuse_tumbleweed
+            molecule_docker_command: "/usr/lib/systemd/systemd"
         molecule_distro:
-          - centos7
-          - centosstream8
           - centosstream9
           - rocky8
           - rocky9
-          - fedora
-          - ubuntu1804
+          - fedora39
+          - fedora40
           - ubuntu2004
           - ubuntu2204
-          - debian10
+          - ubuntu2404
           - debian11
+          - debian12
           - amazon2023
-          - opensuse_tumbleweed
           - arch
+        molecule_docker_command:
+          - "/lib/systemd/systemd"
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
-          python-version: 3.11
+          python-version: 3.12
+          cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          sudo apt install git
-          python -m pip install --no-cache-dir --upgrade pip
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
         working-directory: ansible_collections/devsec/hardening
 
+      - name: Downgrade Ansible for Rocky 8 tests
+        run: pip install "ansible-core<2.17"
+        working-directory: ansible_collections/devsec/hardening
+        if: matrix.molecule_distro == 'rocky8'
+
       - name: Test with molecule
-        run: |
-          if [ "$MOLECULE_DISTRO" = "opensuse_tumbleweed" ]; then
-            export MOLECULE_DOCKER_COMMAND="/usr/lib/systemd/systemd"
-          fi
-          molecule --version
-          molecule test -s os_hardening
+        run: molecule test -s os_hardening
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+          MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_docker_command }}
         working-directory: ansible_collections/devsec/hardening

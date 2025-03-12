@@ -8,12 +8,14 @@ on:  # yamllint disable-line rule:truthy
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/os_hardening/**'
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 2'
 
@@ -34,30 +36,47 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - centos7
-          - centos8s
-          - centos9s
-          - rocky8
-          - rocky9
-          - fedora36
-          - fedora37
-          - ubuntu1804
-          - ubuntu2004
-          - ubuntu2204
-          - debian10
-          - debian11
-          - opensuse15
-          # - arch  # needs fix for audit
+          - generic/centos9s
+          - generic/rocky8
+          - generic/rocky9
+          - fedora/39-cloud-base
+          - fedora/40-cloud-base
+          - generic/ubuntu2004
+          - generic/ubuntu2204
+          - alvistack/ubuntu-24.04
+          - generic/debian11
+          - generic/debian12
+          - generic/opensuse15
+          - generic/arch
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           path: ansible_collections/devsec/hardening
           submodules: true
 
+      - name: Install dependencies
+        run: |
+          source ~/.venv/ansible-collection-hardening/bin/activate
+          python -m pip install --no-cache-dir --upgrade pip
+          pip install -r requirements.txt
+          pip install python-vagrant
+        working-directory: ansible_collections/devsec/hardening
+
+      - name: Downgrade Ansible for Rocky 8 tests
+        run: |
+          source ~/.venv/ansible-collection-hardening/bin/activate
+          pip install "ansible-core<2.17"
+        working-directory: ansible_collections/devsec/hardening
+        if: matrix.molecule_distro == 'generic/rocky8' || matrix.molecule_distro == 'generic/opensuse15'
+
+      - name: Update Vagrant Box
+        run: |
+          vagrant box update --box ${{ matrix.molecule_distro }} || true
+
       - name: Test with molecule
         run: |
-          molecule --version
+          source ~/.venv/ansible-collection-hardening/bin/activate
           molecule test -s os_hardening_vm
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}

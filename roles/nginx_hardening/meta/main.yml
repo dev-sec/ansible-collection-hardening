@@ -8,17 +8,16 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - "7"
         - "8"
         - "9"
     - name: Ubuntu
       versions:
-        - bionic
         - focal
         - jammy
+        - noble
     - name: Debian
       versions:
-        - buster
+        - bookworm
         - bullseye
     - name: Amazon
   galaxy_tags:

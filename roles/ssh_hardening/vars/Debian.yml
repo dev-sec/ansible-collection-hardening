@@ -1,4 +1,7 @@
 ---
+ssh_pkgs:
+  - openssh-server
+  - openssh-client
 sshd_path: /usr/sbin/sshd
 ssh_host_keys_dir: /etc/ssh
 sshd_service_name: ssh
@@ -6,8 +9,9 @@ ssh_owner: root
 ssh_group: root
 ssh_host_keys_owner: root
 ssh_host_keys_group: root
+ssh_host_keys_mode: "0600"
 ssh_selinux_packages:
-  - policycoreutils-python
+  - policycoreutils-python-utils
   - checkpolicy
 
 # true if SSH support Kerberos

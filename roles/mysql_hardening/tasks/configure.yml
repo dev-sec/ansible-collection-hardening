@@ -27,7 +27,11 @@
     owner: "{{ mysql_hardening_user }}"
     group: "{{ mysql_hardening_group }}"
     mode: "0640"
-  when: item is defined and item != ""
+  when:
+    - item is defined
+    - item != ""
+    - item != "stderr"
+    - item != "stdout"
   loop:
     - "{{ mysql_settings.settings.log_error }}"
     - '{{ mysql_hardening_log_file | default("") }}'
@@ -52,7 +56,7 @@
 - name: Apply hardening configuration
   ansible.builtin.template:
     src: hardening.cnf.j2
-    dest: "{{ mysql_hardening_mysql_hardening_conf_file }}"
+    dest: "{{ mysql_hardening_mysql_confd_dir + '/hardening.cnf' }}"
     owner: "{{ mysql_cnf_owner }}"
     group: "{{ mysql_cnf_group }}"
     mode: "0640"

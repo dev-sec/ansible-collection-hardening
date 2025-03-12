@@ -1,4 +1,5 @@
 ---
+
 # true if IPv6 is needed
 network_ipv6_enable: true # sshd + ssh
 
@@ -6,8 +7,11 @@ network_ipv6_enable: true # sshd + ssh
 ssh_client_config_file: /etc/ssh/ssh_config # ssh
 ssh_server_config_file: /etc/ssh/sshd_config # sshd
 
-# true if sshd should be started and enabled
+# true if sshd should be started
 ssh_server_enabled: true # sshd
+
+# true if sshd should be enabled at boot
+ssh_server_service_enabled: true # sshd
 
 # true if DNS resolutions are needed, look up the remote host name,
 # defaults to false from 6.8, see: http://www.openssh.com/txt/release-6.8
@@ -36,9 +40,6 @@ ssh_client_port: "22" # ssh
 # Default is empty, but should be configured for security reasons!
 ssh_listen_to: [0.0.0.0] # sshd
 
-# Host keys to look for when starting sshd.
-ssh_host_key_files: [] # sshd
-
 # Host RSA key size in bits
 ssh_host_rsa_key_size: 4096 # sshd
 
@@ -65,7 +66,7 @@ ssh_client_alive_interval: 300 # sshd
 ssh_client_alive_count: 3 # sshd
 
 # Allow SSH Tunnels
-ssh_permit_tunnel: false
+ssh_permit_tunnel: "no"
 
 # Hosts with custom options.        # ssh
 # Example:
@@ -95,6 +96,9 @@ ssh_x11_forwarding: false # sshd
 
 # false to disable pam authentication.
 ssh_use_pam: true # sshd
+
+# false to disable publickey authentication
+ssh_pubkey_authentication: true
 
 # specify AuthenticationMethods
 sshd_authenticationmethods: publickey
@@ -199,9 +203,6 @@ ssh_max_startups: 10:30:60 # sshd
 
 ssh_ps59: sandbox
 
-ssh_macs: []
-ssh_ciphers: []
-ssh_kex: []
 # directory where to store ssh_password policy
 ssh_custom_selinux_dir: /etc/selinux/local-policies
 

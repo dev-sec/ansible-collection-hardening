@@ -7,21 +7,28 @@
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
-    - name: include verification tasks
+    - name: Set ansible_python_interpreter to "/usr/bin/python3"
+      ansible.builtin.set_fact:
+        ansible_python_interpreter: /usr/bin/python3
+      when: ansible_facts.distribution == 'Fedora'
+
+    - name: Include verification tasks
       ansible.builtin.include_tasks:
         file: "{{ item }}"
-      loop: 
+      loop:
         - verify_tasks/sys_account_shell.yml
         - verify_tasks/pw_ageing.yml
         - verify_tasks/netrc.yml
         - verify_tasks/ignore_home_folders.yml
+        - verify_tasks/ssh_auth_locked.yml
 
-    - name: include PAM tests
-      include_tasks: verify_tasks/pam.yml
-      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
+    # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
+    #    - name: Include PAM tests
+    #      ansible.builtin.include_tasks: verify_tasks/pam.yml
+    #      when: ansible_facts.distribution in ['Debian', 'Ubuntu'] or ansible_facts.os_family == 'RedHat'
 
-    - name: include YUM tests
-      include_tasks: verify_tasks/yum.yml
+    - name: Include YUM tests
+      ansible.builtin.include_tasks: verify_tasks/yum.yml
       when: ansible_facts.os_family == 'RedHat'
 
 - name: Verify
@@ -32,7 +39,7 @@
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
   tasks:
     - name: Execute cinc-auditor tests
-      command: >
+      ansible.builtin.command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
         --volume {{ playbook_dir }}/waivers.yaml:/waivers.yaml
@@ -46,12 +53,12 @@
       ignore_errors: true
 
     - name: Display details about the cinc-auditor results
-      debug:
+      ansible.builtin.debug:
         msg: "{{ test_results.stdout_lines }}"
 
     - name: Fail when tests fail
-      fail:
-        msg: "Inspec failed to validate"
+      ansible.builtin.fail:
+        msg: Inspec failed to validate
       when: test_results.rc != 0
 
 - name: Verify
@@ -61,19 +68,20 @@
     http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
     https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
     no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
-  collections:
-    - devsec.hardening
+  vars:
+    os_auditd_enabled: false
+    os_env_umask: "027 #override"
   tasks:
     # test if variable can be overridden
-    - name: workaround for https://github.com/ansible/ansible/issues/66304
-      set_fact:
-        ansible_virtualization_type: "docker"
-        os_env_umask: "027 #override"
+    - name: Workaround for https://github.com/ansible/ansible/issues/66304
+      ansible.builtin.set_fact:
+        ansible_virtualization_type: docker
 
-    - include_role:
-        name: os_hardening
+    - name: Include os_hardening role
+      ansible.builtin.include_role:
+        name: devsec.hardening.os_hardening
 
-    - name: verify os_env_umask
-      shell:
+    - name: Verify os_env_umask
+      ansible.builtin.command:
         cmd: "grep '027 #override' /etc/login.defs"
       changed_when: false

@@ -90,7 +90,9 @@ StrictHostKeyChecking ask
 
 {% endif %}
 # Disable agent forwarding, since local agent could be accessed through forwarded connection.
-ForwardAgent no
+
+ForwardAgent {{ ((ssh_forward_agent) if ssh_forward_agent is defined else 'no')}} 
+
 
 # Disable X11 forwarding, since local X11 display could be accessed through forwarded connection.
 ForwardX11 no

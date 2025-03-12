@@ -1,0 +1,56 @@
+---
+name: create roles readme
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+      - 'roles/**/meta/main.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+      - 'roles/**/meta/main.yml'
+      - 'requirements.txt'
+
+jobs:
+  readme:
+    name: create roles readme
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        roles:
+          - mysql_hardening
+          - nginx_hardening
+          - os_hardening
+          - ssh_hardening
+    steps:
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+        with:
+          python-version: 3.12
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run aar-doc
+        run: aar-doc roles/${{ matrix.roles }} markdown
+
+      - name: Output diff
+        run: git diff roles/${{ matrix.roles }}/README.md
+
+      - name: Push README
+        if: github.event_name != 'pull_request'
+        uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'update ${{ matrix.roles }} readme'
+          files: roles/${{ matrix.roles }}/README.md
+          rebase: true
+          name: dev-sec CI
+          email: hello@dev-sec.io

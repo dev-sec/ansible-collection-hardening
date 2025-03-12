@@ -1,23 +1,25 @@
 # Ansible Collection - devsec.hardening
 
-![devsec.os_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening/badge.svg)
-![devsec.os_hardening VM](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.os_hardening%20VM/badge.svg)
-![devsec.ssh_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.ssh_hardening/badge.svg)
-![devsec.nginx_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.nginx_hardening/badge.svg)
-![devsec.mysql_hardening](https://github.com/dev-sec/ansible-os-hardening/workflows/devsec.mysql_hardening/badge.svg)
+[![devsec.os_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/os_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/os_hardening.yml)
+[![devsec.os_hardening VM](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/os_hardening_vm.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/os_hardening_vm.yml)
+[![devsec.ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening.yml)
+[![devsec.ssh_hardening BSD](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_bsd.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_bsd.yml)
+[![devsec.ssh_hardening with custom tests](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_custom_tests.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/ssh_hardening_custom_tests.yml)
+[![devsec.nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/nginx_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/nginx_hardening.yml)
+[![devsec.mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/mysql_hardening.yml/badge.svg)](https://github.com/dev-sec/ansible-collection-hardening/actions/workflows/mysql_hardening.yml)
 
 ## Description
 
 This collection provides battle tested hardening for:
 
 - Linux operating systems:
-  - CentOS 7
-  - Rocky Linux 8
-  - Debian 10/11
-  - Ubuntu 18.04/20.04/22.04
+  - CentOS 9
+  - Rocky Linux 8/9
+  - Debian 11/12
+  - Ubuntu 20.04/22.04/24.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
-  - Fedora (some roles supported)
+  - Fedora 39/40 (some roles supported)
   - Suse Tumbleweed (some roles supported)
 - MySQL
   - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17

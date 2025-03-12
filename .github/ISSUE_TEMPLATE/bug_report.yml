@@ -31,7 +31,7 @@ body:
     attributes:
       label: "Reproduction steps"
       render: Shell
-      description: Paste an example playbook that can be used to reproduce the problem. This will be automatically formatted into code, so no need for backticks.
+      description: Paste an example playbook that can be used to reproduce the problem. This will be automatically formatted into code, no need for backticks.
       value: |
         ...
     validations:

@@ -1,6 +1,6 @@
 namespace: devsec
 name: hardening
-version: 8.7.0
+version: 10.3.0
 readme: README.md
 authors:
   - dev-sec <hello@dev-sec.io>
@@ -22,6 +22,9 @@ tags:
   - nginx_hardening
   - os_hardening
   - ssh_hardening
+  - database
+  - linux
+  - security
 dependencies:
   ansible.posix: '>=1.0.0'
   community.crypto: '>=1.0.0'

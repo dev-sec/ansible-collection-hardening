@@ -7,7 +7,7 @@
 - name: Check that the expiry date of pw_no_ageing is "never"
   ansible.builtin.assert:
     that:
-      - "expiry_date.stdout | trim == 'never'"
+      - expiry_date.stdout | trim == 'never'
 
 - name: Get Password Expiry date for pw_ageing
   ansible.builtin.shell: chage -l pw_ageing | grep "Password expires" | cut -d ":" -f 2
@@ -19,7 +19,7 @@
     # this uses the date from the expire_date variable and subtracts the current date.
     # it should be bigger that the password_expire_min of the user "pw_no_ageing"
     that:
-      - "{{ ( expiry_date.stdout | trim | to_datetime('%b %d, %Y') - ansible_date_time.date | to_datetime('%Y-%m-%d')).days }} == 60"
+      - ( expiry_date.stdout | trim | to_datetime('%b %d, %Y') - ansible_date_time.date | to_datetime('%Y-%m-%d')).days == 60
 
 - name: Get Password Expiry warning days for pw_ageing
   ansible.builtin.shell: chage -l pw_ageing | grep "warning before password expires" | cut -d ":" -f 2
@@ -29,4 +29,4 @@
 - name: Check that number of days of warning before password expires is 7 days
   ansible.builtin.assert:
     that:
-      - "expiry_warndays.stdout | trim == '7'"
+      - expiry_warndays.stdout | trim == '7'

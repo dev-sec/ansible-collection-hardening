@@ -1,5 +1,5 @@
 ---
-os_desktop_enable: false
+os_env_user_paths: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
 os_auth_pw_min_age: 7 # Discourage password cycling
@@ -9,6 +9,7 @@ os_auth_retries: 5
 os_auth_lockout_time: 600 # Seconds (600 = 10min)
 os_auth_timeout: 60
 os_auth_allow_homeless: false
+os_auth_pam_oddjob_mkhomedir: false
 os_auth_pam_passwdqc_enable: true
 os_auth_pam_passwdqc_options: min=disabled,disabled,16,12,8 # Used in Debian
 os_auth_pam_pwquality_options: try_first_pass retry=3 authtok_type= # Used in RHEL7 and RHEL8
@@ -38,7 +39,6 @@ os_users_without_password_ageing: []
 
 # Specify system accounts whose login should not be disabled and password not changed
 os_ignore_users: [vagrant, kitchen]
-os_security_kernel_enable_module_loading: true
 os_security_kernel_enable_core_dump: false
 os_security_suid_sgid_enforce: true
 # User-defined blacklist and whitelist
@@ -148,7 +148,7 @@ sysctl_config:
   # The PTRACE system is used for debugging.  With it, a single user process
   # can attach to any other dumpable process owned by the same user.  In the
   # case of malicious software, it is possible to use PTRACE to access
-  # credentials that exist in memory (re-using existing SSH connections,
+  # credentials that exist in memory (reusing existing SSH connections,
   # extracting GPG agent information, etc).
   #
   # A PTRACE scope of "0" is the more permissive mode.  A scope of "1" limits
@@ -307,7 +307,7 @@ sysctl_config:
 
 # Do not delete the following line or otherwise the playbook will fail
 # at task 'create a combined sysctl-dict if overwrites are defined'
-sysctl_overwrite:
+sysctl_overwrite: {}
 # Disable unused filesystems
 os_unused_filesystems:
   - cramfs
@@ -333,9 +333,13 @@ os_hardening_enabled: true
 
 # Set to false to disable installing and configuring auditd.
 os_auditd_enabled: true
+os_auditd_template: etc/audit/auditd.conf.j2
 os_auditd_flush: INCREMENTAL
+os_auditd_freq: 20
 os_auditd_max_log_file: 6
 os_auditd_max_log_file_action: keep_logs
+os_auditd_write_logs: true
+os_auditd_log_file: /var/log/audit/audit.log
 os_auditd_log_format: RAW
 os_auditd_admin_space_left: 50
 os_auditd_space_left: 75
@@ -346,6 +350,7 @@ os_auditd_disk_error_action: SUSPEND
 os_auditd_action_mail_acct: root
 os_auditd_log_group: root
 os_auditd_num_logs: 5
+os_auditd_name_format: NONE
 
 # Set the SELinux state, which can be either disabled, permissive, or enforcing.
 os_selinux_state: enforcing
@@ -353,7 +358,7 @@ os_selinux_state: enforcing
 os_selinux_policy: targeted
 
 # Mount options for proc in /etc/fstab.
-proc_mnt_options: rw,nosuid,nodev,noexec,relatime,hidepid={{ hidepid_option }}
+proc_mnt_options: rw,nosuid,nodev,noexec,relatime
 
 # Set to false to disable installing and configuring cron.
 os_cron_enabled: true
