@@ -823,7 +823,10 @@ This role is mostly based on guides by:
 - `os_immutable_fs`
   - Default: `"{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "`
   - Description: Specify that file system is immutable in accordance with ostree system ie coreos/silverblue.  Default is boolean depending on ansible_facts.
+<<<<<<< HEAD
 >>>>>>> 5d500da (added os_immutable_fs to os_hardening and ssh_hardening and edited tasks to allow both roles to work with redhat and fedora immutable filesystem os's)
+=======
+>>>>>>> 2906aaf (added os_immutable_fs to os_hardening and ssh_hardening and edited tasks to allow both roles to work with redhat and fedora immutable filesystem os's - next step to add support for ubuntu core)
 - `os_pam_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring pam.
