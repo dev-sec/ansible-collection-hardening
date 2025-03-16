@@ -28,6 +28,13 @@
   with_dict: "{{ os_vars }}"
   tags: always
 
+# I am unable to get the above code to recognise os_immutable_fs
+# set in var/Fedora.yml so I set it explicitly here.
+- name: set fact
+  ansible.builtin.set_fact:
+    "os_immutable_fs": "{{ ansible_facts.pkg_mgr == 'atomic_container' }}"
+  tags: always
+
 - name: Import tasks for auditd
   ansible.builtin.import_tasks: auditd.yml
   tags: auditd
@@ -109,6 +116,13 @@
   when:
     - ansible_facts.os_family == 'RedHat'
     - os_yum_enabled | bool
+
+- name: Import tasks to configure yum
+  ansible.builtin.import_tasks: rpm_ostree.yml
+  tags: yum
+  when:
+    - ansible_facts.os_family == 'RedHat'
+    - os_immutable_fs | bool
 
 - name: Import tasks to configure apt
   ansible.builtin.import_tasks: apt.yml

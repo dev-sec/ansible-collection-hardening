@@ -29,6 +29,7 @@
     mode: "{{ mount.mode }}"
   when:
     - mountpoint_exists.stat.exists | bool
+    - not os_immutable_fs | bool
 
 - name: "Register changed mountpoints"
   ansible.builtin.set_fact:

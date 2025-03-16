@@ -49,3 +49,4 @@
     name: "{{ os_security_packages_list }}"
     state: absent
   when: os_security_packages_clean | bool
+  when: not os_immutable_fs

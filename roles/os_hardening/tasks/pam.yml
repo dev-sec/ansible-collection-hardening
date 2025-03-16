@@ -16,6 +16,7 @@
     state: absent
   when:
     - ansible_facts.os_family != 'Archlinux'
+    - not os_immutable_fs | bool
 
 - name: Import tasks for Debian PAM
   ansible.builtin.import_tasks: pam_debian.yml

@@ -113,7 +113,17 @@ Otherwise inspec will fail. For more information, see [issue #124](https://githu
 
 We know that this is the case on Raspberry Pi.
 
+
+### Using with ostree system, ie coreos/silverblue
+
+If you are using os_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: True`, which defaults to `os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "` and so should compensate for the immutable file system by default.
+However, for os_hardening to work, you will need at least python-rpm package installed.
+Note that on Coreos systems, neither python nor python-rpm is installed as default.
+
+## Variables
+=======
 ## Changing sysctl variables
+
 
 If you want to override sysctl-variables, you can use the `sysctl_overwrite` variable (in older versions you had to override the whole `sysctl_dict`).
 So for example if you want to change the IPv4 traffic forwarding variable to `1`, do it like this:
@@ -806,6 +816,9 @@ This role is mostly based on guides by:
   - Description: Add list of user to allow creation of .netrc in users homedir
   - Type: list of ''
   - Required: no
+- `os_immutable_fs`
+  - Default: `"{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "`
+  - Description: Specify that file system is immutable in accordance with ostree system ie coreos/silverblue.  Default is boolean depending on ansible_facts.
 - `os_pam_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring pam.
@@ -1011,6 +1024,7 @@ This role is mostly based on guides by:
   - Description: true means apply all settings with `ufw_` prefix.
   - Type: bool
   - Required: no
+
 
 ## Dependencies
 

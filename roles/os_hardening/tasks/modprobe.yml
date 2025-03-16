@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name: "{{ modprobe_package }}"
     state: present
+  when: not os_immutable_fs | bool
 
 - name: Check if efi is installed
   ansible.builtin.stat:
