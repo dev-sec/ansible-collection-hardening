@@ -82,3 +82,5 @@ modprobe_package: module-init-tools
 auditd_package: audit
 
 hidepid_option: "2" # allowed values: 0, 1, 2
+
+os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
