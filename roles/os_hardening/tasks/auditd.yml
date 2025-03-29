@@ -3,8 +3,7 @@
   ansible.builtin.package:
     name: "{{ auditd_package }}"
     state: present
-  register:
-      register: rpm_ostree_pkgs_installed
+  register: rpm_ostree_pkgs_installed
   tags: auditd
   
 - set_fact:
