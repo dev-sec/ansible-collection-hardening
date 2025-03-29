@@ -117,7 +117,7 @@
     - ansible_facts.os_family == 'RedHat'
     - os_yum_enabled | bool
 
-- name: Import tasks to configure yum
+- name: Import tasks to configure ostree systems
   ansible.builtin.import_tasks: rpm_ostree.yml
   tags: yum
   when:
