@@ -5,3 +5,18 @@
     apply:
       become: true
   when: ssh_hardening_enabled | bool
+
+- name: Reboot if ostree_immutable needs_reboot is true
+  ansible.builtin.reboot:
+    msg: "Rebooting to install packages"
+    pre_reboot_delay: 0
+  when:
+    - os_immutable_fs | bool
+    - ssh_pkgs_installed.results[0].needs_reboot
+
+- name: Wait for ostree system to be up
+  ansible.builtin.wait_for_connection:
+    delay: 20
+  when:
+    - os_immutable_fs | bool 
+    - ssh_pkgs_installed.results[0].needs_reboot
