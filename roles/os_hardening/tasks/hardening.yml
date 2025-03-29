@@ -29,7 +29,8 @@
   tags: always
 
 # I am unable to get the above code to recognise os_immutable_fs
-# set in var/Fedora.yml so I set it explicitly here.
+# set in var/Fedora.yml so I set it explicitly here. todo - solve
+# and remove to correct location.
 - name: set fact
   ansible.builtin.set_fact:
     "os_immutable_fs": "{{ ansible_facts.pkg_mgr == 'atomic_container' }}"

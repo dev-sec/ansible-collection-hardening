@@ -1,4 +1,9 @@
 ---
+- name: set fact for os_immutable_fs
+  set_fact: 
+    ansible_package_use: "community.general.rpm_ostree_pkg" 
+  when: os_immutable_fs | bool
+  
 - name: Include hardening tasks
   ansible.builtin.include_tasks: hardening.yml
   args:
@@ -12,11 +17,11 @@
     pre_reboot_delay: 0
   when:
     - os_immutable_fs | bool
-    - ssh_pkgs_installed.results[0].needs_reboot
+    - rpm_ostree_needs_reboot
 
 - name: Wait for ostree system to be up
   ansible.builtin.wait_for_connection:
     delay: 20
   when:
     - os_immutable_fs | bool 
-    - ssh_pkgs_installed.results[0].needs_reboot
+    - rpm_osree_needs_reboot
