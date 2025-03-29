@@ -7,7 +7,7 @@
       register: rpm_ostree_pkgs_installed
   tags: auditd
   
-  set_fact:
+- set_fact:
     rpm_ostree_needs_reboot: rpm_ostree_pkgs_installed.results[0].needs_reboot
 
 - name: Configure auditd | package-08
