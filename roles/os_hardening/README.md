@@ -824,6 +824,7 @@ This role is mostly based on guides by:
   - Required: no
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - `os_immutable_fs`
   - Default: `"{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "`
@@ -834,10 +835,14 @@ This role is mostly based on guides by:
 >>>>>>> 2906aaf (added os_immutable_fs to os_hardening and ssh_hardening and edited tasks to allow both roles to work with redhat and fedora immutable filesystem os's - next step to add support for ubuntu core)
 =======
 - os_immutable_fs:
+=======
+- `os_immutable_fs`:
+>>>>>>> 24aa778 (debugging ostree)
   - Default: false
   - Description: A boolean set if the root file system is immutable ie rpm-ostree
   - Type: 
   - Required: no
+<<<<<<< HEAD
 - ansible_package_use:
   - Default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
   - Description: a string that indicates which package manager to use to ansible.builtin.package 
@@ -855,6 +860,8 @@ This role is mostly based on guides by:
 =======
   - Required: no
 >>>>>>> c65adfb (debugging ostree)
+=======
+>>>>>>> 24aa778 (debugging ostree)
 - `os_pam_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring pam.
