@@ -119,7 +119,7 @@ We know that this is the case on Raspberry Pi.
 ### Using with ostree system, ie coreos/silverblue
 
 If you are using os_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: true` (default is false).
-Behind the scenes, the variable ansible_package_use will be set to rpm_ostree_pkg, to allow the generic ansible.builtin.package module to install via that module.
+Behind the scenes, the variable ansible_package_use will be set to rpm_ostree_pkg, to allow the generic ansible.builtin.package module to install via that module.  By its nature, ostree needs to be rebooted for packages to be installed.  It can take up to 3 minutes for each install task, and if any package installs, a reboot will be initiated at the end of the role, and will then wait for the remote to be ready.
 Currently os_immutable_fs only selects for Fedora systems, ie iot, silverblue, coreos, kinoite.
 
 For os_hardening to work, you will need the python-rpm package installed on the control node and 'pip install rpm' in the python prefix from where you are running ansible.
