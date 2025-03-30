@@ -90,7 +90,7 @@
     shell: '{{ os_nologin_shell_path }}'
     createhome: false
   loop: "{{ system_users }}"
-  when: system_users is defined and (system_users | length > 0)
+  when: (system_users is defined) and (system_users | length > 0)
   # https://github.com/dev-sec/ansible-collection-hardening/issues/857
 
 - name: Lock passwords from linux system accounts
@@ -101,7 +101,7 @@
   loop: "{{ system_users }}"
   when:
     - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
-    - system_users is defined and (system_users | length > 0)
+    - (system_users is defined) and (system_users | length > 0)
     # https://github.com/dev-sec/ansible-collection-hardening/issues/857
     
 - name: Limit access to home directories of regular (non-system, non-root) accounts

@@ -226,5 +226,3 @@ sshd_syslog_facility: AUTH
 sshd_log_level: VERBOSE
 
 sshd_strict_modes: true
-
-os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "

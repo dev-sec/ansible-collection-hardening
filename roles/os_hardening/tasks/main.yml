@@ -1,8 +1,7 @@
 ---
 - name: set fact for os_immutable_fs
   set_fact: 
-    ansible_package_use: "community.general.rpm_ostree_pkg" 
-    rpm_ostree_needs_reboot: ""
+
   when: os_immutable_fs | bool
 
 - name: Include hardening tasks
