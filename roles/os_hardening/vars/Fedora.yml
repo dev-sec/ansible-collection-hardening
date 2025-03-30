@@ -83,4 +83,6 @@ auditd_package: audit
 
 hidepid_option: "2" # allowed values: 0, 1, 2
 
-os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
+os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }}"
+ansible_package_use: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+rpm_ostree_needs_reboot: false

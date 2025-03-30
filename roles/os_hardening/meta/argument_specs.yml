@@ -803,6 +803,17 @@ argument_specs:
         default: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
         type: bool
         description: A boolean set if the root file system is immutable ie rpm-ostree
+      ansible_package_use:
+        default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+        type: string
+        description: a string that indicates which package manager to use to ansible.builtin.package 
+           that must be set when the os is immutable, as the default of atomic_container is both
+           deprecated and incorrect.
+      rpm_ostree_needs_reboot:
+         default: false
+         type: bool
+         description: A variable used to indicate to a reboot task when the remote should be rebooted
+           to handle package installation on rpm_ostree systems.
       os_hardening_enabled:
         default: true
         type: bool

@@ -117,8 +117,12 @@ We know that this is the case on Raspberry Pi.
 ### Using with ostree system, ie coreos/silverblue
 
 If you are using os_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: True`, which defaults to `os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "` and so should compensate for the immutable file system by default.
-However, for os_hardening to work, you will need at least python-rpm package installed.
-Note that on Coreos systems, neither python nor python-rpm is installed as default.
+Behind the scenes, the variable ansible_package_use will be set to rpm_ostree_pkg, to allow the generic ansible.builtin.package module to install via that module.
+Currently os_immutable_fs only selects for Fedora systems, ie iot, silverblue, coreos, kinoite.
+
+For os_hardening to work, you will need the python-rpm package installed on the control node and 'pip install rpm' in the python prefix from where you are running ansible.
+
+Note that on Coreos remote systems, neither python nor python-rpm is installed as default, so for ansible to work you will have to install both packages on the remote using ansible.builtin.raw, before you use os_hardening.
 
 ## Variables
 =======
@@ -816,9 +820,21 @@ This role is mostly based on guides by:
   - Description: Add list of user to allow creation of .netrc in users homedir
   - Type: list of ''
   - Required: no
-- `os_immutable_fs`
-  - Default: `"{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "`
-  - Description: Specify that file system is immutable in accordance with ostree system ie coreos/silverblue.  Default is boolean depending on ansible_facts.
+- os_immutable_fs:
+  - Default: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
+  - Description: A boolean set if the root file system is immutable ie rpm-ostree
+  - Type: bool
+- ansible_package_use:
+  - Default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+  - Description: a string that indicates which package manager to use to ansible.builtin.package 
+           that must be set when the os is immutable, as the default of atomic_container is both
+           deprecated and incorrect.
+  - Type: string
+- rpm_ostree_needs_reboot:
+  - Default: false
+  - Description: A variable used to indicate to a reboot task when the remote should be rebooted
+           to handle package installation on rpm_ostree systems.
+  - Type: bool
 - `os_pam_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring pam.

@@ -10,7 +10,7 @@
   register: rpm_ostree_pkgs_installed
 
 - set_fact:
-    rpm_ostree_needs_reboot: rpm_ostree_pkgs_installed.results[0].needs_reboot
+    rpm_ostree_needs_reboot: rpm_ostree_pkgs_installed.results[0].needs_reboot | bool
 
 # see https://github.com/dev-sec/ansible-collection-hardening/issues/763
 - name: Change Debian/Ubuntu systems so ssh starts traditionally instead of socket-activated
