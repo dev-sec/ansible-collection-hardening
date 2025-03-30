@@ -805,7 +805,7 @@ argument_specs:
         description: A boolean set if the root file system is immutable ie rpm-ostree
       ansible_package_use:
         default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
-        type: string
+        type: str
         description: a string that indicates which package manager to use to ansible.builtin.package 
            that must be set when the os is immutable, as the default of atomic_container is both
            deprecated and incorrect.

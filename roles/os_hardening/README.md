@@ -823,18 +823,21 @@ This role is mostly based on guides by:
 - os_immutable_fs:
   - Default: false
   - Description: A boolean set if the root file system is immutable ie rpm-ostree
-  - Type: bool
+  - Type: 
+  - Required: no
 - ansible_package_use:
   - Default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
   - Description: a string that indicates which package manager to use to ansible.builtin.package 
            that must be to the rpm_ostree_pkg module when the os is immutable, as the default of
            atomic_container is both deprecated and incorrect.
-  - Type: string
+  - Type: str
+  - Required: no
 - rpm_ostree_needs_reboot:
   - Default: false
   - Description: A variable used to indicate to a reboot task when the remote should be rebooted
-           to handle package installation on rpm_ostree systems.
+           to handle package installation on rpm_ostree systems.  Used internally for os_immutable_fs.
   - Type: bool
+  - Required: no
 - `os_pam_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring pam.
