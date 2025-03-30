@@ -45,7 +45,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 
 ### Using with ostree system, ie coreos/silverblue
 
-If you are using ssh_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: True`, which defaults to `os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "` and so should compensate for the immutable file system by default.
+If you are using ssh_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: true` (default is false) and so should compensate for the immutable file system by default.
 Behind the scenes, the variable ansible_package_use will be set to rpm_ostree_pkg, to allow the generic ansible.builtin.package module to install via that module.
 Currently os_immutable_fs only selects for Fedora systems, ie iot, silverblue, coreos, kinoite.
 
@@ -485,14 +485,14 @@ Note that on Coreos remote systems, neither python nor python-rpm is installed a
   - Type: str
   - Required: no
 - os_immutable_fs:
-  - Default: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
+  - Default: false
   - Description: A boolean set if the root file system is immutable ie rpm-ostree
   - Type: bool
 - ansible_package_use:
   - Default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
   - Description: a string that indicates which package manager to use to ansible.builtin.package 
-           that must be set when the os is immutable, as the default of atomic_container is both
-           deprecated and incorrect.
+           that must be set to rpm_ostree_pkg when the os is immutable, as the default of
+           atomic_container is both deprecated and incorrect.
   - Type: string
 ## Dependencies
 
