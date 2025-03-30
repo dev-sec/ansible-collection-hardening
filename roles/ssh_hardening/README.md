@@ -484,22 +484,9 @@ Note that on Coreos remote systems, neither python nor python-rpm is installed a
   - Description: The facility code that is used when logging messages from sshd.
   - Type: str
   - Required: no
-- os_immutable_fs:
+- `os_immutable_fs`:
   - Default: false
   - Description: A boolean set if the root file system is immutable ie rpm-ostree
-  - Type: bool
-  - Required: no
-- ansible_package_use:
-  - Default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
-  - Description: a string that indicates which package manager to use to ansible.builtin.package 
-           that must be set to rpm_ostree_pkg when the os is immutable, as the default of
-           atomic_container is both deprecated and incorrect.
-  - Type: string
-  - Required: no
-- rpm_ostree_needs_reboot:
-  - Default: false
-  - Description: A variable used to indicate to a reboot task when the remote should be rebooted
-           to handle package installation on rpm_ostree systems.  Used internally for os_immutable_fs.
   - Type: bool
   - Required: no
 ## Dependencies
