@@ -799,6 +799,10 @@ argument_specs:
         default: '[]'
         type: list
         description: A list of filesystems that should not be disabled
+      os_immutable_fs:
+        default: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
+        type: bool
+        description: A boolean set if the root file system is immutable ie rpm-ostree
       os_hardening_enabled:
         default: true
         type: bool
