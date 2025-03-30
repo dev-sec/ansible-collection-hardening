@@ -499,5 +499,3 @@ os_mnt_var_tmp_passno: ""
 # keep .netrc file for users in whitelist
 os_netrc_enabled: true
 os_netrc_whitelist_user: []
-
-os_immutable_fs: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
