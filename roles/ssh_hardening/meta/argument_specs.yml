@@ -369,7 +369,7 @@ argument_specs:
         default: 'no'
         description: Enables the ssh forward agent for the Cli if set to 'yes'
       os_immutable_fs:
-        default: "{{ (ansible_facts.pkg_mgr == 'atomic_container') | bool }} "
+        default: false
         type: bool
         description: A boolean set if the root file system is immutable ie rpm-ostree
       ansible_package_use:
