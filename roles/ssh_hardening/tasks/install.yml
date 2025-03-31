@@ -9,7 +9,11 @@
     loop_var: pkg
   register: rpm_ostree_pkgs_installed
 
-- set_fact:
+- debug:
+    var: rpm_ostree_pkgs_installed
+    
+- name: Indicate rpm_ostree_needs_reboot
+  ansible.builtin.set_fact:
     rpm_ostree_needs_reboot: rpm_ostree_pkgs_installed.results[0].needs_reboot | bool
 
 # see https://github.com/dev-sec/ansible-collection-hardening/issues/763
