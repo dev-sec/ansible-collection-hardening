@@ -109,6 +109,7 @@
   when:
     - ansible_facts.os_family == 'RedHat'
     - os_yum_enabled | bool
+    - not os_immutable_fs
 
 - name: Import tasks to configure ostree systems
   ansible.builtin.import_tasks: rpm_ostree.yml

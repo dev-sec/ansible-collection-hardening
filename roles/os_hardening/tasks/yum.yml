@@ -50,4 +50,4 @@
     state: absent
   when:
     - os_security_packages_clean | bool
-    - os_immutable_fs
+    - not os_immutable_fs
