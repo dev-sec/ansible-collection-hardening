@@ -1,9 +1,4 @@
 ---
-- name: set fact for os_immutable_fs
-  set_fact: 
-
-  when: os_immutable_fs | bool
-
 - name: Include hardening tasks
   ansible.builtin.include_tasks: hardening.yml
   when: os_hardening_enabled | bool
