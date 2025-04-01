@@ -11,11 +11,11 @@
     pre_reboot_delay: 0
   when:
     - os_immutable_fs | bool
-    - rpm_ostree_needs_reboot
+    - rpm_ostree_needs_reboot | bool
 
 - name: Wait for ostree system to be up
   ansible.builtin.wait_for_connection:
     delay: 20
   when:
     - os_immutable_fs | bool 
-    - rpm_ostree_needs_reboot
+    - rpm_ostree_needs_reboot | bool
