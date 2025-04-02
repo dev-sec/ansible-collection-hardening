@@ -51,7 +51,8 @@ Currently os_immutable_fs only selects for Fedora systems, ie iot, silverblue, c
 
 For os_hardening to work, you will need the python-rpm package installed on the control node and 'pip install rpm' in the python prefix from where you are running ansible.
 
-Note that on Coreos remote systems, neither python nor python-rpm is installed as default, so for ansible to work you will have to install both packages on the remote using ansible.builtin.raw, before you use ssh_hardening.
+Note that on Coreos remote systems, neither python nor python-rpm is installed as default, so for ansible to work you will have to install both packages on the remote using ansible.builtin.raw, before you use ssh_hardening.  You will also need to specify the following in your playbook with reference to the ssh_hardening role:
+`ssh_authorized_keys_file: '.ssh/authorized_keys.d/ignition'`
 
 <!-- BEGIN_ANSIBLE_DOCS -->
 
