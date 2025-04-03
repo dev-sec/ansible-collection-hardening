@@ -7,6 +7,11 @@
   loop: "{{ ssh_pkgs }}"
   loop_control:
     loop_var: pkg
+  register: ssh_ostree_pkgs_installed
+    
+- name: Indicate ssh_ostree_needs_reboot
+  ansible.builtin.set_fact:
+    ssh_ostree_needs_reboot: ssh_ostree_pkgs_installed.results[0].needs_reboot is true | bool
 
 # see https://github.com/dev-sec/ansible-collection-hardening/issues/763
 - name: Change Debian/Ubuntu systems so ssh starts traditionally instead of socket-activated

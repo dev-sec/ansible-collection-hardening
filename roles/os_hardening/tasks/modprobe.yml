@@ -3,6 +3,10 @@
   ansible.builtin.package:
     name: "{{ modprobe_package }}"
     state: present
+  register: os_ostree_pkgs_installed
+
+- set_fact:
+    os_ostree_needs_reboot: os_ostree_pkgs_installed.results[0].needs_reboot is true | bool
 
 - name: Check if efi is installed
   ansible.builtin.stat:

@@ -799,6 +799,21 @@ argument_specs:
         default: '[]'
         type: list
         description: A list of filesystems that should not be disabled
+      os_immutable_fs:
+        default: false
+        type: bool
+        description: A boolean set if the root file system is immutable ie rpm-ostree
+      ansible_package_use:
+        default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+        type: str
+        description: a string that indicates which package manager to use to ansible.builtin.package 
+           that must be set when the os is immutable, as the default of atomic_container is both
+           deprecated and incorrect.
+      os_ostree_needs_reboot:
+         default: false
+         type: bool
+         description: A variable used to indicate to a reboot task when the remote should be rebooted
+           to handle package installation on ostree systems.
       os_hardening_enabled:
         default: true
         type: bool
