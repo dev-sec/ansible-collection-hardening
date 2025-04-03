@@ -12,6 +12,7 @@
   when:
     - os_immutable_fs | bool
     - rpm_ostree_needs_reboot | bool
+  tags: ostree_reboot
 
 - name: Wait for ostree system to be up
   ansible.builtin.wait_for_connection:
@@ -19,3 +20,4 @@
   when:
     - os_immutable_fs | bool 
     - rpm_ostree_needs_reboot | bool
+  tags: ostree_reboot

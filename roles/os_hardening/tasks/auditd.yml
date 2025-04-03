@@ -3,11 +3,11 @@
   ansible.builtin.package:
     name: "{{ auditd_package }}"
     state: present
-  register: rpm_ostree_pkgs_installed
+  register: os_ostree_pkgs_installed
   tags: auditd
   
 - set_fact:
-    rpm_ostree_needs_reboot: rpm_ostree_pkgs_installed.results[0].needs_reboot == "true" | bool
+    rpm_ostree_needs_reboot: os_ostree_pkgs_installed.results[0].needs_reboot is true
 
 - name: Configure auditd | package-08
   ansible.builtin.template:
