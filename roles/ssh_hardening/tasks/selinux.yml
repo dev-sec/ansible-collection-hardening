@@ -5,9 +5,9 @@
     state: present
   register: ssh_ostree_pkgs_installed
 
-- name: Indicate rpm_ostree_needs_reboot
+- name: Indicate ssh_ostree_needs_reboot
   ansible.builtin.set_fact:
-    rpm_ostree_needs_reboot: ssh_ostree_pkgs_installed.results[0].needs_reboot is true
+    ssh_ostree_needs_reboot: ssh_ostree_pkgs_installed.results[0].needs_reboot is true | bool
 
 - name: Authorize the following ports for selinux - {{ ssh_server_ports }}
   community.general.seport:

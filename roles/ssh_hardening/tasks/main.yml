@@ -11,14 +11,14 @@
     msg: "Rebooting to install packages"
     pre_reboot_delay: 0
   when:
-    - rpm_ostree_needs_reboot | bool
-    - os_immutable_fs | bool
+    - ssh_ostree_needs_reboot | bool
+    - ssh_immutable_fs | bool
   tags: ostree_reboot
 
 - name: Wait for ostree system to be up
   ansible.builtin.wait_for_connection:
     delay: 20
   when:
-    - rpm_ostree_needs_reboot | bool
-    - os_immutable_fs | bool 
+    - ssh_ostree_needs_reboot | bool
+    - ssh_immutable_fs | bool 
   tags: ostree_reboot

@@ -7,7 +7,7 @@
   tags: auditd
   
 - set_fact:
-    rpm_ostree_needs_reboot: os_ostree_pkgs_installed.results[0].needs_reboot is true
+    os_ostree_needs_reboot: os_ostree_pkgs_installed.results[0].needs_reboot is true | bool
 
 - name: Configure auditd | package-08
   ansible.builtin.template:

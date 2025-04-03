@@ -368,18 +368,18 @@ argument_specs:
       ssh_forward_agent:
         default: 'no'
         description: Enables the ssh forward agent for the Cli if set to 'yes'
-      os_immutable_fs:
+      ssh_immutable_fs:
         default: false
         type: bool
         description: A boolean set if the root file system is immutable ie rpm-ostree
       ansible_package_use:
-        default: "{{ (os_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+        default: "{{ (ssh_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
         type: str
         description: a string that indicates to ansible.builtin.package which package manager to use, 
            that must be set when the os is immutable, as the default of atomic_container is both
-           deprecated and incorrect.  Used internally by os_immutable_fs.
-      rpm_ostree_needs_reboot:
+           deprecated and incorrect.  Used internally by ssh_immutable_fs.
+      ssh_ostree_needs_reboot:
          default: false
          type: bool
          description: A variable used to indicate to a reboot task when the remote should be rebooted
-           to handle package installation on rpm_ostree systems.  Used internally by os_immutable_fs.
+           to handle package installation on rpm_ostree systems.  Used internally by ssh_immutable_fs.
