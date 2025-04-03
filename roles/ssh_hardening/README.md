@@ -45,14 +45,14 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 
 ### Using with ostree system, ie coreos/silverblue
 
-If you are using ssh_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `os_immutable_fs: true` (default is false).
+If you are using ssh_hardening with a filesystem that has an immutable filesystem in accordance with the ostree specification, then you can set the variable `ssh_immutable_fs: true` (default is false).
 
 Behind the scenes, the variable ansible_package_use will be set to rpm_ostree_pkg, to allow the generic ansible.builtin.package module to install via that module.
 
 #### reboots
 By its nature, ostree needs to be rebooted for packages to be installed, so if any package installs, a reboot will be initiated at the end of the role, and will then wait for the remote to be ready before continuing.  To skip the reboot use the --skip-tags switch on the command line with the tag `ostree_reboot`.
 
-Currently os_immutable_fs only selects for Fedora systems, ie iot, silverblue, coreos, kinoite.
+Currently ssh_immutable_fs only selects for Fedora systems, ie iot, silverblue, coreos, kinoite.
 
 #### dependencies
 For os_hardening to work, you will need the python-rpm package installed on the control node and 'pip install rpm' in the python prefix from where you are running ansible.
@@ -491,7 +491,7 @@ Note that on Coreos remote systems, neither python nor python-rpm is installed a
   - Description: The facility code that is used when logging messages from sshd.
   - Type: str
   - Required: no
-- `os_immutable_fs`:
+- `ssh_immutable_fs`:
   - Default: false
   - Description: A boolean set if the root file system is immutable ie rpm-ostree
   - Type: bool

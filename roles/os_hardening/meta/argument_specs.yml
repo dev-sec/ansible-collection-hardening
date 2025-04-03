@@ -809,11 +809,11 @@ argument_specs:
         description: a string that indicates which package manager to use to ansible.builtin.package 
            that must be set when the os is immutable, as the default of atomic_container is both
            deprecated and incorrect.
-      rpm_ostree_needs_reboot:
+      os_ostree_needs_reboot:
          default: false
          type: bool
          description: A variable used to indicate to a reboot task when the remote should be rebooted
-           to handle package installation on rpm_ostree systems.
+           to handle package installation on ostree systems.
       os_hardening_enabled:
         default: true
         type: bool
