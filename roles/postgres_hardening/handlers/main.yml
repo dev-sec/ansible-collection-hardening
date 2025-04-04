@@ -1,0 +1,6 @@
+---
+- name: Restart postgres
+  ansible.builtin.service:
+    name: "{{ postgres_daemon }}"
+    state: restarted
+  when: postgres_hardening_restart_postgres | bool
