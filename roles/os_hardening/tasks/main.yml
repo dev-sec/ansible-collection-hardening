@@ -4,3 +4,20 @@
   when: os_hardening_enabled | bool
   tags:
     - always
+
+- name: Reboot if ostree_immutable needs_reboot is true
+  ansible.builtin.reboot:
+    msg: "Rebooting to install packages"
+    pre_reboot_delay: 0
+  when:
+    - os_immutable_fs | bool
+    - os_ostree_needs_reboot | bool
+  tags: ostree_reboot
+
+- name: Wait for ostree system to be up
+  ansible.builtin.wait_for_connection:
+    delay: 20
+  when:
+    - os_immutable_fs | bool 
+    - os_ostree_needs_reboot | bool
+  tags: ostree_reboot

@@ -66,7 +66,9 @@
     owner: root
     group: root
     mode: "0750"
-  when: '"change_user" not in os_security_users_allow'
+  when:
+    - '"change_user" not in os_security_users_allow'
+    - not os_immutable_fs | bool
 
 # we have to define this combined variable here, because when defining it
 # in the defaults like this:
