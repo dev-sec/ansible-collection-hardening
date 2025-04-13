@@ -3,6 +3,11 @@
   ansible.builtin.package:
     name: "{{ ssh_selinux_packages }}"
     state: present
+  register: ssh_ostree_pkgs_installed
+
+- name: Indicate ssh_ostree_needs_reboot
+  ansible.builtin.set_fact:
+    ssh_ostree_needs_reboot: ssh_ostree_pkgs_installed.results[0].needs_reboot is true | bool
 
 - name: Authorize the following ports for selinux - {{ ssh_server_ports }}
   community.general.seport:
