@@ -1,11 +1,12 @@
 # Changelog
 
-## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-04-04)
+## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-04-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.0...10.3.1)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency ansible-core to v2.18.5 [\#865](https://github.com/dev-sec/ansible-collection-hardening/pull/865) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to c16f018 [\#863](https://github.com/dev-sec/ansible-collection-hardening/pull/863) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 6a4fcdb [\#862](https://github.com/dev-sec/ansible-collection-hardening/pull/862) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency aar-doc to v2.1.0 [\#861](https://github.com/dev-sec/ansible-collection-hardening/pull/861) ([renovate[bot]](https://github.com/apps/renovate))
@@ -978,7 +979,6 @@
 - Standardize the var ordering [\#251](https://github.com/dev-sec/ansible-collection-hardening/pull/251) ([dustinmiller](https://github.com/dustinmiller))
 - Add initial support for OpenSUSE [\#250](https://github.com/dev-sec/ansible-collection-hardening/pull/250) ([dustinmiller](https://github.com/dustinmiller))
 - Make max\_log\_file\_action for auditd configurable [\#246](https://github.com/dev-sec/ansible-collection-hardening/pull/246) ([jandd](https://github.com/jandd))
-- Add exception in sysctl task [\#240](https://github.com/dev-sec/ansible-collection-hardening/pull/240) ([ghost](https://github.com/ghost))
 - Fedora - Use new auto ansible\_python\_interpreter for dnf [\#239](https://github.com/dev-sec/ansible-collection-hardening/pull/239) ([jaredledvina](https://github.com/jaredledvina))
 - add test support for CentOS8 [\#237](https://github.com/dev-sec/ansible-collection-hardening/pull/237) ([yeoldegrove](https://github.com/yeoldegrove))
 - Support configuring SELinux and default to enforcing [\#236](https://github.com/dev-sec/ansible-collection-hardening/pull/236) ([jaredledvina](https://github.com/jaredledvina))
@@ -1086,7 +1086,6 @@
 - replace module parameter fixed [\#297](https://github.com/dev-sec/ansible-collection-hardening/pull/297) ([danielkubat](https://github.com/danielkubat))
 - Addressing issue \#255 [\#258](https://github.com/dev-sec/ansible-collection-hardening/pull/258) ([ljkimmel](https://github.com/ljkimmel))
 - Fix \#247, cleanup conditions [\#248](https://github.com/dev-sec/ansible-collection-hardening/pull/248) ([fernandezcuesta](https://github.com/fernandezcuesta))
-- Fix error on applying the sysctl vars on containers [\#243](https://github.com/dev-sec/ansible-collection-hardening/pull/243) ([ghost](https://github.com/ghost))
 - Update location of NSA RHEL 5 Guide [\#235](https://github.com/dev-sec/ansible-collection-hardening/pull/235) ([jaredledvina](https://github.com/jaredledvina))
 - Fix typo [\#212](https://github.com/dev-sec/ansible-collection-hardening/pull/212) ([ruslo](https://github.com/ruslo))
 - Update modprobe to 0644 [\#211](https://github.com/dev-sec/ansible-collection-hardening/pull/211) ([joshuatalb](https://github.com/joshuatalb))
