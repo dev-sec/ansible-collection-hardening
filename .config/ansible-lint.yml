@@ -11,10 +11,12 @@ exclude_paths:
   - molecule/ssh_hardening_bsd/waivers_freebsd13.yaml
   - molecule/ssh_hardening_bsd/waivers_freebsd14.yaml
   - molecule/ssh_hardening_bsd/waivers_openbsd7.yaml
+  - molecule/postgres_hardening/geerlingguy_postgresql_vars.yml
 
 mock_roles:
   - geerlingguy.git
   - nginxinc.nginx
+  - geerlingguy.postgresql
 
 skip_list:
   - var-naming[no-role-prefix]
