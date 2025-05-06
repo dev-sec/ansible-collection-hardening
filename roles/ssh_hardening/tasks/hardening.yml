@@ -113,7 +113,7 @@
   notify: Restart sshd
   when:
     - ssh_server_hardening | bool
-    - sshd_register_moduli.stdout
+    - sshd_register_moduli.stdout is truthy
 
 - name: Include tasks to setup ca keys and principals
   ansible.builtin.include_tasks: ca_keys_and_principals.yml
