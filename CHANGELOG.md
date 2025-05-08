@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update creyd/prettier\_action action to v4.5 [\#869](https://github.com/dev-sec/ansible-collection-hardening/pull/869) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(ssh\_hardening\): ansible 2.19 compatibility [\#868](https://github.com/dev-sec/ansible-collection-hardening/pull/868) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([Nemental](https://github.com/Nemental))
 - chore\(deps\): update dependency ansible-core to v2.18.5 [\#865](https://github.com/dev-sec/ansible-collection-hardening/pull/865) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to c16f018 [\#863](https://github.com/dev-sec/ansible-collection-hardening/pull/863) ([renovate[bot]](https://github.com/apps/renovate))
