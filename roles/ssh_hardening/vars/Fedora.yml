@@ -24,3 +24,7 @@ sshd_moduli_file: /etc/ssh/moduli
 # disable CRYPTO_POLICY to take settings from sshd configuration
 # see: https://access.redhat.com/solutions/4410591
 sshd_disable_crypto_policy: true
+
+ssh_immutable_fs: false
+ansible_package_use: "{{ (ssh_immutable_fs |bool) |ternary('community.general.rpm_ostree_pkg', '') }}"
+ssh_ostree_needs_reboot: false
