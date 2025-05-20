@@ -50,7 +50,7 @@ The other roles are in separate archives repositories:
 
 ## Minimum required Ansible-version
 
-- Ansible >= 2.9.10
+- Ansible >= 2.16
 
 ## Included content
 
