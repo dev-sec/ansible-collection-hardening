@@ -96,7 +96,7 @@
     mountpoints_list: "{{ mountpoints_list + ['/dev', '/dev/shm', '/run', '/tmp'] }}"
 
 - name: Define filesystems variable
-  set_fact:
+  ansible.builtin.set_fact:
     filesystems:
       - path: /boot
         src: "{{ os_mnt_boot_src }}"
@@ -200,7 +200,7 @@
         passno: "{{ os_mnt_var_tmp_passno }}"
 
 - name: Extract distinct groups from filesystems
-  set_fact:
+  ansible.builtin.set_fact:
     distinct_groups: "{{ filesystems | map(attribute='group') | unique | list }}"
 
 - name: Ensure all distinct groups exist
