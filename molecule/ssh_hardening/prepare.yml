@@ -12,27 +12,32 @@
         ansible_python_interpreter: /usr/bin/python3
       when: ansible_facts.distribution == 'Fedora'
 
-    - name: Install packages # noqa ignore-errors
+    - name: Install dnf packages # noqa ignore-errors
       ansible.builtin.dnf:
         name:
           - openssh-clients
           - openssh-server
+        state: present
+        update_cache: true
+      ignore_errors: true
+
+    - name: Install libselinux-python # noqa ignore-errors
+      ansible.builtin.dnf:
+        name:
           - libselinux-python
         state: present
         update_cache: true
       ignore_errors: true
 
-    - name: Install packages # noqa ignore-errors
+    - name: Install procps-ng # noqa ignore-errors
       ansible.builtin.dnf:
         name:
-          - openssh-clients
-          - openssh-server
           - procps-ng
         state: present
         update_cache: true
       ignore_errors: true
 
-    - name: Install packages # noqa ignore-errors
+    - name: Install apt packages # noqa ignore-errors
       ansible.builtin.apt:
         name:
           - openssh-client
@@ -47,7 +52,7 @@
       changed_when: false
       when: ansible_facts.os_family == 'Suse'
 
-    - name: Install packages
+    - name: Install packages on SuSE
       community.general.zypper:
         name:
           - openssh
