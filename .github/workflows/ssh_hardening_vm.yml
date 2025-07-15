@@ -1,21 +1,21 @@
 ---
-name: "devsec.ssh_hardening BSD"
+name: "devsec.ssh_hardening VM"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening_bsd/**'
-      - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'molecule/ssh_hardening_vm/**'
+      - '.github/workflows/ssh_hardening_vm.yml'
       - 'requirements.txt'
       - 'requirements-vm.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening_bsd/**'
-      - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'molecule/ssh_hardening_vm/**'
+      - '.github/workflows/ssh_hardening_vm.yml'
       - 'requirements.txt'
       - 'requirements-vm.txt'
   schedule:
@@ -38,9 +38,10 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - openbsd7
-          - freebsd13
-          - freebsd14
+          - generic/openbsd7
+          - generic/freebsd13
+          - generic/freebsd14
+          - cloud-image/ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
@@ -58,7 +59,7 @@ jobs:
 
       - name: Update Vagrant Box
         run: |
-          vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+          vagrant box update --box ${{ matrix.molecule_distro }} || true
 
       - name: Test with molecule
         run: |
@@ -66,6 +67,7 @@ jobs:
           # Workaround for https://github.com/ansible-community/molecule-plugins/issues/301
           export MOLECULE_VAGRANT_PLUGIN_DIR=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/molecule_plugins/vagrant
           molecule test -s ssh_hardening_bsd
+
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
