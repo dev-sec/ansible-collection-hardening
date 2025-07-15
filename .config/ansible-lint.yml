@@ -8,9 +8,10 @@ exclude_paths:
   - .ansible/ # somehow someone decided that the cache directory should be renamed
   # add all waivers individually, since exclude_files does not support globs
   - molecule/os_hardening/waivers.yaml
-  - molecule/ssh_hardening_bsd/waivers_freebsd13.yaml
-  - molecule/ssh_hardening_bsd/waivers_freebsd14.yaml
-  - molecule/ssh_hardening_bsd/waivers_openbsd7.yaml
+  - molecule/ssh_hardening_vm/waivers_freebsd13.yaml
+  - molecule/ssh_hardening_vm/waivers_freebsd14.yaml
+  - molecule/ssh_hardening_vm/waivers_openbsd7.yaml
+  - molecule/ssh_hardening_vm/waivers_ubuntu-24.04.yaml
 
 mock_roles:
   - geerlingguy.git
