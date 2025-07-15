@@ -1,20 +1,20 @@
 ---
-name: "devsec.ssh_hardening BSD"
+name: "devsec.ssh_hardening VM"
 on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening_bsd/**'
-      - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'molecule/ssh_hardening_vm/**'
+      - '.github/workflows/ssh_hardening_vm.yml'
       - 'requirements.txt'
   pull_request:
     branches: [master]
     paths:
       - 'roles/ssh_hardening/**'
-      - 'molecule/ssh_hardening_bsd/**'
-      - '.github/workflows/ssh_hardening_bsd.yml'
+      - 'molecule/ssh_hardening_vm/**'
+      - '.github/workflows/ssh_hardening_vm.yml'
       - 'requirements.txt'
   schedule:
     - cron: '0 6 * * 5'
@@ -36,9 +36,10 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - openbsd7
-          - freebsd13
-          - freebsd14
+          - generic/openbsd7
+          - generic/freebsd13
+          - generic/freebsd14
+          - cloud-image/ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -47,10 +48,10 @@ jobs:
           submodules: true
 
       - name: Update Vagrant Box
-        run: vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+        run: vagrant box update --box ${{ matrix.molecule_distro }} || true
 
       - name: Test with molecule
-        run: molecule test -s ssh_hardening_bsd
+        run: molecule test -s ssh_hardening_vm
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
