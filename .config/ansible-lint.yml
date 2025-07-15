@@ -11,6 +11,7 @@ exclude_paths:
   - molecule/ssh_hardening_vm/waivers_freebsd13.yaml
   - molecule/ssh_hardening_vm/waivers_freebsd14.yaml
   - molecule/ssh_hardening_vm/waivers_openbsd7.yaml
+  - molecule/ssh_hardening_vm/waivers_ubuntu-24.04.yaml
 
 mock_roles:
   - geerlingguy.git
