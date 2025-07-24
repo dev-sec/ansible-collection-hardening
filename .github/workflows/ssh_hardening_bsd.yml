@@ -51,7 +51,7 @@ jobs:
           source ~/.venv/ansible-collection-hardening/bin/activate
           python -m pip install --no-cache-dir --upgrade pip
           pip install -r requirements.txt
-          pip install python-vagrant
+          pip install molecule-plugins[vagrant]
         working-directory: ansible_collections/devsec/hardening
 
       - name: Update Vagrant Box
