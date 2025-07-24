@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-06-10)
+## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-07-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.0...10.3.1)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Downgrade community.crypto for rocky8 [\#882](https://github.com/dev-sec/ansible-collection-hardening/pull/882) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update creyd/prettier\_action action to v4.6 [\#876](https://github.com/dev-sec/ansible-collection-hardening/pull/876) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.18.6 [\#872](https://github.com/dev-sec/ansible-collection-hardening/pull/872) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update creyd/prettier\_action action to v4.5 [\#869](https://github.com/dev-sec/ansible-collection-hardening/pull/869) ([renovate[bot]](https://github.com/apps/renovate))
