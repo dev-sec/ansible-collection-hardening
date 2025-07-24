@@ -46,11 +46,22 @@ jobs:
           path: ansible_collections/devsec/hardening
           submodules: true
 
+      - name: Install dependencies
+        run: |
+          source ~/.venv/ansible-collection-hardening/bin/activate
+          python -m pip install --no-cache-dir --upgrade pip
+          pip install -r requirements.txt
+          pip install python-vagrant
+        working-directory: ansible_collections/devsec/hardening
+
       - name: Update Vagrant Box
-        run: vagrant box update --box generic/${{ matrix.molecule_distro }} || true
+        run: |
+          vagrant box update --box generic/${{ matrix.molecule_distro }} || true
 
       - name: Test with molecule
-        run: molecule test -s ssh_hardening_bsd
+        run: |
+          source ~/.venv/ansible-collection-hardening/bin/activate
+          molecule test -s ssh_hardening_bsd
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
         working-directory: ansible_collections/devsec/hardening
