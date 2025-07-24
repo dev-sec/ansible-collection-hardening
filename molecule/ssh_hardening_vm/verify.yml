@@ -36,7 +36,7 @@
       ansible.builtin.command: >
         docker run --rm
         --volume {{ molecule_ephemeral_directory }}:{{ molecule_ephemeral_directory }}
-        --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
+        --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') | regex_replace('^.*/', '') }}.yaml:/waivers.yaml
         docker.io/cincproject/auditor exec
         --ssh-config-file={{ molecule_ephemeral_directory }}/ssh-config
         -t ssh://{{ lookup('env', 'USER') }}
