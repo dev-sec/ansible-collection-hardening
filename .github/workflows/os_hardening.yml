@@ -71,7 +71,9 @@ jobs:
         working-directory: ansible_collections/devsec/hardening
 
       - name: Downgrade Ansible for Rocky 8 tests
-        run: pip install "ansible-core<2.17"
+        run: |
+            pip install "ansible-core<2.17"
+            ansible-galaxy collection install 'community.crypto:<3.0.0'
         working-directory: ansible_collections/devsec/hardening
         if: matrix.molecule_distro == 'rocky8'
 
