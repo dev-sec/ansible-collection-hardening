@@ -67,6 +67,7 @@ jobs:
         run: |
           source ~/.venv/ansible-collection-hardening/bin/activate
           pip install "ansible-core<2.17"
+          ansible-galaxy collection install 'community.crypto:<3.0.0'
         working-directory: ansible_collections/devsec/hardening
         if: matrix.molecule_distro == 'generic/rocky8' || matrix.molecule_distro == 'generic/opensuse15'
 
