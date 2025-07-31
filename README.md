@@ -13,7 +13,8 @@
 This collection provides battle tested hardening for:
 
 - Linux operating systems:
-  - CentOS 9
+  - CentOS Stream 9
+  - AlmaLinux 8/9
   - Rocky Linux 8/9
   - Debian 11/12
   - Ubuntu 20.04/22.04/24.04
