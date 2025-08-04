@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update ansible/ansible-lint digest to 9765b87 [\#889](https://github.com/dev-sec/ansible-collection-hardening/pull/889) ([renovate[bot]](https://github.com/apps/renovate))
 - Improve OS support accuracy [\#887](https://github.com/dev-sec/ansible-collection-hardening/pull/887) ([jonathanspw](https://github.com/jonathanspw))
 
 ## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-07-24)
