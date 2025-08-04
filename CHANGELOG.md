@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.3.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.2) (2025-08-04)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.3.2)
+
+**Merged pull requests:**
+
+- Improve OS support accuracy [\#887](https://github.com/dev-sec/ansible-collection-hardening/pull/887) ([jonathanspw](https://github.com/jonathanspw))
+
 ## [10.3.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.1) (2025-07-24)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.0...10.3.1)
