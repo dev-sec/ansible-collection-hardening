@@ -1,11 +1,12 @@
 # Changelog
 
-## [10.3.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.2) (2025-08-04)
+## [10.3.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.2) (2025-08-05)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.3.2)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency aar-doc to v2.3.0 [\#890](https://github.com/dev-sec/ansible-collection-hardening/pull/890) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 9765b87 [\#889](https://github.com/dev-sec/ansible-collection-hardening/pull/889) ([renovate[bot]](https://github.com/apps/renovate))
 - Improve OS support accuracy [\#887](https://github.com/dev-sec/ansible-collection-hardening/pull/887) ([jonathanspw](https://github.com/jonathanspw))
 
