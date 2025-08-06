@@ -1,0 +1,26 @@
+---
+ssh_pkgs:
+  - openssh
+sshd_path: /usr/sbin/sshd
+ssh_host_keys_dir: /etc/ssh
+sshd_service_name: sshd
+ssh_owner: root
+ssh_group: root
+ssh_host_keys_owner: root
+ssh_host_keys_group: root
+ssh_host_keys_mode: "0600"
+ssh_selinux_packages:
+  - policycoreutils-python-utils
+  - checkpolicy
+
+# true if SSH support Kerberos
+ssh_kerberos_support: true
+
+# true if SSH has PAM support
+ssh_pam_support: true
+
+sshd_moduli_file: /etc/ssh/moduli
+
+# disable CRYPTO_POLICY to take settings from sshd configuration
+# see: https://access.redhat.com/solutions/4410591
+sshd_disable_crypto_policy: true
