@@ -37,14 +37,19 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
+          - almalinux8
+          - almalinux9
+          - almalinux10
           - centosstream9
           - rocky8
           - rocky9
+          - rocky10
           - ubuntu2004
           - ubuntu2204
           - ubuntu2404
           - debian11
           - debian12
+          - debian13
           # - amazon  # geerlingguy.mysql does not support fedora
           # - arch  # geerlingguy.mysql does not support arch
           - opensuse_tumbleweed
