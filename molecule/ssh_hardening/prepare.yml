@@ -77,7 +77,9 @@
 
     - name: Create ssh host keys # noqa ignore-errors
       ansible.builtin.command: ssh-keygen -A
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
+      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat'])
+                  and (ansible_facts.distribution_major_version < '7'
+                      or ansible_facts.distribution_major_version > '9' ))
         or ansible_facts.distribution == "Fedora"
         or ansible_facts.distribution == "Amazon"
         or ansible_facts.os_family == "Suse"
