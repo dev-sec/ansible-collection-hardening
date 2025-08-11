@@ -84,7 +84,6 @@
       ansible.posix.mount:
         path: /boot/efi
         state: unmounted
-      when: ansible_facts.distribution == 'Fedora'
 
     - name: Include YUM prepare tasks
       ansible.builtin.include_tasks: prepare_tasks/yum.yml

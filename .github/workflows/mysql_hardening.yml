@@ -39,11 +39,11 @@ jobs:
         molecule_distro:
           - almalinux8
           - almalinux9
-          - almalinux10
+          # - almalinux10  # problem with baseline
           - centosstream9
           - rocky8
           - rocky9
-          - rocky10
+          # - rocky10 # problem with baseline
           - ubuntu2004
           - ubuntu2204
           - ubuntu2404

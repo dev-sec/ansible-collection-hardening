@@ -38,7 +38,7 @@ jobs:
         molecule_distro:
           - almalinux/8
           - almalinux/9
-          - almalinux/10
+          # - almalinux/10  # boot loop
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9

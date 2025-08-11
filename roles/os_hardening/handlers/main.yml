@@ -13,8 +13,7 @@
   ignore_errors: "{{ ansible_check_mode }}"
   when:
     - molecule_yml.driver.name | default() != "docker" # restarting auditd in a container does not work
-    - not ansible_facts.os_family == 'RedHat'
-    - ansible_facts.distribution == 'AlmaLinux'
+    - not ansible_facts.os_family == 'RedHat' or ansible_facts.distribution == 'AlmaLinux'
 
 - name: Restart auditd via service # noqa command-instead-of-module no-changed-when
   ansible.builtin.command:
