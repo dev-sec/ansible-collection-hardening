@@ -37,14 +37,19 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
+          - almalinux8
+          - almalinux9
+          # - almalinux10  # problem with baseline
           - centosstream9
           - rocky8
           - rocky9
+          # - rocky10 # problem with baseline
           - ubuntu2004
           - ubuntu2204
           - ubuntu2404
           - debian11
           - debian12
+          - debian13
           # - amazon  # geerlingguy.mysql does not support fedora
           # - arch  # geerlingguy.mysql does not support arch
           - opensuse_tumbleweed
@@ -71,7 +76,7 @@ jobs:
             pip install "ansible-core<2.17"
             ansible-galaxy collection install 'community.crypto:<3.0.0'
         working-directory: ansible_collections/devsec/hardening
-        if: matrix.molecule_distro == 'rocky8'
+        if: matrix.molecule_distro == 'rocky8' || matrix.molecule_distro == 'almalinux8'
 
       # that was a hard one to fix. robert did it thankfully
       # https://github.com/robertdebock/ansible-role-mysql/commit/7562e99099b06282391ab7ed102b393a0406d212

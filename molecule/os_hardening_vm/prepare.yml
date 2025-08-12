@@ -59,6 +59,12 @@
           - python3-libselinux
       when: ansible_facts.distribution == 'Fedora'
 
+    - name: Install required tools on AlmaLinux
+      ansible.builtin.dnf:
+        name:
+          - initscripts
+      when: ansible_facts.distribution == 'AlmaLinux'
+
     - name: Install required tools on Arch
       community.general.pacman:
         name:
@@ -84,7 +90,6 @@
       ansible.posix.mount:
         path: /boot/efi
         state: unmounted
-      when: ansible_facts.distribution == 'Fedora'
 
     - name: Include YUM prepare tasks
       ansible.builtin.include_tasks: prepare_tasks/yum.yml

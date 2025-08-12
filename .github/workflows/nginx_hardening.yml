@@ -36,14 +36,19 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
+          - almalinux8
+          - almalinux9
+          - almalinux10
           - centosstream9
           - rocky8
           - rocky9
+          - rocky10
           - ubuntu2004
           - ubuntu2204
           - ubuntu2404
           - debian11
           - debian12
+          - debian13
           - amazon2023
           # - arch  # needs to be fixed
           # - opensuse_tumbleweed  # needs to be fixed
@@ -70,7 +75,7 @@ jobs:
             pip install "ansible-core<2.17"
             ansible-galaxy collection install 'community.crypto:<3.0.0'
         working-directory: ansible_collections/devsec/hardening
-        if: matrix.molecule_distro == 'rocky8'
+        if: matrix.molecule_distro == 'rocky8' || matrix.molecule_distro == 'almalinux8'
 
       # Molecule has problems detecting the proper location for installing roles
       # https://github.com/ansible/molecule/issues/3806

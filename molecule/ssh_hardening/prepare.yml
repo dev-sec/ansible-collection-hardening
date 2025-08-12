@@ -75,11 +75,6 @@
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: Create ssh host keys # noqa ignore-errors
+    - name: Create ssh host keys # noqa ignore-errors no-changed-when
       ansible.builtin.command: ssh-keygen -A
-      when: not ((ansible_facts.os_family in ['Oracle Linux', 'RedHat']) and ansible_facts.distribution_major_version < '7')
-        or ansible_facts.distribution == "Fedora"
-        or ansible_facts.distribution == "Amazon"
-        or ansible_facts.os_family == "Suse"
-      changed_when: false
       ignore_errors: true

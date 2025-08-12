@@ -10,6 +10,7 @@ galaxy_info:
       versions:
         - "8"
         - "9"
+        - "10"
     - name: Ubuntu
       versions:
         - focal
@@ -17,8 +18,9 @@ galaxy_info:
         - noble
     - name: Debian
       versions:
-        - bullseye
+        - trixie
         - bookworm
+        - bullseye
     - name: Amazon
     - name: opensuse
   galaxy_tags:

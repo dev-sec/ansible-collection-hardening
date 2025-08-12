@@ -42,9 +42,13 @@ jobs:
           - molecule_distro: alpine
             molecule_docker_command: "/sbin/init"
         molecule_distro:
+          - almalinux8
+          - almalinux9
+          - almalinux10
           - centosstream9
           - rocky8
           - rocky9
+          - rocky10
           - fedora39
           - fedora40
           - ubuntu2004
@@ -52,6 +56,7 @@ jobs:
           - ubuntu2404
           - debian11
           - debian12
+          - debian13
           - amazon2023
           - arch
         molecule_docker_command:
@@ -78,7 +83,7 @@ jobs:
             pip install "ansible-core<2.17"
             ansible-galaxy collection install 'community.crypto:<3.0.0'
         working-directory: ansible_collections/devsec/hardening
-        if: matrix.molecule_distro == 'rocky8'
+        if: matrix.molecule_distro == 'rocky8' || matrix.molecule_distro == 'almalinux8'
 
       - name: Test with molecule
         run: molecule test -s ssh_hardening_custom_tests
