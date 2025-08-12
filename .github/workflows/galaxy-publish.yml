@@ -11,7 +11,7 @@ jobs:
     if: github.repository == 'dev-sec/ansible-collection-hardening'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       # deploy the collection first, because if it fails, we don't want
       # to update the galaxy.yml
@@ -22,7 +22,7 @@ jobs:
           galaxy_version: ${{ github.event.release.tag_name }}
 
       # checkout master instead of the release-tag so we can push the galaxy.yml
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           ref: master
 
