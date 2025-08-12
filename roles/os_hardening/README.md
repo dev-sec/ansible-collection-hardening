@@ -157,13 +157,12 @@ This role is mostly based on guides by:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
-  - 8, 9
+  - 8, 9, 10
 - Ubuntu
   - focal, jammy, noble
 - Debian
-  - bookworm, bullseye
+  - trixie, bookworm, bullseye
 - Amazon
 - Fedora
 - ArchLinux
