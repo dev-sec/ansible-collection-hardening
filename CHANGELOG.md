@@ -1,8 +1,15 @@
 # Changelog
 
-## [10.3.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.2) (2025-08-10)
+## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-08-12)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.3.2)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.4.0)
+
+**Implemented enhancements:**
+
+- Support Debian 13 [\#891](https://github.com/dev-sec/ansible-collection-hardening/issues/891)
+- Support EL10 [\#870](https://github.com/dev-sec/ansible-collection-hardening/issues/870)
+- Add support for current versions of Debian and EL [\#893](https://github.com/dev-sec/ansible-collection-hardening/pull/893) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
+- Add SSH config for EL/AlmaLinux 10 [\#888](https://github.com/dev-sec/ansible-collection-hardening/pull/888) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([jonathanspw](https://github.com/jonathanspw))
 
 **Merged pull requests:**
 
