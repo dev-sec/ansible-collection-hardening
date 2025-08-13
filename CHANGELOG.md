@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-08-12)
+## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-08-13)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.4.0)
 
@@ -13,6 +13,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update actions/checkout action to v5 [\#895](https://github.com/dev-sec/ansible-collection-hardening/pull/895) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency python to 3.13 [\#892](https://github.com/dev-sec/ansible-collection-hardening/pull/892) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency aar-doc to v2.3.0 [\#890](https://github.com/dev-sec/ansible-collection-hardening/pull/890) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 9765b87 [\#889](https://github.com/dev-sec/ansible-collection-hardening/pull/889) ([renovate[bot]](https://github.com/apps/renovate))
