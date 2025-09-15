@@ -16,3 +16,13 @@
     - Restart auditd via service
     - Restart auditd via systemd
   tags: auditd
+
+- name: Disable systemd-journald.audit
+  ansible.builtin.systemd:
+    name: systemd-journald-audit.socket
+    state: stopped
+    enabled: false
+    masked: true
+  notify:
+    - Restart journald
+  tags: auditd

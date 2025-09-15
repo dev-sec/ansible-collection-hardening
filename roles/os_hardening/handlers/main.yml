@@ -27,3 +27,8 @@
     path: "{{ item }}"
     state: remounted
   loop: "{{ mountpoints_changed }}"
+
+- name: Restart journald
+  ansible.builtin.systemd:
+    name: systemd-journald.service
+    state: restarted
