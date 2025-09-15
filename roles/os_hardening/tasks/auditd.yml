@@ -18,6 +18,8 @@
   tags: auditd
 
 - name: Disable systemd-journald.audit
+  when:
+    - ansible_facts.os_family != 'Suse'  # socket doesn't seem to exist on suse
   ansible.builtin.systemd:
     name: systemd-journald-audit.socket
     state: stopped
