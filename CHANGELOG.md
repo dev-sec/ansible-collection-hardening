@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-08-13)
+## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-09-25)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.4.0)
 
@@ -13,6 +13,9 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update actions/setup-python action to v6 [\#901](https://github.com/dev-sec/ansible-collection-hardening/pull/901) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/labeler action to v6 [\#900](https://github.com/dev-sec/ansible-collection-hardening/pull/900) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update ansible/ansible-lint digest to 8861a73 [\#899](https://github.com/dev-sec/ansible-collection-hardening/pull/899) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout action to v5 [\#895](https://github.com/dev-sec/ansible-collection-hardening/pull/895) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency python to 3.13 [\#892](https://github.com/dev-sec/ansible-collection-hardening/pull/892) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency aar-doc to v2.3.0 [\#890](https://github.com/dev-sec/ansible-collection-hardening/pull/890) ([renovate[bot]](https://github.com/apps/renovate))
@@ -1053,7 +1056,7 @@
 - remove prelink package, control package-09 [\#135](https://github.com/dev-sec/ansible-collection-hardening/pull/135) ([rndmh3ro](https://github.com/rndmh3ro))
 - style update [\#134](https://github.com/dev-sec/ansible-collection-hardening/pull/134) ([rndmh3ro](https://github.com/rndmh3ro))
 - Remove deprecated include for static tasks and use instead import\_tasks fix \#131 [\#132](https://github.com/dev-sec/ansible-collection-hardening/pull/132) ([HelioCampos](https://github.com/HelioCampos))
-- Fix ansible.cfg and use comment filter [\#130](https://github.com/dev-sec/ansible-collection-hardening/pull/130) ([fazlearefin](https://github.com/fazlearefin))
+- Fix ansible.cfg and use comment filter [\#130](https://github.com/dev-sec/ansible-collection-hardening/pull/130) ([FazleArefin](https://github.com/FazleArefin))
 - install initramfs-tools [\#114](https://github.com/dev-sec/ansible-collection-hardening/pull/114) ([rndmh3ro](https://github.com/rndmh3ro))
 - omit empty variables [\#106](https://github.com/dev-sec/ansible-collection-hardening/pull/106) ([rndmh3ro](https://github.com/rndmh3ro))
 - Supports --check mode [\#93](https://github.com/dev-sec/ansible-collection-hardening/pull/93) ([conorsch](https://github.com/conorsch))
