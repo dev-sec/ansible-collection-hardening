@@ -70,7 +70,7 @@
         name:
           - awk
           - archlinux-keyring
-        state: present
+        state: latest
         update_cache: true
       when: ansible_facts.os_family == 'Archlinux'
 
