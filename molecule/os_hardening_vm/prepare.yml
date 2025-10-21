@@ -65,19 +65,21 @@
           - initscripts
       when: ansible_facts.distribution == 'AlmaLinux'
 
+    - name: Install required tools on Arch
+      community.general.pacman:
+        name:
+          - awk
+          - archlinux-keyring
+        state: present
+        update_cache: true
+      when: ansible_facts.os_family == 'Archlinux'
+
     - name: Run the equivalent of "pacman -Syu"
       community.general.pacman:
         update_cache: true
         upgrade: true
       when: ansible_facts.os_family == 'Archlinux'
 
-    - name: Install required tools on Arch
-      community.general.pacman:
-        name:
-          - awk
-        state: present
-        update_cache: true
-      when: ansible_facts.os_family == 'Archlinux'
 
     - name: Install required tools on RHEL # noqa ignore-errors
       ansible.builtin.dnf:
