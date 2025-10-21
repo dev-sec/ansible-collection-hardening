@@ -1,7 +1,7 @@
 ---
 - name: Protect sysctl.conf
   ansible.builtin.file:
-    path: /etc/sysctl.conf
+    path: /etc/sysctl.d/90-dev-sec.conf
     owner: root
     group: root
     mode: "0440"
@@ -26,6 +26,7 @@
         name: "{{ item.key }}"
         value: "{{ item.value }}"
         sysctl_set: true
+        sysctl_file: /etc/sysctl.d/90-dev-sec.conf
         state: present
         reload: true
         ignoreerrors: true
