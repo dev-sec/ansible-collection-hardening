@@ -1,6 +1,4 @@
 ---
-
-
 - name: Set Daemon umask, do config for rhel-family | NSA 2.2.4.1
   ansible.builtin.template:
     src: etc/sysconfig/rhel_sysconfig_init.j2
