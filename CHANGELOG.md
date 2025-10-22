@@ -1,6 +1,6 @@
 # Changelog
 
-## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-09-25)
+## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-10-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.4.0)
 
@@ -13,6 +13,7 @@
 
 **Merged pull requests:**
 
+- Update ArchLinux test environment before testing [\#908](https://github.com/dev-sec/ansible-collection-hardening/pull/908) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update actions/setup-python action to v6 [\#901](https://github.com/dev-sec/ansible-collection-hardening/pull/901) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/labeler action to v6 [\#900](https://github.com/dev-sec/ansible-collection-hardening/pull/900) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 8861a73 [\#899](https://github.com/dev-sec/ansible-collection-hardening/pull/899) ([renovate[bot]](https://github.com/apps/renovate))
@@ -49,7 +50,7 @@
 - chore\(deps\): update dependency aar-doc to v2.1.0 [\#861](https://github.com/dev-sec/ansible-collection-hardening/pull/861) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ansible-core to v2.18.4 [\#860](https://github.com/dev-sec/ansible-collection-hardening/pull/860) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to 8d9ed9a [\#859](https://github.com/dev-sec/ansible-collection-hardening/pull/859) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
-- Fix: ForwardAgent j2 template space  [\#856](https://github.com/dev-sec/ansible-collection-hardening/pull/856) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([AliMehraji](https://github.com/AliMehraji))
+- Fix: ForwardAgent j2 template space  [\#856](https://github.com/dev-sec/ansible-collection-hardening/pull/856) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([cod3mas0n](https://github.com/cod3mas0n))
 - chore\(deps\): update artis3n/ansible\_galaxy\_collection digest to f6110ae [\#853](https://github.com/dev-sec/ansible-collection-hardening/pull/853) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.3.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.3.0) (2025-02-25)
