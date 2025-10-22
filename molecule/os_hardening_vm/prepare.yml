@@ -69,8 +69,15 @@
       community.general.pacman:
         name:
           - awk
-        state: present
+          - archlinux-keyring
+        state: latest
         update_cache: true
+      when: ansible_facts.os_family == 'Archlinux'
+
+    - name: Run the equivalent of "pacman -Syu"
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
       when: ansible_facts.os_family == 'Archlinux'
 
     - name: Install required tools on RHEL # noqa ignore-errors
