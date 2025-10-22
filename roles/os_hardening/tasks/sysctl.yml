@@ -1,14 +1,4 @@
 ---
-- name: Protect sysctl.conf
-  ansible.builtin.file:
-    path: /etc/sysctl.conf
-    owner: root
-    group: root
-    mode: "0440"
-    state: touch
-    modification_time: preserve
-    access_time: preserve
-
 - name: Set Daemon umask, do config for rhel-family | NSA 2.2.4.1
   ansible.builtin.template:
     src: etc/sysconfig/rhel_sysconfig_init.j2
@@ -21,11 +11,22 @@
 - name: Change sysctls
   when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
+    - name: Protect sysctl.conf
+      ansible.builtin.file:
+        path: /etc/sysctl.d/90-dev-sec.conf
+        owner: root
+        group: root
+        mode: "0440"
+        state: touch
+        modification_time: preserve
+        access_time: preserve
+
     - name: Change various sysctl-settings, look at the sysctl-vars file for documentation
       ansible.posix.sysctl:
         name: "{{ item.key }}"
         value: "{{ item.value }}"
         sysctl_set: true
+        sysctl_file: /etc/sysctl.d/90-dev-sec.conf
         state: present
         reload: true
         ignoreerrors: true
