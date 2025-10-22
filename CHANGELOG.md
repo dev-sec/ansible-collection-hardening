@@ -11,6 +11,15 @@
 - Add support for current versions of Debian and EL [\#893](https://github.com/dev-sec/ansible-collection-hardening/pull/893) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Add SSH config for EL/AlmaLinux 10 [\#888](https://github.com/dev-sec/ansible-collection-hardening/pull/888) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([jonathanspw](https://github.com/jonathanspw))
 
+**Fixed bugs:**
+
+- /etc/sysctl.conf is no longer honored in Debian 13 [\#905](https://github.com/dev-sec/ansible-collection-hardening/issues/905)
+- Write sysctl config to separate file [\#907](https://github.com/dev-sec/ansible-collection-hardening/pull/907) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
+
+**Closed issues:**
+
+- sysctl-34 - fs.protected\_regular not set [\#536](https://github.com/dev-sec/ansible-collection-hardening/issues/536)
+
 **Merged pull requests:**
 
 - Update ArchLinux test environment before testing [\#908](https://github.com/dev-sec/ansible-collection-hardening/pull/908) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
