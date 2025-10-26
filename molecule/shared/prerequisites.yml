@@ -5,5 +5,5 @@
     - name: Make sure environment variable for MOLECULE_DISTRO is set
       ansible.builtin.assert:
         that:
-          - "lookup('env','MOLECULE_DISTRO')"
+          - "lookup('env','MOLECULE_DISTRO') | length > 0"
         fail_msg: "You need to set MOLECULE_DISTRO to a supported image name. See CONTRIBUTING.md"

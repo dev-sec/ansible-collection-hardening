@@ -9,6 +9,7 @@ on:  # yamllint disable-line rule:truthy
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
       - 'requirements.txt'
+      - 'requirements-vm.txt'
   pull_request:
     branches: [master]
     paths:
@@ -16,6 +17,7 @@ on:  # yamllint disable-line rule:truthy
       - 'molecule/os_hardening_vm/**'
       - '.github/workflows/os_hardening_vm.yml'
       - 'requirements.txt'
+      - 'requirements-vm.txt'
   schedule:
     - cron: '0 6 * * 2'
 
@@ -63,7 +65,7 @@ jobs:
           source ~/.venv/ansible-collection-hardening/bin/activate
           python -m pip install --no-cache-dir --upgrade pip
           pip install -r requirements.txt
-          pip install python-vagrant
+          pip install -r requirements-vm.txt
         working-directory: ansible_collections/devsec/hardening
 
       - name: Downgrade Ansible for Rocky 8 tests

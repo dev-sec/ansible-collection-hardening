@@ -1,0 +1,1 @@
+molecule-plugins[vagrant]==25.8.12
