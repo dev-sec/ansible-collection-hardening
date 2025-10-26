@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.4.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.1) (2025-10-26)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.4.0...10.4.1)
+
+**Fixed bugs:**
+
+- /etc/sysctl.conf is no longer honored in Debian 13 [\#905](https://github.com/dev-sec/ansible-collection-hardening/issues/905)
+
+**Merged pull requests:**
+
+- chore\(deps\): update ansible/ansible-lint digest to d7cd7cf [\#903](https://github.com/dev-sec/ansible-collection-hardening/pull/903) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [10.4.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.0) (2025-10-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.3.1...10.4.0)
@@ -13,7 +25,6 @@
 
 **Fixed bugs:**
 
-- /etc/sysctl.conf is no longer honored in Debian 13 [\#905](https://github.com/dev-sec/ansible-collection-hardening/issues/905)
 - Write sysctl config to separate file [\#907](https://github.com/dev-sec/ansible-collection-hardening/pull/907) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Closed issues:**
