@@ -16,3 +16,15 @@
     - Restart auditd via service
     - Restart auditd via systemd
   tags: auditd
+
+- name: Disable systemd-journald.audit
+  when:
+    - ansible_facts.os_family != 'Suse'  # socket doesn't seem to exist on suse
+  ansible.builtin.systemd:
+    name: systemd-journald-audit.socket
+    state: stopped
+    enabled: false
+    masked: true
+  notify:
+    - Restart journald
+  tags: auditd
