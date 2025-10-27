@@ -1,8 +1,12 @@
 # Changelog
 
-## [10.4.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.4.1) (2025-10-27)
+## [10.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.0) (2025-10-27)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.4.0...10.4.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.4.0...10.5.0)
+
+**Implemented enhancements:**
+
+- disable systemd audit logging [\#902](https://github.com/dev-sec/ansible-collection-hardening/pull/902) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([z-bsod](https://github.com/z-bsod))
 
 **Fixed bugs:**
 
