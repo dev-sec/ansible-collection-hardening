@@ -1,0 +1,12 @@
+---
+- name: Wrapper playbook for kitchen testing "ansible-postgres-hardening" with custom settings
+  become: true
+  hosts: all
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  tasks:
+    - name: Start Hardening
+      ansible.builtin.include_role:
+        name: devsec.hardening.postgres_hardening

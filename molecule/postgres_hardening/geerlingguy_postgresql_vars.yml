@@ -1,0 +1,6 @@
+postgresql_databases:
+  - name: example_db
+postgresql_users:
+  - name: postgres
+    password: iloverandompasswordsbutthiswilldo
+postgresql_auth_method: scram-sha-256

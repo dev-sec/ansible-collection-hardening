@@ -1,0 +1,36 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+
+- name: Verify
+  hosts: localhost
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') | default(omit)  }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') | default(omit) }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') | default(omit) }}"
+  tasks:
+    - name: Execute cinc-auditor tests
+      ansible.builtin.command: >
+        docker run
+        --volume /run/docker.sock:/run/docker.sock
+        docker.io/cincproject/auditor exec
+        -t docker://instance
+        --no-show-progress --no-color
+        --no-distinct-exit https://github.com/dev-sec/postgres-baseline/archive/refs/heads/master.zip
+      register: test_results
+      changed_when: false
+      ignore_errors: true
+
+    - name: Display details about the cinc-auditor results
+      ansible.builtin.debug:
+        msg: "{{ test_results.stdout_lines }}"
+
+    - name: Fail when tests fail
+      ansible.builtin.fail:
+        msg: "Inspec failed to validate"
+      when: test_results.rc != 0

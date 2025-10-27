@@ -1,0 +1,142 @@
+---
+- name: Fetch OS dependent variables
+  ansible.builtin.include_vars:
+    file: "{{ item }}"
+    name: os_vars
+  with_first_found:
+    - files:
+        - "{{ ansible_facts.distribution }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.os_family }}_{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
+      skip: true
+  tags: always
+
+# we only override variables with our default if they have not been specified already.
+# by default the lookup functions finds all varnames containing the string, therefore
+# we add ^ and $ to denote start and end of string, so this returns only exact matches.
+- name: Set OS dependent variables, if not already defined by user # noqa var-naming
+  ansible.builtin.set_fact:
+    "{{ item.key }}": "{{ item.value }}"
+  when: not lookup('varnames', '^' + item.key + '$')
+  with_dict: "{{ os_vars }}"
+  tags: always
+
+#################################
+# Check Compatibility ###########
+#################################
+
+- name: Only compatible OS versions
+  ansible.builtin.fail:
+    msg: "Only Ubuntu/Debian are supported"
+  when: ansible_facts.os_family not in ["Ubuntu"]
+
+#################################
+# POSTGRES-01 ###################
+#################################
+- name: Check postgres service status
+  ansible.builtin.service:
+    name: "{{ postgres_daemon }}"
+    state: started
+
+#################################
+# POSTGRES-02 ###################
+#################################
+- name: Get postgres version
+  ansible.builtin.command: psql -V
+  register: postgres_version_raw
+  changed_when: false
+  check_mode: false
+
+
+- name: Parse postgres-version
+  ansible.builtin.set_fact:
+    postgres_version: "{{ postgres_version_raw.stdout | regex_search('psql\\s\\(PostgreSQL\\)\\s(12|13|14|15|16).*', '\\1') | first }}"
+
+
+- name: Only compatible postgres versions allowed
+  ansible.builtin.fail:
+    msg: "Postgres Version is not secure or supported!"
+  when: not postgres_version or 'RC' in postgres_version_raw or 'DEVEL' in postgres_version_raw or 'BETA' in postgres_version_raw
+
+#################################
+# POSTGRES-10 ###################
+#################################
+- name: Manage permissions on /etc/postgresql/<version>/main
+  ansible.builtin.file:
+    path: "/etc/postgresql/{{ postgres_version }}/main"
+    state: directory
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: "0700"
+
+- name: Manage permissions on /etc/postgresql/<version>/main/postgresql.conf
+  ansible.builtin.file:
+    path: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
+    state: file
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: "0640"
+
+#################################
+# POSTGRES-07/11/12/16 ##########
+#################################
+- name: Secure postgresql.conf Configuration
+  ansible.builtin.lineinfile:
+    path: "/etc/postgresql/{{ postgres_version }}/main/postgresql.conf"
+    line: "{{ item.line }}"
+    regexp: "{{ item.regexp }}"
+    state: present
+  with_items:
+    - line: "password_encryption = {{ password_encryption }}"
+      regexp: "#?password_encryption\\s?="
+    - line: "ssl = {{ ssl_enabled }}"
+      regexp: "#?ssl\\s?="
+    - line: "ssl_ciphers = '{{ ssl_ciphers }}'"
+      regexp: "#?ssl_ciphers\\s?="
+    - line: "logging_collector = {{ logging_collector }}"
+      regexp: "#?logging_collector\\s?="
+    - line: "log_connections = {{ log_connections }}"
+      regexp: "#?log_connections\\s?="
+    - line: "log_disconnections = {{ log_disconnections }}"
+      regexp: "#?log_disconnections\\s?="
+    - line: "log_duration = {{ log_duration }}"
+      regexp: "#?log_duration\\s?="
+    - line: "log_hostname = {{ log_hostname }}"
+      regexp: "#?log_hostname\\s?="
+    - line: "log_directory = '{{ log_directory }}'"
+      regexp: "#?log_directory\\s?="
+    - line: "log_line_prefix = '{{ log_line_prefix }}'"
+      regexp: "#?log_line_prefix\\s?="
+  notify: Restart postgres
+
+#################################
+# POSTGRES-13/14/15 #############
+#################################
+- name: Secure pg_hba.conf Configuration
+  ansible.builtin.template:
+    src: templates/pg_hba.conf
+    dest: /etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rw,g=,o=
+  notify: Restart postgres
+
+#################################
+# POSTGRES-20 ###################
+#################################
+- name: Manage permissions on /var/lib/postgresql/<version>/main
+  ansible.builtin.file:
+    path: "/var/lib/postgresql/{{ postgres_version }}/main"
+    state: directory
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rwx,g=,o=
+
+- name: Manage permissions on /var/log/postgresql
+  ansible.builtin.file:
+    path: /var/log/postgresql
+    state: directory
+    owner: "{{ postgres_user }}"
+    group: "{{ postgres_group }}"
+    mode: u=rwx,g=,o=

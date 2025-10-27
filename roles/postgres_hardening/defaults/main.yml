@@ -1,0 +1,27 @@
+---
+# switcher to enable/disable role
+postgres_hardening_enabled: true
+
+postgres_daemon_enabled: true
+
+postgres_hardening_restart_postgres: true
+
+# Postgres user/group
+postgres_user: postgres
+postgres_group: postgres
+
+# Password Authentication
+password_encryption: scram-sha-256
+
+# SSL
+ssl_enabled: "on"
+ssl_ciphers: ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH
+
+# Logging
+logging_collector: "on"
+log_connections: "on"
+log_disconnections: "on"
+log_duration: "on"
+log_hostname: "on"
+log_directory: pg_log
+log_line_prefix: "%t %u %d %h"
