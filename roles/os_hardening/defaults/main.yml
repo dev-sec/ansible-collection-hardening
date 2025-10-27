@@ -499,3 +499,7 @@ os_mnt_var_tmp_passno: ""
 # keep .netrc file for users in whitelist
 os_netrc_enabled: true
 os_netrc_whitelist_user: []
+
+# Set to True to force the refresh of user facts
+# Usefull if you are calling this role in a workflow and you need {{ getent_passwd }} to be updated
+os_getent_passwd_force_sync: False
