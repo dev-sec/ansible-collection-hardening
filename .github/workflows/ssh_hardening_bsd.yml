@@ -9,6 +9,7 @@ on:  # yamllint disable-line rule:truthy
       - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
       - 'requirements.txt'
+      - 'requirements-vm.txt'
   pull_request:
     branches: [master]
     paths:
@@ -16,6 +17,7 @@ on:  # yamllint disable-line rule:truthy
       - 'molecule/ssh_hardening_bsd/**'
       - '.github/workflows/ssh_hardening_bsd.yml'
       - 'requirements.txt'
+      - 'requirements-vm.txt'
   schedule:
     - cron: '0 6 * * 5'
 
@@ -51,7 +53,7 @@ jobs:
           source ~/.venv/ansible-collection-hardening/bin/activate
           python -m pip install --no-cache-dir --upgrade pip
           pip install -r requirements.txt
-          pip install python-vagrant
+          pip install -r requirements-vm.txt
         working-directory: ansible_collections/devsec/hardening
 
       - name: Update Vagrant Box
@@ -61,6 +63,8 @@ jobs:
       - name: Test with molecule
         run: |
           source ~/.venv/ansible-collection-hardening/bin/activate
+          # Workaround for https://github.com/ansible-community/molecule-plugins/issues/301
+          export MOLECULE_VAGRANT_PLUGIN_DIR=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/molecule_plugins/vagrant
           molecule test -s ssh_hardening_bsd
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}

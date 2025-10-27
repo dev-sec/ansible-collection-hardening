@@ -21,6 +21,8 @@ provisioner:
     defaults:
       interpreter_python: auto_silent
       callbacks_enabled: profile_tasks, timer, yaml
+      # Workaround for https://github.com/ansible-community/molecule-plugins/issues/301
+      library: "${MOLECULE_PROJECT_DIRECTORY}/plugins/modules:/usr/share/ansible:${MOLECULE_VAGRANT_PLUGIN_DIR}"
 verifier:
   name: ansible
   env:
