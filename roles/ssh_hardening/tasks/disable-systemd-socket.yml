@@ -1,4 +1,22 @@
 ---
+# See /usr/share/doc/openssh-server/README.Debian.gz
+
+- name: Ensure system-generators directory exists
+  ansible.builtin.file:
+    path: /etc/systemd/system-generators
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Disable sshd-socket-generator
+  ansible.builtin.file:
+    dest: /etc/systemd/system-generators/sshd-socket-generator
+    src: /dev/null
+    state: link
+    owner: root
+    group: root
+
 - name: Remove ssh service systemd-socket file
   ansible.builtin.file:
     path: "{{ item }}"
@@ -14,3 +32,4 @@
     state: stopped
     enabled: false
     masked: true
+    daemon_reload: true
