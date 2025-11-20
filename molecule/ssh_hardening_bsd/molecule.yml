@@ -23,6 +23,7 @@ provisioner:
       callbacks_enabled: profile_tasks, timer
       # Workaround for https://github.com/ansible-community/molecule-plugins/issues/301
       library: "${MOLECULE_PROJECT_DIRECTORY}/plugins/modules:/usr/share/ansible:${MOLECULE_VAGRANT_PLUGIN_DIR}"
+      inject_facts_as_vars: false
 verifier:
   name: ansible
   env:
