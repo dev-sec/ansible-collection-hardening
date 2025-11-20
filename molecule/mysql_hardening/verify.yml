@@ -11,14 +11,14 @@
       ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
-        - ansible_os_family == 'Suse'
+        - ansible_facts.os_family == 'Suse'
 
     - name: Install procps for debian systems
       ansible.builtin.apt:
         name: procps
         state: present
         update_cache: true
-      when: ansible_distribution == 'Debian'
+      when: ansible_facts.distribution == 'Debian'
 
     - name: Include tests for the service
       ansible.builtin.include_tasks: verify_tasks/service.yml

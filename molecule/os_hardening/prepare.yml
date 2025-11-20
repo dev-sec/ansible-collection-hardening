@@ -16,7 +16,7 @@
       ansible.builtin.apt:
         upgrade: safe
         update_cache: true
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
 
     - name: Install required tools on SuSE
       # cannot use zypper module, since it depends on python-xml
