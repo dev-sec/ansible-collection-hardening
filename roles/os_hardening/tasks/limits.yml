@@ -37,7 +37,7 @@
         group: root
         mode: "0755"
         state: directory
-      when: ansible_service_mgr == "systemd"
+      when: ansible_facts.service_mgr == "systemd"
 
     - name: Create custom.conf for disabling coredumps
       ansible.builtin.template:
@@ -46,7 +46,7 @@
         owner: root
         group: root
         mode: "0644"
-      when: ansible_service_mgr == "systemd"
+      when: ansible_facts.service_mgr == "systemd"
       notify: Reload systemd
 
 - name: Enable coredumps
@@ -56,7 +56,7 @@
       ansible.builtin.file:
         path: /etc/systemd/coredump.conf.d
         state: absent
-      when: ansible_service_mgr == "systemd"
+      when: ansible_facts.service_mgr == "systemd"
       notify: Reload systemd
 
     - name: Remove 10.hardcore.conf config file

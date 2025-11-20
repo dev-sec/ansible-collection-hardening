@@ -12,7 +12,7 @@
         name: procps
         state: present
         update_cache: true
-      when: ansible_distribution == 'Debian'
+      when: ansible_facts.distribution == 'Debian'
 
 - name: Verify
   hosts: localhost

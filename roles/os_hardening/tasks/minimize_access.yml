@@ -89,7 +89,7 @@
 
 - name: Generate list of current available mounted filesystems on the system
   ansible.builtin.set_fact:
-    mountpoints_list: "{{ ansible_mounts | map(attribute='mount') | list }}"
+    mountpoints_list: "{{ ansible_facts.mounts | map(attribute='mount') | list }}"
 
 - name: Append special devices list to valid mountpoint list
   ansible.builtin.set_fact:

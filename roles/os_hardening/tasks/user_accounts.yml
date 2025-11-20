@@ -4,28 +4,28 @@
     database: passwd
     # creates a dict for each user containing UID/HOMEDIR etc...
   # skip this task if getent was run before without specifying a key (single entry)
-  when: getent_passwd is undefined or
-        getent_passwd | length <= 1
+  when: ansible_facts.getent_passwd is undefined or
+        ansible_facts.getent_passwd | length <= 1
 
 - name: Read local linux shadow database
   ansible.builtin.getent:
     database: shadow
 
 - name: Extract system accounts from local user database
-  loop: "{{ getent_passwd.keys() | list }}"
+  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
   when:
-    - getent_passwd[item][1]|int > 0
-    - getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
+    - ansible_facts.getent_passwd[item][1]|int > 0
+    - ansible_facts.getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
     - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
   ansible.builtin.set_fact:
     system_users: "{{ system_users | default([]) + [item] }}"
 
 - name: Extract regular (non-system, non-root) accounts from local user database
-  loop: "{{ getent_passwd.keys() | list }}"
+  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
   when:
-    - getent_passwd[item][1]|int >= os_auth_uid_min|int
-    - getent_passwd[item][1]|int <= os_auth_uid_max|int
+    - ansible_facts.getent_passwd[item][1]|int >= os_auth_uid_min|int
+    - ansible_facts.getent_passwd[item][1]|int <= os_auth_uid_max|int
     - item is not in os_always_ignore_users # skip users from "os_always_ignore_users" list (taken from role "vars")
     - item is not in os_ignore_users # skip users from "os_ignore_users"        list (taken from role "defaults")
   ansible.builtin.set_fact:
@@ -42,13 +42,14 @@
     - os_user_pw_ageing
     - regular_users is defined and (regular_users | length > 0)
     - item not in os_users_without_password_ageing
-    - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
-    - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
+    # password hashes with illegal characters like "*" or "!" are unusable (locked) and don't need to age
+    - ansible_facts.getent_shadow[item][0] is not match("\*")
+    - ansible_facts.getent_shadow[item][0] is not match("\!")
 
 - name: Extract root account(s) from local user database
-  loop: "{{ getent_passwd.keys() | list }}"
+  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
   when:
-    - getent_passwd[item][1]|int == 0
+    - ansible_facts.getent_passwd[item][1]|int == 0
   ansible.builtin.set_fact:
     root_users: "{{ root_users | default([]) + [item] }}"
 
@@ -56,7 +57,7 @@
   ansible.builtin.file:
     mode: "0700"
     owner: "{{ item }}"
-    path: "{{ getent_passwd[item][4] }}"
+    path: "{{ ansible_facts.getent_passwd[item][4] }}"
     state: directory
   loop: "{{ root_users }}"
   when:
@@ -71,8 +72,9 @@
   loop: "{{ root_users }}"
   when:
     - os_rootuser_pw_ageing | bool
-    - getent_shadow[item][0] is not match("\*") # password hashes containing illegal characters like "*" are unusable (locked) and don't need to age
-    - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable (locked) and don't need to age
+    # password hashes with illegal characters like "*" or "!" are unusable (locked) and don't need to age
+    - ansible_facts.getent_shadow[item][0] is not match("\*")
+    - ansible_facts.getent_shadow[item][0] is not match("\!")
 
 - name: Remove additional users with UID=0 ("root" user is not touched)
   ansible.builtin.user:
@@ -98,13 +100,13 @@
     createhome: false
   loop: "{{ system_users }}"
   when:
-    - getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
+    - ansible_facts.getent_shadow[item][0] is not match("\!") # password hashes containing illegal characters like "!" are unusable already (locked)
 
 - name: Limit access to home directories of regular (non-system, non-root) accounts
   ansible.builtin.file:
     mode: "0700"
     owner: "{{ item }}"
-    path: "{{ getent_passwd[item][4] }}"
+    path: "{{ ansible_facts.getent_passwd[item][4] }}"
     state: directory
   loop: "{{ regular_users }}"
   when:

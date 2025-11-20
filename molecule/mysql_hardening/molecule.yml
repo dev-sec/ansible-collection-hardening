@@ -23,7 +23,8 @@ provisioner:
     defaults:
       interpreter_python: auto_silent
       callbacks_enabled: profile_tasks, timer
-      inject_facts_as_vars: false
+      # Currently not supported by dev-sec.mysql role
+      # inject_facts_as_vars: false
 verifier:
   name: ansible
 
