@@ -74,6 +74,7 @@ jobs:
         run: |
             pip install "ansible-core<2.17"
             ansible-galaxy collection install 'community.crypto:<3.0.0'
+            ansible-galaxy collection install 'community.general:<12.0.0'
         working-directory: ansible_collections/devsec/hardening
         if: matrix.molecule_distro == 'rocky8' || matrix.molecule_distro == 'almalinux8'
 
