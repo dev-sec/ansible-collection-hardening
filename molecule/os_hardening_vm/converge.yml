@@ -30,7 +30,7 @@
         os_mnt_var_options: rw,nosuid,nodev,compress=zstd:1,subvol=var
       when:
         - ansible_facts.distribution == 'Fedora'
-        - ansible_distribution_major_version|int == 40
+        - ansible_facts.distribution_major_version|int == 40
 
     - name: Include os_hardening role
       ansible.builtin.include_role:

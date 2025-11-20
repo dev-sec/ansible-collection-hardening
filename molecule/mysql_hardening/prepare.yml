@@ -17,25 +17,25 @@
       ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
-        - ansible_distribution == 'Debian'
-        - ansible_distribution_major_version|int >= 11
+        - ansible_facts.distribution == 'Debian'
+        - ansible_facts.distribution_major_version|int >= 11
 
     - name: Use Python 3 on Suse
       ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
-        - ansible_os_family == 'Suse'
+        - ansible_facts.os_family == 'Suse'
 
     - name: Run the equivalent of "apt-get update && apt-get upgrade"
       ansible.builtin.apt:
         upgrade: safe
         update_cache: true
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
 
     - name: Install required python packages on Suse
       ansible.builtin.command: zypper -n install python311-rpm python311-PyMySQL
       changed_when: false
-      when: ansible_os_family == 'Suse'
+      when: ansible_facts.os_family == 'Suse'
 
     - name: Create missing directory
       ansible.builtin.file:
@@ -48,23 +48,23 @@
         mysql_python_package_debian: python3-pymysql
       when:
         - mysql_python_package_debian is not defined
-        - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version|int > 19
+        - ansible_facts.distribution == "Ubuntu"
+        - ansible_facts.distribution_major_version|int > 19
 
     - name: Determine required MySQL Python libraries.
       ansible.builtin.set_fact:
         mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter | default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
       when:
         - mysql_python_package_debian is not defined
-        - ansible_distribution != "Ubuntu"
-        - ansible_distribution_major_version|int < 20
+        - ansible_facts.distribution != "Ubuntu"
+        - ansible_facts.distribution_major_version|int < 20
 
     - name: Install required MySQL Python libraries on RHEL
       ansible.builtin.dnf:
         name: "{% if 'python3' in ansible_python_interpreter | default('') %}python36-PyMySQL{% else %}python2-PyMySQL{% endif %}"
       when:
-        - ansible_os_family == "RedHat"
-        - ansible_distribution_major_version == "7"
+        - ansible_facts.os_family == "RedHat"
+        - ansible_facts.distribution_major_version == "7"
 
     - name: Install mysql with a generic Ansible role
       ansible.builtin.include_role:
