@@ -23,6 +23,7 @@ provisioner:
     defaults:
       interpreter_python: auto_silent
       callbacks_enabled: profile_tasks, timer, yaml
+      inject_facts_as_vars: false
 verifier:
   name: ansible
 

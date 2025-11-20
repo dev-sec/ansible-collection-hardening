@@ -12,22 +12,22 @@
         mysql_python_package_debian: python3-pymysql
       when:
         - mysql_python_package_debian is not defined
-        - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version|int > 19
+        - ansible_facts.distribution == "Ubuntu"
+        - ansible_facts.distribution_major_version|int > 19
 
     - name: Determine required MySQL Python libraries.
       ansible.builtin.set_fact:
         mysql_python_package_debian: "{% if 'python3' in ansible_python_interpreter | default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
       when:
         - mysql_python_package_debian is not defined
-        - ansible_distribution != "Ubuntu"
-        - ansible_distribution_major_version|int < 20
+        - ansible_facts.distribution != "Ubuntu"
+        - ansible_facts.distribution_major_version|int < 20
 
     - name: Use Python 3 on Suse
       ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3
       when:
-        - ansible_os_family == 'Suse'
+        - ansible_facts.os_family == 'Suse'
 
     - name: Include mysql_hardening role
       ansible.builtin.include_role:
