@@ -5,7 +5,8 @@
     # creates a dict for each user containing UID/HOMEDIR etc...
   # skip this task if getent was run before without specifying a key (single entry)
   when: getent_passwd is undefined or
-        getent_passwd | length <= 1
+        getent_passwd | length <= 1 or
+        os_getent_passwd_force_sync
 
 - name: Read local linux shadow database
   ansible.builtin.getent:
