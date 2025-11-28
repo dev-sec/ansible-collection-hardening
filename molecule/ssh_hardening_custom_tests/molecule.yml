@@ -17,7 +17,7 @@ provisioner:
   config_options:
     defaults:
       interpreter_python: auto_silent
-      callbacks_enabled: profile_tasks, timer, yaml
+      callbacks_enabled: profile_tasks, timer
 verifier:
   name: ansible
 
