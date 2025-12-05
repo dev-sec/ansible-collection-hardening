@@ -22,6 +22,8 @@ provisioner:
     defaults:
       interpreter_python: auto_silent
       callbacks_enabled: profile_tasks, timer
+      # Currently not supported by geerlingguy.nginx role
+      # inject_facts_as_vars: false
 verifier:
   name: ansible
 

@@ -18,6 +18,7 @@ provisioner:
     defaults:
       interpreter_python: auto_silent
       callbacks_enabled: profile_tasks, timer
+      inject_facts_as_vars: false
   inventory:
     host_vars:
       # https://molecule.readthedocs.io/en/latest/examples.html#docker-with-non-privileged-user

@@ -4,4 +4,4 @@
     name: ctrl-alt-del.target
     masked: true
     daemon_reload: true
-  when: ansible_service_mgr == "systemd"
+  when: ansible_facts.service_mgr == "systemd"
