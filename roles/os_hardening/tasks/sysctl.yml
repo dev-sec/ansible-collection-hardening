@@ -9,7 +9,7 @@
   when: ansible_facts.os_family == 'RedHat'
 
 - name: Change sysctls
-  when: ansible_virtualization_type not in ['docker', 'lxc', 'openvz']
+  when: ansible_facts.virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
     - name: Protect sysctl.conf
       ansible.builtin.file:

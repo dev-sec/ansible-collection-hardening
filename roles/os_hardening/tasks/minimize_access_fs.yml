@@ -13,7 +13,7 @@
     - mount.enabled | bool
     - mount.path in mountpoints_list
   vars:
-    mountinfo: "{{ ansible_mounts | selectattr('mount', 'equalto', mount.path) | list | first | default(None) }}"
+    mountinfo: "{{ ansible_facts.mounts | selectattr('mount', 'equalto', mount.path) | list | first | default(None) }}"
   notify: Remount filesystems
 
 - name: "Check for existence of mount {{ mount.path }}"

@@ -16,7 +16,7 @@
     - name: Set correct distribution Version for Amazon Linux
       ansible.builtin.set_fact:
         ansible_distribution_major_version: 7
-      when: ansible_distribution == 'Amazon'
+      when: ansible_facts.distribution == 'Amazon'
 
     - name: Install nginx with a generic Ansible role
       ansible.builtin.include_role:
