@@ -18,3 +18,8 @@
   ansible.builtin.set_fact:
     ssh_kex: "{{ ssh_kex_85_default }}"
   when: sshd_version is version('8.5', '>=')
+
+- name: Set kex according to openssh-version if openssh >= 9.9
+  ansible.builtin.set_fact:
+    ssh_kex: "{{ ssh_kex_99_default }}"
+  when: sshd_version is version('9.9', '>=')
