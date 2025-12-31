@@ -11,7 +11,7 @@ jobs:
   generate_changelog:
     name: create release draft
     if: github.repository == 'dev-sec/ansible-collection-hardening'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
