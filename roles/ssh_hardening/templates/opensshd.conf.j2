@@ -171,7 +171,7 @@ DenyUsers {{ ssh_deny_users }}
 
 {% endif %}
 {% if ssh_allow_users %}
-AllowUsers {{ ssh_allow_users }}
+AllowUsers {{ ssh_allow_users if (ssh_allow_users is string) else (ssh_allow_users|join(' ')) }}
 
 {% endif %}
 {% if ssh_deny_groups %}
