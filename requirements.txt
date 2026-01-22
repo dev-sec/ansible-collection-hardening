@@ -2,6 +2,6 @@ molecule==25.12.0
 molecule-plugins[docker]==25.8.12
 ansible-core==2.19.3
 docker==7.1.0
-jmespath==1.0.1
+jmespath==1.1.0
 aar-doc==2.3.0
 passlib==1.7.4
