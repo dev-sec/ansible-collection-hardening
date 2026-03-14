@@ -58,7 +58,7 @@ jobs:
 
       - name: Read CHANGELOG.md
         id: package
-        uses: juliangruber/read-file-action@b549046febe0fe86f8cb4f93c24e284433f9ab58 # v1
+        uses: juliangruber/read-file-action@271ff311a4947af354c6abcd696a306553b9ec18 # v1
         with:
           path: ./CHANGELOGRELEASE.md
 
