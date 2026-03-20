@@ -17,6 +17,7 @@
 - chore\(deps\): update juliangruber/read-file-action digest to 271ff31 [\#937](https://github.com/dev-sec/ansible-collection-hardening/pull/937) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 8ba9595 [\#934](https://github.com/dev-sec/ansible-collection-hardening/pull/934) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update artis3n/ansible\_galaxy\_collection action to v3 [\#933](https://github.com/dev-sec/ansible-collection-hardening/pull/933) ([renovate[bot]](https://github.com/apps/renovate))
+- Improve VM based testing of SSH hardening [\#878](https://github.com/dev-sec/ansible-collection-hardening/pull/878) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([schurzi](https://github.com/schurzi))
 
 ## [10.5.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.0) (2026-01-22)
 
