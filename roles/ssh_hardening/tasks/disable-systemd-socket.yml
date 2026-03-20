@@ -1,4 +1,11 @@
 ---
+- name: Disable systemd-socket activation
+  ansible.builtin.systemd:
+    name: ssh.socket
+    state: stopped
+    enabled: false
+    masked: true
+
 - name: Remove ssh service systemd-socket file
   ansible.builtin.file:
     path: "{{ item }}"
@@ -8,9 +15,8 @@
     - /etc/systemd/system/ssh.service.requires/ssh.socket
     - /etc/systemd/system/sockets.target.wants/ssh.socket
 
-- name: Disable systemd-socket activation
+- name: Ensure ssh service is started after disabling socket activation
   ansible.builtin.systemd:
-    name: ssh.socket
-    state: stopped
-    enabled: false
-    masked: true
+    name: "{{ sshd_service_name }}"
+    state: started
+    enabled: true
