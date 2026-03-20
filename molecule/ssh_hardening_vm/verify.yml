@@ -9,7 +9,7 @@
         dest: /usr/bin/type
         state: hard
         mode: "0770"
-      when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
+      when: lookup('env', 'MOLECULE_DISTRO') == 'generic/openbsd7'
 
 - name: Verify
   hosts: localhost
