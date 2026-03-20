@@ -12,7 +12,7 @@
 
     - name: Install python
       # BSDs are special for Ansible - https://docs.ansible.com/ansible/latest/os_guide/intro_bsd.html
-      ansible.builtin.raw: pkg_add python%3.10
+      ansible.builtin.raw: pkg_add python%3.12
       changed_when: false
       when: lookup('env', 'MOLECULE_DISTRO') == 'openbsd7'
 
