@@ -1,8 +1,16 @@
 # Changelog
 
-## [10.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.1) (2026-03-14)
+## [10.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.1) (2026-03-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.0...10.5.1)
+
+**Fixed bugs:**
+
+- fix flaky failures on Ubuntu 24.04 and newer by disabling sshd socket activation first [\#931](https://github.com/dev-sec/ansible-collection-hardening/pull/931) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([kuglimon](https://github.com/kuglimon))
+
+**Closed issues:**
+
+- SSH issue after running devsec.hardening.ssh\_hardening role [\#854](https://github.com/dev-sec/ansible-collection-hardening/issues/854)
 
 **Merged pull requests:**
 
