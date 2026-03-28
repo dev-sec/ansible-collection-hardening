@@ -1,6 +1,6 @@
 namespace: devsec
 name: hardening
-version: 10.5.1
+version: 10.5.2
 readme: README.md
 authors:
   - dev-sec <hello@dev-sec.io>
