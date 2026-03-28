@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.5.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.2) (2026-03-28)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.1...10.5.2)
+
+**Fixed bugs:**
+
+- do not update apt cache when installing libpam-passwdqc [\#939](https://github.com/dev-sec/ansible-collection-hardening/pull/939) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([eikesauer](https://github.com/eikesauer))
+
 ## [10.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.1) (2026-03-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.0...10.5.1)
