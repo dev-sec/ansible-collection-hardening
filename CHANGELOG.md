@@ -8,6 +8,11 @@
 
 - do not update apt cache when installing libpam-passwdqc [\#939](https://github.com/dev-sec/ansible-collection-hardening/pull/939) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([eikesauer](https://github.com/eikesauer))
 
+**Merged pull requests:**
+
+- chore\(deps\): update hugo19941994/delete-draft-releases action to v3 [\#940](https://github.com/dev-sec/ansible-collection-hardening/pull/940) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): pin dependencies [\#938](https://github.com/dev-sec/ansible-collection-hardening/pull/938) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [10.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.1) (2026-03-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.0...10.5.1)
