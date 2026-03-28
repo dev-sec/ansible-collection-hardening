@@ -12,6 +12,7 @@
 
 - chore\(deps\): update hugo19941994/delete-draft-releases action to v3 [\#940](https://github.com/dev-sec/ansible-collection-hardening/pull/940) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): pin dependencies [\#938](https://github.com/dev-sec/ansible-collection-hardening/pull/938) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/checkout digest to de0fac2 [\#932](https://github.com/dev-sec/ansible-collection-hardening/pull/932) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.5.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.1) (2026-03-20)
 
