@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.5.3](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.3) (2026-04-16)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.2...10.5.3)
+
+**Merged pull requests:**
+
+- Update ansible/ansible-lint digest to 5fac056 [\#942](https://github.com/dev-sec/ansible-collection-hardening/pull/942) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [10.5.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.2) (2026-03-28)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.1...10.5.2)
