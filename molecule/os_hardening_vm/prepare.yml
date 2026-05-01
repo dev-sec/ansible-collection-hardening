@@ -4,6 +4,11 @@
   become: true
   gather_facts: false
   tasks:
+    - name: Update keyring
+      ansible.builtin.raw: pacman --noconfirm -Sy archlinux-keyring
+      changed_when: false
+      when: lookup('env', 'MOLECULE_DISTRO') == 'generic/arch'
+
     - name: Install python, since it's not installed by default
       ansible.builtin.raw: pacman --noconfirm -Sy python
       changed_when: false
