@@ -43,7 +43,6 @@ jobs:
           - rocky8
           - rocky9
           - rocky10
-          - ubuntu2004
           - ubuntu2204
           - ubuntu2404
           - debian11

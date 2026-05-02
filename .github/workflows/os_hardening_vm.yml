@@ -46,7 +46,6 @@ jobs:
           - generic/rocky9
           - fedora/39-cloud-base
           - fedora/40-cloud-base
-          - generic/ubuntu2004
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
           - generic/debian11

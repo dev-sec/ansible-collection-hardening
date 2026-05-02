@@ -50,7 +50,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 - EL
   - 8, 9, 10
 - Ubuntu
-  - focal, jammy, noble
+  - jammy, noble
 - Debian
   - trixie, bookworm, bullseye
 - Alpine
@@ -59,7 +59,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 - ArchLinux
 - SmartOS
 - FreeBSD
-  - 13.2, 14.0
+  - 14.0
 - OpenBSD
   - 7.0
 

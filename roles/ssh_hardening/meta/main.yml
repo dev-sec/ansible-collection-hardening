@@ -13,7 +13,6 @@ galaxy_info:
         - "10"
     - name: Ubuntu
       versions:
-        - focal
         - jammy
         - noble
     - name: Debian
@@ -28,7 +27,6 @@ galaxy_info:
     - name: SmartOS
     - name: FreeBSD
       versions:
-        - "13.2"
         - "14.0"
     - name: OpenBSD
       versions:

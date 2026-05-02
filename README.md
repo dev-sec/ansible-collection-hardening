@@ -17,7 +17,7 @@ This collection provides battle tested hardening for:
   - AlmaLinux 8/9/10
   - Rocky Linux 8/9/10
   - Debian 11/12/13
-  - Ubuntu 20.04/22.04/24.04
+  - Ubuntu 22.04/24.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
   - Fedora 39/40 (some roles supported)

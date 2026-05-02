@@ -161,7 +161,7 @@ This role is mostly based on guides by:
 - EL
   - 8, 9, 10
 - Ubuntu
-  - focal, jammy, noble
+  - jammy, noble
 - Debian
   - trixie, bookworm, bullseye
 - Amazon
