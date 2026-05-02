@@ -9,6 +9,11 @@
       changed_when: false
       when: lookup('env', 'MOLECULE_DISTRO') == 'generic/arch'
 
+    - name: Update OS
+      ansible.builtin.raw: pacman --noconfirm -Suy
+      changed_when: false
+      when: lookup('env', 'MOLECULE_DISTRO') == 'generic/arch'
+
     - name: Install python, since it's not installed by default
       ansible.builtin.raw: pacman --noconfirm -Sy python
       changed_when: false
