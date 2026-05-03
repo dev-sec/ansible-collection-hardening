@@ -5,7 +5,7 @@
 #
 # Three items must be defined:  `MAIL_DIR`, `ENV_SUPATH`, and `ENV_PATH`. If unspecified, some arbitrary (and possibly incorrect) value will be assumed.  All other items are optional - if not specified then the described action or option will be inhibited.
 #
-# Comment lines (lines beginning with `#`) and blank lines are ignored.
+# Comment lines and blank lines are ignored.
 #
 #-- Modified for Linux.  --marekm
 
@@ -35,7 +35,7 @@ FAILLOG_ENAB      yes
 
 # Enable display of unknown usernames when login failures are recorded.
 #
-# *WARNING*: Unknown usernames may become world readable. See #290803 and #298773 for details about how this could become a security concern
+# *WARNING*: Unknown usernames may become world readable. See 290803 and 298773 for details about how this could become a security concern
 LOG_UNKFAIL_ENAB  no
 
 # Enable logging of successful logins
@@ -56,7 +56,7 @@ SYSLOG_SG_ENAB    yes
 # If defined, login failures will be logged here in a utmp format last, when invoked as lastb, will read `/var/log/btmp`, so...
 FTMP_FILE         /var/log/btmp
 
-# If defined, the command name to display when running "su -".  For # example, if this is defined as "su" then a "ps" will display the command is "-su".  If not defined, then "ps" would display the name of the shell actually being run, e.g. something like "-sh".
+# If defined, the command name to display when running "su -".  For example, if this is defined as "su" then a "ps" will display the command is "-su".  If not defined, then "ps" would display the name of the shell actually being run, e.g. something like "-sh".
 SU_NAME           su
 
 # If defined, file which inhibits all the usual chatter during the login sequence.  If a full pathname, then hushed mode will be enabled if the user's name or shell are found in the file.  If not a full pathname, then hushed mode will be enabled if the file exists in the user's home directory.
@@ -96,7 +96,7 @@ KILLCHAR          025
 UMASK             {{ os_env_umask }}
 
 # Enable setting of the umask group bits to be the same as owner bits (examples: `022` -> `002`, `077` -> `007`) for non-root users, if the uid is the same as gid, and username is the same as the primary group name.
-# If set to yes, userdel will remove the user´s group if it contains no more members, and useradd will create by default a group with the name of the user.
+# If set to yes, userdel will remove the user's group if it contains no more members, and useradd will create by default a group with the name of the user.
 USERGROUPS_ENAB   yes
 
 
