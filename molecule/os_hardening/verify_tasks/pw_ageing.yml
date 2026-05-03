@@ -4,6 +4,11 @@
   changed_when: false
   register: expiry_date
 
+
+- name: Check that the expiry date of pw_no_ageing is "never"
+  ansible.builtin.debug:
+    msg: "{{ expiry_date }}"
+
 - name: Check that the expiry date of pw_no_ageing is "never"
   ansible.builtin.assert:
     that:
