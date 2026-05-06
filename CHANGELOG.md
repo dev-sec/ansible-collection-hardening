@@ -1,11 +1,16 @@
 # Changelog
 
-## [10.5.3](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.3) (2026-04-16)
+## [10.5.3](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.3) (2026-05-06)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.2...10.5.3)
 
+**Implemented enhancements:**
+
+- Update APT package cache before installing any package in case freshly installed system. [\#945](https://github.com/dev-sec/ansible-collection-hardening/issues/945)
+
 **Merged pull requests:**
 
+- Update actions/labeler action to v6.1.0 [\#947](https://github.com/dev-sec/ansible-collection-hardening/pull/947) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint digest to 5fac056 [\#942](https://github.com/dev-sec/ansible-collection-hardening/pull/942) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.5.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.2) (2026-03-28)
