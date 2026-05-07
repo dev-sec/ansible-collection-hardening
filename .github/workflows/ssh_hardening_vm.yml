@@ -39,7 +39,6 @@ jobs:
       matrix:
         molecule_distro:
           - generic/openbsd7
-          - generic/freebsd13
           - generic/freebsd14
           - cloud-image/debian-13
           - cloud-image/ubuntu-24.04
