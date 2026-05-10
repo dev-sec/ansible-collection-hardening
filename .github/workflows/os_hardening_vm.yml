@@ -44,9 +44,8 @@ jobs:
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9
-          - fedora/42-cloud-base
-          - fedora/43-cloud-base
-          - fedora/44-cloud-base
+          - alvistack/fedora-42
+          - alvistack/fedora-43
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
           - alvistack/ubuntu-26.04
