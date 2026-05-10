@@ -17,10 +17,10 @@ This collection provides battle tested hardening for:
   - AlmaLinux 8/9/10
   - Rocky Linux 8/9/10
   - Debian 11/12/13
-  - Ubuntu 22.04/24.04
+  - Ubuntu 22.04/24.04/26.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
-  - Fedora 39/40 (some roles supported)
+  - Fedora 42/43/44 (some roles supported)
   - Suse Tumbleweed (some roles supported)
 - MySQL
   - MariaDB >= 5.5.65, >= 10.1.45, >= 10.3.17

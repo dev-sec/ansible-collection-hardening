@@ -21,7 +21,7 @@ It works with the following nginx-roles, including, but not limited to:
 - EL
   - 8, 9, 10
 - Ubuntu
-  - jammy, noble
+  - jammy, noble, resolute
 - Debian
   - trixie, bookworm, bullseye
 - Amazon

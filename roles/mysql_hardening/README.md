@@ -28,7 +28,7 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 - EL
   - 8, 9, 10
 - Ubuntu
-  - jammy, noble
+  - jammy, noble, resolute
 - Debian
   - trixie, bookworm, bullseye
 - Amazon

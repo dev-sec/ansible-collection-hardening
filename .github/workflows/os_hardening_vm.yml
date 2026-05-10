@@ -44,12 +44,15 @@ jobs:
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9
-          - fedora/39-cloud-base
-          - fedora/40-cloud-base
+          - fedora/42-cloud-base
+          - fedora/43-cloud-base
+          - fedora/44-cloud-base
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
+          - alvistack/ubuntu-26.04
           - generic/debian11
           - generic/debian12
+          - generic/debian13
           - generic/opensuse15
           - generic/arch
     steps:
