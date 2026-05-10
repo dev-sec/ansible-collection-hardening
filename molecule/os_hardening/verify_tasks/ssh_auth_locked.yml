@@ -67,6 +67,10 @@
   register: output
   ignore_errors: true
 
+- name: Debug
+  ansible.builtin.debug:
+    msg: "{{ output }}"
+
 - name: Assert check unsuccessful login
   ansible.builtin.assert:
     that:
