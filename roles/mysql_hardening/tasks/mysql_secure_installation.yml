@@ -5,7 +5,7 @@
   when: mysql_root_password == '-----====>SetR00tPa$$wordH3r3!!!<====-----'
 
 - name: Ensure that the root password is present
-  community.mysql.mysql_user:
+  ansible.mysql.mysql_user:
     name: root
     host_all: true
     password: "{{ mysql_root_password | mandatory }}"
@@ -20,14 +20,14 @@
   tags: my_cnf
 
 - name: Ensure that the test database is absent
-  community.mysql.mysql_db:
+  ansible.mysql.mysql_db:
     name: test
     state: absent
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   when: mysql_remove_test_database
 
 - name: Ensure that anonymous users are absent
-  community.mysql.mysql_user:
+  ansible.mysql.mysql_user:
     name: ""
     state: absent
     host_all: true
@@ -35,7 +35,7 @@
   when: mysql_remove_anonymous_users
 
 - name: Ensure that root can only login from localhost
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       DELETE
       FROM mysql.user
@@ -47,7 +47,7 @@
   when: mysql_remove_remote_root
 
 - name: Detect role support on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       SELECT 1 FROM information_schema.COLUMNS
                 WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
@@ -57,7 +57,7 @@
   check_mode: false
 
 - name: Get all users that have no authentication_string on MySQL version >= 5.7.6 or Mariadb version >= 10.4.0
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
@@ -76,7 +76,7 @@
     is version('10.4.0', '>='))
 
 - name: Get all users that have no password or authentication_string on MySQL version < 5.7.6 or Mariadb version < 10.4.0
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       SELECT CONCAT(QUOTE(USER), '@', QUOTE(HOST)) AS user
       FROM mysql.user
@@ -97,7 +97,7 @@
     version('10.4.0', '<'))
 
 - name: Ensure that there are no users without password or authentication_string
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query:
       - DROP USER {{ item.user }}
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
