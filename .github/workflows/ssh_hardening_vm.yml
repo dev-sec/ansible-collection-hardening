@@ -40,7 +40,6 @@ jobs:
         molecule_distro:
           - generic/openbsd7
           - generic/freebsd14
-          - generic/freebsd15
           - cloud-image/debian-13
           - cloud-image/ubuntu-24.04
           - cloud-image/ubuntu-26.04

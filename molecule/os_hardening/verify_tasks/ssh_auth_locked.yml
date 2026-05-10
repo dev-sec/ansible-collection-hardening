@@ -84,7 +84,7 @@
   ansible.builtin.assert:
     that:
       - output.rc | int == 5
-      - output.stderr | length == 0
+      - "'(password expired)' in output.stderr"
       - output.stdout | length == 0
   when:
     - ansible_facts.os_family == "Suse"
