@@ -51,7 +51,7 @@ jobs:
           - alvistack/ubuntu-26.04
           - generic/debian11
           - generic/debian12
-          - generic/debian13
+          - cloud-image/debian-13
           - generic/opensuse15
           - generic/arch
     steps:
