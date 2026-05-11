@@ -1,0 +1,3 @@
+unrelated:
+  run: false
+  justification: "cinc-auditor needs at least one waived control"

@@ -15,7 +15,6 @@ galaxy_info:
       versions:
         - jammy
         - noble
-        - resolute
     - name: Debian
       versions:
         - trixie

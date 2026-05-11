@@ -45,10 +45,10 @@ jobs:
           - generic/rocky8
           - generic/rocky9
           - alvistack/fedora-42
-          - alvistack/fedora-43
+          # - alvistack/fedora-43 # no compatible test image
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
-          - alvistack/ubuntu-26.04
+          # - alvistack/ubuntu-26.04 # no compatible test image
           - generic/debian11
           - generic/debian12
           - cloud-image/debian-13

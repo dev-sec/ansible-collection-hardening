@@ -32,6 +32,13 @@
         - ansible_facts.distribution == 'Fedora'
         - ansible_facts.distribution_major_version|int == 40
 
+    - name: Overrides for Debian 13 image
+      ansible.builtin.set_fact:
+        os_mnt_tmp_enabled: true
+      when:
+        - ansible_facts.distribution == 'Debian'
+        - ansible_facts.distribution_major_version|int == 13
+
     - name: Include os_hardening role
       ansible.builtin.include_role:
         name: devsec.hardening.os_hardening
