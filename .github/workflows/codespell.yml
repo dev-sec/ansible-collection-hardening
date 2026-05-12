@@ -9,6 +9,6 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   codespell:
-    uses: "dev-sec/.github/.github/workflows/codespell.yml@37dc40b91a59d97d06824f16d11865baba5f07e1" # main
+    uses: "dev-sec/.github/.github/workflows/codespell.yml@2cd00282cfdb322243d879a96d9494ce64e76119" # main
     with:
       ignore_words_list: "chage,BOOTUP"
