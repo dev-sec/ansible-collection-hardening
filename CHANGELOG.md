@@ -1,12 +1,13 @@
 # Changelog
 
-## [10.5.3](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.3) (2026-05-06)
+## [10.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.0) (2026-05-12)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.2...10.5.3)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.2...10.6.0)
 
 **Implemented enhancements:**
 
 - Update APT package cache before installing any package in case freshly installed system. [\#945](https://github.com/dev-sec/ansible-collection-hardening/issues/945)
+- Update supported OS versions to current Fedora \(42/43/44\) and Ubuntu \(22.04/24.04/26.04\) [\#946](https://github.com/dev-sec/ansible-collection-hardening/pull/946) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Merged pull requests:**
 
