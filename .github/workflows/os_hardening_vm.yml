@@ -44,13 +44,14 @@ jobs:
           - generic/centos9s
           - generic/rocky8
           - generic/rocky9
-          - fedora/39-cloud-base
-          - fedora/40-cloud-base
-          - generic/ubuntu2004
+          - alvistack/fedora-42
+          # - alvistack/fedora-43 # no compatible test image
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
+          # - alvistack/ubuntu-26.04 # no compatible test image
           - generic/debian11
           - generic/debian12
+          - cloud-image/debian-13
           - generic/opensuse15
           - generic/arch
     steps:

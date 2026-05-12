@@ -14,7 +14,7 @@
     state: directory
     owner: "{{ mysql_hardening_user }}"
     group: "{{ mysql_hardening_user }}"
-    mode: "0750"
+    mode: '{{ mysql_hardening_datadir_permissions | default("0750") }}'
   when: item is defined and item != ""
   loop:
     - "{{ mysql_settings.settings.datadir }}"

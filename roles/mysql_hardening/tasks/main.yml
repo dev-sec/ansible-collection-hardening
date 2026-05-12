@@ -39,13 +39,13 @@
   when: not mysql_distribution is defined
 
 - name: Check which MySQL/MariaDB version is used
-  community.mysql.mysql_info:
+  ansible.mysql.mysql_info:
     filter: version
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_version
 
 - name: Check MySQL/MariaDB settings
-  community.mysql.mysql_info:
+  ansible.mysql.mysql_info:
     filter: settings
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
   register: mysql_settings

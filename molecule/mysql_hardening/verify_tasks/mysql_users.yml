@@ -1,6 +1,6 @@
 ---
 - name: Get all users from MySQL server
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       SELECT CONCAT(USER, '@', HOST) AS users FROM mysql.user;
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
@@ -25,7 +25,7 @@
       - '"user@192.168.%" in mysql_users_list'
 
 - name: Detect role support on MySQL
-  community.mysql.mysql_query:
+  ansible.mysql.mysql_query:
     query: >
       SELECT 1 FROM information_schema.COLUMNS
                 WHERE TABLE_SCHEMA = 'mysql' AND TABLE_NAME = 'user'
