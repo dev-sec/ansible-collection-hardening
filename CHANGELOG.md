@@ -13,6 +13,7 @@
 
 - Update actions/labeler action to v6.1.0 [\#947](https://github.com/dev-sec/ansible-collection-hardening/pull/947) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint digest to 5fac056 [\#942](https://github.com/dev-sec/ansible-collection-hardening/pull/942) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency ansible-core to v2.20.5 [\#910](https://github.com/dev-sec/ansible-collection-hardening/pull/910) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.5.2](https://github.com/dev-sec/ansible-collection-hardening/tree/10.5.2) (2026-03-28)
 
