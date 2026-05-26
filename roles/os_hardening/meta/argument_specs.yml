@@ -735,7 +735,7 @@ argument_specs:
           kernel.kexec_load_disabled: 1
           kernel.sysrq: 0
           kernel.randomize_va_space: 2
-          kernel.yama.ptrace_scope: 1
+          kernel.yama.ptrace_scope: 2
           net.ipv4.ip_forward: 0
           net.ipv6.conf.all.forwarding: 0
           net.ipv4.conf.all.rp_filter: 1

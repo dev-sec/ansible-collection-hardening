@@ -162,10 +162,10 @@ sysctl_config:
   #   prctl(PR_SET_PTRACER, debugger_pid, 0, 0, 0);
   #
   # In general, PTRACE is not needed for the average running Ubuntu system.
-  # To that end, the default is to set the PTRACE scope to "1".  This value
+  # To that end, the default is to set the PTRACE scope to "2".  This value
   # may not be appropriate for developers or servers with only admin accounts.
-  # kernel.yama.ptrace_scope = 1
-  kernel.yama.ptrace_scope: 1
+  # | sysctl-35
+  kernel.yama.ptrace_scope: 2
 
   # Disable traffic forwarding.
   # Setting the flag to 0 ensures that a system with multiple interfaces (for example, a hard
