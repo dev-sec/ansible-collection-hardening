@@ -47,7 +47,7 @@
         -t docker://instance
         --no-show-progress --no-color
         --waiver-file /waivers.yaml
-        --no-distinct-exit https://github.com/dev-sec/linux-baseline/archive/refs/heads/yama_ptrace.zip
+        --no-distinct-exit https://github.com/dev-sec/linux-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
       ignore_errors: true
