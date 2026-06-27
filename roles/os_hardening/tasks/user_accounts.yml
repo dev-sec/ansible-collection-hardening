@@ -5,31 +5,51 @@
     # creates a dict for each user containing UID/HOMEDIR etc...
   # skip this task if getent was run before without specifying a key (single entry)
   when: ansible_facts.getent_passwd is undefined or
-        ansible_facts.getent_passwd | length <= 1
+    ansible_facts.getent_passwd | length <= 1
 
 - name: Read local linux shadow database
   ansible.builtin.getent:
     database: shadow
 
-- name: Extract system accounts from local user database
-  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
-  when:
-    - ansible_facts.getent_passwd[item][1]|int > 0
-    - ansible_facts.getent_passwd[item][1]|int <= os_auth_sys_uid_max|int
-    - item is not in os_always_ignore_users     # skip users from "os_always_ignore_users" list (taken from role "vars")
-    - item is not in os_ignore_users            # skip users from "os_ignore_users"        list (taken from role "defaults")
+- name: Extract accounts from local user database
   ansible.builtin.set_fact:
-    system_users: "{{ system_users | default([]) + [item] }}"
-
-- name: Extract regular (non-system, non-root) accounts from local user database
-  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
-  when:
-    - ansible_facts.getent_passwd[item][1]|int >= os_auth_uid_min|int
-    - ansible_facts.getent_passwd[item][1]|int <= os_auth_uid_max|int
-    - item is not in os_always_ignore_users # skip users from "os_always_ignore_users" list (taken from role "vars")
-    - item is not in os_ignore_users # skip users from "os_ignore_users"        list (taken from role "defaults")
-  ansible.builtin.set_fact:
-    regular_users: "{{ regular_users | default([]) + [item] }}"
+    # Extract system accounts from local user database
+    system_users: >-
+      {{
+        ansible_facts.getent_passwd
+        | dict2items
+        | rejectattr('key', 'in', os_always_ignore_users)
+        | rejectattr('key', 'in', os_ignore_users)
+        | json_query(
+          "[?to_number(value[1]) > `0` && to_number(value[1]) <= `"
+          ~ (os_auth_sys_uid_max | int)
+          ~ "`].key"
+        )
+      }}
+    # Extract regular (non-system, non-root) accounts from local user database
+    regular_users: >-
+      {{
+        ansible_facts.getent_passwd
+        | dict2items
+        | rejectattr('key', 'in', os_always_ignore_users)
+        | rejectattr('key', 'in', os_ignore_users)
+        | json_query(
+          "[?to_number(value[1]) >= `"
+            ~ (os_auth_uid_min | int)
+            ~ "` && to_number(value[1]) <= `"
+            ~ (os_auth_uid_max | int)
+            ~ "`].key"
+        )
+      }}
+    # Extract root account(s) from local user database
+    root_users: >-
+      {{
+        ansible_facts.getent_passwd
+        | dict2items
+        | selectattr('value.1', 'equalto', '0')
+        | map(attribute='key')
+        | list
+      }}
 
 - name: Set password ageing for existing regular (non-system, non-root) accounts
   ansible.builtin.user:
@@ -45,13 +65,6 @@
     # password hashes with illegal characters like "*" or "!" are unusable (locked) and don't need to age
     - ansible_facts.getent_shadow[item][0] is not match("\*")
     - ansible_facts.getent_shadow[item][0] is not match("\!")
-
-- name: Extract root account(s) from local user database
-  loop: "{{ ansible_facts.getent_passwd.keys() | list }}"
-  when:
-    - ansible_facts.getent_passwd[item][1]|int == 0
-  ansible.builtin.set_fact:
-    root_users: "{{ root_users | default([]) + [item] }}"
 
 - name: Set ownership of root user home directory(s) to 0700
   ansible.builtin.file:
@@ -88,15 +101,15 @@
 
 - name: Remove shell for linux system accounts
   ansible.builtin.user:
-    name: '{{ item }}'
-    shell: '{{ os_nologin_shell_path }}'
+    name: "{{ item }}"
+    shell: "{{ os_nologin_shell_path }}"
     createhome: false
   loop: "{{ system_users }}"
 
 - name: Lock passwords from linux system accounts
   ansible.builtin.user:
-    name: '{{ item }}'
-    password: '*'
+    name: "{{ item }}"
+    password: "*"
     createhome: false
   loop: "{{ system_users }}"
   when:
