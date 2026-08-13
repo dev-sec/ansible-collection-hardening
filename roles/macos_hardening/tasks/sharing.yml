@@ -55,7 +55,8 @@
     - macos_manage_remote_apple_events | bool
     - macos_apple_events_result is defined
     - macos_apple_events_result.rc != 0
-    - "'requires Full Disk Access' in (macos_apple_events_result.stdout | default('')) or 'requires Full Disk Access' in (macos_apple_events_result.stderr | default(''))"
+    - "'requires Full Disk Access' in (macos_apple_events_result.stdout | default('')) or
+       'requires Full Disk Access' in (macos_apple_events_result.stderr | default(''))"
 
 - name: Sharing | Disable Internet Sharing
   community.general.osx_defaults:
