@@ -4,9 +4,6 @@
 # Main role enablement toggle
 macos_hardening_enabled: true
 
-# CIS Apple macOS 26 Tahoe Benchmark level (1 or 2; Level 2 includes Level 1)
-macos_cis_level: 2
-
 # Subsystem category switches
 macos_update_enabled: true
 macos_sharing_enabled: true
@@ -26,6 +23,9 @@ macos_hardening_discover_users: true
 macos_manage_remote_login: false
 macos_disable_remote_login: false
 macos_manage_remote_management: false
+macos_manage_remote_apple_events: false
+macos_manage_network_time: true
+macos_manage_authorizationdb: true
 macos_manage_game_center: false
 macos_manage_universal_control: false
 macos_manage_safari_history: false

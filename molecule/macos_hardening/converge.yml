@@ -8,7 +8,6 @@
         name: macos_hardening
   vars:
     macos_hardening_enabled: true
-    macos_cis_level: 2
     macos_profile_install: false
     macos_login_window_message: "Authorized access only."
     macos_policy_banner_content: "This computer system is private property. Authorized access only."

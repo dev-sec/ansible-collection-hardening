@@ -51,10 +51,19 @@
 - name: Security | Enable Gatekeeper assessment
   ansible.builtin.command: /usr/sbin/spctl --enable
   register: macos_spctl_result
+  when: macos_enable_assessment | bool
   changed_when: false
   failed_when:
     - macos_spctl_result.rc != 0
     - "'no longer supported' not in macos_spctl_result.stderr"
+
+- name: Security | Report spctl CLI deprecation for Gatekeeper
+  ansible.builtin.debug:
+    msg: "Notice: spctl --enable is deprecated on macOS 15/26 Tahoe. Gatekeeper assessment is enforced via System Policy configuration profile payload."
+  when:
+    - macos_enable_assessment | bool
+    - macos_spctl_result is defined
+    - "'no longer supported' in (macos_spctl_result.stderr | default(''))"
 
 - name: Security | Require administrator password for System Preferences
   ansible.builtin.command: >-
@@ -62,8 +71,17 @@
     "<date></date><string>require administrator password</string>"
     "<key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/>"
   register: macos_authdb_result
+  when: macos_manage_authorizationdb | bool
   changed_when: false
   failed_when: macos_authdb_result.rc != 0 and macos_authdb_result.rc != 255
+
+- name: Security | Report non-interactive GUI limitation for authorizationdb
+  ansible.builtin.debug:
+    msg: "Notice: System Preferences authorizationdb configuration was requested but requires an active GUI Security session."
+  when:
+    - macos_manage_authorizationdb | bool
+    - macos_authdb_result is defined
+    - macos_authdb_result.rc == 255
 
 - name: Security | Discover user home directories on remote target
   ansible.builtin.find:
