@@ -29,51 +29,794 @@ Add the role to your playbook:
         macos_profile_install: true
 ```
 
+<!-- BEGIN_ANSIBLE_DOCS -->
+
+## Supported Operating Systems
+- MacOSX
+  - all
+
 ## Role Variables
 
-### Main Toggles
+- `macos_account_enabled`
+  - Default: `True`
+  - Description: Configures macos_account_enabled
+  - Type: bool
+  - Required: no
+- `macos_allow_airdrop`
+  - Default: `False`
+  - Description: Configures macos_allow_airdrop
+  - Type: bool
+  - Required: no
+- `macos_allow_airplay_incoming`
+  - Default: `False`
+  - Description: Configures macos_allow_airplay_incoming
+  - Type: bool
+  - Required: no
+- `macos_allow_apple_personalized_advertising`
+  - Default: `False`
+  - Description: Configures macos_allow_apple_personalized_advertising
+  - Type: bool
+  - Required: no
+- `macos_allow_assistant`
+  - Default: `False`
+  - Description: Configures macos_allow_assistant
+  - Type: bool
+  - Required: no
+- `macos_allow_cloud_desktop_and_documents`
+  - Default: `False`
+  - Description: Configures macos_allow_cloud_desktop_and_documents
+  - Type: bool
+  - Required: no
+- `macos_allow_content_caching`
+  - Default: `False`
+  - Description: Configures macos_allow_content_caching
+  - Type: bool
+  - Required: no
+- `macos_allow_diagnostic_submission`
+  - Default: `False`
+  - Description: Configures macos_allow_diagnostic_submission
+  - Type: bool
+  - Required: no
+- `macos_allow_external_intelligence_integrations`
+  - Default: `False`
+  - Description: Configures macos_allow_external_intelligence_integrations
+  - Type: bool
+  - Required: no
+- `macos_allow_external_intelligence_integrations_signin`
+  - Default: `False`
+  - Description: Configures macos_allow_external_intelligence_integrations_signin
+  - Type: bool
+  - Required: no
+- `macos_allow_game_center`
+  - Default: `False`
+  - Description: Configures macos_allow_game_center
+  - Type: bool
+  - Required: no
+- `macos_allow_identified_developers`
+  - Default: `True`
+  - Description: Configures macos_allow_identified_developers
+  - Type: bool
+  - Required: no
+- `macos_allow_mail_summary`
+  - Default: `False`
+  - Description: Configures macos_allow_mail_summary
+  - Type: bool
+  - Required: no
+- `macos_allow_major_version_deferral`
+  - Default: `True`
+  - Description: Configures macos_allow_major_version_deferral
+  - Type: bool
+  - Required: no
+- `macos_allow_media_sharing`
+  - Default: `False`
+  - Description: Configures macos_allow_media_sharing
+  - Type: bool
+  - Required: no
+- `macos_allow_media_sharing_modification`
+  - Default: `False`
+  - Description: Configures macos_allow_media_sharing_modification
+  - Type: bool
+  - Required: no
+- `macos_allow_notes_transcription`
+  - Default: `False`
+  - Description: Configures macos_allow_notes_transcription
+  - Type: bool
+  - Required: no
+- `macos_allow_notes_transcription_summary`
+  - Default: `False`
+  - Description: Configures macos_allow_notes_transcription_summary
+  - Type: bool
+  - Required: no
+- `macos_allow_writing_tools`
+  - Default: `False`
+  - Description: Configures macos_allow_writing_tools
+  - Type: bool
+  - Required: no
+- `macos_appstore_autoupdate`
+  - Default: `True`
+  - Description: Configures macos_appstore_autoupdate
+  - Type: bool
+  - Required: no
+- `macos_assistive_voice_improvement_enabled`
+  - Default: `False`
+  - Description: Configures macos_assistive_voice_improvement_enabled
+  - Type: bool
+  - Required: no
+- `macos_audit_enabled`
+  - Default: `True`
+  - Description: Configures macos_audit_enabled
+  - Type: bool
+  - Required: no
+- `macos_audit_expire_after`
+  - Default: `30d`
+  - Description: Configures macos_audit_expire_after
+  - Type: str
+  - Required: no
+- `macos_audit_flags`
+  - Default: `aa,ad,lo,-all`
+  - Description: Configures macos_audit_flags
+  - Type: str
+  - Required: no
+- `macos_auto_submit_diag_info`
+  - Default: `False`
+  - Description: Configures macos_auto_submit_diag_info
+  - Type: bool
+  - Required: no
+- `macos_automatic_login_disabled`
+  - Default: `True`
+  - Description: Configures macos_automatic_login_disabled
+  - Type: bool
+  - Required: no
+- `macos_cis_level`
+  - Default: `2`
+  - Description: Configures macos_cis_level
+  - Type: int
+  - Required: no
+- `macos_disable_guest_account`
+  - Default: `True`
+  - Description: Configures macos_disable_guest_account
+  - Type: bool
+  - Required: no
+- `macos_disable_remote_login`
+  - Default: `False`
+  - Description: Configures macos_disable_remote_login
+  - Type: bool
+  - Required: no
+- `macos_display_sleep_minutes`
+  - Default: `10`
+  - Description: Configures macos_display_sleep_minutes
+  - Type: int
+  - Required: no
+- `macos_dont_allow_fde_disable`
+  - Default: `True`
+  - Description: Configures macos_dont_allow_fde_disable
+  - Type: bool
+  - Required: no
+- `macos_enable_assessment`
+  - Default: `True`
+  - Description: Configures macos_enable_assessment
+  - Type: bool
+  - Required: no
+- `macos_enable_guest_account`
+  - Default: `False`
+  - Description: Configures macos_enable_guest_account
+  - Type: bool
+  - Required: no
+- `macos_firewall_enable`
+  - Default: `True`
+  - Description: Configures macos_firewall_enable
+  - Type: bool
+  - Required: no
+- `macos_firewall_stealth`
+  - Default: `True`
+  - Description: Configures macos_firewall_stealth
+  - Type: bool
+  - Required: no
+- `macos_force_internet_sharing_off`
+  - Default: `True`
+  - Description: Configures macos_force_internet_sharing_off
+  - Type: bool
+  - Required: no
+- `macos_force_on_device_only_dictation`
+  - Default: `True`
+  - Description: Configures macos_force_on_device_only_dictation
+  - Type: bool
+  - Required: no
+- `macos_hardening_discover_users`
+  - Default: `True`
+  - Description: Configures macos_hardening_discover_users
+  - Type: bool
+  - Required: no
+- `macos_hardening_enabled`
+  - Default: `True`
+  - Description: Configures macos_hardening_enabled
+  - Type: bool
+  - Required: no
+- `macos_hardening_users`
+  - Default: `[]`
+  - Description: Configures macos_hardening_users
+  - Type: list of ''
+  - Required: no
+- `macos_hot_corner_bottom_left`
+  - Default: `0`
+  - Description: Configures macos_hot_corner_bottom_left
+  - Type: int
+  - Required: no
+- `macos_hot_corner_bottom_right`
+  - Default: `0`
+  - Description: Configures macos_hot_corner_bottom_right
+  - Type: int
+  - Required: no
+- `macos_hot_corner_top_left`
+  - Default: `0`
+  - Description: Configures macos_hot_corner_top_left
+  - Type: int
+  - Required: no
+- `macos_hot_corner_top_right`
+  - Default: `0`
+  - Description: Configures macos_hot_corner_top_right
+  - Type: int
+  - Required: no
+- `macos_install_apple_updates`
+  - Default: `True`
+  - Description: Configures macos_install_apple_updates
+  - Type: bool
+  - Required: no
+- `macos_install_log_ttl`
+  - Default: `365`
+  - Description: Configures macos_install_log_ttl
+  - Type: int
+  - Required: no
+- `macos_location_services_enabled`
+  - Default: `True`
+  - Description: Configures macos_location_services_enabled
+  - Type: bool
+  - Required: no
+- `macos_login_window_message`
+  - Default: ``
+  - Description: Configures macos_login_window_message
+  - Type: str
+  - Required: no
+- `macos_manage_game_center`
+  - Default: `False`
+  - Description: Configures macos_manage_game_center
+  - Type: bool
+  - Required: no
+- `macos_manage_remote_login`
+  - Default: `False`
+  - Description: Configures macos_manage_remote_login
+  - Type: bool
+  - Required: no
+- `macos_manage_remote_management`
+  - Default: `False`
+  - Description: Configures macos_manage_remote_management
+  - Type: bool
+  - Required: no
+- `macos_manage_safari_hide_ip`
+  - Default: `False`
+  - Description: Configures macos_manage_safari_hide_ip
+  - Type: bool
+  - Required: no
+- `macos_manage_safari_history`
+  - Default: `False`
+  - Description: Configures macos_manage_safari_history
+  - Type: bool
+  - Required: no
+- `macos_manage_universal_control`
+  - Default: `False`
+  - Description: Configures macos_manage_universal_control
+  - Type: bool
+  - Required: no
+- `macos_network_enabled`
+  - Default: `True`
+  - Description: Configures macos_network_enabled
+  - Type: bool
+  - Required: no
+- `macos_nomulticast_advertisements`
+  - Default: `True`
+  - Description: Configures macos_nomulticast_advertisements
+  - Type: bool
+  - Required: no
+- `macos_password_history_depth`
+  - Default: `24`
+  - Description: Configures macos_password_history_depth
+  - Type: int
+  - Required: no
+- `macos_password_max_age_days`
+  - Default: `365`
+  - Description: Configures macos_password_max_age_days
+  - Type: int
+  - Required: no
+- `macos_password_max_failed_attempts`
+  - Default: `5`
+  - Description: Configures macos_password_max_failed_attempts
+  - Type: int
+  - Required: no
+- `macos_password_min_length`
+  - Default: `15`
+  - Description: Configures macos_password_min_length
+  - Type: int
+  - Required: no
+- `macos_password_require_alpha`
+  - Default: `1`
+  - Description: Configures macos_password_require_alpha
+  - Type: int
+  - Required: no
+- `macos_password_require_mixed_case`
+  - Default: `1`
+  - Description: Configures macos_password_require_mixed_case
+  - Type: int
+  - Required: no
+- `macos_password_require_numeric`
+  - Default: `1`
+  - Description: Configures macos_password_require_numeric
+  - Type: int
+  - Required: no
+- `macos_password_require_symbol`
+  - Default: `1`
+  - Description: Configures macos_password_require_symbol
+  - Type: int
+  - Required: no
+- `macos_policy_banner_content`
+  - Default: ``
+  - Description: Configures macos_policy_banner_content
+  - Type: str
+  - Required: no
+- `macos_power_nap_enabled`
+  - Default: `False`
+  - Description: Configures macos_power_nap_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_accessibility_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_accessibility_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_applicationaccess_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_applicationaccess_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_assistant_support_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_assistant_support_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_description`
+  - Default: `DevSec macOS hardening configuration profile`
+  - Description: Configures macos_profile_description
+  - Type: str
+  - Required: no
+- `macos_profile_display_name`
+  - Default: `DevSec macOS Hardening`
+  - Description: Configures macos_profile_display_name
+  - Type: str
+  - Required: no
+- `macos_profile_dock_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_dock_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_firewall_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_firewall_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_identifier`
+  - Default: `com.devsec.macos_hardening`
+  - Description: Configures macos_profile_identifier
+  - Type: str
+  - Required: no
+- `macos_profile_install`
+  - Default: `True`
+  - Description: Configures macos_profile_install
+  - Type: bool
+  - Required: no
+- `macos_profile_locationmenu_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_locationmenu_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_loginwindow_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_loginwindow_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_mcx_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_mcx_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_mdns_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_mdns_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_organization`
+  - Default: `DevSec Hardening Framework Team`
+  - Description: Configures macos_profile_organization
+  - Type: str
+  - Required: no
+- `macos_profile_passwordpolicy_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_passwordpolicy_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_path`
+  - Default: `/tmp/macos_hardening.mobileconfig`
+  - Description: Configures macos_profile_path
+  - Type: str
+  - Required: no
+- `macos_profile_safari_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_safari_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_screensaver_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_screensaver_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_softwareupdate_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_softwareupdate_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_submitdiag_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_submitdiag_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_systempolicy_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_systempolicy_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_terminal_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_terminal_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_timemachine_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_timemachine_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_universalcontrol_enabled`
+  - Default: `True`
+  - Description: Configures macos_profile_universalcontrol_enabled
+  - Type: bool
+  - Required: no
+- `macos_profile_uuid`
+  - Default: `89692235-d2cb-47be-93d9-1d9b30416630`
+  - Description: Configures macos_profile_uuid
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_accessibility`
+  - Default: `fa365028-928a-4754-8868-323ab15fdb36`
+  - Description: Configures macos_profile_uuid_accessibility
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_applicationaccess`
+  - Default: `24b270d6-663b-4c93-a15d-4ac03e2b64f5`
+  - Description: Configures macos_profile_uuid_applicationaccess
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_assistant_support`
+  - Default: `84c07fda-6c2c-41ab-884c-1858eaf784a9`
+  - Description: Configures macos_profile_uuid_assistant_support
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_dock`
+  - Default: `a61b1772-c6f6-40aa-a09f-6787a9463f92`
+  - Description: Configures macos_profile_uuid_dock
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_firewall`
+  - Default: `e6f40b8b-b28a-4779-8815-b7e13aa970b7`
+  - Description: Configures macos_profile_uuid_firewall
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_locationmenu`
+  - Default: `7972adc3-3ea0-41e4-bd44-d5e55cb875e8`
+  - Description: Configures macos_profile_uuid_locationmenu
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_loginwindow`
+  - Default: `5f91cf70-6a6f-46f0-b575-d2d9ca671fc9`
+  - Description: Configures macos_profile_uuid_loginwindow
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_mcx`
+  - Default: `e6869e34-ae93-4568-a201-f27e4924c33d`
+  - Description: Configures macos_profile_uuid_mcx
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_mdns`
+  - Default: `6891c8e4-44b8-4a27-a468-583dc19a5a90`
+  - Description: Configures macos_profile_uuid_mdns
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_passwordpolicy`
+  - Default: `d687d3ce-761d-4968-870a-bc8b83b154da`
+  - Description: Configures macos_profile_uuid_passwordpolicy
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_safari`
+  - Default: `26af9da3-b002-4621-abd7-28feb7c66ca7`
+  - Description: Configures macos_profile_uuid_safari
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_screensaver`
+  - Default: `75786f5d-6536-4bcd-b20b-4b4a3b754cb4`
+  - Description: Configures macos_profile_uuid_screensaver
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_softwareupdate`
+  - Default: `3bc15b0f-4041-4d1b-a044-6eb69248cba0`
+  - Description: Configures macos_profile_uuid_softwareupdate
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_submitdiag`
+  - Default: `f3416271-de9e-443d-a2ee-5f75ab2f5def`
+  - Description: Configures macos_profile_uuid_submitdiag
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_systempolicy`
+  - Default: `c599ed89-eef2-4d28-bd82-282ebfab7f0b`
+  - Description: Configures macos_profile_uuid_systempolicy
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_terminal`
+  - Default: `1bff4682-bb1d-4413-b48f-04b3369ec3aa`
+  - Description: Configures macos_profile_uuid_terminal
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_timemachine`
+  - Default: `0a6e6fb7-bcc4-42ef-93d7-795f712c197e`
+  - Description: Configures macos_profile_uuid_timemachine
+  - Type: str
+  - Required: no
+- `macos_profile_uuid_universalcontrol`
+  - Default: `50d6d54f-bcc8-4592-8c12-1c484a019328`
+  - Description: Configures macos_profile_uuid_universalcontrol
+  - Type: str
+  - Required: no
+- `macos_retries_until_hint`
+  - Default: `0`
+  - Description: Configures macos_retries_until_hint
+  - Type: int
+  - Required: no
+- `macos_safari_auto_open_safe_downloads`
+  - Default: `False`
+  - Description: Configures macos_safari_auto_open_safe_downloads
+  - Type: bool
+  - Required: no
+- `macos_safari_block_storage_policy`
+  - Default: `2`
+  - Description: Configures macos_safari_block_storage_policy
+  - Type: int
+  - Required: no
+- `macos_safari_enabled`
+  - Default: `True`
+  - Description: Configures macos_safari_enabled
+  - Type: bool
+  - Required: no
+- `macos_safari_hide_ip_setting`
+  - Default: `33422564`
+  - Description: Configures macos_safari_hide_ip_setting
+  - Type: int
+  - Required: no
+- `macos_safari_history_age_days`
+  - Default: `365`
+  - Description: Configures macos_safari_history_age_days
+  - Type: int
+  - Required: no
+- `macos_safari_private_click_measurement_enabled`
+  - Default: `True`
+  - Description: Configures macos_safari_private_click_measurement_enabled
+  - Type: bool
+  - Required: no
+- `macos_safari_show_full_url`
+  - Default: `True`
+  - Description: Configures macos_safari_show_full_url
+  - Type: bool
+  - Required: no
+- `macos_safari_show_status_bar`
+  - Default: `True`
+  - Description: Configures macos_safari_show_status_bar
+  - Type: bool
+  - Required: no
+- `macos_safari_warn_about_fraudulent_websites`
+  - Default: `True`
+  - Description: Configures macos_safari_warn_about_fraudulent_websites
+  - Type: bool
+  - Required: no
+- `macos_safari_webkit_preferences_storage_blocking_policy`
+  - Default: `1`
+  - Description: Configures macos_safari_webkit_preferences_storage_blocking_policy
+  - Type: int
+  - Required: no
+- `macos_safari_webkit_storage_blocking_policy`
+  - Default: `1`
+  - Description: Configures macos_safari_webkit_storage_blocking_policy
+  - Type: int
+  - Required: no
+- `macos_screensaver_ask_for_password`
+  - Default: `True`
+  - Description: Configures macos_screensaver_ask_for_password
+  - Type: bool
+  - Required: no
+- `macos_screensaver_ask_for_password_delay`
+  - Default: `0`
+  - Description: Configures macos_screensaver_ask_for_password_delay
+  - Type: int
+  - Required: no
+- `macos_screensaver_idle_time`
+  - Default: `900`
+  - Description: Configures macos_screensaver_idle_time
+  - Type: int
+  - Required: no
+- `macos_search_queries_data_sharing_status`
+  - Default: `2`
+  - Description: Configures macos_search_queries_data_sharing_status
+  - Type: int
+  - Required: no
+- `macos_secure_keyboard_entry`
+  - Default: `True`
+  - Description: Configures macos_secure_keyboard_entry
+  - Type: bool
+  - Required: no
+- `macos_security_enabled`
+  - Default: `True`
+  - Description: Configures macos_security_enabled
+  - Type: bool
+  - Required: no
+- `macos_sharing_enabled`
+  - Default: `True`
+  - Description: Configures macos_sharing_enabled
+  - Type: bool
+  - Required: no
+- `macos_show_fullname_loginwindow`
+  - Default: `True`
+  - Description: Configures macos_show_fullname_loginwindow
+  - Type: bool
+  - Required: no
+- `macos_show_system_services_location_icon`
+  - Default: `True`
+  - Description: Configures macos_show_system_services_location_icon
+  - Type: bool
+  - Required: no
+- `macos_siri_data_sharing_opt_in_status`
+  - Default: `2`
+  - Description: Configures macos_siri_data_sharing_opt_in_status
+  - Type: int
+  - Required: no
+- `macos_sleep_minutes`
+  - Default: `15`
+  - Description: Configures macos_sleep_minutes
+  - Type: int
+  - Required: no
+- `macos_software_update_agree_to_license`
+  - Default: `False`
+  - Description: Configures macos_software_update_agree_to_license
+  - Type: bool
+  - Required: no
+- `macos_software_update_defer_days`
+  - Default: `30`
+  - Description: Configures macos_software_update_defer_days
+  - Type: int
+  - Required: no
+- `macos_software_update_defer_enabled`
+  - Default: `False`
+  - Description: Configures macos_software_update_defer_enabled
+  - Type: bool
+  - Required: no
+- `macos_software_update_restart`
+  - Default: `False`
+  - Description: Configures macos_software_update_restart
+  - Type: bool
+  - Required: no
+- `macos_softwareupdate_automatic_app_updates`
+  - Default: `True`
+  - Description: Configures macos_softwareupdate_automatic_app_updates
+  - Type: bool
+  - Required: no
+- `macos_softwareupdate_automatic_download`
+  - Default: `True`
+  - Description: Configures macos_softwareupdate_automatic_download
+  - Type: bool
+  - Required: no
+- `macos_softwareupdate_automatic_macos_updates`
+  - Default: `True`
+  - Description: Configures macos_softwareupdate_automatic_macos_updates
+  - Type: bool
+  - Required: no
+- `macos_softwareupdate_config_data_install`
+  - Default: `True`
+  - Description: Configures macos_softwareupdate_config_data_install
+  - Type: bool
+  - Required: no
+- `macos_softwareupdate_critical_update_install`
+  - Default: `True`
+  - Description: Configures macos_softwareupdate_critical_update_install
+  - Type: bool
+  - Required: no
+- `macos_sudo_timestamp_timeout`
+  - Default: `0`
+  - Description: Configures macos_sudo_timestamp_timeout
+  - Type: int
+  - Required: no
+- `macos_sudoers_file`
+  - Default: `10_macos_hardening`
+  - Description: Configures macos_sudoers_file
+  - Type: str
+  - Required: no
+- `macos_system_enabled`
+  - Default: `True`
+  - Description: Configures macos_system_enabled
+  - Type: bool
+  - Required: no
+- `macos_time_machine_auto_backup`
+  - Default: `True`
+  - Description: Configures macos_time_machine_auto_backup
+  - Type: bool
+  - Required: no
+- `macos_time_machine_max_backup_age_hours`
+  - Default: `24`
+  - Description: Configures macos_time_machine_max_backup_age_hours
+  - Type: int
+  - Required: no
+- `macos_time_server`
+  - Default: `time.apple.com`
+  - Description: Configures macos_time_server
+  - Type: str
+  - Required: no
+- `macos_time_zone`
+  - Default: `UTC`
+  - Description: Configures macos_time_zone
+  - Type: str
+  - Required: no
+- `macos_time_zone_enabled`
+  - Default: `False`
+  - Description: Configures macos_time_zone_enabled
+  - Type: bool
+  - Required: no
+- `macos_universal_control_disabled`
+  - Default: `True`
+  - Description: Configures macos_universal_control_disabled
+  - Type: bool
+  - Required: no
+- `macos_update_enabled`
+  - Default: `True`
+  - Description: Configures macos_update_enabled
+  - Type: bool
+  - Required: no
+- `macos_wake_on_network_access_enabled`
+  - Default: `False`
+  - Description: Configures macos_wake_on_network_access_enabled
+  - Type: bool
+  - Required: no
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `macos_hardening_enabled` | `true` | Main toggle to enable/disable the role |
-| `macos_cis_level` | `2` | CIS benchmark level (1 or 2; Level 2 includes Level 1) |
+## Dependencies
 
-### Subsystem Category Toggles
+None.
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `macos_update_enabled` | `true` | Enable software update policy hardening |
-| `macos_sharing_enabled` | `true` | Enable sharing services hardening |
-| `macos_network_enabled` | `true` | Enable firewall and network settings hardening |
-| `macos_system_enabled` | `true` | Enable energy, sleep, lock screen, and system settings hardening |
-| `macos_security_enabled` | `true` | Enable Gatekeeper, FileVault, sudo, and security settings |
-| `macos_account_enabled` | `true` | Enable account, guest, and password policy hardening |
-| `macos_audit_enabled` | `true` | Enable auditd and newsyslog retention hardening |
-| `macos_safari_enabled` | `true` | Enable Safari and web browser security hardening |
-| `macos_profile_enabled` | `true` | Enable configuration profile generation |
+## Example Playbook
 
-### Service & Policy Switches
+```
+- hosts: all
+  become: true
+  roles:
+    - name: devsec.hardening.macos_hardening
+```
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `macos_manage_remote_login` | `false` | When `false`, Remote Login SSH service management is bypassed. Set `true` if role should manage SSH |
-| `macos_disable_remote_login` | `false` | Safety guard: when `false`, the role will **not** disable Remote Login (SSH), preserving remote management connections. Set `true` to force disabling SSH per CIS |
-| `macos_manage_remote_management` | `false` | When `false`, Remote Management (ARD) service management is bypassed |
-| `macos_install_apple_updates` | `true` | Automatically install Apple software updates |
-| `macos_time_server` | `time.apple.com` | Network time synchronization server |
-| `macos_password_min_length` | `15` | Minimum password length enforced via `pwpolicy` |
-| `macos_password_max_failed_attempts` | `5` | Account lockout threshold after failed attempts |
-| `macos_sudo_timestamp_timeout` | `0` | Sudo password caching timeout in minutes (0 = always prompt) |
-| `macos_login_window_message` | `""` | Banner text displayed on the login window |
-| `macos_policy_banner_content` | `""` | Warning text written to `/Library/Security/PolicyBanner.txt` |
-
-### Configuration Profile Settings
-
-| Variable | Default | Description |
-| --- | --- | --- |
-| `macos_profile_enabled` | `true` | Enable configuration profile rendering |
-| `macos_profile_install` | `true` | When `true`, installs the `.mobileconfig` file directly on local/standalone machines using `profiles install`. Set `false` when deploying via MDM |
-| `macos_profile_path` | `/tmp/macos_hardening.mobileconfig` | Target path where rendered `.mobileconfig` file is written |
+<!-- END_ANSIBLE_DOCS -->
 
 ## Profile Deployment Modes
 

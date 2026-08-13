@@ -5,7 +5,7 @@
   tasks:
     - name: Include macos_hardening role
       ansible.builtin.include_role:
-        name: devsec.hardening.macos_hardening
+        name: macos_hardening
   vars:
     macos_hardening_enabled: true
     macos_cis_level: 2
