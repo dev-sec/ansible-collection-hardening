@@ -2,3 +2,5 @@
 hosts
 Gemfile.lock
 .venv
+.ansible/
+.cache/
