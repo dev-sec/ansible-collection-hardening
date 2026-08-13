@@ -167,11 +167,6 @@ Add the role to your playbook:
   - Description: Configures macos_automatic_login_disabled
   - Type: bool
   - Required: no
-- `macos_cis_level`
-  - Default: `2`
-  - Description: Configures macos_cis_level
-  - Type: int
-  - Required: no
 - `macos_disable_guest_account`
   - Default: `True`
   - Description: Configures macos_disable_guest_account
@@ -277,9 +272,24 @@ Add the role to your playbook:
   - Description: Configures macos_login_window_message
   - Type: str
   - Required: no
+- `macos_manage_authorizationdb`
+  - Default: `True`
+  - Description: Configures macos_manage_authorizationdb
+  - Type: bool
+  - Required: no
 - `macos_manage_game_center`
   - Default: `False`
   - Description: Configures macos_manage_game_center
+  - Type: bool
+  - Required: no
+- `macos_manage_network_time`
+  - Default: `True`
+  - Description: Configures macos_manage_network_time
+  - Type: bool
+  - Required: no
+- `macos_manage_remote_apple_events`
+  - Default: `False`
+  - Description: Configures macos_manage_remote_apple_events
   - Type: bool
   - Required: no
 - `macos_manage_remote_login`

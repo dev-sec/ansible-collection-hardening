@@ -12,11 +12,6 @@ argument_specs:
         required: false
         default: true
         description: Configures macos_hardening_enabled
-      macos_cis_level:
-        type: int
-        required: false
-        default: 2
-        description: Configures macos_cis_level
       macos_update_enabled:
         type: bool
         required: false
@@ -87,6 +82,21 @@ argument_specs:
         required: false
         default: false
         description: Configures macos_manage_remote_management
+      macos_manage_remote_apple_events:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_remote_apple_events
+      macos_manage_network_time:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_manage_network_time
+      macos_manage_authorizationdb:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_manage_authorizationdb
       macos_manage_game_center:
         type: bool
         required: false
