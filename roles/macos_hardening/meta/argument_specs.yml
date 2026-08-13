@@ -1,0 +1,773 @@
+argument_specs:
+  main:
+    short_description: DevSec macOS hardening role argument specification
+    description:
+    - Defines argument specifications for the DevSec macOS hardening role.
+    author:
+    - DevSec Hardening Framework Team
+    options:
+      macos_hardening_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_hardening_enabled
+      macos_cis_level:
+        type: int
+        required: false
+        default: 2
+        description: Configures macos_cis_level
+      macos_update_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_update_enabled
+      macos_sharing_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_sharing_enabled
+      macos_network_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_network_enabled
+      macos_system_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_system_enabled
+      macos_security_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_security_enabled
+      macos_account_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_account_enabled
+      macos_audit_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_audit_enabled
+      macos_safari_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_safari_enabled
+      macos_profile_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_enabled
+      macos_hardening_users:
+        type: list
+        required: false
+        default: []
+        description: Configures macos_hardening_users
+      macos_hardening_discover_users:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_hardening_discover_users
+      macos_manage_remote_login:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_remote_login
+      macos_disable_remote_login:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_disable_remote_login
+      macos_manage_remote_management:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_remote_management
+      macos_manage_game_center:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_game_center
+      macos_manage_universal_control:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_universal_control
+      macos_manage_safari_history:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_safari_history
+      macos_manage_safari_hide_ip:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_manage_safari_hide_ip
+      macos_install_apple_updates:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_install_apple_updates
+      macos_software_update_agree_to_license:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_software_update_agree_to_license
+      macos_allow_major_version_deferral:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_allow_major_version_deferral
+      macos_software_update_restart:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_software_update_restart
+      macos_software_update_defer_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_software_update_defer_enabled
+      macos_software_update_defer_days:
+        type: int
+        required: false
+        default: 30
+        description: Configures macos_software_update_defer_days
+      macos_time_server:
+        type: str
+        required: false
+        default: time.apple.com
+        description: Configures macos_time_server
+      macos_time_zone:
+        type: str
+        required: false
+        default: UTC
+        description: Configures macos_time_zone
+      macos_time_zone_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_time_zone_enabled
+      macos_safari_history_age_days:
+        type: int
+        required: false
+        default: 365
+        description: Configures macos_safari_history_age_days
+      macos_safari_hide_ip_setting:
+        type: int
+        required: false
+        default: 33422564
+        description: Configures macos_safari_hide_ip_setting
+      macos_password_max_failed_attempts:
+        type: int
+        required: false
+        default: 5
+        description: Configures macos_password_max_failed_attempts
+      macos_password_min_length:
+        type: int
+        required: false
+        default: 15
+        description: Configures macos_password_min_length
+      macos_password_require_alpha:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_password_require_alpha
+      macos_password_require_numeric:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_password_require_numeric
+      macos_password_require_symbol:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_password_require_symbol
+      macos_password_require_mixed_case:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_password_require_mixed_case
+      macos_password_max_age_days:
+        type: int
+        required: false
+        default: 365
+        description: Configures macos_password_max_age_days
+      macos_password_history_depth:
+        type: int
+        required: false
+        default: 24
+        description: Configures macos_password_history_depth
+      macos_audit_flags:
+        type: str
+        required: false
+        default: aa,ad,lo,-all
+        description: Configures macos_audit_flags
+      macos_audit_expire_after:
+        type: str
+        required: false
+        default: 30d
+        description: Configures macos_audit_expire_after
+      macos_install_log_ttl:
+        type: int
+        required: false
+        default: 365
+        description: Configures macos_install_log_ttl
+      macos_sudo_timestamp_timeout:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_sudo_timestamp_timeout
+      macos_sudoers_file:
+        type: str
+        required: false
+        default: 10_macos_hardening
+        description: Configures macos_sudoers_file
+      macos_show_fullname_loginwindow:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_show_fullname_loginwindow
+      macos_retries_until_hint:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_retries_until_hint
+      macos_login_window_message:
+        type: str
+        required: false
+        default: ''
+        description: Configures macos_login_window_message
+      macos_policy_banner_content:
+        type: str
+        required: false
+        default: ''
+        description: Configures macos_policy_banner_content
+      macos_profile_install:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_install
+      macos_profile_path:
+        type: str
+        required: false
+        default: /tmp/macos_hardening.mobileconfig
+        description: Configures macos_profile_path
+      macos_profile_identifier:
+        type: str
+        required: false
+        default: com.devsec.macos_hardening
+        description: Configures macos_profile_identifier
+      macos_profile_display_name:
+        type: str
+        required: false
+        default: DevSec macOS Hardening
+        description: Configures macos_profile_display_name
+      macos_profile_description:
+        type: str
+        required: false
+        default: DevSec macOS hardening configuration profile
+        description: Configures macos_profile_description
+      macos_profile_organization:
+        type: str
+        required: false
+        default: DevSec Hardening Framework Team
+        description: Configures macos_profile_organization
+      macos_profile_uuid:
+        type: str
+        required: false
+        default: 89692235-d2cb-47be-93d9-1d9b30416630
+        description: Configures macos_profile_uuid
+      macos_profile_softwareupdate_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_softwareupdate_enabled
+      macos_profile_firewall_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_firewall_enabled
+      macos_profile_applicationaccess_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_applicationaccess_enabled
+      macos_profile_mdns_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_mdns_enabled
+      macos_profile_locationmenu_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_locationmenu_enabled
+      macos_profile_submitdiag_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_submitdiag_enabled
+      macos_profile_assistant_support_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_assistant_support_enabled
+      macos_profile_accessibility_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_accessibility_enabled
+      macos_profile_systempolicy_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_systempolicy_enabled
+      macos_profile_mcx_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_mcx_enabled
+      macos_profile_universalcontrol_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_universalcontrol_enabled
+      macos_profile_loginwindow_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_loginwindow_enabled
+      macos_profile_terminal_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_terminal_enabled
+      macos_profile_safari_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_safari_enabled
+      macos_profile_passwordpolicy_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_passwordpolicy_enabled
+      macos_profile_timemachine_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_timemachine_enabled
+      macos_profile_dock_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_dock_enabled
+      macos_profile_screensaver_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_profile_screensaver_enabled
+      macos_profile_uuid_softwareupdate:
+        type: str
+        required: false
+        default: 3bc15b0f-4041-4d1b-a044-6eb69248cba0
+        description: Configures macos_profile_uuid_softwareupdate
+      macos_profile_uuid_firewall:
+        type: str
+        required: false
+        default: e6f40b8b-b28a-4779-8815-b7e13aa970b7
+        description: Configures macos_profile_uuid_firewall
+      macos_profile_uuid_applicationaccess:
+        type: str
+        required: false
+        default: 24b270d6-663b-4c93-a15d-4ac03e2b64f5
+        description: Configures macos_profile_uuid_applicationaccess
+      macos_profile_uuid_mdns:
+        type: str
+        required: false
+        default: 6891c8e4-44b8-4a27-a468-583dc19a5a90
+        description: Configures macos_profile_uuid_mdns
+      macos_profile_uuid_locationmenu:
+        type: str
+        required: false
+        default: 7972adc3-3ea0-41e4-bd44-d5e55cb875e8
+        description: Configures macos_profile_uuid_locationmenu
+      macos_profile_uuid_submitdiag:
+        type: str
+        required: false
+        default: f3416271-de9e-443d-a2ee-5f75ab2f5def
+        description: Configures macos_profile_uuid_submitdiag
+      macos_profile_uuid_assistant_support:
+        type: str
+        required: false
+        default: 84c07fda-6c2c-41ab-884c-1858eaf784a9
+        description: Configures macos_profile_uuid_assistant_support
+      macos_profile_uuid_accessibility:
+        type: str
+        required: false
+        default: fa365028-928a-4754-8868-323ab15fdb36
+        description: Configures macos_profile_uuid_accessibility
+      macos_profile_uuid_systempolicy:
+        type: str
+        required: false
+        default: c599ed89-eef2-4d28-bd82-282ebfab7f0b
+        description: Configures macos_profile_uuid_systempolicy
+      macos_profile_uuid_mcx:
+        type: str
+        required: false
+        default: e6869e34-ae93-4568-a201-f27e4924c33d
+        description: Configures macos_profile_uuid_mcx
+      macos_profile_uuid_universalcontrol:
+        type: str
+        required: false
+        default: 50d6d54f-bcc8-4592-8c12-1c484a019328
+        description: Configures macos_profile_uuid_universalcontrol
+      macos_profile_uuid_loginwindow:
+        type: str
+        required: false
+        default: 5f91cf70-6a6f-46f0-b575-d2d9ca671fc9
+        description: Configures macos_profile_uuid_loginwindow
+      macos_profile_uuid_terminal:
+        type: str
+        required: false
+        default: 1bff4682-bb1d-4413-b48f-04b3369ec3aa
+        description: Configures macos_profile_uuid_terminal
+      macos_profile_uuid_safari:
+        type: str
+        required: false
+        default: 26af9da3-b002-4621-abd7-28feb7c66ca7
+        description: Configures macos_profile_uuid_safari
+      macos_profile_uuid_passwordpolicy:
+        type: str
+        required: false
+        default: d687d3ce-761d-4968-870a-bc8b83b154da
+        description: Configures macos_profile_uuid_passwordpolicy
+      macos_profile_uuid_timemachine:
+        type: str
+        required: false
+        default: 0a6e6fb7-bcc4-42ef-93d7-795f712c197e
+        description: Configures macos_profile_uuid_timemachine
+      macos_profile_uuid_dock:
+        type: str
+        required: false
+        default: a61b1772-c6f6-40aa-a09f-6787a9463f92
+        description: Configures macos_profile_uuid_dock
+      macos_profile_uuid_screensaver:
+        type: str
+        required: false
+        default: 75786f5d-6536-4bcd-b20b-4b4a3b754cb4
+        description: Configures macos_profile_uuid_screensaver
+      macos_softwareupdate_automatic_download:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_softwareupdate_automatic_download
+      macos_softwareupdate_automatic_macos_updates:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_softwareupdate_automatic_macos_updates
+      macos_softwareupdate_automatic_app_updates:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_softwareupdate_automatic_app_updates
+      macos_softwareupdate_config_data_install:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_softwareupdate_config_data_install
+      macos_softwareupdate_critical_update_install:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_softwareupdate_critical_update_install
+      macos_appstore_autoupdate:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_appstore_autoupdate
+      macos_allow_cloud_desktop_and_documents:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_cloud_desktop_and_documents
+      macos_firewall_enable:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_firewall_enable
+      macos_firewall_stealth:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_firewall_stealth
+      macos_allow_airdrop:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_airdrop
+      macos_allow_airplay_incoming:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_airplay_incoming
+      macos_allow_content_caching:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_content_caching
+      macos_allow_media_sharing:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_media_sharing
+      macos_allow_media_sharing_modification:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_media_sharing_modification
+      macos_allow_external_intelligence_integrations:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_external_intelligence_integrations
+      macos_allow_external_intelligence_integrations_signin:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_external_intelligence_integrations_signin
+      macos_allow_writing_tools:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_writing_tools
+      macos_allow_mail_summary:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_mail_summary
+      macos_allow_notes_transcription:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_notes_transcription
+      macos_allow_notes_transcription_summary:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_notes_transcription_summary
+      macos_allow_diagnostic_submission:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_diagnostic_submission
+      macos_allow_apple_personalized_advertising:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_apple_personalized_advertising
+      macos_allow_game_center:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_game_center
+      macos_force_on_device_only_dictation:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_force_on_device_only_dictation
+      macos_allow_assistant:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_allow_assistant
+      macos_nomulticast_advertisements:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_nomulticast_advertisements
+      macos_show_system_services_location_icon:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_show_system_services_location_icon
+      macos_location_services_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_location_services_enabled
+      macos_auto_submit_diag_info:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_auto_submit_diag_info
+      macos_siri_data_sharing_opt_in_status:
+        type: int
+        required: false
+        default: 2
+        description: Configures macos_siri_data_sharing_opt_in_status
+      macos_search_queries_data_sharing_status:
+        type: int
+        required: false
+        default: 2
+        description: Configures macos_search_queries_data_sharing_status
+      macos_assistive_voice_improvement_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_assistive_voice_improvement_enabled
+      macos_allow_identified_developers:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_allow_identified_developers
+      macos_enable_assessment:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_enable_assessment
+      macos_dont_allow_fde_disable:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_dont_allow_fde_disable
+      macos_disable_guest_account:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_disable_guest_account
+      macos_enable_guest_account:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_enable_guest_account
+      macos_force_internet_sharing_off:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_force_internet_sharing_off
+      macos_universal_control_disabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_universal_control_disabled
+      macos_time_machine_auto_backup:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_time_machine_auto_backup
+      macos_time_machine_max_backup_age_hours:
+        type: int
+        required: false
+        default: 24
+        description: Configures macos_time_machine_max_backup_age_hours
+      macos_sleep_minutes:
+        type: int
+        required: false
+        default: 15
+        description: Configures macos_sleep_minutes
+      macos_display_sleep_minutes:
+        type: int
+        required: false
+        default: 10
+        description: Configures macos_display_sleep_minutes
+      macos_power_nap_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_power_nap_enabled
+      macos_wake_on_network_access_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_wake_on_network_access_enabled
+      macos_screensaver_idle_time:
+        type: int
+        required: false
+        default: 900
+        description: Configures macos_screensaver_idle_time
+      macos_screensaver_ask_for_password:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_screensaver_ask_for_password
+      macos_screensaver_ask_for_password_delay:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_screensaver_ask_for_password_delay
+      macos_hot_corner_top_left:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_hot_corner_top_left
+      macos_hot_corner_top_right:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_hot_corner_top_right
+      macos_hot_corner_bottom_left:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_hot_corner_bottom_left
+      macos_hot_corner_bottom_right:
+        type: int
+        required: false
+        default: 0
+        description: Configures macos_hot_corner_bottom_right
+      macos_automatic_login_disabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_automatic_login_disabled
+      macos_secure_keyboard_entry:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_secure_keyboard_entry
+      macos_safari_auto_open_safe_downloads:
+        type: bool
+        required: false
+        default: false
+        description: Configures macos_safari_auto_open_safe_downloads
+      macos_safari_warn_about_fraudulent_websites:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_safari_warn_about_fraudulent_websites
+      macos_safari_block_storage_policy:
+        type: int
+        required: false
+        default: 2
+        description: Configures macos_safari_block_storage_policy
+      macos_safari_webkit_storage_blocking_policy:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_safari_webkit_storage_blocking_policy
+      macos_safari_webkit_preferences_storage_blocking_policy:
+        type: int
+        required: false
+        default: 1
+        description: Configures macos_safari_webkit_preferences_storage_blocking_policy
+      macos_safari_private_click_measurement_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_safari_private_click_measurement_enabled
+      macos_safari_show_full_url:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_safari_show_full_url
+      macos_safari_show_status_bar:
+        type: bool
+        required: false
+        default: true
+        description: Configures macos_safari_show_status_bar

@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: DevSec Hardening Framework Team, Joseph Erdosy
+  description: Ansible role to harden macOS 26 Tahoe based on mac-baseline controls.
+  company: Hardening Framework Team
+  license: Apache License 2.0
+  min_ansible_version: "2.16"
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+  galaxy_tags:
+    - system
+    - security
+    - hardening
+    - macos
+dependencies: []

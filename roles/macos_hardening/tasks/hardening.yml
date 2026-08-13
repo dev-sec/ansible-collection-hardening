@@ -1,0 +1,51 @@
+---
+- name: Gather facts, if not present
+  ansible.builtin.setup:
+  when: not ansible_facts
+  tags:
+    - always
+
+- name: Import tasks for software updates
+  ansible.builtin.import_tasks: update.yml
+  tags: macos_update
+  when: macos_update_enabled | bool
+
+- name: Import tasks for sharing services
+  ansible.builtin.import_tasks: sharing.yml
+  tags: macos_sharing
+  when: macos_sharing_enabled | bool
+
+- name: Import tasks for network settings
+  ansible.builtin.import_tasks: network.yml
+  tags: macos_network
+  when: macos_network_enabled | bool
+
+- name: Import tasks for system settings
+  ansible.builtin.import_tasks: system.yml
+  tags: macos_system
+  when: macos_system_enabled | bool
+
+- name: Import tasks for security settings
+  ansible.builtin.import_tasks: security.yml
+  tags: macos_security
+  when: macos_security_enabled | bool
+
+- name: Import tasks for account policies
+  ansible.builtin.import_tasks: account.yml
+  tags: macos_account
+  when: macos_account_enabled | bool
+
+- name: Import tasks for auditing
+  ansible.builtin.import_tasks: audit.yml
+  tags: macos_audit
+  when: macos_audit_enabled | bool
+
+- name: Import tasks for Safari settings
+  ansible.builtin.import_tasks: safari.yml
+  tags: macos_safari
+  when: macos_safari_enabled | bool
+
+- name: Import tasks for configuration profiles
+  ansible.builtin.import_tasks: profile.yml
+  tags: macos_profile
+  when: macos_profile_enabled | bool

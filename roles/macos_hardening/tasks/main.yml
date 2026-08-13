@@ -1,0 +1,6 @@
+---
+- name: Include hardening tasks
+  ansible.builtin.include_tasks: hardening.yml
+  when: macos_hardening_enabled | bool
+  tags:
+    - always

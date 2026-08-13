@@ -1,0 +1,10 @@
+---
+- name: Restart locationd
+  ansible.builtin.command:
+    argv:
+      - /bin/launchctl
+      - kickstart
+      - -k
+      - system/com.apple.locationd
+  changed_when: true
+  become: true

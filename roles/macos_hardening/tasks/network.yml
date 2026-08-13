@@ -1,0 +1,46 @@
+---
+- name: Network | Enable Application Firewall
+  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+  changed_when: false
+
+- name: Network | Enable Firewall Stealth Mode
+  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+  changed_when: false
+
+- name: Network | Disable AirDrop
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowAirDrop
+    type: bool
+    value: false
+
+- name: Network | Disable AirPlay Receiver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowAirPlayIncomingRequests
+    type: bool
+    value: false
+
+- name: Network | Enable network time synchronization
+  ansible.builtin.command: /usr/sbin/systemsetup -setusingnetworktime on
+  changed_when: false
+
+- name: Network | Configure network time server
+  ansible.builtin.command: "/usr/sbin/systemsetup -setnetworktimeserver {{ macos_time_server | quote }}"
+  when: macos_time_server is defined and macos_time_server | length > 0
+  changed_when: false
+
+- name: Network | Disable mDNSResponder multicast advertisements
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.mDNSResponder
+    key: NoMulticastAdvertisements
+    type: bool
+    value: true
+
+- name: Network | Disable Apache HTTP server launchd service
+  ansible.builtin.command: /bin/launchctl disable system/org.apache.httpd
+  changed_when: false
+
+- name: Network | Disable NFS server daemon launchd service
+  ansible.builtin.command: /bin/launchctl disable system/com.apple.nfsd
+  changed_when: false
