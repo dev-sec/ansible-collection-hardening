@@ -67,4 +67,6 @@ jobs:
       - name: Test Playbook Apply
         working-directory: ansible_collections/devsec/hardening
         run: |
-          sudo env "PATH=$PATH" "ANSIBLE_ROLES_PATH=$GITHUB_WORKSPACE/ansible_collections/devsec/hardening/roles" ansible-playbook -i "localhost," -c local molecule/macos_hardening/converge.yml
+          sudo env "PATH=$PATH" \
+            "ANSIBLE_ROLES_PATH=$GITHUB_WORKSPACE/ansible_collections/devsec/hardening/roles" \
+            ansible-playbook -i "localhost," -c local molecule/macos_hardening/converge.yml

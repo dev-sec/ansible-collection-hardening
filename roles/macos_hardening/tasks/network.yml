@@ -48,8 +48,10 @@
     msg: "Notice: Network time configuration via systemsetup was requested but requires Full Disk Access (FDA) privileges."
   when:
     - macos_manage_network_time | bool
-    - (macos_nettime_result is defined and macos_nettime_result.rc != 0) or (macos_timeserver_result is defined and macos_timeserver_result.rc != 0)
-    - "'requires Full Disk Access' in (macos_nettime_result.stdout | default('')) or 'requires Full Disk Access' in (macos_timeserver_result.stdout | default(''))"
+    - (macos_nettime_result is defined and macos_nettime_result.rc != 0) or
+      (macos_timeserver_result is defined and macos_timeserver_result.rc != 0)
+    - "'requires Full Disk Access' in (macos_nettime_result.stdout | default('')) or
+       'requires Full Disk Access' in (macos_timeserver_result.stdout | default(''))"
 
 - name: Network | Disable mDNSResponder multicast advertisements
   community.general.osx_defaults:
