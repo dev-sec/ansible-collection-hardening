@@ -1,0 +1,80 @@
+---
+- name: System | Configure display sleep timeout
+  ansible.builtin.command: "/usr/bin/pmset -a displaysleep {{ macos_display_sleep_minutes }}"
+  changed_when: false
+
+- name: System | Configure system sleep timeout
+  ansible.builtin.command: "/usr/bin/pmset -a sleep {{ macos_sleep_minutes }}"
+  changed_when: false
+
+- name: System | Disable Power Nap on Intel Macs
+  ansible.builtin.command: /usr/bin/pmset -a powernap 0
+  when: ansible_architecture == 'x86_64'
+  changed_when: false
+
+- name: System | Disable Wake for Network Access on Apple Silicon
+  ansible.builtin.command: /usr/bin/pmset -a womp 0
+  when: ansible_architecture != 'x86_64'
+  changed_when: false
+
+- name: System | Disable Wake for Network Access on Intel
+  ansible.builtin.command: /usr/bin/pmset -a wakenetworkaccess 0
+  when: ansible_architecture == 'x86_64'
+  changed_when: false
+
+- name: System | Configure screen saver idle timeout
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: idleTime
+    type: int
+    value: "{{ macos_screensaver_idle_time }}"
+
+- name: System | Require password immediately after screen saver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: askForPassword
+    type: int
+    value: 1
+
+- name: System | Configure password delay after screen saver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: askForPasswordDelay
+    type: int
+    value: "{{ macos_screensaver_ask_for_password_delay }}"
+
+- name: System | Disable Help Apple Improve Search
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Search Queries Data Sharing Status"
+    type: int
+    value: 2
+
+- name: System | Enable on-device dictation processing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.speech.recognition.AppleSpeechRecognition.prefs
+    key: DictationOnDeviceOnly
+    type: bool
+    value: true
+
+- name: System | Configure login window display to Name and Password
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: SHOWFULLNAME
+    type: bool
+    value: "{{ macos_show_fullname_loginwindow }}"
+
+- name: System | Disable password hints on login window
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: RetriesUntilHint
+    type: int
+    value: "{{ macos_retries_until_hint }}"
+
+- name: System | Configure login window message
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: LoginwindowText
+    type: string
+    value: "{{ macos_login_window_message }}"
+  when: macos_login_window_message is defined and macos_login_window_message | length > 0

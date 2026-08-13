@@ -1,0 +1,62 @@
+---
+- name: Account | Disable built-in Guest account
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: GuestEnabled
+    type: bool
+    value: false
+
+- name: Account | Check if SMB server preference file exists
+  ansible.builtin.stat:
+    path: /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist
+  register: macos_smb_plist
+
+- name: Account | Disable Guest access to shared folders
+  community.general.osx_defaults:
+    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    key: AllowGuestAccess
+    type: bool
+    value: false
+  when: macos_smb_plist.stat.exists
+
+- name: Account | Disable automatic login
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: autoLoginUser
+    state: absent
+
+- name: Account | Discover local user accounts on target
+  ansible.builtin.command: /usr/bin/dscl . -list /Users
+  register: macos_local_users
+  changed_when: false
+
+- name: Account | Check password hint for user accounts
+  ansible.builtin.command: "/usr/bin/dscl . -read /Users/{{ item }} hint"
+  loop: "{{ macos_local_users.stdout_lines | default([]) }}"
+  when:
+    - item not in ['Shared', 'Guest', 'root', 'daemon', 'nobody']
+    - not item.startswith('_')
+  register: macos_user_hints
+  changed_when: false
+  failed_when: macos_user_hints.rc not in [0, 56]
+
+- name: Account | Remove password hint from user accounts
+  ansible.builtin.command: "/usr/bin/dscl . -delete /Users/{{ item.item }} hint"
+  loop: "{{ macos_user_hints.results | default([]) }}"
+  when:
+    - item.rc is defined and item.rc == 0
+    - item.stdout is defined and 'hint:' in item.stdout
+  changed_when: false
+
+- name: Account | Enforce password security policy via pwpolicy
+  ansible.builtin.command: >-
+    /usr/bin/pwpolicy -setglobalpolicy
+    "minChars={{ macos_password_min_length }}
+    maxFailedAuthentications={{ macos_password_max_failed_attempts }}
+    requiresAlpha={{ macos_password_require_alpha }}
+    requiresNumeric={{ macos_password_require_numeric }}
+    requiresSymbol={{ macos_password_require_symbol }}
+    requiresMixedCase={{ macos_password_require_mixed_case }}
+    passwordHistoryDepth={{ macos_password_history_depth }}
+    expiresEveryNDays={{ macos_password_max_age_days }}"
+  changed_when: false

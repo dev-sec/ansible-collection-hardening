@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+{% macro bool_value(val) -%}{% if val | bool %}<true/>{% else %}<false/>{% endif %}{%- endmacro %}
+  <key>PayloadContent</key>
+  <array>
+{% if macos_profile_softwareupdate_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.SoftwareUpdate</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.softwareupdate') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_softwareupdate | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Software Update</string>
+      <key>AutomaticDownload</key>
+      {{ bool_value(macos_softwareupdate_automatic_download) }}
+      <key>AutomaticallyInstallMacOSUpdates</key>
+      {{ bool_value(macos_softwareupdate_automatic_macos_updates) }}
+      <key>AutomaticallyInstallAppUpdates</key>
+      {{ bool_value(macos_softwareupdate_automatic_app_updates) }}
+      <key>ConfigDataInstall</key>
+      {{ bool_value(macos_softwareupdate_config_data_install) }}
+      <key>CriticalUpdateInstall</key>
+      {{ bool_value(macos_softwareupdate_critical_update_install) }}
+    </dict>
+{% endif %}
+{% if macos_profile_firewall_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.security.firewall</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.firewall') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_firewall | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Firewall</string>
+      <key>EnableFirewall</key>
+      {{ bool_value(macos_firewall_enable) }}
+      <key>EnableStealthMode</key>
+      {{ bool_value(macos_firewall_stealth) }}
+    </dict>
+{% endif %}
+{% if macos_profile_applicationaccess_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.applicationaccess</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.applicationaccess') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_applicationaccess | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Application Access</string>
+      <key>allowCloudDesktopAndDocuments</key>
+      {{ bool_value(macos_allow_cloud_desktop_and_documents) }}
+      <key>allowAirDrop</key>
+      {{ bool_value(macos_allow_airdrop) }}
+      <key>allowAirPlayIncomingRequests</key>
+      {{ bool_value(macos_allow_airplay_incoming) }}
+      <key>allowContentCaching</key>
+      {{ bool_value(macos_allow_content_caching) }}
+      <key>allowMediaSharing</key>
+      {{ bool_value(macos_allow_media_sharing) }}
+      <key>allowMediaSharingModification</key>
+      {{ bool_value(macos_allow_media_sharing_modification) }}
+      <key>allowExternalIntelligenceIntegrations</key>
+      {{ bool_value(macos_allow_external_intelligence_integrations) }}
+      <key>allowExternalIntelligenceIntegrationsSignin</key>
+      {{ bool_value(macos_allow_external_intelligence_integrations_signin) }}
+      <key>allowWritingTools</key>
+      {{ bool_value(macos_allow_writing_tools) }}
+      <key>allowMailSummary</key>
+      {{ bool_value(macos_allow_mail_summary) }}
+      <key>allowNotesTranscription</key>
+      {{ bool_value(macos_allow_notes_transcription) }}
+      <key>allowNotesTranscriptionSummary</key>
+      {{ bool_value(macos_allow_notes_transcription_summary) }}
+      <key>allowApplePersonalizedAdvertising</key>
+      {{ bool_value(macos_allow_apple_personalized_advertising) }}
+      <key>allowGameCenter</key>
+      {{ bool_value(macos_allow_game_center) }}
+      <key>forceOnDeviceOnlyDictation</key>
+      {{ bool_value(macos_force_on_device_only_dictation) }}
+      <key>allowAssistant</key>
+      {{ bool_value(macos_allow_assistant) }}
+    </dict>
+{% endif %}
+{% if macos_profile_mdns_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.mDNSResponder</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.mdns') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_mdns | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>mDNSResponder</string>
+      <key>NoMulticastAdvertisements</key>
+      {{ bool_value(macos_nomulticast_advertisements) }}
+    </dict>
+{% endif %}
+{% if macos_profile_locationmenu_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.locationmenu</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.locationmenu') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_locationmenu | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Location Menu</string>
+      <key>ShowSystemServices</key>
+      {{ bool_value(macos_show_system_services_location_icon) }}
+      <key>LocationServicesEnabled</key>
+      {{ bool_value(macos_location_services_enabled) }}
+    </dict>
+{% endif %}
+{% if macos_profile_submitdiag_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.SubmitDiagInfo</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.submitdiag') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_submitdiag | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Submit Diagnostics</string>
+      <key>AutoSubmit</key>
+      {{ bool_value(macos_auto_submit_diag_info) }}
+      <key>AutoSubmitThirdParty</key>
+      {{ bool_value(macos_auto_submit_diag_info) }}
+      <key>ShareiCloudAnalytics</key>
+      {{ bool_value(macos_auto_submit_diag_info) }}
+    </dict>
+{% endif %}
+{% if macos_profile_assistant_support_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.assistant.support</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.assistant_support') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_assistant_support | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Assistant Support</string>
+      <key>Siri Data Sharing Opt-In Status</key>
+      <integer>{{ macos_siri_data_sharing_opt_in_status }}</integer>
+      <key>Search Queries Data Sharing Status</key>
+      <integer>{{ macos_search_queries_data_sharing_status }}</integer>
+    </dict>
+{% endif %}
+{% if macos_profile_systempolicy_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.systempolicy.control</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.systempolicy') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_systempolicy | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>System Policy Control</string>
+      <key>AllowIdentifiedDevelopers</key>
+      {{ bool_value(macos_allow_identified_developers) }}
+      <key>EnableAssessment</key>
+      {{ bool_value(macos_enable_assessment) }}
+    </dict>
+{% endif %}
+{% if macos_profile_mcx_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.MCX</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.mcx') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_mcx | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>MCX</string>
+      <key>dontAllowFDEDisable</key>
+      {{ bool_value(macos_dont_allow_fde_disable) }}
+      <key>disableGuestAccount</key>
+      {{ bool_value(macos_disable_guest_account) }}
+      <key>EnableGuestAccount</key>
+      {{ bool_value(macos_enable_guest_account) }}
+      <key>forceInternetSharingOff</key>
+      {{ bool_value(macos_force_internet_sharing_off) }}
+    </dict>
+{% endif %}
+{% if macos_profile_universalcontrol_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.universalcontrol</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.universalcontrol') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_universalcontrol | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Universal Control</string>
+      <key>DisableUniversalControl</key>
+      {{ bool_value(macos_universal_control_disabled) }}
+    </dict>
+{% endif %}
+{% if macos_profile_loginwindow_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.loginwindow</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.loginwindow') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_loginwindow | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Login Window</string>
+      <key>SHOWFULLNAME</key>
+      {{ bool_value(macos_show_fullname_loginwindow) }}
+      <key>RetriesUntilHint</key>
+      <integer>{{ macos_retries_until_hint }}</integer>
+{% if macos_login_window_message is defined and macos_login_window_message | length > 0 %}
+      <key>LoginwindowText</key>
+      <string>{{ macos_login_window_message | e }}</string>
+{% endif %}
+    </dict>
+{% endif %}
+{% if macos_profile_terminal_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.Terminal</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.terminal') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_terminal | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Terminal</string>
+      <key>SecureKeyboardEntry</key>
+      {{ bool_value(macos_secure_keyboard_entry) }}
+    </dict>
+{% endif %}
+{% if macos_profile_safari_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.Safari</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.safari') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_safari | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Safari</string>
+      <key>AutoOpenSafeDownloads</key>
+      {{ bool_value(macos_safari_auto_open_safe_downloads) }}
+      <key>WarnAboutFraudulentWebsites</key>
+      {{ bool_value(macos_safari_warn_about_fraudulent_websites) }}
+      <key>BlockStoragePolicy</key>
+      <integer>{{ macos_safari_block_storage_policy }}</integer>
+      <key>WebKitPreferences.privateClickMeasurementEnabled</key>
+      {{ bool_value(macos_safari_private_click_measurement_enabled) }}
+      <key>ShowFullURLInSmartSearchField</key>
+      {{ bool_value(macos_safari_show_full_url) }}
+      <key>ShowOverlayStatusBar</key>
+      {{ bool_value(macos_safari_show_status_bar) }}
+    </dict>
+{% endif %}
+{% if macos_profile_screensaver_enabled | bool %}
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.screensaver</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>{{ (macos_profile_identifier ~ '.screensaver') | e }}</string>
+      <key>PayloadUUID</key>
+      <string>{{ macos_profile_uuid_screensaver | e }}</string>
+      <key>PayloadEnabled</key>
+      <true/>
+      <key>PayloadDisplayName</key>
+      <string>Screen Saver</string>
+      <key>idleTime</key>
+      <integer>{{ macos_screensaver_idle_time }}</integer>
+      <key>askForPassword</key>
+      <integer>{% if macos_screensaver_ask_for_password | bool %}1{% else %}0{% endif %}</integer>
+      <key>askForPasswordDelay</key>
+      <integer>{{ macos_screensaver_ask_for_password_delay }}</integer>
+    </dict>
+{% endif %}
+  </array>
+  <key>PayloadDescription</key>
+  <string>{{ macos_profile_description | e }}</string>
+  <key>PayloadDisplayName</key>
+  <string>{{ macos_profile_display_name | e }}</string>
+  <key>PayloadIdentifier</key>
+  <string>{{ macos_profile_identifier | e }}</string>
+  <key>PayloadOrganization</key>
+  <string>{{ macos_profile_organization | e }}</string>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>{{ macos_profile_uuid | e }}</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+</dict>
+</plist>

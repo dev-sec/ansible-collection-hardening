@@ -1,0 +1,103 @@
+---
+- name: Security | Enable Location Services
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.locationmenu
+    key: LocationServicesEnabled
+    type: bool
+    value: true
+
+- name: Security | Enable location icon in Control Center
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.locationmenu
+    key: ShowSystemServices
+    type: bool
+    value: true
+
+- name: Security | Disable Mac Analytics submission
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SubmitDiagInfo
+    key: AutoSubmit
+    type: bool
+    value: false
+
+- name: Security | Disable Siri & Dictation audio data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Siri Data Sharing Opt-In Status"
+    type: int
+    value: 2
+
+- name: Security | Disable Assistive Voice data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.accessibility
+    key: AXAssistiveVoiceImprovementOptIn
+    type: bool
+    value: false
+
+- name: Security | Disable crash log sharing with app developers
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SubmitDiagInfo
+    key: AutoSubmitThirdParty
+    type: bool
+    value: false
+
+- name: Security | Disable iCloud analytics sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SubmitDiagInfo
+    key: ShareiCloudAnalytics
+    type: bool
+    value: false
+
+- name: Security | Disable Apple personalized advertising
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowApplePersonalizedAdvertising
+    type: bool
+    value: false
+
+- name: Security | Enable Gatekeeper assessment
+  ansible.builtin.command: /usr/sbin/spctl --enable
+  register: macos_spctl_result
+  changed_when: false
+  failed_when: macos_spctl_result.rc != 0 and 'no longer supported' not in macos_spctl_result.stderr
+
+- name: Security | Require administrator password for System Preferences
+  ansible.builtin.command: /usr/bin/security authorizationdb write system.preferences "<date></date><string>require administrator password</string><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/>"
+  register: macos_authdb_result
+  changed_when: false
+  failed_when: macos_authdb_result.rc != 0 and macos_authdb_result.rc != 255
+
+- name: Security | Discover user home directories on remote target
+  ansible.builtin.find:
+    paths: /Users
+    file_type: directory
+    excludes: ['Shared', 'Guest']
+  register: macos_user_homes
+
+- name: Security | Restrict permissions on user home folders
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    mode: '0700'
+  loop: "{{ macos_user_homes.files | default([]) }}"
+  when: macos_user_homes.files is defined and macos_user_homes.files | length > 0
+
+- name: Security | Configure sudo security drop-in file
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ macos_sudoers_file }}"
+    content: |
+      Defaults timestamp_timeout={{ macos_sudo_timestamp_timeout }}
+      Defaults tty_tickets
+      Defaults syslog=auth
+    owner: root
+    group: wheel
+    mode: '0440'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: Security | Configure login window PolicyBanner
+  ansible.builtin.copy:
+    dest: /Library/Security/PolicyBanner.txt
+    content: "{{ macos_policy_banner_content }}"
+    owner: root
+    group: wheel
+    mode: '0644'
+  when: macos_policy_banner_content is defined and macos_policy_banner_content | length > 0
