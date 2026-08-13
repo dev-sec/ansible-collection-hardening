@@ -66,10 +66,9 @@
     - "'no longer supported' in (macos_spctl_result.stderr | default(''))"
 
 - name: Security | Require administrator password for System Preferences
-  ansible.builtin.command: >-
-    /usr/bin/security authorizationdb write system.preferences
-    "<date></date><string>require administrator password</string>"
-    "<key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/>"
+  ansible.builtin.command:
+    cmd: /usr/bin/security authorizationdb write system.preferences
+    stdin: "<plist version=\"1.0\"><dict><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/></dict></plist>"
   register: macos_authdb_result
   when: macos_manage_authorizationdb | bool
   changed_when: false
