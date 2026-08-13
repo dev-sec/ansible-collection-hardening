@@ -1,50 +1,43 @@
 ---
 - name: Security | Enable Location Services
   community.general.osx_defaults:
-    domain: /Library/Preferences/com.apple.locationmenu
+    domain: /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd
     key: LocationServicesEnabled
-    type: bool
-    value: true
+    type: int
+    value: 1
 
-- name: Security | Enable location icon in Control Center
-  community.general.osx_defaults:
-    domain: /Library/Preferences/com.apple.locationmenu
-    key: ShowSystemServices
-    type: bool
-    value: true
-
-- name: Security | Disable Mac Analytics submission
+- name: Security | Disable Analytics & Improvements data sharing
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.SubmitDiagInfo
     key: AutoSubmit
     type: bool
     value: false
 
-- name: Security | Disable Siri & Dictation audio data sharing
+- name: Security | Disable Siri voice assistant
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.assistant.support
-    key: "Siri Data Sharing Opt-In Status"
+    key: "Assistant Enabled"
+    type: bool
+    value: false
+
+- name: Security | Disable Siri data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Siri Data Sharing Opt In Status"
     type: int
     value: 2
 
-- name: Security | Disable Assistive Voice data sharing
+- name: Security | Restrict Advertising tracking
   community.general.osx_defaults:
-    domain: /Library/Preferences/com.apple.accessibility
-    key: AXAssistiveVoiceImprovementOptIn
+    domain: /Library/Preferences/com.apple.AdLib
+    key: allowApplePersonalizedAdvertising
     type: bool
     value: false
 
-- name: Security | Disable crash log sharing with app developers
+- name: Security | Disable Apple Intelligence cloud sync
   community.general.osx_defaults:
-    domain: /Library/Preferences/com.apple.SubmitDiagInfo
-    key: AutoSubmitThirdParty
-    type: bool
-    value: false
-
-- name: Security | Disable iCloud analytics sharing
-  community.general.osx_defaults:
-    domain: /Library/Preferences/com.apple.SubmitDiagInfo
-    key: ShareiCloudAnalytics
+    domain: /Library/Preferences/com.apple.intelligence
+    key: cloudSyncEnabled
     type: bool
     value: false
 
@@ -59,10 +52,15 @@
   ansible.builtin.command: /usr/sbin/spctl --enable
   register: macos_spctl_result
   changed_when: false
-  failed_when: macos_spctl_result.rc != 0 and 'no longer supported' not in macos_spctl_result.stderr
+  failed_when:
+    - macos_spctl_result.rc != 0
+    - "'no longer supported' not in macos_spctl_result.stderr"
 
 - name: Security | Require administrator password for System Preferences
-  ansible.builtin.command: /usr/bin/security authorizationdb write system.preferences "<date></date><string>require administrator password</string><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/>"
+  ansible.builtin.command: >-
+    /usr/bin/security authorizationdb write system.preferences
+    "<date></date><string>require administrator password</string>"
+    "<key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/>"
   register: macos_authdb_result
   changed_when: false
   failed_when: macos_authdb_result.rc != 0 and macos_authdb_result.rc != 255
@@ -83,21 +81,25 @@
 
 - name: Security | Configure sudo security drop-in file
   ansible.builtin.copy:
-    dest: "/etc/sudoers.d/{{ macos_sudoers_file }}"
+    dest: /etc/sudoers.d/sudoers_security
     content: |
       Defaults timestamp_timeout={{ macos_sudo_timestamp_timeout }}
       Defaults tty_tickets
-      Defaults syslog=auth
     owner: root
     group: wheel
     mode: '0440'
-    validate: '/usr/sbin/visudo -cf %s'
 
-- name: Security | Configure login window PolicyBanner
+- name: Security | Create PolicyBanner text file if warning content specified
   ansible.builtin.copy:
     dest: /Library/Security/PolicyBanner.txt
-    content: "{{ macos_policy_banner_content }}"
+    content: "{{ macos_policy_banner_content }}\n"
     owner: root
     group: wheel
     mode: '0644'
-  when: macos_policy_banner_content is defined and macos_policy_banner_content | length > 0
+  when: macos_policy_banner_content | default('') | length > 0
+
+- name: Security | Ensure PolicyBanner file absent if no warning content specified
+  ansible.builtin.file:
+    path: /Library/Security/PolicyBanner.txt
+    state: absent
+  when: macos_policy_banner_content | default('') | length == 0

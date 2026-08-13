@@ -33,11 +33,10 @@ jobs:
     env:
       PY_COLORS: 1
       ANSIBLE_FORCE_COLOR: 1
+      ANSIBLE_ROLES_PATH: ${{ github.workspace }}/roles
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          path: ansible_collections/devsec/hardening
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -45,21 +44,20 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        working-directory: ansible_collections/devsec/hardening
+        run: |
+          pip install -r requirements.txt
+          ansible-galaxy collection install community.general
 
       - name: Validate Role Defaults & Argument Specs
         run: |
-          python -c "import yaml; yaml.safe_load(open('roles/macos_hardening/defaults/main.yml')); yaml.safe_load(open('roles/macos_hardening/meta/argument_specs.yml'))"
-        working-directory: ansible_collections/devsec/hardening
+          python -c "import yaml; yaml.safe_load(open('roles/macos_hardening/defaults/main.yml'))"
+          python -c "import yaml; yaml.safe_load(open('roles/macos_hardening/meta/argument_specs.yml'))"
 
       - name: Test Playbook Check Mode
         run: |
           ansible-playbook -i "localhost," -c local molecule/macos_hardening/converge.yml --check
-        working-directory: ansible_collections/devsec/hardening
         continue-on-error: true
 
       - name: Test Playbook Apply
         run: |
-          sudo ansible-playbook -i "localhost," -c local molecule/macos_hardening/converge.yml
-        working-directory: ansible_collections/devsec/hardening
+          sudo env "PATH=$PATH" "ANSIBLE_ROLES_PATH=$GITHUB_WORKSPACE/roles" ansible-playbook -i "localhost," -c local molecule/macos_hardening/converge.yml

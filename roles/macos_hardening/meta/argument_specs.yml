@@ -2,9 +2,10 @@ argument_specs:
   main:
     short_description: DevSec macOS hardening role argument specification
     description:
-    - Defines argument specifications for the DevSec macOS hardening role.
+      - Defines argument specifications for the DevSec macOS hardening role.
     author:
-    - DevSec Hardening Framework Team
+      - DevSec Hardening Framework Team
+      - Joseph Erdosy
     options:
       macos_hardening_enabled:
         type: bool

@@ -37,6 +37,9 @@
     regexp: '^/var/log/install\.log'
     line: "/var/log/install.log                       640  {{ macos_install_log_ttl }}   *    @T00  J"
     create: true
+    owner: root
+    group: wheel
+    mode: '0644'
 
 - name: Audit | Restrict permissions on audit directory
   ansible.builtin.file:
