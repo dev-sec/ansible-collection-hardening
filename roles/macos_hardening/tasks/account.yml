@@ -1,29 +1,30 @@
 ---
-- name: Account | Disable built-in Guest account
+- name: Account | Configure built-in Guest account
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: GuestEnabled
     type: bool
-    value: false
+    value: "{{ macos_guest_account_enabled | bool }}"
 
 - name: Account | Check if SMB server preference file exists
   ansible.builtin.stat:
     path: /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist
   register: macos_smb_plist
 
-- name: Account | Disable Guest access to shared folders
+- name: Account | Configure Guest access to shared folders
   community.general.osx_defaults:
     domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
     key: AllowGuestAccess
     type: bool
-    value: false
-  when: macos_smb_plist.stat.exists
+    value: "{{ macos_guest_file_sharing_enabled | bool }}"
+  when: macos_guest_file_sharing_enabled | bool or macos_smb_plist.stat.exists
 
 - name: Account | Disable automatic login
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.loginwindow
     key: autoLoginUser
     state: absent
+  when: macos_automatic_login_disabled | bool
 
 - name: Account | Discover local user accounts on target
   ansible.builtin.command: /usr/bin/dscl . -list /Users
