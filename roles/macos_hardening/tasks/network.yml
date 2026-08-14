@@ -1,30 +1,42 @@
 ---
-- name: Network | Enable Application Firewall
-  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+- name: Network | Configure Application Firewall state
+  ansible.builtin.command:
+    argv:
+      - /usr/libexec/ApplicationFirewall/socketfilterfw
+      - --setglobalstate
+      - "{{ 'on' if macos_firewall_enabled | bool else 'off' }}"
   changed_when: false
 
-- name: Network | Enable Firewall Stealth Mode
-  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+- name: Network | Configure Firewall Stealth Mode
+  ansible.builtin.command:
+    argv:
+      - /usr/libexec/ApplicationFirewall/socketfilterfw
+      - --setstealthmode
+      - "{{ 'on' if macos_firewall_stealth_enabled | bool else 'off' }}"
   changed_when: false
 
-- name: Network | Disable AirDrop
+- name: Network | Configure AirDrop
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.applicationaccess
     key: allowAirDrop
     type: bool
-    value: false
+    value: "{{ macos_airdrop_enabled | bool }}"
 
-- name: Network | Disable AirPlay Receiver
+- name: Network | Configure AirPlay Receiver
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.applicationaccess
     key: allowAirPlayIncomingRequests
     type: bool
-    value: false
+    value: "{{ macos_airplay_receiver_enabled | bool }}"
 
-- name: Network | Enable network time synchronization
-  ansible.builtin.command: /usr/sbin/systemsetup -setusingnetworktime on
+- name: Network | Configure network time synchronization
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/systemsetup
+      - -setusingnetworktime
+      - "{{ 'on' if macos_network_time_enabled | bool else 'off' }}"
   register: macos_nettime_result
-  when: macos_manage_network_time | bool
+  when: macos_network_time_manage | bool
   changed_when: false
   failed_when:
     - macos_nettime_result.rc != 0
@@ -32,10 +44,15 @@
     - "'requires Full Disk Access' not in macos_nettime_result.stderr"
 
 - name: Network | Configure network time server
-  ansible.builtin.command: "/usr/sbin/systemsetup -setnetworktimeserver {{ macos_time_server | quote }}"
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/systemsetup
+      - -setnetworktimeserver
+      - "{{ macos_network_time_server }}"
   when:
-    - macos_manage_network_time | bool
-    - macos_time_server is defined and macos_time_server | length > 0
+    - macos_network_time_manage | bool
+    - macos_network_time_enabled | bool
+    - macos_network_time_server is defined and macos_network_time_server | length > 0
   register: macos_timeserver_result
   changed_when: false
   failed_when:
@@ -45,25 +62,31 @@
 
 - name: Network | Report missing Full Disk Access for network time setup
   ansible.builtin.debug:
-    msg: "Notice: Network time configuration via systemsetup was requested but requires Full Disk Access (FDA) privileges."
+    msg: >-
+      Notice: Network time configuration via systemsetup was requested
+      but requires Full Disk Access (FDA) privileges.
   when:
-    - macos_manage_network_time | bool
+    - macos_network_time_manage | bool
     - (macos_nettime_result is defined and macos_nettime_result.rc != 0) or
       (macos_timeserver_result is defined and macos_timeserver_result.rc != 0)
     - "'requires Full Disk Access' in (macos_nettime_result.stdout | default('')) or
        'requires Full Disk Access' in (macos_timeserver_result.stdout | default(''))"
 
-- name: Network | Disable mDNSResponder multicast advertisements
+- name: Network | Configure mDNSResponder multicast advertisements
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.mDNSResponder
     key: NoMulticastAdvertisements
     type: bool
-    value: true
+    value: "{{ not (macos_bonjour_multicast_advertisements_enabled | bool) }}"
 
-- name: Network | Disable Apache HTTP server launchd service
-  ansible.builtin.command: /bin/launchctl disable system/org.apache.httpd
-  changed_when: false
+- name: Network | Configure Apache HTTP server launchd service state
+  community.general.launchd:
+    name: org.apache.httpd
+    state: "{{ 'started' if macos_apache_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_apache_enabled | bool }}"
 
-- name: Network | Disable NFS server daemon launchd service
-  ansible.builtin.command: /bin/launchctl disable system/com.apple.nfsd
-  changed_when: false
+- name: Network | Configure NFS server daemon launchd service state
+  community.general.launchd:
+    name: com.apple.nfsd
+    state: "{{ 'started' if macos_nfs_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_nfs_enabled | bool }}"

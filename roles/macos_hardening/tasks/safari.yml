@@ -4,46 +4,46 @@
     domain: /Library/Preferences/com.apple.Safari
     key: AutoOpenSafeDownloads
     type: bool
-    value: false
+    value: "{{ macos_safari_auto_open_safe_downloads_enabled | bool }}"
 
 - name: Safari | Enable fraudulent website warning in Safari
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Safari
     key: WarnAboutFraudulentWebsites
     type: bool
-    value: true
+    value: "{{ macos_safari_warn_about_fraudulent_websites_enabled | bool }}"
 
 - name: Safari | Enable cross-site tracking prevention in Safari
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Safari
     key: BlockStoragePolicy
     type: int
-    value: 2
+    value: "{{ macos_safari_block_storage_policy }}"
 
 - name: Safari | Enable Private Click Measurement advertising protection
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Safari
     key: "WebKitPreferences.privateClickMeasurementEnabled"
     type: bool
-    value: true
+    value: "{{ macos_safari_private_click_measurement_enabled | bool }}"
 
 - name: Safari | Enable full website address display in Safari
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Safari
     key: ShowFullURLInSmartSearchField
     type: bool
-    value: true
+    value: "{{ macos_safari_show_full_url_enabled | bool }}"
 
 - name: Safari | Enable status bar in Safari
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Safari
     key: ShowOverlayStatusBar
     type: bool
-    value: true
+    value: "{{ macos_safari_show_status_bar_enabled | bool }}"
 
 - name: Safari | Enable Secure Keyboard Entry in Terminal
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.Terminal
     key: SecureKeyboardEntry
     type: bool
-    value: true
+    value: "{{ macos_terminal_secure_keyboard_entry_enabled | bool }}"
