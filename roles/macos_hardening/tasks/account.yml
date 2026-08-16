@@ -47,7 +47,13 @@
   when:
     - item.rc is defined and item.rc == 0
     - item.stdout is defined and 'hint:' in item.stdout
+  changed_when: true
+
+- name: Account | Read global password security policy via pwpolicy
+  ansible.builtin.command: /usr/bin/pwpolicy -getglobalpolicy
+  register: macos_current_pwpolicy
   changed_when: false
+  failed_when: false
 
 - name: Account | Enforce password security policy via pwpolicy
   ansible.builtin.command: >-
@@ -60,4 +66,13 @@
     requiresMixedCase={{ macos_password_require_mixed_case }}
     passwordHistoryDepth={{ macos_password_history_depth }}
     expiresEveryNDays={{ macos_password_max_age_days }}"
-  changed_when: false
+  when: >-
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)minChars=' ~ macos_password_min_length ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)maxFailedAuthentications=' ~ macos_password_max_failed_attempts ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresAlpha=' ~ macos_password_require_alpha ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresNumeric=' ~ macos_password_require_numeric ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresSymbol=' ~ macos_password_require_symbol ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresMixedCase=' ~ macos_password_require_mixed_case ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)passwordHistoryDepth=' ~ macos_password_history_depth ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)expiresEveryNDays=' ~ macos_password_max_age_days ~ '(\\s|$)')
+  changed_when: true

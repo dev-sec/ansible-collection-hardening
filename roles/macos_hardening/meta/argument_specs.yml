@@ -99,11 +99,16 @@ argument_specs:
         default: 30
         description: Number of days to defer non-critical software updates when deferment is enabled.
 
+      macos_screen_sharing_manage:
+        type: bool
+        required: false
+        default: false
+        description: Whether this role manages Screen Sharing (launchd listener state).
       macos_screen_sharing_enabled:
         type: bool
         required: false
         default: false
-        description: Desired state for Screen Sharing service.
+        description: Desired state for Screen Sharing service when managed.
       macos_file_sharing_enabled:
         type: bool
         required: false

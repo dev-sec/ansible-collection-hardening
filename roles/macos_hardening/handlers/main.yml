@@ -1,10 +1,20 @@
 ---
-- name: Restart locationd
+- name: Service | Restart locationd
+  listen: restart_locationd
   ansible.builtin.command:
     argv:
       - /bin/launchctl
       - kickstart
       - -k
       - system/com.apple.locationd
+  changed_when: true
+  become: true
+
+- name: Service | Reload auditd
+  listen: reload_auditd
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/audit
+      - -s
   changed_when: true
   become: true

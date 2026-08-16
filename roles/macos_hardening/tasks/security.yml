@@ -5,6 +5,7 @@
     key: LocationServicesEnabled
     type: int
     value: "{{ 1 if macos_location_services_enabled | bool else 0 }}"
+  notify: restart_locationd
 
 - name: Security | Configure Analytics & Improvements data sharing
   community.general.osx_defaults:
@@ -68,22 +69,24 @@
     - macos_spctl_result is defined
     - "'no longer supported' in (macos_spctl_result.stderr | default(''))"
 
+- name: Security | Read system.preferences authorizationdb state
+  ansible.builtin.command: /usr/bin/security authorizationdb read system.preferences
+  register: macos_authdb_prefs_read
+  when: macos_authorizationdb_system_preferences_manage | bool
+  changed_when: false
+  failed_when: false
+
 - name: Security | Require administrator password for System Preferences
   ansible.builtin.command:
     cmd: /usr/bin/security authorizationdb write system.preferences
     stdin: "<plist version=\"1.0\"><dict><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/></dict></plist>"
-  register: macos_authdb_result
-  when: macos_authorizationdb_system_preferences_manage | bool
-  changed_when: false
-  failed_when: macos_authdb_result.rc != 0 and macos_authdb_result.rc != 255
-
-- name: Security | Report non-interactive GUI limitation for authorizationdb
-  ansible.builtin.debug:
-    msg: "Notice: System Preferences authorizationdb configuration was requested but requires an active GUI Security session."
   when:
     - macos_authorizationdb_system_preferences_manage | bool
-    - macos_authdb_result is defined
-    - macos_authdb_result.rc == 255
+    - >-
+      macos_authdb_prefs_read.stdout is not search('<key>class</key>\s*<string>user</string>') or
+      macos_authdb_prefs_read.stdout is not search('<key>group</key>\s*<string>admin</string>') or
+      macos_authdb_prefs_read.stdout is not search('<key>shared</key>\s*<false\s*/>')
+  changed_when: true
 
 - name: Security | Discover user home directories on remote target
   ansible.builtin.find:
