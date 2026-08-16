@@ -1,7 +1,17 @@
 ---
-- name: Audit | Enable auditd launchd service
-  ansible.builtin.command: /bin/launchctl load -w /System/Library/LaunchDaemons/com.apple.auditd.plist
+- name: Audit | Read auditd launchd service status
+  ansible.builtin.command: /bin/launchctl print-disabled system
+  register: macos_auditd_disabled_status
   changed_when: false
+  failed_when: false
+
+- name: Audit | Enable auditd launchd service
+  ansible.builtin.command: /bin/launchctl enable system/com.apple.auditd
+  when: >-
+    '"com.apple.auditd" => true' in (macos_auditd_disabled_status.stdout | default('')) or
+    ('"com.apple.auditd" => enabled' not in (macos_auditd_disabled_status.stdout | default('')) and
+     '"com.apple.auditd" => false' not in (macos_auditd_disabled_status.stdout | default('')))
+  changed_when: true
 
 - name: Audit | Ensure audit security directory exists
   ansible.builtin.file:
@@ -20,6 +30,7 @@
     owner: root
     group: wheel
     mode: '0440'
+  notify: reload_auditd
 
 - name: Audit | Configure audit log retention period
   ansible.builtin.lineinfile:
@@ -30,6 +41,7 @@
     owner: root
     group: wheel
     mode: '0440'
+  notify: reload_auditd
 
 - name: Audit | Configure install.log retention in newsyslog
   ansible.builtin.lineinfile:

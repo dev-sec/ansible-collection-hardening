@@ -1,4 +1,9 @@
 ---
+- name: System | Read current power management settings
+  ansible.builtin.command: /usr/bin/pmset -g custom
+  register: macos_pmset_custom
+  changed_when: false
+
 - name: System | Configure display sleep timeout
   ansible.builtin.command:
     argv:
@@ -6,7 +11,8 @@
       - -a
       - displaysleep
       - "{{ macos_display_sleep_minutes | string }}"
-  changed_when: false
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*displaysleep\\s+' ~ macos_display_sleep_minutes ~ '(\\s|$)')"
+  changed_when: true
 
 - name: System | Configure system sleep timeout
   ansible.builtin.command:
@@ -15,7 +21,8 @@
       - -a
       - sleep
       - "{{ macos_sleep_minutes | string }}"
-  changed_when: false
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*sleep\\s+' ~ macos_sleep_minutes ~ '(\\s|$)')"
+  changed_when: true
 
 - name: System | Configure Power Nap on Intel Macs
   ansible.builtin.command:
@@ -24,28 +31,20 @@
       - -a
       - powernap
       - "{{ 1 if macos_power_nap_enabled | bool else 0 }}"
-  when: ansible_architecture == 'x86_64'
-  changed_when: false
+  when:
+    - ansible_architecture == 'x86_64'
+    - "macos_pmset_custom.stdout is not search('(?m)^\\s*powernap\\s+' ~ (1 if macos_power_nap_enabled | bool else 0) ~ '(\\s|$)')"
+  changed_when: true
 
-- name: System | Configure Wake for Network Access on Apple Silicon
+- name: System | Configure Wake for Network Access
   ansible.builtin.command:
     argv:
       - /usr/bin/pmset
       - -a
       - womp
       - "{{ 1 if macos_wake_on_network_access_enabled | bool else 0 }}"
-  when: ansible_architecture != 'x86_64'
-  changed_when: false
-
-- name: System | Configure Wake for Network Access on Intel
-  ansible.builtin.command:
-    argv:
-      - /usr/bin/pmset
-      - -a
-      - wakenetworkaccess
-      - "{{ 1 if macos_wake_on_network_access_enabled | bool else 0 }}"
-  when: ansible_architecture == 'x86_64'
-  changed_when: false
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*womp\\s+' ~ (1 if macos_wake_on_network_access_enabled | bool else 0) ~ '(\\s|$)')"
+  changed_when: true
 
 - name: System | Configure screen saver idle timeout
   community.general.osx_defaults:

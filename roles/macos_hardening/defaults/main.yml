@@ -26,6 +26,7 @@ macos_software_update_defer_enabled: false
 macos_software_update_defer_days: 30
 
 # Sharing & Remote Services settings
+macos_screen_sharing_manage: false
 macos_screen_sharing_enabled: false
 macos_file_sharing_enabled: false
 macos_printer_sharing_enabled: false

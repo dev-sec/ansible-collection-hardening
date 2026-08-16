@@ -2,13 +2,43 @@
 
 ## Description
 
-This Ansible role provides security hardening for macOS 26 Tahoe according to the CIS Apple macOS 26 Tahoe Benchmark (Level 1 and Level 2).
+This role provides numerous security-related configurations for macOS, providing all-round base protection. It is intended to be compliant with the [DevSec macOS Baseline](https://github.com/dev-sec/mac-baseline) and the CIS Apple macOS 26 Tahoe Benchmark.
 
-It manages macOS system security settings, sharing services, software update policies, firewall configuration, password policies, audit daemon (`auditd`) controls, and renders Apple configuration profiles (`.mobileconfig`) for local system enforcement or remote MDM distribution.
+It configures:
+
+- Disables guest accounts and automatic login
+- Enforces system-wide password security policies via `pwpolicy`
+- Configures security auditing (`auditd`) and log retention in `/etc/security/audit_control`
+- Configures Application Firewall (`socketfilterfw`) and enables stealth mode
+- Disables unused sharing services (Remote Apple Events, Printer Sharing, File Sharing, Internet Sharing, Bluetooth Sharing)
+- Manages Remote Management (ARD) and Screen Sharing launchd listeners
+- Configures power management and power-loss recovery settings via `pmset`
+- Restricts System Settings modification to administrators via `authorizationdb`
+- Generates CIS-compliant Apple Configuration Profiles (`.mobileconfig`) for system policy enforcement
+
+## Known Limitations
+
+### Local Automation vs. MDM Delivery
+
+Due to Apple's System Integrity Protection (SIP), privacy controls (TCC), and profile management restrictions on modern macOS, certain settings cannot be modified unattended from a root SSH shell and require delivery via Mobile Device Management (MDM) - Don't blame us, blame Apple.
+
+- **Configuration Profiles**: Headless installation via `/usr/bin/profiles -I -F` is deprecated by Apple on macOS 11+. Applying the generated `.mobileconfig` without interactive GUI approval in System Settings requires an MDM.
+- **Gatekeeper Policy**: Command-line Gatekeeper control (`spctl --enable`) is deprecated on macOS 15+. Gatekeeper policy is enforced through the configuration profile.
+- **Privacy Preferences (PPPC / TCC)**: Full Disk Access and Screen Recording permissions (`TCC.db`) are SIP-protected and require MDM PPPC payloads (`com.apple.TCC.configuration-profile-policy`).
+- **System Extensions**: Network filters and endpoint security extensions require MDM approval payloads (`com.apple.system-extension-policy`).
+
+### Using configuration profiles with an MDM
+
+If your fleet is enrolled in an MDM (such as [MicroMDM](https://github.com/micromdm/micromdm), [NanoMDM](https://github.com/micromdm/nanomdm), [Fleet](https://github.com/fleetdm/fleet), or a commercial MDM), you can use this role to generate and validate the profile, then distribute it via your MDM:
+
+1. Leave `macos_profile_enabled: true` and `macos_profile_install: false` (default).
+2. Run the role to render the validated profile to `macos_profile_path` (default: `/var/root/macos_hardening.mobileconfig`).
+3. Upload the rendered `.mobileconfig` to your MDM as a Custom Configuration Profile and scope it to your devices.
+4. Run this Ansible role to manage live daemon states, firewall rules, power management, and audit controls.
 
 ## Requirements
 
-- macOS 26 Tahoe
+- macOS 26 Tahoe (or macOS 15 Sequoia)
 - Ansible 2.14 or higher
 - `community.general` collection installed
 
@@ -26,7 +56,6 @@ Add the role to your playbook:
         macos_cis_level: 2
         macos_loginwindow_message: "Authorized users only. Disconnect immediately if unauthorized."
         macos_policy_banner_content: "This computer system is private property. Authorized access only."
-        macos_profile_install: true
 ```
 
 <!-- BEGIN_ANSIBLE_DOCS -->
@@ -584,7 +613,12 @@ Add the role to your playbook:
   - Required: no
 - `macos_screen_sharing_enabled`
   - Default: `False`
-  - Description: Desired state for Screen Sharing service.
+  - Description: Desired state for Screen Sharing service when managed.
+  - Type: bool
+  - Required: no
+- `macos_screen_sharing_manage`
+  - Default: `False`
+  - Description: Whether this role manages Screen Sharing (launchd listener state).
   - Type: bool
   - Required: no
 - `macos_screensaver_ask_for_password`
