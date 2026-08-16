@@ -117,9 +117,13 @@
   ansible.builtin.assert:
     that:
       - macos_profile_deployed | bool
-    fail_msg: >-
-      The rendered profile contains selected payloads but is not installed.
-      Deliver it through MDM or open the rendered .mobileconfig file in System Settings > Profiles.
+    msg: >-
+      The rendered profile `{{ macos_profile_path }}` contains selected payloads but is not installed.
+      You can deliver it through an MDM or copy it to an administrator's home directory with the following commands:
+      `sudo cp {{ macos_profile_path }} "$HOME/{{ macos_profile_path | basename }}"`
+      `sudo chown "$(id -un):staff" "$HOME/{{ macos_profile_path | basename }}"`
+      Then open `~/{{ macos_profile_path | basename }}` and install it under:
+      System Settings > General > Device Management.
   when:
     - macos_profile_has_payloads | bool
     - macos_fail_on_unremediated | default(false) | bool
