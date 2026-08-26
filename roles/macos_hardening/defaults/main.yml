@@ -66,7 +66,7 @@ macos_search_queries_data_sharing_status: 2
 macos_force_on_device_only_dictation: true
 macos_loginwindow_show_fullname_enabled: true
 macos_loginwindow_retries_until_hint: 0
-macos_loginwindow_message: ''
+macos_loginwindow_message: ""
 
 # Security, Authorization & Privacy settings
 macos_location_services_enabled: true
@@ -82,7 +82,7 @@ macos_authorizationdb_system_preferences_manage: true
 macos_chmod_home_folders: true
 macos_sudo_timestamp_timeout: 0
 macos_sudoers_file: 10_macos_hardening
-macos_policy_banner_content: ''
+macos_policy_banner_content: ""
 macos_cloud_desktop_and_documents_enabled: false
 macos_game_center_enabled: false
 macos_external_intelligence_integrations_enabled: false
@@ -98,6 +98,7 @@ macos_universal_control_enabled: false
 macos_guest_account_enabled: false
 macos_guest_file_sharing_enabled: false
 macos_automatic_login_disabled: true
+macos_password_lockout_seconds: 900
 macos_password_max_failed_attempts: 5
 macos_password_min_length: 15
 macos_password_require_alpha: 1

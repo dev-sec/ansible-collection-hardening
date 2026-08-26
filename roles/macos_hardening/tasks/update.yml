@@ -3,8 +3,8 @@
   community.general.osx_defaults:
     domain: /Library/Preferences/com.apple.SoftwareUpdate
     key: AutomaticCheckEnabled
-    type: bool
-    value: "{{ macos_software_update_check_enabled | bool }}"
+    type: int
+    value: "{{ macos_software_update_check_enabled | bool | int }}"
 
 - name: Update | Configure automatic download of software updates
   community.general.osx_defaults:
