@@ -79,7 +79,7 @@
 - name: Security | Require administrator password for System Preferences
   ansible.builtin.command:
     cmd: /usr/bin/security authorizationdb write system.preferences
-    stdin: "<plist version=\"1.0\"><dict><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/></dict></plist>"
+    stdin: '<plist version="1.0"><dict><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/></dict></plist>'
   when:
     - macos_authorizationdb_system_preferences_manage | bool
     - >-
@@ -92,14 +92,14 @@
   ansible.builtin.find:
     paths: /Users
     file_type: directory
-    excludes: ['Shared', 'Guest']
+    excludes: ["Shared", "Guest"]
   register: macos_user_homes
   when: macos_chmod_home_folders | bool
 
 - name: Security | Restrict permissions on user home folders
   ansible.builtin.file:
     path: "{{ item.path }}"
-    mode: '0700'
+    mode: "0700"
   loop: "{{ macos_user_homes.files | default([]) }}"
   when:
     - macos_chmod_home_folders | bool
@@ -113,7 +113,7 @@
       Defaults tty_tickets
     owner: root
     group: wheel
-    mode: '0440'
+    mode: "0440"
 
 - name: Security | Create PolicyBanner text file if warning content specified
   ansible.builtin.copy:
@@ -121,7 +121,7 @@
     content: "{{ macos_policy_banner_content }}\n"
     owner: root
     group: wheel
-    mode: '0644'
+    mode: "0644"
   when: macos_policy_banner_content | default('') | length > 0
 
 - name: Security | Ensure PolicyBanner file absent if no warning content specified

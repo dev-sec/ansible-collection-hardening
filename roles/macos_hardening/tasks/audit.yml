@@ -19,29 +19,66 @@
     state: directory
     owner: root
     group: wheel
-    mode: '0755'
+    mode: "0755"
 
 - name: Audit | Configure audit control flags
   ansible.builtin.lineinfile:
     path: /etc/security/audit_control
-    regexp: '^flags:'
+    regexp: "^flags:"
     line: "flags:{{ macos_audit_flags }}"
     create: true
     owner: root
     group: wheel
-    mode: '0440'
+    mode: "0440"
   notify: reload_auditd
 
 - name: Audit | Configure audit log retention period
   ansible.builtin.lineinfile:
     path: /etc/security/audit_control
-    regexp: '^expire-after:'
+    regexp: "^expire-after:"
     line: "expire-after:{{ macos_audit_expire_after }}"
     create: true
     owner: root
     group: wheel
-    mode: '0440'
+    mode: "0440"
   notify: reload_auditd
+
+- name: Audit | Read auditd launchd runtime state
+  ansible.builtin.command:
+    argv:
+      - /bin/launchctl
+      - print
+      - system/com.apple.auditd
+  register: macos_auditd_runtime_status
+  changed_when: false
+  failed_when: false
+
+- name: Audit | Bootstrap auditd launchd service
+  ansible.builtin.command:
+    argv:
+      - /bin/launchctl
+      - bootstrap
+      - system
+      - /System/Library/LaunchDaemons/com.apple.auditd.plist
+  when: macos_auditd_runtime_status.rc != 0
+  changed_when: true
+
+- name: Audit | Read kernel auditing state
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/audit
+      - -c
+  register: macos_audit_kernel_status
+  changed_when: false
+  failed_when: false
+
+- name: Audit | Initialize auditing
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/audit
+      - -i
+  when: macos_audit_kernel_status.rc != 0
+  changed_when: true
 
 - name: Audit | Configure install.log retention in newsyslog
   ansible.builtin.lineinfile:
@@ -51,7 +88,7 @@
     create: true
     owner: root
     group: wheel
-    mode: '0644'
+    mode: "0644"
 
 - name: Audit | Restrict permissions on audit directory
   ansible.builtin.file:
@@ -59,4 +96,4 @@
     state: directory
     owner: root
     group: wheel
-    mode: '0700'
+    mode: "0700"
