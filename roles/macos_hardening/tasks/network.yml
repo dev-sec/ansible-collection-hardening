@@ -115,12 +115,45 @@
   changed_when: false
   failed_when: false
 
-- name: Network | Configure NFS server daemon state
+- name: Network | Ensure NFS exports file exists
+  ansible.builtin.file:
+    path: /etc/exports
+    state: touch
+    owner: root
+    group: wheel
+    mode: "0644"
+    modification_time: preserve
+    access_time: preserve
+
+- name: Network | Read NFS server daemon status
+  ansible.builtin.command: /sbin/nfsd status
+  register: macos_nfsd_status
+  changed_when: false
+  failed_when: false
+
+- name: Network | Enable NFS server daemon
   ansible.builtin.command:
     argv:
       - /sbin/nfsd
-      - "{{ 'enable' if macos_nfs_enabled | bool else 'disable' }}"
-  when: >-
-    (macos_nfs_enabled and 'nfsd service is enabled' not in (macos_nfsd_status.stdout | default(''))) or
-    (not macos_nfs_enabled and 'nfsd service is disabled' not in (macos_nfsd_status.stdout | default('')))
+      - enable
+  when:
+    - macos_nfs_enabled | bool
+    - "'nfsd service is enabled' not in (macos_nfsd_status.stdout | default(''))"
   changed_when: true
+
+- name: Network | Disable NFS server daemon
+  ansible.builtin.command:
+    argv:
+      - /bin/launchctl
+      - disable
+      - system/com.apple.nfsd
+  when:
+    - not macos_nfs_enabled | bool
+    - "'nfsd service is disabled' not in (macos_nfsd_status.stdout | default(''))"
+  changed_when: true
+
+- name: Network | Remove NFS exports when NFS server is disabled
+  ansible.builtin.file:
+    path: /etc/exports
+    state: absent
+  when: not macos_nfs_enabled | bool
