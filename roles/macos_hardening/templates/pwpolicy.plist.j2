@@ -66,7 +66,7 @@
 {% if macos_password_require_numeric | bool %}
     <dict>
       <key>policyContent</key>
-      <string>policyAttributePassword matches '(.*?\p{Nd}.*?){1,}?'</string>
+      <string>policyAttributePassword matches '(.*?\p{Nd}.*?){1,}?'</string>{# codespell:ignore Nd #}
       <key>policyIdentifier</key>
       <string>com.apple.policy.legacy.requiresNumeric</string>
       <key>policyParameters</key>
@@ -80,7 +80,7 @@
 {% if macos_password_require_symbol | bool %}
     <dict>
       <key>policyContent</key>
-      <string>policyAttributePassword matches '(.*?[^\p{L}|\p{Nd}].*?){1,}?'</string>
+      <string>policyAttributePassword matches '(.*?[^\p{L}|\p{Nd}].*?){1,}?'</string>{# codespell:ignore Nd #}
       <key>policyIdentifier</key>
       <string>com.apple.policy.legacy.requiresSymbol</string>
       <key>policyParameters</key>
