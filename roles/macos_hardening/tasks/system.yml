@@ -32,7 +32,7 @@
       - powernap
       - "{{ 1 if macos_power_nap_enabled | bool else 0 }}"
   when:
-    - ansible_architecture == 'x86_64'
+    - ansible_facts['architecture'] == 'x86_64'
     - "macos_pmset_custom.stdout is not search('(?m)^\\s*powernap\\s+' ~ (1 if macos_power_nap_enabled | bool else 0) ~ '(\\s|$)')"
   changed_when: true
 
