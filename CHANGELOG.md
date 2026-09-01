@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.6.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.1) (2026-09-01)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...10.6.1)
+
+**Fixed bugs:**
+
+- Problem with  os\_always\_ignore\_users --\> template error while templating string: no test named 'in' [\#785](https://github.com/dev-sec/ansible-collection-hardening/issues/785)
+
+**Merged pull requests:**
+
+- Update actions/labeler action to v6.2.0 [\#967](https://github.com/dev-sec/ansible-collection-hardening/pull/967) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [10.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.0) (2026-05-26)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.5.2...10.6.0)
