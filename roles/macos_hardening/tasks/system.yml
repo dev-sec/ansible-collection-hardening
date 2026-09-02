@@ -1,0 +1,104 @@
+---
+- name: System | Read current power management settings
+  ansible.builtin.command: /usr/bin/pmset -g custom
+  register: macos_pmset_custom
+  changed_when: false
+
+- name: System | Configure display sleep timeout
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/pmset
+      - -a
+      - displaysleep
+      - "{{ macos_display_sleep_minutes | string }}"
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*displaysleep\\s+' ~ macos_display_sleep_minutes ~ '(\\s|$)')"
+  changed_when: true
+
+- name: System | Configure system sleep timeout
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/pmset
+      - -a
+      - sleep
+      - "{{ macos_sleep_minutes | string }}"
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*sleep\\s+' ~ macos_sleep_minutes ~ '(\\s|$)')"
+  changed_when: true
+
+- name: System | Configure Power Nap on Intel Macs
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/pmset
+      - -a
+      - powernap
+      - "{{ 1 if macos_power_nap_enabled | bool else 0 }}"
+  when:
+    - ansible_facts['architecture'] == 'x86_64'
+    - "macos_pmset_custom.stdout is not search('(?m)^\\s*powernap\\s+' ~ (1 if macos_power_nap_enabled | bool else 0) ~ '(\\s|$)')"
+  changed_when: true
+
+- name: System | Configure Wake for Network Access
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/pmset
+      - -a
+      - womp
+      - "{{ 1 if macos_wake_on_network_access_enabled | bool else 0 }}"
+  when: "macos_pmset_custom.stdout is not search('(?m)^\\s*womp\\s+' ~ (1 if macos_wake_on_network_access_enabled | bool else 0) ~ '(\\s|$)')"
+  changed_when: true
+
+- name: System | Configure screen saver idle timeout
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: idleTime
+    type: int
+    value: "{{ macos_screensaver_idle_time }}"
+
+- name: System | Configure password requirement after screen saver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: askForPassword
+    type: int
+    value: "{{ 1 if macos_screensaver_ask_for_password | bool else 0 }}"
+
+- name: System | Configure password delay after screen saver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.screensaver
+    key: askForPasswordDelay
+    type: int
+    value: "{{ macos_screensaver_ask_for_password_delay }}"
+
+- name: System | Configure Help Apple Improve Search data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Search Queries Data Sharing Status"
+    type: int
+    value: "{{ macos_search_queries_data_sharing_status }}"
+
+- name: System | Configure on-device dictation processing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.speech.recognition.AppleSpeechRecognition.prefs
+    key: DictationOnDeviceOnly
+    type: bool
+    value: "{{ macos_force_on_device_only_dictation | bool }}"
+
+- name: System | Configure login window display to Name and Password
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: SHOWFULLNAME
+    type: bool
+    value: "{{ macos_loginwindow_show_fullname_enabled | bool }}"
+
+- name: System | Configure password hints retry limit on login window
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: RetriesUntilHint
+    type: int
+    value: "{{ macos_loginwindow_retries_until_hint }}"
+
+- name: System | Configure login window message
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: LoginwindowText
+    type: string
+    value: "{{ macos_loginwindow_message }}"
+    state: "{{ 'present' if (macos_loginwindow_message | length > 0) else 'absent' }}"

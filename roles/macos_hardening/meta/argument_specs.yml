@@ -1,0 +1,700 @@
+argument_specs:
+  main:
+    short_description: DevSec macOS hardening role argument specification
+    description:
+      - Defines argument specifications for the DevSec macOS hardening role.
+    author:
+      - DevSec Hardening Framework Team
+      - Joseph Erdosy
+    options:
+      macos_hardening_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable the entire macOS hardening role.
+      macos_update_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of software update settings.
+      macos_sharing_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS sharing services.
+      macos_network_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS network and firewall settings.
+      macos_system_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS system, power, and lock screen settings.
+      macos_security_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS security and privacy settings.
+      macos_account_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS account and password policies.
+      macos_audit_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of macOS audit daemon (auditd) settings.
+      macos_safari_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable management of Safari and Terminal security settings.
+      macos_profile_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable or disable rendering and management of the macOS configuration profile.
+
+      macos_software_update_check_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic check for software updates.
+      macos_software_update_download_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic download of software updates.
+      macos_software_update_install_macos_updates_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic installation of macOS updates.
+      macos_software_update_install_app_updates_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic installation of App Store application updates.
+      macos_software_update_install_system_data_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic installation of system data files and security configuration.
+      macos_software_update_install_critical_updates_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable automatic installation of critical security updates.
+      macos_software_update_defer_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Enforce software update deferment delay.
+      macos_software_update_defer_days:
+        type: int
+        required: false
+        default: 30
+        description: Number of days to defer non-critical software updates when deferment is enabled.
+
+      macos_screen_sharing_manage:
+        type: bool
+        required: false
+        default: false
+        description: Whether this role manages Screen Sharing (launchd listener state).
+      macos_screen_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Screen Sharing service when managed.
+      macos_file_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for File Sharing (SMB) service.
+      macos_printer_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Printer Sharing via cupsctl.
+      macos_remote_login_manage:
+        type: bool
+        required: false
+        default: false
+        description: Whether this role manages Remote Login (SSH service).
+      macos_remote_login_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Remote Login (SSH) when managed.
+      macos_remote_management_manage:
+        type: bool
+        required: false
+        default: false
+        description: Whether this role manages Apple Remote Desktop (ARD) Remote Management.
+      macos_remote_management_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Apple Remote Desktop (ARD) Remote Management when managed.
+      macos_remote_apple_events_manage:
+        type: bool
+        required: false
+        default: false
+        description: Whether this role manages Remote Apple Events via systemsetup.
+      macos_remote_apple_events_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Remote Apple Events when managed.
+      macos_internet_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Internet Sharing in MCX preferences and profile.
+      macos_content_caching_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Content Caching in applicationaccess.
+      macos_media_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Media Sharing in applicationaccess.
+      macos_media_sharing_modification_allowed:
+        type: bool
+        required: false
+        default: false
+        description: Whether users are allowed to modify Media Sharing in applicationaccess payload.
+      macos_bluetooth_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Bluetooth file sharing services.
+
+      macos_firewall_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Desired state for Application Firewall global state in socketfilterfw and profile.
+      macos_firewall_stealth_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Desired state for Firewall Stealth Mode in socketfilterfw and profile.
+      macos_airdrop_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for AirDrop in applicationaccess and profile.
+      macos_airplay_receiver_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for AirPlay incoming requests in applicationaccess and profile.
+      macos_network_time_manage:
+        type: bool
+        required: false
+        default: true
+        description: Whether this role manages network time synchronization via systemsetup.
+      macos_network_time_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Desired state for network time synchronization when managed.
+      macos_network_time_server:
+        type: str
+        required: false
+        default: time.apple.com
+        description: NTP time server hostname configured when network time is managed and enabled.
+      macos_bonjour_multicast_advertisements_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for mDNSResponder multicast advertisements.
+      macos_apache_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for built-in Apache HTTP server daemon.
+      macos_nfs_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for built-in NFS server daemon.
+
+      macos_display_sleep_minutes:
+        type: int
+        required: false
+        default: 10
+        description: Minutes of inactivity before display sleep in pmset.
+      macos_sleep_minutes:
+        type: int
+        required: false
+        default: 15
+        description: Minutes of inactivity before system sleep in pmset.
+      macos_power_nap_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Power Nap in pmset on Intel Macs.
+      macos_wake_on_network_access_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Wake on Network Access (womp / wakenetworkaccess) in pmset.
+      macos_screensaver_idle_time:
+        type: int
+        required: false
+        default: 900
+        description: Screen saver idle activation time in seconds.
+      macos_screensaver_ask_for_password:
+        type: bool
+        required: false
+        default: true
+        description: Whether to require password after screen saver activates.
+      macos_screensaver_ask_for_password_delay:
+        type: int
+        required: false
+        default: 0
+        description: Grace period in seconds before password is required after screen saver starts.
+      macos_search_queries_data_sharing_status:
+        type: int
+        required: false
+        default: 2
+        description: Status code for Help Apple Improve Search data sharing (2 = disabled).
+      macos_force_on_device_only_dictation:
+        type: bool
+        required: false
+        default: true
+        description: Restrict speech recognition dictation processing to on-device only.
+      macos_loginwindow_show_fullname_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Configure login window to display Name and Password fields rather than user list.
+      macos_loginwindow_retries_until_hint:
+        type: int
+        required: false
+        default: 0
+        description: Number of failed login attempts before displaying password hint (0 = disabled).
+      macos_loginwindow_message:
+        type: str
+        required: false
+        default: ''
+        description: Banner text banner displayed on the macOS login window.
+
+      macos_location_services_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Desired state for Location Services in locationd preferences and profile.
+      macos_location_system_services_icon_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Display the location icon in the menu bar when system services request location.
+      macos_submit_diag_info_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for automatic diagnostic data submission in SubmitDiagInfo and profile.
+      macos_assistant_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Siri voice assistant in assistant.support and profile.
+      macos_siri_data_sharing_opt_in_status:
+        type: int
+        required: false
+        default: 2
+        description: Opt-in status for Siri & Dictation improvement data sharing (2 = disabled).
+      macos_apple_personalized_advertising_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Apple Personalized Advertising in AdLib, applicationaccess, and profile.
+      macos_apple_intelligence_cloud_sync_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Apple Intelligence cloud synchronization in intelligence preferences.
+      macos_gatekeeper_assessment_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Desired state for Gatekeeper assessment in spctl and systempolicy profile payload.
+      macos_gatekeeper_allow_identified_developers:
+        type: bool
+        required: false
+        default: true
+        description: Allow apps downloaded from Mac App Store and identified developers in systempolicy profile.
+      macos_authorizationdb_system_preferences_manage:
+        type: bool
+        required: false
+        default: true
+        description: Whether to require administrator credentials for modifying system.preferences in authorizationdb.
+      macos_chmod_home_folders:
+        type: bool
+        required: false
+        default: true
+        description: Remediation switch to enforce 0700 permissions on non-system user home directories under /Users.
+      macos_sudo_timestamp_timeout:
+        type: int
+        required: false
+        default: 0
+        description: Sudo authentication credential cache timeout in minutes (0 = prompt every time).
+      macos_sudoers_file:
+        type: str
+        required: false
+        default: 10_macos_hardening
+        description: Filename for the drop-in sudoers configuration file deployed to /etc/sudoers.d/.
+      macos_policy_banner_content:
+        type: str
+        required: false
+        default: ''
+        description: Content for the security policy notice banner written to /Library/Security/PolicyBanner.txt.
+      macos_cloud_desktop_and_documents_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for iCloud Desktop and Documents syncing in applicationaccess profile payload.
+      macos_game_center_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Game Center in applicationaccess profile payload.
+      macos_external_intelligence_integrations_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow external generative intelligence integrations in applicationaccess profile payload.
+      macos_external_intelligence_integrations_signin_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow sign-in to external intelligence services in applicationaccess profile payload.
+      macos_writing_tools_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow Apple Writing Tools features in applicationaccess profile payload.
+      macos_mail_summary_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow Mail message summarization in applicationaccess profile payload.
+      macos_notes_transcription_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow Notes audio transcription in applicationaccess profile payload.
+      macos_notes_transcription_summary_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow Notes transcription summarization in applicationaccess profile payload.
+      macos_filevault_disable_allowed:
+        type: bool
+        required: false
+        default: false
+        description: Whether disabling FileVault full disk encryption is permitted in MCX profile payload.
+      macos_universal_control_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for Universal Control in universalcontrol profile payload.
+
+      macos_guest_account_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for built-in Guest login in loginwindow preferences and MCX profile payload.
+      macos_guest_file_sharing_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Desired state for unauthenticated guest access to shared SMB folders.
+      macos_automatic_login_disabled:
+        type: bool
+        required: false
+        default: true
+        description: Remediation switch to ensure automatic login is disabled by removing autoLoginUser.
+      macos_password_max_failed_attempts:
+        type: int
+        required: false
+        default: 5
+        description: Maximum number of failed authentication attempts before account lockout via pwpolicy.
+      macos_password_min_length:
+        type: int
+        required: false
+        default: 15
+        description: Minimum required password character length enforced via pwpolicy.
+      macos_password_require_alpha:
+        type: int
+        required: false
+        default: 1
+        description: Minimum number of alphabetic characters required in passwords via pwpolicy.
+      macos_password_require_numeric:
+        type: int
+        required: false
+        default: 1
+        description: Minimum number of numeric digits required in passwords via pwpolicy.
+      macos_password_require_symbol:
+        type: int
+        required: false
+        default: 1
+        description: Minimum number of special symbol characters required in passwords via pwpolicy.
+      macos_password_require_mixed_case:
+        type: int
+        required: false
+        default: 1
+        description: Require mixed uppercase and lowercase characters in passwords via pwpolicy.
+      macos_password_max_age_days:
+        type: int
+        required: false
+        default: 365
+        description: Maximum password lifetime in days before expiration enforced via pwpolicy.
+      macos_password_history_depth:
+        type: int
+        required: false
+        default: 24
+        description: Number of previous passwords remembered to prevent reuse via pwpolicy.
+
+      macos_audit_flags:
+        type: str
+        required: false
+        default: "aa,ad,lo,-all"
+        description: Audit control event flags configured in /etc/security/audit_control.
+      macos_audit_expire_after:
+        type: str
+        required: false
+        default: "30d"
+        description: Audit log retention expire-after period configured in /etc/security/audit_control.
+      macos_install_log_ttl:
+        type: int
+        required: false
+        default: 365
+        description: Retention lifetime in days for /var/log/install.log in newsyslog.conf.
+
+      macos_safari_auto_open_safe_downloads_enabled:
+        type: bool
+        required: false
+        default: false
+        description: Allow Safari to automatically open files marked as safe downloads.
+      macos_safari_warn_about_fraudulent_websites_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable fraudulent website warning protection in Safari.
+      macos_safari_block_storage_policy:
+        type: int
+        required: false
+        default: 2
+        description: Safari cross-site tracking prevention storage blocking policy (2 = block third-party cookies).
+      macos_safari_private_click_measurement_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable Safari Private Click Measurement privacy-preserving ad attribution.
+      macos_safari_show_full_url_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Display complete website URL in Safari Smart Search field.
+      macos_safari_show_status_bar_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable display of the status bar in Safari.
+      macos_terminal_secure_keyboard_entry_enabled:
+        type: bool
+        required: false
+        default: true
+        description: Enable Secure Keyboard Entry in Terminal to prevent keystroke interception.
+
+      macos_profile_install:
+        type: bool
+        required: false
+        default: false
+        description: Install generated configuration profile locally on the target host.
+      macos_profile_path:
+        type: str
+        required: false
+        default: /tmp/macos_hardening.mobileconfig
+        description: Destination filesystem path for rendering the configuration profile mobileconfig file.
+      macos_profile_identifier:
+        type: str
+        required: false
+        default: com.devsec.macos_hardening
+        description: Top-level bundle identifier prefix for the configuration profile and payloads.
+      macos_profile_display_name:
+        type: str
+        required: false
+        default: DevSec macOS Hardening
+        description: Display name string rendered in the configuration profile payload.
+      macos_profile_description:
+        type: str
+        required: false
+        default: DevSec macOS hardening configuration profile
+        description: Description text rendered in the configuration profile payload.
+      macos_profile_organization:
+        type: str
+        required: false
+        default: DevSec Hardening Framework Team
+        description: Organization name string rendered in the configuration profile payload.
+      macos_profile_uuid:
+        type: str
+        required: false
+        default: 89692235-d2cb-47be-93d9-1d9b30416630
+        description: Unique UUID identifier for the top-level configuration profile.
+      macos_fail_on_unremediated:
+        type: bool
+        required: false
+        default: false
+        description: Fail the role execution if configuration profile payloads remain uninstalled.
+
+      macos_profile_softwareupdate_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Software Update management payload in the configuration profile.
+      macos_profile_firewall_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Application Firewall management payload in the configuration profile.
+      macos_profile_applicationaccess_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Application Access restriction payload in the configuration profile.
+      macos_profile_mdns_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include mDNSResponder configuration payload in the configuration profile.
+      macos_profile_locationmenu_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Location Menu configuration payload in the configuration profile.
+      macos_profile_submitdiag_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Submit Diagnostics configuration payload in the configuration profile.
+      macos_profile_assistant_support_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Siri & Assistant Support configuration payload in the configuration profile.
+      macos_profile_systempolicy_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include System Policy (Gatekeeper) configuration payload in the configuration profile.
+      macos_profile_mcx_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include MCX (FileVault / Guest / Internet Sharing) configuration payload in profile.
+      macos_profile_universalcontrol_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Universal Control restriction payload in the configuration profile.
+      macos_profile_loginwindow_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Login Window configuration payload in the configuration profile.
+      macos_profile_terminal_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Terminal Secure Keyboard Entry configuration payload in the configuration profile.
+      macos_profile_safari_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Safari security settings configuration payload in the configuration profile.
+      macos_profile_screensaver_manage:
+        type: bool
+        required: false
+        default: true
+        description: Include Screen Saver configuration payload in the configuration profile.
+
+      macos_profile_uuid_softwareupdate:
+        type: str
+        required: false
+        default: 3bc15b0f-4041-4d1b-a044-6eb69248cba0
+        description: Static UUID for the Software Update profile payload.
+      macos_profile_uuid_firewall:
+        type: str
+        required: false
+        default: e6f40b8b-b28a-4779-8815-b7e13aa970b7
+        description: Static UUID for the Firewall profile payload.
+      macos_profile_uuid_applicationaccess:
+        type: str
+        required: false
+        default: 24b270d6-663b-4c93-a15d-4ac03e2b64f5
+        description: Static UUID for the Application Access profile payload.
+      macos_profile_uuid_mdns:
+        type: str
+        required: false
+        default: 6891c8e4-44b8-4a27-a468-583dc19a5a90
+        description: Static UUID for the mDNSResponder profile payload.
+      macos_profile_uuid_locationmenu:
+        type: str
+        required: false
+        default: 7972adc3-3ea0-41e4-bd44-d5e55cb875e8
+        description: Static UUID for the Location Menu profile payload.
+      macos_profile_uuid_submitdiag:
+        type: str
+        required: false
+        default: f3416271-de9e-443d-a2ee-5f75ab2f5def
+        description: Static UUID for the Submit Diagnostics profile payload.
+      macos_profile_uuid_assistant_support:
+        type: str
+        required: false
+        default: 84c07fda-6c2c-41ab-884c-1858eaf784a9
+        description: Static UUID for the Assistant Support profile payload.
+      macos_profile_uuid_systempolicy:
+        type: str
+        required: false
+        default: c599ed89-eef2-4d28-bd82-282ebfab7f0b
+        description: Static UUID for the System Policy profile payload.
+      macos_profile_uuid_mcx:
+        type: str
+        required: false
+        default: e6869e34-ae93-4568-a201-f27e4924c33d
+        description: Static UUID for the MCX profile payload.
+      macos_profile_uuid_universalcontrol:
+        type: str
+        required: false
+        default: 50d6d54f-bcc8-4592-8c12-1c484a019328
+        description: Static UUID for the Universal Control profile payload.
+      macos_profile_uuid_loginwindow:
+        type: str
+        required: false
+        default: 5f91cf70-6a6f-46f0-b575-d2d9ca671fc9
+        description: Static UUID for the Login Window profile payload.
+      macos_profile_uuid_terminal:
+        type: str
+        required: false
+        default: 1bff4682-bb1d-4413-b48f-04b3369ec3aa
+        description: Static UUID for the Terminal profile payload.
+      macos_profile_uuid_safari:
+        type: str
+        required: false
+        default: 26af9da3-b002-4621-abd7-28feb7c66ca7
+        description: Static UUID for the Safari profile payload.
+      macos_profile_uuid_screensaver:
+        type: str
+        required: false
+        default: 75786f5d-6536-4bcd-b20b-4b4a3b754cb4
+        description: Static UUID for the Screen Saver profile payload.

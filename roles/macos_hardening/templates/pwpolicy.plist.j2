@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>policyCategoryAuthentication</key>
+  <array>
+    <dict>
+      <key>policyContent</key>
+      <string>(policyAttributeFailedAuthentications &lt; policyAttributeMaximumFailedAuthentications) OR (policyAttributeCurrentTime &gt; (policyAttributeLastFailedAuthenticationTime + autoEnableInSeconds))</string>
+      <key>policyIdentifier</key>
+      <string>com.devsec.macos_hardening.authentication_lockout</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>autoEnableInSeconds</key>
+        <integer>{{ macos_password_lockout_seconds }}</integer>
+        <key>policyAttributeMaximumFailedAuthentications</key>
+        <integer>{{ macos_password_max_failed_attempts }}</integer>
+      </dict>
+    </dict>
+  </array>
+
+  <key>policyCategoryPasswordChange</key>
+  <array>
+    <dict>
+      <key>policyContent</key>
+      <string>policyAttributeCurrentTime &gt; policyAttributeLastPasswordChangeTime + (policyAttributeExpiresEveryNDays * 24 * 60 * 60)</string>
+      <key>policyIdentifier</key>
+      <string>com.devsec.macos_hardening.password_expiration</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>policyAttributeExpiresEveryNDays</key>
+        <integer>{{ macos_password_max_age_days }}</integer>
+      </dict>
+    </dict>
+  </array>
+
+  <key>policyCategoryPasswordContent</key>
+  <array>
+    <dict>
+      <key>policyContent</key>
+      <string>{{ "policyAttributePassword matches '.{" ~ (macos_password_min_length | string) ~ ",}?'" }}</string>
+      <key>policyIdentifier</key>
+      <string>com.apple.policy.legacy.minChars</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>minimumLength</key>
+        <integer>{{ macos_password_min_length }}</integer>
+      </dict>
+    </dict>
+
+{% if macos_password_require_alpha | bool %}
+    <dict>
+      <key>policyContent</key>
+      <string>policyAttributePassword matches '(.*?\p{L}.*?){1,}?'</string>
+      <key>policyIdentifier</key>
+      <string>com.apple.policy.legacy.requiresAlpha</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>minimumLetters</key>
+        <integer>1</integer>
+      </dict>
+    </dict>
+{% endif %}
+
+{% if macos_password_require_numeric | bool %}
+    <dict>
+      <key>policyContent</key>
+      <string>policyAttributePassword matches '(.*?\p{Nd}.*?){1,}?'</string>
+      <key>policyIdentifier</key>
+      <string>com.apple.policy.legacy.requiresNumeric</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>minimumNumericCharacters</key>
+        <integer>1</integer>
+      </dict>
+    </dict>
+{% endif %}
+
+{% if macos_password_require_symbol | bool %}
+    <dict>
+      <key>policyContent</key>
+      <string>policyAttributePassword matches '(.*?[^\p{L}|\p{Nd}].*?){1,}?'</string>
+      <key>policyIdentifier</key>
+      <string>com.apple.policy.legacy.requiresSymbol</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>minimumSymbols</key>
+        <integer>1</integer>
+      </dict>
+    </dict>
+{% endif %}
+
+{% if macos_password_require_mixed_case | bool %}
+    <dict>
+      <key>policyContent</key>
+      <string>policyAttributePassword matches '(?=((.*?\p{Lu}.*?){1,}?))(.*?\p{Ll}.*?){1,}?'</string>
+      <key>policyIdentifier</key>
+      <string>com.apple.policy.legacy.requiresMixedCase</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>minimumMixedCaseCharacters</key>
+        <integer>1</integer>
+      </dict>
+    </dict>
+{% endif %}
+
+    <dict>
+      <key>policyContent</key>
+      <string>none policyAttributePasswordHashes in policyAttributePasswordHistory</string>
+      <key>policyIdentifier</key>
+      <string>com.devsec.macos_hardening.password_history</string>
+      <key>policyParameters</key>
+      <dict>
+        <key>policyAttributePasswordHistoryDepth</key>
+        <integer>{{ macos_password_history_depth }}</integer>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
