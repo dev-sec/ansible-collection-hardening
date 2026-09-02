@@ -61,6 +61,8 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - 14.0
 - OpenBSD
   - 7.0
+- MacOSX
+  - all
 
 ## Role Variables
 
