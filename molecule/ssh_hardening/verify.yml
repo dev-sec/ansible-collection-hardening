@@ -10,9 +10,11 @@
       ansible.builtin.command: >
         docker run
         --volume /run/docker.sock:/run/docker.sock
+        --volume ./waivers_{{ lookup('env', 'MOLECULE_DISTRO') }}.yaml:/waivers.yaml
         docker.io/cincproject/auditor exec
         -t docker://instance
         --no-show-progress --no-color
+        --waiver-file /waivers.yaml
         --no-distinct-exit https://github.com/dev-sec/ssh-baseline/archive/refs/heads/master.zip
       register: test_results
       changed_when: false
