@@ -1,7 +1,4 @@
 ---
-- name: Update-initramfs # noqa no-changed-when
-  ansible.builtin.command: update-initramfs -u
-
 - name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: true
