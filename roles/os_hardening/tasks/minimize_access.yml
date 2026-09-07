@@ -1,15 +1,26 @@
 ---
-# If the find-task throws an error on /usr/bin/X11 like "File system loop detected"
-# the other files inside /usr/bin (and all other directories) are
-# still getting found and the permissions minimized in the next task.
-# This is also the reason why there's ignore_errors: true on the task.
-# also see: https://github.com/dev-sec/ansible-os-hardening/issues/219
+# GNU find returns non-zero when -L encounters filesystem loops such as
+# /usr/bin/X11 -> ., while continuing to report other matching files.
+# Treat loop-only diagnostics as expected but preserve all other find failures.
+# See: https://github.com/dev-sec/ansible-collection-hardening/issues/215
+#      https://github.com/dev-sec/ansible-collection-hardening/issues/815
 - name: Find files with write-permissions for group # noqa command-instead-of-shell
   ansible.builtin.shell: find -L {{ item }} -perm /go+w -type f
   with_community.general.flattened:
     - "{{ os_env_user_paths }}"
     - "{{ os_env_extra_user_paths }}"
   register: minimize_access_directories
+  failed_when: >-
+    minimize_access_directories.rc != 0
+    and (
+      minimize_access_directories.stderr_lines | length == 0
+      or (
+        minimize_access_directories.stderr_lines
+        | reject('match', '^find: File system loop detected; ')
+        | list
+        | length > 0
+      )
+    )
   ignore_errors: true
   changed_when: false
 
