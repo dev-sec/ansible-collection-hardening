@@ -40,6 +40,8 @@
     mode: "{{ os_shadow_perms.mode }}"
   when: item.stat.exists
   loop: "{{ minimize_access_shadow_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
 
 - name: Find passwd files
   ansible.builtin.stat:
@@ -59,6 +61,8 @@
     mode: "{{ os_passwd_perms.mode }}"
   when: item.stat.exists
   loop: "{{ minimize_access_passwd_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
 
 - name: Change su-binary to only be accessible to user and group root
   ansible.builtin.file:
