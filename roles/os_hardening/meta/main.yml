@@ -20,7 +20,6 @@ galaxy_info:
       versions:
         - trixie
         - bookworm
-        - bullseye
     - name: Amazon
     - name: Fedora
     - name: ArchLinux

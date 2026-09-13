@@ -47,7 +47,6 @@ jobs:
           - ubuntu2204
           - ubuntu2404
           # - ubuntu2604 # problem with test setup
-          - debian11
           - debian12
           - debian13
           # - amazon  # geerlingguy.mysql does not support fedora

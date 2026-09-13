@@ -20,7 +20,6 @@ galaxy_info:
       versions:
         - trixie
         - bookworm
-        - bullseye
     - name: Alpine
     - name: Amazon
     - name: Fedora
