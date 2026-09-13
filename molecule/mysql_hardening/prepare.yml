@@ -13,13 +13,6 @@
     mysql_config_file: /etc/mysql/mariadb.cnf
     mysql_root_password_update: true
   tasks:
-    - name: Use Python 3 on Debian 11
-      ansible.builtin.set_fact:
-        ansible_python_interpreter: /usr/bin/python3
-      when:
-        - ansible_facts.distribution == 'Debian'
-        - ansible_facts.distribution_major_version|int >= 11
-
     - name: Use Python 3 on Suse
       ansible.builtin.set_fact:
         ansible_python_interpreter: /usr/bin/python3

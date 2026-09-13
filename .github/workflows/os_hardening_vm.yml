@@ -49,7 +49,6 @@ jobs:
           - generic/ubuntu2204
           - alvistack/ubuntu-24.04
           # - alvistack/ubuntu-26.04 # no compatible test image
-          - generic/debian11
           - generic/debian12
           - cloud-image/debian-13
           - generic/opensuse15

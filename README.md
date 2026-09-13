@@ -16,7 +16,7 @@ This collection provides battle tested hardening for:
   - CentOS Stream 9
   - AlmaLinux 8/9/10
   - Rocky Linux 8/9/10
-  - Debian 11/12/13
+  - Debian 12/13
   - Ubuntu 22.04/24.04/26.04
   - Amazon Linux (some roles supported)
   - Arch Linux (some roles supported)
