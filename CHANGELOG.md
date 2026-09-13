@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Update actions/setup-python action to v7 [\#973](https://github.com/dev-sec/ansible-collection-hardening/pull/973) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/labeler action to v7 [\#972](https://github.com/dev-sec/ansible-collection-hardening/pull/972) ([renovate[bot]](https://github.com/apps/renovate))
 - Deprecate Debian 11 support [\#971](https://github.com/dev-sec/ansible-collection-hardening/pull/971) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update actions/labeler action to v6.2.0 [\#967](https://github.com/dev-sec/ansible-collection-hardening/pull/967) ([renovate[bot]](https://github.com/apps/renovate))
