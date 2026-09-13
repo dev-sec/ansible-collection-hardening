@@ -52,7 +52,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
 - Ubuntu
   - jammy, noble, resolute
 - Debian
-  - trixie, bookworm, bullseye
+  - trixie, bookworm
 - Alpine
 - Amazon
 - Fedora
