@@ -1,8 +1,8 @@
 # Changelog
 
-## [10.6.1](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.1) (2026-09-01)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-13)
 
-[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...10.6.1)
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
 
 **Fixed bugs:**
 
@@ -10,7 +10,10 @@
 
 **Merged pull requests:**
 
+- Update actions/labeler action to v7 [\#972](https://github.com/dev-sec/ansible-collection-hardening/pull/972) ([renovate[bot]](https://github.com/apps/renovate))
+- Deprecate Debian 11 support [\#971](https://github.com/dev-sec/ansible-collection-hardening/pull/971) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update actions/labeler action to v6.2.0 [\#967](https://github.com/dev-sec/ansible-collection-hardening/pull/967) ([renovate[bot]](https://github.com/apps/renovate))
+- Update ansible/ansible-lint digest to 665d9e0 [\#957](https://github.com/dev-sec/ansible-collection-hardening/pull/957) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.0) (2026-05-26)
 
