@@ -163,7 +163,7 @@ This role is mostly based on guides by:
 - Ubuntu
   - jammy, noble, resolute
 - Debian
-  - trixie, bookworm, bullseye
+  - trixie, bookworm
 - Amazon
 - Fedora
 - ArchLinux
