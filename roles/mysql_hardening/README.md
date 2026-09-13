@@ -30,7 +30,7 @@ Further information is available at [Deutsche Telekom (German)](http://www.telek
 - Ubuntu
   - jammy, noble
 - Debian
-  - trixie, bookworm, bullseye
+  - trixie, bookworm
 - Amazon
 - opensuse
 
