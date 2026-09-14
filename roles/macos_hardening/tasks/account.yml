@@ -1,0 +1,141 @@
+---
+- name: Account | Configure built-in Guest account
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: GuestEnabled
+    type: bool
+    value: "{{ macos_guest_account_enabled | bool }}"
+
+- name: Account | Check if SMB server preference file exists
+  ansible.builtin.stat:
+    path: /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist
+  register: macos_smb_plist
+
+- name: Account | Configure Guest access to shared folders
+  community.general.osx_defaults:
+    domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    key: AllowGuestAccess
+    type: bool
+    value: "{{ macos_guest_file_sharing_enabled | bool }}"
+  when: macos_guest_file_sharing_enabled | bool or macos_smb_plist.stat.exists
+
+- name: Account | Disable automatic login
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.loginwindow
+    key: autoLoginUser
+    state: absent
+  when: macos_automatic_login_disabled | bool
+
+- name: Account | Discover local user accounts on target
+  ansible.builtin.command: /usr/bin/dscl . -list /Users
+  register: macos_local_users
+  changed_when: false
+
+- name: Account | Check password hint for user accounts
+  ansible.builtin.command: "/usr/bin/dscl . -read /Users/{{ item }} hint"
+  loop: "{{ macos_local_users.stdout_lines | default([]) }}"
+  when:
+    - item not in ['Shared', 'Guest', 'root', 'daemon', 'nobody']
+    - not item.startswith('_')
+  register: macos_user_hints
+  changed_when: false
+  failed_when: macos_user_hints.rc not in [0, 56]
+
+- name: Account | Remove password hint from user accounts
+  ansible.builtin.command: "/usr/bin/dscl . -delete /Users/{{ item.item }} hint"
+  loop: "{{ macos_user_hints.results | default([]) }}"
+  when:
+    - item.rc is defined and item.rc == 0
+    - item.stdout is defined and 'hint:' in item.stdout
+  changed_when: true
+
+- name: Account | Read global password security policy via pwpolicy
+  ansible.builtin.command: /usr/bin/pwpolicy -getglobalpolicy
+  register: macos_current_pwpolicy
+  changed_when: false
+  failed_when: false
+
+- name: Account | Enforce password security policy via global pwpolicy
+  ansible.builtin.command: >-
+    /usr/bin/pwpolicy -setglobalpolicy
+    "minChars={{ macos_password_min_length }}
+    requiresAlpha={{ macos_password_require_alpha }}
+    requiresNumeric={{ macos_password_require_numeric }}
+    requiresSymbol={{ macos_password_require_symbol }}
+    requiresMixedCase={{ macos_password_require_mixed_case }}"
+  when: >-
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)minChars=' ~ macos_password_min_length ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresAlpha=' ~ macos_password_require_alpha ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresNumeric=' ~ macos_password_require_numeric ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresSymbol=' ~ macos_password_require_symbol ~ '(\\s|$)') or
+    macos_current_pwpolicy.stdout is not search('(?<!\\w)requiresMixedCase=' ~ macos_password_require_mixed_case ~ '(\\s|$)')
+  changed_when: true
+
+- name: Account | Stage account password security policy
+  ansible.builtin.template:
+    src: pwpolicy.plist.j2
+    dest: /private/var/tmp/macos_hardening_pwpolicy.plist
+    owner: root
+    group: wheel
+    mode: "0600"
+  changed_when: false
+
+- name: Account | Read account password security policy via account pwpolicy
+  ansible.builtin.command: /usr/bin/pwpolicy -getaccountpolicies
+  register: macos_current_account_pwpolicy
+  changed_when: false
+  failed_when: false
+
+- name: Account | Enforce account password security policy via pwpolicy
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/pwpolicy
+      - -setaccountpolicies
+      - /private/var/tmp/macos_hardening_pwpolicy.plist
+  when: >-
+    macos_current_account_pwpolicy.stdout is not search(
+      '(?s)<key>minimumLength</key>\\s*<integer>' ~ macos_password_min_length ~ '</integer>'
+    ) or
+    macos_current_account_pwpolicy.stdout is not search(
+      '(?s)<key>policyAttributeMaximumFailedAuthentications</key>\\s*<integer>' ~ macos_password_max_failed_attempts ~ '</integer>'
+    ) or
+    macos_current_account_pwpolicy.stdout is not search(
+      '(?s)<key>autoEnableInSeconds</key>\\s*<integer>' ~ macos_password_lockout_seconds ~ '</integer>'
+    ) or
+    macos_current_account_pwpolicy.stdout is not search(
+      '(?s)<key>policyAttributeExpiresEveryNDays</key>\\s*<integer>' ~ macos_password_max_age_days ~ '</integer>'
+    ) or
+    macos_current_account_pwpolicy.stdout is not search(
+      '(?s)<key>policyAttributePasswordHistoryDepth</key>\\s*<integer>' ~ macos_password_history_depth ~ '</integer>'
+    ) or
+    (
+      macos_password_require_alpha | bool and
+      macos_current_account_pwpolicy.stdout is not search(
+        '(?s)<key>minimumLetters</key>\\s*<integer>1</integer>'
+      )
+    ) or
+    (
+      macos_password_require_numeric | bool and
+      macos_current_account_pwpolicy.stdout is not search(
+        '(?s)<key>minimumNumericCharacters</key>\\s*<integer>1</integer>'
+      )
+    ) or
+    (
+      macos_password_require_symbol | bool and
+      macos_current_account_pwpolicy.stdout is not search(
+        '(?s)<key>minimumSymbols</key>\\s*<integer>1</integer>'
+      )
+    ) or
+    (
+      macos_password_require_mixed_case | bool and
+      macos_current_account_pwpolicy.stdout is not search(
+        '(?s)<key>minimumMixedCaseCharacters</key>\\s*<integer>1</integer>'
+      )
+    )
+  changed_when: true
+
+- name: Account | Remove staged account password security policy
+  ansible.builtin.file:
+    path: /private/var/tmp/macos_hardening_pwpolicy.plist
+    state: absent
+  changed_when: false

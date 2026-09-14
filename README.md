@@ -12,6 +12,7 @@
 
 This collection provides battle tested hardening for:
 
+- macOS 26 Tahoe
 - Linux operating systems:
   - CentOS Stream 9
   - AlmaLinux 8/9/10
@@ -30,6 +31,7 @@ This collection provides battle tested hardening for:
 
 The hardening is intended to be compliant with the Inspec DevSec Baselines:
 
+- <https://github.com/dev-sec/mac-baseline>
 - <https://github.com/dev-sec/linux-baseline>
 - <https://github.com/dev-sec/mysql-baseline>
 - <https://github.com/dev-sec/nginx-baseline>
@@ -55,6 +57,7 @@ The other roles are in separate archives repositories:
 
 ## Included content
 
+- [macos_hardening](roles/macos_hardening/)
 - [os_hardening](roles/os_hardening/)
 - [mysql_hardening](roles/mysql_hardening/)
 - [nginx_hardening](roles/nginx_hardening/)
