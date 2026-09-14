@@ -1,6 +1,6 @@
 # Changelog
 
-## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-13)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-14)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
 
