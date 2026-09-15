@@ -17,7 +17,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   readme:
     name: create roles readme
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         roles:
