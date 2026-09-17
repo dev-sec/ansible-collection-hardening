@@ -16,10 +16,6 @@ argument_specs:
         default: 60
         type: int
         description: maximum password age (set to `99999` to effectively disable it).
-      os_auth_pw_min_age:
-        default: 7
-        type: int
-        description: minimum password age (before allowing any other password change).
       os_auth_pw_warn_age:
         default: 7
         type: int

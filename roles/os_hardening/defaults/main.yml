@@ -2,7 +2,6 @@
 os_env_user_paths: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
 os_env_extra_user_paths: []
 os_auth_pw_max_age: 60
-os_auth_pw_min_age: 7 # Discourage password cycling
 os_auth_pw_warn_age: 7
 os_auth_pw_remember: 5 # Specify how many used passwords are record
 os_auth_retries: 5
