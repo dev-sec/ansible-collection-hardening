@@ -17,13 +17,12 @@ It works with the following nginx-roles, including, but not limited to:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9, 10
 - Ubuntu
   - jammy, noble, resolute
 - Debian
-  - trixie, bookworm, bullseye
+  - trixie, bookworm
 - Amazon
 
 ## Role Variables
