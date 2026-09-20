@@ -157,7 +157,6 @@ This role is mostly based on guides by:
 <!-- BEGIN_ANSIBLE_DOCS -->
 
 ## Supported Operating Systems
-
 - EL
   - 8, 9, 10
 - Ubuntu
@@ -300,11 +299,6 @@ This role is mostly based on guides by:
 - `os_auth_pw_max_age`
   - Default: `60`
   - Description: maximum password age (set to `99999` to effectively disable it).
-  - Type: int
-  - Required: no
-- `os_auth_pw_min_age`
-  - Default: `7`
-  - Description: minimum password age (before allowing any other password change).
   - Type: int
   - Required: no
 - `os_auth_pw_remember`
