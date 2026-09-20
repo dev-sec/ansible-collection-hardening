@@ -1,6 +1,6 @@
 # Changelog
 
-## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-14)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-20)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Remove requirement for minimum password age [\#975](https://github.com/dev-sec/ansible-collection-hardening/pull/975) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - Update actions/setup-python action to v7 [\#973](https://github.com/dev-sec/ansible-collection-hardening/pull/973) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/labeler action to v7 [\#972](https://github.com/dev-sec/ansible-collection-hardening/pull/972) ([renovate[bot]](https://github.com/apps/renovate))
 - Deprecate Debian 11 support [\#971](https://github.com/dev-sec/ansible-collection-hardening/pull/971) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
