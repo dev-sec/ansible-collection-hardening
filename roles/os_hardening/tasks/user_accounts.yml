@@ -34,7 +34,6 @@
 - name: Set password ageing for existing regular (non-system, non-root) accounts
   ansible.builtin.user:
     name: "{{ item }}"
-    password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
     password_expire_warn: "{{ os_auth_pw_warn_age }}"
   loop: "{{ regular_users }}"
@@ -66,7 +65,6 @@
 - name: Set password ageing for root user(s)
   ansible.builtin.user:
     name: "{{ item }}"
-    password_expire_min: "{{ os_auth_pw_min_age }}"
     password_expire_max: "{{ os_auth_pw_max_age }}"
     password_expire_warn: "{{ os_auth_pw_warn_age }}"
   loop: "{{ root_users }}"
