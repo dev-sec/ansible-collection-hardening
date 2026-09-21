@@ -20,7 +20,7 @@ jobs:
 
       - name: 'Get Previous tag'
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@61819f33034117e6c686e6a31dba995a85afc9de" # master
+        uses: "WyriHaximus/github-action-get-previous-tag@83f26fea93bc7efcbca2eb5591f5eaaf66b8f206" # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
