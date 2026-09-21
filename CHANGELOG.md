@@ -19,7 +19,9 @@
 - Update actions/labeler action to v6.2.0 [\#967](https://github.com/dev-sec/ansible-collection-hardening/pull/967) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.21.1 \[SECURITY\] [\#961](https://github.com/dev-sec/ansible-collection-hardening/pull/961) ([renovate[bot]](https://github.com/apps/renovate))
 - Update WyriHaximus/github-action-get-previous-tag digest to 83f26fe [\#959](https://github.com/dev-sec/ansible-collection-hardening/pull/959) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency molecule to v26.8.0 [\#958](https://github.com/dev-sec/ansible-collection-hardening/pull/958) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint digest to 665d9e0 [\#957](https://github.com/dev-sec/ansible-collection-hardening/pull/957) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v7 [\#954](https://github.com/dev-sec/ansible-collection-hardening/pull/954) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Update dev-sec/.github digest to 5626f3e [\#951](https://github.com/dev-sec/ansible-collection-hardening/pull/951) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.0) (2026-05-26)
