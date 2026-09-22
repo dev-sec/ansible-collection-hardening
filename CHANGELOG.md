@@ -1,6 +1,6 @@
 # Changelog
 
-## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-21)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-22)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
 
@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - Update dependency ansible-core to v2.21.4 [\#981](https://github.com/dev-sec/ansible-collection-hardening/pull/981) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency ubuntu to v26 [\#978](https://github.com/dev-sec/ansible-collection-hardening/pull/978) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Remove requirement for minimum password age [\#975](https://github.com/dev-sec/ansible-collection-hardening/pull/975) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency molecule-plugins to v26 [\#974](https://github.com/dev-sec/ansible-collection-hardening/pull/974) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python action to v7 [\#973](https://github.com/dev-sec/ansible-collection-hardening/pull/973) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
