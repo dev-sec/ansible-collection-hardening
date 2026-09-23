@@ -1,6 +1,6 @@
 # Changelog
 
-## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-22)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
 
@@ -25,6 +25,7 @@
 - Update ansible/ansible-lint digest to 665d9e0 [\#957](https://github.com/dev-sec/ansible-collection-hardening/pull/957) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout action to v7 [\#954](https://github.com/dev-sec/ansible-collection-hardening/pull/954) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Update dev-sec/.github digest to 5626f3e [\#951](https://github.com/dev-sec/ansible-collection-hardening/pull/951) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency python to 3.14 [\#904](https://github.com/dev-sec/ansible-collection-hardening/pull/904) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [10.6.0](https://github.com/dev-sec/ansible-collection-hardening/tree/10.6.0) (2026-05-26)
 
