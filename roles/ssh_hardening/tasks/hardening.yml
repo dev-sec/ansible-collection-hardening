@@ -146,3 +146,10 @@
   ansible.builtin.service:
     name: "{{ sshd_service_name }}"
     enabled: "{{ ssh_server_service_enabled }}"
+  when: ansible_facts.os_family != 'Darwin'
+
+- name: Enable or disable sshd service on Darwin
+  ansible.builtin.command: >-
+    /bin/launchctl {{ 'enable' if (ssh_server_service_enabled | bool) else 'disable' }} system/{{ sshd_service_name }}
+  when: ansible_facts.os_family == 'Darwin'
+  changed_when: false
