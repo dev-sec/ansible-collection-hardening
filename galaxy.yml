@@ -4,7 +4,7 @@ version: 10.6.0
 readme: README.md
 authors:
   - dev-sec <hello@dev-sec.io>
-description: 'This collection provides battle tested hardening for Linux, SSH, nginx, MySQL'
+description: 'This collection provides battle tested hardening for macOS, Linux, SSH, nginx, MySQL'
 license:
   - Apache-2.0
 license_file: ''
@@ -21,9 +21,11 @@ tags:
   - mysql_hardening
   - nginx_hardening
   - os_hardening
+  - macos_hardening
   - ssh_hardening
   - database
   - linux
+  - macos
   - security
 dependencies:
   ansible.posix: '>=1.0.0'
