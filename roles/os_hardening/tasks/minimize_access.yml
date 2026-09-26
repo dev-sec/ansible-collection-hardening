@@ -47,8 +47,6 @@
   loop:
     - /etc/passwd
     - /etc/group
-    - /etc/passwd-
-    - /etc/group-
   register: minimize_access_passwd_files
 
 - name: Change passwd ownership to root and mode to 0644 | os-03
@@ -59,6 +57,23 @@
     mode: "{{ os_passwd_perms.mode }}"
   when: item.stat.exists
   loop: "{{ minimize_access_passwd_files.results }}"
+
+- name: Find account backup files
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - /etc/passwd-
+    - /etc/group-
+  register: minimize_access_passwd_backup_files
+
+- name: Set account backup ownership and permissions | os-03
+  ansible.builtin.file:
+    dest: "{{ item.item }}"
+    owner: "{{ os_passwd_perms.owner }}"
+    group: "{{ os_passwd_perms.group }}"
+    mode: "{{ os_passwd_backup_mode }}"
+  when: item.stat.exists
+  loop: "{{ minimize_access_passwd_backup_files.results }}"
 
 - name: Change su-binary to only be accessible to user and group root
   ansible.builtin.file:
