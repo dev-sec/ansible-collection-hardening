@@ -55,6 +55,31 @@ To prevent some of the filesystems from being disabled, add them to the `os_file
 
 ## Known Limitations
 
+### Sudoers permissions
+
+Set `os_sudoers_enabled: true` to manage ownership (`root:root`) and permissions of an
+existing `/etc/sudoers` and regular files directly under `/etc/sudoers.d/`. This is
+disabled by default and does not install sudo or create a sudoers policy.
+
+- `os_env_sudoers_file_mode`: main file mode, defaults to `"0440"`.
+- `os_env_sudoers_d_file_mode`: drop-in file mode, defaults to `os_env_sudoers_file_mode`.
+- `os_env_sudo_conf_manage_mode`: defaults to `true`; keeps the `sudoers_mode` option
+  in `/etc/sudo.conf` synchronized with the main file mode. Existing plugin paths
+  and other arguments are retained. A configuration with no active plugins gets
+  explicit default policy and I/O plugins. Existing sudoers audit plugin options
+  are updated too.
+
+Modes must be quoted strings (`"0400"` or `"0440"`). Automatic plugin management
+supports single-line directives using `sudoers_policy`. For other policy plugins
+or continued directives, set `os_env_sudo_conf_manage_mode: false` and manage the
+expected mode externally. Custom sudoers paths, ownership and recursive include
+directories are not managed.
+
+```yaml
+os_sudoers_enabled: true
+os_env_sudoers_file_mode: "0400"
+```
+
 ### Docker support
 
 If you're using Docker / Kubernetes+Docker you'll need to override the ipv4 ip forward sysctl setting.

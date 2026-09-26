@@ -1,0 +1,30 @@
+---
+- name: Check sudoers file permissions
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - /etc/sudoers
+    - /etc/sudoers.d/hardening-test
+  register: sudoers_test_files
+
+- name: Verify sudoers ownership and mode
+  ansible.builtin.assert:
+    that:
+      - item.stat.uid == 0
+      - item.stat.gid == 0
+      - item.stat.mode == '0400'
+  loop: "{{ sudoers_test_files.results }}"
+
+- name: Validate sudoers with the configured plugin options
+  ansible.builtin.command: visudo -c
+  changed_when: false
+
+- name: Verify sudo can still execute commands
+  ansible.builtin.command: sudo -n true
+  changed_when: false
+
+- name: Verify changing the mode in both directions
+  ansible.builtin.include_tasks: sudoers_mode.yml
+  loop: ["0440", "0400"]
+  loop_control:
+    loop_var: sudoers_test_mode
