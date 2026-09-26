@@ -1,15 +1,27 @@
 ---
-- name: Get user accounts | os-09
-  ansible.builtin.command: "awk -F: '{print $1}' /etc/passwd"
+- name: Get user home directories | os-09
+  ansible.builtin.command: "awk -F: '{print $6}' /etc/passwd"
   changed_when: false
   check_mode: false
-  register: users_accounts
+  register: users_home_dirs
+
+- name: Stat user home directories | os-09
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop: "{{ users_home_dirs.stdout_lines | flatten | unique | default([]) }}"
+  register: users_home_dir_stats
+  changed_when: false
+  check_mode: false
+  loop_control:
+    label: "{{ item }}"
 
 - name: Delete rhosts-files from system | os-09
   ansible.builtin.file:
-    dest: ~{{ item }}/.rhosts
+    dest: "{{ item.stat.path }}/.rhosts"
     state: absent
-  loop: "{{ users_accounts.stdout_lines | flatten | default([]) }}"
+  loop: "{{ users_home_dir_stats.results | selectattr('stat.isdir', 'defined') | selectattr('stat.isdir') | list }}"
+  loop_control:
+    label: "{{ item.stat.path }}"
 
 - name: Delete hosts.equiv from system | os-01
   ansible.builtin.file:
