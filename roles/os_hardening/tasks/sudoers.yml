@@ -1,0 +1,96 @@
+---
+- name: Validate sudoers permission settings
+  ansible.builtin.assert:
+    that:
+      - os_env_sudoers_file_mode in ['0400', '0440']
+      - os_env_sudoers_d_file_mode in ['0400', '0440']
+    fail_msg: Sudoers modes must be quoted strings, either '0400' or '0440'.
+
+- name: Check whether sudoers is installed
+  ansible.builtin.stat:
+    path: /etc/sudoers
+  register: os_sudoers_file
+
+- name: Harden existing sudoers configuration
+  when: os_sudoers_file.stat.exists
+  block:
+    - name: Configure the expected sudoers mode
+      when: os_env_sudo_conf_manage_mode | bool
+      block:
+        - name: Check for sudo.conf
+          ansible.builtin.stat:
+            path: /etc/sudo.conf
+          register: os_sudo_conf_file
+
+        - name: Read existing sudo.conf
+          ansible.builtin.slurp:
+            src: /etc/sudo.conf
+          register: os_sudo_conf
+          when: os_sudo_conf_file.stat.exists
+
+        - name: Collect active sudo plugin directives
+          ansible.builtin.set_fact:
+            os_sudoers_plugin_lines: >-
+              {{ (os_sudo_conf.content | default('') | b64decode)
+                 | regex_findall('(?m)^[ \t]*Plugin[ \t]+[^\r\n]+') }}
+
+        - name: Require a supported sudoers policy configuration
+          ansible.builtin.assert:
+            that:
+              - >-
+                os_sudoers_plugin_lines | length == 0 or
+                os_sudoers_plugin_lines | select('match', '^[ \t]*Plugin[ \t]+sudoers_policy[ \t]+') | list | length == 1
+              - os_sudoers_plugin_lines | select('search', '\\\\$') | list | length == 0
+              - os_sudoers_plugin_lines | select('search', '[ \t]sudoers_(uid|gid)=(?!0(?:[ \t]|$))') | list | length == 0
+              - os_sudoers_plugin_lines | select('search', '[ \t]sudoers_file=(?!/etc/sudoers(?:[ \t]|$))') | list | length == 0
+            fail_msg: >-
+              Automatic mode management requires single-line sudoers_policy directives using /etc/sudoers and root ownership.
+              Set os_env_sudo_conf_manage_mode to false to manage sudo.conf separately.
+
+        # Explicitly retain the default I/O plugin when making the implicit policy explicit.
+        # sudo >= 1.9.1 also loads its audit plugin automatically for sudoers_policy.
+        - name: Configure default sudoers plugins
+          ansible.builtin.blockinfile:
+            path: /etc/sudo.conf
+            create: true
+            owner: root
+            group: root
+            mode: "{{ os_sudo_conf_file.stat.mode | default('0644') }}"
+            marker: "# {mark} ANSIBLE MANAGED SUDOERS MODE"
+            block: |
+              Plugin sudoers_policy sudoers.so sudoers_mode={{ os_env_sudoers_file_mode }}
+              Plugin sudoers_io sudoers.so
+          when: os_sudoers_plugin_lines | length == 0
+
+        - name: Synchronize existing sudoers plugin mode options
+          ansible.builtin.lineinfile:
+            path: /etc/sudo.conf
+            regexp: "^{{ item | regex_escape }}$"
+            line: >-
+              {{ (item | regex_replace('([ \t]+)sudoers_mode=[^ \t#]+', '\1sudoers_mode=' ~ os_env_sudoers_file_mode))
+                 if item is search('[ \t]sudoers_mode=') else
+                 (item | regex_replace('([ \t]*(?:#.*)?)$', ' sudoers_mode=' ~ os_env_sudoers_file_mode ~ '\1', count=1)) }}
+          loop: "{{ os_sudoers_plugin_lines | select('match', '^[ \t]*Plugin[ \t]+sudoers_(policy|audit)[ \t]+') | list }}"
+
+    - name: Harden sudoers file permissions
+      ansible.builtin.file:
+        path: /etc/sudoers
+        owner: root
+        group: root
+        mode: "{{ os_env_sudoers_file_mode }}"
+
+    - name: Find sudoers drop-in files
+      ansible.builtin.find:
+        paths: /etc/sudoers.d
+        file_type: file
+      register: os_sudoers_dropins
+
+    - name: Harden sudoers drop-in permissions
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        owner: root
+        group: root
+        mode: "{{ os_env_sudoers_d_file_mode }}"
+      loop: "{{ os_sudoers_dropins.files }}"
+      loop_control:
+        label: "{{ item.path }}"

@@ -14,6 +14,8 @@
       ansible.builtin.include_role:
         name: devsec.hardening.os_hardening
   vars:
+    os_sudoers_enabled: true
+    os_env_sudoers_file_mode: "0400"
     os_security_users_allow: change_user
     os_security_kernel_enable_core_dump: false
     os_auditd_enabled: false
