@@ -22,6 +22,11 @@
         - verify_tasks/ignore_home_folders.yml
         - verify_tasks/ssh_auth_locked.yml
 
+    - name: Verify default account backup permissions
+      ansible.builtin.include_tasks: verify_tasks/passwd_permissions.yml
+      vars:
+        expected_backup_mode: "0600"
+
     # temp. disabled - https://github.com/dev-sec/ansible-collection-hardening/issues/690
     #    - name: Include PAM tests
     #      ansible.builtin.include_tasks: verify_tasks/pam.yml
@@ -71,6 +76,7 @@
   vars:
     os_auditd_enabled: false
     os_env_umask: "027 #override"
+    os_passwd_backup_mode: "0400"
   tasks:
     # test if variable can be overridden
     - name: Workaround for https://github.com/ansible/ansible/issues/66304
@@ -85,3 +91,8 @@
       ansible.builtin.command:
         cmd: "grep '027 #override' /etc/login.defs"
       changed_when: false
+
+    - name: Verify custom account backup permissions
+      ansible.builtin.include_tasks: verify_tasks/passwd_permissions.yml
+      vars:
+        expected_backup_mode: "0400"

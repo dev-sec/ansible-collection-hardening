@@ -1,0 +1,21 @@
+---
+- name: Read account file permissions
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - /etc/passwd
+    - /etc/group
+    - /etc/passwd-
+    - /etc/group-
+  register: account_file_permissions
+
+- name: Verify account and backup permissions independently
+  ansible.builtin.assert:
+    that:
+      - item.stat.exists
+      - item.stat.pw_name == 'root'
+      - item.stat.gr_name == 'root'
+      - item.stat.mode == (expected_backup_mode if item.item.endswith('-') else '0644')
+  loop: "{{ account_file_permissions.results }}"
+  loop_control:
+    label: "{{ item.item }}"
