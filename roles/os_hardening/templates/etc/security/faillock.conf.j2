@@ -49,7 +49,9 @@ unlock_time = {{ os_auth_lockout_time }}
 #
 # Root account can become locked as well as regular accounts.
 # Enabled if option is present.
+{% if os_auth_lockout_root | bool %}
 even_deny_root
+{% endif %}
 #
 # This option implies the `even_deny_root` option.
 # Allow access after n seconds to root account after the

@@ -1,4 +1,7 @@
 ---
+- name: Verify root lockout templates
+  ansible.builtin.import_playbook: verify_root_lockout.yml
+
 - name: Verify
   hosts: all
   become: true
