@@ -1,4 +1,23 @@
 ---
+- name: Verify SSH socket dependency was unloaded
+  hosts: all
+  become: true
+  tasks:
+    - name: Check systemd socket transition on Ubuntu
+      when:
+        - ansible_facts.distribution == 'Ubuntu'
+        - ansible_facts.distribution_version is version('24.04', '>=')
+      block:
+        - name: Read loaded SSH service dependencies
+          ansible.builtin.systemd:
+            name: ssh.service
+          register: ssh_service_dependencies
+
+        - name: Verify SSH no longer requires the masked socket
+          ansible.builtin.assert:
+            that:
+              - "'ssh.socket' not in ssh_service_dependencies.status.Requires.split()"
+
 - name: OpenBSD workaround - inspec detects OpenSBD as unix and not linux compatible
   hosts: all
   become: true
