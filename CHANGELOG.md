@@ -1,8 +1,13 @@
 # Changelog
 
-## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-23)
+## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-29)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
+
+**Implemented enhancements:**
+
+- Remove requirement for minimum password age [\#975](https://github.com/dev-sec/ansible-collection-hardening/pull/975) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
+- Deprecate Debian 11 support [\#971](https://github.com/dev-sec/ansible-collection-hardening/pull/971) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 
 **Fixed bugs:**
 
@@ -10,15 +15,14 @@
 
 **Merged pull requests:**
 
+- Update dependency molecule-plugins to v26.9.28 [\#988](https://github.com/dev-sec/ansible-collection-hardening/pull/988) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency molecule to v26.9.0 [\#983](https://github.com/dev-sec/ansible-collection-hardening/pull/983) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible/ansible-lint digest to e7f397a [\#982](https://github.com/dev-sec/ansible-collection-hardening/pull/982) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.21.4 [\#981](https://github.com/dev-sec/ansible-collection-hardening/pull/981) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ubuntu to v26 [\#978](https://github.com/dev-sec/ansible-collection-hardening/pull/978) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
-- Remove requirement for minimum password age [\#975](https://github.com/dev-sec/ansible-collection-hardening/pull/975) [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency molecule-plugins to v26 [\#974](https://github.com/dev-sec/ansible-collection-hardening/pull/974) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python action to v7 [\#973](https://github.com/dev-sec/ansible-collection-hardening/pull/973) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/labeler action to v7 [\#972](https://github.com/dev-sec/ansible-collection-hardening/pull/972) ([renovate[bot]](https://github.com/apps/renovate))
-- Deprecate Debian 11 support [\#971](https://github.com/dev-sec/ansible-collection-hardening/pull/971) [[mysql_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/mysql_hardening)] [[os_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/os_hardening)] [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] [[nginx_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/nginx_hardening)] ([schurzi](https://github.com/schurzi))
 - Update dependency docker to v7.2.0 [\#968](https://github.com/dev-sec/ansible-collection-hardening/pull/968) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/labeler action to v6.2.0 [\#967](https://github.com/dev-sec/ansible-collection-hardening/pull/967) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ansible-core to v2.21.1 \[SECURITY\] [\#961](https://github.com/dev-sec/ansible-collection-hardening/pull/961) ([renovate[bot]](https://github.com/apps/renovate))
