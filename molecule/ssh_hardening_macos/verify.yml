@@ -1,0 +1,47 @@
+---
+- name: Verify playbook for testing devsec.hardening.ssh_hardening on macOS
+  hosts: all
+  become: true
+  tasks:
+    - name: Stat sshd_config
+      ansible.builtin.stat:
+        path: /etc/ssh/sshd_config
+      register: stat_sshd_config
+
+    - name: Assert sshd_config exists and has correct permissions
+      ansible.builtin.assert:
+        that:
+          - stat_sshd_config.stat.exists
+          - stat_sshd_config.stat.pw_name == 'root'
+          - stat_sshd_config.stat.gr_name == 'wheel'
+          - stat_sshd_config.stat.mode == '0600'
+
+    - name: Stat ssh_config
+      ansible.builtin.stat:
+        path: /etc/ssh/ssh_config
+      register: stat_ssh_config
+
+    - name: Assert ssh_config exists and has correct permissions
+      ansible.builtin.assert:
+        that:
+          - stat_ssh_config.stat.exists
+          - stat_ssh_config.stat.pw_name == 'root'
+          - stat_ssh_config.stat.gr_name == 'wheel'
+          - stat_ssh_config.stat.mode == '0644'
+
+    - name: Stat revoked_keys
+      ansible.builtin.stat:
+        path: /etc/ssh/revoked_keys
+      register: stat_revoked_keys
+
+    - name: Assert revoked_keys exists and has correct permissions
+      ansible.builtin.assert:
+        that:
+          - stat_revoked_keys.stat.exists
+          - stat_revoked_keys.stat.pw_name == 'root'
+          - stat_revoked_keys.stat.gr_name == 'wheel'
+          - stat_revoked_keys.stat.mode == '0600'
+
+    - name: Validate sshd configuration syntax
+      ansible.builtin.command: /usr/sbin/sshd -t -f /etc/ssh/sshd_config
+      changed_when: false

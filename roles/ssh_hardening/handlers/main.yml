@@ -3,5 +3,17 @@
   ansible.builtin.service:
     name: "{{ sshd_service_name }}"
     state: restarted
-  when: ssh_server_enabled | bool
+  when:
+    - ssh_server_enabled | bool
+    - ansible_facts.os_family != 'Darwin'
   become: true
+  listen: Restart sshd
+
+- name: Restart sshd (Darwin)
+  ansible.builtin.command: /bin/launchctl kickstart -k system/{{ sshd_service_name }}
+  when:
+    - ssh_server_enabled | bool
+    - ansible_facts.os_family == 'Darwin'
+  become: true
+  changed_when: true
+  listen: Restart sshd
