@@ -1,0 +1,165 @@
+---
+# DevSec macOS Hardening Role Defaults
+
+# Main role enablement toggle
+macos_hardening_enabled: true
+
+# Subsystem category switches
+macos_update_enabled: true
+macos_sharing_enabled: true
+macos_network_enabled: true
+macos_system_enabled: true
+macos_security_enabled: true
+macos_account_enabled: true
+macos_audit_enabled: true
+macos_safari_enabled: true
+macos_profile_enabled: true
+
+# Software Update settings
+macos_software_update_check_enabled: true
+macos_software_update_download_enabled: true
+macos_software_update_install_macos_updates_enabled: true
+macos_software_update_install_app_updates_enabled: true
+macos_software_update_install_system_data_enabled: true
+macos_software_update_install_critical_updates_enabled: true
+macos_software_update_defer_enabled: false
+macos_software_update_defer_days: 30
+
+# Sharing & Remote Services settings
+macos_screen_sharing_manage: false
+macos_screen_sharing_enabled: false
+macos_file_sharing_enabled: false
+macos_printer_sharing_enabled: false
+macos_remote_login_manage: false
+macos_remote_login_enabled: false
+macos_remote_management_manage: false
+macos_remote_management_enabled: false
+macos_remote_apple_events_manage: false
+macos_remote_apple_events_enabled: false
+macos_internet_sharing_enabled: false
+macos_content_caching_enabled: false
+macos_media_sharing_enabled: false
+macos_media_sharing_modification_allowed: false
+macos_bluetooth_sharing_enabled: false
+
+# Network & Firewall settings
+macos_firewall_enabled: true
+macos_firewall_stealth_enabled: true
+macos_airdrop_enabled: false
+macos_airplay_receiver_enabled: false
+macos_network_time_manage: true
+macos_network_time_enabled: true
+macos_network_time_server: time.apple.com
+macos_bonjour_multicast_advertisements_enabled: false
+macos_apache_enabled: false
+macos_nfs_enabled: false
+
+# System, Power & Screensaver settings
+macos_display_sleep_minutes: 10
+macos_sleep_minutes: 15
+macos_power_nap_enabled: false
+macos_wake_on_network_access_enabled: false
+macos_screensaver_idle_time: 900
+macos_screensaver_ask_for_password: true
+macos_screensaver_ask_for_password_delay: 0
+macos_search_queries_data_sharing_status: 2
+macos_force_on_device_only_dictation: true
+macos_loginwindow_show_fullname_enabled: true
+macos_loginwindow_retries_until_hint: 0
+macos_loginwindow_message: ""
+
+# Security, Authorization & Privacy settings
+macos_location_services_enabled: true
+macos_location_system_services_icon_enabled: true
+macos_submit_diag_info_enabled: false
+macos_assistant_enabled: false
+macos_siri_data_sharing_opt_in_status: 2
+macos_apple_personalized_advertising_enabled: false
+macos_apple_intelligence_cloud_sync_enabled: false
+macos_gatekeeper_assessment_enabled: true
+macos_gatekeeper_allow_identified_developers: true
+macos_authorizationdb_system_preferences_manage: true
+macos_chmod_home_folders: true
+macos_sudo_timestamp_timeout: 0
+macos_sudoers_file: 10_macos_hardening
+macos_policy_banner_content: ""
+macos_cloud_desktop_and_documents_enabled: false
+macos_game_center_enabled: false
+macos_external_intelligence_integrations_enabled: false
+macos_external_intelligence_integrations_signin_enabled: false
+macos_writing_tools_enabled: false
+macos_mail_summary_enabled: false
+macos_notes_transcription_enabled: false
+macos_notes_transcription_summary_enabled: false
+macos_filevault_disable_allowed: false
+macos_universal_control_enabled: false
+
+# Account policy settings
+macos_guest_account_enabled: false
+macos_guest_file_sharing_enabled: false
+macos_automatic_login_disabled: true
+macos_password_lockout_seconds: 900
+macos_password_max_failed_attempts: 5
+macos_password_min_length: 15
+macos_password_require_alpha: 1
+macos_password_require_numeric: 1
+macos_password_require_symbol: 1
+macos_password_require_mixed_case: 1
+macos_password_max_age_days: 365
+macos_password_history_depth: 24
+
+# Audit settings
+macos_audit_flags: "aa,ad,lo,-all"
+macos_audit_expire_after: "30d"
+macos_install_log_ttl: 365
+
+# Safari & Terminal settings
+macos_safari_auto_open_safe_downloads_enabled: false
+macos_safari_warn_about_fraudulent_websites_enabled: true
+macos_safari_block_storage_policy: 2
+macos_safari_private_click_measurement_enabled: true
+macos_safari_show_full_url_enabled: true
+macos_safari_show_status_bar_enabled: true
+macos_terminal_secure_keyboard_entry_enabled: true
+
+# Configuration profile deployment settings
+macos_profile_install: false
+macos_profile_path: /tmp/macos_hardening.mobileconfig
+macos_profile_identifier: com.devsec.macos_hardening
+macos_profile_display_name: DevSec macOS Hardening
+macos_profile_description: DevSec macOS hardening configuration profile
+macos_profile_organization: DevSec Hardening Framework Team
+macos_profile_uuid: 89692235-d2cb-47be-93d9-1d9b30416630
+macos_fail_on_unremediated: false
+
+# Profile payload management switches
+macos_profile_softwareupdate_manage: true
+macos_profile_firewall_manage: true
+macos_profile_applicationaccess_manage: true
+macos_profile_mdns_manage: true
+macos_profile_locationmenu_manage: true
+macos_profile_submitdiag_manage: true
+macos_profile_assistant_support_manage: true
+macos_profile_systempolicy_manage: true
+macos_profile_mcx_manage: true
+macos_profile_universalcontrol_manage: true
+macos_profile_loginwindow_manage: true
+macos_profile_terminal_manage: true
+macos_profile_safari_manage: true
+macos_profile_screensaver_manage: true
+
+# Payload UUIDs (static for idempotency)
+macos_profile_uuid_softwareupdate: 3bc15b0f-4041-4d1b-a044-6eb69248cba0
+macos_profile_uuid_firewall: e6f40b8b-b28a-4779-8815-b7e13aa970b7
+macos_profile_uuid_applicationaccess: 24b270d6-663b-4c93-a15d-4ac03e2b64f5
+macos_profile_uuid_mdns: 6891c8e4-44b8-4a27-a468-583dc19a5a90
+macos_profile_uuid_locationmenu: 7972adc3-3ea0-41e4-bd44-d5e55cb875e8
+macos_profile_uuid_submitdiag: f3416271-de9e-443d-a2ee-5f75ab2f5def
+macos_profile_uuid_assistant_support: 84c07fda-6c2c-41ab-884c-1858eaf784a9
+macos_profile_uuid_systempolicy: c599ed89-eef2-4d28-bd82-282ebfab7f0b
+macos_profile_uuid_mcx: e6869e34-ae93-4568-a201-f27e4924c33d
+macos_profile_uuid_universalcontrol: 50d6d54f-bcc8-4592-8c12-1c484a019328
+macos_profile_uuid_loginwindow: 5f91cf70-6a6f-46f0-b575-d2d9ca671fc9
+macos_profile_uuid_terminal: 1bff4682-bb1d-4413-b48f-04b3369ec3aa
+macos_profile_uuid_safari: 26af9da3-b002-4621-abd7-28feb7c66ca7
+macos_profile_uuid_screensaver: 75786f5d-6536-4bcd-b20b-4b4a3b754cb4

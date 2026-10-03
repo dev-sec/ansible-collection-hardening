@@ -1,0 +1,125 @@
+---
+- name: Sharing | Configure Screen Sharing launchd listener state
+  community.general.launchd:
+    name: com.apple.screensharing
+    state: "{{ 'started' if macos_screen_sharing_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_screen_sharing_enabled | bool }}"
+  when: macos_screen_sharing_manage | bool
+
+- name: Sharing | Configure File Sharing launchd service state
+  community.general.launchd:
+    name: com.apple.smbd
+    state: "{{ 'started' if macos_file_sharing_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_file_sharing_enabled | bool }}"
+
+- name: Sharing | Read Printer Sharing state via cupsctl
+  ansible.builtin.command: /usr/sbin/cupsctl
+  register: macos_cups_status
+  changed_when: false
+
+- name: Sharing | Configure Printer Sharing via cupsctl
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/cupsctl
+      - "_share_printers={{ 1 if macos_printer_sharing_enabled | bool else 0 }}"
+  when: "('_share_printers=' ~ (1 if macos_printer_sharing_enabled | bool else 0)) not in macos_cups_status.stdout"
+  changed_when: true
+
+- name: Sharing | Configure Remote Login SSH service state
+  community.general.launchd:
+    name: com.openssh.sshd
+    state: "{{ 'started' if macos_remote_login_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_remote_login_enabled | bool }}"
+  when: macos_remote_login_manage | bool
+
+- name: Sharing | Check if ARD kickstart tool exists
+  ansible.builtin.stat:
+    path: /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+  register: macos_ard_kickstart
+  when: macos_remote_management_manage | bool
+
+- name: Sharing | Check Remote Management active state
+  ansible.builtin.stat:
+    path: /Library/Application Support/Apple/Remote Desktop/RemoteManagement.launchd
+  register: macos_rm_launchd_file
+  when:
+    - macos_remote_management_manage | bool
+    - macos_ard_kickstart.stat is defined and macos_ard_kickstart.stat.exists
+
+- name: Sharing | Activate Remote Management ARD service
+  ansible.builtin.command: >-
+    /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+    -activate -restart -agent
+  when:
+    - macos_remote_management_manage | bool
+    - macos_remote_management_enabled | bool
+    - macos_ard_kickstart.stat is defined and macos_ard_kickstart.stat.exists
+    - not (macos_rm_launchd_file.stat.exists | default(false))
+  changed_when: true
+
+- name: Sharing | Deactivate Remote Management ARD service
+  ansible.builtin.command: >-
+    /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart
+    -deactivate -stop
+  when:
+    - macos_remote_management_manage | bool
+    - not (macos_remote_management_enabled | bool)
+    - macos_ard_kickstart.stat is defined and macos_ard_kickstart.stat.exists
+    - macos_rm_launchd_file.stat.exists | default(false)
+  changed_when: true
+
+- name: Sharing | Report missing ARD kickstart tool when Remote Management managed
+  ansible.builtin.debug:
+    msg: "Notice: Remote Management (ARD) management was requested but kickstart tool was not found on target host."
+  when:
+    - macos_remote_management_manage | bool
+    - macos_ard_kickstart.stat is defined and not macos_ard_kickstart.stat.exists
+
+- name: Sharing | Read Remote Apple Events state
+  ansible.builtin.command: /usr/sbin/systemsetup -getremoteappleevents
+  register: macos_apple_events_status
+  when: macos_remote_apple_events_manage | bool
+  changed_when: false
+  failed_when: false
+
+- name: Sharing | Configure Remote Apple Events
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/systemsetup
+      - -f
+      - -setremoteappleevents
+      - "{{ 'on' if macos_remote_apple_events_enabled | bool else 'off' }}"
+  when:
+    - macos_remote_apple_events_manage | bool
+    - >-
+      (macos_remote_apple_events_enabled and 'Remote Apple Events: On' not in (macos_apple_events_status.stdout | default(''))) or
+      (not macos_remote_apple_events_enabled and 'Remote Apple Events: Off' not in (macos_apple_events_status.stdout | default('')))
+  changed_when: true
+
+- name: Sharing | Configure Internet Sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.MCX
+    key: forceInternetSharingOff
+    type: bool
+    value: "{{ not (macos_internet_sharing_enabled | bool) }}"
+
+- name: Sharing | Configure Content Caching
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowContentCaching
+    type: bool
+    value: "{{ macos_content_caching_enabled | bool }}"
+
+- name: Sharing | Configure Media Sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowMediaSharing
+    type: bool
+    value: "{{ macos_media_sharing_enabled | bool }}"
+
+- name: Sharing | Configure Bluetooth file sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.Bluetooth
+    key: PrefKeyServicesEnabled
+    type: bool
+    value: "{{ macos_bluetooth_sharing_enabled | bool }}"

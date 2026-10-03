@@ -1,0 +1,159 @@
+---
+- name: Network | Read Application Firewall state
+  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+  register: macos_alf_state
+  changed_when: false
+
+- name: Network | Configure Application Firewall state
+  ansible.builtin.command:
+    argv:
+      - /usr/libexec/ApplicationFirewall/socketfilterfw
+      - --setglobalstate
+      - "{{ 'on' if macos_firewall_enabled | bool else 'off' }}"
+  when: >-
+    (macos_firewall_enabled and 'State = 1' not in macos_alf_state.stdout) or
+    (not macos_firewall_enabled and 'State = 0' not in macos_alf_state.stdout)
+  changed_when: true
+
+- name: Network | Read Firewall Stealth Mode state
+  ansible.builtin.command: /usr/libexec/ApplicationFirewall/socketfilterfw --getstealthmode
+  register: macos_alf_stealth
+  changed_when: false
+
+- name: Network | Configure Firewall Stealth Mode
+  ansible.builtin.command:
+    argv:
+      - /usr/libexec/ApplicationFirewall/socketfilterfw
+      - --setstealthmode
+      - "{{ 'on' if macos_firewall_stealth_enabled | bool else 'off' }}"
+  when: >-
+    (macos_firewall_stealth_enabled and 'stealth mode is on' not in macos_alf_stealth.stdout) or
+    (not macos_firewall_stealth_enabled and 'stealth mode is off' not in macos_alf_stealth.stdout)
+  changed_when: true
+
+- name: Network | Configure AirDrop
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowAirDrop
+    type: bool
+    value: "{{ macos_airdrop_enabled | bool }}"
+
+- name: Network | Configure AirPlay Receiver
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowAirPlayIncomingRequests
+    type: bool
+    value: "{{ macos_airplay_receiver_enabled | bool }}"
+
+- name: Network | Read network time synchronization state
+  ansible.builtin.command: /usr/sbin/systemsetup -getusingnetworktime
+  register: macos_nettime_status
+  when: macos_network_time_manage | bool
+  changed_when: false
+  failed_when: false
+
+- name: Network | Configure network time synchronization
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/systemsetup
+      - -setusingnetworktime
+      - "{{ 'on' if macos_network_time_enabled | bool else 'off' }}"
+  when:
+    - macos_network_time_manage | bool
+    - >-
+      (macos_network_time_enabled and 'Network Time: On' not in (macos_nettime_status.stdout | default(''))) or
+      (not macos_network_time_enabled and 'Network Time: Off' not in (macos_nettime_status.stdout | default('')))
+  changed_when: true
+
+- name: Network | Read network time server
+  ansible.builtin.command: /usr/sbin/systemsetup -getnetworktimeserver
+  register: macos_timeserver_status
+  when:
+    - macos_network_time_manage | bool
+    - macos_network_time_enabled | bool
+    - macos_network_time_server is defined and macos_network_time_server | length > 0
+  changed_when: false
+  failed_when: false
+
+- name: Network | Configure network time server
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/systemsetup
+      - -setnetworktimeserver
+      - "{{ macos_network_time_server }}"
+  when:
+    - macos_network_time_manage | bool
+    - macos_network_time_enabled | bool
+    - macos_network_time_server is defined and macos_network_time_server | length > 0
+    - macos_network_time_server not in (macos_timeserver_status.stdout | default(''))
+  changed_when: true
+
+- name: Network | Configure mDNSResponder multicast advertisements
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.mDNSResponder
+    key: NoMulticastAdvertisements
+    type: bool
+    value: "{{ not (macos_bonjour_multicast_advertisements_enabled | bool) }}"
+
+- name: Network | Check if Apache HTTP server launchd plist exists
+  ansible.builtin.stat:
+    path: /System/Library/LaunchDaemons/org.apache.httpd.plist
+  register: macos_httpd_plist
+
+- name: Network | Configure Apache HTTP server launchd service state
+  community.general.launchd:
+    name: org.apache.httpd
+    state: "{{ 'started' if macos_apache_enabled | bool else 'stopped' }}"
+    enabled: "{{ macos_apache_enabled | bool }}"
+  when:
+    - macos_httpd_plist.stat is defined
+    - macos_httpd_plist.stat.exists
+
+- name: Network | Read NFS server daemon status
+  ansible.builtin.command: /sbin/nfsd status
+  register: macos_nfsd_status
+  changed_when: false
+  failed_when: false
+
+- name: Network | Ensure NFS exports file exists
+  ansible.builtin.file:
+    path: /etc/exports
+    state: touch
+    owner: root
+    group: wheel
+    mode: "0644"
+    modification_time: preserve
+    access_time: preserve
+
+- name: Network | Read NFS server daemon status
+  ansible.builtin.command: /sbin/nfsd status
+  register: macos_nfsd_status
+  changed_when: false
+  failed_when: false
+
+- name: Network | Enable NFS server daemon
+  ansible.builtin.command:
+    argv:
+      - /sbin/nfsd
+      - enable
+  when:
+    - macos_nfs_enabled | bool
+    - "'nfsd service is enabled' not in (macos_nfsd_status.stdout | default(''))"
+  changed_when: true
+
+- name: Network | Disable NFS server daemon
+  ansible.builtin.command:
+    argv:
+      - /bin/launchctl
+      - disable
+      - system/com.apple.nfsd
+  when:
+    - not macos_nfs_enabled | bool
+    - "'nfsd service is disabled' not in (macos_nfsd_status.stdout | default(''))"
+  changed_when: true
+
+- name: Network | Remove NFS exports when NFS server is disabled
+  ansible.builtin.file:
+    path: /etc/exports
+    state: absent
+  when: not macos_nfs_enabled | bool

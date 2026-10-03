@@ -1,0 +1,19 @@
+---
+driver:
+  name: default
+provisioner:
+  name: ansible
+  options:
+    diff: true
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      callbacks_enabled: profile_tasks, timer
+      inject_facts_as_vars: false
+verifier:
+  name: ansible
+
+scenario:
+  test_sequence:
+    - syntax
+    - converge
