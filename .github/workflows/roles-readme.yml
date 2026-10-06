@@ -21,6 +21,7 @@ jobs:
     strategy:
       matrix:
         roles:
+          - macos_hardening
           - mysql_hardening
           - nginx_hardening
           - os_hardening

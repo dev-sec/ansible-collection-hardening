@@ -1,0 +1,131 @@
+---
+- name: Security | Configure Location Services
+  community.general.osx_defaults:
+    domain: /var/db/locationd/Library/Preferences/ByHost/com.apple.locationd
+    key: LocationServicesEnabled
+    type: int
+    value: "{{ 1 if macos_location_services_enabled | bool else 0 }}"
+  notify: restart_locationd
+
+- name: Security | Configure Analytics & Improvements data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SubmitDiagInfo
+    key: AutoSubmit
+    type: bool
+    value: "{{ macos_submit_diag_info_enabled | bool }}"
+
+- name: Security | Configure Siri voice assistant
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Assistant Enabled"
+    type: bool
+    value: "{{ macos_assistant_enabled | bool }}"
+
+- name: Security | Configure Siri data sharing
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.assistant.support
+    key: "Siri Data Sharing Opt In Status"
+    type: int
+    value: "{{ macos_siri_data_sharing_opt_in_status }}"
+
+- name: Security | Configure Advertising tracking
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.AdLib
+    key: allowApplePersonalizedAdvertising
+    type: bool
+    value: "{{ macos_apple_personalized_advertising_enabled | bool }}"
+
+- name: Security | Configure Apple Intelligence cloud sync
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.intelligence
+    key: cloudSyncEnabled
+    type: bool
+    value: "{{ macos_apple_intelligence_cloud_sync_enabled | bool }}"
+
+- name: Security | Configure Apple personalized advertising in applicationaccess
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.applicationaccess
+    key: allowApplePersonalizedAdvertising
+    type: bool
+    value: "{{ macos_apple_personalized_advertising_enabled | bool }}"
+
+- name: Security | Configure Gatekeeper assessment
+  ansible.builtin.command:
+    argv:
+      - /usr/sbin/spctl
+      - "{{ '--enable' if macos_gatekeeper_assessment_enabled | bool else '--disable' }}"
+  register: macos_spctl_result
+  changed_when: false
+  failed_when:
+    - macos_spctl_result.rc != 0
+    - "'no longer supported' not in macos_spctl_result.stderr"
+
+- name: Security | Report spctl CLI deprecation for Gatekeeper
+  ansible.builtin.debug:
+    msg: >-
+      Notice: spctl CLI assessment control is deprecated on macOS 15/26 Tahoe.
+      Gatekeeper assessment is enforced via System Policy configuration profile payload.
+  when:
+    - macos_spctl_result is defined
+    - "'no longer supported' in (macos_spctl_result.stderr | default(''))"
+
+- name: Security | Read system.preferences authorizationdb state
+  ansible.builtin.command: /usr/bin/security authorizationdb read system.preferences
+  register: macos_authdb_prefs_read
+  when: macos_authorizationdb_system_preferences_manage | bool
+  changed_when: false
+  failed_when: false
+
+- name: Security | Require administrator password for System Preferences
+  ansible.builtin.command:
+    cmd: /usr/bin/security authorizationdb write system.preferences
+    stdin: '<plist version="1.0"><dict><key>class</key><string>user</string><key>group</key><string>admin</string><key>shared</key><false/></dict></plist>'
+  when:
+    - macos_authorizationdb_system_preferences_manage | bool
+    - >-
+      macos_authdb_prefs_read.stdout is not search('<key>class</key>\s*<string>user</string>') or
+      macos_authdb_prefs_read.stdout is not search('<key>group</key>\s*<string>admin</string>') or
+      macos_authdb_prefs_read.stdout is not search('<key>shared</key>\s*<false\s*/>')
+  changed_when: true
+
+- name: Security | Discover user home directories on remote target
+  ansible.builtin.find:
+    paths: /Users
+    file_type: directory
+    excludes: ["Shared", "Guest"]
+  register: macos_user_homes
+  when: macos_chmod_home_folders | bool
+
+- name: Security | Restrict permissions on user home folders
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    mode: "0700"
+  loop: "{{ macos_user_homes.files | default([]) }}"
+  when:
+    - macos_chmod_home_folders | bool
+    - macos_user_homes.files is defined and macos_user_homes.files | length > 0
+
+- name: Security | Configure sudo security drop-in file
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ macos_sudoers_file }}"
+    content: |
+      Defaults timestamp_timeout={{ macos_sudo_timestamp_timeout }}
+      Defaults tty_tickets
+    owner: root
+    group: wheel
+    mode: "0440"
+
+- name: Security | Create PolicyBanner text file if warning content specified
+  ansible.builtin.copy:
+    dest: /Library/Security/PolicyBanner.txt
+    content: "{{ macos_policy_banner_content }}\n"
+    owner: root
+    group: wheel
+    mode: "0644"
+  when: macos_policy_banner_content | default('') | length > 0
+
+- name: Security | Ensure PolicyBanner file absent if no warning content specified
+  ansible.builtin.file:
+    path: /Library/Security/PolicyBanner.txt
+    state: absent
+  when: macos_policy_banner_content | default('') | length == 0

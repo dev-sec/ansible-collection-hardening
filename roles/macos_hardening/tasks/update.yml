@@ -1,0 +1,57 @@
+---
+- name: Update | Configure automatic check for software updates
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticCheckEnabled
+    type: int
+    value: "{{ macos_software_update_check_enabled | bool | int }}"
+
+- name: Update | Configure automatic download of software updates
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticDownload
+    type: bool
+    value: "{{ macos_software_update_download_enabled | bool }}"
+
+- name: Update | Configure automatic installation of macOS updates
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticallyInstallMacOSUpdates
+    type: bool
+    value: "{{ macos_software_update_install_macos_updates_enabled | bool }}"
+
+- name: Update | Configure automatic installation of App Store updates
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: AutomaticallyInstallAppUpdates
+    type: bool
+    value: "{{ macos_software_update_install_app_updates_enabled | bool }}"
+
+- name: Update | Configure automatic installation of system data files
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: ConfigDataInstall
+    type: bool
+    value: "{{ macos_software_update_install_system_data_enabled | bool }}"
+
+- name: Update | Configure automatic installation of critical security updates
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: CriticalUpdateInstall
+    type: bool
+    value: "{{ macos_software_update_install_critical_updates_enabled | bool }}"
+
+- name: Update | Configure software update deferment enforcement
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: enforceSoftwareUpdateDelay
+    type: bool
+    value: "{{ macos_software_update_defer_enabled | bool }}"
+
+- name: Update | Configure software update deferment days
+  community.general.osx_defaults:
+    domain: /Library/Preferences/com.apple.SoftwareUpdate
+    key: forceDelayedAppSoftwareUpdates
+    type: int
+    value: "{{ macos_software_update_defer_days }}"
+  when: macos_software_update_defer_enabled | bool

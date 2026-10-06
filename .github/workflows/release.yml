@@ -39,7 +39,7 @@ jobs:
           # since they break the changelog generation with the error:
           # "No common ancestor between ... and $version"
           exclude_tags_regex: '^[0-6]\.\d\.\d'
-          issue_line_labels: mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
+          issue_line_labels: macos_hardening,mysql_hardening,os_hardening,ssh_hardening,nginx_hardening
 
       - name: push changelog
         uses: github-actions-x/commit@722d56b8968bf00ced78407bbe2ead81062d8baa # v2.9
