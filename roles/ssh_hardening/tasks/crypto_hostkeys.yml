@@ -29,10 +29,17 @@
       - "{{ ssh_host_keys_dir }}/ssh_host_ed25519_key"
   when: sshd_version is version('6.3', '>=')
 
+- name: Check which SSH host key files exist
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop: "{{ ssh_host_key_files }}"
+  register: ssh_host_key_files_check
+
 - name: Change host private key ownership, group and permissions
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ item.item }}"
     owner: "{{ ssh_host_keys_owner }}"
     group: "{{ ssh_host_keys_group }}"
     mode: "{{ ssh_host_keys_mode }}"
-  loop: "{{ ssh_host_key_files }}"
+  when: item.stat.exists
+  loop: "{{ ssh_host_key_files_check.results }}"
