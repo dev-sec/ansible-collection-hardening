@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.1) (2026-10-08)
+
+[Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/11.0.0...11.0.1)
+
+**Merged pull requests:**
+
+- update community.mysql dependency in galaxy.yml [\#993](https://github.com/dev-sec/ansible-collection-hardening/pull/993) ([z-bsod](https://github.com/z-bsod))
+
 ## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-29)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/10.6.0...11.0.0)
