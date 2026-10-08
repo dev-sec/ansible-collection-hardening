@@ -330,6 +330,10 @@ argument_specs:
         type: bool
         description: Set to false to disable installing and configuring login_defs
           for newly created users.
+      os_passwd_backup_mode:
+        default: "0600"
+        type: str
+        description: Permissions for existing /etc/passwd- and /etc/group- backup files. Does not change permissions of /etc/passwd or /etc/group.
       os_minimize_access_enabled:
         default: true
         type: bool

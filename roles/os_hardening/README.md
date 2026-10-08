@@ -806,6 +806,11 @@ This role is mostly based on guides by:
   - Description: Set to false to disable installing and configuring pam.
   - Type: bool
   - Required: no
+- `os_passwd_backup_mode`
+  - Default: `0600`
+  - Description: Permissions for existing /etc/passwd- and /etc/group- backup files. Does not change permissions of /etc/passwd or /etc/group.
+  - Type: str
+  - Required: no
 - `os_profile_enabled`
   - Default: `True`
   - Description: Set to false to disable installing and configuring profile.
