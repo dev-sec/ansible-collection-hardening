@@ -34,6 +34,10 @@ argument_specs:
         type: int
         description: time in seconds that needs to pass, if the account was locked
           due to too many failed authentication attempts.
+      os_auth_lockout_root:
+        default: true
+        type: bool
+        description: Apply pam_faillock lockout to root as well as regular users. Set to false to omit even_deny_root; regular user lockout is unchanged.
       os_auth_timeout:
         default: 60
         type: int

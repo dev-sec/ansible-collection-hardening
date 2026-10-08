@@ -1,0 +1,22 @@
+---
+- name: Verify generated faillock configuration
+  vars:
+    os_auth_lockout_root: "{{ root_lockout_case.enabled }}"
+    os_auth_retries: "{{ root_lockout_case.retries }}"
+    faillock_config: "{{ lookup('ansible.builtin.template', '../../../roles/os_hardening/templates/etc/security/faillock.conf.j2') }}"
+    rhel_config: "{{ lookup('ansible.builtin.template', '../../../roles/os_hardening/templates/etc/pam.d/rhel_auth.j2') }}"
+    faillock_lines: "{{ faillock_config.splitlines() | reject('match', '^#') | list }}"
+    rhel_lockout_lines: "{{ rhel_config.splitlines() | select('match', '^auth.*pam_faillock[.]so') | list }}"
+  ansible.builtin.assert:
+    that:
+      - "('even_deny_root' in faillock_lines) == root_lockout_case.enabled"
+      - "('deny = ' ~ root_lockout_case.retries) in faillock_lines"
+      - "('unlock_time = ' ~ os_auth_lockout_time) in faillock_lines"
+      - rhel_lockout_lines | length == (2 if root_lockout_case.retries > 0 else 0)
+      - >-
+        (rhel_lockout_lines | select('search', 'even_deny_root') | list | length)
+        == (2 if root_lockout_case.enabled and root_lockout_case.retries > 0 else 0)
+      - >-
+        (rhel_lockout_lines | select('search', 'deny=' ~ root_lockout_case.retries ~ ' unlock_time=' ~ os_auth_lockout_time ~ '$') | list | length)
+        == (2 if root_lockout_case.retries > 0 else 0)
+      - "'auth        required      pam_deny.so' in rhel_config.splitlines()"

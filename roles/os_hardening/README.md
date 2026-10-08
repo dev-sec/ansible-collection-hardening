@@ -271,6 +271,11 @@ This role is mostly based on guides by:
   - Description: minimum number for automatic gid selection in groupadd.
   - Type: int
   - Required: no
+- `os_auth_lockout_root`
+  - Default: `True`
+  - Description: Apply pam_faillock lockout to root as well as regular users. Set to false to omit even_deny_root; regular user lockout is unchanged.
+  - Type: bool
+  - Required: no
 - `os_auth_lockout_time`
   - Default: `600`
   - Description: time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts.
