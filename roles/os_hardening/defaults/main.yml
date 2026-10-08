@@ -1,6 +1,11 @@
 ---
 os_env_user_paths: [/usr/local/sbin, /usr/local/bin, /usr/sbin, /usr/bin, /sbin, /bin]
 os_env_extra_user_paths: []
+# Opt in to sudoers permission management; sudo itself is not installed by this role.
+os_sudoers_enabled: false
+os_env_sudoers_file_mode: "0440"
+os_env_sudoers_d_file_mode: "{{ os_env_sudoers_file_mode }}"
+os_env_sudo_conf_manage_mode: true
 os_auth_pw_max_age: 60
 os_auth_pw_warn_age: 7
 os_auth_pw_remember: 5 # Specify how many used passwords are record
