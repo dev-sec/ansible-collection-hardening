@@ -106,7 +106,7 @@ RSAAuthentication yes
 {% endif %}
 
 # Disable password-based authentication, it can allow for potentially easier brute-force attacks.
-PasswordAuthentication {{ 'yes' if ssh_client_password_login else 'no' }}
+PasswordAuthentication {{ 'yes' if (ssh_client_password_login|bool) else 'no' }}
 
 {# OpenBSD does not support GSSAPIAuthentication, so leave this out if on OpenBSD #}
 {% if ansible_facts.os_family != 'OpenBSD' %}
@@ -133,5 +133,5 @@ Compression {{ 'yes' if (ssh_client_compression|bool) else 'no' }}
 {% if sshd_version is version('7.1', '<=') %}
 # Disable experimental client roaming.
 # This is known to cause potential issues with secrets being disclosed to malicious servers. Disabled by default.
-UseRoaming {{ 'yes' if ssh_client_roaming else 'no' }}
+UseRoaming {{ 'yes' if (ssh_client_roaming|bool) else 'no' }}
 {% endif %}

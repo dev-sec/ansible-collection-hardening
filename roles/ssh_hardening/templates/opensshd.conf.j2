@@ -160,7 +160,7 @@ KerberosTicketCleanup yes
 {# OpenBSD does not support GSSAPIAuthentication, so leave this out if on OpenBSD #}
 {% if ansible_facts.os_family != 'OpenBSD' -%}
 # Only enable GSSAPI authentication if it is configured.
-GSSAPIAuthentication {{ 'yes' if ssh_gssapi_support else 'no' }}
+GSSAPIAuthentication {{ 'yes' if (ssh_gssapi_support|bool) else 'no' }}
 GSSAPICleanupCredentials yes
 
 {% endif %}
