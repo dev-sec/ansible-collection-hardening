@@ -32,3 +32,26 @@
         or ansible_facts.os_family == "Suse"
       changed_when: false
       ignore_errors: true
+
+    - name: Prepare cached SSH socket dependency on Ubuntu
+      when:
+        - ansible_facts.distribution == 'Ubuntu'
+        - ansible_facts.distribution_version is version('24.04', '>=')
+      block:
+        - name: Create SSH service dependency directory
+          ansible.builtin.file:
+            path: /etc/systemd/system/ssh.service.requires
+            state: directory
+            mode: "0755"
+
+        - name: Make SSH service require its socket
+          ansible.builtin.file:
+            src: /lib/systemd/system/ssh.socket
+            dest: /etc/systemd/system/ssh.service.requires/ssh.socket
+            state: link
+
+        - name: Load the dependency and ensure SSH is already enabled
+          ansible.builtin.systemd:
+            name: ssh.service
+            enabled: true
+            daemon_reload: true
