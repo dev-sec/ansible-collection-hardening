@@ -1,5 +1,5 @@
 molecule==26.9.0
-molecule-plugins[docker]==26.9.28
+molecule-plugins[docker]==26.10.12
 ansible-core==2.21.4
 docker==7.2.0
 jmespath==1.1.0
