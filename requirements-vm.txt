@@ -1,1 +1,1 @@
-molecule-plugins[vagrant]==26.9.28
+molecule-plugins[vagrant]==26.10.12
