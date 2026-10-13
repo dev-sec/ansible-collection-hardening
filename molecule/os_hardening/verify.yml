@@ -16,6 +16,7 @@
       ansible.builtin.include_tasks:
         file: "{{ item }}"
       loop:
+        - verify_tasks/sudoers.yml
         - verify_tasks/sys_account_shell.yml
         - verify_tasks/pw_ageing.yml
         - verify_tasks/netrc.yml
