@@ -1,0 +1,12 @@
+---
+- name: Converge playbook for testing devsec.hardening.ssh_hardening on macOS
+  hosts: all
+  become: true
+  tasks:
+    - name: Include ssh_hardening role
+      ansible.builtin.include_role:
+        name: ssh_hardening
+  vars:
+    sftp_enabled: false
+    ssh_server_ports:
+      - "22"
