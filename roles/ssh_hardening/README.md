@@ -391,7 +391,7 @@ For more information, see [this issue](https://github.com/dev-sec/ansible-collec
   - Required: no
 - `ssh_server_password_login`
   - Default: `False`
-  - Description: Set to `true` to allow password-based authentication to the ssh server. You probably also need to change `sshd_authenticationmethods` to include `password` if you set `ssh_server_password_login`: `true`.
+  - Description: Set to `true` to allow password-based authentication to the ssh server. You probably also need to change `sshd_authenticationmethods` to include `password` if you set `ssh_server_password_login`: `true`. Failed public-key attempts can exhaust `ssh_max_auth_retries` (default: 2) before the client prompts for a password. Limit the keys offered by the client with `IdentitiesOnly`, or adjust `ssh_max_auth_retries` to allow for the expected authentication attempts.
   - Type: bool
   - Required: no
 - `ssh_server_permit_environment_vars`
