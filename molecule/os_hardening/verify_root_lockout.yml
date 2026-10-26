@@ -1,0 +1,28 @@
+---
+- name: Verify root lockout template configuration
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - ../../roles/os_hardening/defaults/main.yml
+    - ../../roles/os_hardening/vars/RedHat.yml
+  vars:
+    ansible_managed: Ansible managed
+    # Supply the role context for template-only tests without applying the role.
+    ansible_role_name: devsec.hardening.os_hardening # noqa var-naming[read-only]
+  tasks:
+    - name: Verify root lockout remains enabled by default
+      ansible.builtin.assert:
+        that:
+          - os_auth_lockout_root is defined
+          - os_auth_lockout_root | bool
+
+    - name: Check root lockout configuration combinations
+      ansible.builtin.include_tasks: verify_tasks/root_lockout.yml
+      loop:
+        - {enabled: true, retries: 5}
+        - {enabled: false, retries: 5}
+        - {enabled: true, retries: 0}
+        - {enabled: false, retries: 0}
+      loop_control:
+        loop_var: root_lockout_case
