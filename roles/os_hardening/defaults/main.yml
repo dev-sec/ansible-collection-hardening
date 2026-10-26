@@ -372,6 +372,9 @@ os_login_defs_enabled: true
 # Set to false to disable installing and configuring minimize_access.
 os_minimize_access_enabled: true
 
+# Permissions for /etc/passwd- and /etc/group-, independent of the active files.
+os_passwd_backup_mode: "0600"
+
 # Set to false to disable installing and configuring pam.
 os_pam_enabled: true
 

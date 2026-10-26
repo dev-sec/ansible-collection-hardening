@@ -65,3 +65,16 @@
         - prepare_tasks/pw_ageing.yml
         - prepare_tasks/sys_account_shell.yml
         - prepare_tasks/ignore_home_folders.yml
+
+    - name: Ensure account backups exist for permission tests
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ item }}-"
+        remote_src: true
+        force: false
+        owner: root
+        group: root
+        mode: "0644"
+      loop:
+        - /etc/passwd
+        - /etc/group
