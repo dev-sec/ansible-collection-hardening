@@ -4,8 +4,10 @@
     "config:best-practices",
     ":gitSignOff"
   ],
-  "dependencyDashboard": true,
-  "dependencyDashboardAutoclose": true,
+  "dependencyDashboard": {
+    "enabled": true,
+    "autoclose": true
+  },
   "packageRules": [
     {
       "matchUpdateTypes": ["patch", "minor"],
