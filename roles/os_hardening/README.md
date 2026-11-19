@@ -168,6 +168,7 @@ This role is mostly based on guides by:
 - ArchLinux
 - SmartOS
 - opensuse
+- Flatcar Container Linux
 
 ## Role Variables
 
