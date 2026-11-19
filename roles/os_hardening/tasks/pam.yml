@@ -5,6 +5,7 @@
   when:
     - ansible_facts.os_family != 'Suse'
     - ansible_facts.os_family != 'Archlinux'
+    - ansible_facts.os_family != 'Flatcar'
 
 # the reason for this is so a user cannot connect to a server,
 # that isn't connected to an LDAP server anymore.
@@ -16,6 +17,7 @@
     state: absent
   when:
     - ansible_facts.os_family != 'Archlinux'
+    - ansible_facts.os_family != 'Flatcar'
 
 - name: Import tasks for Debian PAM
   ansible.builtin.import_tasks: pam_debian.yml
@@ -55,4 +57,4 @@
   when:
     - ansible_facts.os_family != 'Suse'
     - ansible_facts.os_family != 'Archlinux'
-    - "'libuser' in ansible_facts.packages"
+    - "'libuser' in (ansible_facts.packages | default({}))"
