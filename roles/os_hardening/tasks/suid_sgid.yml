@@ -1,5 +1,5 @@
 ---
-- name: Remove suid/sgid bit from binaries in blacklist | os-06
+- name: Remove suid/sgid bit from binaries in blacklist minus whitelist | os-06
   ansible.builtin.file:
     path: "{{ item }}"
     mode: a-s
@@ -7,8 +7,7 @@
     follow: true
   failed_when: false
   with_community.general.flattened:
-    - "{{ os_security_suid_sgid_system_blacklist }}"
-    - "{{ os_security_suid_sgid_blacklist }}"
+    - "{{ (os_security_suid_sgid_system_blacklist + os_security_suid_sgid_blacklist) | difference(os_security_suid_sgid_whitelist) }}"
 
 - name: Find binaries with suid/sgid set | os-06
   ansible.builtin.shell: find / -xdev \( -perm -4000 -o -perm -2000 \) -type f ! -path '/proc/*' -print 2>/dev/null
