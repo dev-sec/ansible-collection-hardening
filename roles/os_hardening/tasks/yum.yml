@@ -21,7 +21,7 @@
 - name: Activate gpg-check for yum repository files
   ansible.builtin.replace:
     path: "{{ item }}"
-    regexp: ^\s*gpgcheck.*
+    regexp: '^[ \t]*gpgcheck[ \t]*=(?![ \t]*1[ \t]*$).*'
     replace: gpgcheck=1
     mode: "0644"
   with_items:
@@ -34,7 +34,7 @@
 - name: Activate gpg-check for config files
   ansible.builtin.replace:
     path: "{{ item }}"
-    regexp: ^\s*gpgcheck\W.*
+    regexp: '^[ \t]*gpgcheck[ \t]*=(?![ \t]*1[ \t]*$).*'
     replace: gpgcheck=1
     mode: "0644"
   register: status
