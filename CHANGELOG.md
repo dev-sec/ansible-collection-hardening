@@ -8,6 +8,7 @@
 
 - Migrate Renovate config [\#1001](https://github.com/dev-sec/ansible-collection-hardening/pull/1001) ([renovate[bot]](https://github.com/apps/renovate))
 - update community.mysql dependency in galaxy.yml [\#993](https://github.com/dev-sec/ansible-collection-hardening/pull/993) ([z-bsod](https://github.com/z-bsod))
+- Update dependency aar-doc to v2.4.0 [\#990](https://github.com/dev-sec/ansible-collection-hardening/pull/990) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-29)
 
