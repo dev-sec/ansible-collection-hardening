@@ -1,13 +1,13 @@
 # Changelog
 
-## [11.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.1) (2026-10-11)
+## [11.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.1) (2026-11-21)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/11.0.0...11.0.1)
 
 **Merged pull requests:**
 
+- Migrate Renovate config [\#1001](https://github.com/dev-sec/ansible-collection-hardening/pull/1001) ([renovate[bot]](https://github.com/apps/renovate))
 - update community.mysql dependency in galaxy.yml [\#993](https://github.com/dev-sec/ansible-collection-hardening/pull/993) ([z-bsod](https://github.com/z-bsod))
-- Fix SSH client IPv6 handling for stringy false values [\#991](https://github.com/dev-sec/ansible-collection-hardening/pull/991) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([ranas-mukminov](https://github.com/ranas-mukminov))
 
 ## [11.0.0](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.0) (2026-09-29)
 
