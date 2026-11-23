@@ -1,4 +1,11 @@
 ---
+macos_hardening:
+  - changed-files:
+      - any-glob-to-any-file:
+          - roles/macos_hardening/**
+          - molecule/macos_hardening/**
+          - .github/workflows/macos_hardening.yml
+
 mysql_hardening:
   - changed-files:
       - any-glob-to-any-file:

@@ -1,0 +1,129 @@
+---
+- name: Render macOS hardening profile
+  ansible.builtin.template:
+    src: macos_hardening.mobileconfig.j2
+    dest: "{{ macos_profile_path }}"
+    mode: "0600"
+  register: macos_profile_render
+  when: macos_profile_enabled | bool
+
+- name: Validate rendered macOS hardening profile
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/plutil
+      - -lint
+      - "{{ macos_profile_path }}"
+  changed_when: false
+  when: macos_profile_enabled | bool
+
+- name: Read rendered profile payload content
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/plutil
+      - -extract
+      - PayloadContent
+      - xml1
+      - -o
+      - "-"
+      - "{{ macos_profile_path }}"
+  register: macos_rendered_profile_payload_content
+  changed_when: false
+  when: macos_profile_enabled | bool
+
+- name: Record whether the rendered profile has selected payloads
+  ansible.builtin.set_fact:
+    macos_profile_has_payloads: >-
+      {{
+        macos_profile_enabled | bool and
+        not ansible_check_mode and
+        not (macos_rendered_profile_payload_content.stdout | default('') is
+        regex('<array\s*/>|<array>\s*</array>'))
+      }}
+
+- name: Read installed configuration profiles before optional local installation
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/profiles
+      - list
+      - -type
+      - configuration
+  register: macos_installed_configuration_profiles_before
+  changed_when: false
+  check_mode: false
+  become: true
+  when: macos_profile_enabled | bool
+
+- name: Record profile delivery state before optional local installation
+  ansible.builtin.set_fact:
+    macos_profile_deployed_before: >-
+      {{
+        macos_profile_enabled | bool and
+        macos_profile_identifier in
+        ((macos_installed_configuration_profiles_before.stdout | default('')) +
+         (macos_installed_configuration_profiles_before.stderr | default('')))
+      }}
+
+- name: Install profile through the local profiles interface
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/profiles
+      - -I
+      - -F
+      - "{{ macos_profile_path }}"
+  register: macos_legacy_profile_install
+  changed_when: true
+  failed_when: macos_legacy_profile_install.rc != 0 and 'no longer supports' not in macos_legacy_profile_install.stdout
+  become: true
+  when:
+    - macos_profile_enabled | bool
+    - macos_profile_has_payloads | bool
+    - macos_profile_install | bool
+    - not macos_profile_deployed_before | bool or macos_profile_render.changed | bool
+
+- name: Read installed configuration profiles after optional local installation
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/profiles
+      - list
+      - -type
+      - configuration
+  register: macos_installed_configuration_profiles
+  changed_when: false
+  check_mode: false
+  become: true
+  when: macos_profile_enabled | bool
+
+- name: Record macOS hardening profile delivery state
+  ansible.builtin.set_fact:
+    macos_profile_deployed: >-
+      {{
+        macos_profile_enabled | bool and
+        macos_profile_identifier in
+        ((macos_installed_configuration_profiles.stdout | default('')) +
+         (macos_installed_configuration_profiles.stderr | default('')))
+      }}
+
+- name: Report undelivered macOS hardening profile
+  ansible.builtin.debug:
+    msg: >-
+      The configuration profile has selected payloads but is not installed.
+      Deliver macos_profile_path through MDM, or open the rendered .mobileconfig file in System Settings > Profiles.
+  when:
+    - macos_profile_has_payloads | bool
+    - not macos_profile_deployed | bool
+    - not (macos_fail_on_unremediated | default(false) | bool)
+
+- name: Require delivery of the selected profile payloads
+  ansible.builtin.assert:
+    that:
+      - macos_profile_deployed | bool
+    msg: >-
+      The rendered profile `{{ macos_profile_path }}` contains selected payloads but is not installed.
+      You can deliver it through an MDM or copy it to an administrator's home directory with the following commands:
+      `sudo cp {{ macos_profile_path }} "$HOME/{{ macos_profile_path | basename }}"`
+      `sudo chown "$(id -un):staff" "$HOME/{{ macos_profile_path | basename }}"`
+      Then open `~/{{ macos_profile_path | basename }}` and install it under:
+      System Settings > General > Device Management.
+  when:
+    - macos_profile_has_payloads | bool
+    - macos_fail_on_unremediated | default(false) | bool
