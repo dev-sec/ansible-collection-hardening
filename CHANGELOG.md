@@ -1,8 +1,13 @@
 # Changelog
 
-## [11.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.1) (2026-11-21)
+## [11.0.1](https://github.com/dev-sec/ansible-collection-hardening/tree/11.0.1) (2026-11-23)
 
 [Full Changelog](https://github.com/dev-sec/ansible-collection-hardening/compare/11.0.0...11.0.1)
+
+**Fixed bugs:**
+
+- Task "Ensure ssh service is started after disabling socket activation" fails [\#941](https://github.com/dev-sec/ansible-collection-hardening/issues/941) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)]
+- Reload removed socket dependencies before starting sshd [\#986](https://github.com/dev-sec/ansible-collection-hardening/pull/986) [[ssh_hardening](https://github.com/dev-sec/ansible-collection-hardening/labels/ssh_hardening)] ([little-spoon77](https://github.com/little-spoon77))
 
 **Merged pull requests:**
 
