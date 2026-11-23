@@ -17,6 +17,8 @@
 
 - name: Ensure ssh service is started after disabling socket activation
   ansible.builtin.systemd:
+    # Removing unit dependencies does not invalidate systemd's cached unit graph.
+    daemon_reload: true
     name: "{{ sshd_service_name }}"
     state: started
     enabled: true
