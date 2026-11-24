@@ -11,6 +11,14 @@
 - name: Change sysctls
   when: ansible_facts.virtualization_type not in ['docker', 'lxc', 'openvz']
   block:
+    - name: Ensure /etc/sysctl.d exists
+      ansible.builtin.file:
+        path: /etc/sysctl.d
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
     - name: Protect sysctl.conf
       ansible.builtin.file:
         path: /etc/sysctl.d/90-dev-sec.conf

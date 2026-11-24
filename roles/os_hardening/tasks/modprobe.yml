@@ -32,6 +32,14 @@
   vars:
     os_modules_in_use: "{{ os_proc_modules.content | b64decode | regex_findall('(?m)^(\\S+)\\s+\\d+\\s+[1-9]') }}"
 
+- name: Ensure /etc/modprobe.d exists
+  ansible.builtin.file:
+    path: /etc/modprobe.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
 - name: Disable unused filesystems | os-10
   ansible.builtin.template:
     src: etc/modprobe.d/modprobe.j2
