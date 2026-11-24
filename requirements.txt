@@ -4,4 +4,4 @@ ansible-core==2.21.4
 docker==7.2.0
 jmespath==1.1.0
 aar-doc==2.4.0
-passlib==1.7.4
+passlib==1.9.5
