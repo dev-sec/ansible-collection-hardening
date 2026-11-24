@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name: "{{ modprobe_package }}"
     state: present
+  when: ansible_facts.os_family != 'Flatcar'
 
 - name: Check if efi is installed
   ansible.builtin.stat:
@@ -19,6 +20,25 @@
 - name: Remove used filesystems from fs-list
   ansible.builtin.set_fact:
     os_unused_filesystems: "{{ os_unused_filesystems | difference(ansible_facts.mounts | map(attribute='fstype') | list) }}"
+
+- name: Read loaded kernel modules
+  ansible.builtin.slurp:
+    src: /proc/modules
+  register: os_proc_modules
+
+- name: Keep filesystem modules that are loaded and in use
+  ansible.builtin.set_fact:
+    os_filesystem_whitelist: "{{ os_filesystem_whitelist | default([]) | union(os_modules_in_use) }}"
+  vars:
+    os_modules_in_use: "{{ os_proc_modules.content | b64decode | regex_findall('(?m)^(\\S+)\\s+\\d+\\s+[1-9]') }}"
+
+- name: Ensure /etc/modprobe.d exists
+  ansible.builtin.file:
+    path: /etc/modprobe.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
 
 - name: Disable unused filesystems | os-10
   ansible.builtin.template:
