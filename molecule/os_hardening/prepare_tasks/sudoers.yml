@@ -1,0 +1,13 @@
+---
+- name: Install sudo for permission tests
+  ansible.builtin.package:
+    name: sudo
+    state: present
+
+- name: Create a sudoers drop-in with permissions to harden
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/hardening-test
+    content: "# Permission regression fixture\n"
+    owner: root
+    group: root
+    mode: "0644"

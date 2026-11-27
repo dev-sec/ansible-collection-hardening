@@ -1,0 +1,28 @@
+---
+- name: Apply the requested sudoers mode
+  ansible.builtin.include_role:
+    name: devsec.hardening.os_hardening
+    tasks_from: sudoers
+  vars:
+    os_env_sudoers_file_mode: "{{ sudoers_test_mode }}"
+
+- name: Check updated sudoers modes
+  ansible.builtin.stat:
+    path: "{{ item }}"
+  loop:
+    - /etc/sudoers
+    - /etc/sudoers.d/hardening-test
+  register: sudoers_test_modes
+
+- name: Verify the mode change
+  ansible.builtin.assert:
+    that: item.stat.mode == sudoers_test_mode
+  loop: "{{ sudoers_test_modes.results }}"
+
+- name: Validate sudoers after the mode change
+  ansible.builtin.command: visudo -c
+  changed_when: false
+
+- name: Verify sudo after the mode change
+  ansible.builtin.command: sudo -n true
+  changed_when: false

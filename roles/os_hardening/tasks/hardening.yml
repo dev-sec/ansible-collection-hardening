@@ -63,6 +63,11 @@
   tags: pam
   when: os_pam_enabled | bool
 
+- name: Import tasks to harden sudoers permissions
+  ansible.builtin.import_tasks: sudoers.yml
+  tags: sudoers
+  when: os_sudoers_enabled | bool
+
 - name: Import tasks to configure modules
   ansible.builtin.import_tasks: modprobe.yml
   tags: modprobe
